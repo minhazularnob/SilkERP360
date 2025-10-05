@@ -89,7 +89,6 @@
     </Compile>
     <Compile Include="BonusDS.cs">
       <DependentUpon>BonusDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="BonusDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -104,7 +103,6 @@
     </Compile>
     <Compile Include="OvertimeDS.cs">
       <DependentUpon>OvertimeDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="OvertimeDS.Designer.cs">
       <AutoGen>True</AutoGen>

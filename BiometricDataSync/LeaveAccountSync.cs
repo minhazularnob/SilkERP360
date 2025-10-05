@@ -70,7 +70,7 @@ namespace BiometricDataSync
                 
                 //Phase 1 : Get All Temporary/Probation/Permanent Male Employee List
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT EMP_P.SEX,EMP.EMPLOYEE_CODE,EMP.EMPLOYEE_ID,EMP.EMPLOYEE_NAME,EMP.JOINING_DATE,EMP.IS_UNIFORM_ELIGIBLE,EMP.EMPLOYEE_STATUS,COMP.COMPANY_CODE,COMP.NAME,DEPT.DEPARTMENT_CODE,
-                                                                        DEPT.DEPT_NAME,DESIG.DESIGNATION_CODE,DESIG.DEGN_NAME,IMG.IMAGE,IMG.IMAGE_TYPE,IMG.IMAGE_SIZE,IS_DELETED
+                                                                        DEPT.DEPT_NAME,DESIG.DESIGNATION_CODE,DESIG.DEGN_NAME,IMG.IMAGE,IMG.IMAGE_TYPE,IMG.IMAGE_SIZE,emp.IS_DELETED
                                                                         FROM EMPLOYEE EMP
                                                                         JOIN EMPLOYEE_PERSONAL EMP_P
                                                                         ON EMP.EMPLOYEE_CODE = EMP_P.EMPLOYEE_CODE 
@@ -190,7 +190,7 @@ namespace BiometricDataSync
                 System.Collections.Generic.List<System.String> lcl_strLst_LeaveAccountUpdateQueryList = new List<string>();
                 //Phase 1 : Get All Temporary/Probation/Permanent Male Employee List
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT EMP_P.SEX, EMP.EMPLOYEE_CODE,EMP.EMPLOYEE_ID,EMP.EMPLOYEE_NAME,EMP.JOINING_DATE,EMP.EMPLOYEE_STATUS,COMP.COMPANY_CODE,COMP.NAME,DEPT.DEPARTMENT_CODE,
-                                                                        DEPT.DEPT_NAME,DESIG.DESIGNATION_CODE,DESIG.DEGN_NAME,IMG.IMAGE,IMG.IMAGE_TYPE,IMG.IMAGE_SIZE,IS_DELETED
+                                                                        DEPT.DEPT_NAME,DESIG.DESIGNATION_CODE,DESIG.DEGN_NAME,IMG.IMAGE,IMG.IMAGE_TYPE,IMG.IMAGE_SIZE,emp.IS_DELETED
                                                                         FROM EMPLOYEE EMP
                                                                         JOIN EMPLOYEE_PERSONAL EMP_P
                                                                         ON EMP.EMPLOYEE_CODE = EMP_P.EMPLOYEE_CODE 

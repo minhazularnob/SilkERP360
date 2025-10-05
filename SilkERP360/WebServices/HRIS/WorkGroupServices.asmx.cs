@@ -62,7 +62,7 @@ namespace SilkERP360.WebServices.HRIS
                 SilkERP360.FL.ServiceProviders.HRIS.WorkGroupSP lcl_obj_WorkGroupSP = new FL.ServiceProviders.HRIS.WorkGroupSP();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeWorkGroupSchedule> lcl_objLst_EmployeeWorkGroupSchedule = lcl_obj_WorkGroupSP.GetEmployeeWorkGroupScheduleByDate(IP_ui64_CompanyCode, IP_dt_Date);
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Operational Success : Employees Included In The Work Group!!!", true, lcl_objLst_EmployeeWorkGroupSchedule);
-            }
+            } 
             catch (System.Exception Ex)
             {
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);

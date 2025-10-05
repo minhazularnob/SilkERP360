@@ -14,7 +14,7 @@ namespace SilkERP360.DAL
     /// </summary>
     public static class DALObjectPoolManager
     {
-        private const System.String CONNECTION_STRING = "Data Source=DB; User Id=silkerp; Password=silkerp;";
+        private const System.String CONNECTION_STRING = "Data Source=orcl3; User Id=silkerp; Password=silkerp;";
         //private const System.String CONNECTION_STRING = "Data Source=ORCL; User Id=silkerp; Password=silkerp;";
         //private const System.String CONNECTION_STRING = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.200.4)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=DB)));User Id=silkerp;Password=silkerp;";
         //private const System.String CONNECTION_STRING = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=silkapp)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=DB)));User Id=silkerp;Password=silkerp;";
