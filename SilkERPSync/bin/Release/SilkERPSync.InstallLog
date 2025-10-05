@@ -1,0 +1,415 @@
+﻿Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Attempt to stop service SilkERPServices.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Attempt to stop service SilkERPServices.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Attempt to stop service SilkERPServices.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Uninstalling assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Removing EventLog source SilkERPServices.
+Service SilkERPServices is being removed from the system...
+Service SilkERPServices was successfully removed from the system.
+Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe

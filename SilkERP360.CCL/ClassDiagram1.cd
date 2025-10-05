@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Enum Name="SilkERP360.CCL.Enums.WellpacSection" Collapsed="true">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAgAAAAAIAAAAAEAEAAAABAAAQAAAAAAAAIAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.OutpassType" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.ProvidentFundAccountStatus" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.ProvidentFundTransactionType" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAACACAAAAAAAAAAAAAAkAgAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.BonusOccasion" Collapsed="true">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQIAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AutobotPenaltyType" Collapsed="true">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.WorkGroup" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEABAAAAAAAAAEAEICAIAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.OvertimeEntryType" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAIAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.LeaveType" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAoCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.LeaveCategory" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.Currency" Collapsed="true">
+    <Position X="7.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACABCAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.SCProductionProcess" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAIAAAAEAAAAAAAAAAAAAAAAAAAEAIAAAAABA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AdditionOrDeduction" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.SalaryStatus" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AdditionDeductionType" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gABAAAAAAAEAQAAAAAgAEgIBIAAAAAAAgACACBEAQCA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.CompanyCode" Collapsed="true">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AccessControlFileType" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AccessControlTransactionType" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.ExceptionOriginatorLayer" Collapsed="true">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAIAQAAAAAQAIAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.ExceptionType" Collapsed="true">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAACAAAAAAEAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.WebServiceExecutionStatus" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAoAAAAAAAAAAAACACAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.FunctionExecutionStatus" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAoACAQAAAAAAAAAAAgAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.Status" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.EmployeeStatus" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAABAAAAAABAAAAAAAAAAEAAABAIAAAAAAAAEAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.YesNo" Collapsed="true">
+    <Position X="9.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.WeekDay" Collapsed="true">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAIAACAAAAAAAAAAACAAIACAIAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.Month" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAEgAAABRAAAAAAQAwgAAAAAAQAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AttendanceStatus" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAADIAAASAAAQAgAAgAEAAAAAACAQAEIAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AttendanceEntryType" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.WorkGroupOperationalStatus" Collapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAIAACAAAAAAAAQAAAAICAAAAAAAAEAAAAAEAAIA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.AssessmentStatus" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.DayAttribute" Collapsed="true">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAQAAAAAAAAAAAAAAAEAgAEAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.RosterOperationalStatus" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAEAAIA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.RosterDutyStatus" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAIAAAAAAAIA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.TransactionType" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SilkERP360.CCL.Enums.OvertimeProcessingStatus" Collapsed="true">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

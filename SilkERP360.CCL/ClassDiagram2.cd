@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProvidentFundProfile">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAKIgBAAAAAAAAAIIAAhUAAAEAAQhiACEAQABAEAAgE=</HashCode>
+      <FileName>BusinessEntities\HRIS\DataStructures\EmployeeProvidentFundProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SilkERP360.CCL.BusinessEntities.HRIS.PFAccountTransaction">
+    <Position X="4.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAEIACAhAAIAAAAADAQAkABABCAAAAEAAAAIA=</HashCode>
+      <FileName>BusinessEntities\HRIS\PFAccountTransaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C143BC3-CB5C-4095-A2CF-7787CFCD2EF7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SilkERP360.FL</RootNamespace>
+    <AssemblyName>SilkERP360.FL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HRIS\AcsFileFacade.cs" />
+    <Compile Include="HRIS\AttandanceProcessFacade.cs" />
+    <Compile Include="HRIS\AttendanceFacade.cs" />
+    <Compile Include="HRIS\AttendanceMasterFacade.cs" />
+    <Compile Include="HRIS\CompanyFacade.cs" />
+    <Compile Include="HRIS\DataStructures\EmployeeAppoinmentFacade.cs" />
+    <Compile Include="HRIS\DataStructures\EmployeeProfileFacade.cs" />
+    <Compile Include="HRIS\DataStructures\OvertimeHistoryFacade.cs" />
+    <Compile Include="HRIS\DepartmentFacade.cs" />
+    <Compile Include="HRIS\DesignationFacade.cs" />
+    <Compile Include="HRIS\EmployeeFacade.cs" />
+    <Compile Include="HRIS\EmployeeLeaveFacade.cs" />
+    <Compile Include="HRIS\EmployeePersonalFacade.cs" />
+    <Compile Include="HRIS\HolidayFacade.cs" />
+    <Compile Include="HRIS\IncrementFacade.cs" />
+    <Compile Include="HRIS\MedicalInfoFacade.cs" />
+    <Compile Include="HRIS\MenuPermissionFacade.cs" />
+    <Compile Include="HRIS\ModuleFacade.cs" />
+    <Compile Include="HRIS\OvertimeFacade.cs" />
+    <Compile Include="HRIS\PFAccountFacade.cs" />
+    <Compile Include="HRIS\PFAccountTransectionFacade.cs" />
+    <Compile Include="HRIS\RoosterFacade.cs" />
+    <Compile Include="HRIS\SalaryAddDedFacade.cs" />
+    <Compile Include="HRIS\ShiftFacade.cs" />
+    <Compile Include="HRIS\WorkGroupFacade.cs" />
+    <Compile Include="HRIS\WorkGroupOperationHistoryFacade.cs" />
+    <Compile Include="HRIS\WorkGroupOperationMasterFacade.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SCPMServices\SimServices.cs" />
+    <Compile Include="SCPM\MachineFacade.cs" />
+    <Compile Include="SCPM\ProcessFacade.cs" />
+    <Compile Include="SCPM\SCPersoFaultCardFacade.cs" />
+    <Compile Include="SCPM\ScpmScCardsFacade.cs" />
+    <Compile Include="SCPM\ScpmScDataRepositoryFacade.cs" />
+    <Compile Include="SCPM\ScpmScJobOrderFacade.cs" />
+    <Compile Include="SCPM\ScpmScJobOrderItemFacade.cs" />
+    <Compile Include="SCPM\ScpmScPackagedBoxFacade.cs" />
+    <Compile Include="SCPM\ScpmScPersoISODataFacade.cs" />
+    <Compile Include="SCPM\ScpmScPersoISOFacade.cs" />
+    <Compile Include="SCPM\SectionFacade.cs" />
+    <Compile Include="SecurityFacade.cs" />
+    <Compile Include="ServiceProviders\HRIS\AttendanceSP.cs" />
+    <Compile Include="ServiceProviders\HRIS\EmployeeSP.cs" />
+    <Compile Include="ServiceProviders\HRIS\LeaveSP.cs" />
+    <Compile Include="ServiceProviders\HRIS\SalarySP.cs" />
+    <Compile Include="ServiceProviders\HRIS\WorkGroupSP.cs" />
+    <Compile Include="SqlFacade.cs" />
+    <Compile Include="UI\MenuFacade.cs" />
+    <Compile Include="UI\ModuleFacade.cs" />
+    <Compile Include="UI\ModulePermissionFacade.cs" />
+    <Compile Include="UI\UserFacade.cs" />
+    <Compile Include="UI\UserProfileFacade.cs" />
+    <Compile Include="WPMS\BuyerFacade.cs" />
+    <Compile Include="WPMS\CurrencyFacade.cs" />
+    <Compile Include="WPMS\ItemFacade.cs" />
+    <Compile Include="WPMS\Mailer.cs" />
+    <Compile Include="WPMS\MailFormater.cs" />
+    <Compile Include="WPMS\QuotationDetailsFacade.cs" />
+    <Compile Include="WPMS\QuotationFacade.cs" />
+    <Compile Include="WPMS\RawMaterialsFacade.cs" />
+    <Compile Include="WPMS\RawProductFacade.cs" />
+    <Compile Include="WPMS\RawSubFacade.cs" />
+    <Compile Include="WPMS\RelationBuyerProductFacade.cs" />
+    <Compile Include="WPMS\SalesContractDetailsFacade.cs" />
+    <Compile Include="WPMS\SalesContractFacade.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GL\" />
+    <Folder Include="HRISServices\" />
+    <Folder Include="ServiceProviders\WPMS\" />
+    <Folder Include="SPM\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilkERP360.BML\SilkERP360.BML.csproj">
+      <Project>{9B235328-D16E-41EC-A189-1BBB872A0044}</Project>
+      <Name>SilkERP360.BML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilkERP360.CCL\SilkERP360.CCL.csproj">
+      <Project>{B5471837-C586-4007-9E73-8A5B08508B8E}</Project>
+      <Name>SilkERP360.CCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataFacade\App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

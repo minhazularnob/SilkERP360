@@ -1,0 +1,186 @@
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+F:\SilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+C:\Documents and Settings\amitav\Desktop\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+H:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+E:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+I:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+E:\SilkERP.SVR\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+E:\LiveSilkERP360\SVR VRSON\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll.config
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.DAL.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\SilkERP360.CCL.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Configuration.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.Configuration.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\ResolveAssemblyReference.cache
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.dll
+D:\LiveSilkERP360\SilkERP360\SilkERP360.DAL\obj\Release\SilkERP360.DAL.pdb

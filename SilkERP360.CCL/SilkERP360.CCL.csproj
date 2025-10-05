@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B5471837-C586-4007-9E73-8A5B08508B8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SilkERP360.CCL</RootNamespace>
+    <AssemblyName>SilkERP360.CCL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessEntities\General\Vendor.cs" />
+    <Compile Include="BusinessEntities\HRIS\AcsFile.cs" />
+    <Compile Include="BusinessEntities\HRIS\AcsFileRow.cs" />
+    <Compile Include="BusinessEntities\HRIS\Attendance.cs" />
+    <Compile Include="BusinessEntities\HRIS\AttendanceDetails.cs" />
+    <Compile Include="BusinessEntities\HRIS\AttendanceMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\BankAccount.cs" />
+    <Compile Include="BusinessEntities\HRIS\Base\CompanyCore.cs" />
+    <Compile Include="BusinessEntities\HRIS\Base\DepartmentCore.cs" />
+    <Compile Include="BusinessEntities\HRIS\Base\DesignationCore.cs" />
+    <Compile Include="BusinessEntities\HRIS\Base\EmployeeCore.cs" />
+    <Compile Include="BusinessEntities\HRIS\Base\EmployeeImageCore.cs" />
+    <Compile Include="BusinessEntities\HRIS\Base\AttandanceCore.cs" />
+    <Compile Include="BusinessEntities\HRIS\BMSTransaction.cs" />
+    <Compile Include="BusinessEntities\HRIS\Bonus.cs" />
+    <Compile Include="BusinessEntities\HRIS\BonusMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\Company.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\CompanyDepartments.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\CompanyEmployeeProfiles.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\CompanyEmployees.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\DepartmentEmployeeProfiles.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\DepartmentEmployees.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\DepartmentStrength.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\DesignationEmployeeProfiles.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeAppoinment.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeAttendanceSummery.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeAttendanceSummeryMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeLeaveProfile.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeMN.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeProfile.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeProfileMini.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeProvidentFundProfile.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeewiseAttendanceReportObjects.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\EmployeeWorkGroupSchedule.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\ExtendedAttendanceData.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\LeaveBalance.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\LeaveBalanceList.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\LeaveProfile.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\OvertimeHistory.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataStructures\WorkGroupOperationMasterProfile.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataTransportContainers\EmployeeAssignedWeekend.cs" />
+    <Compile Include="BusinessEntities\HRIS\DataTransportContainers\EmployeeWithWeekend.cs" />
+    <Compile Include="BusinessEntities\HRIS\Department.cs" />
+    <Compile Include="BusinessEntities\HRIS\Designation.cs" />
+    <Compile Include="BusinessEntities\HRIS\Employee.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeBankAccount.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeEducation.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeEntitledLeave.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeExperience.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeImage.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeLeaveApplication.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeLeaveCanceled.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeOvertimeNightAllowance.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeePersonal.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeReference.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeRooster.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeSalaryStructure.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeStatusHistory.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeWeekend.cs" />
+    <Compile Include="BusinessEntities\HRIS\GroupSalaryProfile.cs" />
+    <Compile Include="BusinessEntities\HRIS\HolidayDetails.cs" />
+    <Compile Include="BusinessEntities\HRIS\HolidayMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\Increment.cs" />
+    <Compile Include="BusinessEntities\HRIS\IncrementMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\Leave.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeLeaveAccount.cs" />
+    <Compile Include="BusinessEntities\HRIS\LeaveApproverRecommender.cs" />
+    <Compile Include="BusinessEntities\HRIS\MedicalInfo.cs" />
+    <Compile Include="BusinessEntities\HRIS\MenuPermission.cs" />
+    <Compile Include="BusinessEntities\HRIS\Module.cs" />
+    <Compile Include="BusinessEntities\HRIS\MonthlyAllowance.cs" />
+    <Compile Include="BusinessEntities\HRIS\Outpass.cs" />
+    <Compile Include="BusinessEntities\HRIS\Overtime.cs" />
+    <Compile Include="BusinessEntities\HRIS\PFAccount.cs" />
+    <Compile Include="BusinessEntities\HRIS\PFAccountTransaction.cs" />
+    <Compile Include="BusinessEntities\HRIS\ProvidentFund.cs" />
+    <Compile Include="BusinessEntities\HRIS\RoosterMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\Salary.cs" />
+    <Compile Include="BusinessEntities\HRIS\SalaryAdditionDeduction.cs" />
+    <Compile Include="BusinessEntities\HRIS\SalaryAdvancedLoan.cs" />
+    <Compile Include="BusinessEntities\HRIS\SalaryMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\Shift.cs" />
+    <Compile Include="BusinessEntities\HRIS\Weekend.cs" />
+    <Compile Include="BusinessEntities\HRIS\WorkGroupEntities.cs" />
+    <Compile Include="BusinessEntities\SCPM\Base\ScpmSMQCBase.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmCustomer.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmScCards.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmScDataRepository.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmScJobOrder.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmScJobOrderItem.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmScPackagedBox.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmScPersoISO.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmScPersoISOData.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmSmInputBatchRef.cs" />
+    <Compile Include="BusinessEntities\SCPM\SCPMJobOrder.cs" />
+    <Compile Include="BusinessEntities\SCPM\SCPMMachine.cs" />
+    <Compile Include="BusinessEntities\SCPM\Process.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScBatch.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScPersoFaultCard.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScJO.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmRMVendorRef.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmSmMasterBatch.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmSmPeelOffQC.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmSmPersoTrace.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmSmQCMaster.cs" />
+    <Compile Include="BusinessEntities\SCPM\ScpmSmSubBatch.cs" />
+    <Compile Include="BusinessEntities\SCPM\Section.cs" />
+    <Compile Include="BusinessEntities\SCPM\Vendor.cs" />
+    <Compile Include="BusinessEntities\SPM\SC\SpmScJobOrder.cs" />
+    <Compile Include="BusinessEntities\SPM\SC\SpmScJobOrderItem.cs" />
+    <Compile Include="BusinessEntities\SPM\SC\SpmScPurchaseOrderItem.cs" />
+    <Compile Include="BusinessEntities\SPM\SpmCustomer.cs" />
+    <Compile Include="BusinessEntities\SPM\SpmProductMaster.cs" />
+    <Compile Include="BusinessEntities\SPM\SC\SpmScPurchaseOrder.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmIsoPerso.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmJobOrder.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmJobOrderItem.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmPackagedBox.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmPackagedBoxSerials.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmProject.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmProjectData.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmPurchaseOrder.cs" />
+    <Compile Include="BusinessEntities\SPM\SM\SpmSmPurchaseOrderItem.cs" />
+    <Compile Include="BusinessEntities\UI\Menu.cs" />
+    <Compile Include="BusinessEntities\UI\Module.cs" />
+    <Compile Include="BusinessEntities\UI\ModuleMenuCompany.cs" />
+    <Compile Include="BusinessEntities\UI\User.cs" />
+    <Compile Include="BusinessEntities\UI\UserModuleMenu.cs" />
+    <Compile Include="BusinessEntities\UI\UserModule.cs" />
+    <Compile Include="BusinessEntities\UI\UserModuleCompany.cs" />
+    <Compile Include="BusinessEntities\UI\UserProfile.cs" />
+    <Compile Include="BusinessEntities\WPMS\Buyer.cs" />
+    <Compile Include="BusinessEntities\WPMS\Currency.cs" />
+    <Compile Include="BusinessEntities\WPMS\Item.cs" />
+    <Compile Include="BusinessEntities\WPMS\PurchaseOrder.cs" />
+    <Compile Include="BusinessEntities\WPMS\PurchaseOrderDetails.cs" />
+    <Compile Include="BusinessEntities\WPMS\Quotation.cs" />
+    <Compile Include="BusinessEntities\WPMS\QuotationDetails.cs" />
+    <Compile Include="BusinessEntities\WPMS\RawLIST.cs" />
+    <Compile Include="BusinessEntities\WPMS\RawMaterials.cs" />
+    <Compile Include="BusinessEntities\WPMS\RawProduct.cs" />
+    <Compile Include="BusinessEntities\WPMS\RelationBuyerProduct.cs" />
+    <Compile Include="BusinessEntities\WPMS\SalesContract.cs" />
+    <Compile Include="BusinessEntities\WPMS\SalesContractDetails.cs" />
+    <Compile Include="BusinessEntities\WPMS\WpmsBuyer.cs" />
+    <Compile Include="CacheManagement\CacheManager.cs" />
+    <Compile Include="DatabaseMapping\DatabaseColumnMapping.cs" />
+    <Compile Include="DatabaseMapping\DatabaseEntityMapping.cs" />
+    <Compile Include="DatabaseMapping\DatabaseMappingBase.cs" />
+    <Compile Include="Enums\Enumerations.cs" />
+    <Compile Include="Enums\SCPMEnumerations.cs" />
+    <Compile Include="Enums\SCPM\Enums.cs" />
+    <Compile Include="Enums\SPM\Enums.cs" />
+    <Compile Include="ExceptionManagement\Base\BaseException.cs" />
+    <Compile Include="ExceptionManagement\Base\ExceptionHandlerBase.cs" />
+    <Compile Include="ExceptionManagement\Base\ExceptionManagementBase.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\BMLExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\BSLExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\CCLExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\DALExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\FLExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\OfflinePrintExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\SilkERPOfflineDataProcessExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\SilkERPServiceExceptionPolicy.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\SPExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionHandlers\UIExceptionHandler.cs" />
+    <Compile Include="ExceptionManagement\ExceptionInfo.cs" />
+    <Compile Include="ExceptionManagement\ExceptionInfoManager.cs" />
+    <Compile Include="ExceptionManagement\ExceptionLogger.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\BMLProcessedException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\BMLException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\BSLCustomException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\BSLException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\CCLProcessedException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\CCLException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\DALProcessedException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\DALException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\FLProcessedException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\FLException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\ProcessedException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\SilkERPApplicationException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\UIProcessedException.cs" />
+    <Compile Include="ExceptionManagement\Exceptions\UIException.cs" />
+    <Compile Include="Interfaces\IDatabaseMapping.cs" />
+    <Compile Include="Interfaces\IManagerOperations.cs" />
+    <Compile Include="Interfaces\IDataStructureOperations.cs" />
+    <Compile Include="Interfaces\IFacadeOperations.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Misc\Mailer.cs" />
+    <Compile Include="Misc\SilkWebMethod.cs" />
+    <Compile Include="Misc\SilkWebService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Misc\SilkWebServiceCollection.cs" />
+    <Compile Include="Misc\WSResponse.cs" />
+    <Compile Include="ObjectPool\ObjectPool.cs" />
+    <Compile Include="ObjectPool\PooledObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\SilkDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Repository\AuthenticUserContext.cs" />
+    <Compile Include="Repository\AuthenticUserContextRepository.cs" />
+    <Compile Include="Security\ClientRequest.cs" />
+    <Compile Include="Security\ClientRequestRepository.cs" />
+    <Compile Include="Security\TempSecurityTokenRepository.cs" />
+    <Compile Include="UIEntities\Menu.cs" />
+    <Compile Include="UIEntities\Module.cs" />
+    <Compile Include="Utils\SMQCRandomGenerator.cs" />
+    <Compile Include="Utils\Utility.cs" />
+    <Compile Include="Validation\Attributes\AgeRangeAttribute.cs" />
+    <Compile Include="Validation\Attributes\BackDateAttribute.cs" />
+    <Compile Include="Validation\Attributes\Base\ValidationAttributeBase.cs" />
+    <Compile Include="Validation\Attributes\CurrentDateAttribute.cs" />
+    <Compile Include="Validation\Attributes\ForwardDateAttribute.cs" />
+    <Compile Include="Validation\Attributes\IntegerRangeAttribute.cs" />
+    <Compile Include="Validation\Attributes\NonZeroIntegerAttribute.cs" />
+    <Compile Include="Validation\Attributes\RequiredAttribute.cs" />
+    <Compile Include="Validation\Attributes\StringLengthAttribute.cs" />
+    <Compile Include="Validation\Attributes\StringLengthRangeAttribute.cs" />
+    <Compile Include="Validation\Collections\ValidationErrorCollection.cs" />
+    <Compile Include="Validation\DBColumnAttribute.cs" />
+    <Compile Include="Validation\DBProcedureParameterAttribute.cs" />
+    <Compile Include="Validation\ErrorsExceptions\ValidationError.cs" />
+    <Compile Include="Validation\ErrorsExceptions\ValidationException.cs" />
+    <Compile Include="Validation\Interfaces\IEntityValidation.cs" />
+    <Compile Include="Validation\Interfaces\IValidationError.cs" />
+    <Compile Include="Validation\ValidationBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SessionManagement\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

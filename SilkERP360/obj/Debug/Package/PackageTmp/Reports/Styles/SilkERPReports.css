@@ -1,0 +1,229 @@
+﻿@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('/Globals/fonts/BebasNeue-webfont.eot');
+    src: url('/Globals/fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/Globals/fonts/BebasNeue-webfont.woff') format('woff'),
+         url('/Globals/fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('/Globals/fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#dvContainer {
+	clear:both;
+	width: 976px;
+	height:37px;
+	border:1px solid #E0E0E0;
+	margin:10px auto 0 11px;
+	/*background: url(../images/bg_amenu.png) left center repeat-x;*/
+	box-shadow: 0px 3px 8px #cecece;
+	border-radius:5px;
+	margin:30px auto;	
+}
+
+label
+{
+    font-family:Verdana;
+    font-size:14px;
+	color: rgb(64, 92, 96);
+	position: relative;
+}
+
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder  { 
+	color: rgb(190, 188, 188); 
+	font-style: italic;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder{ 
+	color: rgb(190, 188, 188);
+	font-style: italic;
+} 
+input {
+  outline: none;
+}
+
+/* all the input except submit and checkbox */
+input:not([type="checkbox"]),textarea
+{
+    font-family:Verdana;
+    font-size:12px;
+	width: 96%;
+	/*margin-top: 4px;*/
+	padding:  2px 2px 2px 2px;	
+	border: 1px solid rgba(91, 90, 90, 0.7);
+	
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	  -moz-box-sizing : content-box;
+	       box-sizing : content-box;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	-webkit-transition: all 0.2s linear;
+	   -moz-transition: all 0.2s linear;
+	     -o-transition: all 0.2s linear;
+	        transition: all 0.2s linear;
+}
+
+
+input:not([type="checkbox"]):active,textarea:active,
+input:not([type="checkbox"]):focus,textarea:focus
+{
+    border: 1px solid rgb(178, 178, 178);
+	background: rgba(238, 236, 240, 0.2);
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	
+	
+	
+} 
+
+select
+{
+    font-family:Verdana;
+    font-size:11px;
+	width: 96%;
+	/*margin-top: 4px;*/
+	padding:  1px 2px 1px 1px;	
+	border: 1px solid rgba(91, 90, 90, 0.7);
+	
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	  -moz-box-sizing : content-box;
+	       box-sizing : content-box;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	-webkit-transition: all 0.2s linear;
+	   -moz-transition: all 0.2s linear;
+	     -o-transition: all 0.2s linear;
+	        transition: all 0.2s linear;
+}
+
+
+select:active,select:focus,
+{
+    border: 1px solid rgb(178, 178, 178);
+	background: rgba(238, 236, 240, 0.2);
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	
+	
+	
+} 
+h1{
+	font-size: 30px;
+	color: rgb(6, 106, 117);
+	padding: 0px 0 0px 0;
+	font-family: 'BebasNeueRegular','Verdana','Arial Narrow',Arial,sans-serif;
+	font-weight:500;
+	text-align: left;
+	padding-bottom: 0px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+/** For the moment only webkit supports the background-clip:text; */
+
+h1{
+    background: -webkit-repeating-linear-gradient(-45deg, 
+	rgb(18, 83, 93) , 
+	rgb(18, 83, 93) 20px, 
+	rgb(64, 111, 118) 20px, 
+	rgb(64, 111, 118) 40px, 
+	rgb(18, 83, 93) 40px);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+
+h2{
+	font-size: 20px;
+	color: rgb(6, 106, 117);
+	padding: 0px 0 3px 0;
+	font-family: 'BebasNeueRegular','Verdana','Arial Narrow',Arial,sans-serif;
+	font-weight:500;
+	text-align: center;
+	padding-bottom: 3px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+/** For the moment only webkit supports the background-clip:text; */
+
+h2{
+    background: -webkit-repeating-linear-gradient(-45deg, 
+	rgb(18, 83, 93) , 
+	rgb(18, 83, 93) 20px, 
+	rgb(64, 111, 118) 20px, 
+	rgb(64, 111, 118) 40px, 
+	rgb(18, 83, 93) 40px);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+
+h2{
+    background: -webkit-repeating-linear-gradient(-45deg, 
+	rgb(18, 83, 93) , 
+	rgb(18, 83, 93) 20px, 
+	rgb(64, 111, 118) 20px, 
+	rgb(64, 111, 118) 40px, 
+	rgb(18, 83, 93) 40px);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+h2:after{
+	content: ' ';
+	display: block;
+	width: 100%;
+	height: 2px;
+	margin-top: 5px;
+	margin-bottom:5px;
+	background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%, rgba(147,184,189,0.8) 20%, rgba(147,184,189,1) 53%, rgba(147,184,189,0.8) 79%, rgba(147,184,189,0) 100%); 
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(147,184,189,0.8)), color-stop(53%,rgba(147,184,189,1)), color-stop(79%,rgba(147,184,189,0.8)), color-stop(100%,rgba(147,184,189,0))); 
+	background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+}
+
+h3{
+	font-size: 14px;
+	color: rgb(6, 106, 117);
+	padding: 0px 0 0px 0;
+	font-family: 'BebasNeueRegular','Verdana','Arial Narrow',Arial,sans-serif;
+	font-weight: normal;
+	text-align: left;
+	padding-bottom: 0px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+/** For the moment only webkit supports the background-clip:text; */
+h3{
+    background: -webkit-repeating-linear-gradient(-45deg, 
+	rgb(18, 83, 93) , 
+	rgb(18, 83, 93) 20px, 
+	rgb(64, 111, 118) 20px, 
+	rgb(64, 111, 118) 40px, 
+	rgb(18, 83, 93) 40px);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+/*h3:after{
+	content: ' ';
+	display: block;
+	width: 100%;
+	height: 2px;
+	margin-top: 5px;
+	margin-bottom:2px;
+	background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%, rgba(147,184,189,0.8) 20%, rgba(147,184,189,1) 53%, rgba(147,184,189,0.8) 79%, rgba(147,184,189,0) 100%); 
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(147,184,189,0.8)), color-stop(53%,rgba(147,184,189,1)), color-stop(79%,rgba(147,184,189,0.8)), color-stop(100%,rgba(147,184,189,0))); 
+	background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+}*/

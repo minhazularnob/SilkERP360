@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B235328-D16E-41EC-A189-1BBB872A0044}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SilkERP360.BML</RootNamespace>
+    <AssemblyName>SilkERP360.BML</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HRISFactory\AttendanceFactory.cs" />
+    <Compile Include="HRISFactory\LeaveFactory.cs" />
+    <Compile Include="HRISFactory\SalaryFactory.cs" />
+    <Compile Include="HRISFactory\WorkGroupFactory.cs" />
+    <Compile Include="HRIS\AcsFileManager.cs" />
+    <Compile Include="HRIS\AttendanceManager.cs" />
+    <Compile Include="HRIS\AttendanceMasterManager.cs" />
+    <Compile Include="HRIS\BankAccountManager.cs" />
+    <Compile Include="HRIS\BonusManager.cs" />
+    <Compile Include="HRIS\BonusMasterManager.cs" />
+    <Compile Include="HRIS\CompanyManager.cs" />
+    <Compile Include="HRIS\DataStructures\CompanyEmployeeProfilesManager.cs" />
+    <Compile Include="HRIS\DataStructures\DepartmentEmployeeProfilesManager.cs" />
+    <Compile Include="HRIS\DataStructures\EmployeeAppoinmentManager.cs" />
+    <Compile Include="HRIS\DataStructures\EmployeeLeaveProfileManager.cs" />
+    <Compile Include="HRIS\DataStructures\EmployeeProvidentFundProfileManager.cs" />
+    <Compile Include="HRIS\DataStructures\EmployeeProfileManager.cs" />
+    <Compile Include="HRIS\DataStructures\LeaveBalanceManager.cs" />
+    <Compile Include="HRIS\DataStructures\OvertimeHistoryManager.cs" />
+    <Compile Include="HRIS\DepartmentManager.cs" />
+    <Compile Include="HRIS\DesignationManager.cs" />
+    <Compile Include="HRIS\EmployeeEducationManager.cs" />
+    <Compile Include="HRIS\EmployeeEntitledLeaveManager.cs" />
+    <Compile Include="HRIS\EmployeeExperienceManager.cs" />
+    <Compile Include="HRIS\EmployeeImageManager.cs" />
+    <Compile Include="HRIS\EmployeeLeaveAccountManager.cs" />
+    <Compile Include="HRIS\EmployeeLeaveApplicationManager.cs" />
+    <Compile Include="HRIS\EmployeeLeaveCanceledManager.cs" />
+    <Compile Include="HRIS\EmployeeManager.cs" />
+    <Compile Include="HRIS\EmployeePersonalManager.cs" />
+    <Compile Include="HRIS\EmployeeReferenceManager.cs" />
+    <Compile Include="HRIS\EmployeeRoosterManager.cs" />
+    <Compile Include="HRIS\EmployeeSalaryStructureManager.cs" />
+    <Compile Include="HRIS\employeeStatusHistoryManager.cs" />
+    <Compile Include="HRIS\EmployeeWeekendManager.cs" />
+    <Compile Include="HRIS\HolidayDetailsManager.cs" />
+    <Compile Include="HRIS\HolidayMstrManager.cs" />
+    <Compile Include="HRIS\IncrementManager.cs" />
+    <Compile Include="HRIS\IncrementMasterManager.cs" />
+    <Compile Include="HRIS\LeaveManager.cs" />
+    <Compile Include="HRIS\MedicalInfoManager.cs" />
+    <Compile Include="HRIS\MenuPermissionManager.cs" />
+    <Compile Include="HRIS\ModuleManager.cs" />
+    <Compile Include="HRIS\OutpassManager.cs" />
+    <Compile Include="HRIS\OvertimeManager.cs" />
+    <Compile Include="HRIS\PFAccountManager.cs" />
+    <Compile Include="HRIS\PFAccountTransactionManager.cs" />
+    <Compile Include="HRIS\ProvidentFundManager.cs" />
+    <Compile Include="HRIS\RoosterMasterManager.cs" />
+    <Compile Include="HRIS\SalaryAdditionDeductionManager.cs" />
+    <Compile Include="HRIS\SalaryAdvancedLoanManager.cs" />
+    <Compile Include="HRIS\SalaryManager.cs" />
+    <Compile Include="HRIS\SalaryMasterManager.cs" />
+    <Compile Include="HRIS\ShiftManager.cs" />
+    <Compile Include="HRIS\WeekendManager.cs" />
+    <Compile Include="HRIS\WorkGroupManager.cs" />
+    <Compile Include="HRIS\WorkGroupOperationHistoryManager.cs" />
+    <Compile Include="HRIS\WorkGroupOperationMasterManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SCPM\MachineManager.cs" />
+    <Compile Include="SCPM\ProcessManager.cs" />
+    <Compile Include="SCPM\ScBatchManager.cs" />
+    <Compile Include="SCPM\ScPersoFaultCardManager.cs" />
+    <Compile Include="SCPM\ScJOManager.cs" />
+    <Compile Include="SCPM\ScpmRMVendorRefManager.cs" />
+    <Compile Include="SCPM\ScpmScCardsManager.cs" />
+    <Compile Include="SCPM\ScpmScDataRepositoryManager.cs" />
+    <Compile Include="SCPM\ScpmScJobOrderItemManager.cs" />
+    <Compile Include="SCPM\ScpmScJobOrderManager.cs" />
+    <Compile Include="SCPM\ScpmScPackagedBoxManager.cs" />
+    <Compile Include="SCPM\ScpmScPersoISODataManager.cs" />
+    <Compile Include="SCPM\ScpmScPersoISOManager.cs" />
+    <Compile Include="SCPM\ScpmSmInputBatchRefManager.cs" />
+    <Compile Include="SCPM\ScpmSmMasterBatchManager.cs" />
+    <Compile Include="SCPM\ScpmSmPeelOffQCManager.cs" />
+    <Compile Include="SCPM\ScpmSmPersoTraceManager.cs" />
+    <Compile Include="SCPM\ScpmSmQCMasterManager.cs" />
+    <Compile Include="SCPM\ScpmSmSubBatchManager.cs" />
+    <Compile Include="SCPM\SectionManager.cs" />
+    <Compile Include="SCPM\VendorManager.cs" />
+    <Compile Include="SecurityManager.cs" />
+    <Compile Include="Services\HRIS\EmployeeServices.cs" />
+    <Compile Include="Services\HRIS\SalaryServices.cs" />
+    <Compile Include="Services\SCPM\ScratchCardServices.cs" />
+    <Compile Include="SPM\SC\SpmScJobOrderItemManager.cs" />
+    <Compile Include="SPM\SC\SpmScJobOrderManager.cs" />
+    <Compile Include="SPM\SC\SpmScPurchaseOrderItemManager.cs" />
+    <Compile Include="SPM\SC\SpmScPurchaseOrderManager.cs" />
+    <Compile Include="SPM\SpmCustomerManager.cs" />
+    <Compile Include="SPM\SpmProductMasterManager.cs" />
+    <Compile Include="SPM\SM\SpmSmIsoPersoManager.cs" />
+    <Compile Include="SPM\SM\SpmSmJobOrderItemManager.cs" />
+    <Compile Include="SPM\SM\SpmSmJobOrderManager.cs" />
+    <Compile Include="SPM\SM\SpmSmPackagedBoxManager.cs" />
+    <Compile Include="SPM\SM\SpmSmPackagedBoxSerialsManager.cs" />
+    <Compile Include="SPM\SM\SpmSmProjectDataManager.cs" />
+    <Compile Include="SPM\SM\SpmSmProjectManager.cs" />
+    <Compile Include="SPM\SM\SpmSmPurchaseOrderItemManager.cs" />
+    <Compile Include="SPM\SM\SpmSmPurchaseOrderManager.cs" />
+    <Compile Include="SqlManager.cs" />
+    <Compile Include="UI\MenuManager.cs" />
+    <Compile Include="UI\ModuleManager.cs" />
+    <Compile Include="UI\UserManager.cs" />
+    <Compile Include="UI\UserModuleMenuCompanyManager.cs" />
+    <Compile Include="UI\UserModuleMenuManager.cs" />
+    <Compile Include="UI\UserModuleCompanyManager.cs" />
+    <Compile Include="UI\UserModuleManager.cs" />
+    <Compile Include="UI\UserProfileManager.cs" />
+    <Compile Include="UtilityManager.cs" />
+    <Compile Include="WPMS\BuyerManager.cs" />
+    <Compile Include="WPMS\CurrencyManger.cs" />
+    <Compile Include="WPMS\ItemManager.cs" />
+    <Compile Include="WPMS\PurchaseOrderDetailsManager.cs" />
+    <Compile Include="WPMS\PurchaseOrderManager.cs" />
+    <Compile Include="WPMS\QuotationDetailsManager.cs" />
+    <Compile Include="WPMS\QuotationManager.cs" />
+    <Compile Include="WPMS\RawMatarialManager.cs" />
+    <Compile Include="WPMS\RawProductListManager.cs" />
+    <Compile Include="WPMS\RawProductManager.cs" />
+    <Compile Include="WPMS\RawSubBML.cs" />
+    <Compile Include="WPMS\RelationBuyerProductManager.cs" />
+    <Compile Include="WPMS\SalesContractDetailsManager.cs" />
+    <Compile Include="WPMS\SalesContractManager.cs" />
+    <Compile Include="WPMS\UpdateManager.cs" />
+    <Compile Include="WPMS\WpmsBuyerManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilkERP360.CCL\SilkERP360.CCL.csproj">
+      <Project>{B5471837-C586-4007-9E73-8A5B08508B8E}</Project>
+      <Name>SilkERP360.CCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilkERP360.DAL\SilkERP360.DAL.csproj">
+      <Project>{010B2DBD-8F8D-45AE-9BAF-0A57AFF87144}</Project>
+      <Name>SilkERP360.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="HRIS\app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

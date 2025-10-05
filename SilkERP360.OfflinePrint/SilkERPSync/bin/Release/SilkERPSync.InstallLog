@@ -1,0 +1,13 @@
+﻿Installing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
+Installing service SilkERPServices...
+Service SilkERPServices has been successfully installed.
+Creating EventLog source SilkERPServices in log Application...
+Committing assembly 'D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.InstallLog
+   assemblypath = D:\LiveSilkERP360\SilkERP360\SilkERPSync\bin\Release\SilkERPSync.exe
