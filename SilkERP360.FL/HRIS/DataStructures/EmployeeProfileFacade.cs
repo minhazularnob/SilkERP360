@@ -109,7 +109,7 @@ namespace SilkERP360.FL.HRIS.DataStructures
             lcl_obj_EmployeeProfileList = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile>>(() =>
             {
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT EMP.EMPLOYEE_CODE, EMP.EMPLOYEE_ID,EMP.EMPLOYEE_NAME,EMP.JOINING_DATE,EMP.IS_ON_ROSTER,EMP.IS_PF_ELIGIBLE,EMP.IS_OT_ELIGIBLE,EMP.NIGHT_BILL_ELIGIBLE,COMP.COMPANY_CODE,COMP.NAME,DEPT.DEPARTMENT_CODE,
-                                                                        DEPT.DEPT_NAME,DESIG.DESIGNATION_CODE,DESIG.DEGN_NAME,DESIG.RANK,IMG.EMPLOYEE_IMAGE_CODE,IMG.IMAGE,IMG.IMAGE_TYPE,IMG.IMAGE_SIZE,IS_DELETED,SAL.GROSS
+                                                                        DEPT.DEPT_NAME,DESIG.DESIGNATION_CODE,DESIG.DEGN_NAME,DESIG.RANK,IMG.EMPLOYEE_IMAGE_CODE,IMG.IMAGE,IMG.IMAGE_TYPE,IMG.IMAGE_SIZE,EMP.IS_DELETED,SAL.GROSS
                                                                         FROM EMPLOYEE EMP 
                                                                         JOIN COMPANY COMP
                                                                         ON EMP.COMPANY_CODE = COMP.COMPANY_CODE
