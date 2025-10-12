@@ -64,7 +64,7 @@
     <link href="../../Globals/Styles/SilkERP_Theme_3/style2.css" rel="stylesheet" type="text/css" />
     <link href="../../Globals/Styles/SilkERP_Theme_3/animate-custom.css" rel="stylesheet" type="text/css" />--%>
     <%--<link href="../../Globals/Styles/ip_frm_ctrl.css" rel="stylesheet" type="text/css" />--%>
-
+   
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/jquery.noty.js" type="text/javascript"></script>
     
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/layouts/bottom.js" type="text/javascript"></script>
@@ -80,6 +80,7 @@
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/layouts/topLeft.js" type="text/javascript"></script>
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/layouts/topRight.js" type="text/javascript"></script>
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/themes/default.js" type="text/javascript"></script>
+
     <%--<script src="Globals/jQuery/jquery.blockUI.js" type="text/javascript"></script>--%>
     <!--****************************************************************************************************************************-->
     <!--confirm box plug-in-->
@@ -113,9 +114,9 @@
 <%-- ***************************************Conmmon js method *****************************************--%>
     <link href="../../Globals/Styles/SilkERP_Theme_3/demo.css" rel="stylesheet" type="text/css" />
     <link href="../../Globals/Styles/SilkERP_Theme_3/style2.css" rel="stylesheet" type="text/css" />
-    <link href="../../Globals/Styles/SilkERP_Theme_3/animate-custom.css" rel="stylesheet"
-        type="text/css" />
+    <link href="../../Globals/Styles/SilkERP_Theme_3/animate-custom.css" rel="stylesheet" type="text/css" />
     <script src="../../Globals/Scripts/Common.js" type="text/javascript"></script>
+    <script src="../../Globals/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
 
     <!--****************************************************************************************************************************-->
     <%--//Menu--%>
@@ -138,6 +139,9 @@
     <script src="../../Globals/Scripts/plug-ins/DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
     <link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />
     <link href="../../Globals/Styles/ImageStyles.css" rel="stylesheet" type="text/css" />
+    <link href="../../Globals/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Globals/Styles/master.css" rel="stylesheet" />
+
     <%--<link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />--%>
 </head>
 <body>
@@ -154,14 +158,12 @@
     <asp:HiddenField ID="txtSecurityToken" runat="server" Value='' ClientIDMode="Static" /> <%--This Value will be set in page_load method of hris_hm.aspx--%>
 <%--*************************************************************************************************************************************--%>  
 
-    <div id="dvBody" class="body" style=" font-family:Verdana;  margin:0 auto; width:100%; height:800px; border:0px; border-style:solid;">
+    <div id="dvBody" class="body" style=" font-family:serif;  margin:0 auto; width:100%; height:800px; border:0px; border-style:solid;">
         <table id="Table4" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%; border:0px; border-style:solid; margin:0 auto;">
             <tr>
                 <td align="center" style="width:100%; height:5%;">
                     <!-- HORIZONTAL MENU-->
-                    <div id="dvHMenu" style="border:0px; border-style:none;width:100%; height:100%; background-color:#ffffff;">
-
-                    </div>     
+                    <div id="dvHMenu" style="border:0px; border-style:none;width:100%; height:100%; background-color:#ffffff;"></div>     
                 </td>
             </tr>
             <tr>
@@ -175,12 +177,12 @@
                                         <table style="width:100%;">
                                             <tr>
                                                 <td>
-                                                    <span class="silkerp_logo">Silkways Enterprise Resource Planner (SilkERP360)</span>
+                                                    <span class="silkerp_logo header_font_color">Silkways Enterprise Resource Planner (SilkERP360)</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span class="module_title">Human Resource Information Management System v.1.0</span><br />
+                                                    <span class="module_title header_font_color">Human Resource Information Management System v.1.0</span><br />
                                                 </td>
                                             </tr>
                                         </table>
@@ -218,7 +220,7 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td colspan="3" style="text-align:right;">
-                                        <a id="lnkRefresh" href="#" class="command_button_enabled" onclick="Refresh(event); return false;" style=" width:150px; height:20px; line-height:20px;">
+                                        <a id="lnkRefresh" href="#" class="btn btn-primary " onclick="Refresh(event); return false;" style=" width:150px; height:2rem; line-height:20px;">
                                             Refresh Work Area
                                         </a>
                                         &nbsp;&nbsp;&nbsp;
@@ -231,7 +233,7 @@
                                 </tr>
                                 <tr>
                                      <td colspan="4" style="text-align:center;">
-                                         <div id="dvMessageBoard" style="display:none; min-height:20px; background-color:Green;">
+                                         <div id="dvMessageBoard" style="display:none; min-height:20px;" class="master_color_liener_gradient">
                                             <span id="spnMessage" style=" font-size:14px; font-weight:bold; color:White;">
                                                 Silk ERP Message Board
                                             </span>
@@ -245,21 +247,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            
-                            
-                            <%--<div id="mnuHorizontalContainer"  class="div_bg_gradient_gray1" style=" width:100%; margin:0 auto; z-index:10000000000000;">
-                            </div>--%>
-                            <%--<header>
-                                <div id="dvHead">
-                                    <h1>Silkways Solutions Ltd<span> SilkERP360</span></h1>
-                                </div>
-                            </header>--%>
                         </div>
-                        <%--<div id="wrapper" style="float:right;">
-                            <asp:DropDownList ID="ddlCompany" runat="server" Width="500px" Height="20px">
-                              <asp:ListItem>-----Select Company</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>--%>
                     </div>
                 </td>
             </tr>

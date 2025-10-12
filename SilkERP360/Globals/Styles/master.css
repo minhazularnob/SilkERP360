@@ -1,0 +1,49 @@
+﻿.master_color_solid {
+    background-color: #0f0fa7 !important;
+}
+
+.master_color_liener_gradient {
+    background: linear-gradient(45deg, #0f0fa7, transparent) !important;
+}
+
+
+.header_font_color {
+    color: #0061a7 !important;
+}
+
+body, button, input, select, textarea {
+    font-family: serif,'Times New Roman', Times !important;
+}
+
+.btn_font_size12 {
+    font-size: large;
+}
+input:not([type="checkbox"]), textarea {
+    font-size: 18px !important;
+}
+
+
+
+
+.btn-fade {
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+    /* hover effect */
+    .btn-fade:hover {
+        opacity: 0.85;
+    }
+
+    /* click (active) effect */
+    .btn-fade:active {
+        opacity: 0.7;
+    }
+
+    /* tab/focus effect */
+    .btn-fade:focus {
+        background-color: inherit !important;
+        color: inherit !important;
+        opacity: 0.85;
+        box-shadow: none !important;
+        outline: none !important;
+    }

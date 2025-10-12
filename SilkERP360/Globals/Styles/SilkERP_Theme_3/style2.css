@@ -5,7 +5,7 @@
 	 margin: 0;
 	 padding: 0;
 	 margin: 0 auto;
-	 font-family: "Verdana";
+	 font-family: "serif";
 	  overflow:hidden;
 	  zoom:1;
 }
@@ -36,7 +36,7 @@ table tr td
     /*width:100%;*/
     text-align:left;
     font-size:10px;
-    font-family:Verdana;
+    font-family:serif;
     padding:0px;
     
     /*background-color:Green;*/
@@ -45,7 +45,7 @@ table tr td
 table.ip_control_container tr td
 {
     font-size:10px;
-    font-family:Verdana;
+    font-family:serif;
     padding:1px;
     
     /*background-color:Green;*/
@@ -76,7 +76,7 @@ tbl_control_container tr td
     width:100%;
     text-align:left;
     font-size:10px;
-    font-family:Verdana;
+    font-family:serif;
     padding:5px;
     
     /*background-color:Green;*/
@@ -88,7 +88,7 @@ a.hiddenanchor{
 /** The wrapper is for DIV Control container that will contain other div also **/
 #wrapper
 {
-    font-family:Verdana;
+    font-family:serif;
     vertical-align:middle;
     /*text-align:center;*/
     border:0px;
@@ -129,7 +129,7 @@ h1{
 	font-size: 24px;
 	color: rgb(6, 106, 117);
 	padding: 0px 0 3px 0;
-	font-family: 'BebasNeueRegular','Verdana','Arial Narrow',Arial,sans-serif;
+	font-family: 'serif','Verdana','Arial Narrow',Arial,sans-serif;
 	font-weight:500;
 	text-align: center;
 	padding-bottom: 3px;
@@ -164,7 +164,7 @@ h2{
 	font-size: 16px;
 	color: rgb(6, 106, 117);
 	padding: 0px 0 10px 0;
-	font-family: 'Verdana','BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+	font-family: 'serif','BebasNeueRegular','Arial Narrow',Arial,sans-serif;
 	font-weight: bold;
 	text-align: center;
 	padding-bottom: 5px;
@@ -200,7 +200,7 @@ h3{
 	font-size: 14px;
 	color: rgb(6, 106, 117);
 	padding: 0px 0 10px 0;
-	font-family: 'Verdana','BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+	font-family: 'serif','BebasNeueRegular','Arial Narrow',Arial,sans-serif;
 	font-weight: bold;
 	text-align: center;
 	padding-bottom: 2px;
@@ -239,7 +239,7 @@ p:first-child{
 }
 label
 {
-    font-family:Verdana;
+    font-family:serif;
     font-size:14px;
 	color: rgb(64, 92, 96);
 	position: relative;
@@ -263,7 +263,7 @@ input {
 /* all the input except submit and checkbox */
 input:not([type="checkbox"]),textarea
 {
-    font-family:Verdana;
+    font-family:serif;
     font-size:11px;
 	width: 96%;
 	/*margin-top: 4px;*/
@@ -302,7 +302,7 @@ input:not([type="checkbox"]):focus,textarea:focus
 
 select
 {
-    font-family:Verdana;
+    font-family:serif;
     font-size:11px;
 	width: 96%;
 	/*margin-top: 4px;*/
@@ -590,7 +590,7 @@ p.signin.button{
 
 label,input
 {
-    font-family:Verdana;
+    font-family:serif;
     font-size:12px;
 }
 select

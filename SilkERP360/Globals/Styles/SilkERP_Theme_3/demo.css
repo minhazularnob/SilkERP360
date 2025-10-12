@@ -50,7 +50,7 @@ footer, header, hgroup, menu, nav, section {
 }
 /* General Demo Style */
 body{
-	font-family: Verdana;
+	font-family: serif;
 	background: #fff url(../images/bg.jpg) repeat top left;
 	font-weight: 400;
 	font-size: 12px;
@@ -79,7 +79,7 @@ a{
     text-align: center;
 }
 .container > header h1{
-	font-family: Verdana;
+	font-family: serif;
 	font-size: 35px;
 	line-height: 35px;
 	position: relative;
@@ -159,5 +159,10 @@ a{
 	color: rgba(104,171,194,1);
 	background: rgba(255,255,255,0.9);
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+	font-family: serif;
 }
 

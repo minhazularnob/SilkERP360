@@ -35,7 +35,7 @@
 /*  Font Awesome styles
     ------------------------------------------------------- */
 [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: verdana;
+  font-family: serif;
   font-weight: normal;
   font-style: normal;
   display: inline-block;
