@@ -132,6 +132,7 @@ namespace SilkERP360.UI.HRIS
                 this.txtAccessLevel.Text = lcl_obj_UserProfile.AccessLevel.ToString();
                 this.txtSignedInEmployeeCode.Value = lcl_obj_UserProfile.EmployeeCode.ToString();
                 this.txtDesignation.Text = lcl_obj_UserProfile.Designation.Name;
+                this.companyIdHidden.Value = lcl_obj_UserProfile.Company.CompanyCode.ToString();
 
                 /***********************************************************************************************************************/
                 //Write Image Data in client
@@ -159,7 +160,8 @@ namespace SilkERP360.UI.HRIS
 
                 //lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='menu'>");
                 //lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='mnuSCPM'><li class='current'><a href='#' onclick='Logout();return false;'>Logout</a></li>");
-                lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='menu'><li class='current'><a href='#' onclick='Logout();return false;'>Logout</a></li>");
+                //lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='menu'><li class='current'><a href='#' onclick='Logout();return false;'>Logout</a></li>");
+                lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='menu'>");
                 foreach (SilkERP360.CCL.BusinessEntities.UI.Menu lcl_obj_ParentMenu in lcl_obj_ParentMenus)
                 {
                     //System.Web.UI.WebControls.MenuItem lcl_obj_ParentMenuItem = new System.Web.UI.WebControls.MenuItem(lcl_obj_ParentMenu.MenuName, lcl_obj_ParentMenu.MenuCode.ToString(), lcl_obj_ParentMenu.Link);
@@ -184,7 +186,8 @@ namespace SilkERP360.UI.HRIS
                     lcl_obj_MenuBuilder.Append("</li>");
                     //this.mnuHRIS.Items.Add(lcl_obj_ParentMenuItem);
                 }
-                //lcl_obj_MenuBuilder.Append("</ul>\");}");
+                lcl_obj_MenuBuilder.Append("<li class='current'><a href='#' onclick='Logout();return false;'>LOGOUT</a></li>");
+
                 lcl_obj_MenuBuilder.Append("</ul>\";");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "HRIS_MNU", lcl_obj_MenuBuilder.ToString(), true);
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "EMP_IMG", lcl_obj_ImageBuilder.ToString(), true);

@@ -41,18 +41,14 @@
 </head>
 <body class="master_color_liener_gradient" style="min-height:100vh; margin:0;">
   <form runat="server" style="height:100vh; margin:0;">
-    <div class="container-fluid h-100 p-0">
+    <div class="container-fluid h-100 p-0" >
       <div class="row g-0 h-100">
-
-        <!-- Left Side: Image -->
         <div class="col-md-6 d-none d-md-block p-0">
-          <img src="Globals/Images/3d-render-secure-login-password-illustration.jpg" 
-               alt="Login Image" 
-               class="img-fluid h-100 w-100 object-fit-cover" />
+          <img src="Globals/Images/3d-render-secure-login-password-illustration.jpg" alt="Login Image" class="img-fluid h-100 w-100 object-fit-cover" />
         </div>
 
         <!-- Right Side: Forms -->
-        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-5">
+        <div class="col-md-6 d-flex flex-column justify-content-center bg-white align-items-center  p-5">
 
           <!-- Anchors for internal linking -->
           <a class="d-none" id="tologin"></a>
@@ -113,8 +109,11 @@
               <a href="javascript:void(0);" class="text-decoration-none fs-5 btn_height1"  onclick="toggleForms('loginForm')">Back to Login</a>
             </div>
           </div>
-
         </div>
+          
+          <div class="position-absolute top-0 start-0 p-3">
+              <img src="Globals/Images/Silkways_Group_logo.png" alt="SilkwaysGroupLogo.jpg" style="height: 90px;width:90px object-fit: contain;" />
+          </div>
 
       </div>
     </div>

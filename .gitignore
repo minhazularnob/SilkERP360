@@ -162,3 +162,6 @@
 /.gitignore
 /SilkERPSync/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.cache
+/SilkERP360/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+/SilkERP360/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/SilkERP360/.vs/SilkERP360.csproj.dtbcache.json

@@ -1,27 +1,79 @@
-﻿.master_color_solid {
-    background-color: #0f0fa7 !important;
+﻿@import url('custom-datatable.css');
+.master_color_solid {
+    background-color: #066a9f !important;
 }
 
 .master_color_liener_gradient {
-    background: linear-gradient(45deg, #0f0fa7, transparent) !important;
+    background: linear-gradient(45deg, #0d88df, #3f3f6a) !important;
 }
 
+.footer_master_color_liener_gradient {
+    background: linear-gradient(45deg, #0d88df, #3f3f6a) !important;
+}
 
-.header_font_color {
-    color: #0061a7 !important;
+.silkways_solid_Blue {
+    background-color: #066a9f !important;
+}
+
+.silkways_solid_Orange {
+    background-color: #e3400f !important;
+}
+
+.silkways_solid_Blue_font {
+    color: #066a9f !important;
+}
+
+.silkways_solid_Orange_font {
+    color: #e3400f !important;
 }
 
 body, button, input, select, textarea {
     font-family: serif,'Times New Roman', Times !important;
 }
 
+.fontSerif {
+    font-family: serif,'Times New Roman', Times !important;
+}
+.fontBold {
+    font-weight: bold !important;
+}
+
 .btn_font_size12 {
     font-size: large;
 }
+
+.rem_1_5 {
+    font-size: 1.5rem !important;
+}
+
+.rem_2 {
+    font-size: 2rem !important;
+}
+
 input:not([type="checkbox"]), textarea {
     font-size: 18px !important;
 }
 
+.height_rem2 {
+    height: 2rem;
+}
+
+.logout-menu {
+    color: #FF8C00 !important;
+    font-weight: bold !important;
+    border: none;
+    padding: 10px 16px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+    .logout-menu:hover {
+        font-size: large !important;
+    }
 
 
 
@@ -47,3 +99,25 @@ input:not([type="checkbox"]), textarea {
         box-shadow: none !important;
         outline: none !important;
     }
+
+.w-30 {
+    width: 30%;
+}
+
+.w-35 {
+    width: 35%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.sorting_1 {
+    background: white !important;
+}
+
+.showSaveBtn {
+    height: 33px;
+    line-height: 20px;
+    width: 10%;
+}

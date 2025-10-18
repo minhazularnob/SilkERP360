@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class IncrementIOHistory {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class IncrementIOHistory
+    {
+
         /// <summary>
         /// hdnCurrencyFormatter control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnCurrencyFormatter;
-        
+
         /// <summary>
         /// ddlEmployee control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmployee;
-        
+
         /// <summary>
         /// ddlEffectiveMonth control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEffectiveMonth;
-        
+
         /// <summary>
         /// ddlEffectiveYear control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEffectiveYear;
-        
+
         /// <summary>
         /// txtIncGross control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIncGross;
-        
+
         /// <summary>
         /// txtCurrGross control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCurrGross;
-        
+
         /// <summary>
         /// txtIncBasic control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIncBasic;
-        
+
         /// <summary>
         /// txtIncHR control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIncHR;
-        
+
         /// <summary>
         /// txtIncConv control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIncConv;
-        
+
         /// <summary>
         /// txtIncMed control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIncMed;
-        
+
         /// <summary>
         /// txtIncEnt control.
         /// </summary>

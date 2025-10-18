@@ -14,6 +14,8 @@ $(document).ready(function () {
     //$('#hrisFuncMenu').menu();
     $('#dvHMenu').html(lcl_str_HorizontalMenuHTML);
     //Hook CompanyChangeEvent
+    loadEmployeeComapanyLogo();
+    setCompanyName($('#companyIdHidden').val());
 });
 
 //************** Commit by HAsan...bgn 22-04-2014 ************* /////
@@ -171,4 +173,118 @@ function ShowInfoMessageBoard(Message) {
         $('#dvMessageBoard').show('slow');
     });
 }
+
+function expandSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const img = document.getElementById("sideBarIcon");
+    sidebar.style.width = "300px";
+    img.style.display = "none"; // Hide the image
+}
+
+function collapseSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const img = document.getElementById("sideBarIcon");
+    sidebar.style.width = "15px";
+    img.style.display = "block"; // Show the image again
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    new TomSelect("#ddlCompany", {
+        create: false,           // allows typing custom value when true (combo box behavior)
+        closeAfterSelect: true,
+        sortField: {
+            field: "text",
+            direction: "asc"
+        },
+        placeholder: "Select Company",
+        onItemAdd: function () {
+            this.control_input.blur(); // 👈 Forces blur immediately after selection
+        }
+    });
+});
+
+function changeCompanyLogo() {
+    var companyCode = $(this).val();
+    const $logoDiv = $('#companyLogoDiv');
+
+    
+
+    $('#comapanyLogo').attr('src', generateCompanyimagePath(companyCode));
+    // Apply dimensions and object-fit
+    if (companyCode === '') {
+        $logoDiv.hide();
+    }
+    else {
+        $logoDiv.show();
+        if (companyCode == "110000000003") {
+            $('#comapanyLogo').height(36);
+        }
+        else {
+            $('#comapanyLogo').height(50);
+
+        }
+    }
+};
+
+function loadEmployeeComapanyLogo() {
+   
+    var companyCode = $('#companyIdHidden').val();
+
+    $('#companyLogoForEmployee').attr('src', generateCompanyimagePath(companyCode));
+
+    if (companyCode == "110000000003") {
+        $('#companyLogoForEmployee').height(45);
+    }
+    else if (companyCode == '110000000001') {
+        $('#companyLogoForEmployee').height(55);
+
+    }
+    else {
+        $('#companyLogoForEmployee').height(70);
+    }
+};
+
+function generateCompanyimagePath(companyCode) {
+    var imagePath = '';
+    switch (companyCode) {
+        case '110000000001':
+            imagePath = '../../Globals/Images/Silkways_card&printing_ltd.png';
+            break;
+        case '110000000002':
+            imagePath = '../../Globals/Images/wellpac_Logo.png';
+            break;
+        case '110000000018':
+            imagePath = '../../Globals/Images/Silkways_Agro_Logo.png';
+            break;
+        case '110000000004':
+            imagePath = '../../Globals/Images/Silkways_Tours&Travels_Logo.png';
+            break;
+        case '110000000019':
+            imagePath = '../../Globals/Images/Silkways_Cargo_Service_Logo.png';
+            break;
+        case '110000000003':
+            imagePath = '../../Globals/Images/Silkways_Solutions_Logo.png';
+            break;
+        default:
+            imagePath = '';
+            break;
+    }
+    return imagePath;
+}
+
+function setCompanyName(code) {
+    const companyMap = {
+        "110000000002": "Wellpac Polymers Ltd.",
+        "110000000001": "Silkways Card & Printing Ltd.",
+        "110000000004": "Silkways Tours & Travels Ltd.",
+        "110000000018": "Silkways Agro Ltd",
+        "110000000019": "Silkways Cargo Services Ltd",
+        "110000000003": "Silkways Solutions Ltd."
+    };
+
+    console.log(companyMap[code]);
+    const companyName = companyMap[code] || "Unknown Company";
+    document.getElementById("footerCompanyName").textContent = companyName;
+}
+
 

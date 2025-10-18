@@ -144,6 +144,7 @@
     <Content Include="Globals\bootstrap-5.3.8-dist\js\bootstrap.min.js" />
     <Content Include="Globals\fonts\Dharma Type Font License.txt" />
     <Content Include="Globals\Images\20944201.jpg" />
+    <Content Include="Globals\Images\3d-illustration-computer-monitor-login-screen.jpg" />
     <Content Include="Globals\Images\3d-render-secure-login-password-illustration.jpg" />
     <Content Include="Globals\Images\add-1.png" />
     <Content Include="Globals\Images\add-2.png" />
@@ -154,6 +155,7 @@
     <Content Include="Globals\Images\button_mag.png" />
     <Content Include="Globals\Images\cancel.png" />
     <Content Include="Globals\Images\cntx_mnu.png" />
+    <Content Include="Globals\Images\computer-security-with-login-password-padlock.jpg" />
     <Content Include="Globals\Images\delete-1.gif" />
     <Content Include="Globals\Images\delete-2.png" />
     <Content Include="Globals\Images\delete-3.gif" />
@@ -164,18 +166,23 @@
     <Content Include="Globals\Images\ERP_Structure-1_W350_H250.png" />
     <Content Include="Globals\Images\forget_pwd_icon.jpg" />
     <Content Include="Globals\Images\forget_pwd_icon_bg.jpg" />
+    <Content Include="Globals\Images\good-password-3d-render-secure-data-protection.jpg" />
     <Content Include="Globals\Images\hris_logo-1.jpg" />
     <Content Include="Globals\Images\hris_logo-400_100.jpg" />
     <Content Include="Globals\Images\hris_logo_v_1.png" />
     <Content Include="Globals\Images\hris_logo_v_2.png" />
     <Content Include="Globals\Images\hris_logo_v_3.png" />
+    <Content Include="Globals\Images\icons8-refresh-128.png" />
     <Content Include="Globals\Images\images.jpg" />
+    <Content Include="Globals\Images\login-background.jpg" />
     <Content Include="Globals\Images\Milling.jpg" />
     <Content Include="Globals\Images\Personalization.jpg" />
     <Content Include="Globals\Images\PlugInPunch.jpg" />
     <Content Include="Globals\Images\Printing.jpg" />
     <Content Include="Globals\Images\Punching.jpg" />
     <Content Include="Globals\Images\refresh.jpg" />
+    <Content Include="Globals\Images\sidebar.png" />
+    <Content Include="Globals\Images\sidebar1.png" />
     <Content Include="Globals\Images\SilkERP_Header-1.jpg" />
     <Content Include="Globals\Images\SilkERP_Header-1_H150px.jpg" />
     <Content Include="Globals\Images\SilkERP_Header-1_H195px.jpg" />
@@ -187,8 +194,17 @@
     <Content Include="Globals\Images\SilkERP_Txt_Logo_v_2.png" />
     <Content Include="Globals\Images\SilkERP_Txt_Logo_v_3.png" />
     <Content Include="Globals\Images\SilkERP_Txt_Logo_v_4.png" />
+    <Content Include="Globals\Images\Silkspoon_logo.png" />
+    <Content Include="Globals\Images\Silkways_Agro_Logo.png" />
+    <Content Include="Globals\Images\Silkways_card&amp;printing_ltd.png" />
+    <Content Include="Globals\Images\Silkways_Cargo_Service_Logo.png" />
+    <Content Include="Globals\Images\Silkways_Group_logo.png" />
+    <Content Include="Globals\Images\Silkways_Solutions_Logo.png" />
+    <Content Include="Globals\Images\Silkways_Tours&amp;Travels_Logo.png" />
+    <Content Include="Globals\Images\SilkwaysGroupLogo.jpg" />
     <Content Include="Globals\Images\upload.jpg" />
     <Content Include="Globals\Images\Wavy_Gen-01_Single-07.jpg" />
+    <Content Include="Globals\Images\wellpac_Logo.png" />
     <Content Include="Globals\jqtransform\._demo.css" />
     <Content Include="Globals\jqtransform\._demo.html" />
     <Content Include="Globals\jqtransform\demo.css" />
@@ -2918,7 +2934,10 @@
     <Content Include="Globals\Scripts\SilkERP360\SCPM\scpm_hm.js" />
     <Content Include="Globals\Scripts\SilkERP360\SCPM\SC_Fault_Perso_Card_List_Download.js" />
     <Content Include="Globals\Scripts\SilkERP360\SCPM\sc_perso_recovery.js" />
+    <Content Include="Globals\Select2\select2_min_4.1.0.js" />
+    <Content Include="Globals\Select2\select2_min_4_1_0.css" />
     <Content Include="Globals\Styles\command_buttons.css" />
+    <Content Include="Globals\Styles\Custom-DataTable.css" />
     <Content Include="Globals\Styles\master.css" />
     <Content Include="Globals\Styles\Common.css" />
     <Content Include="Globals\Styles\Common1.css" />
@@ -2929,6 +2948,8 @@
     <Content Include="Globals\Styles\scpm.css" />
     <Content Include="Globals\Styles\SilkERP_Theme_1\style1.css" />
     <Content Include="Globals\Styles\SilkERP_Theme_2\apple_style.css" />
+    <Content Include="Globals\tom-select\dist\css\tom-select.css" />
+    <Content Include="Globals\tom-select\dist\js\tom-select.complete.min.js" />
     <Content Include="Globals\widgets\jqwidgets\demos\jqxbutton\buttongroup.htm" />
     <Content Include="Globals\widgets\jqwidgets\demos\jqxbutton\checkbox.htm" />
     <Content Include="Globals\widgets\jqwidgets\demos\jqxbutton\checkboxandknockoutjs.htm" />
@@ -5792,6 +5813,7 @@
     <None Include="Globals\widgets\NumericCurrencyFormatter\LICENSE" />
     <None Include="Globals\widgets\NumericCurrencyFormatter\package.json" />
     <None Include="Globals\widgets\NumericCurrencyFormatter\README.md" />
+    <Content Include="libman.json" />
     <None Include="packages.config" />
     <None Include="Reports\HRIS\DataSource\SalaryDS.xsc">
       <DependentUpon>SalaryDS.xsd</DependentUpon>

@@ -3,14 +3,12 @@ var CLIPBOARD = "";
 
 $(document).ready(function () {
 
-
     GBL_INCREMENT_HISTORY = $('#tblIncrementHistory').dataTable({
-        "bJQueryUI": true,
-        "sScrollY": "auto",
+        "bJQueryUI": false,
         "bFilter": true,
-        "bPaginate": false,
+        "bPaginate": true,
         "bLengthChange": false,
-        "bSearch": false,
+        "bSearch": true,
         "aoColumns": [
                     { sTitle: '<b>Prv. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
                     { sTitle: '<b>Inc. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
@@ -23,21 +21,11 @@ $(document).ready(function () {
                   ]
 
     });
-    $("#ddlEmployee").combobox();
+    /*$("#ddlEmployee").combobox();*/
 
     $("#txtIncGross").blur(function () {
         CalculateSalary();
     });
-
-//    $("#txtIncGross").keypress(function (e) {
-//        //if the letter is not digit then display error and don't type anything
-//        if ((e.which != 8 && e.which != 0 && e.which != 190) && (e.which < 48 || e.which > 57)) {
-//            //display error message
-//            //$("#errmsg").html("Digits Only").show().fadeOut("slow");
-//            return false;
-//        }
-//        return true;
-//    });
 
     $('#txtIncGross').keydown(function (event) {
         if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode > 112) {
@@ -57,12 +45,9 @@ $(document).ready(function () {
         }
 
     });
-
-    //    $('#txtIncGross').keypress(function (event) {
-    //        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-    //            event.preventDefault();
-    //        }
-    //    });
+    initializeSelect2('ddlEmployee', '------ Select Employee ------', '50%');
+    initializeSelect2('ddlEffectiveMonth', '------ Select Month ------', '101%');
+    initializeSelect2('ddlEffectiveYear', '------ Select Month ------', '101%');
 });
 
 function DisplayIncrementHistory() {
@@ -227,4 +212,14 @@ function CalculateSalary() {
     $("#txtIncHR").val(lcl_ui32_HouseRent);
     $("#txtIncConv").val(lcl_ui32_Conveyence);
     $("#txtIncMed").val(lcl_ui32_Medical);
+}
+
+
+
+function initializeSelect2(dropdownId, placeholderText, width) {
+    $('#' + dropdownId).select2({
+        placeholder: placeholderText,
+        allowClear: true,
+        width: width
+    });
 }

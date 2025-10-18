@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360 {
-    
-    
-    public partial class index {
-        
+namespace SilkERP360
+{
+
+
+    public partial class index
+    {
+
         /// <summary>
         /// txtUsername control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
-        
+
         /// <summary>
         /// txtPassword control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
+
         /// <summary>
         /// btnLogin control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
-        
+
         /// <summary>
         /// txtUserNameResetPassword control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SilkERP360 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUserNameResetPassword;
-        
+
         /// <summary>
         /// txtCurrentPassword control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SilkERP360 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCurrentPassword;
-        
+
         /// <summary>
         /// txtNewPassword control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SilkERP360 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
-        
+
         /// <summary>
         /// txtReconfirmPassword control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace SilkERP360 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtReconfirmPassword;
-        
+
         /// <summary>
         /// btnChangePasword control.
         /// </summary>
