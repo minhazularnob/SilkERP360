@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class IncrementSummery {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class IncrementSummery
+    {
+
         /// <summary>
         /// hdnCurrencyFormatter control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnCurrencyFormatter;
-        
+
         /// <summary>
         /// ddlEmployee control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmployee;
-        
+
         /// <summary>
         /// txtDesig control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDesig;
-        
+
         /// <summary>
         /// txtDepartment control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDepartment;
-        
+
         /// <summary>
         /// txtJoiningDate control.
         /// </summary>

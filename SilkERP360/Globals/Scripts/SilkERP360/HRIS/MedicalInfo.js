@@ -7,32 +7,24 @@ $(document).ready(function () {
 
     //Load Medical Information();
     GBL_EMPLOYEE_LIST_TABLE = $('#tblMdcnInfoList').dataTable({
-        "bJQueryUI": true,
-        "sScrollY": "700px",
+        "bJQueryUI": false,
         "bFilter": true,
-        "bPaginate": false,
+        "bPaginate": true,
         "bLengthChange": false,
-        "oLanguage": {
-            "sEmptyTable": "No Medical Information Data Available",
-            "sZeroRecords": "No Medical Information Found For Your Specified Criteria"
-        },
-        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-
-        },
+        "bSearch": true,
         "aoColumns": [
-
-                        { sTitle: 'Visited Date', sWidth: '15%', sClass: 'alignCenter' },
-                        { sTitle: 'Age', sWidth: '08%', sClass: 'alignCenter' },
-                        { sTitle: 'Blood Group', sWidth: '12%', sClass: 'alignCenter' },
-                        { sTitle: 'Diagnosis', sWidth: '33%', sClass: 'alignCenter' },
-                        { sTitle: 'Remarks', sWidth: '32%', sClass: 'alignCenter' },
-                     ]
+            { sTitle: 'Visited Date', sWidth: '15%', sClass: 'alignCenter' },
+            { sTitle: 'Age', sWidth: '08%', sClass: 'alignCenter' },
+            { sTitle: 'Blood Group', sWidth: '12%', sClass: 'alignCenter' },
+            { sTitle: 'Diagnosis', sWidth: '33%', sClass: 'alignCenter' },
+            { sTitle: 'Remarks', sWidth: '32%', sClass: 'alignCenter' },
+        ]
 
     });
-
+    initializeSelect2('ddlEmployeeId', '------ Select Employee ------', '35%');
+    initializeSelect2('ddlBloodGroup', '------ Select Employee ------', '98%');
+    initializeSelect2('ddlSex', '------ Select Employee ------', '98%');
 });
-
-$("#ddlEmployeeId").combobox();
 
 $("#combobox").on("keypress", function (keyarg) {
     if (keyarg.keyCode == 13) { //Enter keycode
@@ -110,7 +102,6 @@ function Save() {
                         async: false,
                         contentType: "application/json; charset=utf-8",
                         url: gbl_URL_Root + "WebServices/HRIS/MedicalInfoService.asmx/SaveMedicalInfo",
-                        // url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/SaveEmployeeAppoinment",
 
                         data: "{IP_Obj_MedicineInfo:" + JSON.stringify(lcl_obj_MedicineInfo) + "}", //provide input for the getSM_PO method
                         dataType: "json", /// <reference path= />
@@ -136,74 +127,6 @@ function Save() {
     }
     return false;
 }
-
-/*********************************** Load Medical Info Data*******************************/
-//  function LoadMedicalInfo() {
-//      debugger;
-//      var lcl_iu64_EmployeeCode = gbl_ui64_EmployeeCode;
-//      //alert(lcl_str_DepartmentCode);
-//      if (lcl_iu64_EmployeeCode == "0") {
-//          return;
-//      }
-
-//      var lcl_ui64_CompanyCode = $("#ddlCompany option:selected").val(); //Retrieve company code from hidden field
-
-//      $.ajax(
-//        {
-//            async: true,
-//            type: "POST",
-//            global: true,
-//            contentType: "application/json; charset=utf-8",
-//            url: gbl_URL_Root + "WebServices/HRIS/MedicalInfoService.asmx/GetMedicalInfoData",
-
-//            data: "{IP_iu64_EmployeeCode:" + JSON.stringify(lcl_iu64_EmployeeCode) + "}", //provide input for the getSM_PO method
-//            dataType: "json", /// <reference path= />
-//            success: function (response) {
-//                var WSReturn = response.d;
-//                if (WSReturn.ResponseCode < 0) {
-//                    GBL_EMPLOYEE_LIST_TABLE.fnClearTable();
-//                    DisplayError(WSReturn.Message);
-//                    return;
-//                }
-//                var lcl_obj_EmployeeProfileList = WSReturn.Data;
-//                //CLEAR Ref Employee
-//                var lcl_i32_EmployeeNumber = 0;
-
-//                var lcl_str_EmployeeImage = "";
-//                GBL_EMPLOYEE_LIST_TABLE.fnClearTable();
-//                //GBL_EMPLOYEE_LIST_TABLE.fnDestroy();
-//                var lcl_str_EmployeeData = new Array();
-//                $.each(lcl_obj_EmployeeProfileList, function (index, lcl_obj_EmployeeProfile) {
-//                    debugger;
-//                   
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber] = new Array();
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][0] = lcl_obj_EmployeeProfile.VisitedDate;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][1] = lcl_obj_EmployeeProfile.Age;
-//                   // lcl_str_EmployeeData[lcl_i32_EmployeeNumber][2] = lcl_obj_EmployeeProfile.Designation.Name;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][2] = lcl_obj_EmployeeProfile.BloodGroup;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][3] = lcl_obj_EmployeeProfile.Diagnosis;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][4] = lcl_obj_EmployeeProfile.Remarks;
-//                   // lcl_str_EmployeeData[lcl_i32_EmployeeNumber][4] = '<a href="javascript:void(0);"onclick="editRow(' + lcl_obj_EmployeeProfile.EmployeeCode.toString() + ')"><img src="~/../../../Globals/Images/delete.png" /></a>';
-//                                    
-
-
-//                    lcl_i32_EmployeeNumber++;
-//                });
-//                GBL_EMPLOYEE_LIST_TABLE.fnAddData(lcl_str_EmployeeData);
-//                //GBL_EMPLOYEE_LIST_TABLE.fnAdjustColumnSizing();rel="#petrol"
-//                //GBL_EMPLOYEE_LIST_TABLE.fnDraw();
-//                /*************************************************************************************************************************/
-//                // Save the Respective EmployeeCode to Each Context Menu Trigger
-//                var i = 0;
-//                $.each(lcl_obj_EmployeeProfileList, function (index, lcl_obj_EmployeeProfile) {
-//                    $(('#imgContextMenu-' + i.toString())).data('EmployeeCode', lcl_obj_EmployeeProfile.EmployeeCode.toString());
-//                    i++;
-//                });
-//                /*************************************************************************************************************************/
-//            }
-//        });
-//  }
-
 
 /************************ Load Medical Info -*********/
 
@@ -246,7 +169,8 @@ function LoadMedicalInfo() {
                     lcl_i32_MedicalInfoCode++;
                 });
                 GBL_EMPLOYEE_LIST_TABLE.fnAddData(lcl_str_ExtendedAllMedicalInfoData);
-                GBL_EMPLOYEE_LIST_TABLE.fnDraw();
+                $('#dvReportBody').show('slow');
+                //GBL_EMPLOYEE_LIST_TABLE.fnDraw();
             }
         });
 }

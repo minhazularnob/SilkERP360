@@ -2,27 +2,22 @@
 var CLIPBOARD = "";
 var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
 $(document).ready(function () {
-
-
     GBL_INCREMENT_HISTORY = $('#tblIncrementSummery').dataTable({
-        "bJQueryUI": true,
-        "sScrollY": "auto",
+        "bJQueryUI": false,
         "bFilter": true,
-        "bPaginate": false,
+        "bPaginate": true,
         "bLengthChange": false,
-        "bSearch": false,
+        "bSearch": true,
         "aoColumns": [
-                    { sTitle: '<b>Prv. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
-                    { sTitle: '<b>Inc. Amount</b>', sWidth: '20%', sClass: 'alignCenter' },
-                    { sTitle: '<b>Curr. Gross</b>', sWidth: '10%', sClass: 'alignCenter' },
-                    { sTitle: '<b>Eff. Month</b>', sWidth: '10%', sClass: 'alignCenter' },
-                    { sTitle: '<b>Eff. Year.</b>', sWidth: '10%', sClass: 'alignCenter' }
-                    
-                  ]
+            { sTitle: '<b>Prv. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
+            { sTitle: '<b>Inc. Amount</b>', sWidth: '20%', sClass: 'alignCenter' },
+            { sTitle: '<b>Curr. Gross</b>', sWidth: '10%', sClass: 'alignCenter' },
+            { sTitle: '<b>Eff. Month</b>', sWidth: '10%', sClass: 'alignCenter' },
+            { sTitle: '<b>Eff. Year.</b>', sWidth: '10%', sClass: 'alignCenter' }
+        ]
 
     });
-    $("#ddlEmployee").combobox();
-
+    initializeSelect2('ddlEmployee', '------ Select Employee ------', '51%');
 });
 
 

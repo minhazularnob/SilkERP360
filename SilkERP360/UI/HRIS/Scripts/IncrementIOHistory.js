@@ -213,13 +213,3 @@ function CalculateSalary() {
     $("#txtIncConv").val(lcl_ui32_Conveyence);
     $("#txtIncMed").val(lcl_ui32_Medical);
 }
-
-
-
-function initializeSelect2(dropdownId, placeholderText, width) {
-    $('#' + dropdownId).select2({
-        placeholder: placeholderText,
-        allowClear: true,
-        width: width
-    });
-}

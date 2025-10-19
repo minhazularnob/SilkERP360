@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class MedicalInfo {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class MedicalInfo
+    {
+
         /// <summary>
         /// ddlEmployeeId control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmployeeId;
-        
+
         /// <summary>
         /// txt_VisitedDate control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_VisitedDate;
-        
+
         /// <summary>
         /// ddlBloodGroup control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBloodGroup;
-        
+
         /// <summary>
         /// txt_Age control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Age;
-        
+
         /// <summary>
         /// ddlSex control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSex;
-        
+
         /// <summary>
         /// txt_Diagnosis control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Diagnosis;
-        
+
         /// <summary>
         /// txt_Remarks control.
         /// </summary>

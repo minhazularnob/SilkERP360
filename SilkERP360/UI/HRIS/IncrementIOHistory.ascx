@@ -79,7 +79,7 @@
     </tr>
 
     <tr>
-        <td><label>Effective Month :</label></td>
+        <td style="text-align: right"><label>Effective Month :</label></td>
         <td style="text-align:left;">
             <asp:DropDownList ID="ddlEffectiveMonth" runat="server" Width="100%" ClientIDMode="Static">
                 <asp:ListItem Value="0">------ Select Month ------</asp:ListItem>
@@ -98,7 +98,7 @@
             </asp:DropDownList>
         </td>
         <td></td>
-        <td><label>Effective Year :</label></td>
+        <td style="text-align: right"><label>Effective Year :</label></td>
         <td style="text-align:left;">
             <asp:DropDownList ID="ddlEffectiveYear" runat="server" Width="100%" ClientIDMode="Static">
                 <asp:ListItem Value="0">------ Select Year ------</asp:ListItem>
@@ -117,41 +117,41 @@
     </tr>
 
     <tr>
-        <td><label>Increment Gross :</label></td>
+        <td style="text-align: right"><label>Increment Gross :</label></td>
         <td style="text-align:left;">
             <asp:TextBox ID="txtIncGross" runat="server" style="text-align:center;" CssClass="INC_IP" Width="100%" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
         </td>
         <td></td>
-        <td><label>Current Gross :</label></td>
+        <td style="text-align: right"><label>Current Gross :</label></td>
         <td style="text-align:left;">
             <asp:TextBox ID="txtCurrGross" runat="server" style="text-align:center;" CssClass="INC_IP" Width="100%" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td><label>Inc. Basic :</label></td>
+        <td style="text-align: right"><label>Inc. Basic :</label></td>
         <td style="text-align:left;">
             <asp:TextBox ID="txtIncBasic" runat="server" style="text-align:right;" CssClass="INC_IP" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
         </td>
         <td></td>
-        <td><label>Inc House Rent :</label></td>
+        <td style="text-align: right"><label>Inc House Rent :</label></td>
         <td style="text-align:left;">
             <asp:TextBox ID="txtIncHR" runat="server" style="text-align:right;" CssClass="INC_IP" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
         </td>
     </tr>
 
     <tr>
-        <td><label>Inc. Conveyence :</label></td>
+        <td style="text-align: right"><label>Inc. Conveyence :</label></td>
         <td style="text-align:left;">
             <asp:TextBox ID="txtIncConv" runat="server" CssClass="wg_read_only INC_IP" style="text-align:right;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
         </td>
         <td></td>
-        <td><label>Inc. Medical :</label></td>
+        <td style="text-align: right"><label>Inc. Medical :</label></td>
         <td style="text-align:left;">
             <asp:TextBox ID="txtIncMed" runat="server" CssClass="wg_read_only INC_IP" style="text-align:right;" Width="100%" ClientIDMode="Static"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td><label>Inc. Entertainment :</label></td>
+        <td style="text-align: right"><label>Inc. Entertainment :</label></td>
         <td style="text-align:left;">
             <asp:TextBox ID="txtIncEnt" runat="server" CssClass="wg_read_only INC_IP" Text="0" style="text-align:right;" Width="100%" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
         </td>
@@ -183,10 +183,8 @@
         </tr>
         <tr>
             <!--QC Test Body-->
-            <td colspan="3" style="width:100%; height:auto;">
-              
-                
-                <div id="dvReportBody" class="qc_test_form_container" style="width:100%; height:auto; border:0px ridge; display:none;">
+            <td colspan="3" style="width:60%; height:auto;">
+                <div id="dvReportBody" class="qc_test_form_container" style="width:100%; height:auto; border:0px ridge; display: none">
                     <table id="tblIncrementHistory" class="table custom-table  fontSerif w-100">
                     </table>    
                 </div>
