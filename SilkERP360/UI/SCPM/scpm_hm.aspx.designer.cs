@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.SCPM {
-    
-    
-    public partial class scpm_hm {
-        
+namespace SilkERP360.UI.SCPM
+{
+
+
+    public partial class scpm_hm
+    {
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// txtSecurityToken control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtSecurityToken;
-        
+
         /// <summary>
         /// txtSignedEmployeeCode control.
         /// </summary>
@@ -47,7 +49,16 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtSignedEmployeeCode;
-        
+
+        /// <summary>
+        /// companyIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField companyIdHidden;
+
         /// <summary>
         /// txtName control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtName;
-        
+
         /// <summary>
         /// txtUserName control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtUserName;
-        
+
         /// <summary>
         /// txtDesignation control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtDesignation;
-        
+
         /// <summary>
         /// txtIP control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtIP;
-        
+
         /// <summary>
         /// txtAccessLevel control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtAccessLevel;
-        
+
         /// <summary>
         /// imgEmpImage control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEmpImage;
-        
+
         /// <summary>
         /// lblDay control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDay;
-        
+
         /// <summary>
         /// lblMonth control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace SilkERP360.UI.SCPM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMonth;
-        
+
         /// <summary>
         /// lblYear control.
         /// </summary>

@@ -22,29 +22,6 @@ namespace SilkERP360.UI.HRIS
                     Context.ApplicationInstance.CompleteRequest();
                 }
                 
-               
-
-                
-                //System.String lcl_str_SecurityToken = this.Session["SEC_TKN"] as System.String;
-               
-                //System.String lcl_str_IPAddress = this.Context.Request.UserHostAddress;
-                //System.String lcl_str_SessionID = this.Context.Session.SessionID.ToUpper();
-                //if (SilkERP360.CCL.Repository.AuthenticUserContextRepository.CheckIfIPExists(lcl_str_IPAddress) == false)
-                //{
-                //    //redirect to error page
-                //    System.String lcl_str_URL = HttpContext.Current.Request.ApplicationPath + "index.aspx";
-                //    Response.Redirect(lcl_str_URL, false);
-                //    Context.ApplicationInstance.CompleteRequest();
-                //    return;
-                //}
-                //if (SilkERP360.CCL.Repository.AuthenticUserContextRepository.CheckIfSessionExists(lcl_str_SessionID) == false)
-                //{
-                //    //redirect to error page
-                //    System.String lcl_str_URL = HttpContext.Current.Request.ApplicationPath + "index.aspx";
-                //    Response.Redirect(lcl_str_URL, false);
-                //    Context.ApplicationInstance.CompleteRequest();
-                //    return;
-                //}
                 SilkERP360.CCL.Repository.AuthenticUserContext lcl_obj_AuthenticUserContext = (SilkERP360.CCL.Repository.AuthenticUserContext)this.Session["USR_CNTXT"];
                                 
                 if (lcl_obj_AuthenticUserContext == null)

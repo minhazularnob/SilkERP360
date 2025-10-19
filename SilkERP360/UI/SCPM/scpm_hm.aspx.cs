@@ -41,25 +41,7 @@ namespace SilkERP360.UI.SCPM
                 System.UInt64 lcl_ui64_ModuleCode = System.UInt64.Parse(lcl_str_ModuleCode.ToString());
                 SilkERP360.CCL.BusinessEntities.UI.UserProfile lcl_obj_UserProfile = lcl_obj_AuthenticUserContext.UserProfile;
                 //paste User Image
-                
 
-                //System.Web.UI.WebControls.Image lcl_obj_ImageItem = lcl_obj_UserProfile.Image.
-                //byte[] photoByte = null;
-                //int ArraySize;
-                //photoByte = (byte[])lcl_obj_IamgeReader["image"];
-                //ArraySize = photoByte.GetUpperBound(0);
-                //MemoryStream ms = new MemoryStream(ArraySize + 1);
-                //ms.Write(photoByte, 0, ArraySize + 1);
-                //photoByte = ms.ToArray();
-                //Convert.ToBase64String(photoByte);
-                //string data = "data:" + lcl_obj_IamgeReader["image_type"].ToString() + ";base64,";
-                //lcl_obj_ImageItem.ImageUrl = data + Convert.ToBase64String(photoByte);
-
-                //imgEmployeeImage.ImageUrl = data + Convert.ToBase64String(photoByte);
-                /********************************************************************************************************/
-                //this.imgUser.AlternateText = "Not Found";
-                
-                //check if ModuleCode exists in User's ModulePermission
                 System.Boolean lcl_b_IsModulePermitted = false;
                 SilkERP360.CCL.BusinessEntities.UI.ModuleMenuCompany lcl_obj_ModuleMenuCompany = null;
                 foreach (SilkERP360.CCL.BusinessEntities.UI.ModuleMenuCompany lcl_obj_ModuleMenuCompanyTmp in lcl_obj_UserProfile.ModuleMenusCompanies)
@@ -87,31 +69,6 @@ namespace SilkERP360.UI.SCPM
                 /////get all departments of permitted company for the user
                 System.Int32 i = 1;
                 SilkERP360.FL.HRIS.DepartmentFacade lcl_obj_DepartmentFacade = new SilkERP360.FL.HRIS.DepartmentFacade();
-                //foreach (SilkERP360.CCL.BusinessEntities.HRIS.Base.CompanyCore lcl_obj_CompanyCore in lcl_obj_ModuleMenuCompany.Companys)
-                //{
-                //    System.Web.UI.WebControls.ListItem lcl_obj_Company = new System.Web.UI.WebControls.ListItem();
-                //    lcl_obj_Company.Value = lcl_obj_CompanyCore.CompanyCode.ToString();
-                //    lcl_obj_Company.Text = lcl_obj_CompanyCore.Name;
-                //    this.ddlCompany.Items.Insert(i++, lcl_obj_Company);
-
-                //    //get Departments For the Company
-                //    //System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Base.DepartmentCore> lcl_obj_Departments = lcl_obj_DepartmentFacade.GetDepartmentCoresByCompany(lcl_obj_CompanyCore.CompanyCode);
-                //    //lcl_obj_CompanyDepartments.Add(lcl_obj_CompanyCore.CompanyCode, lcl_obj_Departments);
-                //    ///************************************************************************************************************************/
-                //    //if (lcl_obj_ModuleMenuCompany.Companys.Count == 1)
-                //    //{
-                //    //    System.Int32 lcl_ui32_j = 1;
-                //    //    //populate the ddlDepartment Control
-                //    //    foreach (SilkERP360.CCL.BusinessEntities.HRIS.Base.DepartmentCore lcl_obj_DepartmentCore in lcl_obj_Departments)
-                //    //    {
-                //    //        System.Web.UI.WebControls.ListItem lcl_obj_DepartmentItem = new System.Web.UI.WebControls.ListItem();
-                //    //        lcl_obj_DepartmentItem.Value = lcl_obj_DepartmentCore.DepartmentCode.ToString();
-                //    //        lcl_obj_DepartmentItem.Text = lcl_obj_DepartmentCore.Name;
-                //    //        this.ddlDepartment.Items.Insert(lcl_ui32_j++, lcl_obj_DepartmentItem);
-                //    //    }
-                //    //}
-                //    /************************************************************************************************************************/
-                //}
 
 
                 /************************************************************************************************************************/
@@ -122,16 +79,9 @@ namespace SilkERP360.UI.SCPM
                 this.txtAccessLevel.Text = lcl_obj_UserProfile.AccessLevel.ToString();
                 this.txtSignedEmployeeCode.Value = lcl_obj_UserProfile.EmployeeCode.ToString();
                 this.txtDesignation.Text = lcl_obj_UserProfile.Designation.Name;
+                this.companyIdHidden.Value = lcl_obj_UserProfile.Company.CompanyCode.ToString();
 
-                /***********************************************************************************************************************/
-                //Write Image Data in client
-                //System.Text.StringBuilder lcl_obj_ImageBuilder = new System.Text.StringBuilder();
-                //lcl_obj_ImageBuilder.Append("var m_obj_EmployeeImage = 'data:");
-                //lcl_obj_ImageBuilder.Append(lcl_obj_UserProfile.Image.ImageType);
-                //lcl_obj_ImageBuilder.Append(";base64,");
-                //lcl_obj_ImageBuilder.Append(lcl_obj_UserProfile.Image.ImageData);
-                //lcl_obj_ImageBuilder.Append("';");
-                //this.imgEmpImage.
+
                 this.imgEmpImage.ImageUrl = "data:" + lcl_obj_UserProfile.Image.ImageType + ";base64," + lcl_obj_UserProfile.Image.ImageData;
 
                 this.lblDay.Text = System.DateTime.Now.Day.ToString();
@@ -149,7 +99,7 @@ namespace SilkERP360.UI.SCPM
 
                 //lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='menu'>");
                 //lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='mnuSCPM'><li class='current'><a href='#' onclick='Logout();return false;'>Logout</a></li>");
-                lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='menu'><li class='current'><a href='#' onclick='Logout();return false;'>Logout</a></li>");
+                lcl_obj_MenuBuilder.Append("var lcl_str_HorizontalMenuHTML = \"<ul id='menu'>");
                 foreach (SilkERP360.CCL.BusinessEntities.UI.Menu lcl_obj_ParentMenu in lcl_obj_ParentMenus)
                 {
                     //System.Web.UI.WebControls.MenuItem lcl_obj_ParentMenuItem = new System.Web.UI.WebControls.MenuItem(lcl_obj_ParentMenu.MenuName, lcl_obj_ParentMenu.MenuCode.ToString(), lcl_obj_ParentMenu.Link);
@@ -175,19 +125,9 @@ namespace SilkERP360.UI.SCPM
                     //this.mnuHRIS.Items.Add(lcl_obj_ParentMenuItem);
                 }
                 //lcl_obj_MenuBuilder.Append("</ul>\");}");
+                lcl_obj_MenuBuilder.Append("<li class='current'><a href='#' onclick='Logout();return false;'>LOGOUT</a></li>");
                 lcl_obj_MenuBuilder.Append("</ul>\";");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "SCPM_MNU", lcl_obj_MenuBuilder.ToString(), true);
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "EMP_IMG", lcl_obj_ImageBuilder.ToString(), true);
-                //IEnumerable<SilkERP360.CCL.BusinessEntities.UI.Menu> lcl_obj_ChildMenus =  from lcl_obj_Menu in lcl_obj_Menus
-                //                                                                           where (lcl_obj_Menu.ParentMenuCode > 99)
-                //                                                                           select lcl_obj_Menu;
-                /******************************************************************************************************************************/
-                //convert companywise department list to JSON and write it to client
-                //System.Web.Script.Serialization.JavaScriptSerializer lcl_obj_jSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                //System.String lcl_str_CompanyDepartments = lcl_obj_jSerializer.Serialize(lcl_obj_CompanyDepartments);
-
-
-                /******************************************************************************************************************************/
 
             }
             catch (System.Exception Ex)

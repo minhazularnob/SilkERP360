@@ -13,6 +13,7 @@ $(document).ready(function () {
     //ConfigureMenu();
     //$('#hrisFuncMenu').menu();
     $('#dvHMenu').html(lcl_str_HorizontalMenuHTML);
+   
     //Hook CompanyChangeEvent
     loadEmployeeComapanyLogo();
     setCompanyName($('#companyIdHidden').val());
@@ -218,7 +219,6 @@ function setCompanyName(code) {
         "110000000003": "Silkways Solutions Ltd."
     };
 
-    console.log(companyMap[code]);
     const companyName = companyMap[code] || "Unknown Company";
     document.getElementById("footerCompanyName").textContent = companyName;
 }

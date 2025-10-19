@@ -43,10 +43,12 @@
     <script src="../../Globals/jQuery/jquery-ui-1.9.1/ui/minified/jquery.ui.datepicker.min.js" type="text/javascript"></script>
     <%--<script src="../../Globals/jQuery/jquery-ui-1.9.1/ui/minified/jquery.ui.tooltip.min.js" type="text/javascript"></script>--%>
     <script src="../../Globals/jQuery/jquery-ui-1.9.1/ui/jquery.ui.effect-fade.js" type="text/javascript"></script>
+    <script src="../../Globals/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
 
 
 
 
+    <script src="../../Globals/Scripts/plug-ins/blockui-master/jquery.blockUI.js" type="text/javascript"></script>
     <script src="../../Globals/Scripts/plug-ins/blockui-master/jquery.blockUI.js" type="text/javascript"></script>
        
     <%--<script src="Scripts/plug-ins/tooltip/js/jquery.betterTooltip.js" type="text/javascript"></script>--%>
@@ -130,6 +132,10 @@
 
     <link href="../../Globals/Styles/ImageStyles.css" rel="stylesheet" type="text/css" />
     <link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />
+    <link href="../../Globals/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../Globals/Select2/select2_min_4.1.0.js"></script>
+    <link href="../../Globals/Select2/select2_min_4_1_0.css" rel="stylesheet" />
+    <link href="../../Globals/Styles/master.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -143,113 +149,157 @@
     </div>--%>
     <asp:HiddenField ID="txtSecurityToken" runat="server" Value='' /> <%--This Value will be set in page_load method of hris_hm.aspx--%>
     <asp:HiddenField ID="txtSignedEmployeeCode" runat="server" Value='' ClientIDMode="Static" />
+        <asp:HiddenField ID="companyIdHidden" runat="server" Value='' ClientIDMode="Static" />
+
 <%--*************************************************************************************************************************************--%> 
     
-    <div id="dvBody" class="body" style=" font-family:Verdana;  margin:0 auto; width:100%; height:800px; border:0px; border-style:solid;">
-        <table id="tblBody" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%; border:0px; border-style:solid; margin:0 auto;">
-            <tr>
-                <td align="center" style="width:100%; height:5%;">
-                    <!-- HORIZONTAL MENU-->
-                    <div id="dvHMenu" style="border:0px; border-style:none;width:100%; height:100%; background-color:#ffffff;">
+    <div class="container-fluid" style="font-family: serif; height: 800px; padding: 0;">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-auto p-0 silkways_solid_Blue" id="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
+            <div id="dvHMenu" class="pt-3">
+                <!-- Sidebar menu here -->
+            </div>
+            <img src="/Globals/Images/sidebar.png" id="sideBarIcon" class="sidebar-image" />
+        </div>
 
-                    </div>     
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="width:100%; height:auto; text-align:center; padding-bottom:5px;">
-                    <div id="dvUserInfo"  class="div_bg_gradient_gray" style="width:100%; height:auto; text-align:center;">
-                        <%--<img src="../../Globals/Images/hris_logo_v_1.png" />--%>
-                        <div id="header" style="width:100%;" >
-                            <table style="width:100%;">
-                                <tr>
-                                    <td style="width:67%;">
-                                        <table style="width:100%;">
-                                            <tr>
-                                                <td>
-                                                    <span class="silkerp_logo">Silkways Enterprise Resource Planner (SilkERP360)</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="module_title">Silkcard Production Manager (SCPM) v.1.0</span><br />
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td style="width:20%; font-size:12px;">
-                                        Name : <asp:Label ID="txtName" runat="server" Font-Bold="true" ClientIDMode="Static"></asp:Label><br />
-                                        Username : <asp:Label ID="txtUserName" runat="server" Font-Bold="true" ClientIDMode="Static"></asp:Label><br />
-                                        Designation : <asp:Label ID="txtDesignation" runat="server" Font-Bold="true" ClientIDMode="Static"></asp:Label><br />
-                                        IP : <asp:Label ID="txtIP" runat="server" Font-Bold="true" ClientIDMode="Static"></asp:Label><br />
-                                        Acc Lvl :<asp:Label ID="txtAccessLevel" runat="server" Font-Bold="true" ClientIDMode="Static"></asp:Label>            
-                                    </td>
-                                    <td style="width:5%; border:0px ridge black; text-align:right; padding-right:13px;">
-                                        <asp:Image ID='imgEmpImage' runat="server" Width="80px" Height="80px" />
-                                    </td>
-                                    <td style="width:auto; border:0px solid black; text-align:right; padding-right:13px;">
-                                        <div class="silkerp-date">
-                                          <asp:Label ID="lblDay" runat="server" CssClass="day" ClientIDMode="Static"></asp:Label>
-                                          <asp:Label ID="lblMonth" runat="server" CssClass="month" ClientIDMode="Static"></asp:Label>
-                                          <asp:Label ID="lblYear" runat="server" CssClass="year" ClientIDMode="Static"></asp:Label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <div style="width:100%; height:0px;">
-                                            &nbsp;
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                            
-                            <%--<div id="mnuHorizontalContainer"  class="div_bg_gradient_gray1" style=" width:100%; margin:0 auto; z-index:10000000000000;">
-                            </div>--%>
-                            <%--<header>
-                                <div id="dvHead">
-                                    <h1>Silkways Solutions Ltd<span> SilkERP360</span></h1>
-                                </div>
-                            </header>--%>
+        <!-- Main Content Area -->
+        <div class="col ps-3">
+            <!-- Top Bar (optional) -->
+            <div class="bg-white border-bottom mb-2">
+                <!-- Horizontal menu or top nav (optional) -->
+            </div>
+
+            <!-- Header Info -->
+            <div class="bg-light p-3 mb-3 rounded shadow-sm">
+                <div class="row">
+                    <div class="col-md-1">
+                        <!-- Optional Company Logo -->
+                        <img id="companyLogoForEmployee" src="" alt="logo" style="height: 70px; width: 90px; object-fit: contain;" />
+                    </div>
+
+                    <div class="col-md-6 ps-5">
+                        <span class="silkerp_logo silkways_solid_Blue_font fs-4 fontSerif fontBold">Silkways Enterprise Resource Planner (SilkERP360)</span><br />
+                        <span class="module_title silkways_solid_Orange_font fs-4 fontSerif fontBold">Silkcard Production Manager (SCPM) v.1.0</span>
+                    </div>
+
+                    <div class="col-md-2 fontSerif silkways_solid_Blue_font" style="font-size: smaller;">
+                        <p class="mb-0">
+                            <strong>Name:</strong>
+                            <asp:Label ID="txtName" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                        </p>
+                        <p class="mb-0">
+                            <strong>Username:</strong>
+                            <asp:Label ID="txtUserName" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                        </p>
+                        <p class="mb-0">
+                            <strong>Designation:</strong>
+                            <asp:Label ID="txtDesignation" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                        </p>
+                        <div class="d-flex mb-0 fontSerif">
+                            <p class="mb-0 me-3">
+                                <strong>IP:</strong>
+                                <asp:Label ID="txtIP" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                            </p>
+                            <p class="mb-0">
+                                <strong>Acc Lvl:</strong>
+                                <asp:Label ID="txtAccessLevel" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                            </p>
                         </div>
-                        <%--<div id="wrapper" style="float:right;">
-                            <asp:DropDownList ID="ddlCompany" runat="server" Width="500px" Height="20px">
-                              <asp:ListItem>-----Select Company</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>--%>
                     </div>
-                </td>
-            </tr>
-            <tr style="width:100%;">
-                <td align="center" style="width:100%; height:auto; text-align:center;padding-top:5px;">
-                    <div id="Div1" class="div_bg_gradient_gray" style="width:100%; height:100%;">
-                        <table id="Table1" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;">
-                            <tr>
-                                <td align="center" style="width:80%; height:auto;text-align:center;">
-                                    <!--BODY RIGHT-->
-                                    <div class="div_bg_gradient_gray" style=" text-align:center; width:100%; height:100%; margin:0px auto; border-left:2px #a9a9a9 outset; z-index:0;">
-                                        <table  id="Table3" cellpadding="0px" cellspacing="0px" style="width:99%;height:auto; margin:0 auto;">
-                                            <tr style="height:800px;">
-                                                <td style="width:100%; height:100%; background-color:inherit; vertical-align:top;">
-                                                    <div class="ui_control_wrapper1" style=" text-align:left; width:auto; height:auto; background-color:inherit;">
-                                                        <div id="dvUIContainer" style=" visibility:hidden; height:100%; padding:10px;">
-                                                            <br />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+
+                    <div class="col-md-2 d-flex align-items-center" style="font-family: 'Georgia', serif;">
+                        <asp:Image ID="imgEmpImage" runat="server" Width="100px" Height="100px" CssClass="img-thumbnail border-0 me-2" />
+                        <div class="d-flex flex-column justify-content-center small fontSerif silkways_solid_Orange_font" style="line-height: 1.3">
+                            <asp:Label ID="lblDay" runat="server" CssClass="day fw-bold" ClientIDMode="Static" />
+                            <asp:Label ID="lblMonth" runat="server" CssClass="month fw-bold" ClientIDMode="Static" />
+                            <asp:Label ID="lblYear" runat="server" CssClass="year fw-bold" ClientIDMode="Static" />
+                        </div>
                     </div>
-                </td>
-            </tr>
-        </table>
+
+                    <div id="companyLogoDiv" class="col-md-1" style="padding: 0px; display: none">
+                        <img id="comapanyLogo" src="../../Globals/Images/Silkways_Solutions_Logo.png" alt="logo" />
+                    </div>
+                </div>
+
+                <hr />
+            </div>
+
+            <!-- Main UI Content Area -->
+            <div class="div_bg_gradient_gray p-3 border rounded" style="min-height: 500px; border-left: 2px #a9a9a9 outset;">
+                <div class="ui_control_wrapper1" style="text-align: left;">
+                    <div id="dvUIContainer" style="visibility: hidden; height: 100%; padding: 5px;">
+                        <!-- Your dynamic SCPM UI content goes here -->
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer_master_color_liener_gradient text-white py-3 border-top fontSerif" style="font-size: 0.95rem; opacity: 0.95;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <h5 id="footerCompanyName" class="mb-1">Silkways</h5>
+                    <p id="footerCompanyAddress" class="mb-0">
+                        Corporate Office: Plot No. SW(I) 4, 25 Gulshan Avenue 1212, Bangladesh
+                    </p>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <h5 class="mb-1">Contact</h5>
+                    <p class="mb-1">
+                        <strong>Mobile:</strong> <span id="footerCompanyMobile">+88 02 9888211</span>
+                    </p>
+                    <p class="mb-0">
+                        <strong>Email:</strong> <span id="footerCompanyEmail">info@silkways.net</span>
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-3 small" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
+                © 2025 Silkways. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</div>
+
     
     </form>
 </body>
 </html>
+
+<script type="text/javascript">
+     window.addEventListener("DOMContentLoaded", function () {
+         const topLevelMenus = document.querySelectorAll("#dvHMenu > ul > li > a");
+         const subMenuLinks = document.querySelectorAll("#dvHMenu ul li ul li a");
+
+         // Apply styles to top-level menu items
+         topLevelMenus.forEach(menu => {
+             menu.classList.add("fontSerif");
+             const name = menu.textContent.trim();
+             if (name == "LOGOUT") {
+                 menu.classList.add("logout-menu");
+             }
+         });
+         // Apply styles to sub-menu items
+         subMenuLinks.forEach(subMenu => {
+             subMenu.classList.add("fontSerif");
+         });
+     });
+   
+    $(document).ready(function () {
+        $('#ddlCompany').on('change', changeCompanyLogo);
+    });
+
+    initializeSelect2('ddlCompany', '------ Select Company ------', 'resolve');
+
+    function initializeSelect2(dropdownId, placeholderText, width) {
+        $('#' + dropdownId).select2({
+            placeholder: placeholderText,
+            allowClear: true,
+            width: width
+        });
+    }
+</script>
 
