@@ -116,12 +116,6 @@ input:not([type="checkbox"]), textarea {
     background: white !important;
 }
 
-/*.showSaveBtn {
-    height: 33px;
-    line-height: 20px;
-    width: 10%;
-}*/
-
 .showSaveBtn {
     height: 33px;
     line-height: 20px;
@@ -136,3 +130,5 @@ input:not([type="checkbox"]), textarea {
         background-color: #0b5ed7; /* Slightly darker shade for hover */
         transform: translateY(-1px);
     }
+
+

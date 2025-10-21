@@ -12,19 +12,6 @@ namespace SilkERP360.FL.HRIS
           this.Initialize();
       }
 
-      public System.UInt64 SaveCompany(SilkERP360.CCL.BusinessEntities.HRIS.Company IP_Obj_Company)
-      {
-          System.UInt64 lcl_ui64_CompanyCode = this.ExceptionManager.Process<System.UInt64>(() =>
-          {
-              SilkERP360.BML.HRIS.CompanyManager lcl_obj_HolidayMasterManager = new BML.HRIS.CompanyManager();
-              System.UInt64 lcl_ui64_CompanyCodeTmp = lcl_obj_HolidayMasterManager.Save(IP_Obj_Company);
-              return lcl_ui64_CompanyCodeTmp;
-          }, "FLExceptionPolicy");
-          return lcl_ui64_CompanyCode;
-      }
-
-
-
       public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Company> GetAllCompanyWise()
       {
           System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Company> lcl_obj_Company = null;

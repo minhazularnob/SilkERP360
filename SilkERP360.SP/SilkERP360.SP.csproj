@@ -72,6 +72,7 @@
     <Compile Include="HRIS\AttendanceProcessor.cs" />
     <Compile Include="HRIS\AttendanceSP.cs" />
     <Compile Include="HRIS\BonusServices.cs" />
+    <Compile Include="HRIS\CompanyService.cs" />
     <Compile Include="HRIS\EmployeeSP.cs" />
     <Compile Include="HRIS\IncrementServices.cs" />
     <Compile Include="HRIS\LeaveService.cs" />

@@ -57,6 +57,7 @@
       <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.OracleClient" />
@@ -292,12 +293,14 @@
     <Compile Include="Validation\Attributes\StringLengthAttribute.cs" />
     <Compile Include="Validation\Attributes\StringLengthRangeAttribute.cs" />
     <Compile Include="Validation\Collections\ValidationErrorCollection.cs" />
+    <Compile Include="Validation\CustomValidationAttributes.cs" />
     <Compile Include="Validation\DBColumnAttribute.cs" />
     <Compile Include="Validation\DBProcedureParameterAttribute.cs" />
     <Compile Include="Validation\ErrorsExceptions\ValidationError.cs" />
     <Compile Include="Validation\ErrorsExceptions\ValidationException.cs" />
     <Compile Include="Validation\Interfaces\IEntityValidation.cs" />
     <Compile Include="Validation\Interfaces\IValidationError.cs" />
+    <Compile Include="Validation\ObjectValidator.cs" />
     <Compile Include="Validation\ValidationBase.cs" />
   </ItemGroup>
   <ItemGroup>

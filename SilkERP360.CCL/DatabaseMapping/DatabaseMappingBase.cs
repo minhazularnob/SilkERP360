@@ -246,5 +246,118 @@ namespace SilkERP360.CCL.DatabaseMapping
             }
             
         }
+
+        public virtual string GenerateSqlUpdate()
+        {
+            try
+            {
+                System.Text.StringBuilder updateQuery = new System.Text.StringBuilder();
+                System.Attribute[] classAttributes = System.Attribute.GetCustomAttributes(this.GetType());
+
+                if (classAttributes.Length == 0)
+                {
+                    throw new System.Exception("This class is not marked to generate its own Sql statements!!!");
+                }
+
+                var entityMapping = (SilkERP360.CCL.DatabaseMapping.DatabaseEntityMapping)classAttributes[0];
+
+                updateQuery.Append("UPDATE ");
+                updateQuery.Append(entityMapping.DatabaseTableName);
+                updateQuery.Append(" SET ");
+
+                string primaryKeyColumn = null;
+                string primaryKeyValue = null;
+
+                System.Reflection.FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+
+                bool firstSetClause = true;
+
+                foreach (var field in fields)
+                {
+                    object fieldValue = field.GetValue(this);
+                    if (fieldValue == null)
+                        continue;
+
+                    string stringValue = fieldValue.ToString();
+
+                    foreach (var attr in field.GetCustomAttributes(typeof(SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping), true))
+                    {
+                        var columnMapping = attr as SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping;
+                        string columnName = columnMapping.DatabaseColumnName;
+
+                        // Primary key goes to WHERE clause
+                        if (columnMapping.IsPrimaryKey)
+                        {
+                            primaryKeyColumn = columnName;
+                            primaryKeyValue = FormatSqlValue(columnMapping.DataType, fieldValue, columnMapping.DateTimeFormat);
+                            continue;
+                        }
+
+                        if (!firstSetClause)
+                        {
+                            updateQuery.Append(", ");
+                        }
+
+                        updateQuery.Append(columnName);
+                        updateQuery.Append(" = ");
+                        updateQuery.Append(FormatSqlValue(columnMapping.DataType, fieldValue, columnMapping.DateTimeFormat));
+
+                        firstSetClause = false;
+                    }
+                }
+
+                if (primaryKeyColumn == null || primaryKeyValue == null)
+                {
+                    throw new Exception("Primary key not found or its value is null.");
+                }
+
+                updateQuery.Append(" WHERE ");
+                updateQuery.Append(primaryKeyColumn);
+                updateQuery.Append(" = ");
+                updateQuery.Append(primaryKeyValue);
+
+                return updateQuery.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        // Helper method for formatting SQL values based on data type
+        private string FormatSqlValue(Type dataType, object value, DateTimeFormat dtFormat)
+        {
+            if (dataType == typeof(string))
+            {
+                return $"'{value.ToString().Replace("'", "''")}'";
+            }
+
+            if (dataType == typeof(DateTime))
+            {
+                DateTime dt = DateTime.Parse(value.ToString());
+                if (dtFormat == DateTimeFormat.DateAndTime)
+                {
+                    return $"TO_DATE('{dt:dd/MM/yyyy hh:mm:ss tt}', 'DD/MM/YYYY HH:MI:SS AM')";
+                }
+                else
+                {
+                    return $"TO_DATE('{dt:dd/MM/yyyy}', 'DD/MM/YYYY')";
+                }
+            }
+
+            if (dataType.IsEnum)
+            {
+                int intValue = Convert.ToInt32(value);
+                return intValue.ToString();
+            }
+
+            if (dataType == typeof(decimal) || dataType == typeof(double) || dataType == typeof(float))
+            {
+                return Convert.ToDouble(value).ToString(System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+            return value.ToString();
+        }
+
     }
 }

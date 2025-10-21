@@ -227,7 +227,7 @@ namespace SilkERP360.DAL
         /// <summary>
         /// Executes the IP_strQuery and returns the number of rows affected
         /// </summary>
-        /// <param name="IP_strQuery">Query to execute</param>
+        /// <param name = "IP_strQuery" > Query to execute</param>
         /// <returns>Number of Rows affected by the query</returns>
         public System.Int32 ExecuteNonQuery(System.String IP_str_Query)
         {
@@ -250,6 +250,8 @@ namespace SilkERP360.DAL
             "DALExceptionPolicy");
             return rowsAffected;
         }
+
+
 
 
         public System.Data.DataSet ExecuteDataSet(System.String SqlQuery)

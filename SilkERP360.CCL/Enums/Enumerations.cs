@@ -373,4 +373,12 @@ namespace SilkERP360.CCL.Enums
         NotProcessed = 0,
         Processed = 1
     }
+
+    public enum OperationType
+    {
+        Save = 1,
+        Update = 2,
+        Delete = 3,
+        Get = 4
+    }
 }
