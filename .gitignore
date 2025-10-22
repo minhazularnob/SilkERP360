@@ -168,3 +168,5 @@
 /.vs/SilkERP360/copilot-chat/10f3ed3e/sessions
 /SilkERP360.BML/.vs
 /SilkERP360.CCL/.vs
+/SilkERP360.CCL/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/SilkERP360.CCL/obj/Debug/SilkERP360.CCL.csproj.CoreCompileInputs.cache

@@ -137,14 +137,17 @@
         <%--<script src="../../Globals/Scripts/plug-ins/overlay/jquery.tools.min.js" type="text/javascript"></script>--%>
     <%--<script src="../../Globals/Scripts/plug-ins/DataTables-1.9.4/media/js/jquery.js" type="text/javascript"></script>--%>
     <script src="../../Globals/Scripts/plug-ins/DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript"></script>
-    <link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />
+    <link href="../../Globals/Styles/scpm.cs" rel="stylesheet" type="text/css" />
     <link href="../../Globals/Styles/ImageStyles.css" rel="stylesheet" type="text/css" />
+  
+    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">--%>
+
     <link href="../../Globals/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../../Globals/Styles/master.css" rel="stylesheet" />
     
     <link href="../../Globals/Select2/select2_min_4_1_0.css" rel="stylesheet" />
     <script src="../../Globals/Select2/select2_min_4.1.0.js"></script>
-
+    <link href="../../Globals/fontawesome-free-7.1.0-web/css/all.min.css" rel="stylesheet" />
     <%--<link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />--%>
 </head>
 <body>

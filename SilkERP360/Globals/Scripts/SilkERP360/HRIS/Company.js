@@ -19,7 +19,7 @@
             "aoColumns": [
                 { sTitle: 'CompanyCode', sWidth: '9%', sClass: 'alignCenter' },
                 { sTitle: 'Name', sWidth: '10%', sClass: 'alignCenter' },
-                { sTitle: 'Short Name', sWidth: '5%', sClass: 'alignCenter' },
+                { sTitle: 'Short Name', sWidth: '7%', sClass: 'alignCenter' },
                 { sTitle: 'Address', sWidth: '19%', sClass: 'alignCenter' },
                 { sTitle: 'Phone No.', sWidth: '10%', sClass: 'alignCenter' },
                 { sTitle: 'Fax No', sWidth: '10%', sClass: 'alignCenter' },
@@ -27,12 +27,19 @@
                 { sTitle: 'Website', sWidth: '14%', sClass: 'alignCenter' },
                 {
                     sTitle: 'Action',
-                    sWidth: '9%',
+                    sWidth: '7%',
                     sClass: 'alignCenter',
                     mRender: function (data, type, full) {
+                        //return `
+                        //    <button type="button" class="btn btn-sm btn-primary edit-btn" data-companycode="${full[0]}">Edit</button>
+                        //    <button type="button" class="btn btn-sm btn-danger delete-btn ms-1" data-companycode="${full[0]}">Delete</button>`;
                         return `
-                            <button type="button" class="btn btn-sm btn-primary edit-btn" data-companycode="${full[0]}">Edit</button>
-                            <button type="button" class="btn btn-sm btn-danger delete-btn ms-1" data-companycode="${full[0]}">Delete</button>`;
+                    <button type="button" class="btn btn-sm btn-primary edit-btn" data-companycode="${full[0]}">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger delete-btn ms-1" data-companycode="${full[0]}">
+                        <i class="fas fa-trash"></i>
+                    </button>`;
                     }
                 }
             ]
@@ -94,6 +101,10 @@ function Save() {
                                 /// to call the Load Company Data /////////
                                 LoadAllCompany();
                                 clearFields();
+                                if ($('#companyCode').val() !== '') {
+                                    closeModal();
+                                    clearModalFields('companyModal');
+                                }
                                 return false;
                             }
                             else {
@@ -105,10 +116,7 @@ function Save() {
                             // $.unblockUI();
                         }
                 });
-            if ($('#companyCode').val() !== '') {
-                closeModal();
-                clearModalFields('companyModal');
-            }
+            
         }
     }
     return false;
@@ -261,5 +269,5 @@ function Delete(companyCode) {
 }   
 
 function clearFields() {
-    $('#dCompany').find('input[type="text"], textarea').val('');
+    $('#dCompanyContent').find('input[type="text"], textarea').val('');
 }
