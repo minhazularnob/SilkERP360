@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using SilkERP360.CCL.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -39,11 +41,88 @@ namespace SilkERP360.WebServices.HRIS
         }
 
 
+        
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse UpdateDesignation(SilkERP360.CCL.BusinessEntities.HRIS.Designation IP_Obj_Designation)
+        {
+            try
+            {
+                string erorMessage = ValidateDesignation(IP_Obj_Designation);
+
+                if (!string.IsNullOrEmpty(erorMessage))
+                {
+                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, erorMessage, false, false);
+
+                }
+
+                SilkERP360.FL.HRIS.DesignationFacade lcl_obj_DesignationFacade = new FL.HRIS.DesignationFacade();
+                System.UInt64 lcl_ui64_DesignationCode = lcl_obj_DesignationFacade.UpdateDesignation(IP_Obj_Designation);
+
+                if (lcl_ui64_DesignationCode > 0)
+                {
+                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Designation Updated Successfully", true, lcl_ui64_DesignationCode);
+                }
+
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", false, false);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetAllDesignation(System.UInt64 IP_ui64_companyCode)
+        {
+            try
+            {
+                SilkERP360.FL.HRIS.DesignationFacade lcl_obj_DesignationFacade = new SilkERP360.FL.HRIS.DesignationFacade();
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Designation> lcl_objLst_Designation =
+                    lcl_obj_DesignationFacade.GetAllDesignationWise(IP_ui64_companyCode);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_Designation);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse DeleteDesignation(UInt64 IP_Ui64_designationCode)
+        {
+            try
+            {
+                SilkERP360.FL.HRIS.DesignationFacade lcl_obj_designationFacade = new SilkERP360.FL.HRIS.DesignationFacade();
+                bool isDeleted = lcl_obj_designationFacade.DeleteDesignation(IP_Ui64_designationCode);
+
+                if (isDeleted)
+                {
+                    string message = "Designation Deleted Successfully";
+                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, message, true, null);
+                }
+
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", isDeleted, false);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
         [System.Web.Services.WebMethod(EnableSession = true)]
         public SilkERP360.CCL.Misc.WSResponse SaveDesignation(SilkERP360.CCL.BusinessEntities.HRIS.Designation IP_Obj_Designation)
         {
             try
             {
+                string erorMessage = ValidateDesignation(IP_Obj_Designation);
+
+                if (!string.IsNullOrEmpty(erorMessage))
+                {
+                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, erorMessage, false, false);
+
+                }
+
                 SilkERP360.FL.HRIS.DesignationFacade lcl_obj_DesignationFacade = new FL.HRIS.DesignationFacade();
                 System.UInt64 lcl_ui64_DesignationCode = lcl_obj_DesignationFacade.SaveDesignation(IP_Obj_Designation);
 
@@ -61,20 +140,12 @@ namespace SilkERP360.WebServices.HRIS
             }
         }
 
-            [System.Web.Services.WebMethod(EnableSession = true)]
-        public SilkERP360.CCL.Misc.WSResponse GetAllDesignation(System.UInt64 IP_ui64_companyCode)
+        private string ValidateDesignation(Designation designationModel)
         {
-            try
-            {
-                SilkERP360.FL.HRIS.DesignationFacade lcl_obj_DesignationFacade = new SilkERP360.FL.HRIS.DesignationFacade();
-                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Designation> lcl_objLst_Designation =
-                    lcl_obj_DesignationFacade.GetAllDesignationWise(IP_ui64_companyCode);
-                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_Designation);
-            }
-            catch (System.Exception Ex)
-            {
-                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
-            }
+            var errors = ObjectValidator.ValidateObject(designationModel);
+            return errors;
         }
+
+
     }
 }

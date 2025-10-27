@@ -68,13 +68,25 @@ namespace SilkERP360.FL.HRIS
             return lcl_ui64_DepartmentCode;
         }
 
+        public System.UInt64 UpdateDepartment(SilkERP360.CCL.BusinessEntities.HRIS.Department IP_Obj_Department)
+        {
+            System.UInt64 lcl_ui64_DepartmentCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            {
+                SilkERP360.BML.HRIS.DepartmentManager lcl_obj_DepartmentManager = new BML.HRIS.DepartmentManager();
+                System.UInt64 lcl_ui64_DepartmentCodeTmp = lcl_obj_DepartmentManager.Update(IP_Obj_Department);
+                return lcl_ui64_DepartmentCodeTmp;
+            }, "FLExceptionPolicy");
+            return lcl_ui64_DepartmentCode;
+        }
+
         public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Department> GetAllDepartmentWise(System.UInt64 IP_ui64_CompanyCode)
         {
             System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Department> lcl_obj_Department = null;
             lcl_obj_Department = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Department>>(() =>
             {
-                System.String lcl_str_SqlQuery = System.String.Format(@"Select DEPARTMENT_CODE,DEPT_NAME,SHORT_NAME,COMPANY_CODE,HEAD_EMPLOYEE_ID From  DEPARTMENT
-               where company_code = {0} and is_deleted=1 order by COMPANY_CODE desc", IP_ui64_CompanyCode);
+                System.String lcl_str_SqlQuery = System.String.Format(@"Select d.DEPARTMENT_CODE,d.DEPT_NAME,d.SHORT_NAME,d.COMPANY_CODE,d.HEAD_EMPLOYEE_ID,d.IS_ROSTERABLE,e.employee_name deptHeadname
+                                                                        From  DEPARTMENT d left join  employee e on d.head_employee_id = e.employee_id where d.company_code = {0} and d.is_deleted=1
+                                                                        order by COMPANY_CODE desc", IP_ui64_CompanyCode);
                 SilkERP360.BML.HRIS.DepartmentManager lcl_obj_DepartmentManager = new SilkERP360.BML.HRIS.DepartmentManager();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Department> lcl_obj_DepartmentTmp =
                     lcl_obj_DepartmentManager.GetList(lcl_str_SqlQuery);
@@ -83,6 +95,16 @@ namespace SilkERP360.FL.HRIS
             return lcl_obj_Department;
         }
 
+        public bool DeleteDepartment(UInt64 IP_Ui64_DepartmentCode)
+        {
+            bool isDeleted = this.ExceptionManager.Process<bool>(() =>
+            {
+                SilkERP360.BML.HRIS.DepartmentManager lcl_obj_HolidayMasterManager = new BML.HRIS.DepartmentManager();
+                isDeleted = lcl_obj_HolidayMasterManager.DeleteDepartment(IP_Ui64_DepartmentCode);
+                return isDeleted;
+            }, "SPExceptionPolicy");
+            return isDeleted;
+        }
 
 
 

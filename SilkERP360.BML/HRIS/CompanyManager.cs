@@ -11,8 +11,7 @@ using System.Text;
 
 namespace SilkERP360.BML.HRIS
 {
-   public class CompanyManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase,
-       SilkERP360.CCL.Interfaces.IManagerOperations<SilkERP360.CCL.BusinessEntities.HRIS.Company>
+   public class CompanyManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase,SilkERP360.CCL.Interfaces.IManagerOperations<SilkERP360.CCL.BusinessEntities.HRIS.Company>
 
 
     {
@@ -167,7 +166,9 @@ namespace SilkERP360.BML.HRIS
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    string insertSql = "delete company where company_code=" + lcl_obj_Company.CompanyCode + "";
+                    //string insertSql = "delete company where company_code=" + lcl_obj_Company.CompanyCode + "";
+                    string insertSql = "update company set IS_DELETED="+0+",STATUS="+0+" where company_code=" + lcl_obj_Company.CompanyCode + "";
+
                     int rowsAffected = lcl_obj_DBManager.InternalResource.ExecuteNonQuery(insertSql);
 
                     lcl_obj_DBManager.InternalResource.CommitTransaction();
@@ -332,8 +333,7 @@ namespace SilkERP360.BML.HRIS
                         {
                             throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (CompanyManager.GetList(SqlQuery)) : No Company Data Found In The Database!!!");
                         }
-                        System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Company> lcl_objLst_CompanyTmp = new
-                            System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Company>();
+                        System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Company> lcl_objLst_CompanyTmp = new System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Company>();
                         while (dr.Read())
                         {
                             SilkERP360.CCL.BusinessEntities.HRIS.Company lcl_obj_Company = new SilkERP360.CCL.BusinessEntities.HRIS.Company();
@@ -355,6 +355,42 @@ namespace SilkERP360.BML.HRIS
                 }, "BMLExceptionPolicy");
                 return lcl_objLst_Company;
         
+        }
+
+        public List<SilkERP360.CCL.ModelClass.Employee> GetAllEmployeeList(string IP_str_SqlQuery)
+        {
+            System.Collections.Generic.List<SilkERP360.CCL.ModelClass.Employee> lcl_objLst_Employee = null;
+            lcl_objLst_Employee  = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.ModelClass.Employee>>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    if (!(dr.HasRows))
+                    {
+                        throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (CompanyManager.GetAllEmployeeList(SqlQuery)) : No Company Data Found In The Database!!!");
+                    }
+                    System.Collections.Generic.List<SilkERP360.CCL.ModelClass.Employee> lcl_objLst_EmployeeTmp = new System.Collections.Generic.List<SilkERP360.CCL.ModelClass.Employee>();
+
+                    while (dr.Read())
+                    {
+                        SilkERP360.CCL.ModelClass.Employee lcl_obj_Employee = new SilkERP360.CCL.ModelClass.Employee();
+                        lcl_obj_Employee.EmployeeCode = System.UInt64.Parse(dr["EMPLOYEE_CODE"].ToString());
+                        lcl_obj_Employee.EmployeeId = dr["EMPLOYEE_ID"].ToString();
+                        lcl_obj_Employee.EmployeeName = dr["EMPLOYEE_NAME"].ToString();
+                        lcl_obj_Employee.DesignationName = dr["DEGN_NAME"].ToString();
+                        lcl_obj_Employee.DepartmentName = dr["DEPT_NAME"].ToString();
+                        lcl_objLst_EmployeeTmp.Add(lcl_obj_Employee);
+                    }
+                    dr.Close();
+                    return lcl_objLst_EmployeeTmp;
+                }
+            }, "BMLExceptionPolicy");
+            return lcl_objLst_Employee;
         }
 
 

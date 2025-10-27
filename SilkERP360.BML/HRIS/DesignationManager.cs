@@ -108,10 +108,12 @@ namespace SilkERP360.BML.HRIS
             }, "BMLExceptionPolicy");
             return lcl_ui64_DesignationCode;
         }
+
         public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.Designation lcl_obj_Designation)
         {
-            System.UInt64 lcl_ui64_DesignationCode = 0;
-            lcl_ui64_DesignationCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            UInt64 lcl_ui64_DesignationCode = 0;
+
+            lcl_ui64_DesignationCode = this.ExceptionManager.Process<UInt64>(() =>
             {
                 using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
@@ -119,65 +121,93 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_DesignationCode = new System.Data.OracleClient.OracleParameter("v_DESIGNATION_CODE", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_DesignationCode.Direction = System.Data.ParameterDirection.Output;
-                   // lcl_obj_DesignationCode.Value = lcl_obj_Designation.DesignationCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_DegnName = new System.Data.OracleClient.OracleParameter("v_DEGN_NAME", System.Data.OracleClient.OracleType.NVarChar,100);
-                    lcl_obj_DegnName.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_DegnName.Value = lcl_obj_Designation.DegnName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ShortName = new System.Data.OracleClient.OracleParameter("v_SHORT_NAME", System.Data.OracleClient.OracleType.NVarChar,10);
-                    lcl_obj_ShortName.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_ShortName.Value = lcl_obj_Designation.ShortName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("v_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_CompanyCode.Value = lcl_obj_Designation.CompanyCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Basic = new System.Data.OracleClient.OracleParameter("v_BASIC", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Basic.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Basic.Value = lcl_obj_Designation.Basic;
-                    System.Data.OracleClient.OracleParameter lcl_obj_HouseRent = new System.Data.OracleClient.OracleParameter("v_HOUSE_RENT", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_HouseRent.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_HouseRent.Value = lcl_obj_Designation.HouseRent;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Medical = new System.Data.OracleClient.OracleParameter("v_MEDICAL", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Medical.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Medical.Value = lcl_obj_Designation.Medical;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Entertainment = new System.Data.OracleClient.OracleParameter("v_ENTERTAINMENT", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Entertainment.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Entertainment.Value = lcl_obj_Designation.Entertainment;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Conveyence = new System.Data.OracleClient.OracleParameter("v_CONVEYENCE", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Conveyence.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Conveyence.Value = lcl_obj_Designation.Conveyence;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PhoneBill = new System.Data.OracleClient.OracleParameter("v_PHONE_BILL", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_PhoneBill.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_PhoneBill.Value = lcl_obj_Designation.PhoneBill;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Others = new System.Data.OracleClient.OracleParameter("v_OTHERS", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Others.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Others.Value = lcl_obj_Designation.Others;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Gross = new System.Data.OracleClient.OracleParameter("v_GROSS", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Gross.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Gross.Value = lcl_obj_Designation.Gross;
-                    System.Data.OracleClient.OracleParameter lcl_obj_EffectiveFrom = new System.Data.OracleClient.OracleParameter("v_EFFECTIVE_FROM", System.Data.OracleClient.OracleType.DateTime);
-                    lcl_obj_EffectiveFrom.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_EffectiveFrom.Value = lcl_obj_Designation.EffectiveFrom;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsOtEligible = new System.Data.OracleClient.OracleParameter("v_IS_OT_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_IsOtEligible.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_IsOtEligible.Value = lcl_obj_Designation.IsOtEligible;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_IsDeleted.Value = 1;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Status.Value = 1;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_DesignationCode, lcl_obj_DegnName, lcl_obj_ShortName, lcl_obj_CompanyCode, lcl_obj_Basic, lcl_obj_HouseRent, lcl_obj_Medical, lcl_obj_Entertainment, lcl_obj_Conveyence, lcl_obj_PhoneBill, lcl_obj_Others, lcl_obj_Gross, lcl_obj_EffectiveFrom, lcl_obj_IsOtEligible, lcl_obj_IsDeleted, lcl_obj_Status };
-                    lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_INS_DESIGNATION_IU", lcl_obj_SP_Parameters);
+
+                    string lcl_str_SqlQuery;
+                   
+                        // Get max department code
+                        lcl_str_SqlQuery = "SELECT MAX(DESIGNATION_CODE) AS MaxDesignationCode FROM DESIGNATION";
+
+                        var lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                        lcl_obj_IDReader.Read();
+
+                        if (lcl_obj_IDReader["MaxDesignationCode"] != DBNull.Value)
+                        {
+                            lcl_ui64_DesignationCode = Convert.ToUInt64(lcl_obj_IDReader["MaxDesignationCode"]) + 1;
+                        }
+                        else
+                        {
+                        lcl_ui64_DesignationCode = 111000000001;
+                        }
+
+                        lcl_obj_IDReader.Close();
+
+                    lcl_obj_Designation.DesignationCode = lcl_ui64_DesignationCode;
+
+                        string insertSql = lcl_obj_Designation.GenerateSqlInsert();
+                        lcl_obj_DBManager.InternalResource.ExecuteScalar(insertSql);
+                    
 
                     lcl_obj_DBManager.InternalResource.CommitTransaction();
-                    lcl_obj_DBManager.InternalResource.Close();
-                    return System.UInt64.Parse(lcl_obj_DesignationCode.Value.ToString());
                 }
+
+                return lcl_ui64_DesignationCode;
+
             }, "BMLExceptionPolicy");
+
             return lcl_ui64_DesignationCode;
         }
-        
+
+        public UInt64 Update(SilkERP360.CCL.BusinessEntities.HRIS.Designation lcl_obj_Designation)
+        {
+            UInt64 lcl_ui64_DesignationCode = 0;
+
+            lcl_ui64_DesignationCode = this.ExceptionManager.Process<UInt64>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    string lcl_str_SqlQuery;
+
+                    // Update path
+                    lcl_ui64_DesignationCode = lcl_obj_Designation.DesignationCode;
+                    string updateSql = lcl_obj_Designation.GenerateSqlUpdate(); // You must implement this method as we discussed earlier
+                    lcl_obj_DBManager.InternalResource.ExecuteScalar(updateSql);
+
+                    lcl_obj_DBManager.InternalResource.CommitTransaction();
+                }
+
+                return lcl_ui64_DesignationCode;
+
+            }, "BMLExceptionPolicy");
+
+            return lcl_ui64_DesignationCode;
+        }
+
+        public bool DeleteDesignation(UInt64 IP_Ui64_designationCode)
+        {
+            bool isDeleted = this.ExceptionManager.Process<bool>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    string insertSql = "update designation set IS_DELETED=" + 0 + ",STATUS=" + 0 + " where designation_code=" + IP_Ui64_designationCode + "";
+                    int rowsAffected = lcl_obj_DBManager.InternalResource.ExecuteNonQuery(insertSql);
+
+                    lcl_obj_DBManager.InternalResource.CommitTransaction();
+                    return rowsAffected > 0;
+                }
+            }, "BMLExceptionPolicy");
+            return isDeleted;
+        }
+
         public CCL.BusinessEntities.HRIS.Designation Get(ulong IP_ui64_Code, System.Object IP_obj_DBManager)
         {
             CCL.BusinessEntities.HRIS.Designation lcl_obj_Designation = null;

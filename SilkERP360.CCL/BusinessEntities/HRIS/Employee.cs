@@ -27,7 +27,9 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         protected System.String m_str_EmployeeAcsCode;
         protected System.String m_str_EmployeeName;
         protected System.UInt64 m_ui64_DesignationCode;
+        protected System.String m_str_DesignationName;
         protected System.UInt64 m_ui64_DepartmentCode;
+        protected System.String m_str_DepartmentName;
         protected System.UInt64 m_ui64_CompanyCode;
         protected System.UInt64 m_ui64_RefEmployeeCode;
         protected System.UInt64 m_ui64_SupervisorCode;
@@ -87,10 +89,20 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             get { return this.m_ui64_DesignationCode; }
             set { this.m_ui64_DesignationCode = value; }
         }
+        public System.String DesignationName
+        {
+            get { return m_str_DesignationName; }
+            set { this.m_str_DesignationName = value; }
+        }
         public System.UInt64 DepartmentCode
         {
             get { return this.m_ui64_DepartmentCode; }
             set { this.m_ui64_DepartmentCode = value; }
+        }
+        public System.String DepartmentName
+        {
+            get { return m_str_DepartmentName; }
+            set { this.m_str_DepartmentName = value; }
         }
         public System.UInt64 CompanyCode
         {

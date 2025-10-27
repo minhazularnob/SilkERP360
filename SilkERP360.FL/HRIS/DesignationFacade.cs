@@ -43,8 +43,27 @@ namespace SilkERP360.FL.HRIS
             return lcl_ui64_DesignationCode;
         }
 
+        public System.UInt64 UpdateDesignation(SilkERP360.CCL.BusinessEntities.HRIS.Designation IP_Obj_Designation)
+        {
+            System.UInt64 lcl_ui64_DesignationCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            {
+                SilkERP360.BML.HRIS.DesignationManager lcl_obj_DesignationManager = new BML.HRIS.DesignationManager();
+                System.UInt64 lcl_ui64_DesignationCodeTmp = lcl_obj_DesignationManager.Update(IP_Obj_Designation);
+                return lcl_ui64_DesignationCodeTmp;
+            }, "FLExceptionPolicy");
+            return lcl_ui64_DesignationCode;
+        }
 
-
+        public bool DeleteDesignation(UInt64 IP_Ui64_designationCode)
+        {
+            bool isDeleted = this.ExceptionManager.Process<bool>(() =>
+            {
+                SilkERP360.BML.HRIS.DesignationManager lcl_obj_designationManager = new BML.HRIS.DesignationManager();
+                isDeleted = lcl_obj_designationManager.DeleteDesignation(IP_Ui64_designationCode);
+                return isDeleted;
+            }, "SPExceptionPolicy");
+            return isDeleted;
+        }
 
         public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Designation> GetAllDesignationWise(System.UInt64 IP_ui64_companyCode)
         {

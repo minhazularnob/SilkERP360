@@ -48,15 +48,6 @@ namespace SilkERP360.UI.HRIS
                     lcl_obj_EmployeeId.Value = lcl_obj_EmployeeInfoReader["EMPLOYEE_CODE"].ToString();
                     lcl_obj_EmployeeId.Text = lcl_obj_EmployeeInfoReader["EMPLOYEE_NAME"].ToString() + "[" + lcl_obj_EmployeeInfoReader["DEGN_NAME"].ToString() + "]" + " [" + lcl_obj_EmployeeInfoReader["EMPLOYEE_ID"].ToString() + "]";
                     this.ddlEmployee.Items.Insert(lcl_ui32_Index++, lcl_obj_EmployeeId);
-
-                    //txt_Lve_EmpID.Text = ;
-                    //txt_Lve_EmpName.Text = lcl_obj_EmployeeInfoReader["EMPLOYEE_NAME"].ToString();
-                    //txt_Lve_Department.Text = lcl_obj_EmployeeInfoReader["DEPT_NAME"].ToString();
-                    //txt_Lve_Designation.Text = lcl_obj_EmployeeInfoReader["degn_name"].ToString();
-                    //txt_Lve_Company.Text = lcl_obj_EmployeeInfoReader["Company"].ToString();
-                    //txt_Lve_JoinDate.Text = lcl_obj_EmployeeInfoReader["JOINING_DATE"].ToString();
-                    //lcl_ui64_DepartmentCode = System.UInt64.Parse(lcl_obj_EmployeeInfoReader["department_code"].ToString());
-                    //lcl_ui64_CompanyCode = 
                 }
                 //this.ddlEmployeeId.Items.RemoveAt(0);
                 lcl_obj_EmployeeInfoReader.Close();

@@ -3,72 +3,158 @@
 <script src="../../Globals/Scripts/plug-ins/jquery-ui-contextmenu-master/jquery.ui-contextmenu.js" type="text/javascript"></script>
 <script src="../../Globals/Scripts/SilkERP360/HRIS/Department.js" type="text/javascript"></script>
 
-<div id="Department" style="width:100%;">
-        
-        <h1> DEPARTMENT</h1>
-        <p class="login button">
-            <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save" ClientIDMode="Static" OnClientClick="Save(); return false;" style="width:70px;" />
-            <asp:Button ID="btnClose" runat="server" CssClass="button" Text="Close" ClientIDMode="Static" OnClientClick="return false" style="width:70px;" />
-             </p>
+<div id="departmentWrapper" style="width: 100%; margin: 0 auto; height: auto;">
+    <table id="tblBody" cellpadding="5px" cellspacing="5px" style="width: 100%;">
+        <tr style="padding: 5px;">
+            <td style="width: 100%; background-color: white; padding: 2px; height: 40px; text-align: center; margin: 2px;">
+                <!-- Page Header -->
+                <div id="dvDepartment" class="container-fluid">
+                    <h1 style="font-family: serif !important">DEPARTMENT</h1>
+                </div>
+
+                <!-- Scrollable Content Container -->
+                <div id="dDepartmentContent" class="flex-grow-1 overflow-auto px-3 pb-3" style="min-height: 0;">
+                    <div class="container-fluid">
+
+                        <!-- Row 1: Department Name and Short Name -->
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <asp:Label ID="LabelDeptName" runat="server" AssociatedControlID="txt_DeptName">Department Name:</asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txt_DeptName" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Department Name"></asp:TextBox>
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Label ID="LabelDeptShort" runat="server" AssociatedControlID="txt_DeptShortName">Short Name:</asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txt_DeptShortName" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Department Short Name"></asp:TextBox>
+                            </div>
+                        </div>
+
+
+                        <!-- Row 3: Email and Head of Department -->
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <asp:Label ID="LabelDeptHead" ClientIDMode="Static" runat="server" AssociatedControlID="departmentHeadId">Head of Department:</asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="departmentHeadId" runat="server" CssClass="form-control select2" Width="80%" ClientIDMode="Static">
+                                    <asp:ListItem Value="">-- Select Employee --</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <asp:Label ID="Label1" runat="server" AssociatedControlID="isRosterable">Is Rosterable:</asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="isRosterable" ClientIDMode="Static" CssClass="form-control" runat="server">
+                                    <asp:ListItem Text="Yes" Value="True" Selected></asp:ListItem>
+                                    <asp:ListItem Text="No" Value="False"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Save and Clear Buttons -->
+                        <div class="row mb-3">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-2 d-flex justify-content-center">
+                                <asp:Button ID="btnSaveDept" ClientIDMode="Static" Text="Save" runat="server" CssClass="btn btn-primary showSaveBtn" OnClientClick="Save(); return false;" />
+                            </div>
+                            <div class="col-md-2 d-flex justify-content-center">
+                                <asp:Button ID="btnClearDept" ClientIDMode="Static" Text="Clear" runat="server" CssClass="btn btn-secondary" OnClientClick="clearFields(); return false;" />
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+
+                        <!-- Row 5: Department List Table -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table id="tblDepartmentList" class="table custom-table fontSerif w-100">
+                                        <!-- Table content (headers and rows) will be dynamically injected -->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+    </table>
 
 </div>
-<br />
 
+<div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="departmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-    <div id="DvDepartment" style="Width:99%;height:1024px; margin:0 auto;">
-        <table id="tblDepartment" style="width:100%; height:auto; table-layout:fixed;" >
-            <tr>
-                    <td style="width:15%">    
-                        <asp:Label ID="Label1" runat="server">Department Name : </asp:Label>
-    
-                    </td>
-                    <td style="width:85%">
-                        <asp:TextBox ID="txt_DptName" runat="server" ClientIDMode="Static" CssClass="input required" PlaceHolder="Department Name" ReadOnly="false">
-                        </asp:TextBox>
+            <div class="modal-header">
+                <h5 class="modal-title" id="departmentModalLabel">Update Department Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                    </td>
-    </tr>
+            <div class="modal-body">
+                <form id="departmentForm">
 
+                    <!-- Row 1 -->
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="deptCode" class="form-label">Department Code</label>
+                            <input type="text" class="form-control" id="deptCode" name="deptCode" readonly style="background-color: #e4ebf1;">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="deptName" class="form-label">Department Name</label>
+                            <input type="text" class="form-control" id="deptName" name="deptName" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="deptShortName" class="form-label">Short Name</label>
+                            <input type="text" class="form-control" id="deptShortName" name="deptShortName">
+                        </div>
+                    </div>
 
-    <tr>
-    <td colspan="2">  
-    <table style="width:98%; height:auto; table-layout: fixed; border:1px;">
+                    <!-- Row 2 -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="deptCompanyCode" class="form-label">Company Code</label>
+                            <asp:DropDownList ID="deptCompanyCode" runat="server" CssClass="form-control select2" Width="95%" ClientIDMode="Static">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="deptHeadModal" class="form-label">Department Head</label>
+                            <asp:DropDownList ID="deptHeadModal" runat="server" CssClass="form-control select2" Width="95%" ClientIDMode="Static">
+                                <asp:ListItem Value="">-- Select Department Head --</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
 
-       <tr>
-                <td style="width:15%">
-                    
-                        <asp:Label ID="Label2" runat="server">Short Name : </asp:Label>
-                       </td>
-                 <td style="width:35%">
-                    
-                        <asp:TextBox ID="txt_ShortName" runat="server" ClientIDMode="Static" 
-                            CssClass="input required" PlaceHolder="Short Name" ReadOnly="false">
-                        </asp:TextBox>
-                 </td>
-                 <td style="width:15%">
-                    
-                        <asp:Label ID="Label4" runat="server">Head Employee ID : </asp:Label>
-                       </td>
-                 <td style="width:35%">
-                    
-                        <asp:TextBox ID="txt_HdEmpCode" runat="server" ClientIDMode="Static" 
-                            CssClass="input required" PlaceHolder="Head Employee Code" ReadOnly="false">
-                        </asp:TextBox>
-                                </td>
-              </tr>            
-              
-                                    
-    </table>   
-    </td>
-    </tr>
-    </table> 
+                    <!-- Row 3 -->
+                    <div class="row mb-3">  
+                        <div class="col-md-6">
+                            <label for="deptStatus" class="form-label">Status</label>
+                            <asp:DropDownList ID="deptStatus" runat="server" CssClass="form-control select2" Width="95%" ClientIDMode="Static">
+                                <asp:ListItem Text="Active" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Inactive" Value="0"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="deptIsRosterableModal" class="form-label">Is Rosterable</label>
+                            <asp:DropDownList ID="deptIsRosterableModal" runat="server" CssClass="form-control select2" Width="95%" ClientIDMode="Static">
+                                <asp:ListItem Text="Yes" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="No" Value="0"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-         <div id="dvRoosterEmployees" style="width:100%; height:auto; border:0px; border-style:ridge;">
-        <div id="dvSelectedEmployees" style="width:100%; float:left;">  <%--margin:0 auto;--%>           
-           <table id="tblDepartmentList" cellpadding="0" cellspacing="0" style="width:100%;table-layout:fixed; margin:0 auto; font-size:12px; border:1px; border-style:ridge;">
-            </table>
-        </div>        
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" form="departmentForm" class="btn btn-primary" onclick="UpdateDept()">Save changes</button>
+            </div>
+
+        </div>
     </div>
-    </div>
-
-
+</div>

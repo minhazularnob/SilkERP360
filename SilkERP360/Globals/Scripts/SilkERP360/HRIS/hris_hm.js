@@ -223,13 +223,117 @@ function setCompanyName(code) {
     document.getElementById("footerCompanyName").textContent = companyName;
 }
 
+    function initializeSelect2(dropdownId, placeholderText, width, dropdownParentSelector) {
+        $('#' + dropdownId).select2({
+            placeholder: placeholderText,
+            allowClear: true,
+            width: width,
+            dropdownParent: $(dropdownParentSelector) // খুব গুরুত্বপূর্ণ ✅
+        });
+    }
 
+function validateFields(obj) {
+    const emptyFields = [];
 
-function initializeSelect2(dropdownId, placeholderText, width) {
-    $('#' + dropdownId).select2({
-        placeholder: placeholderText,
-        allowClear: true,
-        width: width
-    });
+    for (const key in obj) {
+        if (obj[key] === null || obj[key] === undefined || obj[key] === '') {
+            emptyFields.push(key);
+        }
+    }
+
+    if (emptyFields.length > 0) {
+        return `These fields are required: ${emptyFields.join(', ')}`;
+    } else {
+        return 'OK';
+    }
 }
 
+function getAllCompany() {
+    var lcl_str_CompanyCode = $('#ddlCompany option:selected').val();
+    var result = null;
+    $.ajax(
+        {
+            async: false,
+            type: "POST",
+            global: true,
+            contentType: "application/json; charset=utf-8",
+            url: gbl_URL_Root + "WebServices/HRIS/CompanyService.asmx/GetAllCompany",
+            dataType: "json",
+            success: function (response) {
+                var WSReturn = response.d;
+                if (WSReturn.ResponseCode < 0) {
+                    DisplayError(WSReturn.Message);
+                    return;
+                }
+                result =  WSReturn.Data;
+            }
+        });
+    return result;
+}
+
+function getAllEmployee(lcl_str_CompanyCode) {
+    var result = null;
+    $.ajax(
+        {
+            async: false,
+            type: "POST",
+            global: true,
+            contentType: "application/json; charset=utf-8",
+            url: gbl_URL_Root + "WebServices/HRIS/CompanyService.asmx/GetAllEmployee",
+            data: "{IP_ui64_CompanyCode: " + JSON.stringify(lcl_str_CompanyCode) + "}",
+            dataType: "json",
+            success: function (response) {
+                var WSReturn = response.d;
+                if (WSReturn.ResponseCode < 0) {
+                    DisplayError(WSReturn.Message);
+                    return;
+                }
+                result = WSReturn.Data;
+            }
+        });
+    return result;
+}
+
+function clearModalFields(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    // Find all input, textarea, select inside the modal
+    const fields = modal.querySelectorAll('input, textarea, select');
+
+    fields.forEach(field => {
+        const type = field.type;
+
+        switch (type) {
+            case 'text':
+            case 'email':
+            case 'tel':
+            case 'url':
+            case 'number':
+            case 'password':
+            case 'hidden':
+            case 'search':
+            case 'date':
+            case 'datetime-local':
+            case 'month':
+            case 'week':
+            case 'time':
+            case 'color':
+                field.value = '';
+                break;
+
+            case 'checkbox':
+            case 'radio':
+                field.checked = false;
+                break;
+
+            default:
+                if (field.tagName.toLowerCase() === 'textarea') {
+                    field.value = '';
+                } else if (field.tagName.toLowerCase() === 'select') {
+                    field.selectedIndex = 0;
+                }
+                break;
+        }
+    });
+}

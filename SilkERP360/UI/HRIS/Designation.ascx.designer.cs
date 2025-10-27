@@ -7,29 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class Designation {
-        
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
-        /// <summary>
-        /// btnClose control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class Designation
+    {
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -38,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// txt_DesName control.
         /// </summary>
@@ -47,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DesName;
-        
+
         /// <summary>
         /// Label2 control.
         /// </summary>
@@ -56,7 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
-        
+
         /// <summary>
         /// txt_DesShortName control.
         /// </summary>
@@ -65,7 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DesShortName;
-        
+
         /// <summary>
         /// Label10 control.
         /// </summary>
@@ -74,7 +58,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label10;
-        
+
         /// <summary>
         /// txt_DegGross control.
         /// </summary>
@@ -83,7 +67,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegGross;
-        
+
         /// <summary>
         /// Label11 control.
         /// </summary>
@@ -92,7 +76,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label11;
-        
+
         /// <summary>
         /// txt_DegEffectiveFrom control.
         /// </summary>
@@ -101,7 +85,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegEffectiveFrom;
-        
+
         /// <summary>
         /// Label3 control.
         /// </summary>
@@ -110,7 +94,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
-        
+
         /// <summary>
         /// txt_DegBasic control.
         /// </summary>
@@ -119,7 +103,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegBasic;
-        
+
         /// <summary>
         /// Label5 control.
         /// </summary>
@@ -128,7 +112,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label5;
-        
+
         /// <summary>
         /// txt_DegMedical control.
         /// </summary>
@@ -137,7 +121,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegMedical;
-        
+
         /// <summary>
         /// Label6 control.
         /// </summary>
@@ -146,7 +130,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label6;
-        
+
         /// <summary>
         /// txt_DegEntertaiment control.
         /// </summary>
@@ -155,7 +139,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegEntertaiment;
-        
+
         /// <summary>
         /// Label7 control.
         /// </summary>
@@ -164,7 +148,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label7;
-        
+
         /// <summary>
         /// txt_DegConveyence control.
         /// </summary>
@@ -173,7 +157,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegConveyence;
-        
+
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -182,7 +166,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-        
+
         /// <summary>
         /// txt_houseRent control.
         /// </summary>
@@ -191,7 +175,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_houseRent;
-        
+
         /// <summary>
         /// Label8 control.
         /// </summary>
@@ -200,7 +184,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label8;
-        
+
         /// <summary>
         /// txt_DegPhoneBill control.
         /// </summary>
@@ -209,7 +193,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegPhoneBill;
-        
+
         /// <summary>
         /// Label9 control.
         /// </summary>
@@ -218,7 +202,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label9;
-        
+
         /// <summary>
         /// txt_DegOthers control.
         /// </summary>
@@ -227,5 +211,68 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DegOthers;
+
+        /// <summary>
+        /// Label12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+
+        /// <summary>
+        /// txt_degRank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_degRank;
+
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
+
+        /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClear;
+
+        /// <summary>
+        /// comIdModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList comIdModal;
+
+        /// <summary>
+        /// degStatusModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList degStatusModal;
+
+        /// <summary>
+        /// isOtEligibleModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList isOtEligibleModal;
     }
 }

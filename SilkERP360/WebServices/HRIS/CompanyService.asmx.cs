@@ -101,5 +101,21 @@ namespace SilkERP360.WebServices.HRIS
             var errors = ObjectValidator.ValidateObject(companyModel);
             return errors;
         }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetAllEmployee(UInt64 IP_ui64_CompanyCode)
+        {
+            try
+            {
+                var employeeList = new List<SilkERP360.CCL.ModelClass.Employee>();
+                SilkERP360.FL.HRIS.CompanyFacade lcl_obj_CompanyFacade = new SilkERP360.FL.HRIS.CompanyFacade();
+                employeeList = lcl_obj_CompanyFacade.GetAllEmployeeList(IP_ui64_CompanyCode);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, employeeList);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
     }
 }

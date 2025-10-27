@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,6 +66,15 @@ namespace SilkERP360.FL.HRIS
             return lcl_ui64_ModuleCode;
         }
 
-
+        public System.UInt64 SaveMenuPermissionList(System.UInt64 IP_ui64_ModuleCode, System.UInt64 IP_ui64_EmployeeCode, List<MenuPermissionItem> IP_MenuList)
+        {
+            System.UInt64 lcl_ui64_ModuleCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            {
+                SilkERP360.BML.HRIS.MenuPermissionManager lcl_obj_RoosterMasterManager = new BML.HRIS.MenuPermissionManager();
+                System.UInt64 lcl_ui64_ModuleCodeTmp = lcl_obj_RoosterMasterManager.SaveMenuPermissionList(IP_ui64_ModuleCode, IP_ui64_EmployeeCode, IP_MenuList);
+                return lcl_ui64_ModuleCodeTmp;
+            }, "FLExceptionPolicy");
+            return lcl_ui64_ModuleCode;
+        }
     }
 }

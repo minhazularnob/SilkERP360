@@ -21,7 +21,6 @@ $(document).ready(function () {
                   ]
 
     });
-    /*$("#ddlEmployee").combobox();*/
 
     $("#txtIncGross").blur(function () {
         CalculateSalary();

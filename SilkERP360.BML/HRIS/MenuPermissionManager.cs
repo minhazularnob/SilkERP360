@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -372,6 +373,46 @@ namespace SilkERP360.BML.HRIS
 
             return lcl_ui64_ModuleCode;
         }
+
+        public ulong SaveMenuPermissionList(System.UInt64 IP_ui64_ModuleCode, System.UInt64 IP_ui64_EmployeeCode, List<MenuPermissionItem> menuList)
+        {
+            return this.ExceptionManager.Process<ulong>(() =>
+            {
+                using (var dbManager = (SilkERP360.DAL.DBManager)SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject().InternalResource)
+                {
+                    if (dbManager.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        dbManager.Open();  // Opens connection and begins transaction
+                    }
+
+                    foreach (var item in menuList)
+                    {
+                        string sql;
+
+                        if (item.IsChecked)
+                        {
+                            sql = string.Format(
+                                @"INSERT INTO USER_MODULE_MENUS (MODULE_CODE, USER_CODE, MENU_CODE, IS_DELETED, STATUS) VALUES ({0}, {2}, {1}, 1, 1)",IP_ui64_ModuleCode, item.MenuCode, IP_ui64_EmployeeCode);
+                        }
+                        else
+                        {
+                            sql = string.Format(
+                                @"DELETE FROM USER_MODULE_MENUS WHERE MODULE_CODE = {0} AND MENU_CODE = {1} AND USER_CODE = {2}",IP_ui64_ModuleCode, item.MenuCode, IP_ui64_EmployeeCode
+                            );
+                        }
+
+                        dbManager.ExecuteNonQuery(sql);
+                    }
+
+                    dbManager.CommitTransaction();
+                    dbManager.Close();
+
+                    return IP_ui64_ModuleCode;
+                }
+
+            }, "BMLExceptionPolicy");
+        }
+
 
 
         CCL.BusinessEntities.HRIS.MenuPermission CCL.Interfaces.IManagerOperations<CCL.BusinessEntities.HRIS.MenuPermission>.Get(ulong IP_ui64_Code, object IP_obj_DBManager)

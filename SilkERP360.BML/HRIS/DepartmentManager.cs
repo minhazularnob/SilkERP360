@@ -8,8 +8,7 @@ namespace SilkERP360.BML.HRIS
     /// <summary>
     /// This class manages the Department and DepartmentCore objects
     /// </summary>
-    public class DepartmentManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase,
-        SilkERP360.CCL.Interfaces.IManagerOperations<SilkERP360.CCL.BusinessEntities.HRIS.Department>
+    public class DepartmentManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
         public DepartmentManager()
         {
@@ -138,43 +137,11 @@ namespace SilkERP360.BML.HRIS
             return lcl_obj_DepartmentCoreList;
         }
 
-        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.Department lcl_obj_Department, System.Object IP_obj_DBManager)
+        public UInt64 Save(SilkERP360.CCL.BusinessEntities.HRIS.Department lcl_obj_Department)
         {
-            System.UInt64 lcl_ui64_DepartmentCode = 0;
-            lcl_ui64_DepartmentCode = this.ExceptionManager.Process<System.UInt64>(() =>
-            {
-                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_DepartmentCode = new System.Data.OracleClient.OracleParameter("v_DEPARTMENT_CODE", System.Data.OracleClient.OracleType.Number);
-                lcl_obj_DepartmentCode.Direction = System.Data.ParameterDirection.Output;
-                // lcl_obj_DepartmentCode.Value = lcl_obj_Department.DepartmentCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_DeptName = new System.Data.OracleClient.OracleParameter("v_DEPT_NAME", System.Data.OracleClient.OracleType.NVarChar, 100);
-                lcl_obj_DeptName.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_DeptName.Value = lcl_obj_Department.DeptName;
-                System.Data.OracleClient.OracleParameter lcl_obj_ShortName = new System.Data.OracleClient.OracleParameter("v_SHORT_NAME", System.Data.OracleClient.OracleType.NVarChar, 10);
-                lcl_obj_ShortName.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_ShortName.Value = lcl_obj_Department.ShortName;
-                System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("v_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
-                lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_CompanyCode.Value = lcl_obj_Department.CompanyCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_HeadEmployeeId = new System.Data.OracleClient.OracleParameter("v_HEAD_EMPLOYEE_ID", System.Data.OracleClient.OracleType.NVarChar, 32);
-                lcl_obj_HeadEmployeeId.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_HeadEmployeeId.Value = lcl_obj_Department.HeadEmployeeId;
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
-                lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_IsDeleted.Value = lcl_obj_Department.IsDeleted;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
-                lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Status.Value = lcl_obj_Department.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_DepartmentCode, lcl_obj_DeptName, lcl_obj_ShortName, lcl_obj_CompanyCode, lcl_obj_HeadEmployeeId, lcl_obj_IsDeleted, lcl_obj_Status, };
-                lcl_obj_DBManager.ExecuteStoredProcedure("HRIS.Department_IU", lcl_obj_SP_Parameters);
-                return System.UInt64.Parse(lcl_obj_DepartmentCode.Value.ToString());
-            }, "BMLExceptionPolicy");
-            return lcl_ui64_DepartmentCode;
-        }
-        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.Department lcl_obj_Department)
-        {
-            System.UInt64 lcl_ui64_DepartmentCode = 0;
-            lcl_ui64_DepartmentCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            UInt64 lcl_ui64_DepartmentCode = 0;
+
+            lcl_ui64_DepartmentCode = this.ExceptionManager.Process<UInt64>(() =>
             {
                 using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
@@ -182,37 +149,73 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_DepartmentCode = new System.Data.OracleClient.OracleParameter("v_DEPARTMENT_CODE", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_DepartmentCode.Direction = System.Data.ParameterDirection.Output;
-                   // lcl_obj_DepartmentCode.Value = lcl_obj_Department.DepartmentCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_DeptName = new System.Data.OracleClient.OracleParameter("v_DEPT_NAME", System.Data.OracleClient.OracleType.NVarChar,100);
-                    lcl_obj_DeptName.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_DeptName.Value = lcl_obj_Department.DeptName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ShortName = new System.Data.OracleClient.OracleParameter("v_SHORT_NAME", System.Data.OracleClient.OracleType.NVarChar,10);
-                    lcl_obj_ShortName.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_ShortName.Value = lcl_obj_Department.ShortName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("v_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_CompanyCode.Value = lcl_obj_Department.CompanyCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_HeadEmployeeId = new System.Data.OracleClient.OracleParameter("v_HEAD_EMPLOYEE_ID", System.Data.OracleClient.OracleType.NVarChar,32);
-                    lcl_obj_HeadEmployeeId.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_HeadEmployeeId.Value = lcl_obj_Department.HeadEmployeeId;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_IsDeleted.Value = 1;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
-                    lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
-                    lcl_obj_Status.Value = 1;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_DepartmentCode, lcl_obj_DeptName, lcl_obj_ShortName, lcl_obj_CompanyCode, lcl_obj_HeadEmployeeId, lcl_obj_IsDeleted, lcl_obj_Status };
-                    lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_DEPARTMENT_IU", lcl_obj_SP_Parameters);
+
+                    string lcl_str_SqlQuery;
+
+                    
+                        // Get max department code
+                        lcl_str_SqlQuery = "SELECT MAX(DEPARTMENT_CODE) AS MaxDepartmentCode FROM DEPARTMENT";
+
+                        var lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                        lcl_obj_IDReader.Read();
+
+                        if (lcl_obj_IDReader["MaxDepartmentCode"] != DBNull.Value)
+                        {
+                            lcl_ui64_DepartmentCode = Convert.ToUInt64(lcl_obj_IDReader["MaxDepartmentCode"]) + 1;
+                        }
+                        else
+                        {
+                            lcl_ui64_DepartmentCode = 111000000001;
+                        }
+
+                        lcl_obj_IDReader.Close();
+
+                        lcl_obj_Department.DepartmentCode = lcl_ui64_DepartmentCode;
+
+                        string insertSql = lcl_obj_Department.GenerateSqlInsert();
+                        lcl_obj_DBManager.InternalResource.ExecuteScalar(insertSql);
+                    
 
                     lcl_obj_DBManager.InternalResource.CommitTransaction();
-                    lcl_obj_DBManager.InternalResource.Close();
-                    return System.UInt64.Parse(lcl_obj_DepartmentCode.Value.ToString());
                 }
+
+                return lcl_ui64_DepartmentCode;
+
             }, "BMLExceptionPolicy");
+
             return lcl_ui64_DepartmentCode;
         }
+
+        public UInt64 Update(SilkERP360.CCL.BusinessEntities.HRIS.Department lcl_obj_Department)
+        {
+            UInt64 lcl_ui64_DepartmentCode = 0;
+
+            lcl_ui64_DepartmentCode = this.ExceptionManager.Process<UInt64>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    string lcl_str_SqlQuery;
+
+                    // Update path
+                    lcl_ui64_DepartmentCode = lcl_obj_Department.DepartmentCode;
+                    string updateSql = lcl_obj_Department.GenerateSqlUpdate(); // You must implement this method as we discussed earlier
+                    lcl_obj_DBManager.InternalResource.ExecuteScalar(updateSql);
+
+                    lcl_obj_DBManager.InternalResource.CommitTransaction();
+                }
+
+                return lcl_ui64_DepartmentCode;
+
+            }, "BMLExceptionPolicy");
+
+            return lcl_ui64_DepartmentCode;
+        }
+
         public CCL.BusinessEntities.HRIS.Department Get(ulong IP_ui64_Code, System.Object IP_obj_DBManager)
         {
             CCL.BusinessEntities.HRIS.Department lcl_obj_Department = null;
@@ -300,8 +303,8 @@ namespace SilkERP360.BML.HRIS
                         lcl_obj_Tmp.ShortName = lcl_obj_dr["SHORT_NAME"].ToString();
                         lcl_obj_Tmp.CompanyCode = System.UInt64.Parse(lcl_obj_dr["COMPANY_CODE"].ToString());
                         lcl_obj_Tmp.HeadEmployeeId = lcl_obj_dr["HEAD_EMPLOYEE_ID"].ToString();
-                       // lcl_obj_Tmp.IsDeleted = System.UInt16.Parse(lcl_obj_dr["IS_DELETED"].ToString());
-                       // lcl_obj_Tmp.Status = System.UInt16.Parse(lcl_obj_dr["STATUS"].ToString());
+                        lcl_obj_Tmp.IsRosterable = System.UInt16.Parse(lcl_obj_dr["IS_ROSTERABLE"].ToString());
+                        lcl_obj_Tmp.DeptHeadName = lcl_obj_dr["deptHeadname"].ToString();
                         lcl_objlist_Tmp.Add(lcl_obj_Tmp);
                     }
                     lcl_obj_dr.Close();
@@ -378,6 +381,25 @@ namespace SilkERP360.BML.HRIS
             return lcl_obj_Department;
         }
 
+        public bool DeleteDepartment(UInt64 IP_Ui64_DepartmentCode)
+        {
+            bool isDeleted = this.ExceptionManager.Process<bool>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+                    string insertSql = "update department set IS_DELETED=" + 0 + ",STATUS=" + 0 + " where department_code=" + IP_Ui64_DepartmentCode + "";
+                    int rowsAffected = lcl_obj_DBManager.InternalResource.ExecuteNonQuery(insertSql);
+                    lcl_obj_DBManager.InternalResource.CommitTransaction();
+                    return rowsAffected > 0;
+                }
+            }, "BMLExceptionPolicy");
+            return isDeleted;
+        }
+
         public CCL.BusinessEntities.HRIS.Department Get(string IP_str_SqlQuery)
         {
             CCL.BusinessEntities.HRIS.Department lcl_obj_Department = null;
@@ -411,4 +433,5 @@ namespace SilkERP360.BML.HRIS
 
        
     }
+
 }

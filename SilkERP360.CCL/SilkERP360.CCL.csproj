@@ -141,6 +141,7 @@
     <Compile Include="BusinessEntities\HRIS\LeaveApproverRecommender.cs" />
     <Compile Include="BusinessEntities\HRIS\MedicalInfo.cs" />
     <Compile Include="BusinessEntities\HRIS\MenuPermission.cs" />
+    <Compile Include="BusinessEntities\HRIS\MenuPermissionItem.cs" />
     <Compile Include="BusinessEntities\HRIS\Module.cs" />
     <Compile Include="BusinessEntities\HRIS\MonthlyAllowance.cs" />
     <Compile Include="BusinessEntities\HRIS\Outpass.cs" />
@@ -267,6 +268,7 @@
     </Compile>
     <Compile Include="Misc\SilkWebServiceCollection.cs" />
     <Compile Include="Misc\WSResponse.cs" />
+    <Compile Include="ModelClass\Employee.cs" />
     <Compile Include="ObjectPool\ObjectPool.cs" />
     <Compile Include="ObjectPool\PooledObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

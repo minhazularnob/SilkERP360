@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -125,6 +126,7 @@ namespace SilkERP360.WebServices.HRIS
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
             }
         }
+
         //RemoveToMenu
         [System.Web.Services.WebMethod(EnableSession = true)]
         public SilkERP360.CCL.Misc.WSResponse RemoveToMenu(System.UInt64 IP_ui64_ModuleCode, System.UInt64 IP_ui64_MenuCode, System.UInt64 IP_ui64_EmployeeCode)
@@ -140,8 +142,23 @@ namespace SilkERP360.WebServices.HRIS
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
             }
         }
-       
 
-            
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse SaveMenuPermissionList(System.UInt64 IP_ui64_ModuleCode, System.UInt64 IP_ui64_EmployeeCode,List<MenuPermissionItem> IP_MenuList)
+        {
+            try
+            {
+                SilkERP360.FL.HRIS.MenuPermissionFacade lcl_obj_ModuleFacede = new SilkERP360.FL.HRIS.MenuPermissionFacade();
+                System.UInt64 lcl_ui64_EmployeeCode = lcl_obj_ModuleFacede.SaveMenuPermissionList(IP_ui64_ModuleCode, IP_ui64_EmployeeCode, IP_MenuList);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Menu permission Successfully", true, null);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+
+
     }
 }

@@ -61,6 +61,17 @@ namespace SilkERP360.CCL.Validation
                         errors.Add(property.Name + " has an invalid email format.");
                     }
                 }
+
+                // Check for Email validation (using Custom Validation Attribute)
+                var NoSpecialCharactersAttribute = property.GetCustomAttributes(typeof(CustomValidationAttributes.NoSpecialCharactersAttribute), false).FirstOrDefault() as CustomValidationAttributes.NoSpecialCharactersAttribute;
+                if (NoSpecialCharactersAttribute != null)
+                {
+                    var value = property.GetValue(obj, null) as string;
+                    if (!string.IsNullOrEmpty(value) && !NoSpecialCharactersAttribute.IsValid(value))
+                    {
+                        errors.Add(property.Name + " has an special characters.");
+                    }
+                }
             }
 
             if (errors.Any())

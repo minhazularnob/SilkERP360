@@ -12,6 +12,7 @@ namespace SilkERP360.UI.HRIS
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
         }
     }
 }

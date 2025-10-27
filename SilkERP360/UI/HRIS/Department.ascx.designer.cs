@@ -7,29 +7,67 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class Department {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class Department
+    {
+
         /// <summary>
-        /// btnSave control.
+        /// LabelDeptName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
+        protected global::System.Web.UI.WebControls.Label LabelDeptName;
+
         /// <summary>
-        /// btnClose control.
+        /// txt_DeptName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
-        
+        protected global::System.Web.UI.WebControls.TextBox txt_DeptName;
+
+        /// <summary>
+        /// LabelDeptShort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelDeptShort;
+
+        /// <summary>
+        /// txt_DeptShortName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_DeptShortName;
+
+        /// <summary>
+        /// LabelDeptHead control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelDeptHead;
+
+        /// <summary>
+        /// departmentHeadId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList departmentHeadId;
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -38,50 +76,68 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
-        /// txt_DptName control.
+        /// isRosterable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_DptName;
-        
+        protected global::System.Web.UI.WebControls.DropDownList isRosterable;
+
         /// <summary>
-        /// Label2 control.
+        /// btnSaveDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
+        protected global::System.Web.UI.WebControls.Button btnSaveDept;
+
         /// <summary>
-        /// txt_ShortName control.
+        /// btnClearDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_ShortName;
-        
+        protected global::System.Web.UI.WebControls.Button btnClearDept;
+
         /// <summary>
-        /// Label4 control.
+        /// deptCompanyCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
+        protected global::System.Web.UI.WebControls.DropDownList deptCompanyCode;
+
         /// <summary>
-        /// txt_HdEmpCode control.
+        /// deptHeadModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_HdEmpCode;
+        protected global::System.Web.UI.WebControls.DropDownList deptHeadModal;
+
+        /// <summary>
+        /// deptStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList deptStatus;
+
+        /// <summary>
+        /// deptIsRosterableModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList deptIsRosterableModal;
     }
 }

@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace SilkERP360.CCL.Validation
 {
-    internal class CustomValidationAttributes
+    public class CustomValidationAttributes
     {
         // Phone validation using Regex pattern
         public class PhoneAttribute : ValidationAttribute
@@ -54,6 +54,35 @@ namespace SilkERP360.CCL.Validation
                 string faxNumber = value.ToString();
                 // Example for international fax number format
                 string pattern = @"^\+?[1-9]\d{1,14}$";
+
+                return Regex.IsMatch(faxNumber, pattern);
+            }
+        }
+
+        public class UniqueNameAttribute : ValidationAttribute
+        {
+            private readonly string _tableName;
+            private readonly string _columnName;
+
+            public UniqueNameAttribute(string tableName, string columnName)
+            {
+                _tableName = tableName;
+                _columnName = columnName;
+            }
+        }
+
+        
+        // Fax validation using similar phone validation logic
+        public class NoSpecialCharactersAttribute : ValidationAttribute
+        {
+            public override bool IsValid(object value)
+            {
+                if (value == null)
+                    return false;
+
+                string faxNumber = value.ToString();
+                // Example for international fax number format
+                string pattern = @"^[a-zA-Z0-9\s]+$";
 
                 return Regex.IsMatch(faxNumber, pattern);
             }

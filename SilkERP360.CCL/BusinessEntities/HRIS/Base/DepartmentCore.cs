@@ -11,14 +11,12 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS.Base
         public System.UInt64 DepartmentCode
         {
             get { return this.m_ui64_DepartmentCode; }
-            //set { m_ui64_CompanyCode = value; }
         }
 
         protected System.String m_str_Name;
         public System.String Name
         {
             get { return this.m_str_Name; }
-            //set { m_str_Name = value; }
         }
 
         public DepartmentCore()
