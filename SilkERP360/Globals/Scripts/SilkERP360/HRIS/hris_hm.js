@@ -42,9 +42,6 @@ $(document).bind("active.idleTimer", function () {
 });
 $.idleTimer(timeout);
 
-
-/***************************************************************************************************************/
-/***************************************************************************************************************/
 function Refresh(event) {
     $('#dvUIContainer').css({ "visibility": "visible" }).fadeOut('slow', function () {
         $('#dvUIContainer').html("");    
@@ -59,7 +56,6 @@ function Logout() {
             async: true,
             contentType: "application/json; charset=utf-8",
             global: true,
-           // url: "~/../../WebServices/UserServices.asmx/Logout",
             url: "~../../../../WebServices/UserServices.asmx/Logout",
 
 
@@ -78,7 +74,7 @@ function Logout() {
                     return;
                 }
                 window.location = gbl_URL_Root + "index.aspx";
-            } /// <reference path= />
+            }
         });
     }
 }
@@ -90,7 +86,6 @@ function ShowMessageBoard(Message) {
         $('#dvMessageBoard').css('background-color', 'green');
         $('#dvMessageBoard').show('slow');
     });
-    //$('#dvMessageBoard').fadeOut().next().delay(500).fadeIn();
 }
 function ShowErrorMessageBoard(Message) {
     $('#dvMessageBoard').hide('slow', function () {
@@ -99,7 +94,6 @@ function ShowErrorMessageBoard(Message) {
         $('#dvMessageBoard').css('background-color', 'red');
         $('#dvMessageBoard').show('slow');
     });
-    //$('#dvMessageBoard').fadeOut().next().delay(500).fadeIn();
 }
 
 function ShowInfoMessageBoard(Message) {
@@ -228,7 +222,7 @@ function setCompanyName(code) {
             placeholder: placeholderText,
             allowClear: true,
             width: width,
-            dropdownParent: $(dropdownParentSelector) // খুব গুরুত্বপূর্ণ ✅
+            dropdownParent: $(dropdownParentSelector)
         });
     }
 
@@ -298,7 +292,6 @@ function clearModalFields(modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
 
-    // Find all input, textarea, select inside the modal
     const fields = modal.querySelectorAll('input, textarea, select');
 
     fields.forEach(field => {
