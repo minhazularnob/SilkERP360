@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkERP360.OfflineDataProce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkERP360.OfflinePrint", "SilkERP360.OfflinePrint\SilkERP360.OfflinePrint.csproj", "{1F313F24-DC8D-4431-879C-89CA98E3A876}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkERP360.UnitTest", "SilkERP360.UnitTest\SilkERP360.UnitTest.csproj", "{00AA229D-9274-427D-88DE-22D784EC3B1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,18 @@ Global
 		{1F313F24-DC8D-4431-879C-89CA98E3A876}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1F313F24-DC8D-4431-879C-89CA98E3A876}.Release|x86.ActiveCfg = Release|x86
 		{1F313F24-DC8D-4431-879C-89CA98E3A876}.Release|x86.Build.0 = Release|x86
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Debug|x86.Build.0 = Debug|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Release|x86.ActiveCfg = Release|Any CPU
+		{00AA229D-9274-427D-88DE-22D784EC3B1D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
