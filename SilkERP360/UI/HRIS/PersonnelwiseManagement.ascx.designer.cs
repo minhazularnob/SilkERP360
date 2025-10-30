@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class PersonnelwiseManagement {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class PersonnelwiseManagement
+    {
+
         /// <summary>
         /// ddlDepartment control.
         /// </summary>

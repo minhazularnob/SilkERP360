@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -40,7 +40,7 @@ namespace SilkERP360.UI.HRIS
                     lcl_tblCell_DepartmentStrength.Text = lcl_obj_DepartmentStrength.EmployeeStrength.ToString();
 
                     System.Web.UI.WebControls.TableCell lcl_tblCell_Action = new System.Web.UI.WebControls.TableCell();
-                    lcl_tblCell_Action.Text = "<a id='hlnkContextMenu-" + lcl_i32_Index.ToString() + "' class='ctx_mnu' href='#'><img id=" + lcl_obj_DepartmentStrength.DepartmentCode.ToString() + " src='/Globals/Images/cntx_mnu.png' style='width:30px;height:30px;'/></a>";
+                    lcl_tblCell_Action.Text = "<button type='button' class='btn btn-light btn-sm ctx_mnu' id='" + lcl_obj_DepartmentStrength.DepartmentCode.ToString() + "' title='Actions' aria-label='Actions' style='border:1px solid #dee2e6;'>⋮</button>";
 
                     lcl_obj_TableRow.Cells.AddRange(new TableCell[] { lcl_tblCell_DepartmentName, lcl_tblCell_DepartmentStrength, lcl_tblCell_Action });
                     this.tblDepartmentList.Rows.Add(lcl_obj_TableRow);

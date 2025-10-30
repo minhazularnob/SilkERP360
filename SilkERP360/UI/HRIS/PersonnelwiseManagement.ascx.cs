@@ -17,18 +17,6 @@ namespace SilkERP360.UI.HRIS
                 System.UInt64 lcl_ui64_CompanyCode = System.UInt64.Parse(lcl_str_CompanyCode);
                 this.Session.Remove("comp_c");
 
-                //SilkERP360.FL.HRIS.DepartmentFacade lcl_obj_DepartmentFacade = new SilkERP360.FL.HRIS.DepartmentFacade();
-                //System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Base.DepartmentCore> lcl_obj_Departments = lcl_obj_DepartmentFacade.GetDepartmentCoresByCompany(lcl_ui64_CompanyCode);
-
-                //System.Int32 lcl_i32_j = 1;
-                //foreach (SilkERP360.CCL.BusinessEntities.HRIS.Base.DepartmentCore lcl_obj_DepartmentCore in lcl_obj_Departments)
-                //{
-                //    System.Web.UI.WebControls.ListItem lcl_obj_DepartmentItem = new System.Web.UI.WebControls.ListItem();
-                //    lcl_obj_DepartmentItem.Value = lcl_obj_DepartmentCore.DepartmentCode.ToString();
-                //    lcl_obj_DepartmentItem.Text = lcl_obj_DepartmentCore.Name;
-                //    this.ddl_Off_Department.Items.Insert(lcl_i32_j++, lcl_obj_DepartmentItem);
-                //}
-
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new SilkERP360.FL.SqlFacade();
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;

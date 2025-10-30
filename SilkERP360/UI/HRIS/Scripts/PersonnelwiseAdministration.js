@@ -1,4 +1,4 @@
-﻿var GBL_EMPLOYEE_LIST_TABLE;
+var GBL_EMPLOYEE_LIST_TABLE;
 var CLIPBOARD = "";
 $(document).ready(function () {
     $('#ddlDepartment').change(function () { DepartmentChangeEvent(); });
@@ -42,7 +42,8 @@ $(document).ready(function () {
         }
 
     });
-    GBL_EMPLOYEE_LIST_TABLE.fnPageChange('next', true);
+    // Removed forced page change to avoid confusing UI before data is loaded
+
     /***************************************************************************************************************************/
     /***************************************************************************************************************************/
     //    $(function () {
@@ -146,7 +147,7 @@ function DepartmentChangeEvent() {
             global: true,
             contentType: "application/json; charset=utf-8",
             url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/GetRoosterAvailableEmployeeProfileListByDepartment",
-            data: "{IP_ui64_DepartmentCode:" + JSON.stringify(lcl_str_DepartmentCode) + "}", //provide input for the getSM_PO method
+            data: JSON.stringify({ "IP_ui64_DepartmentCode": lcl_str_DepartmentCode }),
             dataType: "json", /// <reference path= />
             success: function (response) {
                 var WSReturn = response.d;
@@ -183,6 +184,13 @@ function DepartmentChangeEvent() {
                 //                    i++;
                 //                });
                 /*************************************************************************************************************************/
+            },
+            error: function (xhr, status, errorThrown) {
+                if (typeof DisplayError === 'function') {
+                    DisplayError('Failed to load employees: ' + (xhr && xhr.responseText ? xhr.responseText : (errorThrown || status)));
+                } else if (window.console && console.error) {
+                    console.error('Failed to load employees:', status, errorThrown, xhr && xhr.responseText);
+                }
             }
         });
 }

@@ -1,4 +1,4 @@
-﻿var GBL_DEPARTMENT_LIST;
+var GBL_DEPARTMENT_LIST;
 $(document).ready(function () {
 
 
@@ -8,12 +8,17 @@ $(document).ready(function () {
     /***************************************************************************************************************************/
     //    GBL_DEPARTMENT_LIST = $('#tblDepartmentList').dataTable();
     GBL_DEPARTMENT_LIST = $('#tblDepartmentList').dataTable({
-        "bAutoWidth": false,
-        "bJQueryUI": true,
-//        "sScrollY": "400px",
+        "bJQueryUI": false,
         "bFilter": true,
-        "bPaginate": false,
+        "bPaginate": true,
         "bLengthChange": false,
+        "bSearch": true,
+        "oLanguage": {
+            "sEmptyTable": "No Data Available",
+            "sZeroRecords": "No Record Found For Your Specified Criteria"
+        },
+        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+        },
         "aoColumns": [
                     { sTitle: '<b>Department</b>', sWidth: '40%', sClass: 'alignCenter' },
                     { sTitle: '<b>Strength</b>', sWidth: '30%', sClass: 'alignCenter' },
@@ -231,4 +236,14 @@ $(document).ready(function () {
 
     /***************************************************************************************************************************/
     /***************************************************************************************************************************/
+    // Open the context menu on left-click as well for better UX
+    $(document).on('click', '.ctx_mnu', function (e) {
+        e.preventDefault();
+        var evt = $.Event('contextmenu', {
+            pageX: e.pageX,
+            pageY: e.pageY,
+            target: this
+        });
+        $(document).trigger(evt);
+    });
 });
