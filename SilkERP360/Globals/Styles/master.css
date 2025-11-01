@@ -168,11 +168,7 @@ input:not([type="checkbox"]), textarea {
         color: #007bff;
     }
 
-/*input[type="checkbox"] {
-    cursor: pointer;
-}
-
 .select2-container {
-    z-index: 9999 !important;
-}*/
+    width: 100% !important;
+}
 

@@ -101,7 +101,7 @@ function DisplayIncrementHistory() {
 
                 //lcl_objLst_EmployeeAttendanceSummery[index][0] = AttendanceSummery.EmployeeCode;
                 lcl_objLst_TblIncrementHistory[index][0] = lcl_obj_Increment.PreviousGross;
-                lcl_objLst_TblIncrementHistory[index][1] = lcl_obj_Increment.IncGross - lcl_obj_Increment.PreviousGross;
+                lcl_objLst_TblIncrementHistory[index][1] = Math.round((lcl_obj_Increment.IncGross - lcl_obj_Increment.PreviousGross) * 100) / 100;
                 lcl_objLst_TblIncrementHistory[index][2] = lcl_obj_Increment.IncGross;
                 lcl_objLst_TblIncrementHistory[index][3] = MONTH_NAMES[lcl_obj_Increment.EffectiveMonth - 1];
                 lcl_objLst_TblIncrementHistory[index][4] = lcl_obj_Increment.EffectiveYear;

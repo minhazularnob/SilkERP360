@@ -199,50 +199,63 @@ function Login() {
                                 var m_obj_EmployeeImage = "data:" + lcl_obj_UserProfile.Image.ImageType + ";base64," + lcl_obj_UserProfile.Image.ImageData;
                                 //alert(m_obj_EmployeeImage);
 
-                                var lcl_str_UserProfileDisplayHTML = "<table id='tblUserCredential' cellpadding='0px' cellspacing='0px' style='width:500px;margin:0 auto;'>" +
-                                                            "<thead><th colspan='2' style='font-size:14px;font-weight:bold;'>" +
-                                                                "Welcome " + lcl_obj_UserProfile.EmployeeName + "!" +
-                                                            "</th></thead>" +
-                                                            "<tbody><tr>" +
-                                                                "<td  colspan='2' style='text-align:center;'>" +
-                                                                    "<div class='polaroid'>" +
-                                                                        "<p>ID:" + lcl_obj_UserProfile.EmployeeID +
-                                                                        "<br/>" + lcl_obj_UserProfile.EmployeeName +
-                                                                        "<br/>" + lcl_obj_UserProfile.Company.Name + "</p>" +
-                                                                        "<img id='imgImage' style='' src='" + m_obj_EmployeeImage + "' />" +
-                                                                    "</div>" +
-                                                                "</td>" +
-                                                            "</tr>" +
-                                                            "<thead>" +
-                                                                "<th colspan='2' style='text-align:center'>" +
-                                                                    "MODULE PERMISSIONS" +
-                                                                "</th>" +
-                                                            "</thead>" +
-                                                            "<thead>" +
-                                                                "<th style='text-align:center'>" +
-                                                                    "MODULE" +
-                                                                "</th>" +
-                                                                "<th style='text-align:center'>" +
-                                                                    "COMPANIES" +
-                                                                "</th>" +
-                                                            "</thead>";
-                                //alert(lcl_obj_UserProfile.ModuleMenusCompanies[0].ModuleName.toString());
-                                //alert(lcl_obj_WSResponse.Message);
-                                //var lcl_obj_ModuleMenuCompanies = lcl_obj_UserProfile.ModuleMenusCompanies;
+                                var lcl_str_UserProfileDisplayHTML =
+                                    "<div style='width:420px;margin:20px auto;padding:20px;border:2px solid #0078D7;border-radius:15px;background: linear-gradient(45deg, var(--bs-info-bg-subtle), #0600ffe6);color:white;font-family:serif !important;'>" +
+                                    "<table id='tblUserCredential' cellpadding='0' cellspacing='0' style='width:100%; border-collapse: collapse; background:transparent;'>" +
+                                    // Header
+                                    "<thead><th colspan='2' style='font-size:16px;font-weight:bold;padding:10px;text-align:center;background:transparent;color:white;'>" +
+                                    "Welcome " + lcl_obj_UserProfile.EmployeeName + "!" +
+                                    "</th></thead>" +
+                                    "<tbody><tr>" +
+                                    "<td colspan='2' style='text-align:center;padding:20px;'>" +
+                                    "<div style='padding:15px;border-radius:10px;display:inline-block;background:transparent;'>" +
+                                    "<img id='imgImage' style='width:180px;height:230px;border-radius:10px;margin-bottom:10px;' src='" + m_obj_EmployeeImage + "' />" +
+                                    "<p style='margin:5px 0;'><strong></strong> " + lcl_obj_UserProfile.EmployeeID + "</p>" +
+                                    "<p style='margin:5px 0;'><strong></strong> " + lcl_obj_UserProfile.EmployeeName + "</p>" +
+                                    "<p style='margin:5px 0;'><strong></strong> " + lcl_obj_UserProfile.Company.Name + "</p>" +
+                                    "</div>" +
+                                    "</td>" +
+                                    "</tr>" +
+                                    // Module Permissions Header
+                                    "<thead><th colspan='2' style='text-align:center;padding:10px;font-size:14px;font-weight:bold;background:transparent;color:black;'>MODULE PERMISSIONS</th></thead>" +
+                                    "<thead>" +
+                                    "<th style='text-align:center;padding:8px;background:#0078D7;color:white;'>MODULE</th>" +
+                                    "<th style='text-align:center;padding:8px;background:#0078D7;color:white;'>COMPANIES</th>" +
+                                    "</thead>";
+
+                                // Loop through modules
                                 $.each(lcl_obj_ModulesMenusCompanies, function (index, lcl_obj_ModuleMenuCompany) {
-                                    lcl_str_UserProfileDisplayHTML += "<tr>" +
-                                                            "<td style='text-align:center'><a href='" + lcl_obj_ModuleMenuCompany.HomeLink + "?Mod=" + lcl_obj_ModuleMenuCompany.ModuleCode + "'>" +
-                                                                    lcl_obj_ModuleMenuCompany.ModuleName
-                                    "</a></td>";
-                                    //get permitted companys
+                                    lcl_str_UserProfileDisplayHTML += "<tr style='border-bottom:1px solid #ddd;'>" +
+                                        "<td style='text-align:center;padding:8px;'><a style='color:#673ab7;font-weight:bold;text-decoration:none;' href='" + lcl_obj_ModuleMenuCompany.HomeLink + "?Mod=" + lcl_obj_ModuleMenuCompany.ModuleCode + "'>" +
+                                        lcl_obj_ModuleMenuCompany.ModuleName +
+                                        "</a></td>";
+
                                     var lcl_str_Company = "";
                                     $.each(lcl_obj_ModuleMenuCompany.Companys, function (index1, lcl_obj_CompanyCore) {
                                         lcl_str_Company += lcl_obj_CompanyCore.Name + "<br/>";
                                     });
-                                    //append company names to HTML
-                                    lcl_str_UserProfileDisplayHTML += "<td style='text-align:center'>" + lcl_str_Company + "</td></tr>"
+
+                                    lcl_str_UserProfileDisplayHTML += "<td style='text-align:center;padding:8px;color:#673ab7'>" + lcl_str_Company + "</td></tr>";
                                 });
-                                lcl_str_UserProfileDisplayHTML += "</tbody></table>";
+
+                                lcl_str_UserProfileDisplayHTML += "</tbody></table></div>";
+
+                                // Inject into page
+                                $("#userProfileContainer").html(lcl_str_UserProfileDisplayHTML);
+
+
+                                // Inject into page
+                                $("#userProfileContainer").html(lcl_str_UserProfileDisplayHTML);
+
+
+                                // Inject into page
+                                $("#userProfileContainer").html(lcl_str_UserProfileDisplayHTML);
+
+
+                                // Inject into page
+                                $("#userProfileContainer").html(lcl_str_UserProfileDisplayHTML);
+
+
                                 /******************************************************************/
                                 /******************************************************************/
                                 /******************************************************************/

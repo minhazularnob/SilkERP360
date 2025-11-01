@@ -66,6 +66,7 @@
     <%--<link href="../../Globals/Styles/ip_frm_ctrl.css" rel="stylesheet" type="text/css" />--%>
    
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/jquery.noty.js" type="text/javascript"></script>
+
     
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/layouts/bottom.js" type="text/javascript"></script>
     <script src="../../Globals/Scripts/plug-ins/notification/js/noty/layouts/bottomCenter.js" type="text/javascript"></script>
@@ -238,20 +239,20 @@
                         <hr />
 
                         <div class="row align-items-center height_rem2" style="margin-top: -7px">
-                            <div class="col-md-3 d-flex align-items-center" style="margin-top: -17px;">
+                            <div class="col-sm-3 d-flex align-items-center" style="margin-top: -17px;">
                                 <label for="ddlCompany" class="me-2 mb-0">Company:</label>
                                 <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-select" ClientIDMode="Static">
-                                    <asp:ListItem Text="-----Select Company-----" Value="" />
+                                    <asp:ListItem />
                                 </asp:DropDownList>
                             </div>
 
-                            <div id="dvMessageBoard" style="display: none; min-height: 30px;" class=" col-md-8 alert alert-info text-center master_color_liener_gradient p-2 fontSerif">
+                            <div id="dvMessageBoard" style="min-height: 30px;" class=" col-sm-8 alert alert-info text-center master_color_liener_gradient p-2 fontSerif">
 
                                 <span id="spnMessage" style="font-size: 14px; font-weight: bold; color: white;">Silk ERP Message Board
                                 </span>
                             </div>
 
-                            <div class="col-md-1 text-start">
+                            <div class="col-sm-1 text-start">
                                 <a id="lnkRefresh" href="#" onclick="Refresh(event); return false;">
                                     <img src="../../Globals/Images/icons8-refresh-128.png" alt="Refresh" style="height: 50px; margin-top: -17px" />
                                 </a>
@@ -334,7 +335,7 @@
         $('#ddlCompany').on('change', changeCompanyLogo);
     });
 
-    initializeSelect2('ddlCompany', '------ Select Company ------', 'resolve');
+    initializeSelect2('ddlCompany', "Select Company" , 'resolve');
 
     function initializeSelect2(dropdownId, placeholderText, width) {
         $('#' + dropdownId).select2({

@@ -21,9 +21,9 @@ $(document).ready(function () {
         ]
 
     });
-    initializeSelect2('ddlEmployeeId', '------ Select Employee ------', '35%');
-    initializeSelect2('ddlBloodGroup', '------ Select Employee ------', '98%');
-    initializeSelect2('ddlSex', '------ Select Employee ------', '98%');
+    initializeSelect2('ddlEmployeeId', 'Select Employee', '35%');
+    initializeSelect2('ddlBloodGroup', 'Select Blood Group', '98%');
+    initializeSelect2('ddlSex', 'Select Gender', '98%');
 });
 
 $("#combobox").on("keypress", function (keyarg) {

@@ -40,7 +40,7 @@
         ]
 
     });
-    initializeSelect2('departmentHeadId', '------ Select Head of Department ------', '94%');
+    initializeSelect2('departmentHeadId', 'Select Head of Department', '94%');
     initializeSelect2('isRosterable', '', '94%');
     getAllEmployees();
 });

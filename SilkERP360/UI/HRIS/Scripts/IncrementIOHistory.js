@@ -44,7 +44,7 @@ $(document).ready(function () {
         }
 
     });
-    initializeSelect2('ddlEmployee', '------ Select Employee ------', '50%');
+    initializeSelect2('ddlEmployee', '------ Select Employee ------', '25%');
     initializeSelect2('ddlEffectiveMonth', '------ Select Month ------', '101%');
     initializeSelect2('ddlEffectiveYear', '------ Select Month ------', '101%');
 });

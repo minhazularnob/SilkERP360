@@ -31,7 +31,7 @@
                                 <div class='ui-widget'>
                                     <label>Select Employee :</label>
                                     <asp:DropDownList ID="ddlEmployeeId" runat="server" Width="80%" ClientIDMode="Static">
-                                        <asp:ListItem>------ Select Employee ------</asp:ListItem>
+                                        <asp:ListItem></asp:ListItem>
                                     </asp:DropDownList>
                                     <button id="lnkGetLeaveProfile" href="#" class="btn btn-primary showSaveBtn" onclick="GetEmployeeMedicalInfoProfile(event);LoadMedicalInfo(); return false;" style="width: 8%">
                                         Show
@@ -50,7 +50,7 @@
                                 <td style="width: 15%; text-align: right;">Blood Group</td>
                                 <td style="width: 34%; text-align: left;">
                                     <asp:DropDownList ID="ddlBloodGroup" runat="server" ClientIDMode="Static" PlaceHolder="Blood Group" CssClass="input-required">
-                                        <asp:ListItem Value="0">------ Select Blood Group ------</asp:ListItem>
+                                        <asp:ListItem Value="0">Select Blood Group</asp:ListItem>
                                         <asp:ListItem>A (+ve)</asp:ListItem>
                                         <asp:ListItem>A (-ve)</asp:ListItem>
                                         <asp:ListItem>B (+ve)</asp:ListItem>
@@ -72,7 +72,7 @@
                                 <td style="width: 15%; text-align: right;">Sex</td>
                                 <td style="width: 34%; text-align: left;">
                                     <asp:DropDownList ID="ddlSex" runat="server" ClientIDMode="Static" PlaceHolder="Gender" CssClass="input-required">
-                                        <asp:ListItem Value="0">------ Select Gender ------</asp:ListItem>
+                                        <asp:ListItem Value="0">Select Gender</asp:ListItem>
                                         <asp:ListItem Value="F">Female</asp:ListItem>
                                         <asp:ListItem Value="M">Male</asp:ListItem>
                                     </asp:DropDownList>

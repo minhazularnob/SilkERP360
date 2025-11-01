@@ -119,21 +119,6 @@ function collapseSidebar() {
     img.style.display = "block"; // Show the image again
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    new TomSelect("#ddlCompany", {
-        create: false,           // allows typing custom value when true (combo box behavior)
-        closeAfterSelect: true,
-        sortField: {
-            field: "text",
-            direction: "asc"
-        },
-        placeholder: "Select Company",
-        onItemAdd: function () {
-            this.control_input.blur(); // 👈 Forces blur immediately after selection
-        }
-    });
-});
-
 function changeCompanyLogo() {
     var companyCode = $(this).val();
     const $logoDiv = $('#companyLogoDiv');
