@@ -273,6 +273,57 @@ function getAllEmployee(lcl_str_CompanyCode) {
     return result;
 }
 
+function ConvertToOracleDate(value) {
+    let dt = new Date(value);
+
+    if (isNaN(dt.getTime())) {
+        return null;
+    }
+
+    // Month names
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    let formattedDate =
+        dt.getDate() + " " +
+        months[dt.getMonth()] + " " +
+        dt.getFullYear();
+
+    return formattedDate;
+}
+
+function FormatDateUniversal(jsonDate) {
+    debugger;
+    if (!jsonDate) return '';
+
+    let timestamp = null;
+
+    // Handle /Date(1234567890)/
+    const match = /Date\((\d+)\)/.exec(jsonDate);
+    if (match) {
+        timestamp = parseInt(match[1]);
+    } else {
+        // Normal ISO or common date strings
+        timestamp = Date.parse(jsonDate);
+    }
+
+    if (isNaN(timestamp)) return '';
+
+    const date = new Date(timestamp);
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
 function clearModalFields(modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) return;

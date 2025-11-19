@@ -88,6 +88,7 @@
     <Compile Include="BusinessEntities\HRIS\BMSTransaction.cs" />
     <Compile Include="BusinessEntities\HRIS\Bonus.cs" />
     <Compile Include="BusinessEntities\HRIS\BonusMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\PromotionHistory.cs" />
     <Compile Include="BusinessEntities\HRIS\Company.cs" />
     <Compile Include="BusinessEntities\HRIS\DataStructures\CompanyDepartments.cs" />
     <Compile Include="BusinessEntities\HRIS\DataStructures\CompanyEmployeeProfiles.cs" />

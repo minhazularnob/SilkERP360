@@ -10062,6 +10062,7 @@
     <Content Include="UI\HRIS\HRISReportViewer.aspx" />
     <Content Include="UI\HRIS\hris_hm.aspx" />
     <Content Include="UI\HRIS\HRReport.ascx" />
+    <Content Include="UI\HRIS\PromotionHistory.ascx" />
     <Content Include="UI\HRIS\IncrementIOHistory.ascx" />
     <Content Include="UI\HRIS\IncrementSummery.ascx" />
     <Content Include="UI\HRIS\InOut.ascx" />
@@ -10099,6 +10100,7 @@
     <Content Include="UI\HRIS\Scripts\EmployeeListContextMenu.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeMovement.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeWorkGroupSchedule.js" />
+    <Content Include="UI\HRIS\Scripts\PromotionHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementIOHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementSummery.js" />
     <Content Include="UI\HRIS\Scripts\LeaveApplicationList.js" />
@@ -10215,6 +10217,7 @@
     <Content Include="WebServices\HRIS\MedicalInfoService.asmx" />
     <Content Include="WebServices\HRIS\moduleAndMenuService.asmx" />
     <Content Include="WebServices\HRIS\OvertimeServices.asmx" />
+    <Content Include="WebServices\HRIS\PromotionHistoryService.asmx" />
     <Content Include="WebServices\HRIS\ProvidentFundServices.asmx" />
     <Content Include="WebServices\HRIS\ReportService.asmx" />
     <Content Include="WebServices\HRIS\SalaryAddDedService.asmx" />
@@ -10547,6 +10550,13 @@
     </Compile>
     <Compile Include="UI\HRIS\HRReport.ascx.designer.cs">
       <DependentUpon>HRReport.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HRIS\PromotionHistory.ascx.cs">
+      <DependentUpon>PromotionHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HRIS\PromotionHistory.ascx.designer.cs">
+      <DependentUpon>PromotionHistory.ascx</DependentUpon>
     </Compile>
     <Compile Include="UI\HRIS\IncrementIOHistory.ascx.cs">
       <DependentUpon>IncrementIOHistory.ascx</DependentUpon>
@@ -11029,6 +11039,10 @@
     </Compile>
     <Compile Include="WebServices\HRIS\OvertimeServices.asmx.cs">
       <DependentUpon>OvertimeServices.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\HRIS\PromotionHistoryService.asmx.cs">
+      <DependentUpon>PromotionHistoryService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebServices\HRIS\ProvidentFundServices.asmx.cs">
