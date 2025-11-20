@@ -52,66 +52,62 @@
             <!-- Promotion Input Section -->
             <div id="dvReportHeader" class="border-bottom pb-3 mb-4">
 
-    <!-- Row 1: Current Designation -->
-    <div class="row g-2 align-items-center">
-        <div class="col-md-3 text-md-end">
-            <label for="txtCurrentDesignation" class="form-label">Current Designation:</label>
-        </div>
-        <div class="col-md-3">
-            <asp:TextBox ID="txtCurrentDesignation" runat="server"
-                CssClass="form-control" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-        </div>
+                <!-- Row 1: Current Designation -->
+                <div class="row g-2 align-items-center">
+                    <div class="col-md-3 text-md-end">
+                        <label for="txtCurrentDesignation" class="form-label">Current Designation:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:TextBox ID="txtCurrentDesignation" runat="server"
+                            CssClass="form-control" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                    </div>
 
-        <div class="col-md-2 text-md-end">
-            <label for="ddlNewDesignation" class="form-label">New Designation:</label>
-        </div>
-        <div class="col-md-3">
-            <asp:DropDownList ID="ddlNewDesignation" runat="server"
-                CssClass="form-select" ClientIDMode="Static">
-                <asp:ListItem Value="">-- Select Designation --</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-    </div>
+                    <div class="col-md-2 text-md-end">
+                        <label for="ddlNewDesignation" class="form-label">New Designation:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:DropDownList ID="ddlNewDesignation" runat="server"
+                            CssClass="form-select" ClientIDMode="Static">
+                            <asp:ListItem Value="">-- Select Designation --</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
 
-    <!-- Row 2: Remarks + Effective From -->
-    <div class="row g-2 align-items-center mt-2">
-        <div class="col-md-3 text-md-end">
-            <label for="txtRemarks" class="form-label">Remarks:</label>
-        </div>
-        <div class="col-md-3">
-            <asp:TextBox ID="txtRemarks" runat="server"
-                CssClass="form-control"
-                TextMode="MultiLine" Rows="2" ClientIDMode="Static"></asp:TextBox>
-        </div>
+                <!-- Row 2: Remarks + Effective From -->
+                <div class="row g-2 align-items-center mt-2">
+                    <div class="col-md-3 text-md-end">
+                        <label for="txtRemarks" class="form-label">Remarks:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:TextBox ID="txtRemarks" runat="server"
+                            CssClass="form-control"
+                            TextMode="MultiLine" Rows="2" ClientIDMode="Static"></asp:TextBox>
+                    </div>
 
-        <div class="col-md-2 text-md-end">
-            <label for="txtEffectiveFrom" class="form-label">Effective From:</label>
-        </div>
-        <div class="col-md-3">
-            <asp:TextBox ID="txtEffectiveFrom" runat="server"
-                CssClass="form-control datepicker" ClientIDMode="Static"></asp:TextBox>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center mt-3 gap-2">
-    <!-- Save Button -->
-    <button type="button" class="btn btn-success flex-fill" style="max-width: 150px;"
-        onclick="SavePromotion(event);">
-        Save
-    </button>
+                    <div class="col-md-2 text-md-end">
+                        <label for="txtEffectiveFrom" class="form-label">Effective From:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:TextBox ID="txtEffectiveFrom" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Effective From"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-3 gap-2">
+                    <!-- Save Button -->
+                    <button type="button" class="btn btn-success flex-fill" style="max-width: 150px;" onclick="SavePromotion(event);">Save</button>
 
-    <!-- Clear Button (ASP.NET) -->
-    <asp:Button ID="Button1" 
-        ClientIDMode="Static" 
-        Text="Clear" 
-        runat="server" 
-        CssClass="btn btn-secondary flex-fill" 
-        style="max-width: 150px;" 
-        OnClientClick="clearFields(); return false;" />
-</div>
+                    <!-- Clear Button (ASP.NET) -->
+                    <asp:Button ID="Button1"
+                        ClientIDMode="Static"
+                        Text="Clear"
+                        runat="server"
+                        CssClass="btn btn-secondary flex-fill"
+                        Style="max-width: 150px;"
+                        OnClientClick="clearFields(); return false;" />
+                </div>
 
-   <!-- Buttons Container -->
+                <!-- Buttons Container -->
 
-    </div>
+            </div>
             <!-- Table Section (Same as Increment Page) -->
             <div id="dvReportBody" class="table-responsive">
                 <table id="tblPromotionHistory" class="table custom-table fontSerif w-100"></table>
@@ -119,4 +115,3 @@
         </div>
     </div>
 </div>
-    
