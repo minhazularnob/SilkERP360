@@ -21,47 +21,63 @@ namespace SilkERP360.BML.HRIS
            this.Initialize();
        }
 
-        public ulong Save(CCL.BusinessEntities.HRIS.PromotionHistory lcl_obj_PromotionHistory)
+        public ulong Save(CCL.BusinessEntities.HRIS.PromotionHistory promotionHistory)
         {
-            System.UInt64 lcl_ui64_IncrementCode = 0;
-            System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", lcl_obj_PromotionHistory.GetSequence());
-            lcl_ui64_IncrementCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            if (!DateTime.TryParse(promotionHistory.EffectiveFrom, out DateTime effectiveDate))
+                throw new ArgumentException("Invalid EffectiveFrom date.");
+
+            if(promotionHistory.CurrentDesignationCode == promotionHistory.PreviousDesignationCode)
+                throw new ArgumentException("Current Designation  and New Designation cannot be same.");
+
+            return this.ExceptionManager.Process<ulong>(() =>
             {
-                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
-                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                        dbManager.InternalResource.Open();
+
+                    // Check for duplicate promotion for the same employee on the same date
+                    string checkSql = $"SELECT COUNT(*) AS CNT FROM PROMOTION_HISTORY " +
+                                      $"WHERE EMPLOYEE_CODE = {promotionHistory.EmployeeCode} " +
+                                      $"AND TRUNC(EFFECTIVE_FROM) = TO_DATE('{effectiveDate:yyyy-MM-dd}', 'YYYY-MM-DD')";
+
+                    var reader = dbManager.InternalResource.ExecuteDataReader(checkSql);
+                    reader.Read();
+                    int count = int.Parse(reader["CNT"].ToString());
+                    reader.Close();
+
+
+                    if (count > 0)
+                        throw new Exception("A record already exists for the same employee and date.");
+
+                    // Get next sequence value
+                    string seqSql = $"SELECT {promotionHistory.GetSequence()}.NEXTVAL AS ID FROM DUAL";
+                    var seqReader = dbManager.InternalResource.ExecuteDataReader(seqSql);
+                    seqReader.Read();
+                    ulong promotionId = ulong.Parse(seqReader["ID"].ToString());
+                    seqReader.Close();
+
+                    promotionHistory.PromotionID = promotionId;
+
+                    // Insert promotion history
+                    string insertSql = promotionHistory.GenerateSqlInsert();
+                    dbManager.InternalResource.ExecuteScalar(insertSql);
+
+                    // Update Employee designation if effective date is today
+                    if (effectiveDate.Date == DateTime.Now.Date)
                     {
-                        lcl_obj_DBManager.InternalResource.Open();
+                        string updateSql = $"UPDATE EMPLOYEE SET DESIGNATION_CODE = {promotionHistory.CurrentDesignationCode} " +
+                                           $"WHERE EMPLOYEE_CODE = {promotionHistory.EmployeeCode}";
+                        dbManager.InternalResource.ExecuteScalar(updateSql);
                     }
 
-                    System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
-                    lcl_obj_IDReader.Read();
-                    System.UInt64 lcl_ui64_PROMOTION_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
-                    lcl_obj_IDReader.Close();
-
-                    lcl_obj_PromotionHistory.PromotionID = lcl_ui64_PROMOTION_ID;
-                    System.String lcl_str_SqlInsert = lcl_obj_PromotionHistory.GenerateSqlInsert();
-                    lcl_obj_DBManager.InternalResource.ExecuteScalar(lcl_str_SqlInsert);
-
-                    // 3️⃣ Update Employee Designation if EffectiveFrom is today
-                    DateTime effectiveDate;
-
-                    if (DateTime.TryParse(lcl_obj_PromotionHistory.EffectiveFrom, out effectiveDate))
-                    {
-                        if (effectiveDate.Date == DateTime.Now.Date)
-                        {
-                            string lcl_str_SqlUpdate = string.Format("UPDATE EMPLOYEE SET DESIGNATION_CODE = {0} WHERE EMPLOYEE_CODE = {1}",lcl_obj_PromotionHistory.CurrentDesignationCode,lcl_obj_PromotionHistory.EmployeeCode);
-
-                            lcl_obj_DBManager.InternalResource.ExecuteScalar(lcl_str_SqlUpdate);
-                        }
-                    }
-
-                    lcl_obj_DBManager.InternalResource.CommitTransaction();
-                    return lcl_ui64_PROMOTION_ID;   
+                    dbManager.InternalResource.CommitTransaction();
+                    return promotionId;
                 }
             }, "BMLExceptionPolicy");
-            return lcl_ui64_IncrementCode;
         }
+
+
 
         public List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> GetAllPromotionHistory(string IP_str_SqlQuery)
         {

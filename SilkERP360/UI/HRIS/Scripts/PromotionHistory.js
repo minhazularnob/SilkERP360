@@ -112,7 +112,13 @@ function SavePromotion() {
         CompanyCode: lcl_obj_PromotionHistory.CompanyCode
     };
 
+    
+
     var validationMessage = validateFields(validateObj);
+    if (validateObj.PreviousDesignationCode == validateObj.CurrentDesignationCode) {
+        validationMessage = "Previous Designation and New Designation cannot be the same.";
+    }
+
     if (validationMessage !== 'OK') {
         DisplayError(validationMessage.toString());
         return false;
