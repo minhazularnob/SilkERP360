@@ -59,5 +59,21 @@ namespace SilkERP360.WebServices.HRIS
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
             }
         }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetAllApprovers()
+        {
+            try
+            {
+                SilkERP360.SP.HRIS.PromotionHistoryService locl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> lcl_objLst_ApproverList =
+                    locl_obj_promotionHistoryService.GetAllApprovers();
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_ApproverList);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
     }
 }

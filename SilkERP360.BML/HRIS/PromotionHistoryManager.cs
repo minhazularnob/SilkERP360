@@ -1,4 +1,5 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.Validation;
 using System;
 using System.Collections.Generic;
@@ -63,12 +64,27 @@ namespace SilkERP360.BML.HRIS
                     string insertSql = promotionHistory.GenerateSqlInsert();
                     dbManager.InternalResource.ExecuteScalar(insertSql);
 
-                    // Update Employee designation if effective date is today
-                    if (effectiveDate.Date == DateTime.Now.Date)
+                    // Save approver details
+                    if (promotionHistory.approverDetails != null && promotionHistory.approverDetails.Count > 0)
                     {
-                        string updateSql = $"UPDATE EMPLOYEE SET DESIGNATION_CODE = {promotionHistory.CurrentDesignationCode} " +
-                                           $"WHERE EMPLOYEE_CODE = {promotionHistory.EmployeeCode}";
-                        dbManager.InternalResource.ExecuteScalar(updateSql);
+                        foreach (var approver in promotionHistory.approverDetails)
+                        {
+                            // Get next sequence value for approver
+                            string seqSqlApprover = $"SELECT {approver.GetSequence()}.NEXTVAL AS ID FROM DUAL";
+                            var seqReaderApprover = dbManager.InternalResource.ExecuteDataReader(seqSqlApprover);
+                            seqReaderApprover.Read();
+                            ulong approverID = ulong.Parse(seqReaderApprover["ID"].ToString());
+                            seqReaderApprover.Close();
+
+                            // Set approver properties
+                            approver.Id = approverID;
+                            approver.HistoryId = promotionId;
+                            approver.Status = (int)PromotionStatus.Pending;
+
+                            // Generate and execute insert SQL
+                            string approverSql = approver.GenerateSqlInsert();
+                            dbManager.InternalResource.ExecuteScalar(approverSql);
+                        }
                     }
 
                     dbManager.InternalResource.CommitTransaction();
@@ -109,6 +125,7 @@ namespace SilkERP360.BML.HRIS
                             var item = new SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory();
 
                             // Safe parsing
+                            item.PromotionID = Convert.ToUInt64(lcl_obj_dr["promotion_id"]);
                             item.EmployeeCode = Convert.ToUInt64(lcl_obj_dr["EMPLOYEE_CODE"]);
                             item.EmployeeId = lcl_obj_dr["EMPLOYEE_ID"]?.ToString();
                             item.EmployeeName = lcl_obj_dr["EMPLOYEE_NAME"]?.ToString();
@@ -122,6 +139,49 @@ namespace SilkERP360.BML.HRIS
 
                             // EffectiveFrom stored as string
                             item.EffectiveFrom = lcl_obj_dr["EFFECTIVE_FROM"]?.ToString();
+
+                            list.Add(item);
+                        }
+
+                        return list;
+                    }
+                }
+            }, "BMLExceptionPolicy");
+        }
+
+        public List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> GetAllApprovers(string IP_str_SqlQuery)
+        {
+            return this.ExceptionManager.Process<List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail>>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    // Execute reader
+                    using (System.Data.OracleClient.OracleDataReader lcl_obj_dr =
+                           lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
+                    {
+                        List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> list =
+                            new List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail>();
+
+                        // If no rows → return empty list (not exception)
+                        if (!lcl_obj_dr.HasRows)
+                        {
+                            return list;
+                        }
+
+                        // Populate list
+                        while (lcl_obj_dr.Read())
+                        {
+                            var item = new SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail();
+
+                            // Safe parsing
+                            item.EmployeeCode = Convert.ToUInt64(lcl_obj_dr["EMPLOYEE_CODE"]);
+                            item.EmployeeId = lcl_obj_dr["EMPLOYEE_ID"]?.ToString();
+                            item.EmployeeName = lcl_obj_dr["EMPLOYEE_NAME"]?.ToString();
 
                             list.Add(item);
                         }

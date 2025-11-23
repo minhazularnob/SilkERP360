@@ -11,6 +11,9 @@
     
     initializeSelect2('ddlEmployeePromotion', '------ Select Employee ------', '25%');
     initializeSelect2('ddlNewDesignation', '------ Select Designation ------', '25%');
+    initializeSelect2('promotion_approvers', '------ Select Approvers ------', '25%');
+
+    bindAllAprovers();
 
     GBL_PROMOTION_HISTORY_LIST_TABLE = $('#tblPromotionHistory').dataTable({
         "bJQueryUI": false,
@@ -42,6 +45,28 @@
                 "sTitle": "Remarks",
                 "sClass": "alignCenter",
                 "bSortable": false
+            },
+            {
+                "mData": "PromotionID",
+                "sTitle": "Actions",
+                "sClass": "alignCenter",
+                "bSortable": false,
+                "mRender": function (data, type, full) {
+                    return `
+                    <div class="action-buttons">
+                        <a class="btn-approve" 
+                           title="Approve" 
+                           onclick="approvePromotion(${full.PromotionID})">
+                            <i class="fa fa-check-circle text-success"></i> Approve
+                        </a>
+                        <a class="btn-reject" 
+                           title="Reject" 
+                           onclick="rejectPromotion(${full.PromotionID})" 
+                           style="margin-left: 10px;">
+                            <i class="fa fa-times-circle text-danger"></i> Reject
+                        </a>
+                    </div>`;
+                }
             }
         ]
     });
@@ -77,7 +102,8 @@ function LoaddAllPromotionHistory() {
                     "PreviousDesignationName": item.PreviousDesignationName,
                     "CurentDesignationName": item.CurentDesignationName, // check spelling
                     "EffectiveFrom": item.EffectiveFrom,
-                    "Remarks": item.Remarks
+                    "Remarks": item.Remarks,
+                    "PromotionID": item.PromotionID
                 });
             });
 
@@ -95,7 +121,17 @@ function LoaddAllPromotionHistory() {
 
 
 function SavePromotion() {
+    debugger;
     var lcl_obj_PromotionHistory = new Object();
+    lcl_obj_PromotionHistory.approverDetails = [];
+    
+    var approvers = $('#promotion_approvers').val();
+
+    $.each(approvers, function (index, approver) {
+        lcl_obj_approverDetail = new Object();
+        lcl_obj_approverDetail.EmployeeCode = approver;
+        lcl_obj_PromotionHistory.approverDetails.push(lcl_obj_approverDetail);
+    });
 
     lcl_obj_PromotionHistory.EmployeeCode = $('#ddlEmployeePromotion option:selected').val();
     lcl_obj_PromotionHistory.PreviousDesignationCode = $("#ddlEmployeePromotion option:selected").attr("designationcode");
@@ -117,6 +153,10 @@ function SavePromotion() {
     var validationMessage = validateFields(validateObj);
     if (validateObj.PreviousDesignationCode == validateObj.CurrentDesignationCode) {
         validationMessage = "Previous Designation and New Designation cannot be the same.";
+    }
+
+    if (approvers == null) {
+        validationMessage = "Please select at least one approver.";
     }
 
     if (validationMessage !== 'OK') {
@@ -158,8 +198,6 @@ $("#ddlEmployeePromotion").change(function () {
     $("#txtCurrentDesignation").val(designation);
 });
 
-
-
 function clearFields() {
     // Clear all input fields
     $('#dvWorkGroupMaster').find('input[type="text"], textarea').val('');
@@ -168,6 +206,7 @@ function clearFields() {
     // Clear dropdowns
     $('#ddlEmployeePromotion').val(null).trigger('change');
     $('#ddlNewDesignation').val(null).trigger('change');
+    $('#promotion_approvers').val(null).trigger('change');
     
     // Reinitialize datepicker
     $("#txtEffectiveFrom").datepicker('destroy'); // Remove existing datepicker
@@ -181,5 +220,58 @@ function clearFields() {
     return false; // Prevent form submission
 }
 
+function getAllApprovers() {
+    var lcl_str_CompanyCode = $('#promotion_approvers option:selected').val();
+    var result = null;
+    $.ajax(
+        {
+            async: false,
+            type: "POST",
+            global: true,
+            contentType: "application/json; charset=utf-8",
+            url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/GetAllApprovers",
+            dataType: "json",
+            success: function (response) {
+                var WSReturn = response.d;
+                if (WSReturn.ResponseCode < 0) {
+                    DisplayError(WSReturn.Message);
+                    return;
+                }
+                result = WSReturn.Data;
+            }
+        });
+    return result;
+}
 
+function bindAllAprovers() {
+    var approvers = getAllApprovers();
+    var $approverSelect = $('#promotion_approvers');
+
+    // Clear existing options
+    $approverSelect.empty();
+
+    // Populate new options
+    $.each(approvers, function (index, approver) {
+        var option = $('<option></option>')
+            .attr('value', approver.EmployeeCode)  // Fixed closing parenthesis
+            .text(approver.EmployeeId + ' [' + approver.EmployeeName + ']');
+
+        $approverSelect.append(option);
+    });
+
+    // Refresh Select2 (if applied)
+    $approverSelect.trigger('change');
+}
+
+function approvePromotion(promotionId) {
+    if (confirm("Are you sure you want to approve this promotion?")) {
+        updatePromotionStatus(promotionId, 1, 'approved');
+    }
+}
+
+function rejectPromotion(promotionId) {
+    if (confirm("Are you sure you want to reject this promotion?")) {
+        updatePromotionStatus(promotionId, 2, 'rejected');
+    }
+}
 

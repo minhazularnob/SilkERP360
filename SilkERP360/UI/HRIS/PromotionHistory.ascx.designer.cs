@@ -69,6 +69,15 @@ namespace SilkERP360.UI.HRIS
         protected global::System.Web.UI.WebControls.TextBox txtEffectiveFrom;
 
         /// <summary>
+        /// promotion_approvers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList promotion_approvers;
+
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

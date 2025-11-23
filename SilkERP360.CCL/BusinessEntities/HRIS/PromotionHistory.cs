@@ -1,6 +1,8 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS.Base;
+using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.Validation;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SilkERP360.CCL.BusinessEntities.HRIS
@@ -10,7 +12,7 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
     {
         public PromotionHistory()
         {
-            
+            IsApproved = (int)PromotionStatus.Pending;
         }
 
         [SilkERP360.CCL.Validation.Attributes.Required]
@@ -68,7 +70,6 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             get { return m_remarks; }
             set { m_remarks = value; }
         }
-       
 
         [SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("COMPANY_CODE", typeof(System.UInt64), false, false)]
         protected Int64 m_companyCode;
@@ -78,6 +79,16 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             get { return m_companyCode; }
             set { m_companyCode = value; }
         }
+
+        [SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("ISAPPROVED", typeof(System.UInt64), false, false)]
+        protected Int16 m_isApproved;
+        public Int16 IsApproved
+        {
+            get { return m_isApproved; }
+            set { m_companyCode = value; }
+        }
+
+        public List<ApproverDetail> approverDetails = new List<ApproverDetail>();
 
         public string EmployeeId { get; set; }
         public string EmployeeName { get; set; }

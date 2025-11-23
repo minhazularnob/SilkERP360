@@ -381,4 +381,11 @@ namespace SilkERP360.CCL.Enums
         Delete = 3,
         Get = 4
     }
+
+    public enum PromotionStatus
+    {
+        Rejected = 0,
+        Approved = 2,
+        Pending = 1
+    }
 }

@@ -295,7 +295,6 @@ function ConvertToOracleDate(value) {
 }
 
 function FormatDateUniversal(jsonDate) {
-    debugger;
     if (!jsonDate) return '';
 
     let timestamp = null;

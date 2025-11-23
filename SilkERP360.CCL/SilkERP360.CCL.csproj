@@ -75,6 +75,7 @@
     <Compile Include="BusinessEntities\General\Vendor.cs" />
     <Compile Include="BusinessEntities\HRIS\AcsFile.cs" />
     <Compile Include="BusinessEntities\HRIS\AcsFileRow.cs" />
+    <Compile Include="BusinessEntities\HRIS\ApproverDetail.cs" />
     <Compile Include="BusinessEntities\HRIS\Attendance.cs" />
     <Compile Include="BusinessEntities\HRIS\AttendanceDetails.cs" />
     <Compile Include="BusinessEntities\HRIS\AttendanceMaster.cs" />

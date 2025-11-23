@@ -91,6 +91,18 @@
                         <asp:TextBox ID="txtEffectiveFrom" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Effective From"></asp:TextBox>
                     </div>
                 </div>
+                <!-- Row 3: Approvers multi select -->
+                <div class="row g-2 align-items-center mt-2">
+                    <div class="col-md-3 text-md-end">
+                        <label for="ddlNewDesignation" class="form-label">Approvers:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:DropDownList ID="promotion_approvers" runat="server"
+                            CssClass="js-example-basic-multiple" ClientIDMode="Static" multiple="multiple">
+                            <asp:ListItem Value=""></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-center mt-3 gap-2">
                     <!-- Save Button -->
                     <button type="button" class="btn btn-success flex-fill" style="max-width: 150px;" onclick="SavePromotion(event);">Save</button>
