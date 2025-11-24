@@ -85,7 +85,7 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         public Int16 IsApproved
         {
             get { return m_isApproved; }
-            set { m_companyCode = value; }
+            set { m_isApproved = value; }
         }
 
         public List<ApproverDetail> approverDetails = new List<ApproverDetail>();
@@ -94,6 +94,7 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         public string EmployeeName { get; set; }
         public string PreviousDesignationName { get; set; }
         public string CurentDesignationName { get; set; }
+        public int UserSpecifcApprovalStatus { get; set; }
 
 
     }

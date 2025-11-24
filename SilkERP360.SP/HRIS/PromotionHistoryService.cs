@@ -23,15 +23,30 @@ namespace SilkERP360.SP.HRIS
             return lcl_ui64_promotionHistoryCode;
         }
 
-        public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> GetAllPromotionHistory(System.UInt64 IP_ui64_companyCode)
+        public System.UInt64 UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status)
+        {
+            System.UInt64 lcl_ui64_approver_detail_code = this.ExceptionManager.Process<System.UInt64>(() =>
+            {
+                SilkERP360.BML.HRIS.PromotionHistoryManager lcl_obj_PromotionHistoryManager = new BML.HRIS.PromotionHistoryManager();
+                System.UInt64 lcl_ui64_approverdetail_code_temp = lcl_obj_PromotionHistoryManager.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, IP_ui64_ApproverCode, status);
+                return lcl_ui64_approverdetail_code_temp;
+            }, "SPExceptionPolicy");
+            return lcl_ui64_approver_detail_code;
+        }
+
+        public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> GetAllPromotionHistory(System.UInt64 IP_ui64_companyCode, UInt64 IP_ui64_user_employee_code)
         {
             System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> lcl_obj_Designation = null;
             lcl_obj_Designation = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory>>(() =>
             {
-                System.String lcl_str_SqlQuery = System.String.Format(@"select h.promotion_id,e.employee_code,e.employee_id,e.employee_name,h.previous_designation_code,h.current_designation_code,pd.degn_name PreviousDesName,nd.degn_name CurrentDesName,h.remarks,h.effective_from,h.company_code from promotion_history h
+                System.String lcl_str_SqlQuery = System.String.Format(@"select h.promotion_id,e.employee_code,e.employee_id,e.employee_name,h.previous_designation_code,
+                                                                        h.current_designation_code,pd.degn_name PreviousDesName,nd.degn_name CurrentDesName,h.remarks,
+                                                                        h.effective_from,h.company_code,h.ISAPPROVED,NVL(p.status, 0) as specificUserAppraval from promotion_history h
                                                                         inner join employee e on h.employee_code = e.employee_code
                                                                         inner join designation pd on h.previous_designation_code = pd.designation_code
-                                                                        inner join designation nd on h.current_designation_code = nd.designation_code where h.company_code = {0} order by h.created_date desc", IP_ui64_companyCode);
+                                                                        inner join designation nd on h.current_designation_code = nd.designation_code
+                                                                        left join promotion_approvers p on h.promotion_id = p.history_id and p.employee_code={1}
+                                                                        where h.company_code = {0} order by h.created_date desc", IP_ui64_companyCode, IP_ui64_user_employee_code);
                 SilkERP360.BML.HRIS.PromotionHistoryManager lcl_obj_DesignationManager = new SilkERP360.BML.HRIS.PromotionHistoryManager();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> lcl_obj_DesignationTmp =
                     lcl_obj_DesignationManager.GetAllPromotionHistory(lcl_str_SqlQuery);

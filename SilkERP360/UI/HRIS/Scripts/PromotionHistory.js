@@ -28,6 +28,7 @@
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         },
         "aoColumns": [
+            { "mData": "EmployeeCode", "sTitle": "EmployeeCode", "sClass": "alignCenter", bvisible: false },
             { "mData": "EmployeeId", "sTitle": "Employee ID", "sClass": "alignCenter" },
             { "mData": "EmployeeName", "sTitle": "Employee Name", "sClass": "alignCenter" },
             { "mData": "PreviousDesignationName", "sTitle": "Previous Designation", "sClass": "alignCenter" },
@@ -47,21 +48,49 @@
                 "bSortable": false
             },
             {
+                "mData": "IsApproved",
+                "sTitle": "Status",
+                "sClass": "alignCenter",
+                "mRender": function (data, type, full) {
+                    if (data == 0) {
+                        return `<span class="text-danger">Rejected</span>`;
+                    }
+                    else if (data == 1) {
+                        return `<span class="text-warning">Pending</span>`;
+                    }
+                    else if (data == 2) {
+                        return `<span class="text-primary">Approved</span>`;
+                    }
+                    else if (data == 3) {
+                        return `<span class="text-success">Promoted</span>`;
+                    }
+
+                    return "";
+                }
+            },
+            {
                 "mData": "PromotionID",
                 "sTitle": "Actions",
                 "sClass": "alignCenter",
                 "bSortable": false,
                 "mRender": function (data, type, full) {
+                    // If status is rejected (0), return only text without any interactive elements
+                    if (full.IsApproved === 0 || full.IsApproved === 2 || full.IsApproved === 3 || full.UserSpecifcApprovalStatus === 0 || full.UserSpecifcApprovalStatus === 2 || full.UserSpecifcApprovalStatus === 3) {
+                        return '<span class="text-muted">No actions available</span>';
+                    }
+                    // Only show buttons if status is not rejected
                     return `
                     <div class="action-buttons">
-                        <a class="btn-approve" 
+                        <a href="javascript:void(0);" 
+                           class="btn-approve" 
                            title="Approve" 
-                           onclick="approvePromotion(${full.PromotionID})">
+                           onclick="approvePromotion(${full.PromotionID}, ${full.EmployeeCode}); return false;">
                             <i class="fa fa-check-circle text-success"></i> Approve
                         </a>
-                        <a class="btn-reject" 
+                        <a href="javascript:void(0);" 
+                           class="btn-reject" 
                            title="Reject" 
-                           onclick="rejectPromotion(${full.PromotionID})" 
+                           onclick="rejectPromotion(${full.PromotionID}, ${full.EmployeeCode}); return false;" 
                            style="margin-left: 10px;">
                             <i class="fa fa-times-circle text-danger"></i> Reject
                         </a>
@@ -103,7 +132,10 @@ function LoaddAllPromotionHistory() {
                     "CurentDesignationName": item.CurentDesignationName, // check spelling
                     "EffectiveFrom": item.EffectiveFrom,
                     "Remarks": item.Remarks,
-                    "PromotionID": item.PromotionID
+                    "IsApproved": item.IsApproved,
+                    "PromotionID": item.PromotionID,
+                    "EmployeeCode": item.EmployeeCode,
+                    "UserSpecifcApprovalStatus": item.UserSpecifcApprovalStatus
                 });
             });
 
@@ -121,7 +153,6 @@ function LoaddAllPromotionHistory() {
 
 
 function SavePromotion() {
-    debugger;
     var lcl_obj_PromotionHistory = new Object();
     lcl_obj_PromotionHistory.approverDetails = [];
     
@@ -263,15 +294,46 @@ function bindAllAprovers() {
     $approverSelect.trigger('change');
 }
 
-function approvePromotion(promotionId) {
+function approvePromotion(promotionId, employeeCode) {
     if (confirm("Are you sure you want to approve this promotion?")) {
-        updatePromotionStatus(promotionId, 1, 'approved');
+        updatePromotionStatusForApprover(promotionId, employeeCode,'approved');
     }
 }
 
-function rejectPromotion(promotionId) {
+function rejectPromotion(promotionId, employeeCode) {
     if (confirm("Are you sure you want to reject this promotion?")) {
-        updatePromotionStatus(promotionId, 2, 'rejected');
+        updatePromotionStatusForApprover(promotionId, employeeCode, 'rejected');
     }
 }
 
+function updatePromotionStatusForApprover(promotionHistoryCode, approverCode, status) {
+    // Convert status to integer (1 for approved, 0 for rejected)
+    var statusCode = (status === 'approved') ? 2 : 0;
+    
+    $.ajax({
+        type: "POST",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/UpdatePromotionStatusForApprover",
+        data: JSON.stringify({ 
+            IP_ui64_PromotionHistoryCode: promotionHistoryCode, 
+            status: statusCode 
+        }),
+            dataType: "json",
+            success: function (response) {
+                var WSReturn = response.d;
+                if (WSReturn.ResponseCode == 0) {
+                    DisplayInformation(WSReturn.Message.toString());
+                    LoaddAllPromotionHistory();
+                    clearFields();
+                } else {
+                    DisplayError(WSReturn.Message.toString());
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error updating status:", status, error);
+                DisplayError("An error occurred while updating the status.. Please try again.");
+            }
+        });
+    return false;
+}

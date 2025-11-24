@@ -170,11 +170,10 @@ namespace SilkERP360.BML.HRIS
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    string lcl_str_SqlQuery;
-
-                    // Update path
+                   
+                    // Update
                     lcl_ui64_DesignationCode = lcl_obj_Designation.DesignationCode;
-                    string updateSql = lcl_obj_Designation.GenerateSqlUpdate(); // You must implement this method as we discussed earlier
+                    string updateSql = lcl_obj_Designation.GenerateSqlUpdate();
                     lcl_obj_DBManager.InternalResource.ExecuteScalar(updateSql);
 
                     lcl_obj_DBManager.InternalResource.CommitTransaction();

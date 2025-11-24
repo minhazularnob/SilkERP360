@@ -94,6 +94,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SilkERP360.CCL\SilkERP360.CCL.csproj">
+      <Project>{b5471837-c586-4007-9e73-8a5b08508b8e}</Project>
+      <Name>SilkERP360.CCL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SilkERP360.DAL\SilkERP360.DAL.csproj">
       <Project>{010b2dbd-8f8d-45ae-9baf-0a57aff87144}</Project>
       <Name>SilkERP360.DAL</Name>

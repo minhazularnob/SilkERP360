@@ -1,9 +1,11 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS;
 using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.Validation;
+using SilkERP360.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
@@ -93,7 +95,121 @@ namespace SilkERP360.BML.HRIS
             }, "BMLExceptionPolicy");
         }
 
+        public ulong UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status)
+        {
+            UInt64 lcl_ui64_approverDetailCode = 0;
+            
+                lcl_ui64_approverDetailCode = this.ExceptionManager.Process<UInt64>(() =>
+                {
+                    using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                    {
+                        if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                        {
+                            lcl_obj_DBManager.InternalResource.Open();
+                        }
 
+                        // Using string format for the query (be aware of SQL injection risks)
+                        string lcl_str_SqlQuery = string.Format(
+                            "SELECT ID as approver_id FROM promotion_approvers WHERE history_id = {0} AND employee_code = {1}",
+                            IP_ui64_PromotionHistoryCode,
+                            IP_ui64_ApproverCode
+                        );
+
+                        var lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+
+                        if (lcl_obj_IDReader.Read() && lcl_obj_IDReader["approver_id"] != DBNull.Value)
+                        {
+                            var approverId = Convert.ToUInt64(lcl_obj_IDReader["approver_id"]);
+                            var detail = new ApproverDetail
+                            {
+                                Id = approverId,
+                                HistoryId = IP_ui64_PromotionHistoryCode,
+                                EmployeeCode = IP_ui64_ApproverCode,
+                                Status = (UInt16)status,
+                            };
+
+                            // Generate and execute update statement
+                            string updateSql = detail.GenerateSqlUpdate();
+                            lcl_obj_DBManager.InternalResource.ExecuteScalar(updateSql);
+                            lcl_ui64_approverDetailCode = approverId;
+                            if(status == (int)PromotionStatus.Rejected)
+                            {
+                                RejectFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
+                            }
+
+                            if(status == (int)PromotionStatus.Approved)
+                            {
+                                ApprovedFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
+                            }
+                        }
+
+                        lcl_obj_DBManager.InternalResource.CommitTransaction();
+                        return lcl_ui64_approverDetailCode;
+                    }
+                }, "BMLExceptionPolicy");
+
+            return lcl_ui64_approverDetailCode;
+        }
+
+        public ulong ApprovedFinalPromotion(System.Object IP_obj_DBManager, ulong history_code)
+        {
+            return this.ExceptionManager.Process<ulong>(() =>
+            {
+                // Get the actual DBManager from the pooled object wrapper
+                var dbManagerWrapper = (SilkERP360.CCL.ObjectPool.PooledObjectWrapper<SilkERP360.DAL.DBManager>)IP_obj_DBManager;
+                var lcl_obj_DBManager = dbManagerWrapper.InternalResource;
+
+                if (lcl_obj_DBManager.ConnectionState != System.Data.ConnectionState.Open)
+                {
+                    lcl_obj_DBManager.Open();
+                }
+
+                // Check all approvers status
+                string checkSql = $@"SELECT COUNT(*) FROM promotion_approvers WHERE history_id = {history_code} AND status <> 2";
+
+                var pendingCount = Convert.ToInt32(lcl_obj_DBManager.ExecuteScalar(checkSql));
+
+                // If any row status is not 2 → do not update
+                if (pendingCount > 0)
+                {
+                    // Some approvers are still pending or rejected
+                    return 0;
+                }
+
+                string sql = $@"UPDATE promotion_history SET ISAPPROVED = {(int)PromotionStatus.Approved} WHERE promotion_id = {history_code}";
+                System.String lcl_str_SqlQuery = System.String.Format(sql);
+
+                lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
+
+                // Return the same id for confirmation
+                return history_code;
+
+            }, "BMLExceptionPolicy");
+        }
+
+        public ulong RejectFinalPromotion(System.Object IP_obj_DBManager, ulong history_code)
+        {
+            return this.ExceptionManager.Process<ulong>(() =>
+            {
+                // Get the actual DBManager from the pooled object wrapper
+                var dbManagerWrapper = (SilkERP360.CCL.ObjectPool.PooledObjectWrapper<SilkERP360.DAL.DBManager>)IP_obj_DBManager;
+                var lcl_obj_DBManager = dbManagerWrapper.InternalResource;
+
+                if (lcl_obj_DBManager.ConnectionState != System.Data.ConnectionState.Open)
+                {
+                    lcl_obj_DBManager.Open();
+                }
+
+                string sql = $@"UPDATE promotion_history SET ISAPPROVED = {(int)PromotionStatus.Rejected} WHERE promotion_id = {history_code}";
+                System.String lcl_str_SqlQuery = System.String.Format(sql);
+
+                lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
+
+                // Return the same id for confirmation
+                return history_code;
+
+            }, "BMLExceptionPolicy");
+        }
 
         public List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> GetAllPromotionHistory(string IP_str_SqlQuery)
         {
@@ -139,6 +255,8 @@ namespace SilkERP360.BML.HRIS
 
                             // EffectiveFrom stored as string
                             item.EffectiveFrom = lcl_obj_dr["EFFECTIVE_FROM"]?.ToString();
+                            item.IsApproved = Convert.ToInt16(lcl_obj_dr["ISAPPROVED"]);
+                            item.UserSpecifcApprovalStatus =Convert.ToInt16(lcl_obj_dr["specificUserAppraval"]);
 
                             list.Add(item);
                         }

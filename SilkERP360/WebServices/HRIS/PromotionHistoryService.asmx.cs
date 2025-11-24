@@ -49,9 +49,11 @@ namespace SilkERP360.WebServices.HRIS
         {
             try
             {
+                var loggedInUser = HttpContext.Current.Session["USR_CNTXT"];
+
                 SilkERP360.SP.HRIS.PromotionHistoryService lcl_obj_DesignationFacade = new SilkERP360.SP.HRIS.PromotionHistoryService();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> lcl_objLst_Designation =
-                    lcl_obj_DesignationFacade.GetAllPromotionHistory(IP_ui64_companyCode);
+                    lcl_obj_DesignationFacade.GetAllPromotionHistory(IP_ui64_companyCode, ((SilkERP360.CCL.Repository.AuthenticUserContext)loggedInUser).UserProfile.EmployeeCode);
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_Designation);
             }
             catch (System.Exception Ex)
@@ -69,6 +71,30 @@ namespace SilkERP360.WebServices.HRIS
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> lcl_objLst_ApproverList =
                     locl_obj_promotionHistoryService.GetAllApprovers();
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_ApproverList);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, int status)
+        {
+            try
+            {
+                // get session
+                var loggedInUser = HttpContext.Current.Session["USR_CNTXT"]; 
+
+                SilkERP360.SP.HRIS.PromotionHistoryService locl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
+                System.UInt64 lcl_ui64_approver_detail_code = locl_obj_promotionHistoryService.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, ((SilkERP360.CCL.Repository.AuthenticUserContext)loggedInUser).UserProfile.EmployeeCode, status);
+
+                if (lcl_ui64_approver_detail_code > 0)
+                {
+                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Updated Successfully", true, lcl_ui64_approver_detail_code);
+                }
+
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", false, false);
             }
             catch (System.Exception Ex)
             {

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.CCL.Enums;
 using SilkERP360.DAL;
-using Oracle.ManagedDataAccess.Client;
+using System;
 
 namespace SilkERP360.PromotionUpdater
 {
@@ -10,40 +11,56 @@ namespace SilkERP360.PromotionUpdater
         {
             try
             {
-                // Get connection string from your DAL
                 string connStr = DALObjectPoolManager.CONNECTION_STRING;
 
                 using (var conn = new OracleConnection(connStr))
                 {
                     conn.Open();
 
-                    // Begin transaction
                     using (var transaction = conn.BeginTransaction())
                     {
-                        string sql = @"
+                        // STEP 1: Update employee designation from promotion_history (only ISAPPROVED = 2)
+                        string updateEmployeeSql = @"
                             UPDATE employee e
                                SET e.designation_code = (
                                    SELECT p.current_designation_code
                                    FROM promotion_history p
                                    WHERE p.employee_code = e.employee_code
                                      AND TRUNC(p.effective_from) = TRUNC(SYSDATE)
+                                     AND p.ISAPPROVED = 2
                                )
                              WHERE EXISTS (
                                    SELECT 1
                                    FROM promotion_history p
                                    WHERE p.employee_code = e.employee_code
                                      AND TRUNC(p.effective_from) = TRUNC(SYSDATE)
+                                     AND p.ISAPPROVED = 2
                              )";
 
-                        using (var cmd = new OracleCommand(sql, conn))
+                        using (var cmd = new OracleCommand(updateEmployeeSql, conn))
                         {
-                            cmd.Transaction = transaction; // associate command with transaction
-                            int rowsUpdated = cmd.ExecuteNonQuery();
-                            Console.WriteLine($"{rowsUpdated} rows updated successfully.");
+                            cmd.Transaction = transaction;
+                            int updatedRows = cmd.ExecuteNonQuery();
+                            Console.WriteLine($"{updatedRows} employee rows updated.");
                         }
 
-                        // Commit transaction so changes persist
+                        // STEP 2: Update promotion_history → ISAPPROVED = Promoted for today's executed promotions
+                        string updateHistorySql = $@"
+                            UPDATE promotion_history
+                               SET ISAPPROVED = {(int)PromotionStatus.Promoted}
+                             WHERE TRUNC(effective_from) = TRUNC(SYSDATE)
+                               AND ISAPPROVED = 2";
+
+                        using (var cmd2 = new OracleCommand(updateHistorySql, conn))
+                        {
+                            cmd2.Transaction = transaction;
+                            int updatedHistoryRows = cmd2.ExecuteNonQuery();
+                            Console.WriteLine($"{updatedHistoryRows} promotion history rows marked as executed (ISAPPROVED = 3).");
+                        }
+
+                        // Commit transaction
                         transaction.Commit();
+                        Console.WriteLine("Transaction committed successfully.");
                     }
                 }
             }
