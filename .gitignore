@@ -183,3 +183,11 @@
 /SilkERPDataService/bin
 /SilkERP360.UnitTest/obj/Release
 /SilkERP360.FL/bin
+/SilkERP360.SP/bin/Debug
+/SilkERP360.PromotionUpdater/obj/Debug/SilkERP360.PromotionUpdater.csproj.FileListAbsolute.txt
+/SilkERP360.PromotionUpdater/obj/Debug/SilkERP360.PromotionUpdater.exe
+/SilkERP360.PromotionUpdater/obj/Debug/SilkERP360.PromotionUpdater.pdb
+/SilkERP360.PromotionUpdater/bin/Debug/SilkERP360.PromotionUpdater.exe
+/SilkERP360.PromotionUpdater/bin/Debug/SilkERP360.PromotionUpdater.pdb
+/SilkERP360.BML/bin/Debug
+/SilkERP360/bin
