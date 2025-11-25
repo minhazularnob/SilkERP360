@@ -95,7 +95,12 @@ namespace SilkERP360.BML.HRIS
                     // Send SMS notifications to approvers
                     var employeeInfo = GetApproverInfo(promotionHistory);
 
-                    string smsText = "A promotion approval is pending for Employee ID " + promotionHistory.EmployeeId + ", Name " + promotionHistory.EmployeeName + ", for the designation " + promotionHistory.CurentDesignationName + ".";
+                    string smsText = string.Format(
+                        "A promotion approval is pending for Employee ID {0}, Name {1}, for the designation {2}.",
+                        promotionHistory.EmployeeId,
+                        promotionHistory.EmployeeName,
+                        promotionHistory.CurentDesignationName
+                    );
 
                     SmsNotifier notifier = new SmsNotifier();
                     SendSmsToApprovers(employeeInfo, smsText);
