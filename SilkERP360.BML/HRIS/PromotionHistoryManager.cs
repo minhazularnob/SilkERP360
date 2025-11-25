@@ -90,10 +90,77 @@ namespace SilkERP360.BML.HRIS
                     }
 
                     dbManager.InternalResource.CommitTransaction();
+
+                    var employeeInfo = GetApproverInfo(promotionHistory);
+
+                    string smsText = "You have a pending promotion approval for employee code " + promotionHistory.EmployeeCode;
+
+                    SmsNotifier notifier = new SmsNotifier();
+                    notifier.SendDynamicSmsToApprovers(employeeInfo, smsText);
+
+                    //SmsNotifier.SendSmsToApprovers(employeeCodes);
                     return promotionId;
                 }
             }, "BMLExceptionPolicy");
         }
+
+        private Dictionary<string, List<string>> GetApproverInfo(PromotionHistory promotionHistory)
+        {
+            // 1. Approver EmployeeCodes list
+            List<UInt64> employeeCodes = promotionHistory.approverDetails
+                                                         .Select(a => a.EmployeeCode)
+                                                         .ToList();
+
+            Dictionary<string, List<string>> employeeInfo = new Dictionary<string, List<string>>();
+
+            using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+            {
+                if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                {
+                    lcl_obj_DBManager.InternalResource.Open();
+                }
+
+                string IP_str_SqlQuery = $@"
+            SELECT e.employee_code, e.employee_name, p.mobile_no, p.home_phone_no
+            FROM employee e 
+            INNER JOIN employee_personal p ON e.employee_code = p.employee_code
+            WHERE e.employee_code IN ({string.Join(",", employeeCodes)})";
+
+                using (System.Data.OracleClient.OracleDataReader lcl_obj_dr =
+                       lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
+                {
+                    while (lcl_obj_dr.Read())
+                    {
+                        string employeeName = lcl_obj_dr["employee_name"]?.ToString();
+                        string mobile = lcl_obj_dr["mobile_no"]?.ToString();
+                        string home = lcl_obj_dr["home_phone_no"]?.ToString();
+
+                        // Create list if new employee
+                        if (!employeeInfo.ContainsKey(employeeName))
+                        {
+                            employeeInfo[employeeName] = new List<string>();
+                        }
+
+                        // Add mobile if exists
+                        if (!string.IsNullOrWhiteSpace(mobile) &&
+                            !employeeInfo[employeeName].Contains(mobile))
+                        {
+                            employeeInfo[employeeName].Add(mobile);
+                        }
+
+                        // Add home phone if exists
+                        if (!string.IsNullOrWhiteSpace(home) &&
+                            !employeeInfo[employeeName].Contains(home))
+                        {
+                            employeeInfo[employeeName].Add(home);
+                        }
+                    }
+                }
+            }
+
+            return employeeInfo;
+        }
+
 
         public ulong UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status)
         {

@@ -60,6 +60,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft Enterprise Library 5.0\Bin\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -158,6 +161,7 @@
     <Compile Include="Services\HRIS\EmployeeServices.cs" />
     <Compile Include="Services\HRIS\SalaryServices.cs" />
     <Compile Include="Services\SCPM\ScratchCardServices.cs" />
+    <Compile Include="Services\SMS\SmsNotifier.cs" />
     <Compile Include="SPM\SC\SpmScJobOrderItemManager.cs" />
     <Compile Include="SPM\SC\SpmScJobOrderManager.cs" />
     <Compile Include="SPM\SC\SpmScPurchaseOrderItemManager.cs" />
@@ -220,6 +224,7 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="HRIS\app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

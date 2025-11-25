@@ -179,3 +179,7 @@
 /SilkERP360.PromotionUpdater/bin/Debug/SilkERP360.CCL.pdb
 /SilkERP360.PromotionUpdater/bin/Debug/SilkERP360.DAL.dll
 /SilkERP360.PromotionUpdater/bin/Debug/SilkERP360.DAL.pdb
+/SilkERPSync/obj/x86
+/SilkERPDataService/bin
+/SilkERP360.UnitTest/obj/Release
+/SilkERP360.FL/bin

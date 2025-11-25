@@ -270,6 +270,7 @@
     </Compile>
     <Compile Include="Misc\SilkWebServiceCollection.cs" />
     <Compile Include="Misc\WSResponse.cs" />
+    <Compile Include="ModelClass\DynamicSmsRequest.cs" />
     <Compile Include="ModelClass\Employee.cs" />
     <Compile Include="ObjectPool\ObjectPool.cs" />
     <Compile Include="ObjectPool\PooledObject.cs" />
