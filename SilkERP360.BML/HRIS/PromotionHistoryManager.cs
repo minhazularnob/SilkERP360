@@ -1,5 +1,6 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS;
 using SilkERP360.CCL.Enums;
+using SilkERP360.CCL.ModelClass;
 using SilkERP360.CCL.Validation;
 using SilkERP360.DAL;
 using System;
@@ -91,22 +92,63 @@ namespace SilkERP360.BML.HRIS
 
                     dbManager.InternalResource.CommitTransaction();
 
+                    // Send SMS notifications to approvers
                     var employeeInfo = GetApproverInfo(promotionHistory);
 
-                    string smsText = "You have a pending promotion approval for employee code " + promotionHistory.EmployeeCode;
+                    string smsText = "A promotion approval is pending for Employee ID " + promotionHistory.EmployeeId + ", Name " + promotionHistory.EmployeeName + ", for the designation " + promotionHistory.CurentDesignationName + ".";
 
                     SmsNotifier notifier = new SmsNotifier();
-                    notifier.SendDynamicSmsToApprovers(employeeInfo, smsText);
+                    SendSmsToApprovers(employeeInfo, smsText);
 
-                    //SmsNotifier.SendSmsToApprovers(employeeCodes);
                     return promotionId;
                 }
             }, "BMLExceptionPolicy");
         }
 
+        private void SendSmsToApprovers(Dictionary<string, List<string>> employeeInfo, string messageText)
+        {
+            if (employeeInfo == null || employeeInfo.Count == 0)
+                return;
+
+            var messages = PrepareMessages(employeeInfo, messageText);
+
+            if (messages.Count == 0)
+                return;
+
+            SmsNotifier smsNotifier = new SmsNotifier();
+            smsNotifier.SendDynamicMessages(messages);
+        }
+
+        private List<DynamicMessage> PrepareMessages(Dictionary<string, List<string>> employeeInfo, string messageText)
+        {
+            var messages = new List<DynamicMessage>();
+
+            foreach (var approver in employeeInfo)
+            {
+                string employeeName = approver.Key;
+                foreach (var phone in approver.Value)
+                {
+                    if (string.IsNullOrWhiteSpace(phone))
+                        continue;
+
+                    messages.Add(FormatMessage(employeeName, phone, messageText));
+                }
+            }
+
+            return messages;
+        }
+
+        private DynamicMessage FormatMessage(string employeeName, string phoneNumber, string messageText)
+        {
+            return new DynamicMessage
+            {
+                PhoneNumber = phoneNumber,
+                Message = $"{employeeName}, {messageText}"
+            };
+        }
+
         private Dictionary<string, List<string>> GetApproverInfo(PromotionHistory promotionHistory)
         {
-            // 1. Approver EmployeeCodes list
             List<UInt64> employeeCodes = promotionHistory.approverDetails
                                                          .Select(a => a.EmployeeCode)
                                                          .ToList();
@@ -120,11 +162,10 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.InternalResource.Open();
                 }
 
-                string IP_str_SqlQuery = $@"
-            SELECT e.employee_code, e.employee_name, p.mobile_no, p.home_phone_no
-            FROM employee e 
-            INNER JOIN employee_personal p ON e.employee_code = p.employee_code
-            WHERE e.employee_code IN ({string.Join(",", employeeCodes)})";
+                string IP_str_SqlQuery = $@"SELECT e.employee_code, e.employee_name, p.mobile_no, p.home_phone_no
+                                            FROM employee e 
+                                            INNER JOIN employee_personal p ON e.employee_code = p.employee_code
+                                            WHERE e.employee_code IN ({string.Join(",", employeeCodes)})";
 
                 using (System.Data.OracleClient.OracleDataReader lcl_obj_dr =
                        lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
@@ -157,7 +198,6 @@ namespace SilkERP360.BML.HRIS
                     }
                 }
             }
-
             return employeeInfo;
         }
 

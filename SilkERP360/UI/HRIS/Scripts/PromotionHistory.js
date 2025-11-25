@@ -28,7 +28,7 @@
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         },
         "aoColumns": [
-            { "mData": "EmployeeCode", "sTitle": "EmployeeCode", "sClass": "alignCenter", bvisible: false },
+            { "mData": "EmployeeCode", "sTitle": "EmployeeCode", "sClass": "alignCenter", "bVisible": false },
             { "mData": "EmployeeId", "sTitle": "Employee ID", "sClass": "alignCenter" },
             { "mData": "EmployeeName", "sTitle": "Employee Name", "sClass": "alignCenter" },
             { "mData": "PreviousDesignationName", "sTitle": "Previous Designation", "sClass": "alignCenter" },
@@ -165,8 +165,11 @@ function SavePromotion() {
     });
 
     lcl_obj_PromotionHistory.EmployeeCode = $('#ddlEmployeePromotion option:selected').val();
+    lcl_obj_PromotionHistory.EmployeeId = $('#ddlEmployeePromotion option:selected').text().match(/\[([^\]]+)\]$/)[1];
+    lcl_obj_PromotionHistory.EmployeeName = $('#ddlEmployeePromotion option:selected').text().split('[')[0];;
     lcl_obj_PromotionHistory.PreviousDesignationCode = $("#ddlEmployeePromotion option:selected").attr("designationcode");
     lcl_obj_PromotionHistory.CurrentDesignationCode = $('#ddlNewDesignation').val();
+    lcl_obj_PromotionHistory.CurentDesignationName = $('#ddlNewDesignation option:selected').text();
     lcl_obj_PromotionHistory.EffectiveFrom = ConvertToOracleDate($('#txtEffectiveFrom').val());
     lcl_obj_PromotionHistory.Remarks = $("#txtRemarks").val();
     lcl_obj_PromotionHistory.CompanyCode = $('#ddlCompany').val();

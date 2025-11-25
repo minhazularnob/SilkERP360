@@ -7,74 +7,73 @@ using SilkERP360.CCL.ModelClass;
 
 public class SmsNotifier
 {
-    // Base URL of SMS engine (can be moved to config)
     private readonly string _rootApiUrl = "http://192.168.200.55/smsEngine/api/Sms/";
 
-    public void SendDynamicSmsToApprovers(Dictionary<string, List<string>> employeeInfo, string messageText)
+    public void SendDynamicMessages(List<DynamicMessage> messages)
     {
-        if (employeeInfo == null || employeeInfo.Count == 0)
-            return; // Nothing to send
+        if (messages == null || messages.Count == 0) return;
+        SendRequest(new { Messages = messages }, "dynamic");
+    }
 
-        var messages = new List<DynamicMessage>();
-
-        // Flatten employee info into messages
-        foreach (var approver in employeeInfo)
-        {
-            var employeeName = approver.Key;
-            foreach (var phone in approver.Value)
-            {
-                if (string.IsNullOrWhiteSpace(phone))
-                    continue;
-
-                messages.Add(new DynamicMessage
-                {
-                    PhoneNumber = phone,
-                    Message = $"{employeeName}, {messageText}" // cleaner formatting
-                });
-            }
-        }
-
-        if (messages.Count == 0)
+    public void SendSingleMessage(string phoneNumber, string message)
+    {
+        if (string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(message))
             return;
 
-        // Serialize request
-        var requestData = new DynamicSmsRequest { Messages = messages };
-        var jsonBody = JsonConvert.SerializeObject(requestData);
+        var payload = new
+        {
+            PhoneNumber = phoneNumber,
+            Message = message
+        };
 
-        // Send HTTP POST request
-        var requestUrl = _rootApiUrl + "dynamic";
+        SendRequest(payload, "single");
+    }
+
+    public void SendBulkMessages(List<string> phoneNumbers, string message)
+    {
+        if (phoneNumbers == null || phoneNumbers.Count == 0 || string.IsNullOrWhiteSpace(message))
+            return;
+
+        var payload = new
+        {
+            Recipients = phoneNumbers,
+            Message = message
+        };
+
+        SendRequest(payload, "bulk");
+    }
+
+    private void SendRequest(object payload, string endpoint)
+    {
+        string jsonBody = JsonConvert.SerializeObject(payload);
+        string requestUrl = _rootApiUrl + endpoint;
+
         var httpRequest = (HttpWebRequest)WebRequest.Create(requestUrl);
         httpRequest.Method = "POST";
         httpRequest.ContentType = "application/json";
-        httpRequest.Timeout = 15000; // 15 sec timeout
+        httpRequest.Timeout = 15000;
 
         try
         {
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                streamWriter.Write(jsonBody);
-            }
+            using (var writer = new StreamWriter(httpRequest.GetRequestStream()))
+                writer.Write(jsonBody);
 
             using (var httpResponse = (HttpWebResponse)httpRequest.GetResponse())
             using (var reader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 string responseText = reader.ReadToEnd();
-                // Optional: log or handle response if needed
+                // Optional: parse or log response
             }
         }
         catch (WebException ex)
         {
             string errorText = string.Empty;
-
             if (ex.Response != null)
             {
                 using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                {
                     errorText = reader.ReadToEnd();
-                }
             }
-
-            throw new Exception($"Dynamic SMS API Failed: {errorText}", ex);
+            throw new Exception($"SMS API Failed: {errorText}", ex);
         }
     }
 }
