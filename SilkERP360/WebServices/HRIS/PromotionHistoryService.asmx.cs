@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilkERP360.CCL.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -83,8 +84,7 @@ namespace SilkERP360.WebServices.HRIS
         {
             try
             {
-                // get session
-                var loggedInUser = HttpContext.Current.Session["USR_CNTXT"]; 
+                var loggedInUser = HttpContext.Current.Session["USR_CNTXT"];
 
                 SilkERP360.SP.HRIS.PromotionHistoryService locl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
                 System.UInt64 lcl_ui64_approver_detail_code = locl_obj_promotionHistoryService.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, ((SilkERP360.CCL.Repository.AuthenticUserContext)loggedInUser).UserProfile.EmployeeCode, status);
@@ -101,5 +101,48 @@ namespace SilkERP360.WebServices.HRIS
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
             }
         }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse UpdatePromotionStatusForApproverFromMail(UInt64 IP_ui64_PromotionHistoryCode, int status, UInt64 employeeCode)
+        {
+            try
+            {
+                var loggedInUser = HttpContext.Current.Session["USR_CNTXT"];
+
+                SilkERP360.SP.HRIS.PromotionHistoryService locl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
+                System.UInt64 lcl_ui64_approver_detail_code = locl_obj_promotionHistoryService.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, employeeCode, status);
+
+                if (lcl_ui64_approver_detail_code > 0)
+                {
+                    string actionMessage = (status == (int)PromotionStatus.Approved) ? "Promotion has been approved successfully." : "Promotion has been rejected successfully.";
+                    return new CCL.Misc.WSResponse(
+                        CCL.Enums.WebServiceExecutionStatus.Success,
+                        0,
+                        actionMessage,  // Custom message here
+                        true,
+                        lcl_ui64_approver_detail_code);
+                }
+
+                return new CCL.Misc.WSResponse(
+                    CCL.Enums.WebServiceExecutionStatus.Success,
+                    0,
+                    "No action was performed.",  // Default message
+                    false,
+                    false);
+            }
+            catch (System.Exception Ex)
+            {
+                // Error message
+                return new CCL.Misc.WSResponse(
+                    CCL.Enums.WebServiceExecutionStatus.Error,
+                    -100,
+                    Ex.Message,
+                    false,
+                    null);
+            }
+        }
+
+
+
     }
 }

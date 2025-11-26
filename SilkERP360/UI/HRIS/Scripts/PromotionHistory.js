@@ -312,7 +312,7 @@ function rejectPromotion(promotionId, employeeCode) {
 function updatePromotionStatusForApprover(promotionHistoryCode, approverCode, status) {
     // Convert status to integer (1 for approved, 0 for rejected)
     var statusCode = (status === 'approved') ? 2 : 0;
-    
+    console.log(gbl_URL_Root);
     $.ajax({
         type: "POST",
         async: true,

@@ -161,6 +161,7 @@
     <Compile Include="Services\HRIS\EmployeeServices.cs" />
     <Compile Include="Services\HRIS\SalaryServices.cs" />
     <Compile Include="Services\SCPM\ScratchCardServices.cs" />
+    <Compile Include="Services\SMS\MailNotifier.cs" />
     <Compile Include="Services\SMS\SmsNotifier.cs" />
     <Compile Include="SPM\SC\SpmScJobOrderItemManager.cs" />
     <Compile Include="SPM\SC\SpmScJobOrderManager.cs" />

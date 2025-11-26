@@ -1,4 +1,5 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using SilkERP360.CCL.BusinessEntities.HRIS.Base;
 using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.ModelClass;
 using SilkERP360.CCL.Validation;
@@ -103,12 +104,112 @@ namespace SilkERP360.BML.HRIS
                     );
 
                     SmsNotifier notifier = new SmsNotifier();
+                    var sendSms = false;
+                    var sendMail = true;
+                    if (sendSms)
                     SendSmsToApprovers(employeeInfo, smsText);
+                    if(sendMail)
+                    SendMailToApprovers(employeeInfo, promotionHistory);
 
                     return promotionId;
                 }
             }, "BMLExceptionPolicy");
         }
+
+        private void SendMailToApprovers(Dictionary<string, List<string>> employeeInfo, PromotionHistory promotionHistory)
+        {
+            var mailNotifier = new SilkERP360.Notifications.MailNotifier();
+            string baseUrl = "http://localhost:4674"; // Local development URL
+            string serviceUrl = $"{baseUrl}/WebServices/HRIS/PromotionHistoryService.asmx";
+            string emailSubject = "Promotion Approval Pending";
+
+            foreach (var approver in employeeInfo)
+            {
+                var email = GetApproverEmail(approver);
+                var employeeCode = GetEmployeeCode(approver);
+
+                if (!string.IsNullOrWhiteSpace(email))
+                {
+                    string emailBody = BuildEmailBody(promotionHistory, serviceUrl, employeeCode);
+                    mailNotifier.SendEmail(email, emailSubject, emailBody);
+                }
+            }
+        }
+
+        private string GetApproverEmail(KeyValuePair<string, List<string>> approver)
+        {
+            if (approver.Value.Count >= 3)  // Email is at index 2
+                return approver.Value[2];
+            return null;
+        }
+
+        private ulong GetEmployeeCode(KeyValuePair<string, List<string>> approver)
+        {
+            ulong employeeCode = 0;
+            if (approver.Value.Count >= 4)  // Employee code is at index 3
+            {
+                ulong.TryParse(approver.Value[3], out employeeCode);
+            }
+            return employeeCode;
+        }
+
+        private string BuildEmailBody(PromotionHistory promotionHistory, string serviceUrl, ulong employeeCode)
+        {
+            return $@"
+                    <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
+                        <div style='background-color: #f8f9fa; padding: 20px; text-align: center; border-bottom: 1px solid #e9ecef;'>
+                            <h2>Promotion Approval Request</h2>
+                        </div>
+
+                        <div style='padding: 20px;'>
+                            <p>Dear Approver,</p>
+                            <p>A promotion request requires your approval:</p>
+
+                            <table style='width: 100%; border-collapse: collapse; margin: 15px 0;'>
+                                <tr>
+                                    <td style='padding: 8px; border: 1px solid #dee2e6;'><strong>Employee:</strong></td>
+                                    <td style='padding: 8px; border: 1px solid #dee2e6;'>{promotionHistory.EmployeeName}</td>
+                                </tr>
+                                <tr>
+                                    <td style='padding: 8px; border: 1px solid #dee2e6;'><strong>New Designation:</strong></td>
+                                    <td style='padding: 8px; border: 1px solid #dee2e6;'>{promotionHistory.CurentDesignationName}</td>
+                                </tr>
+                                <tr>
+                                    <td style='padding: 8px; border: 1px solid #dee2e6;'><strong>Effective From:</strong></td>
+                                    <td style='padding: 8px; border: 1px solid #dee2e6;'>{promotionHistory.EffectiveFrom}</td>
+                                </tr>
+                            </table>
+
+                            <p>Please click one of the buttons below to take action:</p>
+
+                            <div style='text-align: center; margin: 25px 0;'>
+                                <form method='post' action='{serviceUrl}/UpdatePromotionStatusForApproverFromMail' style='display: inline; margin: 5px;'>
+                                    <input type='hidden' name='IP_ui64_PromotionHistoryCode' value={promotionHistory.PromotionID}>
+                                    <input type='hidden' name='status' value='{(int)PromotionStatus.Approved}'>
+                                    <input type='hidden' name='employeeCode' value='{employeeCode}'>
+                                    <button type='submit' style='background-color: #4CAF50; color: white; padding: 12px 25px; border: none; border-radius: 4px; cursor: pointer;'>
+                                        Approve
+                                    </button>
+                                </form>
+
+                                <form method='post' action='{serviceUrl}/UpdatePromotionStatusForApproverFromMail' style='display: inline; margin: 5px;'>
+                                    <input type='hidden' name='IP_ui64_PromotionHistoryCode' value={promotionHistory.PromotionID}>
+                                    <input type='hidden' name='status' value='{(int)PromotionStatus.Rejected}'>
+                                    <input type='hidden' name='employeeCode' value='{employeeCode}'>
+                                    <button type='submit' style='background-color: #f44336; color: white; padding: 12px 25px; border: none; border-radius: 4px; cursor: pointer;'>
+                                        Reject
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div style='background-color: #f8f9fa; padding: 10px; text-align: center; font-size: 12px; color: #6c757d; border-top: 1px solid #e9ecef;'>
+                            <p>This is an automated message. Please do not reply to this email.</p>
+                        </div>
+                    </div>";
+        }
+
+
 
         private void SendSmsToApprovers(Dictionary<string, List<string>> employeeInfo, string messageText)
         {
@@ -167,8 +268,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.InternalResource.Open();
                 }
 
-                string IP_str_SqlQuery = $@"SELECT e.employee_code, e.employee_name, p.mobile_no, p.home_phone_no
-                                            FROM employee e 
+                string IP_str_SqlQuery = $@"SELECT e.employee_code, e.employee_name, p.mobile_no, p.home_phone_no, p.email FROM employee e 
                                             INNER JOIN employee_personal p ON e.employee_code = p.employee_code
                                             WHERE e.employee_code IN ({string.Join(",", employeeCodes)})";
 
@@ -180,6 +280,8 @@ namespace SilkERP360.BML.HRIS
                         string employeeName = lcl_obj_dr["employee_name"]?.ToString();
                         string mobile = lcl_obj_dr["mobile_no"]?.ToString();
                         string home = lcl_obj_dr["home_phone_no"]?.ToString();
+                        string email = lcl_obj_dr["email"]?.ToString();
+                        UInt64 employeeCode = Convert.ToUInt64(lcl_obj_dr["employee_code"]);
 
                         // Create list if new employee
                         if (!employeeInfo.ContainsKey(employeeName))
@@ -200,6 +302,14 @@ namespace SilkERP360.BML.HRIS
                         {
                             employeeInfo[employeeName].Add(home);
                         }
+                        // Add email if exists
+                        if (!string.IsNullOrWhiteSpace(email) &&
+                            !employeeInfo[employeeName].Contains(email))
+                        {
+                            employeeInfo[employeeName].Add(email);
+                        }
+                        // Add employeeCode if exists
+                        employeeInfo[employeeName].Add(Convert.ToString(employeeCode));
                     }
                 }
             }
