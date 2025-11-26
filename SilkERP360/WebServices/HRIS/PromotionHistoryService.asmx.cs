@@ -107,42 +107,21 @@ namespace SilkERP360.WebServices.HRIS
         {
             try
             {
-                var loggedInUser = HttpContext.Current.Session["USR_CNTXT"];
-
                 SilkERP360.SP.HRIS.PromotionHistoryService locl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
                 System.UInt64 lcl_ui64_approver_detail_code = locl_obj_promotionHistoryService.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, employeeCode, status);
 
                 if (lcl_ui64_approver_detail_code > 0)
                 {
-                    string actionMessage = (status == (int)PromotionStatus.Approved) ? "Promotion has been approved successfully." : "Promotion has been rejected successfully.";
-                    return new CCL.Misc.WSResponse(
-                        CCL.Enums.WebServiceExecutionStatus.Success,
-                        0,
-                        actionMessage,  // Custom message here
-                        true,
-                        lcl_ui64_approver_detail_code);
+                    
+                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success,0,"Successful",true,lcl_ui64_approver_detail_code);
                 }
 
-                return new CCL.Misc.WSResponse(
-                    CCL.Enums.WebServiceExecutionStatus.Success,
-                    0,
-                    "No action was performed.",  // Default message
-                    false,
-                    false);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success,0,"No action was performed.",false,false);
             }
             catch (System.Exception Ex)
             {
-                // Error message
-                return new CCL.Misc.WSResponse(
-                    CCL.Enums.WebServiceExecutionStatus.Error,
-                    -100,
-                    Ex.Message,
-                    false,
-                    null);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error,-100,Ex.Message,false,null);
             }
         }
-
-
-
     }
 }

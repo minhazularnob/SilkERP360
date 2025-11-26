@@ -156,59 +156,228 @@ namespace SilkERP360.BML.HRIS
         private string BuildEmailBody(PromotionHistory promotionHistory, string serviceUrl, ulong employeeCode)
         {
             return $@"
-                    <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
-                        <div style='background-color: #f8f9fa; padding: 20px; text-align: center; border-bottom: 1px solid #e9ecef;'>
-                            <h2>Promotion Approval Request</h2>
-                        </div>
+    <!DOCTYPE html>
+    <html lang=""en"">
+    <head>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <title>Promotion Approval Request</title>
+        <style>
+            body {{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 700px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f9f9f9;
+            }}
+            .header {{
+                background-color: #2c3e50;
+                color: white;
+                padding: 20px;
+                text-align: center;
+                border-radius: 5px 5px 0 0;
+            }}
+            .content {{
+                background-color: white;
+                padding: 25px;
+                border-left: 1px solid #e0e0e0;
+                border-right: 1px solid #e0e0e0;
+            }}
+            .footer {{
+                background-color: #f1f1f1;
+                padding: 15px;
+                text-align: center;
+                font-size: 12px;
+                color: #666;
+                border-radius: 0 0 5px 5px;
+                border: 1px solid #e0e0e0;
+                border-top: none;
+            }}
+            .promotion-details {{
+                margin: 20px 0;
+                border-collapse: collapse;
+                width: 100%;
+            }}
+            .promotion-details th, 
+            .promotion-details td {{
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid #e0e0e0;
+            }}
+            .promotion-details th {{
+                background-color: #f5f5f5;
+                width: 35%;
+            }}
+            .action-buttons {{
+                margin: 30px 0;
+                text-align: center;
+            }}
+            .btn {{
+                display: inline-block;
+                padding: 12px 25px;
+                margin: 0 10px;
+                text-decoration: none;
+                border-radius: 4px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }}
+            .btn-approve {{
+                background-color: #28a745;
+                color: white;
+                border: 1px solid #28a745;
+            }}
+            .btn-reject {{
+                background-color: #dc3545;
+                color: white;
+                border: 1px solid #dc3545;
+            }}
+            .btn:hover {{
+                opacity: 0.9;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }}
+            .note {{
+                font-size: 12px;
+                color: #666;
+                margin-top: 10px;
+                font-style: italic;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class=""header"">
+            <h2>Promotion Approval Request</h2>
+        </div>
+        
+        <div class=""content"">
+            <p>Dear Approver,</p>
+            
+            <p>A promotion request has been submitted and requires your approval. Below are the details:</p>
+            
+            <table class=""promotion-details"">
+                <tr>
+                    <th>Employee Name</th>
+                    <td>{promotionHistory.EmployeeName}</td>
+                </tr>
+                <tr>
+                    <th>Employee ID</th>
+                    <td>{promotionHistory.EmployeeId}</td>
+                </tr>
+                <tr>
+                    <th>Current Designation</th>
+                    <td>{promotionHistory.PreviousDesignationName}</td>
+                </tr>
+                <tr>
+                    <th>New Designation</th>
+                    <td>{promotionHistory.CurentDesignationName}</td>
+                </tr>
+                <tr>
+                    <th>Effective From</th>
+                    <td>{promotionHistory.EffectiveFrom}</td>
+                </tr>
+                <tr>
+                    <th>Remarks</th>
+                    <td>{promotionHistory.Remarks ?? "N/A"}</td>
+                </tr>
+            </table>
 
-                        <div style='padding: 20px;'>
-                            <p>Dear Approver,</p>
-                            <p>A promotion request requires your approval:</p>
+            <div class=""action-buttons"">
+                <p>Please click the appropriate button below to take action:</p>
+                
+                <a href=""#"" class=""btn btn-approve"" 
+                   onclick=""updatePromotionStatus(2, this); return false;"">
+                    Approve Promotion
+                </a>
+                
+                <a href=""#"" class=""btn btn-reject"" 
+                   onclick=""updatePromotionStatus(0, this); return false;"">
+                    Reject Promotion
+                </a>
+                
+                <p class=""note"">Note: This link is valid until {promotionHistory.EffectiveFrom}. After taking action, this window will close automatically.</p>
+            </div>
+            
+            <p>If you have any questions, please contact HR department.</p>
+            
+            <p>Best regards,<br>HR Department</p>
+        </div>
+        
+        <div class=""footer"">
+            <p>This is an automated message. Please do not reply to this email.</p>
+            <p>&copy; {DateTime.Now.Year} Silkways Card and Printings Ltd. All rights reserved.</p>
+        </div>
 
-                            <table style='width: 100%; border-collapse: collapse; margin: 15px 0;'>
-                                <tr>
-                                    <td style='padding: 8px; border: 1px solid #dee2e6;'><strong>Employee:</strong></td>
-                                    <td style='padding: 8px; border: 1px solid #dee2e6;'>{promotionHistory.EmployeeName}</td>
-                                </tr>
-                                <tr>
-                                    <td style='padding: 8px; border: 1px solid #dee2e6;'><strong>New Designation:</strong></td>
-                                    <td style='padding: 8px; border: 1px solid #dee2e6;'>{promotionHistory.CurentDesignationName}</td>
-                                </tr>
-                                <tr>
-                                    <td style='padding: 8px; border: 1px solid #dee2e6;'><strong>Effective From:</strong></td>
-                                    <td style='padding: 8px; border: 1px solid #dee2e6;'>{promotionHistory.EffectiveFrom}</td>
-                                </tr>
-                            </table>
-
-                            <p>Please click one of the buttons below to take action:</p>
-
-                            <div style='text-align: center; margin: 25px 0;'>
-                                <form method='post' action='{serviceUrl}/UpdatePromotionStatusForApproverFromMail' style='display: inline; margin: 5px;'>
-                                    <input type='hidden' name='IP_ui64_PromotionHistoryCode' value={promotionHistory.PromotionID}>
-                                    <input type='hidden' name='status' value='{(int)PromotionStatus.Approved}'>
-                                    <input type='hidden' name='employeeCode' value='{employeeCode}'>
-                                    <button type='submit' style='background-color: #4CAF50; color: white; padding: 12px 25px; border: none; border-radius: 4px; cursor: pointer;'>
-                                        Approve
-                                    </button>
-                                </form>
-
-                                <form method='post' action='{serviceUrl}/UpdatePromotionStatusForApproverFromMail' style='display: inline; margin: 5px;'>
-                                    <input type='hidden' name='IP_ui64_PromotionHistoryCode' value={promotionHistory.PromotionID}>
-                                    <input type='hidden' name='status' value='{(int)PromotionStatus.Rejected}'>
-                                    <input type='hidden' name='employeeCode' value='{employeeCode}'>
-                                    <button type='submit' style='background-color: #f44336; color: white; padding: 12px 25px; border: none; border-radius: 4px; cursor: pointer;'>
-                                        Reject
-                                    </button>
-                                </form>
+        <script src=""https://code.jquery.com/jquery-3.6.0.min.js""></script>
+        <script>
+            function updatePromotionStatus(status, element) {{
+                // Disable buttons to prevent multiple clicks
+                $('.btn').prop('disabled', true).css('opacity', '0.6');
+                
+                // Show loading state
+                $(element).html('<span>Processing...</span>');
+                
+                // Prepare the request
+                $.ajax({{
+                    type: 'POST',
+                    url: '{serviceUrl}/UpdatePromotionStatusForApproverFromMail',
+                    data: JSON.stringify({{
+                        IP_ui64_PromotionHistoryCode: {promotionHistory.PromotionID},
+                        status: status,
+                        employeeCode: {employeeCode}
+                    }}),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(response) {{
+                        // Handle success
+                        var message = status === 2 ? 
+                            'The promotion has been approved successfully.' : 
+                            'The promotion has been rejected.';
+                            
+                        $('.content').html(`
+                            <div style='text-align: center; padding: 40px 20px;'>
+                                <h3 style='color: #28a745;'>Action Completed</h3>
+                                <p>${{message}}</p>
+                                <p>This window will close automatically in 5 seconds.</p>
                             </div>
-                        </div>
-
-                        <div style='background-color: #f8f9fa; padding: 10px; text-align: center; font-size: 12px; color: #6c757d; border-top: 1px solid #e9ecef;'>
-                            <p>This is an automated message. Please do not reply to this email.</p>
-                        </div>
-                    </div>";
+                        `);
+                        
+                        setTimeout(function() {{
+                            window.close();
+                        }}, 5000);
+                    }},
+                    error: function(xhr, status, error) {{
+                        // Handle error
+                        var errorMessage = 'An error occurred while processing your request.';
+                        if (xhr.responseJSON && xhr.responseJSON.Message) {{
+                            errorMessage = xhr.responseJSON.Message;
+                        }}
+                        
+                        $('.content').html(`
+                            <div style='text-align: center; padding: 40px 20px;'>
+                                <h3 style='color: #dc3545;'>Error</h3>
+                                <p>${{errorMessage}}</p>
+                                <button onclick='window.location.reload()' 
+                                        style='padding: 10px 20px; 
+                                               background: #007bff; 
+                                               color: white; 
+                                               border: none; 
+                                               border-radius: 4px; 
+                                               cursor: pointer; 
+                                               margin-top: 20px;'>
+                                    Try Again
+                                </button>
+                            </div>
+                        `);
+                    }}
+                }});
+            }}
+        </script>
+    </body>
+    </html>";
         }
-
 
 
         private void SendSmsToApprovers(Dictionary<string, List<string>> employeeInfo, string messageText)

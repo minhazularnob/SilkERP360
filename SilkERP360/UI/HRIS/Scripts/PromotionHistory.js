@@ -168,6 +168,7 @@ function SavePromotion() {
     lcl_obj_PromotionHistory.EmployeeId = $('#ddlEmployeePromotion option:selected').text().match(/\[([^\]]+)\]$/)[1];
     lcl_obj_PromotionHistory.EmployeeName = $('#ddlEmployeePromotion option:selected').text().split('[')[0];;
     lcl_obj_PromotionHistory.PreviousDesignationCode = $("#ddlEmployeePromotion option:selected").attr("designationcode");
+    lcl_obj_PromotionHistory.PreviousDesignationName = ($('#ddlEmployeePromotion option:selected').text().match(/\[(.*?)\]/) || [])[1];
     lcl_obj_PromotionHistory.CurrentDesignationCode = $('#ddlNewDesignation').val();
     lcl_obj_PromotionHistory.CurentDesignationName = $('#ddlNewDesignation option:selected').text();
     lcl_obj_PromotionHistory.EffectiveFrom = ConvertToOracleDate($('#txtEffectiveFrom').val());
