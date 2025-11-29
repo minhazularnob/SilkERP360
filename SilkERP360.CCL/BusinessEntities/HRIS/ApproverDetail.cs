@@ -49,7 +49,6 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             get { return m_status; }
             set { m_status = value; }
         }
-
         public string EmployeeId { get; set; }
         public string EmployeeName { get; set; }
     }

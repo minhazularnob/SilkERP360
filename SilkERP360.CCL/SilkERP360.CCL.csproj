@@ -157,7 +157,6 @@
     <Compile Include="BusinessEntities\HRIS\SalaryAdvancedLoan.cs" />
     <Compile Include="BusinessEntities\HRIS\SalaryMaster.cs" />
     <Compile Include="BusinessEntities\HRIS\Shift.cs" />
-    <Compile Include="BusinessEntities\HRIS\Tokens.cs" />
     <Compile Include="BusinessEntities\HRIS\Weekend.cs" />
     <Compile Include="BusinessEntities\HRIS\WorkGroupEntities.cs" />
     <Compile Include="BusinessEntities\SCPM\Base\ScpmSMQCBase.cs" />

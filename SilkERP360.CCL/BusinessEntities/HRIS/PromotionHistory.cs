@@ -95,8 +95,6 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         public string PreviousDesignationName { get; set; }
         public string CurentDesignationName { get; set; }
         public int UserSpecifcApprovalStatus { get; set; }
-
-
     }
 }
 
