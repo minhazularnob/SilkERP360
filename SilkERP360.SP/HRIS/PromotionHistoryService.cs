@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
 namespace SilkERP360.SP.HRIS
@@ -23,12 +24,12 @@ namespace SilkERP360.SP.HRIS
             return lcl_ui64_promotionHistoryCode;
         }
 
-        public System.UInt64 UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status)
+        public System.UInt64 UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status, string token =null)
         {
             System.UInt64 lcl_ui64_approver_detail_code = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.BML.HRIS.PromotionHistoryManager lcl_obj_PromotionHistoryManager = new BML.HRIS.PromotionHistoryManager();
-                System.UInt64 lcl_ui64_approverdetail_code_temp = lcl_obj_PromotionHistoryManager.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, IP_ui64_ApproverCode, status);
+                System.UInt64 lcl_ui64_approverdetail_code_temp = lcl_obj_PromotionHistoryManager.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, IP_ui64_ApproverCode, status, token);
                 return lcl_ui64_approverdetail_code_temp;
             }, "SPExceptionPolicy");
             return lcl_ui64_approver_detail_code;
@@ -69,7 +70,17 @@ namespace SilkERP360.SP.HRIS
             }, "SPExceptionPolicy");
             return lcl_obj_approver_list;
         }
+        public int GetTokenStatus(string token)
+        {
+            int isValid = 0;
+            return isValid = this.ExceptionManager.Process<int>(() =>
+            {
+                string lcl_str_SqlQuery = $"SELECT IS_VALID FROM TOKENS WHERE TOKEN_ID = '{token}'";
+                SilkERP360.BML.HRIS.PromotionHistoryManager lcl_obj_PromotionHistoryManager = new SilkERP360.BML.HRIS.PromotionHistoryManager();
+                int isValidTemp = lcl_obj_PromotionHistoryManager.GetTokenStatus(lcl_str_SqlQuery);
+                return isValidTemp;
 
-
+            }, "SPExceptionPolicy");
+        }
     }
 }

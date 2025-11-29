@@ -103,24 +103,33 @@ namespace SilkERP360.WebServices.HRIS
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public SilkERP360.CCL.Misc.WSResponse UpdatePromotionStatusForApproverFromMail(UInt64 IP_ui64_PromotionHistoryCode, int status, UInt64 employeeCode)
+        public SilkERP360.CCL.Misc.WSResponse UpdatePromotionStatusForApproverFromMail(UInt64 IP_ui64_PromotionHistoryCode, int status, UInt64 employeeCode,string token)
         {
             try
             {
-                SilkERP360.SP.HRIS.PromotionHistoryService locl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
-                System.UInt64 lcl_ui64_approver_detail_code = locl_obj_promotionHistoryService.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, employeeCode, status);
-
-                if (lcl_ui64_approver_detail_code > 0)
-                {
+                SilkERP360.SP.HRIS.PromotionHistoryService lcl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
+                System.UInt64 lcl_ui64_approver_detail_code = lcl_obj_promotionHistoryService.UpdatePromotionStatusForApprover(IP_ui64_PromotionHistoryCode, employeeCode, status, token);
                     
-                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success,0,"Successful",true,lcl_ui64_approver_detail_code);
-                }
-
-                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success,0,"No action was performed.",false,false);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success,0,"Successful",true,lcl_ui64_approver_detail_code);
             }
             catch (System.Exception Ex)
             {
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error,-100,Ex.Message,false,null);
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetTokenStatus(string token)
+        {
+            try
+            {
+                SilkERP360.SP.HRIS.PromotionHistoryService locl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
+                int status = locl_obj_promotionHistoryService.GetTokenStatus(token);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, status, "", true, status);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
             }
         }
     }

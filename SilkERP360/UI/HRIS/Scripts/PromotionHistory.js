@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $("#txtEffectiveFrom").datepicker({
-        dateFormat: 'dd/MM/yy', showButtonPanel: true, minDate: 0, maxDate: "+365D",
+        dateFormat: 'dd/MM/yy', showButtonPanel: true, minDate: 1, maxDate: "+365D",
         onSelect: function (dateStr) {
             var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
           

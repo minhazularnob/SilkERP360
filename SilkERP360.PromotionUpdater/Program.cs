@@ -45,17 +45,23 @@ namespace SilkERP360.PromotionUpdater
                         }
 
                         // STEP 2: Update promotion_history → ISAPPROVED = Promoted for today's executed promotions
-                        string updateHistorySql = $@"
-                            UPDATE promotion_history
-                               SET ISAPPROVED = {(int)PromotionStatus.Promoted}
-                             WHERE TRUNC(effective_from) = TRUNC(SYSDATE)
-                               AND ISAPPROVED = 2";
+                        string updateHistorySql = $@"UPDATE promotion_history SET ISAPPROVED = {(int)PromotionStatus.Promoted} WHERE TRUNC(effective_from) = TRUNC(SYSDATE) AND ISAPPROVED = 2";
 
                         using (var cmd2 = new OracleCommand(updateHistorySql, conn))
                         {
                             cmd2.Transaction = transaction;
                             int updatedHistoryRows = cmd2.ExecuteNonQuery();
                             Console.WriteLine($"{updatedHistoryRows} promotion history rows marked as executed (ISAPPROVED = 3).");
+                        }
+
+                        // STEP 2: Update promotion_history → ISAPPROVED = Promoted for today's executed promotions
+                        string updateTokenSql = $@"UPDATE tokens SET is_valid = 0 WHERE expiry_at < SYSDATE AND IS_valid = 1";
+
+                        using (var cmd3 = new OracleCommand(updateTokenSql, conn))
+                        {
+                            cmd3.Transaction = transaction;
+                            int updatedTokenIsValidRows = cmd3.ExecuteNonQuery();
+                            Console.WriteLine($"{updatedTokenIsValidRows} token rows marked as executed (ISVALID = 0).");
                         }
 
                         // Commit transaction
