@@ -46,15 +46,15 @@ namespace SilkERP360.WebServices.HRIS
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public SilkERP360.CCL.Misc.WSResponse GetAllPromotionHistory(System.UInt64 IP_ui64_companyCode)
+        public SilkERP360.CCL.Misc.WSResponse GetAllPromotionHistory(System.UInt64 IP_ui64_companyCode, string from, string to)
         {
             try
             {
                 var loggedInUser = HttpContext.Current.Session["USR_CNTXT"];
 
-                SilkERP360.SP.HRIS.PromotionHistoryService lcl_obj_DesignationFacade = new SilkERP360.SP.HRIS.PromotionHistoryService();
+                SilkERP360.SP.HRIS.PromotionHistoryService lcl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> lcl_objLst_Designation =
-                    lcl_obj_DesignationFacade.GetAllPromotionHistory(IP_ui64_companyCode, ((SilkERP360.CCL.Repository.AuthenticUserContext)loggedInUser).UserProfile.EmployeeCode);
+                    lcl_obj_promotionHistoryService.GetAllPromotionHistory(IP_ui64_companyCode, ((SilkERP360.CCL.Repository.AuthenticUserContext)loggedInUser).UserProfile.EmployeeCode, from, to);
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_Designation);
             }
             catch (System.Exception Ex)

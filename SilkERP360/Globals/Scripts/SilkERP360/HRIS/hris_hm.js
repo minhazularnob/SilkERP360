@@ -322,6 +322,18 @@ function FormatDateUniversal(jsonDate) {
 
     return `${day}/${month}/${year}`;
 }
+function getFirstDay() {
+    var d = new Date();
+    return "01/" + (("0" + (d.getMonth() + 1)).slice(-2)) + "/" + d.getFullYear();
+}
+
+var dateFormat = "dd/mm/yy"; // or whatever format you want
+
+function getLastDay() {
+    var d = new Date();
+    var last = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+    return (("0" + last.getDate()).slice(-2)) + "/" + (("0" + (last.getMonth() + 1)).slice(-2)) + "/" + last.getFullYear();
+}
 
 function clearModalFields(modalId) {
     const modal = document.getElementById(modalId);

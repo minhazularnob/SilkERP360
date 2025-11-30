@@ -7,6 +7,38 @@
         }
     });
 
+    $("#promotionHistory_txtStartDate").datepicker({
+        dateFormat: dateFormat,
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        defaultDate: getFirstDay(),
+        onSelect: function (d) {
+            const min = $.datepicker.parseDate(dateFormat, d);
+            $("#promotionHistory_txtEndDate").datepicker("option", "minDate", min);
+            LoaddAllPromotionHistory();
+        }
+    });
+
+    // End Date Picker
+    $("#promotionHistory_txtEndDate").datepicker({
+        dateFormat: dateFormat,
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        defaultDate: getLastDay(),
+        onSelect: function (d) {
+            const max = $.datepicker.parseDate(dateFormat, d);
+            $("#promotionHistory_txtStartDate").datepicker("option", "maxDate", max);
+            LoaddAllPromotionHistory();
+        }
+
+    });
+
+    $("#promotionHistory_txtStartDate").val(getFirstDay());
+    $("#promotionHistory_txtEndDate").val(getLastDay());
+
+
     LoaddAllPromotionHistory();
     
     initializeSelect2('ddlEmployeePromotion', '------ Select Employee ------', '25%');
@@ -28,6 +60,7 @@
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         },
         "aoColumns": [
+            { "mData": "SL", "sTitle": "Sl.", "sClass": "alignCenter", "bVisible": true },
             { "mData": "EmployeeCode", "sTitle": "EmployeeCode", "sClass": "alignCenter", "bVisible": false },
             { "mData": "EmployeeId", "sTitle": "Employee ID", "sClass": "alignCenter" },
             { "mData": "EmployeeName", "sTitle": "Employee Name", "sClass": "alignCenter" },
@@ -102,13 +135,21 @@
 });
 
 function LoaddAllPromotionHistory() {
+    debugger;
+    from = $('#promotionHistory_txtStartDate').val();
+    to = $('#promotionHistory_txtEndDate').val();
+
     var lcl_str_CompanyCode = $('#ddlCompany option:selected').val();
     $.ajax({
         async: true,
         type: "POST",
         contentType: "application/json; charset=utf-8",
         url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/GetAllPromotionHistory",
-        data: "{IP_ui64_companyCode: " + JSON.stringify(lcl_str_CompanyCode) + "}",
+        data: JSON.stringify({
+            IP_ui64_companyCode: lcl_str_CompanyCode,
+            from: from,
+            to: to
+        }),
         dataType: "json",
         success: function (response) {
             var WSReturn = response.d;
@@ -126,6 +167,7 @@ function LoaddAllPromotionHistory() {
             var mappedData = [];
             $.each(lcl_obj_DesignationList, function (index, item) {
                 mappedData.push({
+                    "SL": index + 1, // ← Serial Number
                     "EmployeeId": item.EmployeeId,
                     "EmployeeName": item.EmployeeName,
                     "PreviousDesignationName": item.PreviousDesignationName,
@@ -235,7 +277,7 @@ $("#ddlEmployeePromotion").change(function () {
 
 function clearFields() {
     // Clear all input fields
-    $('#dvWorkGroupMaster').find('input[type="text"], textarea').val('');
+    $('#dvWorkGroupMaster').find('input[type="text"]:not(#dvReportBody input[type="text"]), textarea:not(#dvReportBody textarea)').val('');
     $('#dvWorkGroupMaster').find('input[type="number"]').val('');
     
     // Clear dropdowns

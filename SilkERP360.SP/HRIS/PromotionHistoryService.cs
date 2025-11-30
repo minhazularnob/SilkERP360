@@ -35,7 +35,7 @@ namespace SilkERP360.SP.HRIS
             return lcl_ui64_approver_detail_code;
         }
 
-        public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> GetAllPromotionHistory(System.UInt64 IP_ui64_companyCode, UInt64 IP_ui64_user_employee_code)
+        public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> GetAllPromotionHistory(System.UInt64 IP_ui64_companyCode, UInt64 IP_ui64_user_employee_code, string from, string to)
         {
             System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> lcl_obj_Designation = null;
             lcl_obj_Designation = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory>>(() =>
@@ -47,7 +47,7 @@ namespace SilkERP360.SP.HRIS
                                                                         inner join designation pd on h.previous_designation_code = pd.designation_code
                                                                         inner join designation nd on h.current_designation_code = nd.designation_code
                                                                         left join promotion_approvers p on h.promotion_id = p.history_id and p.employee_code={1}
-                                                                        where h.company_code = {0} order by h.created_date desc", IP_ui64_companyCode, IP_ui64_user_employee_code);
+                                                                        where h.company_code = {0} and h.effective_from between TO_DATE('{2}', 'DD/MM/YYYY') and TO_DATE('{3}', 'DD/MM/YYYY') order by h.created_date asc", IP_ui64_companyCode, IP_ui64_user_employee_code, from, to);
                 SilkERP360.BML.HRIS.PromotionHistoryManager lcl_obj_DesignationManager = new SilkERP360.BML.HRIS.PromotionHistoryManager();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> lcl_obj_DesignationTmp =
                     lcl_obj_DesignationManager.GetAllPromotionHistory(lcl_str_SqlQuery);
