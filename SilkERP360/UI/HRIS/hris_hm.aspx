@@ -93,11 +93,11 @@
     <%--<script src="../../Globals/LoginForm/modernizr.custom.63321.js" type="text/javascript"></script>--%>
     <script src="../../Globals/Scripts/SilkERP360/globals.js" type="text/javascript"></script>
     
-    <%--<script src="../../Globals/Scripts/plug-ins/auto-logout/CheckBrowserClose.js" type="text/javascript"></script>
+    <%--<script src="../../Globals/Scripts/plug-ins/auto-logout/CheckBrowserClose.js" type="text/javascript"></script>--%>
     <script src="../../Globals/Scripts/plug-ins/auto-logout/jquery.idle-timer.js" type="text/javascript"></script>
     <script src="../../Globals/Scripts/plug-ins/auto-logout/timeout-dialog.js" type="text/javascript"></script>
     <link href="../../Globals/Scripts/plug-ins/auto-logout/timeout-dialog.css" rel="stylesheet" type="text/css" />
-    <script src="../../Globals/Scripts/plug-ins/auto-logout/auto-logout.js" type="text/javascript"></script>--%>
+    <script src="../../Globals/Scripts/plug-ins/auto-logout/auto-logout.js" type="text/javascript"></script>
 
 
 
