@@ -49,7 +49,7 @@ namespace SilkERP360.WebServices.HRIS
             {
                 SilkERP360.SP.HRIS.IncrementServices lcl_obj_IncrementService = new SP.HRIS.IncrementServices();
                 SilkERP360.CCL.BusinessEntities.HRIS.Increment lcl_obj_Increment = lcl_obj_IncrementService.SaveIncrement(IP_obj_Increment);
-                return new SilkERP360.CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Succedded", true, null);
+                return new SilkERP360.CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Succedded", true, lcl_obj_Increment);
             }
             catch (System.Exception Ex)
             {

@@ -88,6 +88,14 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             set { m_isApproved = value; }
         }
 
+        [SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("INCREMENT_CODE", typeof(System.UInt64), false, true)]
+        protected UInt64? m_incrementCode;
+        public UInt64? IncrementCode
+        {
+            get { return m_incrementCode; }
+            set { m_incrementCode = value; }
+        }
+
         public List<ApproverDetail> approverDetails = new List<ApproverDetail>();
 
         public string EmployeeId { get; set; }
@@ -95,6 +103,8 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         public string PreviousDesignationName { get; set; }
         public string CurentDesignationName { get; set; }
         public int UserSpecifcApprovalStatus { get; set; }
+
+        public Increment IP_obj_Increment { get; set; } = null;
     }
 }
 

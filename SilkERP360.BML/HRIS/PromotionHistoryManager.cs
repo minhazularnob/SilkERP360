@@ -27,16 +27,108 @@ namespace SilkERP360.BML.HRIS
             this.Initialize();
         }
 
+        //public ulong Save(CCL.BusinessEntities.HRIS.PromotionHistory promotionHistory)
+        //{
+        //    var sendSms = false;
+        //    var sendMail = true;
+
+        //    if (!DateTime.TryParse(promotionHistory.EffectiveFrom, out DateTime effectiveDate))
+        //        throw new ArgumentException("Invalid EffectiveFrom date.");
+
+        //    if(promotionHistory.CurrentDesignationCode == promotionHistory.PreviousDesignationCode)
+        //        throw new ArgumentException("Current Designation  and New Designation cannot be same.");
+
+        //    return this.ExceptionManager.Process<ulong>(() =>
+        //    {
+        //        using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+        //        {
+        //            if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+        //                dbManager.InternalResource.Open();
+
+        //            // Check for duplicate promotion for the same employee on the same date
+        //            string checkSql = $"SELECT COUNT(*) AS CNT FROM PROMOTION_HISTORY " +
+        //                              $"WHERE EMPLOYEE_CODE = {promotionHistory.EmployeeCode} " +
+        //                              $"AND TRUNC(EFFECTIVE_FROM) = TO_DATE('{effectiveDate:yyyy-MM-dd}', 'YYYY-MM-DD')";
+
+        //            var reader = dbManager.InternalResource.ExecuteDataReader(checkSql);
+        //            reader.Read();
+        //            int count = int.Parse(reader["CNT"].ToString());
+        //            reader.Close();
+
+
+        //            if (count > 0)
+        //                throw new Exception("A record already exists for the same employee and date.");
+
+        //            // Get next sequence value
+        //            string seqSql = $"SELECT {promotionHistory.GetSequence()}.NEXTVAL AS ID FROM DUAL";
+        //            var seqReader = dbManager.InternalResource.ExecuteDataReader(seqSql);
+        //            seqReader.Read();
+        //            ulong promotionId = ulong.Parse(seqReader["ID"].ToString());
+        //            seqReader.Close();
+
+        //            promotionHistory.PromotionID = promotionId;
+
+        //            // Insert promotion history
+        //            string insertSql = promotionHistory.GenerateSqlInsert();
+        //            dbManager.InternalResource.ExecuteScalar(insertSql);
+
+        //            // Save approver details
+        //            if (promotionHistory.approverDetails != null && promotionHistory.approverDetails.Count > 0)
+        //            {
+        //                foreach (var approver in promotionHistory.approverDetails)
+        //                {
+        //                    // Get next sequence value for approver
+        //                    string seqSqlApprover = $"SELECT {approver.GetSequence()}.NEXTVAL AS ID FROM DUAL";
+        //                    var seqReaderApprover = dbManager.InternalResource.ExecuteDataReader(seqSqlApprover);
+        //                    seqReaderApprover.Read();
+        //                    ulong approverID = ulong.Parse(seqReaderApprover["ID"].ToString());
+        //                    seqReaderApprover.Close();
+
+        //                    // Set approver properties
+        //                    approver.Id = approverID;
+        //                    approver.HistoryId = promotionId;
+        //                    approver.Status = (int)PromotionStatus.Pending;
+
+        //                    // Generate and execute insert SQL
+        //                    string approverSql = approver.GenerateSqlInsert();
+        //                    dbManager.InternalResource.ExecuteScalar(approverSql);
+        //                }
+        //            }
+
+        //            dbManager.InternalResource.CommitTransaction();
+
+        //            // Send SMS notifications to approvers
+        //            var employeeInfo = GetApproverInfo(promotionHistory);
+
+        //            string smsText = string.Format(
+        //                "A promotion approval is pending for Employee ID {0}, Name {1}, for the designation {2}.",
+        //                promotionHistory.EmployeeId,
+        //                promotionHistory.EmployeeName,
+        //                promotionHistory.CurentDesignationName
+        //            );
+
+        //            SmsNotifier notifier = new SmsNotifier();
+
+        //            if (sendSms)
+        //            SendSmsToApprovers(employeeInfo, smsText);
+        //            if(sendMail)
+        //            SendMailToApprovers(employeeInfo, promotionHistory);
+
+        //            return promotionId;
+        //        }
+        //    }, "BMLExceptionPolicy");
+        //}
+
         public ulong Save(CCL.BusinessEntities.HRIS.PromotionHistory promotionHistory)
         {
             var sendSms = false;
-            var sendMail = true;
+            var sendMail = false;
 
             if (!DateTime.TryParse(promotionHistory.EffectiveFrom, out DateTime effectiveDate))
                 throw new ArgumentException("Invalid EffectiveFrom date.");
 
-            if(promotionHistory.CurrentDesignationCode == promotionHistory.PreviousDesignationCode)
-                throw new ArgumentException("Current Designation  and New Designation cannot be same.");
+            if (promotionHistory.CurrentDesignationCode == promotionHistory.PreviousDesignationCode)
+                throw new ArgumentException("Current Designation and New Designation cannot be same.");
 
             return this.ExceptionManager.Process<ulong>(() =>
             {
@@ -45,21 +137,19 @@ namespace SilkERP360.BML.HRIS
                     if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
                         dbManager.InternalResource.Open();
 
-                    // Check for duplicate promotion for the same employee on the same date
+                    // Check duplicate promotion
                     string checkSql = $"SELECT COUNT(*) AS CNT FROM PROMOTION_HISTORY " +
                                       $"WHERE EMPLOYEE_CODE = {promotionHistory.EmployeeCode} " +
                                       $"AND TRUNC(EFFECTIVE_FROM) = TO_DATE('{effectiveDate:yyyy-MM-dd}', 'YYYY-MM-DD')";
-
                     var reader = dbManager.InternalResource.ExecuteDataReader(checkSql);
                     reader.Read();
                     int count = int.Parse(reader["CNT"].ToString());
                     reader.Close();
 
-
                     if (count > 0)
                         throw new Exception("A record already exists for the same employee and date.");
 
-                    // Get next sequence value
+                    // Get next promotion sequence
                     string seqSql = $"SELECT {promotionHistory.GetSequence()}.NEXTVAL AS ID FROM DUAL";
                     var seqReader = dbManager.InternalResource.ExecuteDataReader(seqSql);
                     seqReader.Read();
@@ -68,7 +158,26 @@ namespace SilkERP360.BML.HRIS
 
                     promotionHistory.PromotionID = promotionId;
 
-                    // Insert promotion history
+                    // --- Save Increment if exists ---
+                    if (promotionHistory.IP_obj_Increment != null)
+                    {
+                        var incrementManager = new SilkERP360.BML.HRIS.IncrementManager();
+                        ulong incrementCode = incrementManager.Save(promotionHistory.IP_obj_Increment, dbManager.InternalResource);
+
+                        // Set increment code in promotionHistory
+                        promotionHistory.IP_obj_Increment.IncrementCode = incrementCode;
+
+                        // If Promotion table has a column for IncrementCode
+                        // Make sure GenerateSqlInsert includes it, or manually add it:
+                        promotionHistory.GenerateSqlInsert(); // Ensure IncrementCode is included
+                    }
+
+                    if (promotionHistory.IP_obj_Increment == null)
+                    {
+                        promotionHistory.IncrementCode = null;
+                    }
+
+                        // Insert promotion history
                     string insertSql = promotionHistory.GenerateSqlInsert();
                     dbManager.InternalResource.ExecuteScalar(insertSql);
 
@@ -77,19 +186,16 @@ namespace SilkERP360.BML.HRIS
                     {
                         foreach (var approver in promotionHistory.approverDetails)
                         {
-                            // Get next sequence value for approver
                             string seqSqlApprover = $"SELECT {approver.GetSequence()}.NEXTVAL AS ID FROM DUAL";
                             var seqReaderApprover = dbManager.InternalResource.ExecuteDataReader(seqSqlApprover);
                             seqReaderApprover.Read();
                             ulong approverID = ulong.Parse(seqReaderApprover["ID"].ToString());
                             seqReaderApprover.Close();
 
-                            // Set approver properties
                             approver.Id = approverID;
                             approver.HistoryId = promotionId;
                             approver.Status = (int)PromotionStatus.Pending;
 
-                            // Generate and execute insert SQL
                             string approverSql = approver.GenerateSqlInsert();
                             dbManager.InternalResource.ExecuteScalar(approverSql);
                         }
@@ -97,27 +203,18 @@ namespace SilkERP360.BML.HRIS
 
                     dbManager.InternalResource.CommitTransaction();
 
-                    // Send SMS notifications to approvers
+                    // Send notifications
                     var employeeInfo = GetApproverInfo(promotionHistory);
-
-                    string smsText = string.Format(
-                        "A promotion approval is pending for Employee ID {0}, Name {1}, for the designation {2}.",
-                        promotionHistory.EmployeeId,
-                        promotionHistory.EmployeeName,
-                        promotionHistory.CurentDesignationName
-                    );
-
+                    string smsText = $"A promotion approval is pending for Employee ID {promotionHistory.EmployeeId}, Name {promotionHistory.EmployeeName}, for the designation {promotionHistory.CurentDesignationName}.";
                     SmsNotifier notifier = new SmsNotifier();
-                   
-                    if (sendSms)
-                    SendSmsToApprovers(employeeInfo, smsText);
-                    if(sendMail)
-                    SendMailToApprovers(employeeInfo, promotionHistory);
+                    if (sendSms) SendSmsToApprovers(employeeInfo, smsText);
+                    if (sendMail) SendMailToApprovers(employeeInfo, promotionHistory);
 
                     return promotionId;
                 }
             }, "BMLExceptionPolicy");
         }
+
 
         private void SendMailToApprovers(Dictionary<string, List<string>> employeeInfo, PromotionHistory promotionHistory)
         {
@@ -161,9 +258,6 @@ namespace SilkERP360.BML.HRIS
 
             return token;
         }
-
-
-
 
         private string GetApproverEmail(KeyValuePair<string, List<string>> approver)
         {

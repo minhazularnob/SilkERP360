@@ -11,7 +11,7 @@ namespace SilkERP360.UI.HRIS
 {
 
 
-    public partial class PromotionHistory
+    public partial class IncrementAndPromotionList
     {
 
         /// <summary>
@@ -76,87 +76,6 @@ namespace SilkERP360.UI.HRIS
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList promotion_approvers;
-
-        /// <summary>
-        /// ddlEffectiveMonth control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEffectiveMonth;
-
-        /// <summary>
-        /// ddlEffectiveYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEffectiveYear;
-
-        /// <summary>
-        /// txtIncGross control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIncGross;
-
-        /// <summary>
-        /// txtCurrGross control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCurrGross;
-
-        /// <summary>
-        /// txtIncBasic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIncBasic;
-
-        /// <summary>
-        /// txtIncHR control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIncHR;
-
-        /// <summary>
-        /// txtIncConv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIncConv;
-
-        /// <summary>
-        /// txtIncMed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIncMed;
-
-        /// <summary>
-        /// txtIncEnt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIncEnt;
 
         /// <summary>
         /// Button1 control.

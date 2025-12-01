@@ -10062,6 +10062,7 @@
     <Content Include="UI\HRIS\HRISReportViewer.aspx" />
     <Content Include="UI\HRIS\hris_hm.aspx" />
     <Content Include="UI\HRIS\HRReport.ascx" />
+    <Content Include="UI\HRIS\IncrementAndPromotionList.ascx" />
     <Content Include="UI\HRIS\PromotionHistory.ascx" />
     <Content Include="UI\HRIS\IncrementIOHistory.ascx" />
     <Content Include="UI\HRIS\IncrementSummery.ascx" />
@@ -10100,6 +10101,7 @@
     <Content Include="UI\HRIS\Scripts\EmployeeListContextMenu.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeMovement.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeWorkGroupSchedule.js" />
+    <Content Include="UI\HRIS\Scripts\IncrementAndPromotionList.js" />
     <Content Include="UI\HRIS\Scripts\PromotionHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementIOHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementSummery.js" />
@@ -10551,6 +10553,13 @@
     </Compile>
     <Compile Include="UI\HRIS\HRReport.ascx.designer.cs">
       <DependentUpon>HRReport.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HRIS\IncrementAndPromotionList.ascx.cs">
+      <DependentUpon>IncrementAndPromotionList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HRIS\IncrementAndPromotionList.ascx.designer.cs">
+      <DependentUpon>IncrementAndPromotionList.ascx</DependentUpon>
     </Compile>
     <Compile Include="UI\HRIS\PromotionHistory.ascx.cs">
       <DependentUpon>PromotionHistory.ascx</DependentUpon>

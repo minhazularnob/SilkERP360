@@ -84,7 +84,7 @@
                                 <div class="col-md-3">
                                     <asp:TextBox ID="txtRemarks" runat="server"
                                         CssClass="form-control"
-                                        TextMode="MultiLine" Rows="2" ClientIDMode="Static"></asp:TextBox>
+                                        TextMode="MultiLine" Rows="2" ClientIDMode="Static" Width="92%"></asp:TextBox>
                                 </div>
 
                                 <div class="col-md-2 text-md-end">
@@ -106,9 +106,143 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+
+
+
+                            <div class="row g-2 align-items-center mt-2">
+                                <div class="col-md-3 text-md-end">
+                                    <label for="showIncrementSectionChkBox" class="form-label">With Increment:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" id="showIncrementSectionChkBox" style="margin-top: -2%" />
+                                </div>
+                            </div>
+
+                            <div id="incrementDiv" style="display: none">
+                                <div class="row g-2 align-items-center mt-2">
+                                    <!-- Effective Month -->
+                                    <div class="col-md-3 text-md-end">
+                                        <label for="ddlEffectiveMonth" class="form-label">Effective Month:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:DropDownList ID="ddlEffectiveMonth" runat="server" Width="86%"
+                                            CssClass="form-select" ClientIDMode="Static">
+                                            <asp:ListItem Value="0">------ Select Month ------</asp:ListItem>
+                                            <asp:ListItem Value="1">January</asp:ListItem>
+                                            <asp:ListItem Value="2">February</asp:ListItem>
+                                            <asp:ListItem Value="3">March</asp:ListItem>
+                                            <asp:ListItem Value="4">April</asp:ListItem>
+                                            <asp:ListItem Value="5">May</asp:ListItem>
+                                            <asp:ListItem Value="6">June</asp:ListItem>
+                                            <asp:ListItem Value="7">July</asp:ListItem>
+                                            <asp:ListItem Value="8">August</asp:ListItem>
+                                            <asp:ListItem Value="9">September</asp:ListItem>
+                                            <asp:ListItem Value="10">October</asp:ListItem>
+                                            <asp:ListItem Value="11">November</asp:ListItem>
+                                            <asp:ListItem Value="12">December</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <!-- Effective Year -->
+                                    <div class="col-md-2 text-md-end">
+                                        <label for="ddlEffectiveYear" class="form-label">Effective Year:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:DropDownList ID="ddlEffectiveYear" runat="server"
+                                            CssClass="form-select" ClientIDMode="Static" Width="63%">
+                                            <asp:ListItem Value="0">------ Select Year ------</asp:ListItem>
+                                            <asp:ListItem Value="2016">2016</asp:ListItem>
+                                            <asp:ListItem Value="2017">2017</asp:ListItem>
+                                            <asp:ListItem Value="2018">2018</asp:ListItem>
+                                            <asp:ListItem Value="2019">2019</asp:ListItem>
+                                            <asp:ListItem Value="2020">2020</asp:ListItem>
+                                            <asp:ListItem Value="2021">2021</asp:ListItem>
+                                            <asp:ListItem Value="2022">2022</asp:ListItem>
+                                            <asp:ListItem Value="2023">2023</asp:ListItem>
+                                            <asp:ListItem Value="2024">2024</asp:ListItem>
+                                            <asp:ListItem Value="2025">2025</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+
+
+                                <div class="row g-2 align-items-center mt-2">
+                                    <!-- Increment Gross & Current Gross -->
+                                    <div class="col-md-3 text-md-end">
+                                        <label for="txtIncGross" class="form-label">Increment Gross:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="txtIncGross" TextMode="Number" runat="server"
+                                            CssClass="form-control text-center INC_IP"
+                                            ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-2 text-md-end">
+                                        <label for="txtCurrGross" class="form-label">Current Gross:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:TextBox ID="txtCurrGross" runat="server"
+                                            CssClass="form-control text-center INC_IP"
+                                            ReadOnly="false" ClientIDMode="Static" Width="71%"></asp:TextBox>
+                                    </div>
+                                </div>
+
+
+                                <div class="row g-2 align-items-center mt-2">
+                                    <!-- Inc. Basic & House Rent -->
+                                    <div class="col-md-3 text-md-end">
+                                        <label for="txtIncBasic" class="form-label">Inc. Basic:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="txtIncBasic" runat="server"
+                                            CssClass="form-control text-end INC_IP"
+                                            ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-2 text-md-end">
+                                        <label for="txtIncHR" class="form-label">Inc. House Rent:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:TextBox ID="txtIncHR" runat="server"
+                                            CssClass="form-control text-end INC_IP"
+                                            ReadOnly="true" ClientIDMode="Static" Width="71%"></asp:TextBox>
+                                    </div>
+                                </div>
+
+
+                                <div class="row g-2 align-items-center mt-2">
+                                    <!-- Inc. Conveyance & Medical -->
+                                    <div class="col-md-3 text-md-end">
+                                        <label for="txtIncConv" class="form-label">Inc. Conveyance:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="txtIncConv" runat="server"
+                                            CssClass="form-control text-end INC_IP"
+                                            ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-2 text-md-end">
+                                        <label for="txtIncMed" class="form-label">Inc. Medical:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:TextBox ID="txtIncMed" runat="server"
+                                            CssClass="form-control text-end INC_IP"
+                                            ReadOnly="true" ClientIDMode="Static" Width="71%"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="row g-2 align-items-center mt-2">
+                                    <!-- Inc. Entertainment -->
+                                    <div class="col-md-3 text-md-end">
+                                        <label for="txtIncEnt" class="form-label">Inc. Entertainment:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:TextBox ID="txtIncEnt" runat="server"
+                                            CssClass="form-control text-end INC_IP"
+                                            Text="0" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="d-flex justify-content-center mt-3 gap-2">
                                 <!-- Save Button -->
-                                <button type="button" class="btn btn-success flex-fill" style="max-width: 150px;" onclick="SavePromotion(event);">Save</button>
+                                <button type="button" class="btn btn-success flex-fill" id="saveBtnId" style="max-width: 150px;" onclick="SavePromotion(event);">Save</button>
 
                                 <!-- Clear Button (ASP.NET) -->
                                 <asp:Button ID="Button1"
@@ -121,9 +255,12 @@
                             </div>
                         </div>
                         <div id="dvReportBody" class="table-responsive">
-                            <asp:TextBox ID="promotionHistory_txtStartDate" runat="server" style="text-align:center;" CssClass="WG_IP" Width="10%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>To
-                            <asp:TextBox ID="promotionHistory_txtEndDate" runat="server" style="text-align:center;" CssClass="WG_IP" Width="10%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                            <asp:TextBox ID="promotionHistory_txtStartDate" runat="server" Style="text-align: center;" CssClass="WG_IP" Width="10%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>To
+                            <asp:TextBox ID="promotionHistory_txtEndDate" runat="server" Style="text-align: center;" CssClass="WG_IP" Width="10%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                             <table id="tblPromotionHistory" class="table custom-table fontSerif w-100"></table>
+                            <div id="tblIncrementHistoryDiv" style="display: none">
+                                <table id="tblIncrementHistory" class="table custom-table fontSerif w-100"></table>
+                            </div>
                         </div>
                     </div>
                 </div>

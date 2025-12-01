@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    $('#showIncrementSectionChkBox').prop('checked', false);
     $("#txtEffectiveFrom").datepicker({
         dateFormat: 'dd/MM/yy', showButtonPanel: true, minDate: 1, maxDate: "+365D",
         onSelect: function (dateStr) {
@@ -133,27 +132,10 @@
             }
         ]
     });
-
-    GBL_INCREMENT_HISTORY = $('#tblIncrementHistory').dataTable({
-        "bJQueryUI": false,
-        "bFilter": true,
-        "bPaginate": true,
-        "bLengthChange": false,
-        "bSearch": true,
-        "aoColumns": [
-            { sTitle: '<b>Prv. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
-            { sTitle: '<b>Inc. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
-            { sTitle: '<b>Inc. Basic</b>', sWidth: '10%', sClass: 'alignCenter' },
-            { sTitle: '<b>Inc. H.Rent</b>', sWidth: '10%', sClass: 'alignCenter' },
-            { sTitle: '<b>Inc. Conv.</b>', sWidth: '10%', sClass: 'alignCenter' },
-            { sTitle: '<b>Inc. Med.</b>', sWidth: '10%', sClass: 'alignCenter' },
-            { sTitle: '<b>Eff. Month</b>', sWidth: '10%', sClass: 'alignCenter' },
-            { sTitle: '<b>Eff. Year</b>', sWidth: '10%', sClass: 'alignCenter' },
-        ]
-    });
 });
 
 function LoaddAllPromotionHistory() {
+    debugger;
     from = $('#promotionHistory_txtStartDate').val();
     to = $('#promotionHistory_txtEndDate').val();
 
@@ -209,24 +191,20 @@ function LoaddAllPromotionHistory() {
     });
 }
 
+
+
+
 function SavePromotion() {
-    debugger;
     var lcl_obj_PromotionHistory = new Object();
     lcl_obj_PromotionHistory.approverDetails = [];
     
     var approvers = $('#promotion_approvers').val();
 
-    if ($('#ddlEmployeePromotion').val() == '') {
-        DisplayError("please select employee");
-        return;
-    }
-
-    if (approvers == null) {
-        DisplayError("Please select at least one approver.");
-        return;
-    }
-
-    
+    $.each(approvers, function (index, approver) {
+        lcl_obj_approverDetail = new Object();
+        lcl_obj_approverDetail.EmployeeCode = approver;
+        lcl_obj_PromotionHistory.approverDetails.push(lcl_obj_approverDetail);
+    });
 
     lcl_obj_PromotionHistory.EmployeeCode = $('#ddlEmployeePromotion option:selected').val();
     lcl_obj_PromotionHistory.EmployeeId = $('#ddlEmployeePromotion option:selected').text().match(/\[([^\]]+)\]$/)[1];
@@ -263,64 +241,13 @@ function SavePromotion() {
         return false;
     }
 
-    $.each(approvers, function (index, approver) {
-        lcl_obj_approverDetail = new Object();
-        lcl_obj_approverDetail.EmployeeCode = approver;
-        lcl_obj_PromotionHistory.approverDetails.push(lcl_obj_approverDetail);
-    });
-
-    if ($('#showIncrementSectionChkBox').is(':checked')) {
-        var lcl_ui32_Gross = $("#txtIncGross").val();
-        if ((lcl_ui32_Gross == 0) || (lcl_ui32_Gross == '')) {
-            DisplayError("No Increment Given To Selected Employees!Cannot Save!");
-            return;
-        }
-
-
-        var lcl_i32_EffectiveMonth = $('#ddlEffectiveMonth option:selected').index();
-        var lcl_i32_EffectiveYear = $('#ddlEffectiveYear option:selected').index();
-
-        if ((lcl_i32_EffectiveMonth == 0) || (lcl_i32_EffectiveYear == 0)) {
-            DisplayError("Please Select Increment Effective Month/Effective Year!!!Operation Terminated!");
-            return;
-        }
-
-        var lcl_i32_PreviousGross = $('#txtCurrGross').val();
-        if ((lcl_i32_PreviousGross == '0') || (lcl_i32_PreviousGross == '')) {
-            DisplayError("No previous gross Entry for the Selected Employee!");
-            return;
-        }
-
-
-
-        var lcl_obj_Increment = new Object();
-
-        lcl_obj_Increment.EmployeeCode = $('#ddlEmployeePromotion option:selected').val();
-        lcl_obj_Increment.IncGross = $('#txtIncGross').val();
-        lcl_obj_Increment.IncBasic = $('#txtIncBasic').val();
-        lcl_obj_Increment.IncHouseRent = $('#txtIncHR').val();
-        lcl_obj_Increment.IncConveyence = $('#txtIncConv').val();
-        lcl_obj_Increment.IncMedical = $('#txtIncMed').val();
-        lcl_obj_Increment.IncEntertainment = $('#txtIncEnt').val();
-        lcl_obj_Increment.PreviousGross = $('#txtCurrGross').val();
-        lcl_obj_Increment.EntryEmployeeCode = $('#txtSignedInEmployeeCode').val();
-        lcl_obj_Increment.EffectiveMonth = $('#ddlEffectiveMonth option:selected').val();
-        lcl_obj_Increment.EffectiveYear = $('#ddlEffectiveYear option:selected').val();
-
-        lcl_obj_PromotionHistory.IP_obj_Increment = lcl_obj_Increment;
-
-    }
-
     if (confirm("Are you sure you want to submit this application?") == true) {
-
         $.ajax({
             type: "POST",
-            async: false,
+            async: true,
             contentType: "application/json; charset=utf-8",
             url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/SavePromotionHistory",
-            data: JSON.stringify({
-                IP_Obj_PromotionHistory: lcl_obj_PromotionHistory,
-            }),
+            data: "{IP_Obj_PromotionHistory:" + JSON.stringify(lcl_obj_PromotionHistory) + "}",
             dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
@@ -343,17 +270,9 @@ function SavePromotion() {
 
 $("#ddlEmployeePromotion").change(function () {
     var selectedText = $(this).find("option:selected").text();
-    if (selectedText == '') {
-        return false;
-    }
-
     var match = selectedText.match(/\[([^\]]+)\]/);
     var designation = match ? match[1].trim() : '';
     $("#txtCurrentDesignation").val(designation);
-    if ($('#showIncrementSectionChkBox').is(':checked')) {
-        $('#tblIncrementHistoryDiv').show();
-        DisplayIncrementHistory();
-    }
 });
 
 function clearFields() {
@@ -374,20 +293,6 @@ function clearFields() {
         minDate: 0, 
         maxDate: "+365D"
     });
-
-    $('#showIncrementSectionChkBox').prop('checked', false);
-
-    $('#incrementDiv').hide();
-
-
-    $('#ddlEffectiveMonth').val(0).trigger('change');
-    $('#ddlEffectiveYear').val(0).trigger('change');
-
-    // Hide Increment table wrapper div
-    $('#tblIncrementHistoryDiv').hide();
-
-
-
     
     return false; // Prevent form submission
 }
@@ -477,117 +382,4 @@ function updatePromotionStatusForApprover(promotionHistoryCode, approverCode, st
             }
         });
     return false;
-}
-
-$('#showIncrementSectionChkBox').on('change', function () {
-    if ($(this).is(':checked')) {
-        $('#incrementDiv').show();
-        $('#tblIncrementHistoryDiv').show();
-        if ($('#ddlEmployeePromotion').val()) {
-            DisplayIncrementHistory();
-        }
-    }
-    else {
-        $('#incrementDiv').hide();
-        $('#tblIncrementHistoryDiv').hide();
-    }
-});
-
-$("#txtIncGross").blur(function () {
-    CalculateSalary();
-});
-
-function CalculateSalary() {
-    var lcl_ui32_Gross = $("#txtIncGross").val();
-    var lcl_ui32_Basic = (lcl_ui32_Gross * 60) / 100;
-    var lcl_ui32_HouseRent = (lcl_ui32_Gross * 30) / 100;
-    var lcl_ui32_Conveyence = (lcl_ui32_Gross * 5) / 100;
-    var lcl_ui32_Medical = (lcl_ui32_Gross * 5) / 100;
-
-    $("#txtIncBasic").val(lcl_ui32_Basic);
-    $("#txtIncHR").val(lcl_ui32_HouseRent);
-    $("#txtIncConv").val(lcl_ui32_Conveyence);
-    $("#txtIncMed").val(lcl_ui32_Medical);
-}
-
-function DisplayIncrementHistory() {
-    var lcl_ui64_EmployeeCode = $('#ddlEmployeePromotion').val();
-
-    /*********************************************************************************************************************/
-    //Get Current Salary
-    var options_sal = {};
-    options_sal.url = gbl_URL_Root + "WebServices/HRIS/SalaryService.asmx/GetSalaryStructureByEmployee";
-    options_sal.type = "POST";
-    options_sal.global = true,
-        options_sal.data = "{IP_ui64_EmployeeCode: " + lcl_ui64_EmployeeCode + "}", //provide input for the getSM_PO method
-        options_sal.contentType = "application/json; charset=utf-8",
-        options_sal.processData = false;
-    options_sal.success = function (result) {
-        var lcl_obj_WSResponseSal = result.d;
-        if (lcl_obj_WSResponseSal.ResponseCode < 0) {
-            DisplayError(lcl_obj_WSResponseSal.Message);
-            return;
-        }
-        var lcl_obj_SalaryStructure = lcl_obj_WSResponseSal.Data;
-        $("#txtCurrGross").val(lcl_obj_SalaryStructure.Gross);
-    };
-    options_sal.error = function (err) { ShowErrorMessageBoard(err.statusText); };
-    $.ajax(options_sal);
-    /*********************************************************************************************************************/
-
-    var options = {};
-    options.url = gbl_URL_Root + "WebServices/HRIS/IncrementService.asmx/GetIncrementHistoryByEmployee";
-    options.type = "POST";
-    options.global = true,
-        options.data = "{IP_ui64_EmployeeCode: " + lcl_ui64_EmployeeCode + "}", //provide input for the getSM_PO method
-        options.contentType = "application/json; charset=utf-8",
-        options.processData = false;
-    options.success = function (result) {
-        var lcl_obj_WSResponse = result.d;
-
-        if (lcl_obj_WSResponse.ResponseCode < 0) {
-            //Incorrect EmployeeCode provided.No employee id found for provided employee code
-            $('#dvReportBody').hide('slow');
-            DisplayError(lcl_obj_WSResponse.Message);
-            return;
-        }
-
-        if (lcl_obj_WSResponse.ResponseCode == 0) {
-            //ALL OK
-            //ShowMessageBoard(lcl_obj_WSResponse.Message);
-            var lcl_obj_EmployeeIncrementList = lcl_obj_WSResponse.Data;
-
-            if (lcl_obj_EmployeeIncrementList == null) {
-                var lcl_obj_EmployeeIncrementList = null;
-                return;
-            }
-
-            GBL_INCREMENT_HISTORY.fnClearTable();
-
-            var lcl_objLst_TblIncrementHistory = new Array();
-
-
-            $.each(lcl_obj_EmployeeIncrementList, function (index, lcl_obj_Increment) {
-
-
-                lcl_objLst_TblIncrementHistory[index] = new Object();
-
-                //lcl_objLst_EmployeeAttendanceSummery[index][0] = AttendanceSummery.EmployeeCode;
-                lcl_objLst_TblIncrementHistory[index][0] = lcl_obj_Increment.PreviousGross;
-                lcl_objLst_TblIncrementHistory[index][1] = lcl_obj_Increment.IncGross;
-                lcl_objLst_TblIncrementHistory[index][2] = lcl_obj_Increment.IncBasic;
-                lcl_objLst_TblIncrementHistory[index][3] = lcl_obj_Increment.IncHouseRent;
-                lcl_objLst_TblIncrementHistory[index][4] = lcl_obj_Increment.IncConveyence;
-                lcl_objLst_TblIncrementHistory[index][5] = lcl_obj_Increment.IncMedical;
-                lcl_objLst_TblIncrementHistory[index][6] = lcl_obj_Increment.EffectiveMonth;
-                lcl_objLst_TblIncrementHistory[index][7] = lcl_obj_Increment.EffectiveYear;
-
-            });
-            GBL_INCREMENT_HISTORY.fnAddData(lcl_objLst_TblIncrementHistory);
-            $('#dvReportBody').show('slow');
-
-        }
-    };
-    options.error = function (err) { ShowErrorMessageBoard(err.statusText); };
-    $.ajax(options);
 }
