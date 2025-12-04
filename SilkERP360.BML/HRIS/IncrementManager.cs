@@ -1,4 +1,6 @@
-﻿using SilkERP360.CCL.Enums;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using SilkERP360.CCL.Enums;
+using SilkERP360.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +10,14 @@ namespace SilkERP360.BML.HRIS
 {
     public class IncrementManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
-        public IncrementManager()
-       {
+        CommonManager _commonManager = new CommonManager();
+
+        public IncrementManager( CommonManager commonManager = null)
+        {
            this.Initialize();
-       }
+        }
 
-
-        public ulong Save(CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment_Request, object IP_obj_DBManager)
+        public ulong Save(CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment_Request , object IP_obj_DBManager, List<ApproverDetail> IP_obj_ApproverDetails = null)
         {
             System.UInt64 lcl_ui64_IncrementCode = 0;
             System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", IP_obj_Increment_Request.GetSequence());
@@ -28,12 +31,25 @@ namespace SilkERP360.BML.HRIS
 
                 IP_obj_Increment_Request.IncrementCode = lcl_ui64_ID;
                 IP_obj_Increment_Request.IsApproved = (int)PromotionStatus.Pending;
+
+                // Save approver details
+                if (IP_obj_ApproverDetails != null && IP_obj_ApproverDetails.Count > 0)
+                {
+                    foreach (var approver in IP_obj_ApproverDetails)
+                    {
+                        _commonManager.SaveApprover(approver, lcl_ui64_ID, lcl_obj_DBManager);
+                    }
+                }
+
                 System.String lcl_str_SqlInsert = IP_obj_Increment_Request.GenerateSqlInsert();
                 lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlInsert);
                 return lcl_ui64_ID;
             }, "BMLExceptionPolicy");
             return lcl_ui64_IncrementCode;
         }
+
+     
+
 
         public ulong Save(CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment)
         {
@@ -257,6 +273,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_TmpIncrement.EntryEmployeeCode = System.UInt64.Parse(lcl_obj_dr["ENTRY_EMPLOYEE_CODE"].ToString());
                     lcl_obj_TmpIncrement.EffectiveMonth = (SilkERP360.CCL.Enums.Month)System.UInt32.Parse(lcl_obj_dr["EFFECTIVE_MONTH"].ToString());
                     lcl_obj_TmpIncrement.EffectiveYear = System.UInt32.Parse(lcl_obj_dr["EFFECTIVE_YEAR"].ToString());
+                    lcl_obj_TmpIncrement.IsApproved = System.Int16.Parse(lcl_obj_dr["IS_APPROVED"].ToString());
                     lcl_objlist_TmpIncrementList.Add(lcl_obj_TmpIncrement);
                 }
                 lcl_obj_dr.Close();

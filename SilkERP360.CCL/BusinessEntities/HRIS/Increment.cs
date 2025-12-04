@@ -130,6 +130,6 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             get { return m_ui32_EffectiveYear; }
             set { m_ui32_EffectiveYear = value; }
         }
-        
-    }
+
+        public Int16 IsApproved { get; set; }        }
 }

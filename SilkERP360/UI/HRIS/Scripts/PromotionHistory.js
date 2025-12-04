@@ -43,7 +43,7 @@
     initializeSelect2('ddlNewDesignation', '------ Select Designation ------', '25%');
     initializeSelect2('promotion_approvers', '------ Select Approvers ------', '25%');
 
-    bindAllAprovers();
+    bindAllAprovers("promotion_approvers");
 
     GBL_PROMOTION_HISTORY_LIST_TABLE = $('#tblPromotionHistory').dataTable({
         "bJQueryUI": false,
@@ -91,12 +91,8 @@
                         return `<span class="text-warning">Pending</span>`;
                     }
                     else if (data == 2) {
-                        return `<span class="text-primary">Approved</span>`;
+                        return `<span class="text-success">Approved</span>`;
                     }
-                    else if (data == 3) {
-                        return `<span class="text-success">Promoted</span>`;
-                    }
-
                     return "";
                 }
             },
@@ -209,7 +205,6 @@ function LoaddAllPromotionHistory() {
 }
 
 function SavePromotion() {
-    debugger;
     var lcl_obj_PromotionHistory = new Object();
     lcl_obj_PromotionHistory.approverDetails = [];
     
@@ -224,8 +219,7 @@ function SavePromotion() {
         DisplayError("Please select at least one approver.");
         return;
     }
-
-    
+       
 
     lcl_obj_PromotionHistory.EmployeeCode = $('#ddlEmployeePromotion option:selected').val();
     lcl_obj_PromotionHistory.EmployeeId = $('#ddlEmployeePromotion option:selected').text().match(/\[([^\]]+)\]$/)[1];
@@ -369,49 +363,6 @@ function clearFields() {
     $('#tblIncrementHistoryDiv').hide();
     
     return false; // Prevent form submission
-}
-
-function getAllApprovers() {
-    var lcl_str_CompanyCode = $('#promotion_approvers option:selected').val();
-    var result = null;
-    $.ajax(
-        {
-            async: false,
-            type: "POST",
-            global: true,
-            contentType: "application/json; charset=utf-8",
-            url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/GetAllApprovers",
-            dataType: "json",
-            success: function (response) {
-                var WSReturn = response.d;
-                if (WSReturn.ResponseCode < 0) {
-                    DisplayError(WSReturn.Message);
-                    return;
-                }
-                result = WSReturn.Data;
-            }
-        });
-    return result;
-}
-
-function bindAllAprovers() {
-    var approvers = getAllApprovers();
-    var $approverSelect = $('#promotion_approvers');
-
-    // Clear existing options
-    $approverSelect.empty();
-
-    // Populate new options
-    $.each(approvers, function (index, approver) {
-        var option = $('<option></option>')
-            .attr('value', approver.EmployeeCode)  // Fixed closing parenthesis
-            .text(approver.EmployeeId + ' [' + approver.EmployeeName + ']');
-
-        $approverSelect.append(option);
-    });
-
-    // Refresh Select2 (if applied)
-    $approverSelect.trigger('change');
 }
 
 function approvePromotion(promotionId, employeeCode) {

@@ -59,23 +59,23 @@
                                 </div>
 
                                 <!-- Effective Year -->
-                                <div class="col-md-3 text-md-end">
+                                <div class="col-md-2 text-md-end">
                                     <label for="ddlEffectiveYear" class="form-label">Effective Year:</label>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:DropDownList ID="ddlEffectiveYear" runat="server"
                                         CssClass="form-select" ClientIDMode="Static">
                                         <asp:ListItem Value="0">------ Select Year ------</asp:ListItem>
-                                        <asp:ListItem Value="2016">2016</asp:ListItem>
-                                        <asp:ListItem Value="2017">2017</asp:ListItem>
-                                        <asp:ListItem Value="2018">2018</asp:ListItem>
-                                        <asp:ListItem Value="2019">2019</asp:ListItem>
-                                        <asp:ListItem Value="2020">2020</asp:ListItem>
-                                        <asp:ListItem Value="2021">2021</asp:ListItem>
-                                        <asp:ListItem Value="2022">2022</asp:ListItem>
-                                        <asp:ListItem Value="2023">2023</asp:ListItem>
-                                        <asp:ListItem Value="2024">2024</asp:ListItem>
                                         <asp:ListItem Value="2025">2025</asp:ListItem>
+                                        <asp:ListItem Value="2026">2026</asp:ListItem>
+                                        <asp:ListItem Value="2027">2027</asp:ListItem>
+                                        <asp:ListItem Value="2028">2028</asp:ListItem>
+                                        <asp:ListItem Value="2029">2029</asp:ListItem>
+                                        <asp:ListItem Value="2030">2030</asp:ListItem>
+                                        <asp:ListItem Value="2031">2031</asp:ListItem>
+                                        <asp:ListItem Value="2032">2032</asp:ListItem>
+                                        <asp:ListItem Value="2033">2033</asp:ListItem>
+                                        <asp:ListItem Value="2034">2034</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
 
@@ -86,9 +86,9 @@
                                 <div class="col-md-3">
                                     <asp:TextBox ID="txtIncGross" runat="server" 
                                         CssClass="form-control text-center INC_IP" 
-                                        ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
+                                        ReadOnly="false" ClientIDMode="Static" TextMode="Number"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3 text-md-end">
+                                <div class="col-md-2 text-md-end">
                                     <label for="txtCurrGross" class="form-label">Current Gross:</label>
                                 </div>
                                 <div class="col-md-3">
@@ -106,7 +106,7 @@
                                         CssClass="form-control text-end INC_IP" 
                                         ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3 text-md-end">
+                                <div class="col-md-2 text-md-end">
                                     <label for="txtIncHR" class="form-label">Inc. House Rent:</label>
                                 </div>
                                 <div class="col-md-3">
@@ -124,7 +124,7 @@
                                         CssClass="form-control text-end INC_IP" 
                                         ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3 text-md-end">
+                                <div class="col-md-2 text-md-end">
                                     <label for="txtIncMed" class="form-label">Inc. Medical:</label>
                                 </div>
                                 <div class="col-md-3">
@@ -142,6 +142,15 @@
                                         CssClass="form-control text-end INC_IP" 
                                         Text="0" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
                                 </div>
+                                <div class="col-md-2 text-md-end">
+                                    <label for="increment_approvers" class="form-label">Approvers:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:DropDownList ID="increment_approvers" runat="server"
+                                        CssClass="js-example-basic-multiple" ClientIDMode="Static" multiple="multiple">
+                                        <asp:ListItem Value=""></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                             </div>
 
                             <!-- Save Button -->
@@ -151,6 +160,8 @@
                                     Save
                                 </a>
                             </div>
+
+                                
                         </div>
 
                         <!-- Report Body -->

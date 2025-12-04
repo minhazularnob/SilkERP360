@@ -86,6 +86,7 @@
     <Compile Include="HRIS\BankAccountManager.cs" />
     <Compile Include="HRIS\BonusManager.cs" />
     <Compile Include="HRIS\BonusMasterManager.cs" />
+    <Compile Include="HRIS\CommonManager.cs" />
     <Compile Include="HRIS\PromotionHistoryManager.cs" />
     <Compile Include="HRIS\CompanyManager.cs" />
     <Compile Include="HRIS\DataStructures\CompanyEmployeeProfilesManager.cs" />

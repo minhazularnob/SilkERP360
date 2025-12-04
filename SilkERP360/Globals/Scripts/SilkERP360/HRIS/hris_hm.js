@@ -335,6 +335,50 @@ function getLastDay() {
     return (("0" + last.getDate()).slice(-2)) + "/" + (("0" + (last.getMonth() + 1)).slice(-2)) + "/" + last.getFullYear();
 }
 
+function getAllApprovers(dropdownId) {
+    var selectedValue = $('#' + dropdownId + ' option:selected').val();
+    var result = null;
+
+    $.ajax({
+        async: false, // Note: synchronous AJAX is generally discouraged
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/GetAllApprovers",
+        dataType: "json",
+        data: JSON.stringify({ companyCode: selectedValue }), // assuming service expects { companyCode: "value" }
+        success: function (response) {
+            var WSReturn = response.d;
+            if (WSReturn.ResponseCode < 0) {
+                DisplayError(WSReturn.Message);
+                return;
+            }
+            result = WSReturn.Data;
+        }
+    });
+
+    return result;
+}
+
+function bindAllAprovers(dropdownId) {
+    var approvers = getAllApprovers(dropdownId);
+    var $approverSelect = $('#'+dropdownId);
+
+    // Clear existing options
+    $approverSelect.empty();
+
+    // Populate new options
+    $.each(approvers, function (index, approver) {
+        var option = $('<option></option>')
+            .attr('value', approver.EmployeeCode)  // Fixed closing parenthesis
+            .text(approver.EmployeeId + ' [' + approver.EmployeeName + ']');
+
+        $approverSelect.append(option);
+    });
+
+    // Refresh Select2 (if applied)
+    $approverSelect.trigger('change');
+}
+
 function clearModalFields(modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) return;

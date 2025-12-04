@@ -18,6 +18,21 @@ $(document).ready(function () {
                     { sTitle: '<b>Inc. Med.</b>', sWidth: '10%', sClass: 'alignCenter' },
                     { sTitle: '<b>Eff. Month</b>', sWidth: '10%', sClass: 'alignCenter' },
                     { sTitle: '<b>Eff. Year</b>', sWidth: '10%', sClass: 'alignCenter' },
+                    {
+                        sTitle: '<b>Status</b>', sWidth: '10%', sClass: 'alignCenter',
+                        mRender: function (data, type, full) {
+                            if (data == 0) {
+                                return `<span class="text-danger">Rejected</span>`;
+                            }
+                            else if (data == 1) {
+                                return `<span class="text-warning">Pending</span>`;
+                            }
+                            else if (data == 2) {
+                                return `<span class="text-success">Approved</span>`;
+                            }
+                            return "";
+                        }
+                    }
                   ]
 
     });
@@ -26,27 +41,11 @@ $(document).ready(function () {
         CalculateSalary();
     });
 
-    $('#txtIncGross').keydown(function (event) {
-        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode > 112) {
-
-        }
-        else {
-            if (event.keyCode < 95) {
-                if (event.keyCode < 47 || event.keyCode > 57) {
-                    event.preventDefault();
-                }
-            }
-            else {
-                if (event.keyCode < 97 || event.keyCode > 105) {
-                    event.preventDefault();
-                }
-            }
-        }
-
-    });
     initializeSelect2('ddlEmployee', '------ Select Employee ------', '25%');
     initializeSelect2('ddlEffectiveMonth', '------ Select Month ------', '101%');
     initializeSelect2('ddlEffectiveYear', '------ Select Month ------', '101%');
+    initializeSelect2('increment_approvers', '------ Select Approvers ------', '25%');
+    bindAllAprovers("increment_approvers");
 });
 
 function DisplayIncrementHistory() {
@@ -129,6 +128,7 @@ function DisplayIncrementHistory() {
                 lcl_objLst_TblIncrementHistory[index][5] = lcl_obj_Increment.IncMedical;
                 lcl_objLst_TblIncrementHistory[index][6] = lcl_obj_Increment.EffectiveMonth;
                 lcl_objLst_TblIncrementHistory[index][7] = lcl_obj_Increment.EffectiveYear;
+                lcl_objLst_TblIncrementHistory[index][8] = lcl_obj_Increment.IsApproved;
 
             });
             GBL_INCREMENT_HISTORY.fnAddData(lcl_objLst_TblIncrementHistory);
@@ -141,8 +141,9 @@ function DisplayIncrementHistory() {
 }
 
 function SaveIncrement() {
-    debugger;
     var lcl_ui32_Gross = $("#txtIncGross").val();
+    var approvers = $('#increment_approvers').val();
+
     if ((lcl_ui32_Gross == 0) || (lcl_ui32_Gross == '')) {
         DisplayError("No Increment Given To Selected Employees!Cannot Save!");
         return;
@@ -163,6 +164,11 @@ function SaveIncrement() {
         return;
     }
 
+    if (approvers == null == null) {
+        DisplayError("Please select at least one approver");
+        return;
+    }
+
 
 
     var lcl_obj_Increment = new Object();
@@ -178,13 +184,21 @@ function SaveIncrement() {
     lcl_obj_Increment.EntryEmployeeCode = $('#txtSignedInEmployeeCode').val();
     lcl_obj_Increment.EffectiveMonth = $('#ddlEffectiveMonth option:selected').val();
     lcl_obj_Increment.EffectiveYear = $('#ddlEffectiveYear option:selected').val(); 
-    lcl_obj_Increment.IsApproved = 1;
+  
+
+    IP_obj_ApproverDetails = [];
+
+    $.each(approvers, function (index, approver) {
+        lcl_obj_approverDetail = new Object();
+        lcl_obj_approverDetail.EmployeeCode = approver;
+        IP_obj_ApproverDetails.push(lcl_obj_approverDetail);
+    });
 
     var options = {};
     options.url = gbl_URL_Root + "WebServices/HRIS/IncrementService.asmx/SaveIncrement";
     options.type = "POST";
     options.global = true,
-    options.data = "{IP_obj_Increment: " + JSON.stringify(lcl_obj_Increment) + "}", //provide input for the getSM_PO method
+    options.data = "{IP_obj_Increment: " + JSON.stringify(lcl_obj_Increment) + ",IP_obj_ApproverDetails: " + JSON.stringify(IP_obj_ApproverDetails) + "}", //provide input for the getSM_PO method
     options.contentType = "application/json; charset=utf-8",
     options.processData = false;
     options.success = function (result) {

@@ -1,123 +1,26 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS;
-using SilkERP360.CCL.BusinessEntities.HRIS.Base;
 using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.ModelClass;
-using SilkERP360.CCL.Validation;
-using SilkERP360.DAL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 
 
 namespace SilkERP360.BML.HRIS
 {
-   public class PromotionHistoryManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
-
-
+    public class PromotionHistoryManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
         string baseUrl = "http://localhost:4674"; // Replace with actual base URL
+        CommonManager _commonManager = new CommonManager();
+
         public PromotionHistoryManager()
         {
             this.Initialize();
+
         }
-
-        //public ulong Save(CCL.BusinessEntities.HRIS.PromotionHistory promotionHistory)
-        //{
-        //    var sendSms = false;
-        //    var sendMail = true;
-
-        //    if (!DateTime.TryParse(promotionHistory.EffectiveFrom, out DateTime effectiveDate))
-        //        throw new ArgumentException("Invalid EffectiveFrom date.");
-
-        //    if(promotionHistory.CurrentDesignationCode == promotionHistory.PreviousDesignationCode)
-        //        throw new ArgumentException("Current Designation  and New Designation cannot be same.");
-
-        //    return this.ExceptionManager.Process<ulong>(() =>
-        //    {
-        //        using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
-        //        {
-        //            if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
-        //                dbManager.InternalResource.Open();
-
-        //            // Check for duplicate promotion for the same employee on the same date
-        //            string checkSql = $"SELECT COUNT(*) AS CNT FROM PROMOTION_HISTORY " +
-        //                              $"WHERE EMPLOYEE_CODE = {promotionHistory.EmployeeCode} " +
-        //                              $"AND TRUNC(EFFECTIVE_FROM) = TO_DATE('{effectiveDate:yyyy-MM-dd}', 'YYYY-MM-DD')";
-
-        //            var reader = dbManager.InternalResource.ExecuteDataReader(checkSql);
-        //            reader.Read();
-        //            int count = int.Parse(reader["CNT"].ToString());
-        //            reader.Close();
-
-
-        //            if (count > 0)
-        //                throw new Exception("A record already exists for the same employee and date.");
-
-        //            // Get next sequence value
-        //            string seqSql = $"SELECT {promotionHistory.GetSequence()}.NEXTVAL AS ID FROM DUAL";
-        //            var seqReader = dbManager.InternalResource.ExecuteDataReader(seqSql);
-        //            seqReader.Read();
-        //            ulong promotionId = ulong.Parse(seqReader["ID"].ToString());
-        //            seqReader.Close();
-
-        //            promotionHistory.PromotionID = promotionId;
-
-        //            // Insert promotion history
-        //            string insertSql = promotionHistory.GenerateSqlInsert();
-        //            dbManager.InternalResource.ExecuteScalar(insertSql);
-
-        //            // Save approver details
-        //            if (promotionHistory.approverDetails != null && promotionHistory.approverDetails.Count > 0)
-        //            {
-        //                foreach (var approver in promotionHistory.approverDetails)
-        //                {
-        //                    // Get next sequence value for approver
-        //                    string seqSqlApprover = $"SELECT {approver.GetSequence()}.NEXTVAL AS ID FROM DUAL";
-        //                    var seqReaderApprover = dbManager.InternalResource.ExecuteDataReader(seqSqlApprover);
-        //                    seqReaderApprover.Read();
-        //                    ulong approverID = ulong.Parse(seqReaderApprover["ID"].ToString());
-        //                    seqReaderApprover.Close();
-
-        //                    // Set approver properties
-        //                    approver.Id = approverID;
-        //                    approver.HistoryId = promotionId;
-        //                    approver.Status = (int)PromotionStatus.Pending;
-
-        //                    // Generate and execute insert SQL
-        //                    string approverSql = approver.GenerateSqlInsert();
-        //                    dbManager.InternalResource.ExecuteScalar(approverSql);
-        //                }
-        //            }
-
-        //            dbManager.InternalResource.CommitTransaction();
-
-        //            // Send SMS notifications to approvers
-        //            var employeeInfo = GetApproverInfo(promotionHistory);
-
-        //            string smsText = string.Format(
-        //                "A promotion approval is pending for Employee ID {0}, Name {1}, for the designation {2}.",
-        //                promotionHistory.EmployeeId,
-        //                promotionHistory.EmployeeName,
-        //                promotionHistory.CurentDesignationName
-        //            );
-
-        //            SmsNotifier notifier = new SmsNotifier();
-
-        //            if (sendSms)
-        //            SendSmsToApprovers(employeeInfo, smsText);
-        //            if(sendMail)
-        //            SendMailToApprovers(employeeInfo, promotionHistory);
-
-        //            return promotionId;
-        //        }
-        //    }, "BMLExceptionPolicy");
-        //}
 
         public ulong Save(CCL.BusinessEntities.HRIS.PromotionHistory promotionHistory)
         {
@@ -162,7 +65,7 @@ namespace SilkERP360.BML.HRIS
                     if (promotionHistory.IP_obj_Increment != null)
                     {
                         var incrementManager = new SilkERP360.BML.HRIS.IncrementManager();
-                        ulong incrementCode = incrementManager.Save(promotionHistory.IP_obj_Increment, dbManager.InternalResource);
+                        ulong incrementCode = incrementManager.Save(promotionHistory.IP_obj_Increment, dbManager.InternalResource, null);
 
                         // Set increment code in promotionHistory
                         promotionHistory.IP_obj_Increment.IncrementCode = incrementCode;
@@ -174,8 +77,8 @@ namespace SilkERP360.BML.HRIS
                         promotionHistory.GenerateSqlInsert(); // Ensure IncrementCode is included
                     }
 
-                        // Insert promotion history
-                        string insertSql = promotionHistory.GenerateSqlInsert();
+                    // Insert promotion history
+                    string insertSql = promotionHistory.GenerateSqlInsert();
                     dbManager.InternalResource.ExecuteScalar(insertSql);
 
                     // Save approver details
@@ -183,18 +86,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         foreach (var approver in promotionHistory.approverDetails)
                         {
-                            string seqSqlApprover = $"SELECT {approver.GetSequence()}.NEXTVAL AS ID FROM DUAL";
-                            var seqReaderApprover = dbManager.InternalResource.ExecuteDataReader(seqSqlApprover);
-                            seqReaderApprover.Read();
-                            ulong approverID = ulong.Parse(seqReaderApprover["ID"].ToString());
-                            seqReaderApprover.Close();
-
-                            approver.Id = approverID;
-                            approver.HistoryId = promotionId;
-                            approver.Status = (int)PromotionStatus.Pending;
-
-                            string approverSql = approver.GenerateSqlInsert();
-                            dbManager.InternalResource.ExecuteScalar(approverSql);
+                            _commonManager.SaveApprover(approver, promotionId, dbManager.InternalResource);
                         }
                     }
 
@@ -216,7 +108,7 @@ namespace SilkERP360.BML.HRIS
         private void SendMailToApprovers(Dictionary<string, List<string>> employeeInfo, PromotionHistory promotionHistory)
         {
             var mailNotifier = new SilkERP360.BML.Services.Mail.MailNotifier();
-            
+
             string serviceUrl = $"{baseUrl}/WebServices/HRIS/PromotionHistoryService.asmx";
             string emailSubject = "Promotion Approval Pending";
 
@@ -394,64 +286,65 @@ namespace SilkERP360.BML.HRIS
         public ulong UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status, string token = null)
         {
             UInt64 lcl_ui64_approverDetailCode = 0;
-            
-                lcl_ui64_approverDetailCode = this.ExceptionManager.Process<UInt64>(() =>
+
+            lcl_ui64_approverDetailCode = this.ExceptionManager.Process<UInt64>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
-                    using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
                     {
-                        if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
-                        {
-                            lcl_obj_DBManager.InternalResource.Open();
-                        }
-
-                        // Using string format for the query (be aware of SQL injection risks)
-                        string lcl_str_SqlQuery = string.Format(
-                            "SELECT ID as approver_id,status FROM promotion_approvers WHERE history_id = {0} AND employee_code = {1}",
-                            IP_ui64_PromotionHistoryCode,
-                            IP_ui64_ApproverCode
-                        );
-
-                        var lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
-
-                        if (lcl_obj_IDReader.Read() && lcl_obj_IDReader["approver_id"] != DBNull.Value)
-                        {
-                            int approverStatus = Convert.ToInt32(lcl_obj_IDReader["status"]);
-                            if(approverStatus != (int)PromotionStatus.Pending)
-                            {
-                                throw new Exception("Approver status cannot be updated");
-                            }
-                            
-                            var approverId = Convert.ToUInt64(lcl_obj_IDReader["approver_id"]);
-                            var detail = new ApproverDetail
-                            {
-                                Id = approverId,
-                                HistoryId = IP_ui64_PromotionHistoryCode,
-                                EmployeeCode = IP_ui64_ApproverCode,
-                                Status = (UInt16)status,
-                            };
-
-                            // Generate and execute update statement
-                            string updateSql = detail.GenerateSqlUpdate();
-                            lcl_obj_DBManager.InternalResource.ExecuteScalar(updateSql);
-                            lcl_ui64_approverDetailCode = approverId;
-                            if(status == (int)PromotionStatus.Rejected)
-                            {
-                                RejectFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
-                            }
-
-                            if(status == (int)PromotionStatus.Approved)
-                            {
-                                ApprovedFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
-                            }
-                            if(token != null) { 
-                                updateTokenStatus(lcl_obj_DBManager, token);
-                            }
-                        }
-
-                        lcl_obj_DBManager.InternalResource.CommitTransaction();
-                        return lcl_ui64_approverDetailCode;
+                        lcl_obj_DBManager.InternalResource.Open();
                     }
-                }, "BMLExceptionPolicy");
+
+                    // Using string format for the query (be aware of SQL injection risks)
+                    string lcl_str_SqlQuery = string.Format(
+                        "SELECT ID as approver_id,status FROM promotion_approvers WHERE history_id = {0} AND employee_code = {1}",
+                        IP_ui64_PromotionHistoryCode,
+                        IP_ui64_ApproverCode
+                    );
+
+                    var lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+
+                    if (lcl_obj_IDReader.Read() && lcl_obj_IDReader["approver_id"] != DBNull.Value)
+                    {
+                        int approverStatus = Convert.ToInt32(lcl_obj_IDReader["status"]);
+                        if (approverStatus != (int)PromotionStatus.Pending)
+                        {
+                            throw new Exception("Approver status cannot be updated");
+                        }
+
+                        var approverId = Convert.ToUInt64(lcl_obj_IDReader["approver_id"]);
+                        var detail = new ApproverDetail
+                        {
+                            Id = approverId,
+                            HistoryId = IP_ui64_PromotionHistoryCode,
+                            EmployeeCode = IP_ui64_ApproverCode,
+                            Status = (UInt16)status,
+                        };
+
+                        // Generate and execute update statement
+                        string updateSql = detail.GenerateSqlUpdate();
+                        lcl_obj_DBManager.InternalResource.ExecuteScalar(updateSql);
+                        lcl_ui64_approverDetailCode = approverId;
+                        if (status == (int)PromotionStatus.Rejected)
+                        {
+                            RejectFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
+                        }
+
+                        if (status == (int)PromotionStatus.Approved)
+                        {
+                            ApprovedFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
+                        }
+                        if (token != null)
+                        {
+                            updateTokenStatus(lcl_obj_DBManager, token);
+                        }
+                    }
+
+                    lcl_obj_DBManager.InternalResource.CommitTransaction();
+                    return lcl_ui64_approverDetailCode;
+                }
+            }, "BMLExceptionPolicy");
 
             return lcl_ui64_approverDetailCode;
         }
@@ -468,7 +361,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                
+
                 string sql = $@"UPDATE TOKENS SET IS_VALID = 0 WHERE TOKEN_ID = '{token}'";
                 System.String lcl_str_SqlQuery = System.String.Format(sql);
 
@@ -614,7 +507,7 @@ namespace SilkERP360.BML.HRIS
                             // EffectiveFrom stored as string
                             item.EffectiveFrom = lcl_obj_dr["EFFECTIVE_FROM"]?.ToString();
                             item.IsApproved = Convert.ToInt16(lcl_obj_dr["ISAPPROVED"]);
-                            item.UserSpecifcApprovalStatus =Convert.ToInt16(lcl_obj_dr["specificUserAppraval"]);
+                            item.UserSpecifcApprovalStatus = Convert.ToInt16(lcl_obj_dr["specificUserAppraval"]);
                             item.WithIncrement = Convert.ToString(lcl_obj_dr["IS_INCREMENTED"]);
 
                             list.Add(item);
