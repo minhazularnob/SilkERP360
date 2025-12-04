@@ -1,12 +1,8 @@
 ﻿$(document).ready(function () {
+    debugger;
     $('#showIncrementSectionChkBox').prop('checked', false);
-    $("#txtEffectiveFrom").datepicker({
-        dateFormat: 'dd/MM/yy', showButtonPanel: true, minDate: 1, maxDate: "+365D",
-        onSelect: function (dateStr) {
-            var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
-          
-        }
-    });
+
+    loadDatepicker();
 
     $("#promotionHistory_txtStartDate").datepicker({
         dateFormat: dateFormat,
@@ -15,6 +11,7 @@
         showButtonPanel: true,
         defaultDate: getFirstDay(),
         onSelect: function (d) {
+            debugger;
             const min = $.datepicker.parseDate(dateFormat, d);
             $("#promotionHistory_txtEndDate").datepicker("option", "minDate", min);
             LoaddAllPromotionHistory();
@@ -65,7 +62,7 @@
             { "mData": "EmployeeCode", "sTitle": "EmployeeCode", "sClass": "alignCenter", "bVisible": false },
             { "mData": "EmployeeId", "sTitle": "Employee ID", "sClass": "alignCenter" },
             { "mData": "EmployeeName", "sTitle": "Employee Name", "sClass": "alignCenter" },
-            { "mData": "PreviousDesignationName", "sTitle": "Previous Designation", "sClass": "alignCenter" },
+            { "mData": "PreviousDesignationName", "sTitle": "Pr.Designation", "sClass": "alignCenter" },
             { "mData": "CurentDesignationName", "sTitle": "New Designation", "sClass": "alignCenter" },
             {
                 "mData": "EffectiveFrom",
@@ -81,6 +78,7 @@
                 "sClass": "alignCenter",
                 "bSortable": false
             },
+            { "mData": "WithIncrement", "sTitle": "With Increment", "sClass": "alignCenter" },
             {
                 "mData": "IsApproved",
                 "sTitle": "Status",
@@ -134,7 +132,7 @@
         ]
     });
 
-    GBL_INCREMENT_HISTORY = $('#tblIncrementHistory').dataTable({
+    GBL_INCREMENT_HISTORY = $('#tblIncrementHistoryFromPromotion').dataTable({
         "bJQueryUI": false,
         "bFilter": true,
         "bPaginate": true,
@@ -195,7 +193,8 @@ function LoaddAllPromotionHistory() {
                     "IsApproved": item.IsApproved,
                     "PromotionID": item.PromotionID,
                     "EmployeeCode": item.EmployeeCode,
-                    "UserSpecifcApprovalStatus": item.UserSpecifcApprovalStatus
+                    "UserSpecifcApprovalStatus": item.UserSpecifcApprovalStatus,
+                    "WithIncrement": item.WithIncrement
                 });
             });
 
@@ -235,7 +234,7 @@ function SavePromotion() {
     lcl_obj_PromotionHistory.PreviousDesignationName = ($('#ddlEmployeePromotion option:selected').text().match(/\[(.*?)\]/) || [])[1];
     lcl_obj_PromotionHistory.CurrentDesignationCode = $('#ddlNewDesignation').val();
     lcl_obj_PromotionHistory.CurentDesignationName = $('#ddlNewDesignation option:selected').text();
-    lcl_obj_PromotionHistory.EffectiveFrom = ConvertToOracleDate($('#txtEffectiveFrom').val());
+    lcl_obj_PromotionHistory.EffectiveFrom = ConvertToOracleDate($('#txtEffectiveFromPromotion').val());
     lcl_obj_PromotionHistory.Remarks = $("#txtRemarks").val();
     lcl_obj_PromotionHistory.CompanyCode = $('#ddlCompany').val();
 
@@ -270,42 +269,33 @@ function SavePromotion() {
     });
 
     if ($('#showIncrementSectionChkBox').is(':checked')) {
-        var lcl_ui32_Gross = $("#txtIncGross").val();
+        var lcl_ui32_Gross = $("#txtIncGrossWithPromotion").val();
         if ((lcl_ui32_Gross == 0) || (lcl_ui32_Gross == '')) {
             DisplayError("No Increment Given To Selected Employees!Cannot Save!");
             return;
         }
 
-
-        var lcl_i32_EffectiveMonth = $('#ddlEffectiveMonth option:selected').index();
-        var lcl_i32_EffectiveYear = $('#ddlEffectiveYear option:selected').index();
-
-        if ((lcl_i32_EffectiveMonth == 0) || (lcl_i32_EffectiveYear == 0)) {
-            DisplayError("Please Select Increment Effective Month/Effective Year!!!Operation Terminated!");
-            return;
-        }
-
-        var lcl_i32_PreviousGross = $('#txtCurrGross').val();
+        var lcl_i32_PreviousGross = $('#txtCurrGrossWithPromotion').val();
         if ((lcl_i32_PreviousGross == '0') || (lcl_i32_PreviousGross == '')) {
             DisplayError("No previous gross Entry for the Selected Employee!");
             return;
         }
 
-
+        let ent = $('#txtIncEntWithPromotion').val();
 
         var lcl_obj_Increment = new Object();
 
         lcl_obj_Increment.EmployeeCode = $('#ddlEmployeePromotion option:selected').val();
-        lcl_obj_Increment.IncGross = $('#txtIncGross').val();
-        lcl_obj_Increment.IncBasic = $('#txtIncBasic').val();
+        lcl_obj_Increment.IncGross = $('#txtIncGrossWithPromotion').val();
+        lcl_obj_Increment.IncBasic = $('#txtIncBasicWithPromotion').val();
         lcl_obj_Increment.IncHouseRent = $('#txtIncHR').val();
-        lcl_obj_Increment.IncConveyence = $('#txtIncConv').val();
-        lcl_obj_Increment.IncMedical = $('#txtIncMed').val();
-        lcl_obj_Increment.IncEntertainment = $('#txtIncEnt').val();
-        lcl_obj_Increment.PreviousGross = $('#txtCurrGross').val();
+        lcl_obj_Increment.IncConveyence = $('#txtIncConvWithPromotion').val();
+        lcl_obj_Increment.IncMedical = $('#txtIncMedWithPromotion').val();
+        lcl_obj_Increment.IncEntertainment = ent === undefined || ent.trim() === "" || isNaN(ent) ? 0 : parseFloat(ent);
+        lcl_obj_Increment.PreviousGross = $('#txtCurrGrossWithPromotion').val();
         lcl_obj_Increment.EntryEmployeeCode = $('#txtSignedInEmployeeCode').val();
-        lcl_obj_Increment.EffectiveMonth = $('#ddlEffectiveMonth option:selected').val();
-        lcl_obj_Increment.EffectiveYear = $('#ddlEffectiveYear option:selected').val();
+        lcl_obj_Increment.EffectiveMonth = new Date(Date.parse($('#txtEffectiveFromPromotion').val().split("/")[1] + " 1, 2000")).getMonth() + 1
+        lcl_obj_Increment.EffectiveYear = $('#txtEffectiveFromPromotion').val().split("/")[2];
 
         lcl_obj_PromotionHistory.IP_obj_Increment = lcl_obj_Increment;
 
@@ -367,27 +357,16 @@ function clearFields() {
     $('#promotion_approvers').val(null).trigger('change');
     
     // Reinitialize datepicker
-    $("#txtEffectiveFrom").datepicker('destroy'); // Remove existing datepicker
-    $("#txtEffectiveFrom").datepicker({
-        dateFormat: 'dd/MM/yy', 
-        showButtonPanel: true, 
-        minDate: 0, 
-        maxDate: "+365D"
-    });
+    $("#txtEffectiveFromPromotion").datepicker('destroy'); // Remove existing datepicker
+
+    loadDatepicker();
 
     $('#showIncrementSectionChkBox').prop('checked', false);
 
     $('#incrementDiv').hide();
 
-
-    $('#ddlEffectiveMonth').val(0).trigger('change');
-    $('#ddlEffectiveYear').val(0).trigger('change');
-
     // Hide Increment table wrapper div
     $('#tblIncrementHistoryDiv').hide();
-
-
-
     
     return false; // Prevent form submission
 }
@@ -493,22 +472,47 @@ $('#showIncrementSectionChkBox').on('change', function () {
     }
 });
 
-$("#txtIncGross").blur(function () {
+$("#txtIncGrossWithPromotion").blur(function () {
     CalculateSalary();
 });
 
 function CalculateSalary() {
-    var lcl_ui32_Gross = $("#txtIncGross").val();
+    var lcl_ui32_Gross = $("#txtIncGrossWithPromotion").val();
     var lcl_ui32_Basic = (lcl_ui32_Gross * 60) / 100;
     var lcl_ui32_HouseRent = (lcl_ui32_Gross * 30) / 100;
     var lcl_ui32_Conveyence = (lcl_ui32_Gross * 5) / 100;
     var lcl_ui32_Medical = (lcl_ui32_Gross * 5) / 100;
 
-    $("#txtIncBasic").val(lcl_ui32_Basic);
+    $("#txtIncBasicWithPromotion").val(lcl_ui32_Basic);
     $("#txtIncHR").val(lcl_ui32_HouseRent);
-    $("#txtIncConv").val(lcl_ui32_Conveyence);
-    $("#txtIncMed").val(lcl_ui32_Medical);
+    $("#txtIncConvWithPromotion").val(lcl_ui32_Conveyence);
+    $("#txtIncMedWithPromotion").val(lcl_ui32_Medical);
 }
+
+function loadDatepicker() {
+    // Reinitialize
+    $("#txtEffectiveFromPromotion").datepicker({
+        dateFormat: 'dd/MM/yy',
+        showButtonPanel: true,
+        minDate: 1,
+        maxDate: "+365D",
+
+        beforeShowDay: function (date) {
+            // allow only 1st day of each month
+            if (date.getDate() === 1) {
+                return [true, "", ""];
+            } else {
+                return [false, "", ""];
+            }
+        },
+
+        onSelect: function (dateStr) {
+            var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
+            console.log("Selected date:", d);
+        }
+    });
+}
+
 
 function DisplayIncrementHistory() {
     var lcl_ui64_EmployeeCode = $('#ddlEmployeePromotion').val();
@@ -529,7 +533,7 @@ function DisplayIncrementHistory() {
             return;
         }
         var lcl_obj_SalaryStructure = lcl_obj_WSResponseSal.Data;
-        $("#txtCurrGross").val(lcl_obj_SalaryStructure.Gross);
+        $("#txtCurrGrossWithPromotion").val(lcl_obj_SalaryStructure.Gross);
     };
     options_sal.error = function (err) { ShowErrorMessageBoard(err.statusText); };
     $.ajax(options_sal);

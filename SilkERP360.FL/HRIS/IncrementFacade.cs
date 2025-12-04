@@ -5,17 +5,15 @@ using System.Text;
 
 namespace SilkERP360.FL.HRIS
 {
-   public class IncrementFacade : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase,
-    SilkERP360.CCL.Interfaces.IFacadeOperations<SilkERP360.CCL.BusinessEntities.HRIS.Increment>
+   public class IncrementFacade : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
    {
-
         public IncrementFacade()
         {
             this.Initialize();
         }
 
 
-        public ulong Save(CCL.BusinessEntities.HRIS.Increment IP_obj_T)
+        public ulong Save(CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_T)
         {
             System.UInt64 lcl_ui64_IncrementCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {

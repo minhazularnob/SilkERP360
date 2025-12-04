@@ -166,19 +166,16 @@ namespace SilkERP360.BML.HRIS
 
                         // Set increment code in promotionHistory
                         promotionHistory.IP_obj_Increment.IncrementCode = incrementCode;
+                        promotionHistory.IncrementCode = incrementCode;
+
 
                         // If Promotion table has a column for IncrementCode
                         // Make sure GenerateSqlInsert includes it, or manually add it:
                         promotionHistory.GenerateSqlInsert(); // Ensure IncrementCode is included
                     }
 
-                    if (promotionHistory.IP_obj_Increment == null)
-                    {
-                        promotionHistory.IncrementCode = null;
-                    }
-
                         // Insert promotion history
-                    string insertSql = promotionHistory.GenerateSqlInsert();
+                        string insertSql = promotionHistory.GenerateSqlInsert();
                     dbManager.InternalResource.ExecuteScalar(insertSql);
 
                     // Save approver details
@@ -512,6 +509,21 @@ namespace SilkERP360.BML.HRIS
 
                 lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
 
+                // 2️⃣ Update corresponding salary_increment_request → Approved (only if INCREMENT_CODE exists)
+                string updateIncrementRequestSql = $@"
+                    UPDATE salary_increment_request s
+                    SET s.IS_APPROVED = {(int)PromotionStatus.Approved}
+                    WHERE EXISTS (
+                        SELECT 1
+                        FROM promotion_history p
+                        WHERE p.promotion_id = {history_code}
+                          AND p.ISAPPROVED = {(int)PromotionStatus.Approved}
+                          AND p.INCREMENT_CODE IS NOT NULL
+                          AND p.INCREMENT_CODE = s.INCREMENT_CODE
+                    )";
+
+                lcl_obj_DBManager.ExecuteScalar(updateIncrementRequestSql);
+
                 // Return the same id for confirmation
                 return history_code;
 
@@ -535,6 +547,21 @@ namespace SilkERP360.BML.HRIS
                 System.String lcl_str_SqlQuery = System.String.Format(sql);
 
                 lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
+
+                // 2️⃣ Update corresponding salary_increment_request → Rejected (only if INCREMENT_CODE exists)
+                string updateIncrementRequestSql = $@"
+                    UPDATE salary_increment_request s
+                    SET s.IS_APPROVED = {(int)PromotionStatus.Rejected}
+                    WHERE EXISTS (
+                        SELECT 1
+                        FROM promotion_history p
+                        WHERE p.promotion_id = {history_code}
+                          AND p.ISAPPROVED = {(int)PromotionStatus.Rejected}
+                          AND p.INCREMENT_CODE IS NOT NULL
+                          AND p.INCREMENT_CODE = s.INCREMENT_CODE
+                    )";
+
+                lcl_obj_DBManager.ExecuteScalar(updateIncrementRequestSql);
 
                 // Return the same id for confirmation
                 return history_code;
@@ -588,6 +615,7 @@ namespace SilkERP360.BML.HRIS
                             item.EffectiveFrom = lcl_obj_dr["EFFECTIVE_FROM"]?.ToString();
                             item.IsApproved = Convert.ToInt16(lcl_obj_dr["ISAPPROVED"]);
                             item.UserSpecifcApprovalStatus =Convert.ToInt16(lcl_obj_dr["specificUserAppraval"]);
+                            item.WithIncrement = Convert.ToString(lcl_obj_dr["IS_INCREMENTED"]);
 
                             list.Add(item);
                         }

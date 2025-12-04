@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkERP360.OfflinePrint", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkERP360.UnitTest", "SilkERP360.UnitTest\SilkERP360.UnitTest.csproj", "{00AA229D-9274-427D-88DE-22D784EC3B1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkERP360.PromotionUpdater", "SilkERP360.PromotionUpdater\SilkERP360.PromotionUpdater.csproj", "{0730AC49-3942-4900-BB79-99216CDF4E76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilkERP360.Schedular", "SilkERP360.PromotionUpdater\SilkERP360.Schedular.csproj", "{0730AC49-3942-4900-BB79-99216CDF4E76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

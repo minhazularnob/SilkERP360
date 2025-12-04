@@ -1,12 +1,12 @@
-﻿using System;
+﻿using SilkERP360.CCL.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace SilkERP360.BML.HRIS
 {
-    public class IncrementManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase,
-    SilkERP360.CCL.Interfaces.IManagerOperations<SilkERP360.CCL.BusinessEntities.HRIS.Increment>
+    public class IncrementManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
         public IncrementManager()
        {
@@ -14,10 +14,10 @@ namespace SilkERP360.BML.HRIS
        }
 
 
-        public ulong Save(CCL.BusinessEntities.HRIS.Increment IP_obj_Increment, object IP_obj_DBManager)
+        public ulong Save(CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment_Request, object IP_obj_DBManager)
         {
             System.UInt64 lcl_ui64_IncrementCode = 0;
-            System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", IP_obj_Increment.GetSequence());
+            System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", IP_obj_Increment_Request.GetSequence());
             lcl_ui64_IncrementCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
@@ -26,15 +26,16 @@ namespace SilkERP360.BML.HRIS
                 System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                 lcl_obj_IDReader.Close();
 
-                IP_obj_Increment.IncrementCode = lcl_ui64_ID;
-                System.String lcl_str_SqlInsert = IP_obj_Increment.GenerateSqlInsert();
+                IP_obj_Increment_Request.IncrementCode = lcl_ui64_ID;
+                IP_obj_Increment_Request.IsApproved = (int)PromotionStatus.Pending;
+                System.String lcl_str_SqlInsert = IP_obj_Increment_Request.GenerateSqlInsert();
                 lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlInsert);
                 return lcl_ui64_ID;
             }, "BMLExceptionPolicy");
             return lcl_ui64_IncrementCode;
         }
 
-        public ulong Save(CCL.BusinessEntities.HRIS.Increment IP_obj_Increment)
+        public ulong Save(CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment)
         {
             System.UInt64 lcl_ui64_IncrementCode = 0;
             System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", IP_obj_Increment.GetSequence());

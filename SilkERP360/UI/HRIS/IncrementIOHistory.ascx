@@ -1,30 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="IncrementIOHistory.ascx.cs" Inherits="SilkERP360.UI.HRIS.IncrementIOHistory" %>
-<link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />
-<%--<script src="../../Globals/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>--%>
-
-<link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.theme.css" rel="stylesheet"
-    type="text/css" />
-<link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet"
-    type="text/css" />
-<script src="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.js" type="text/javascript"></script>
-
-<link href="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.css" rel="stylesheet" type="text/css" />
-<script src="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.js" type="text/javascript"></script>
-<script src="../../Globals/Scripts/plug-ins/jquery.formatDateTime-1.1.1/dist/jquery.formatDateTime.min.js" type="text/javascript"></script>
-<script src="../../Globals/Scripts/plug-ins/jquery.number.min.js" type="text/javascript"></script>
-<script src="../../Globals/jQuery/jquery-ui-1.10.3/ui/jquery.ui.slider.js" type="text/javascript"></script>
-<script src="../../Globals/Scripts/plug-ins/time-picker/jquery-ui-sliderAccess.js" type="text/javascript"></script>
-<link href="../../Globals/Scripts/plug-ins/time-picker/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" />
-<script src="../../Globals/Scripts/plug-ins/time-picker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
-<script src="../../Globals/Scripts/plug-ins/moment-develop/moment.js" type="text/javascript"></script>
-
-
-
-<%--<link href="../../Globals/Scripts/plug-ins/auto-complete/auto-complete.css" rel="stylesheet" type="text/css" />
-<script src="../../Globals/Scripts/plug-ins/auto-complete/auto-complete.js" type="text/javascript"></script>--%>
-
-
-
 
 <script src="Scripts/IncrementIOHistory.js" type="text/javascript"></script>
 

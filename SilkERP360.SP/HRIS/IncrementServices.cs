@@ -34,9 +34,9 @@ namespace SilkERP360.SP.HRIS
            return lcl_objLst_IncrementList;
         }
 
-        public SilkERP360.CCL.BusinessEntities.HRIS.Increment SaveIncrement(SilkERP360.CCL.BusinessEntities.HRIS.Increment IP_obj_Increment)
+        public SilkERP360.CCL.BusinessEntities.HRIS.IncrementRequest SaveIncrement(SilkERP360.CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment)
         {
-            SilkERP360.CCL.BusinessEntities.HRIS.Increment lcl_obj_Increment = this.ExceptionManager.Process<SilkERP360.CCL.BusinessEntities.HRIS.Increment>(() =>
+            SilkERP360.CCL.BusinessEntities.HRIS.IncrementRequest lcl_obj_Increment = this.ExceptionManager.Process<SilkERP360.CCL.BusinessEntities.HRIS.IncrementRequest>(() =>
             {
                 using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
@@ -47,10 +47,6 @@ namespace SilkERP360.SP.HRIS
 
                     SilkERP360.BML.HRIS.IncrementManager lcl_obj_IncrementManager = new BML.HRIS.IncrementManager();
                     IP_obj_Increment.IncrementCode = lcl_obj_IncrementManager.Save(IP_obj_Increment,lcl_obj_DBManager.InternalResource);
-                    /**********************************************************************************************************/
-                    //Update Salary Structure
-                    System.String lcl_str_SqlUpdate = System.String.Format("UPDATE EMPLOYEE_SALARY_STRUCTURE SET BASIC = {0}, HOUSE_RENT = {1},MEDICAL = {2},CONVEYENCE = {3},ENTERTAINMENT = {4}, GROSS = {5} WHERE EMPLOYEE_CODE = {6}", IP_obj_Increment.IncBasic, IP_obj_Increment.IncHouseRent, IP_obj_Increment.IncMedical, IP_obj_Increment.IncConveyence, IP_obj_Increment.IncEntertainment, IP_obj_Increment.IncGross, IP_obj_Increment.EmployeeCode);
-                    lcl_obj_DBManager.InternalResource.ExecuteNonQuery(lcl_str_SqlUpdate);
                     /**********************************************************************************************************/
                     lcl_obj_DBManager.InternalResource.CommitTransaction();
                     lcl_obj_DBManager.InternalResource.Close();

@@ -1,26 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PromotionHistory.ascx.cs"
     Inherits="SilkERP360.UI.HRIS.PromotionHistory" %>
 
-<!-- Styles -->
-<link href="../../Globals/Styles/scpm.css" rel="stylesheet" />
-<link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" />
-<link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.theme.css" rel="stylesheet" />
-<link href="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.css" rel="stylesheet" />
-<link href="../../Globals/Scripts/plug-ins/time-picker/jquery-ui-timepicker-addon.css" rel="stylesheet" />
-
-<!-- Scripts -->
-<script src="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
-<script src="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.js"></script>
-<script src="../../Globals/Scripts/plug-ins/jquery.formatDateTime-1.1.1/dist/jquery.formatDateTime.min.js"></script>
-<script src="../../Globals/Scripts/plug-ins/jquery.number.min.js"></script>
-<script src="../../Globals/jQuery/jquery-ui-1.10.3/ui/jquery.ui.slider.js"></script>
-<script src="../../Globals/Scripts/plug-ins/time-picker/jquery-ui-sliderAccess.js"></script>
-<script src="../../Globals/Scripts/plug-ins/time-picker/jquery-ui-timepicker-addon.js"></script>
-<script src="../../Globals/Scripts/plug-ins/moment-develop/moment.js"></script>
-
 <script src="Scripts/PromotionHistory.js"></script>
-
-<asp:HiddenField ID="hdnCurrencyFormatter" runat="server" ClientIDMode="Static" Value="0" />
 
 <table id="tblBody" cellpadding="5px" cellspacing="5px" style="width: 100%;">
     <tr>
@@ -88,10 +69,10 @@
                                 </div>
 
                                 <div class="col-md-2 text-md-end">
-                                    <label for="txtEffectiveFrom" class="form-label">Effective From:</label>
+                                    <label for="txtEffectiveFromPromotion" class="form-label">Effective From:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtEffectiveFrom" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Effective From"></asp:TextBox>
+                                    <asp:TextBox ID="txtEffectiveFromPromotion" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Effective From"></asp:TextBox>
                                 </div>
                             </div>
                             <!-- Row 3: Approvers multi select -->
@@ -120,66 +101,20 @@
 
                             <div id="incrementDiv" style="display: none">
                                 <div class="row g-2 align-items-center mt-2">
-                                    <!-- Effective Month -->
-                                    <div class="col-md-3 text-md-end">
-                                        <label for="ddlEffectiveMonth" class="form-label">Effective Month:</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:DropDownList ID="ddlEffectiveMonth" runat="server" Width="86%"
-                                            CssClass="form-select" ClientIDMode="Static">
-                                            <asp:ListItem Value="0">------ Select Month ------</asp:ListItem>
-                                            <asp:ListItem Value="1">January</asp:ListItem>
-                                            <asp:ListItem Value="2">February</asp:ListItem>
-                                            <asp:ListItem Value="3">March</asp:ListItem>
-                                            <asp:ListItem Value="4">April</asp:ListItem>
-                                            <asp:ListItem Value="5">May</asp:ListItem>
-                                            <asp:ListItem Value="6">June</asp:ListItem>
-                                            <asp:ListItem Value="7">July</asp:ListItem>
-                                            <asp:ListItem Value="8">August</asp:ListItem>
-                                            <asp:ListItem Value="9">September</asp:ListItem>
-                                            <asp:ListItem Value="10">October</asp:ListItem>
-                                            <asp:ListItem Value="11">November</asp:ListItem>
-                                            <asp:ListItem Value="12">December</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <!-- Effective Year -->
-                                    <div class="col-md-2 text-md-end">
-                                        <label for="ddlEffectiveYear" class="form-label">Effective Year:</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlEffectiveYear" runat="server"
-                                            CssClass="form-select" ClientIDMode="Static" Width="63%">
-                                            <asp:ListItem Value="0">------ Select Year ------</asp:ListItem>
-                                            <asp:ListItem Value="2016">2016</asp:ListItem>
-                                            <asp:ListItem Value="2017">2017</asp:ListItem>
-                                            <asp:ListItem Value="2018">2018</asp:ListItem>
-                                            <asp:ListItem Value="2019">2019</asp:ListItem>
-                                            <asp:ListItem Value="2020">2020</asp:ListItem>
-                                            <asp:ListItem Value="2021">2021</asp:ListItem>
-                                            <asp:ListItem Value="2022">2022</asp:ListItem>
-                                            <asp:ListItem Value="2023">2023</asp:ListItem>
-                                            <asp:ListItem Value="2024">2024</asp:ListItem>
-                                            <asp:ListItem Value="2025">2025</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-
-
-                                <div class="row g-2 align-items-center mt-2">
                                     <!-- Increment Gross & Current Gross -->
                                     <div class="col-md-3 text-md-end">
-                                        <label for="txtIncGross" class="form-label">Increment Gross:</label>
+                                        <label for="txtIncGrossWithPromotion" class="form-label">Increment Gross:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="txtIncGross" TextMode="Number" runat="server"
+                                        <asp:TextBox ID="txtIncGrossWithPromotion" TextMode="Number" runat="server"
                                             CssClass="form-control text-center INC_IP"
                                             ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
                                     </div>
                                     <div class="col-md-2 text-md-end">
-                                        <label for="txtCurrGross" class="form-label">Current Gross:</label>
+                                        <label for="txtCurrGrossWithPromotion" class="form-label">Current Gross:</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <asp:TextBox ID="txtCurrGross" runat="server"
+                                        <asp:TextBox ID="txtCurrGrossWithPromotion" runat="server"
                                             CssClass="form-control text-center INC_IP"
                                             ReadOnly="false" ClientIDMode="Static" Width="71%"></asp:TextBox>
                                     </div>
@@ -189,18 +124,18 @@
                                 <div class="row g-2 align-items-center mt-2">
                                     <!-- Inc. Basic & House Rent -->
                                     <div class="col-md-3 text-md-end">
-                                        <label for="txtIncBasic" class="form-label">Inc. Basic:</label>
+                                        <label for="txtIncBasicWithPromotion" class="form-label">Inc. Basic:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="txtIncBasic" runat="server"
+                                        <asp:TextBox ID="txtIncBasicWithPromotion" runat="server"
                                             CssClass="form-control text-end INC_IP"
                                             ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                     </div>
                                     <div class="col-md-2 text-md-end">
-                                        <label for="txtIncHR" class="form-label">Inc. House Rent:</label>
+                                        <label for="txtIncHRWithPromotion" class="form-label">Inc. House Rent:</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <asp:TextBox ID="txtIncHR" runat="server"
+                                        <asp:TextBox ID="txtIncHRWithPromotion" runat="server"
                                             CssClass="form-control text-end INC_IP"
                                             ReadOnly="true" ClientIDMode="Static" Width="71%"></asp:TextBox>
                                     </div>
@@ -210,18 +145,18 @@
                                 <div class="row g-2 align-items-center mt-2">
                                     <!-- Inc. Conveyance & Medical -->
                                     <div class="col-md-3 text-md-end">
-                                        <label for="txtIncConv" class="form-label">Inc. Conveyance:</label>
+                                        <label for="txtIncConvWithPromotion" class="form-label">Inc. Conveyance:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="txtIncConv" runat="server"
+                                        <asp:TextBox ID="txtIncConvWithPromotion" runat="server"
                                             CssClass="form-control text-end INC_IP"
                                             ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                     </div>
                                     <div class="col-md-2 text-md-end">
-                                        <label for="txtIncMed" class="form-label">Inc. Medical:</label>
+                                        <label for="txtIncMedWithPromotion" class="form-label">Inc. Medical:</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <asp:TextBox ID="txtIncMed" runat="server"
+                                        <asp:TextBox ID="txtIncMedWithPromotion" runat="server"
                                             CssClass="form-control text-end INC_IP"
                                             ReadOnly="true" ClientIDMode="Static" Width="71%"></asp:TextBox>
                                     </div>
@@ -230,10 +165,10 @@
                                 <div class="row g-2 align-items-center mt-2">
                                     <!-- Inc. Entertainment -->
                                     <div class="col-md-3 text-md-end">
-                                        <label for="txtIncEnt" class="form-label">Inc. Entertainment:</label>
+                                        <label for="txtIncEntWithPromotion" class="form-label">Inc. Entertainment:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <asp:TextBox ID="txtIncEnt" runat="server"
+                                        <asp:TextBox ID="txtIncEntWithPromotion" runat="server"
                                             CssClass="form-control text-end INC_IP"
                                             Text="0" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
                                     </div>
@@ -259,7 +194,7 @@
                             <asp:TextBox ID="promotionHistory_txtEndDate" runat="server" Style="text-align: center;" CssClass="WG_IP" Width="10%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                             <table id="tblPromotionHistory" class="table custom-table fontSerif w-100"></table>
                             <div id="tblIncrementHistoryDiv" style="display: none">
-                                <table id="tblIncrementHistory" class="table custom-table fontSerif w-100"></table>
+                                <table id="tblIncrementHistoryFromPromotion" class="table custom-table fontSerif w-100"></table>
                             </div>
                         </div>
                     </div>

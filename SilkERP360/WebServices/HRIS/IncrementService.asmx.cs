@@ -43,12 +43,12 @@ namespace SilkERP360.WebServices.HRIS
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public SilkERP360.CCL.Misc.WSResponse SaveIncrement(SilkERP360.CCL.BusinessEntities.HRIS.Increment IP_obj_Increment)
+        public SilkERP360.CCL.Misc.WSResponse SaveIncrement(SilkERP360.CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment)
         {
             try
             {
                 SilkERP360.SP.HRIS.IncrementServices lcl_obj_IncrementService = new SP.HRIS.IncrementServices();
-                SilkERP360.CCL.BusinessEntities.HRIS.Increment lcl_obj_Increment = lcl_obj_IncrementService.SaveIncrement(IP_obj_Increment);
+                SilkERP360.CCL.BusinessEntities.HRIS.IncrementRequest lcl_obj_Increment = lcl_obj_IncrementService.SaveIncrement(IP_obj_Increment);
                 return new SilkERP360.CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Succedded", true, lcl_obj_Increment);
             }
             catch (System.Exception Ex)

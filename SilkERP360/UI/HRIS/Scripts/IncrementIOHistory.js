@@ -141,6 +141,7 @@ function DisplayIncrementHistory() {
 }
 
 function SaveIncrement() {
+    debugger;
     var lcl_ui32_Gross = $("#txtIncGross").val();
     if ((lcl_ui32_Gross == 0) || (lcl_ui32_Gross == '')) {
         DisplayError("No Increment Given To Selected Employees!Cannot Save!");
@@ -176,7 +177,8 @@ function SaveIncrement() {
     lcl_obj_Increment.PreviousGross = $('#txtCurrGross').val();
     lcl_obj_Increment.EntryEmployeeCode = $('#txtSignedInEmployeeCode').val();
     lcl_obj_Increment.EffectiveMonth = $('#ddlEffectiveMonth option:selected').val();
-    lcl_obj_Increment.EffectiveYear = $('#ddlEffectiveYear option:selected').val();
+    lcl_obj_Increment.EffectiveYear = $('#ddlEffectiveYear option:selected').val(); 
+    lcl_obj_Increment.IsApproved = 1;
 
     var options = {};
     options.url = gbl_URL_Root + "WebServices/HRIS/IncrementService.asmx/SaveIncrement";

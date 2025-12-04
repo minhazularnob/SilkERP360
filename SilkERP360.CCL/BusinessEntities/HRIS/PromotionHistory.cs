@@ -103,8 +103,9 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         public string PreviousDesignationName { get; set; }
         public string CurentDesignationName { get; set; }
         public int UserSpecifcApprovalStatus { get; set; }
+        public string WithIncrement { get; set; }
 
-        public Increment IP_obj_Increment { get; set; } = null;
+        public IncrementRequest IP_obj_Increment { get; set; } = null;
     }
 }
 

@@ -42,7 +42,8 @@ namespace SilkERP360.SP.HRIS
             {
                 System.String lcl_str_SqlQuery = System.String.Format(@"select h.promotion_id,e.employee_code,e.employee_id,e.employee_name,h.previous_designation_code,
                                                                         h.current_designation_code,pd.degn_name PreviousDesName,nd.degn_name CurrentDesName,h.remarks,
-                                                                        h.effective_from,h.company_code,h.ISAPPROVED,NVL(p.status, 0) as specificUserAppraval from promotion_history h
+                                                                        h.effective_from,h.company_code,h.ISAPPROVED,NVL(p.status, 0) as specificUserAppraval,
+                                                                        CASE WHEN h.INCREMENT_CODE IS NULL THEN 'NO' ELSE 'YES' END AS IS_INCREMENTED from promotion_history h
                                                                         inner join employee e on h.employee_code = e.employee_code
                                                                         inner join designation pd on h.previous_designation_code = pd.designation_code
                                                                         inner join designation nd on h.current_designation_code = nd.designation_code
