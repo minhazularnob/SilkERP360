@@ -14,7 +14,7 @@ namespace SilkERP360.BML.HRIS
     public class IncrementManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
         CommonManager _commonManager = new CommonManager();
-        string baseUrl = "http://localhost:4674"; // Replace with actual base URL
+       
 
         public IncrementManager( CommonManager commonManager = null)
         {
@@ -125,7 +125,7 @@ namespace SilkERP360.BML.HRIS
                        .Replace("{PreviousGross}", incrementRequest.PreviousGross.ToString())
                        .Replace("{ProposedGross}", incrementRequest.IncGross.ToString())
                        .Replace("{Token}", token)
-                       .Replace("{BaseUrl}", baseUrl)
+                       .Replace("{BaseUrl}", _commonManager.hrmBaseUrl)
                        .Replace("{incrementCode}", incrementRequest.IncrementCode.ToString());
 
             return html;

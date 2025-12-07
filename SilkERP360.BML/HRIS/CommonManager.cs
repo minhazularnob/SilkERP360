@@ -11,6 +11,8 @@ namespace SilkERP360.BML.HRIS
 {
     public class CommonManager
     {
+        internal string hrmBaseUrl = "http://localhost:4674"; // Replace with actual base URL
+
         internal void SaveApprover(ApproverDetail approver, ulong historyId, DBManager db)
         {
             string seqSql = $"SELECT {approver.GetSequence()}.NEXTVAL AS ID FROM DUAL";

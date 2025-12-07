@@ -13,7 +13,6 @@ namespace SilkERP360.BML.HRIS
 {
     public class PromotionHistoryManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
-        string baseUrl = "http://localhost:4674"; // Replace with actual base URL
         CommonManager _commonManager = new CommonManager();
 
         public PromotionHistoryManager()
@@ -158,7 +157,7 @@ namespace SilkERP360.BML.HRIS
                        .Replace("{EffectiveFrom}", effectiveFromFormatted)
                        .Replace("{EmployeeCode}", employeeCode.ToString())
                        .Replace("{Token}", token)
-                       .Replace("{BaseUrl}", baseUrl)
+                       .Replace("{BaseUrl}", _commonManager.hrmBaseUrl)
                        .Replace("{PromotionId}", promotionHistory.PromotionID.ToString());
 
             return html;
