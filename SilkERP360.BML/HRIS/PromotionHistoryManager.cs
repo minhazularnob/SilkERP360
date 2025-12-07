@@ -92,11 +92,15 @@ namespace SilkERP360.BML.HRIS
 
                     dbManager.InternalResource.CommitTransaction();
 
+                    List<UInt64> employeeCodes = promotionHistory.approverDetails
+                                                         .Select(a => a.EmployeeCode)
+                                                         .ToList();
+
                     // Send notifications
-                    var employeeInfo = GetApproverInfo(promotionHistory);
+                    var employeeInfo = _commonManager.GetApproverInfo(employeeCodes);
                     string smsText = $"A promotion approval is pending for Employee ID {promotionHistory.EmployeeId}, Name {promotionHistory.EmployeeName}, for the designation {promotionHistory.CurentDesignationName}.";
                     SmsNotifier notifier = new SmsNotifier();
-                    if (sendSms) SendSmsToApprovers(employeeInfo, smsText);
+                    if (sendSms) _commonManager.SendSmsToApprovers(employeeInfo, smsText);
                     if (sendMail) SendMailToApprovers(employeeInfo, promotionHistory);
 
                     return promotionId;
@@ -109,106 +113,25 @@ namespace SilkERP360.BML.HRIS
         {
             var mailNotifier = new SilkERP360.BML.Services.Mail.MailNotifier();
 
-            string serviceUrl = $"{baseUrl}/WebServices/HRIS/PromotionHistoryService.asmx";
             string emailSubject = "Promotion Approval Pending";
 
             foreach (var approver in employeeInfo)
             {
-                var email = GetApproverEmail(approver);
-                var employeeCode = GetEmployeeCode(approver);
+                var email = _commonManager.GetApproverEmail(approver);
+                var employeeCode = _commonManager.GetEmployeeCode(approver);
 
                 if (!string.IsNullOrWhiteSpace(email))
                 {
-                    string token = generateAndSaveToken(Convert.ToDateTime(promotionHistory.EffectiveFrom));
-                    string emailBody = BuildEmailBody(promotionHistory, serviceUrl, employeeCode, token, approver.Key);
+                    string token = _commonManager.generateAndSaveToken(Convert.ToDateTime(promotionHistory.EffectiveFrom));
+                    string emailBody = BuildEmailBody(promotionHistory, employeeCode, token, approver.Key);
                     mailNotifier.SendEmail(email, emailSubject, emailBody);
                 }
             }
         }
 
-        private string generateAndSaveToken(DateTime effectiveFrom)
-        {
-            string token = Guid.NewGuid().ToString("N");
+        
 
-            string createdDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string expiryDate = effectiveFrom.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string sqlInsert = "INSERT INTO TOKENS (TOKEN_ID, CREATED_DATE, IS_VALID, EXPIRY_AT) VALUES" +
-            " ('" + token + "', TO_TIMESTAMP('" + createdDate + "', 'YYYY-MM-DD HH24:MI:SS'), 1, TO_TIMESTAMP('" + expiryDate + "', 'YYYY-MM-DD HH24:MI:SS'))";
-
-            using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
-            {
-                if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
-                    dbManager.InternalResource.Open();
-
-                dbManager.InternalResource.ExecuteNonQuery(sqlInsert);
-                dbManager.InternalResource.CommitTransaction();
-            }
-
-            return token;
-        }
-
-        private string GetApproverEmail(KeyValuePair<string, List<string>> approver)
-        {
-            if (approver.Value.Count >= 3)  // Email is at index 2
-                return approver.Value[2];
-            return null;
-        }
-
-        private ulong GetEmployeeCode(KeyValuePair<string, List<string>> approver)
-        {
-            ulong employeeCode = 0;
-            if (approver.Value.Count >= 4)  // Employee code is at index 3
-            {
-                ulong.TryParse(approver.Value[3], out employeeCode);
-            }
-            return employeeCode;
-        }
-
-        private Dictionary<string, List<string>> GetApproverInfo(PromotionHistory promotionHistory)
-        {
-            List<UInt64> employeeCodes = promotionHistory.approverDetails
-                                                         .Select(a => a.EmployeeCode)
-                                                         .ToList();
-
-            Dictionary<string, List<string>> employeeInfo = new Dictionary<string, List<string>>();
-
-            using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
-            {
-                if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
-                {
-                    lcl_obj_DBManager.InternalResource.Open();
-                }
-
-                string IP_str_SqlQuery = $@"SELECT e.employee_code, e.employee_name, p.mobile_no, p.home_phone_no, p.email FROM employee e 
-                                            INNER JOIN employee_personal p ON e.employee_code = p.employee_code
-                                            WHERE e.employee_code IN ({string.Join(",", employeeCodes)})";
-
-                using (System.Data.OracleClient.OracleDataReader lcl_obj_dr =
-                       lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
-                {
-                    while (lcl_obj_dr.Read())
-                    {
-                        string employeeName = lcl_obj_dr["employee_name"]?.ToString();
-                        string mobile = lcl_obj_dr["mobile_no"]?.ToString();
-                        string home = lcl_obj_dr["home_phone_no"]?.ToString();
-                        string email = lcl_obj_dr["email"]?.ToString();
-                        string employeeCode = Convert.ToString(lcl_obj_dr["employee_code"]);
-
-                        employeeInfo[employeeName] = new List<string>()
-                        {
-                            mobile ?? "",        // index 0
-                            home ?? "",          // index 1
-                            email ?? "",         // index 2
-                            employeeCode         // index 3
-                        };
-                    }
-                }
-            }
-            return employeeInfo;
-        }
-
-        private string BuildEmailBody(PromotionHistory promotionHistory, string serviceUrl, ulong employeeCode, string token, string approverName)
+        private string BuildEmailBody(PromotionHistory promotionHistory, ulong employeeCode, string token, string approverName)
         {
             string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                                                "UI/MailTemplate/Promotion.html");
@@ -240,48 +163,7 @@ namespace SilkERP360.BML.HRIS
 
             return html;
         }
-
-        private void SendSmsToApprovers(Dictionary<string, List<string>> employeeInfo, string messageText)
-        {
-            if (employeeInfo == null || employeeInfo.Count == 0)
-                return;
-
-            var messages = PrepareMessages(employeeInfo, messageText);
-
-            if (messages.Count == 0)
-                return;
-
-            SmsNotifier smsNotifier = new SmsNotifier();
-            smsNotifier.SendDynamicMessages(messages);
-        }
-
-        private List<DynamicMessage> PrepareMessages(Dictionary<string, List<string>> employeeInfo, string messageText)
-        {
-            var messages = new List<DynamicMessage>();
-
-            foreach (var approver in employeeInfo)
-            {
-                string employeeName = approver.Key;
-                foreach (var phone in approver.Value)
-                {
-                    if (string.IsNullOrWhiteSpace(phone))
-                        continue;
-
-                    messages.Add(FormatMessage(employeeName, phone, messageText));
-                }
-            }
-
-            return messages;
-        }
-
-        private DynamicMessage FormatMessage(string employeeName, string phoneNumber, string messageText)
-        {
-            return new DynamicMessage
-            {
-                PhoneNumber = phoneNumber,
-                Message = $"{employeeName}, {messageText}"
-            };
-        }
+        
 
         public ulong UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status, string token = null)
         {
@@ -337,7 +219,7 @@ namespace SilkERP360.BML.HRIS
                         }
                         if (token != null)
                         {
-                            updateTokenStatus(lcl_obj_DBManager, token);
+                            _commonManager.updateTokenStatus(lcl_obj_DBManager, token);
                         }
                     }
 
@@ -347,29 +229,6 @@ namespace SilkERP360.BML.HRIS
             }, "BMLExceptionPolicy");
 
             return lcl_ui64_approverDetailCode;
-        }
-
-        private string updateTokenStatus(System.Object IP_obj_DBManager, string token)
-        {
-            return this.ExceptionManager.Process<string>(() =>
-            {
-                // Get the actual DBManager from the pooled object wrapper
-                var dbManagerWrapper = (SilkERP360.CCL.ObjectPool.PooledObjectWrapper<SilkERP360.DAL.DBManager>)IP_obj_DBManager;
-                var lcl_obj_DBManager = dbManagerWrapper.InternalResource;
-
-                if (lcl_obj_DBManager.ConnectionState != System.Data.ConnectionState.Open)
-                {
-                    lcl_obj_DBManager.Open();
-                }
-
-                string sql = $@"UPDATE TOKENS SET IS_VALID = 0 WHERE TOKEN_ID = '{token}'";
-                System.String lcl_str_SqlQuery = System.String.Format(sql);
-
-                lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
-                return token;
-
-            }, "BMLExceptionPolicy");
-
         }
 
         public ulong ApprovedFinalPromotion(System.Object IP_obj_DBManager, ulong history_code)
