@@ -382,7 +382,7 @@ namespace SilkERP360.CCL.Enums
         Get = 4
     }
 
-    public enum PromotionStatus
+    public enum ApproveStatus
     {
         Rejected = 0,
         Pending = 1,

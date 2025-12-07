@@ -10,8 +10,8 @@ $(document).ready(function () {
         "bLengthChange": false,
         "bSearch": true,
         "aoColumns": [
-                    { sTitle: '<b>Prv. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
-                    { sTitle: '<b>Inc. Gross</b>', sWidth: '20%', sClass: 'alignCenter' },
+                    { sTitle: '<b>Prv. Gross</b>', sWidth: '15%', sClass: 'alignCenter' },
+                    { sTitle: '<b>Inc. Gross</b>', sWidth: '10%', sClass: 'alignCenter' },
                     { sTitle: '<b>Inc. Basic</b>', sWidth: '10%', sClass: 'alignCenter' },
                     { sTitle: '<b>Inc. H.Rent</b>', sWidth: '10%', sClass: 'alignCenter' },
                     { sTitle: '<b>Inc. Conv.</b>', sWidth: '10%', sClass: 'alignCenter' },
@@ -32,9 +32,41 @@ $(document).ready(function () {
                             }
                             return "";
                         }
+                    },
+                    {
+                        sTitle: '<b>Action</b>',
+                        sWidth: '15%',
+                        sClass: 'alignCenter',
+
+                        mRender: function (data, type, full) {
+                            if (
+                                full[8] === 0 || full[8] === 2 ||
+                                full[9] === 0 || full[9] === 2
+                            ) {
+                                return '<span class="text-muted">No actions available</span>';
+                            }
+
+                            return `
+                            <div class="action-buttons">
+                                <a href="javascript:void(0);" 
+                                   class="btn-approve" 
+                                   title="Approve"
+                                   onclick="approveIncrement(${full[10]}, ${full[9]}); return false;">
+                                    <i class="fa fa-check-circle text-success"></i> Approve
+                                </a>
+
+                                <a href="javascript:void(0);" 
+                                   class="btn-reject" 
+                                   title="Reject"
+                                   onclick="rejectIncrement(${full[10]}, ${full[9]}); return false;"
+                                   style="margin-left: 10px;">
+                                    <i class="fa fa-times-circle text-danger"></i> Reject
+                                </a>
+                            </div>
+                        `;
+                        }
                     }
                   ]
-
     });
 
     $("#txtIncGross").blur(function () {
@@ -47,6 +79,50 @@ $(document).ready(function () {
     initializeSelect2('increment_approvers', '------ Select Approvers ------', '25%');
     bindAllAprovers("increment_approvers");
 });
+
+function approveIncrement(incrementId, employeeCode) {
+    if (confirm("Are you sure you want to approve this promotion?")) {
+        updatePromotionStatusForApprover(incrementId, employeeCode, 'approved');
+    }
+}
+
+function rejectIncrement(incrementId, employeeCode) {
+    if (confirm("Are you sure you want to reject this promotion?")) {
+        updatePromotionStatusForApprover(incrementId, employeeCode, 'rejected');
+    }
+}
+
+function updatePromotionStatusForApprover(promotionHistoryCode, approverCode, status) {
+    // Convert status to integer (1 for approved, 0 for rejected)
+    var statusCode = (status === 'approved') ? 2 : 0;
+    console.log(gbl_URL_Root);
+    $.ajax({
+        type: "POST",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        url: gbl_URL_Root + "WebServices/HRIS/IncrementService.asmx/UpdateIncrementStatusForApprover",
+        data: JSON.stringify({
+            IP_ui64_PromotionHistoryCode: promotionHistoryCode,
+            status: statusCode
+        }),
+        dataType: "json",
+        success: function (response) {
+            var WSReturn = response.d;
+            if (WSReturn.ResponseCode == 0) {
+                DisplayInformation(WSReturn.Message.toString());
+                DisplayIncrementHistory();
+
+            } else {
+                DisplayError(WSReturn.Message.toString());
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error updating status:", status, error);
+            DisplayError("An error occurred while updating the status.. Please try again.");
+        }
+    });
+    return false;
+}
 
 function DisplayIncrementHistory() {
 
@@ -129,6 +205,8 @@ function DisplayIncrementHistory() {
                 lcl_objLst_TblIncrementHistory[index][6] = lcl_obj_Increment.EffectiveMonth;
                 lcl_objLst_TblIncrementHistory[index][7] = lcl_obj_Increment.EffectiveYear;
                 lcl_objLst_TblIncrementHistory[index][8] = lcl_obj_Increment.IsApproved;
+                lcl_objLst_TblIncrementHistory[index][9] = lcl_obj_Increment.UserSpecifcApprovalStatus;
+                lcl_objLst_TblIncrementHistory[index][10] = lcl_obj_Increment.IncrementCode;
 
             });
             GBL_INCREMENT_HISTORY.fnAddData(lcl_objLst_TblIncrementHistory);
@@ -164,7 +242,7 @@ function SaveIncrement() {
         return;
     }
 
-    if (approvers == null == null) {
+    if (approvers == null   ) {
         DisplayError("Please select at least one approver");
         return;
     }
@@ -208,6 +286,7 @@ function SaveIncrement() {
             return;
         }
         DisplaySuccess("Employee Has Been Incremented Successfully!");
+        DisplayIncrementHistory();
         $(".INC_IP").val('0');
     };
     options.error = function (err) { ShowErrorMessageBoard(err.statusText); };

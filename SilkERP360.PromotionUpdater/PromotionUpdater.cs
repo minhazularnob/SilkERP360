@@ -114,9 +114,29 @@ namespace SilkERP360.PromotionUpdater
         private List<long> GetPendingIncrementCodes(OracleConnection conn, OracleTransaction tran)
         {
             List<long> list = new List<long>();
-            string sql = @"SELECT DISTINCT increment_code 
-                           FROM promotion_history 
-                           WHERE isapproved = 2 AND increment_code IS NOT NULL";
+
+            string sql = @"
+        SELECT increment_code 
+        FROM
+        (
+            -- Pending promotions
+            SELECT DISTINCT increment_code
+            FROM promotion_history
+            WHERE isapproved = 2 
+              AND increment_code IS NOT NULL
+
+            UNION ALL
+
+            -- Pending increments (not mapped)
+            SELECT DISTINCT r.increment_code
+            FROM salary_increment_request r
+            WHERE r.is_approved = 2
+              AND NOT EXISTS (
+                    SELECT 1 
+                    FROM increment_mapping m 
+                    WHERE m.increment_request_code = r.increment_code
+              )
+        )";
 
             using (var cmd = new OracleCommand(sql, conn))
             {
@@ -130,6 +150,7 @@ namespace SilkERP360.PromotionUpdater
 
             return list;
         }
+
 
         // --------------------------------------------------------------------
         // STEP 5 — Process Each Increment Request

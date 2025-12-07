@@ -18,13 +18,6 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             set { m_ui64_IncrementCode = value; }
         }
 
-        //[SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("INCREMENT_MASTER_CODE", typeof(System.UInt64), true, false)]
-        //protected System.UInt64 m_ui64_IncrementMasterCode;
-        //public System.UInt64 IncrementMasterCode
-        //{
-        //    get { return m_ui64_IncrementMasterCode; }
-        //    set { m_ui64_IncrementMasterCode = value; }
-        //}
         
         [SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("EMPLOYEE_CODE", typeof(System.UInt64), true, false)]
         protected System.UInt64 m_ui64_EmployeeCode;
@@ -34,13 +27,6 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             set { this.m_ui64_EmployeeCode = value; }
         }
 
-        //[SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("INCREMENT_DATE", typeof(System.DateTime), true, false)]
-        //protected System.DateTime m_dt_IncrementDate;
-        //public System.DateTime IncrementDate
-        //{
-        //    get { return m_dt_IncrementDate; }
-        //    set { m_dt_IncrementDate = value; }
-        //}
 
         [SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("PREVIOUS_GROSS", typeof(System.Decimal), true, false)]
         protected System.Decimal m_dcm_PreviousGross;
@@ -99,14 +85,6 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         }
 
         
-        //[SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("ENTRY_DATE", typeof(System.DateTime), true, false)]
-        //protected System.DateTime m_dt_EntryDate;
-        //public System.DateTime EntryDate
-        //{
-        //    get { return m_dt_EntryDate; }
-        //    set { m_dt_EntryDate = value; }
-        //}
-
         [SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("ENTRY_EMPLOYEE_CODE", typeof(System.UInt64), true, false)]
         protected System.UInt64 m_ui64_EntryEmployeeCode;
         public System.UInt64 EntryEmployeeCode
@@ -131,5 +109,10 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             set { m_ui32_EffectiveYear = value; }
         }
 
-        public Int16 IsApproved { get; set; }        }
+        public Int16 IsApproved { get; set; }
+        public int UserSpecifcApprovalStatus { get; set; }
+        public UInt64 EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+
+    }
 }

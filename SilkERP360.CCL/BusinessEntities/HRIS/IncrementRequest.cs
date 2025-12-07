@@ -13,7 +13,7 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
 
         public IncrementRequest()
         {
-            IsApproved = (int)PromotionStatus.Pending;
+            IsApproved = (int)ApproveStatus.Pending;
         }
 
         [SilkERP360.CCL.DatabaseMapping.DatabaseColumnMapping("INCREMENT_CODE", typeof(System.UInt64), true, false)]
@@ -121,5 +121,8 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
             get { return m_ui16_IsApproved; }
             set { m_ui16_IsApproved = value; }
         }
+
+        public string EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
     }
 }

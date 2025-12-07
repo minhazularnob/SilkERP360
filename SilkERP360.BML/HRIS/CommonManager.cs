@@ -21,7 +21,7 @@ namespace SilkERP360.BML.HRIS
 
             approver.Id = approverID;
             approver.HistoryId = historyId;
-            approver.Status = (int)PromotionStatus.Pending;
+            approver.Status = (int)ApproveStatus.Pending;
 
             string insertSql = approver.GenerateSqlInsert();
             db.ExecuteScalar(insertSql);

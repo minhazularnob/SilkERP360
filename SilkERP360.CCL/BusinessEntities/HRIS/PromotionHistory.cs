@@ -12,7 +12,7 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
     {
         public PromotionHistory()
         {
-            IsApproved = (int)PromotionStatus.Pending;
+            IsApproved = (int)ApproveStatus.Pending;
         }
 
         [SilkERP360.CCL.Validation.Attributes.Required]

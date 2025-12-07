@@ -308,7 +308,7 @@ namespace SilkERP360.BML.HRIS
                     if (lcl_obj_IDReader.Read() && lcl_obj_IDReader["approver_id"] != DBNull.Value)
                     {
                         int approverStatus = Convert.ToInt32(lcl_obj_IDReader["status"]);
-                        if (approverStatus != (int)PromotionStatus.Pending)
+                        if (approverStatus != (int)ApproveStatus.Pending)
                         {
                             throw new Exception("Approver status cannot be updated");
                         }
@@ -326,12 +326,12 @@ namespace SilkERP360.BML.HRIS
                         string updateSql = detail.GenerateSqlUpdate();
                         lcl_obj_DBManager.InternalResource.ExecuteScalar(updateSql);
                         lcl_ui64_approverDetailCode = approverId;
-                        if (status == (int)PromotionStatus.Rejected)
+                        if (status == (int)ApproveStatus.Rejected)
                         {
                             RejectFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
                         }
 
-                        if (status == (int)PromotionStatus.Approved)
+                        if (status == (int)ApproveStatus.Approved)
                         {
                             ApprovedFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
                         }
@@ -397,7 +397,7 @@ namespace SilkERP360.BML.HRIS
                     return 0;
                 }
 
-                string sql = $@"UPDATE promotion_history SET ISAPPROVED = {(int)PromotionStatus.Approved} WHERE promotion_id = {history_code} and isapproved = {(int)PromotionStatus.Pending}";
+                string sql = $@"UPDATE promotion_history SET ISAPPROVED = {(int)ApproveStatus.Approved} WHERE promotion_id = {history_code} and isapproved = {(int)ApproveStatus.Pending}";
                 System.String lcl_str_SqlQuery = System.String.Format(sql);
 
                 lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
@@ -405,12 +405,12 @@ namespace SilkERP360.BML.HRIS
                 // 2️⃣ Update corresponding salary_increment_request → Approved (only if INCREMENT_CODE exists)
                 string updateIncrementRequestSql = $@"
                     UPDATE salary_increment_request s
-                    SET s.IS_APPROVED = {(int)PromotionStatus.Approved}
+                    SET s.IS_APPROVED = {(int)ApproveStatus.Approved}
                     WHERE EXISTS (
                         SELECT 1
                         FROM promotion_history p
                         WHERE p.promotion_id = {history_code}
-                          AND p.ISAPPROVED = {(int)PromotionStatus.Approved}
+                          AND p.ISAPPROVED = {(int)ApproveStatus.Approved}
                           AND p.INCREMENT_CODE IS NOT NULL
                           AND p.INCREMENT_CODE = s.INCREMENT_CODE
                     )";
@@ -436,7 +436,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
 
-                string sql = $@"UPDATE promotion_history SET ISAPPROVED = {(int)PromotionStatus.Rejected} WHERE promotion_id = {history_code} and ISAPPROVED = {(int)PromotionStatus.Pending}";
+                string sql = $@"UPDATE promotion_history SET ISAPPROVED = {(int)ApproveStatus.Rejected} WHERE promotion_id = {history_code} and ISAPPROVED = {(int)ApproveStatus.Pending}";
                 System.String lcl_str_SqlQuery = System.String.Format(sql);
 
                 lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
@@ -444,12 +444,12 @@ namespace SilkERP360.BML.HRIS
                 // 2️⃣ Update corresponding salary_increment_request → Rejected (only if INCREMENT_CODE exists)
                 string updateIncrementRequestSql = $@"
                     UPDATE salary_increment_request s
-                    SET s.IS_APPROVED = {(int)PromotionStatus.Rejected}
+                    SET s.IS_APPROVED = {(int)ApproveStatus.Rejected}
                     WHERE EXISTS (
                         SELECT 1
                         FROM promotion_history p
                         WHERE p.promotion_id = {history_code}
-                          AND p.ISAPPROVED = {(int)PromotionStatus.Rejected}
+                          AND p.ISAPPROVED = {(int)ApproveStatus.Rejected}
                           AND p.INCREMENT_CODE IS NOT NULL
                           AND p.INCREMENT_CODE = s.INCREMENT_CODE
                     )";
