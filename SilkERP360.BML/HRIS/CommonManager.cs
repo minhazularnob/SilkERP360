@@ -51,6 +51,7 @@ namespace SilkERP360.BML.HRIS
 
             return token;
         }
+
         internal string GetApproverEmail(KeyValuePair<string, List<string>> approver)
         {
             if (approver.Value.Count >= 3)  // Email is at index 2
