@@ -1,6 +1,7 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS;
 using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.ModelClass;
+using SilkERP360.CCL.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,8 @@ namespace SilkERP360.BML.HRIS
     public class PromotionHistoryManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
         CommonManager _commonManager = new CommonManager();
+        bool sendSms = GlobalFlags.SendSms;
+        bool sendMail = GlobalFlags.SendMail;
 
         public PromotionHistoryManager()
         {
@@ -23,9 +26,6 @@ namespace SilkERP360.BML.HRIS
 
         public ulong Save(CCL.BusinessEntities.HRIS.PromotionHistory promotionHistory)
         {
-            var sendSms = false;
-            var sendMail = false;
-
             if (!DateTime.TryParse(promotionHistory.EffectiveFrom, out DateTime effectiveDate))
                 throw new ArgumentException("Invalid EffectiveFrom date.");
 
@@ -128,8 +128,6 @@ namespace SilkERP360.BML.HRIS
             }
         }
 
-        
-
         private string BuildEmailBody(PromotionHistory promotionHistory, ulong employeeCode, string token, string approverName)
         {
             string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
@@ -179,10 +177,7 @@ namespace SilkERP360.BML.HRIS
 
                     // Using string format for the query (be aware of SQL injection risks)
                     string lcl_str_SqlQuery = string.Format(
-                        "SELECT ID as approver_id,status FROM promotion_approvers WHERE history_id = {0} AND employee_code = {1}",
-                        IP_ui64_PromotionHistoryCode,
-                        IP_ui64_ApproverCode
-                    );
+                        "SELECT ID as approver_id,status FROM promotion_approvers WHERE history_id = {0} AND employee_code = {1}", IP_ui64_PromotionHistoryCode, IP_ui64_ApproverCode);
 
                     var lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
 

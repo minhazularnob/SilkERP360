@@ -2,6 +2,7 @@
 using SilkERP360.CCL.BusinessEntities.WPMS;
 using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.ModelClass;
+using SilkERP360.CCL.Utils;
 using SilkERP360.DAL;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ namespace SilkERP360.BML.HRIS
     public class IncrementManager : SilkERP360.CCL.ExceptionManagement.Base.ExceptionManagementBase
     {
         CommonManager _commonManager = new CommonManager();
-       
+        bool sendSms = GlobalFlags.SendSms;
+        bool sendMail = GlobalFlags.SendMail;
+
+
 
         public IncrementManager( CommonManager commonManager = null)
         {
@@ -23,8 +27,8 @@ namespace SilkERP360.BML.HRIS
 
         public ulong Save(CCL.BusinessEntities.HRIS.IncrementRequest IP_obj_Increment_Request , object IP_obj_DBManager, List<ApproverDetail> IP_obj_ApproverDetails = null)
         {
-            var sendSms = false;
-            var sendMail = true;
+            //var sendSms = false;
+            //var sendMail = true;
 
             System.UInt64 lcl_ui64_IncrementCode = 0;
             System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", IP_obj_Increment_Request.GetSequence());

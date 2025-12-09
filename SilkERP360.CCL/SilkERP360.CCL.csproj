@@ -324,6 +324,7 @@
     <Compile Include="Security\TempSecurityTokenRepository.cs" />
     <Compile Include="UIEntities\Menu.cs" />
     <Compile Include="UIEntities\Module.cs" />
+    <Compile Include="Utils\GlobalFlags.cs" />
     <Compile Include="Utils\SMQCRandomGenerator.cs" />
     <Compile Include="Utils\Utility.cs" />
     <Compile Include="Validation\Attributes\AgeRangeAttribute.cs" />
