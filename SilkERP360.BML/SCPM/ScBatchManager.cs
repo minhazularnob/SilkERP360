@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace SilkERP360.BML.SCPM
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No Batch Data Found In The Database!!!");
@@ -57,7 +58,7 @@ namespace SilkERP360.BML.SCPM
         //        {
         //            lcl_obj_DBManager.Open();
         //        }
-        //        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+        //        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
         //        if (!(dr.HasRows))
         //        {
         //            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No Batch Data Found In The Database!!!");
@@ -87,31 +88,31 @@ namespace SilkERP360.BML.SCPM
             lcl_ui64_Batch = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_ScBatchCode = new System.Data.OracleClient.OracleParameter("p_SC_BATCH_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ScBatchCode = new OracleParameter("p_SC_BATCH_CODE", OracleDbType.Int64);
                 lcl_obj_ScBatchCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ScBatchCode.Value = lcl_obj_Batch.BatchCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_ScBatch = new System.Data.OracleClient.OracleParameter("p_SC_BATCH", System.Data.OracleClient.OracleType.NVarChar,256);
+                OracleParameter lcl_obj_ScBatch = new OracleParameter("p_SC_BATCH", OracleDbType.NVarchar2,256);
                 lcl_obj_ScBatch.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ScBatch.Value = lcl_obj_Batch.ScBatchName;
-                System.Data.OracleClient.OracleParameter lcl_obj_ScJOCode = new System.Data.OracleClient.OracleParameter("p_SC_J_O_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ScJOCode = new OracleParameter("p_SC_J_O_CODE", OracleDbType.Int64);
                 lcl_obj_ScJOCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ScJOCode.Value = lcl_obj_Batch.ScJOCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_Quantity = new System.Data.OracleClient.OracleParameter("p_QUANTITY", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Quantity = new OracleParameter("p_QUANTITY", OracleDbType.Int64);
                 lcl_obj_Quantity.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Quantity.Value = lcl_obj_Batch.Quantity;
-                System.Data.OracleClient.OracleParameter lcl_obj_StartSl = new System.Data.OracleClient.OracleParameter("p_START_SL", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_StartSl = new OracleParameter("p_START_SL", OracleDbType.Int64);
                 lcl_obj_StartSl.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_StartSl.Value = (System.Object)lcl_obj_Batch.StartSl;
-                System.Data.OracleClient.OracleParameter lcl_obj_EndSl = new System.Data.OracleClient.OracleParameter("p_END_SL", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EndSl = new OracleParameter("p_END_SL", OracleDbType.Int64);
                 lcl_obj_EndSl.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EndSl.Value = (System.Object)lcl_obj_Batch.EndSl;
-                System.Data.OracleClient.OracleParameter lcl_obj_ProductionStatus = new System.Data.OracleClient.OracleParameter("p_PRODUCTION_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ProductionStatus = new OracleParameter("p_PRODUCTION_STATUS", OracleDbType.Int64);
                 lcl_obj_ProductionStatus.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ProductionStatus.Value = lcl_obj_Batch.ProductionStatus;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                 lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Status.Value = lcl_obj_Batch.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScBatchCode, lcl_obj_ScBatch, lcl_obj_ScJOCode, lcl_obj_Quantity, lcl_obj_StartSl, lcl_obj_EndSl, lcl_obj_ProductionStatus, lcl_obj_Status };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScBatchCode, lcl_obj_ScBatch, lcl_obj_ScJOCode, lcl_obj_Quantity, lcl_obj_StartSl, lcl_obj_EndSl, lcl_obj_ProductionStatus, lcl_obj_Status };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS.Batch_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_ScBatchCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -128,31 +129,31 @@ namespace SilkERP360.BML.SCPM
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_ScBatchCode = new System.Data.OracleClient.OracleParameter("p_SC_BATCH_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ScBatchCode = new OracleParameter("p_SC_BATCH_CODE", OracleDbType.Int64);
                     lcl_obj_ScBatchCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ScBatchCode.Value = lcl_obj_Batch.BatchCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ScBatch = new System.Data.OracleClient.OracleParameter("p_SC_BATCH", System.Data.OracleClient.OracleType.NVarChar,256);
+                    OracleParameter lcl_obj_ScBatch = new OracleParameter("p_SC_BATCH", OracleDbType.NVarchar2,256);
                     lcl_obj_ScBatch.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ScBatch.Value = lcl_obj_Batch.ScBatchName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ScJOCode = new System.Data.OracleClient.OracleParameter("p_SC_J_O_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ScJOCode = new OracleParameter("p_SC_J_O_CODE", OracleDbType.Int64);
                     lcl_obj_ScJOCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ScJOCode.Value = lcl_obj_Batch.ScJOCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Quantity = new System.Data.OracleClient.OracleParameter("p_QUANTITY", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Quantity = new OracleParameter("p_QUANTITY", OracleDbType.Int64);
                     lcl_obj_Quantity.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Quantity.Value = lcl_obj_Batch.Quantity;
-                    System.Data.OracleClient.OracleParameter lcl_obj_StartSl = new System.Data.OracleClient.OracleParameter("p_START_SL", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_StartSl = new OracleParameter("p_START_SL", OracleDbType.Int64);
                     lcl_obj_StartSl.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_StartSl.Value = (System.Object)lcl_obj_Batch.StartSl;
-                    System.Data.OracleClient.OracleParameter lcl_obj_EndSl = new System.Data.OracleClient.OracleParameter("p_END_SL", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EndSl = new OracleParameter("p_END_SL", OracleDbType.Int64);
                     lcl_obj_EndSl.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EndSl.Value = (System.Object)lcl_obj_Batch.EndSl;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ProductionStatus = new System.Data.OracleClient.OracleParameter("p_PRODUCTION_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ProductionStatus = new OracleParameter("p_PRODUCTION_STATUS", OracleDbType.Int64);
                     lcl_obj_ProductionStatus.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ProductionStatus.Value = lcl_obj_Batch.ProductionStatus;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                     lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Status.Value = lcl_obj_Batch.Status;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScBatchCode, lcl_obj_ScBatch, lcl_obj_ScJOCode, lcl_obj_Quantity, lcl_obj_StartSl, lcl_obj_EndSl, lcl_obj_ProductionStatus, lcl_obj_Status};
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScBatchCode, lcl_obj_ScBatch, lcl_obj_ScJOCode, lcl_obj_Quantity, lcl_obj_StartSl, lcl_obj_EndSl, lcl_obj_ProductionStatus, lcl_obj_Status};
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS.Batch_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_ScBatchCode.Value.ToString());
                 }

@@ -20,7 +20,7 @@ namespace SilkERP360.UI.WPMS
 
             System.String lcl_str_SqlQueryProduct = System.String.Empty;
             lcl_str_SqlQueryProduct = System.String.Format("Select PURCHASE_ORDER_CODE From WPMS_PURCHASE_ORDER order by PURCHASE_ORDER_CODE desc", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryProduct);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryProduct);
             System.Int32 lcl_i32_K = 1;
             while (lcl_obj_Reader.Read())
             {

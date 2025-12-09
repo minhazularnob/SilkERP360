@@ -474,7 +474,7 @@ namespace SilkERP360.OfflineDataProcessing
         //                /*foreach(SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile lcl_obj_EmployeeProfile in lcl_objLst_EmployeeProfile)
         //                {
         //                    lcl_str_SqlQuery = System.String.Format("SELECT * FROM MONTHLY_ALLOWANCE WHERE EMPLOYEE_CODE = {0} AND STATUS = {1}", lcl_obj_EmployeeProfile.EmployeeCode, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-        //                    System.Data.OracleClient.OracleDataReader lcl_obj_AllowanceReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+        //                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_AllowanceReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
         //                    if (!(lcl_obj_AllowanceReader.HasRows))
         //                    {
         //                        lcl_obj_AllowanceReader.Close();

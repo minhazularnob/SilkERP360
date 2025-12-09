@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -33,7 +31,7 @@ namespace SilkERP360.BML.HRIS
             lcl_obj_DesignationCore = this.ExceptionManager.Process<SilkERP360.CCL.BusinessEntities.HRIS.Base.DesignationCore>(() =>
             {
                 System.String lcl_str_SqlQuery = System.String.Format("Select DEGN_NAME From Designation Where DESIGNATION_CODE = {0} AND Status = {1} AND IS_DELETED = 1", IP_ui64_DesignationCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DesignationReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DesignationReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_DesignationReader.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error : Designation (Code : {0}) Not Found!!!");
@@ -54,55 +52,55 @@ namespace SilkERP360.BML.HRIS
             lcl_ui64_DesignationCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_DesignationCode = new System.Data.OracleClient.OracleParameter("v_DESIGNATION_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_DesignationCode = new OracleParameter("v_DESIGNATION_CODE", OracleDbType.Int64);
                 lcl_obj_DesignationCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DesignationCode.Value = lcl_obj_Designation.DesignationCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_DegnName = new System.Data.OracleClient.OracleParameter("v_DEGN_NAME", System.Data.OracleClient.OracleType.NVarChar);
+                OracleParameter lcl_obj_DegnName = new OracleParameter("v_DEGN_NAME", OracleDbType.NVarchar2);
                 lcl_obj_DegnName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DegnName.Value = lcl_obj_Designation.DegnName;
-                System.Data.OracleClient.OracleParameter lcl_obj_ShortName = new System.Data.OracleClient.OracleParameter("v_SHORT_NAME", System.Data.OracleClient.OracleType.NVarChar);
+                OracleParameter lcl_obj_ShortName = new OracleParameter("v_SHORT_NAME", OracleDbType.NVarchar2);
                 lcl_obj_ShortName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ShortName.Value = lcl_obj_Designation.ShortName;
-                System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("v_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_CompanyCode = new OracleParameter("v_COMPANY_CODE", OracleDbType.Int64);
                 lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CompanyCode.Value = lcl_obj_Designation.CompanyCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_Basic = new System.Data.OracleClient.OracleParameter("v_BASIC", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Basic = new OracleParameter("v_BASIC", OracleDbType.Int64);
                 lcl_obj_Basic.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Basic.Value = lcl_obj_Designation.Basic;
-                System.Data.OracleClient.OracleParameter lcl_obj_HouseRent = new System.Data.OracleClient.OracleParameter("v_HOUSE_RENT", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_HouseRent = new OracleParameter("v_HOUSE_RENT", OracleDbType.Int64);
                 lcl_obj_HouseRent.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_HouseRent.Value = lcl_obj_Designation.HouseRent;
-                System.Data.OracleClient.OracleParameter lcl_obj_Medical = new System.Data.OracleClient.OracleParameter("v_MEDICAL", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Medical = new OracleParameter("v_MEDICAL", OracleDbType.Int64);
                 lcl_obj_Medical.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Medical.Value = lcl_obj_Designation.Medical;
-                System.Data.OracleClient.OracleParameter lcl_obj_Entertainment = new System.Data.OracleClient.OracleParameter("v_ENTERTAINMENT", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Entertainment = new OracleParameter("v_ENTERTAINMENT", OracleDbType.Int64);
                 lcl_obj_Entertainment.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Entertainment.Value = lcl_obj_Designation.Entertainment;
-                System.Data.OracleClient.OracleParameter lcl_obj_Conveyence = new System.Data.OracleClient.OracleParameter("v_CONVEYENCE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Conveyence = new OracleParameter("v_CONVEYENCE", OracleDbType.Int64);
                 lcl_obj_Conveyence.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Conveyence.Value = lcl_obj_Designation.Conveyence;
-                System.Data.OracleClient.OracleParameter lcl_obj_PhoneBill = new System.Data.OracleClient.OracleParameter("v_PHONE_BILL", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PhoneBill = new OracleParameter("v_PHONE_BILL", OracleDbType.Int64);
                 lcl_obj_PhoneBill.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PhoneBill.Value = lcl_obj_Designation.PhoneBill;
-                System.Data.OracleClient.OracleParameter lcl_obj_Others = new System.Data.OracleClient.OracleParameter("v_OTHERS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Others = new OracleParameter("v_OTHERS", OracleDbType.Int64);
                 lcl_obj_Others.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Others.Value = lcl_obj_Designation.Others;
-                System.Data.OracleClient.OracleParameter lcl_obj_Gross = new System.Data.OracleClient.OracleParameter("v_GROSS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Gross = new OracleParameter("v_GROSS", OracleDbType.Int64);
                 lcl_obj_Gross.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Gross.Value = lcl_obj_Designation.Gross;
-                System.Data.OracleClient.OracleParameter lcl_obj_EffectiveFrom = new System.Data.OracleClient.OracleParameter("v_EFFECTIVE_FROM", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_EffectiveFrom = new OracleParameter("v_EFFECTIVE_FROM", OracleDbType.Date);
                 lcl_obj_EffectiveFrom.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EffectiveFrom.Value = lcl_obj_Designation.EffectiveFrom;
-                System.Data.OracleClient.OracleParameter lcl_obj_IsOtEligible = new System.Data.OracleClient.OracleParameter("v_IS_OT_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsOtEligible = new OracleParameter("v_IS_OT_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_IsOtEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsOtEligible.Value = lcl_obj_Designation.IsOtEligible;
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
                 lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsDeleted.Value = lcl_obj_Designation.IsDeleted;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                 lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Status.Value = lcl_obj_Designation.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_DesignationCode, lcl_obj_DegnName, lcl_obj_ShortName, lcl_obj_CompanyCode, lcl_obj_Basic, lcl_obj_HouseRent, lcl_obj_Medical, lcl_obj_Entertainment, lcl_obj_Conveyence, lcl_obj_PhoneBill, lcl_obj_Others, lcl_obj_Gross, lcl_obj_EffectiveFrom, lcl_obj_IsOtEligible, lcl_obj_IsDeleted, lcl_obj_Status, };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_DesignationCode, lcl_obj_DegnName, lcl_obj_ShortName, lcl_obj_CompanyCode, lcl_obj_Basic, lcl_obj_HouseRent, lcl_obj_Medical, lcl_obj_Entertainment, lcl_obj_Conveyence, lcl_obj_PhoneBill, lcl_obj_Others, lcl_obj_Gross, lcl_obj_EffectiveFrom, lcl_obj_IsOtEligible, lcl_obj_IsDeleted, lcl_obj_Status, };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_DESIGNATION_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_DesignationCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -218,7 +216,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From DESIGNATION DESIGNATION_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorDesignation.Get(ID,DBManger)) : Error Retrieving Designation Data!");
@@ -258,7 +256,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(@"Select DESIGNATION_CODE
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(@"Select DESIGNATION_CODE
                             ,DEGN_NAME ,SHORT_NAME,COMPANY_CODE,nvl(BASIC,0) BASIC,nvl(HOUSE_RENT,0) HOUSE_RENT,nvl(MEDICAL,0)MEDICAL,nvl(ENTERTAINMENT,0)ENTERTAINMENT,nvl(CONVEYENCE,0)CONVEYENCE,
                             nvl(PHONE_BILL,0)PHONE_BILL,nvl(OTHERS,0)OTHERS,nvl(GROSS,0)GROSS,EFFECTIVE_FROM,IS_OT_ELIGABLE,IS_DELETED,STATUS From DESIGNATION where DESIGNATION_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
                     if (!(lcl_obj_dr.HasRows))
@@ -302,7 +300,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Designation.GetList(SqlQuery)) : No Attandance Data Found In The Database!!!");
                     }
@@ -346,7 +344,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(lcl_obj_dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Designation.GetList(SqlQuery,DBManager)) : No Attandance Data Found In The Database!!!");
@@ -392,7 +390,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorDesignation.Get(SqlQuery,DBManger)) : Error Retrieving Designation Data!");
@@ -432,7 +430,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Designation.Get(SqlQuery)) : No Designation Data Found In The Database!!!");

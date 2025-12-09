@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace SilkERP360.BML.SCPM
         //        {
         //            lcl_obj_DBManager.Open();
         //        }
-        //        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+        //        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
         //        if (!(dr.HasRows))
         //        {
         //            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No Machine Data Found In The Database!!!");
@@ -57,7 +58,7 @@ namespace SilkERP360.BML.SCPM
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No Machine Data Found In The Database!!!");
@@ -98,7 +99,7 @@ namespace SilkERP360.BML.SCPM
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         //return Empty list
@@ -136,31 +137,31 @@ namespace SilkERP360.BML.SCPM
             lcl_ui64_Machine = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_MachineCode = new System.Data.OracleClient.OracleParameter("p_MACHINE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_MachineCode = new OracleParameter("p_MACHINE_CODE", OracleDbType.Int64);
                 lcl_obj_MachineCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MachineCode.Value = lcl_obj_Machine.MachineCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("p_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_CompanyCode = new OracleParameter("p_COMPANY_CODE", OracleDbType.Int64);
                 lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CompanyCode.Value = lcl_obj_Machine.CompanyCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_Name = new System.Data.OracleClient.OracleParameter("p_NAME", System.Data.OracleClient.OracleType.NVarChar, 512);
+                OracleParameter lcl_obj_Name = new OracleParameter("p_NAME", OracleDbType.NVarchar2, 512);
                 lcl_obj_Name.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Name.Value = lcl_obj_Machine.Name;
-                System.Data.OracleClient.OracleParameter lcl_obj_ShortName = new System.Data.OracleClient.OracleParameter("p_SHORT_NAME", System.Data.OracleClient.OracleType.NVarChar, 256);
+                OracleParameter lcl_obj_ShortName = new OracleParameter("p_SHORT_NAME", OracleDbType.NVarchar2, 256);
                 lcl_obj_ShortName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ShortName.Value = lcl_obj_Machine.ShortName;
-                System.Data.OracleClient.OracleParameter lcl_obj_ProcessCode = new System.Data.OracleClient.OracleParameter("p_PROCESS_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ProcessCode = new OracleParameter("p_PROCESS_CODE", OracleDbType.Int64);
                 lcl_obj_ProcessCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ProcessCode.Value = lcl_obj_Machine.ProcessCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_ThroughputHr = new System.Data.OracleClient.OracleParameter("p_THROUGHPUT_HR", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ThroughputHr = new OracleParameter("p_THROUGHPUT_HR", OracleDbType.Int64);
                 lcl_obj_ThroughputHr.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ThroughputHr.Value = lcl_obj_Machine.Throughput_Hr;
-                System.Data.OracleClient.OracleParameter lcl_obj_MasurmentUnit = new System.Data.OracleClient.OracleParameter("p_MASURMENT_UNIT", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_MasurmentUnit = new OracleParameter("p_MASURMENT_UNIT", OracleDbType.Int64);
                 lcl_obj_MasurmentUnit.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MasurmentUnit.Value = lcl_obj_Machine.MeasurementUnit;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                 lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Status.Value = lcl_obj_Machine.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_MachineCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_ShortName, lcl_obj_ProcessCode, lcl_obj_ThroughputHr, lcl_obj_MasurmentUnit, lcl_obj_Status };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_MachineCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_ShortName, lcl_obj_ProcessCode, lcl_obj_ThroughputHr, lcl_obj_MasurmentUnit, lcl_obj_Status };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS.Machine_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_MachineCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -177,31 +178,31 @@ namespace SilkERP360.BML.SCPM
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_MachineCode = new System.Data.OracleClient.OracleParameter("p_MACHINE_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_MachineCode = new OracleParameter("p_MACHINE_CODE", OracleDbType.Int64);
                     lcl_obj_MachineCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_MachineCode.Value = lcl_obj_Machine.MachineCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("p_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_CompanyCode = new OracleParameter("p_COMPANY_CODE", OracleDbType.Int64);
                     lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_CompanyCode.Value = lcl_obj_Machine.CompanyCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Name = new System.Data.OracleClient.OracleParameter("p_NAME", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_Name = new OracleParameter("p_NAME", OracleDbType.NVarchar2, 512);
                     lcl_obj_Name.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Name.Value = lcl_obj_Machine.Name;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ShortName = new System.Data.OracleClient.OracleParameter("p_SHORT_NAME", System.Data.OracleClient.OracleType.NVarChar, 256);
+                    OracleParameter lcl_obj_ShortName = new OracleParameter("p_SHORT_NAME", OracleDbType.NVarchar2, 256);
                     lcl_obj_ShortName.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ShortName.Value = lcl_obj_Machine.ShortName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ProcessCode = new System.Data.OracleClient.OracleParameter("p_PROCESS_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ProcessCode = new OracleParameter("p_PROCESS_CODE", OracleDbType.Int64);
                     lcl_obj_ProcessCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ProcessCode.Value = lcl_obj_Machine.ProcessCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ThroughputHr = new System.Data.OracleClient.OracleParameter("p_THROUGHPUT_HR", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ThroughputHr = new OracleParameter("p_THROUGHPUT_HR", OracleDbType.Int64);
                     lcl_obj_ThroughputHr.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ThroughputHr.Value = lcl_obj_Machine.Throughput_Hr;
-                    System.Data.OracleClient.OracleParameter lcl_obj_MasurmentUnit = new System.Data.OracleClient.OracleParameter("p_MASURMENT_UNIT", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_MasurmentUnit = new OracleParameter("p_MASURMENT_UNIT", OracleDbType.Int64);
                     lcl_obj_MasurmentUnit.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_MasurmentUnit.Value = lcl_obj_Machine.MeasurementUnit;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                     lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Status.Value = lcl_obj_Machine.Status;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_MachineCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_ShortName, lcl_obj_ProcessCode, lcl_obj_ThroughputHr, lcl_obj_MasurmentUnit, lcl_obj_Status };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_MachineCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_ShortName, lcl_obj_ProcessCode, lcl_obj_ThroughputHr, lcl_obj_MasurmentUnit, lcl_obj_Status };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS.Machine_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_MachineCode.Value.ToString());
                 }

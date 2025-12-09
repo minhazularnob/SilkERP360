@@ -55,12 +55,8 @@ namespace SilkERP360.Reports
             crv.ReportSource = SilkERP360.Globals.classes.ReportSubmitted.Rpt;
                       
             crv.HasPrintButton = true;
-       
 
         }
-
-       
-
        
         private SilkERP360.Globals.classes.WSReturn DailyAttendance(System.UInt64 deptCode, System.DateTime ddate, System.UInt64 CompCode)
         {
@@ -89,7 +85,7 @@ namespace SilkERP360.Reports
                 Where COMPANY_CODE={0} And DEPARTMENT_CODE={1}", CompCode, deptCode, ddate.ToString("dd-MMM-yyyy"));
                 
                 List<SilkERP360.Reports.Classes.DailyAttendenceReport> lstDt = new List<SilkERP360.Reports.Classes.DailyAttendenceReport>();
-                System.Data.OracleClient.OracleDataReader DailyReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader DailyReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                
                 if (DailyReader.HasRows)
                 {
@@ -138,7 +134,7 @@ namespace SilkERP360.Reports
 
                 List<SilkERP360.Reports.Classes.AttendanceReport> lst = new List<SilkERP360.Reports.Classes.AttendanceReport>();
                
-                System.Data.OracleClient.OracleDataReader reader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader reader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
              
                 SilkERP360.Reports.Classes.AttendanceReport lcl_obj_Atten = new    SilkERP360.Reports.Classes.AttendanceReport();
 
@@ -166,10 +162,6 @@ namespace SilkERP360.Reports
             {
                 return new SilkERP360.Globals.classes.WSReturn(1, Ex.Message);
             }
-
         }
-
-        
-
     }
 }

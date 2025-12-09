@@ -332,7 +332,7 @@ namespace SilkERP360.BML.HRIS
                     }
 
                     // Execute reader
-                    using (System.Data.OracleClient.OracleDataReader lcl_obj_dr =
+                    using (Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr =
                            lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
                     {
                         List<SilkERP360.CCL.BusinessEntities.HRIS.PromotionHistory> list =
@@ -389,7 +389,7 @@ namespace SilkERP360.BML.HRIS
                     }
 
                     // Execute reader
-                    using (System.Data.OracleClient.OracleDataReader lcl_obj_dr =
+                    using (Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr =
                            lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
                     {
                         List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> list =
@@ -431,7 +431,7 @@ namespace SilkERP360.BML.HRIS
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    using (System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
+                    using (Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
                     {
                         if (lcl_obj_dr.Read())
                         {

@@ -155,7 +155,7 @@ namespace SilkERP360.WebServices.HRIS
             try
             {
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new SilkERP360.FL.SqlFacade();
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeDataReader = lcl_obj_SqlFacade.ExecuteDataReader(@"select EMPLOYEE_CODE,EMPLOYEE_ID,EMPLOYEE_NAME From EMPLOYEE  Where DEPARTMENT_CODE=" + IP_ui64_DepartmentCode + " And  EMPLOYEE_STATUS =0 AND IS_DELETED = 1");
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeDataReader = lcl_obj_SqlFacade.ExecuteDataReader(@"select EMPLOYEE_CODE,EMPLOYEE_ID,EMPLOYEE_NAME From EMPLOYEE  Where DEPARTMENT_CODE=" + IP_ui64_DepartmentCode + " And  EMPLOYEE_STATUS =0 AND IS_DELETED = 1");
                 if (!(lcl_obj_EmployeeDataReader.HasRows))
                 {
                     return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, "Employee List For The Selected Department Not Found!!!", false, null);
@@ -316,7 +316,7 @@ namespace SilkERP360.WebServices.HRIS
                                                                         inner join COMPANY C on e.company_code=c.company_code
                                                                         where EMPLOYEE_CODE = {0} AND IS_DELETED = 1", lcl_ui64_EmployeeCode);
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new FL.SqlFacade();
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeIDReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeIDReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
                 lcl_obj_EmployeeIDReader.Read();
                 System.String lcl_str_EmployeeID = lcl_obj_EmployeeIDReader["EMPLOYEE_ID"].ToString();
                 System.String lcl_str_Company = lcl_obj_EmployeeIDReader["name"].ToString();

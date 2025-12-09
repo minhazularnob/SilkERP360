@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.OracleClient;
+﻿
+using Oracle.ManagedDataAccess.Client;
 namespace SilkERPDataService.ReadService.SCPM
 {
     public class SCDataService : System.IDisposable
     {
         private SilkERP360.DAL.DBManager _DBManager;
-        public System.Data.OracleClient.OracleDataReader _OracleDataReader;
+        public Oracle.ManagedDataAccess.Client.OracleDataReader _OracleDataReader;
         public SCDataService(System.String IP_str_DBConnectionString)
         {
             this._DBManager = new SilkERP360.DAL.DBManager(IP_str_DBConnectionString);
@@ -27,7 +24,7 @@ namespace SilkERPDataService.ReadService.SCPM
             }
         }
 
-        public System.Data.OracleClient.OracleDataReader GetReader(System.String IP_str_SqlQuery)
+        public Oracle.ManagedDataAccess.Client.OracleDataReader GetReader(System.String IP_str_SqlQuery)
         {
             try
             {

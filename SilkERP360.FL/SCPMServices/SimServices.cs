@@ -21,7 +21,7 @@ namespace SilkERP360.FL.SCPMServices
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MASTER_BATCH WHERE MASTER_BATCH = '{0}'", IP_obj_ScpmSmMasterBatch.MasterBatch);
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new SqlFacade();
                 lcl_obj_SqlFacade.Initialize();
-                System.Data.OracleClient.OracleDataReader lcl_obj_ScpmMasterBatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ScpmMasterBatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 SilkERP360.BML.SCPM.ScpmSmMasterBatchManager lcl_obj_ScpmMasterBatchManager = new BML.SCPM.ScpmSmMasterBatchManager();
                 SilkERP360.CCL.BusinessEntities.SCPM.ScpmSmMasterBatch lcl_obj_ScpmSmMasterBatch = null;
                 if (!(lcl_obj_ScpmMasterBatchReader.HasRows))

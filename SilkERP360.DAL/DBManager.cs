@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.OracleClient;
+using Oracle.ManagedDataAccess.Client;
+
 
 namespace SilkERP360.DAL
 {
@@ -18,10 +16,10 @@ namespace SilkERP360.DAL
         #region Member Variables
         private SilkERP360.DAL.TransactionState m_TransactionState;
         private System.String m_str_ConnectionString;
-        private System.Data.OracleClient.OracleCommand m_obj_OracleCommand;
-        private System.Data.OracleClient.OracleConnection m_obj_OracleConnection;
-        private System.Data.OracleClient.OracleTransaction m_obj_OracleTransaction;
-        private System.Data.OracleClient.OracleDataReader m_obj_OracleDataReader;
+        private OracleCommand m_obj_OracleCommand;
+        private OracleConnection m_obj_OracleConnection;
+        private OracleTransaction m_obj_OracleTransaction;
+        private OracleDataReader m_obj_OracleDataReader;
         #endregion Member Variables
 
         #region Properties
@@ -46,28 +44,28 @@ namespace SilkERP360.DAL
                 return this.m_obj_OracleConnection.State;
             }
         }
-        public System.Data.OracleClient.OracleCommand Command
+        public OracleCommand Command
         {
             get
             {
                 return this.m_obj_OracleCommand;
             }
         }
-        public System.Data.OracleClient.OracleConnection Connection
+        public OracleConnection Connection
         {
             get
             {
                 return this.m_obj_OracleConnection;
             }
         }
-        public System.Data.OracleClient.OracleTransaction Transaction
+        public OracleTransaction Transaction
         {
             get
             {
                 return this.m_obj_OracleTransaction;
             }
         }
-        public System.Data.OracleClient.OracleDataReader DataReader
+        public OracleDataReader DataReader
         {
             get
             {
@@ -82,7 +80,7 @@ namespace SilkERP360.DAL
             this.Initialize();//ExceptionManagementBase method
             this.m_str_ConnectionString = IP_str_ConnectionString;
             this.m_obj_OracleCommand = null;
-            this.m_obj_OracleConnection = new System.Data.OracleClient.OracleConnection(IP_str_ConnectionString);
+            this.m_obj_OracleConnection = new OracleConnection(IP_str_ConnectionString);
             this.m_obj_OracleDataReader = null;
             this.m_obj_OracleTransaction = null;
             this.m_TransactionState = SilkERP360.DAL.TransactionState.Closed;
@@ -129,24 +127,24 @@ namespace SilkERP360.DAL
         {
             //THROWS Error 100
             this.ExceptionManager.Process(() =>
-                                                    {
-                                                        if (this.m_TransactionState == SilkERP360.DAL.TransactionState.Pending)
-                                                        {
-                                                            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.DALException("A Transaction is in a pending state.Cannot open another connection without committing the transaction!!!");
-                                                        }
-                                                        if (this.m_obj_OracleConnection.State == System.Data.ConnectionState.Open)
-                                                        {
-                                                            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.DALException("Cannot open an already opened Connection!!!");
-                                                        }
-                                                        if (!(this.m_obj_OracleConnection.State == System.Data.ConnectionState.Open))
-                                                        {
-                                                            this.m_obj_OracleConnection.Open();
-                                                        }
-                                                        this.m_obj_OracleTransaction = this.m_obj_OracleConnection.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
-                                                        this.m_TransactionState = SilkERP360.DAL.TransactionState.Pending;
-                                                        this.m_obj_OracleCommand = this.m_obj_OracleConnection.CreateCommand();
-                                                        this.m_obj_OracleCommand.Transaction = this.m_obj_OracleTransaction;
-                                                    },
+            {
+                if (this.m_TransactionState == SilkERP360.DAL.TransactionState.Pending)
+                {
+                    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.DALException("A Transaction is in a pending state.Cannot open another connection without committing the transaction!!!");
+                }
+                if (this.m_obj_OracleConnection.State == System.Data.ConnectionState.Open)
+                {
+                    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.DALException("Cannot open an already opened Connection!!!");
+                }
+                if (!(this.m_obj_OracleConnection.State == System.Data.ConnectionState.Open))
+                {
+                    this.m_obj_OracleConnection.Open();
+                }
+                this.m_obj_OracleTransaction = this.m_obj_OracleConnection.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
+                this.m_TransactionState = SilkERP360.DAL.TransactionState.Pending;
+                this.m_obj_OracleCommand = this.m_obj_OracleConnection.CreateCommand();
+                this.m_obj_OracleCommand.Transaction = this.m_obj_OracleTransaction;
+            },
                                                     "DALExceptionPolicy");
         }
 
@@ -171,13 +169,13 @@ namespace SilkERP360.DAL
         {
             //throws 101
             this.ExceptionManager.Process(() =>
-                                                    {
-                                                        if (this.m_TransactionState == SilkERP360.DAL.TransactionState.Pending)
-                                                        {
-                                                            this.m_obj_OracleTransaction.Commit();
-                                                            this.m_TransactionState = SilkERP360.DAL.TransactionState.Committed;
-                                                        }
-                                                    },
+            {
+                if (this.m_TransactionState == SilkERP360.DAL.TransactionState.Pending)
+                {
+                    this.m_obj_OracleTransaction.Commit();
+                    this.m_TransactionState = SilkERP360.DAL.TransactionState.Committed;
+                }
+            },
                                                    "DALExceptionPolicy");
         }
 
@@ -185,13 +183,13 @@ namespace SilkERP360.DAL
         {
             //throws 102
             this.ExceptionManager.Process(() =>
-                                                        {
-                                                            if (this.m_TransactionState == SilkERP360.DAL.TransactionState.Pending)
-                                                            {
-                                                                this.m_obj_OracleTransaction.Rollback();
-                                                                this.m_TransactionState = SilkERP360.DAL.TransactionState.Rolledback;
-                                                            }
-                                                        },
+            {
+                if (this.m_TransactionState == SilkERP360.DAL.TransactionState.Pending)
+                {
+                    this.m_obj_OracleTransaction.Rollback();
+                    this.m_TransactionState = SilkERP360.DAL.TransactionState.Rolledback;
+                }
+            },
                                                         "DALExceptionPolicy");
         }
 
@@ -264,7 +262,7 @@ namespace SilkERP360.DAL
                 System.Data.DataTable dt = new System.Data.DataTable();
                 this.m_obj_OracleCommand.CommandType = System.Data.CommandType.Text;
                 this.m_obj_OracleCommand.CommandText = SqlQuery;
-                System.Data.OracleClient.OracleDataAdapter dataAdapter = new System.Data.OracleClient.OracleDataAdapter();
+                OracleDataAdapter dataAdapter = new OracleDataAdapter();
                 dataAdapter.SelectCommand = this.m_obj_OracleCommand;
                 dataAdapter.Fill(dt);
                 ds.Tables.Add(dt);
@@ -281,7 +279,7 @@ namespace SilkERP360.DAL
             System.Data.DataSet ds = null;
             this.ExceptionManager.Process(() =>
             {
-                using (System.Data.OracleClient.OracleDataAdapter dataAdapter = new System.Data.OracleClient.OracleDataAdapter())
+                using (OracleDataAdapter dataAdapter = new OracleDataAdapter())
                 {
                     this.m_obj_OracleCommand.CommandType = System.Data.CommandType.Text;
                     this.m_obj_OracleCommand.CommandText = SqlSelect;
@@ -307,7 +305,7 @@ namespace SilkERP360.DAL
                     System.Data.DataTable dt = new System.Data.DataTable();
                     this.m_obj_OracleCommand.CommandType = System.Data.CommandType.Text;
                     this.m_obj_OracleCommand.CommandText = SqlQuery[i];
-                    System.Data.OracleClient.OracleDataAdapter dataAdapter = new System.Data.OracleClient.OracleDataAdapter();
+                    OracleDataAdapter dataAdapter = new OracleDataAdapter();
                     dataAdapter.SelectCommand = this.m_obj_OracleCommand;
                     dataAdapter.Fill(dt);
                     ds.Tables.Add(dt);
@@ -329,7 +327,7 @@ namespace SilkERP360.DAL
                 ds = new System.Data.DataSet();
                 for (System.Int32 i = 0; i < SqlQuery.Length; i++)
                 {
-                    System.Data.OracleClient.OracleDataAdapter dataAdapter = new System.Data.OracleClient.OracleDataAdapter();
+                    OracleDataAdapter dataAdapter = new OracleDataAdapter();
                     this.m_obj_OracleCommand.CommandType = System.Data.CommandType.Text;
                     this.m_obj_OracleCommand.CommandText = SqlQuery[i];
                     dataAdapter.SelectCommand = this.m_obj_OracleCommand;
@@ -348,7 +346,7 @@ namespace SilkERP360.DAL
         /// <param name="SPName">Name of the stored procedure</param>
         /// <param name="SPParameters">SP Parameters</param>
         /// <param name="IP_objTransaction"></param>
-        public void ExecuteStoredProcedure(System.String SPName, System.Data.OracleClient.OracleParameter[] SPParameters)
+        public void ExecuteStoredProcedure(System.String SPName, OracleParameter[] SPParameters)
         {
             //throws Error.108
 
@@ -371,7 +369,7 @@ namespace SilkERP360.DAL
            "DALExceptionPolicy");
         }
 
-        public System.Data.OracleClient.OracleDataReader ExecuteDataReader(System.String SqlQuery)
+        public OracleDataReader ExecuteDataReader(System.String SqlQuery)
         {
             //throws Error.109
 

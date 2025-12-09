@@ -152,7 +152,7 @@ namespace SilkERP360.FL.HRIS
 //                when DAY=7 then 'Fri' end Weekend
 //                From EMPLOYEE_WEEKEND
 //                Where IS_DELETED=1)A where Weekend=to_char(to_date('{1}','dd-mon-yyyy'), 'Dy'))C On A.EMPLOYEE_CODE=C.EMPLOYEE_CODE)F)A  " + SearchShift + "", IP_Obj_Attendance.CompanyCode, IP_Obj_Attendance.ProcessDate.ToString("dd-MMM-yyyy"), IP_Obj_Attendance.ShiftCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-//                 System.Data.OracleClient.OracleDataReader lcl_obj_RawDataReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+//                 Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_RawDataReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
 //                 if (!(lcl_obj_RawDataReader.HasRows))
 //                 {
 //                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Raw Data Not Found!!!");

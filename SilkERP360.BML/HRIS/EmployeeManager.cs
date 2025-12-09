@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.Collections;
+using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -20,63 +21,63 @@ namespace SilkERP360.BML.HRIS
             lcl_ui64_EmployeeCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("p_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Output;
 
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeId = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_ID", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_EmployeeId = new OracleParameter("p_EMPLOYEE_ID", OracleDbType.NVarchar2, 32);
                 lcl_obj_EmployeeId.Direction = System.Data.ParameterDirection.Output;
 
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeAcsCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_ACS_CODE", System.Data.OracleClient.OracleType.NVarChar, 30);
+                OracleParameter lcl_obj_EmployeeAcsCode = new OracleParameter("p_EMPLOYEE_ACS_CODE", OracleDbType.NVarchar2, 30);
                 lcl_obj_EmployeeAcsCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeAcsCode.Value = lcl_obj_Employee.EmployeeACSCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeName = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_NAME", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_EmployeeName = new OracleParameter("p_EMPLOYEE_NAME", OracleDbType.NVarchar2, 128);
                 lcl_obj_EmployeeName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeName.Value = lcl_obj_Employee.EmployeeName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_DesignationCode = new System.Data.OracleClient.OracleParameter("p_DESIGNATION_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_DesignationCode = new OracleParameter("p_DESIGNATION_CODE", OracleDbType.Int64);
                 lcl_obj_DesignationCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DesignationCode.Value = lcl_obj_Employee.DesignationCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_DepartmentCode = new System.Data.OracleClient.OracleParameter("p_DEPARTMENT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_DepartmentCode = new OracleParameter("p_DEPARTMENT_CODE", OracleDbType.Int64);
                 lcl_obj_DepartmentCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DepartmentCode.Value = lcl_obj_Employee.DepartmentCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("p_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_CompanyCode = new OracleParameter("p_COMPANY_CODE", OracleDbType.Int64);
                 lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CompanyCode.Value = lcl_obj_Employee.CompanyCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_RefEmployeeCode = new System.Data.OracleClient.OracleParameter("p_REF_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_RefEmployeeCode = new OracleParameter("p_REF_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_RefEmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_RefEmployeeCode.Value = lcl_obj_Employee.RefEmployeeCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SupervisorCode = new System.Data.OracleClient.OracleParameter("p_SUPERVISOR_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_SupervisorCode = new OracleParameter("p_SUPERVISOR_CODE", OracleDbType.Int64);
                 lcl_obj_SupervisorCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SupervisorCode.Value = lcl_obj_Employee.SupervisorCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_JoiningDate = new System.Data.OracleClient.OracleParameter("p_JOINING_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_JoiningDate = new OracleParameter("p_JOINING_DATE", OracleDbType.Date);
                 lcl_obj_JoiningDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_JoiningDate.Value = lcl_obj_Employee.JoiningDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ConfirmationDate = new System.Data.OracleClient.OracleParameter("p_CONFIRMATION_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_ConfirmationDate = new OracleParameter("p_CONFIRMATION_DATE", OracleDbType.Date);
                 lcl_obj_ConfirmationDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ConfirmationDate.Value = lcl_obj_Employee.ConfirmationDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_RetirementDate = new System.Data.OracleClient.OracleParameter("p_RETIREMENT_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_RetirementDate = new OracleParameter("p_RETIREMENT_DATE", OracleDbType.Date);
                 lcl_obj_RetirementDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_RetirementDate.Value = lcl_obj_Employee.RetirementDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SettlementDate = new System.Data.OracleClient.OracleParameter("p_SETTLEMENT_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_SettlementDate = new OracleParameter("p_SETTLEMENT_DATE", OracleDbType.Date);
                 lcl_obj_SettlementDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SettlementDate.Value = lcl_obj_Employee.SettlementDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_OfficialFileNo = new System.Data.OracleClient.OracleParameter("p_OFFICIAL_FILE_NO", System.Data.OracleClient.OracleType.NVarChar, 20);
+                OracleParameter lcl_obj_OfficialFileNo = new OracleParameter("p_OFFICIAL_FILE_NO", OracleDbType.NVarchar2, 20);
                 lcl_obj_OfficialFileNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_OfficialFileNo.Value = lcl_obj_Employee.OfficialFileNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Tin = new System.Data.OracleClient.OracleParameter("p_TIN", System.Data.OracleClient.OracleType.NVarChar, 20);
+                OracleParameter lcl_obj_Tin = new OracleParameter("p_TIN", OracleDbType.NVarchar2, 20);
                 lcl_obj_Tin.Direction = System.Data.ParameterDirection.Input;
                 // lcl_obj_Tin.Value = lcl_obj_Employee.Tin;
                 if (lcl_obj_Employee.Tin == null)
@@ -88,27 +89,27 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_Tin.Value = lcl_obj_Employee.Tin;
                 }
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("p_REMARKS", System.Data.OracleClient.OracleType.NVarChar, 1024);
+                OracleParameter lcl_obj_Remarks = new OracleParameter("p_REMARKS", OracleDbType.NVarchar2, 1024);
                 lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Remarks.Value = lcl_obj_Employee.Remarks;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsPfEligible = new System.Data.OracleClient.OracleParameter("p_IS_PF_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsPfEligible = new OracleParameter("p_IS_PF_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_IsPfEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsPfEligible.Value = lcl_obj_Employee.IsPfEligible;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PfCode = new System.Data.OracleClient.OracleParameter("p_PF_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PfCode = new OracleParameter("p_PF_CODE", OracleDbType.Int64);
                 lcl_obj_PfCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PfCode.Value = lcl_obj_Employee.PfCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsOtEligible = new System.Data.OracleClient.OracleParameter("p_IS_OT_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsOtEligible = new OracleParameter("p_IS_OT_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_IsOtEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsOtEligible.Value = lcl_obj_Employee.IsOtEligible;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SalaryPayableAtBank = new System.Data.OracleClient.OracleParameter("p_SALARY_PAYABLE_AT_BANK", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_SalaryPayableAtBank = new OracleParameter("p_SALARY_PAYABLE_AT_BANK", OracleDbType.Int64);
                 lcl_obj_SalaryPayableAtBank.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SalaryPayableAtBank.Value = lcl_obj_Employee.SalaryPayableAtBank;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Bank = new System.Data.OracleClient.OracleParameter("p_BANK_ACC_NO", System.Data.OracleClient.OracleType.NVarChar, 52);
+                OracleParameter lcl_obj_Bank = new OracleParameter("p_BANK_ACC_NO", OracleDbType.NVarchar2, 52);
                 lcl_obj_Bank.Direction = System.Data.ParameterDirection.Input;
                 //  lcl_obj_Bank.Value = lcl_obj_Employee.BankAccNo;
                 if (lcl_obj_Employee.BankAccNo == null)
@@ -120,23 +121,23 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_Bank.Value = lcl_obj_Employee.BankAccNo;
                 }
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("p_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsDeleted = new OracleParameter("p_IS_DELETED", OracleDbType.Int64);
                 lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsDeleted.Value = 1;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeStatus = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeStatus = new OracleParameter("p_EMPLOYEE_STATUS", OracleDbType.Int64);
                 lcl_obj_EmployeeStatus.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeStatus.Value = lcl_obj_Employee.EmployeeStatus;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsOnRoster = new System.Data.OracleClient.OracleParameter("p_IS_ON_ROSTER", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsOnRoster = new OracleParameter("p_IS_ON_ROSTER", OracleDbType.Int64);
                 lcl_obj_IsOnRoster.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsOnRoster.Value = lcl_obj_Employee.IsOnRoster;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ShiftCode = new System.Data.OracleClient.OracleParameter("p_SHIFT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ShiftCode = new OracleParameter("p_SHIFT_CODE", OracleDbType.Int64);
                 lcl_obj_ShiftCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ShiftCode.Value = lcl_obj_Employee.ShiftCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BankAccount = new System.Data.OracleClient.OracleParameter("p_BANK_NAME", System.Data.OracleClient.OracleType.NVarChar, 52);
+                OracleParameter lcl_obj_BankAccount = new OracleParameter("p_BANK_NAME", OracleDbType.NVarchar2, 52);
                 lcl_obj_BankAccount.Direction = System.Data.ParameterDirection.Input;
                 if (lcl_obj_Employee.BankName == null)
                 {
@@ -147,39 +148,39 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_BankAccount.Value = lcl_obj_Employee.BankName;
                 }
                 lcl_obj_BankAccount.Value = lcl_obj_Employee.BankName;
-                System.Data.OracleClient.OracleParameter lcl_obj_NightBillEligible = new System.Data.OracleClient.OracleParameter("p_NIGHT_BILL_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_NightBillEligible = new OracleParameter("p_NIGHT_BILL_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_NightBillEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_NightBillEligible.Value = lcl_obj_Employee.NightBillEligible;                
 
-                System.Data.OracleClient.OracleParameter lcl_obj_JobLocation = new System.Data.OracleClient.OracleParameter("p_JOB_LOCATION", System.Data.OracleClient.OracleType.NVarChar, 152);
+                OracleParameter lcl_obj_JobLocation = new OracleParameter("p_JOB_LOCATION", OracleDbType.NVarchar2, 152);
                 lcl_obj_JobLocation.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_JobLocation.Value = lcl_obj_Employee.JobLocation;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ComUniformEligible = new System.Data.OracleClient.OracleParameter("p_IS_UNIFORM_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ComUniformEligible = new OracleParameter("p_IS_UNIFORM_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_ComUniformEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ComUniformEligible.Value = lcl_obj_Employee.ComUniformEligible;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondValidityDate = new System.Data.OracleClient.OracleParameter("p_BOND_VALIDITY_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_BondValidityDate = new OracleParameter("p_BOND_VALIDITY_DATE", OracleDbType.Date);
                 lcl_obj_BondValidityDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondValidityDate.Value = lcl_obj_Employee.BondValidityDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondRefference = new System.Data.OracleClient.OracleParameter("p_BOND_REFERENCE", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_BondRefference = new OracleParameter("p_BOND_REFERENCE", OracleDbType.NVarchar2, 128);
                 lcl_obj_BondRefference.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondRefference.Value = lcl_obj_Employee.BondRefference;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondIssueDate = new System.Data.OracleClient.OracleParameter("p_BOND_ISSUE_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_BondIssueDate = new OracleParameter("p_BOND_ISSUE_DATE", OracleDbType.Date);
                 lcl_obj_BondIssueDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondIssueDate.Value = lcl_obj_Employee.BondIssueDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondYear = new System.Data.OracleClient.OracleParameter("p_BOND_YEAR", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_BondYear = new OracleParameter("p_BOND_YEAR", OracleDbType.Int64);
                 lcl_obj_BondYear.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondYear.Value = lcl_obj_Employee.BondYear;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_eTinEligible = new System.Data.OracleClient.OracleParameter("p_E_TIN_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_eTinEligible = new OracleParameter("p_E_TIN_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_eTinEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_eTinEligible.Value = lcl_obj_Employee.eTinEligible;   
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = {lcl_obj_EmployeeCode,lcl_obj_EmployeeId, lcl_obj_EmployeeAcsCode, lcl_obj_EmployeeName, lcl_obj_DesignationCode, 
+                OracleParameter[] lcl_obj_SP_Parameters = {lcl_obj_EmployeeCode,lcl_obj_EmployeeId, lcl_obj_EmployeeAcsCode, lcl_obj_EmployeeName, lcl_obj_DesignationCode, 
                                                                                      lcl_obj_DepartmentCode, lcl_obj_CompanyCode, lcl_obj_RefEmployeeCode, 
                                                                                      lcl_obj_SupervisorCode, lcl_obj_JoiningDate, lcl_obj_ConfirmationDate,
                                                                                      lcl_obj_RetirementDate, lcl_obj_SettlementDate, lcl_obj_OfficialFileNo, 
@@ -197,63 +198,63 @@ namespace SilkERP360.BML.HRIS
             lcl_ui64_EmployeeCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("p_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeCode.Value = lcl_obj_Employee.EmployeeCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeId = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_ID", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_EmployeeId = new OracleParameter("p_EMPLOYEE_ID", OracleDbType.NVarchar2, 32);
                 lcl_obj_EmployeeId.Direction = System.Data.ParameterDirection.Output;
                 //  lcl_obj_EmployeeId.Value = lcl_obj_Employee.EmployeeId;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeAcsCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_ACS_CODE", System.Data.OracleClient.OracleType.NVarChar, 30);
+                OracleParameter lcl_obj_EmployeeAcsCode = new OracleParameter("p_EMPLOYEE_ACS_CODE", OracleDbType.NVarchar2, 30);
                 lcl_obj_EmployeeAcsCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeAcsCode.Value = lcl_obj_Employee.EmployeeACSCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeName = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_NAME", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_EmployeeName = new OracleParameter("p_EMPLOYEE_NAME", OracleDbType.NVarchar2, 128);
                 lcl_obj_EmployeeName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeName.Value = lcl_obj_Employee.EmployeeName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_DesignationCode = new System.Data.OracleClient.OracleParameter("p_DESIGNATION_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_DesignationCode = new OracleParameter("p_DESIGNATION_CODE", OracleDbType.Int64);
                 lcl_obj_DesignationCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DesignationCode.Value = lcl_obj_Employee.DesignationCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_DepartmentCode = new System.Data.OracleClient.OracleParameter("p_DEPARTMENT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_DepartmentCode = new OracleParameter("p_DEPARTMENT_CODE", OracleDbType.Int64);
                 lcl_obj_DepartmentCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DepartmentCode.Value = lcl_obj_Employee.DepartmentCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("p_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_CompanyCode = new OracleParameter("p_COMPANY_CODE", OracleDbType.Int64);
                 lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CompanyCode.Value = lcl_obj_Employee.CompanyCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_RefEmployeeCode = new System.Data.OracleClient.OracleParameter("p_REF_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_RefEmployeeCode = new OracleParameter("p_REF_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_RefEmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_RefEmployeeCode.Value = lcl_obj_Employee.RefEmployeeCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SupervisorCode = new System.Data.OracleClient.OracleParameter("p_SUPERVISOR_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_SupervisorCode = new OracleParameter("p_SUPERVISOR_CODE", OracleDbType.Int64);
                 lcl_obj_SupervisorCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SupervisorCode.Value = lcl_obj_Employee.SupervisorCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_JoiningDate = new System.Data.OracleClient.OracleParameter("p_JOINING_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_JoiningDate = new OracleParameter("p_JOINING_DATE", OracleDbType.Date);
                 lcl_obj_JoiningDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_JoiningDate.Value = lcl_obj_Employee.JoiningDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ConfirmationDate = new System.Data.OracleClient.OracleParameter("p_CONFIRMATION_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_ConfirmationDate = new OracleParameter("p_CONFIRMATION_DATE", OracleDbType.Date);
                 lcl_obj_ConfirmationDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ConfirmationDate.Value = lcl_obj_Employee.ConfirmationDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_RetirementDate = new System.Data.OracleClient.OracleParameter("p_RETIREMENT_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_RetirementDate = new OracleParameter("p_RETIREMENT_DATE", OracleDbType.Date);
                 lcl_obj_RetirementDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_RetirementDate.Value = lcl_obj_Employee.RetirementDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SettlementDate = new System.Data.OracleClient.OracleParameter("p_SETTLEMENT_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_SettlementDate = new OracleParameter("p_SETTLEMENT_DATE", OracleDbType.Date);
                 lcl_obj_SettlementDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SettlementDate.Value = lcl_obj_Employee.SettlementDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_OfficialFileNo = new System.Data.OracleClient.OracleParameter("p_OFFICIAL_FILE_NO", System.Data.OracleClient.OracleType.NVarChar, 20);
+                OracleParameter lcl_obj_OfficialFileNo = new OracleParameter("p_OFFICIAL_FILE_NO", OracleDbType.NVarchar2, 20);
                 lcl_obj_OfficialFileNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_OfficialFileNo.Value = lcl_obj_Employee.OfficialFileNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Tin = new System.Data.OracleClient.OracleParameter("p_TIN", System.Data.OracleClient.OracleType.NVarChar, 20);
+                OracleParameter lcl_obj_Tin = new OracleParameter("p_TIN", OracleDbType.NVarchar2, 20);
                 lcl_obj_Tin.Direction = System.Data.ParameterDirection.Input;
                 // lcl_obj_Tin.Value = lcl_obj_Employee.Tin;
                 if (lcl_obj_Employee.Tin == null)
@@ -265,27 +266,27 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_Tin.Value = lcl_obj_Employee.Tin;
                 }
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("p_REMARKS", System.Data.OracleClient.OracleType.NVarChar, 1024);
+                OracleParameter lcl_obj_Remarks = new OracleParameter("p_REMARKS", OracleDbType.NVarchar2, 1024);
                 lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Remarks.Value = lcl_obj_Employee.Remarks;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsPfEligible = new System.Data.OracleClient.OracleParameter("p_IS_PF_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsPfEligible = new OracleParameter("p_IS_PF_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_IsPfEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsPfEligible.Value = lcl_obj_Employee.IsPfEligible;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PfCode = new System.Data.OracleClient.OracleParameter("p_PF_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PfCode = new OracleParameter("p_PF_CODE", OracleDbType.Int64);
                 lcl_obj_PfCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PfCode.Value = lcl_obj_Employee.PfCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsOtEligible = new System.Data.OracleClient.OracleParameter("p_IS_OT_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsOtEligible = new OracleParameter("p_IS_OT_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_IsOtEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsOtEligible.Value = lcl_obj_Employee.IsOtEligible;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SalaryPayableAtBank = new System.Data.OracleClient.OracleParameter("p_SALARY_PAYABLE_AT_BANK", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_SalaryPayableAtBank = new OracleParameter("p_SALARY_PAYABLE_AT_BANK", OracleDbType.Int64);
                 lcl_obj_SalaryPayableAtBank.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SalaryPayableAtBank.Value = lcl_obj_Employee.SalaryPayableAtBank;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Bank = new System.Data.OracleClient.OracleParameter("p_BANK_ACC_NO", System.Data.OracleClient.OracleType.NVarChar, 52);
+                OracleParameter lcl_obj_Bank = new OracleParameter("p_BANK_ACC_NO", OracleDbType.NVarchar2, 52);
                 lcl_obj_Bank.Direction = System.Data.ParameterDirection.Input;
                 //  lcl_obj_Bank.Value = lcl_obj_Employee.BankAccNo;
 
@@ -298,27 +299,27 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_Bank.Value = lcl_obj_Employee.BankAccNo;
                 }
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("p_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsDeleted = new OracleParameter("p_IS_DELETED", OracleDbType.Int64);
                 lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsDeleted.Value = 1;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeStatus = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeStatus = new OracleParameter("p_EMPLOYEE_STATUS", OracleDbType.Int64);
                 lcl_obj_EmployeeStatus.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeStatus.Value = lcl_obj_Employee.EmployeeStatus;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsOnRoster = new System.Data.OracleClient.OracleParameter("p_IS_ON_ROSTER", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsOnRoster = new OracleParameter("p_IS_ON_ROSTER", OracleDbType.Int64);
                 lcl_obj_IsOnRoster.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsOnRoster.Value = lcl_obj_Employee.IsOnRoster;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ShiftCode = new System.Data.OracleClient.OracleParameter("p_SHIFT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ShiftCode = new OracleParameter("p_SHIFT_CODE", OracleDbType.Int64);
                 lcl_obj_ShiftCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ShiftCode.Value = lcl_obj_Employee.ShiftCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BankAccount = new System.Data.OracleClient.OracleParameter("p_BANK_NAME", System.Data.OracleClient.OracleType.NVarChar, 52);
+                OracleParameter lcl_obj_BankAccount = new OracleParameter("p_BANK_NAME", OracleDbType.NVarchar2, 52);
                 lcl_obj_BankAccount.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BankAccount.Value = lcl_obj_Employee.BankName;
 
-                //System.Data.OracleClient.OracleParameter lcl_obj_BankAccount = new System.Data.OracleClient.OracleParameter("p_BANK_NAME", System.Data.OracleClient.OracleType.NVarChar, 52);
+                //OracleParameter lcl_obj_BankAccount = new OracleParameter("p_BANK_NAME", OracleDbType.NVarchar2, 52);
                 //lcl_obj_BankAccount.Direction = System.Data.ParameterDirection.Input;
                 //if (lcl_obj_Employee.BankName == null)
                 //{
@@ -329,39 +330,39 @@ namespace SilkERP360.BML.HRIS
                 //    lcl_obj_BankAccount.Value = lcl_obj_Employee.BankName;
                 //}
 
-                System.Data.OracleClient.OracleParameter lcl_obj_NightBillEligible = new System.Data.OracleClient.OracleParameter("p_NIGHT_BILL_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_NightBillEligible = new OracleParameter("p_NIGHT_BILL_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_NightBillEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_NightBillEligible.Value = lcl_obj_Employee.NightBillEligible;                
 
-                System.Data.OracleClient.OracleParameter lcl_obj_JobLocation = new System.Data.OracleClient.OracleParameter("p_JOB_LOCATION", System.Data.OracleClient.OracleType.NVarChar, 152);
+                OracleParameter lcl_obj_JobLocation = new OracleParameter("p_JOB_LOCATION", OracleDbType.NVarchar2, 152);
                 lcl_obj_JobLocation.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_JobLocation.Value = lcl_obj_Employee.JobLocation;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ComUniformEligible = new System.Data.OracleClient.OracleParameter("p_IS_UNIFORM_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ComUniformEligible = new OracleParameter("p_IS_UNIFORM_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_ComUniformEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ComUniformEligible.Value = lcl_obj_Employee.ComUniformEligible;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondValidityDate = new System.Data.OracleClient.OracleParameter("p_BOND_VALIDITY_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_BondValidityDate = new OracleParameter("p_BOND_VALIDITY_DATE", OracleDbType.Date);
                 lcl_obj_BondValidityDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondValidityDate.Value = lcl_obj_Employee.BondValidityDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondRefference = new System.Data.OracleClient.OracleParameter("p_BOND_REFERENCE", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_BondRefference = new OracleParameter("p_BOND_REFERENCE", OracleDbType.NVarchar2, 128);
                 lcl_obj_BondRefference.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondRefference.Value = lcl_obj_Employee.BondRefference;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondIssueDate = new System.Data.OracleClient.OracleParameter("p_BOND_ISSUE_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_BondIssueDate = new OracleParameter("p_BOND_ISSUE_DATE", OracleDbType.Date);
                 lcl_obj_BondIssueDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondIssueDate.Value = lcl_obj_Employee.BondIssueDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BondYear = new System.Data.OracleClient.OracleParameter("p_BOND_YEAR", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_BondYear = new OracleParameter("p_BOND_YEAR", OracleDbType.Int64);
                 lcl_obj_BondYear.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BondYear.Value = lcl_obj_Employee.BondYear;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_eTinEligible = new System.Data.OracleClient.OracleParameter("p_E_TIN_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_eTinEligible = new OracleParameter("p_E_TIN_ELIGIBLE", OracleDbType.Int64);
                 lcl_obj_eTinEligible.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_eTinEligible.Value = lcl_obj_Employee.eTinEligible;   
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = {lcl_obj_EmployeeCode,lcl_obj_EmployeeId, lcl_obj_EmployeeAcsCode, lcl_obj_EmployeeName, lcl_obj_DesignationCode, 
+                OracleParameter[] lcl_obj_SP_Parameters = {lcl_obj_EmployeeCode,lcl_obj_EmployeeId, lcl_obj_EmployeeAcsCode, lcl_obj_EmployeeName, lcl_obj_DesignationCode, 
                                                                                      lcl_obj_DepartmentCode, lcl_obj_CompanyCode, lcl_obj_RefEmployeeCode, 
                                                                                      lcl_obj_SupervisorCode, lcl_obj_JoiningDate, lcl_obj_ConfirmationDate, lcl_obj_RetirementDate, lcl_obj_SettlementDate, lcl_obj_OfficialFileNo, lcl_obj_Tin, lcl_obj_Remarks, lcl_obj_IsPfEligible, lcl_obj_PfCode, lcl_obj_IsOtEligible, lcl_obj_SalaryPayableAtBank, lcl_obj_Bank, lcl_obj_IsDeleted, lcl_obj_EmployeeStatus, lcl_obj_IsOnRoster, lcl_obj_ShiftCode,lcl_obj_BankAccount, lcl_obj_NightBillEligible, lcl_obj_JobLocation, lcl_obj_ComUniformEligible, lcl_obj_BondValidityDate, lcl_obj_BondRefference, lcl_obj_BondIssueDate, lcl_obj_BondYear, lcl_obj_eTinEligible};
 
@@ -382,126 +383,126 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                     lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Output;
                     // lcl_obj_EmployeeCode.Value = lcl_obj_Employee.EmployeeCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeId = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_ID", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_EmployeeId = new OracleParameter("v_EMPLOYEE_ID", OracleDbType.NVarchar2);
                     lcl_obj_EmployeeId.Direction = System.Data.ParameterDirection.Output;
                     // lcl_obj_EmployeeId.Value = lcl_obj_Employee.EmployeeId;
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeAcsCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_ACS_CODE", System.Data.OracleClient.OracleType.NVarChar, 30);
+                    OracleParameter lcl_obj_EmployeeAcsCode = new OracleParameter("v_EMPLOYEE_ACS_CODE", OracleDbType.NVarchar2, 30);
                     lcl_obj_EmployeeAcsCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EmployeeAcsCode.Value = lcl_obj_Employee.EmployeeACSCode;
-                    //System.Data.OracleClient.OracleParameter lcl_obj_EmployeeBmsCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_BMS_CODE", System.Data.OracleClient.OracleType.NVarChar);
+                    //OracleParameter lcl_obj_EmployeeBmsCode = new OracleParameter("v_EMPLOYEE_BMS_CODE", OracleDbType.NVarchar2);
                     //lcl_obj_EmployeeBmsCode.Direction = System.Data.ParameterDirection.Input;
                     //lcl_obj_EmployeeBmsCode.Value = lcl_obj_Employee.EmployeeBmsCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeName = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_NAME", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_EmployeeName = new OracleParameter("v_EMPLOYEE_NAME", OracleDbType.NVarchar2);
                     lcl_obj_EmployeeName.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EmployeeName.Value = lcl_obj_Employee.EmployeeName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_DesignationCode = new System.Data.OracleClient.OracleParameter("v_DESIGNATION_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_DesignationCode = new OracleParameter("v_DESIGNATION_CODE", OracleDbType.Int64);
                     lcl_obj_DesignationCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_DesignationCode.Value = lcl_obj_Employee.DesignationCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_DepartmentCode = new System.Data.OracleClient.OracleParameter("v_DEPARTMENT_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_DepartmentCode = new OracleParameter("v_DEPARTMENT_CODE", OracleDbType.Int64);
                     lcl_obj_DepartmentCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_DepartmentCode.Value = lcl_obj_Employee.DepartmentCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("v_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_CompanyCode = new OracleParameter("v_COMPANY_CODE", OracleDbType.Int64);
                     lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_CompanyCode.Value = lcl_obj_Employee.CompanyCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_RefEmployeeCode = new System.Data.OracleClient.OracleParameter("v_REF_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_RefEmployeeCode = new OracleParameter("v_REF_EMPLOYEE_CODE", OracleDbType.Int64);
                     lcl_obj_RefEmployeeCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_RefEmployeeCode.Value = lcl_obj_Employee.RefEmployeeCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_SupervisorCode = new System.Data.OracleClient.OracleParameter("v_SUPERVISOR_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_SupervisorCode = new OracleParameter("v_SUPERVISOR_CODE", OracleDbType.Int64);
                     lcl_obj_SupervisorCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_SupervisorCode.Value = lcl_obj_Employee.SupervisorCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_JoiningDate = new System.Data.OracleClient.OracleParameter("v_JOINING_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_JoiningDate = new OracleParameter("v_JOINING_DATE", OracleDbType.Date);
                     lcl_obj_JoiningDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_JoiningDate.Value = lcl_obj_Employee.JoiningDate;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ConfirmationDate = new System.Data.OracleClient.OracleParameter("v_CONFIRMATION_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_ConfirmationDate = new OracleParameter("v_CONFIRMATION_DATE", OracleDbType.Date);
                     lcl_obj_ConfirmationDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ConfirmationDate.Value = lcl_obj_Employee.ConfirmationDate;
-                    System.Data.OracleClient.OracleParameter lcl_obj_RetirementDate = new System.Data.OracleClient.OracleParameter("v_RETIREMENT_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_RetirementDate = new OracleParameter("v_RETIREMENT_DATE", OracleDbType.Date);
                     lcl_obj_RetirementDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_RetirementDate.Value = lcl_obj_Employee.RetirementDate;
-                    System.Data.OracleClient.OracleParameter lcl_obj_SettlementDate = new System.Data.OracleClient.OracleParameter("v_SETTLEMENT_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_SettlementDate = new OracleParameter("v_SETTLEMENT_DATE", OracleDbType.Date);
                     lcl_obj_SettlementDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_SettlementDate.Value = lcl_obj_Employee.SettlementDate;
-                    System.Data.OracleClient.OracleParameter lcl_obj_OfficialFileNo = new System.Data.OracleClient.OracleParameter("v_OFFICIAL_FILE_NO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_OfficialFileNo = new OracleParameter("v_OFFICIAL_FILE_NO", OracleDbType.NVarchar2);
                     lcl_obj_OfficialFileNo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_OfficialFileNo.Value = lcl_obj_Employee.OfficialFileNo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Tin = new System.Data.OracleClient.OracleParameter("v_TIN", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Tin = new OracleParameter("v_TIN", OracleDbType.NVarchar2);
                     lcl_obj_Tin.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Tin.Value = lcl_obj_Employee.Tin;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("v_REMARKS", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Remarks = new OracleParameter("v_REMARKS", OracleDbType.NVarchar2);
                     lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Remarks.Value = lcl_obj_Employee.Remarks;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsPfEligible = new System.Data.OracleClient.OracleParameter("v_IS_PF_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_IsPfEligible = new OracleParameter("v_IS_PF_ELIGIBLE", OracleDbType.Int64);
                     lcl_obj_IsPfEligible.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_IsPfEligible.Value = lcl_obj_Employee.IsPfEligible;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PfCode = new System.Data.OracleClient.OracleParameter("v_PF_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_PfCode = new OracleParameter("v_PF_CODE", OracleDbType.Int64);
                     lcl_obj_PfCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PfCode.Value = lcl_obj_Employee.PfCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsOtEligible = new System.Data.OracleClient.OracleParameter("v_IS_OT_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_IsOtEligible = new OracleParameter("v_IS_OT_ELIGIBLE", OracleDbType.Int64);
                     lcl_obj_IsOtEligible.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_IsOtEligible.Value = lcl_obj_Employee.IsOtEligible;
-                    System.Data.OracleClient.OracleParameter lcl_obj_SalaryPayableAtBank = new System.Data.OracleClient.OracleParameter("v_SALARY_PAYABLE_AT_BANK", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_SalaryPayableAtBank = new OracleParameter("v_SALARY_PAYABLE_AT_BANK", OracleDbType.Int64);
                     lcl_obj_SalaryPayableAtBank.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_SalaryPayableAtBank.Value = lcl_obj_Employee.SalaryPayableAtBank;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Bank = new System.Data.OracleClient.OracleParameter("p_BANK_ACC_NO", System.Data.OracleClient.OracleType.NVarChar, 52);
+                    OracleParameter lcl_obj_Bank = new OracleParameter("p_BANK_ACC_NO", OracleDbType.NVarchar2, 52);
                     lcl_obj_Bank.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Bank.Value = lcl_obj_Employee.BankAccNo;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("p_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_IsDeleted = new OracleParameter("p_IS_DELETED", OracleDbType.Int64);
                     lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_IsDeleted.Value = 1;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeStatus = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EmployeeStatus = new OracleParameter("p_EMPLOYEE_STATUS", OracleDbType.Int64);
                     lcl_obj_EmployeeStatus.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EmployeeStatus.Value = lcl_obj_Employee.EmployeeStatus;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsOnRoster = new System.Data.OracleClient.OracleParameter("p_IS_ON_ROSTER", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_IsOnRoster = new OracleParameter("p_IS_ON_ROSTER", OracleDbType.Int64);
                     lcl_obj_IsOnRoster.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_IsOnRoster.Value = lcl_obj_Employee.IsOnRoster;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_ShiftCode = new System.Data.OracleClient.OracleParameter("p_SHIFT_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ShiftCode = new OracleParameter("p_SHIFT_CODE", OracleDbType.Int64);
                     lcl_obj_ShiftCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ShiftCode.Value = lcl_obj_Employee.ShiftCode;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_BankAccount = new System.Data.OracleClient.OracleParameter("p_BANK_NAME", System.Data.OracleClient.OracleType.NVarChar, 52);
+                    OracleParameter lcl_obj_BankAccount = new OracleParameter("p_BANK_NAME", OracleDbType.NVarchar2, 52);
                     lcl_obj_BankAccount.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BankAccount.Value = lcl_obj_Employee.BankName;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_NightBillEligible = new System.Data.OracleClient.OracleParameter("p_NIGHT_BILL_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_NightBillEligible = new OracleParameter("p_NIGHT_BILL_ELIGIBLE", OracleDbType.Int64);
                     lcl_obj_NightBillEligible.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_NightBillEligible.Value = lcl_obj_Employee.NightBillEligible;                    
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_JobLocation = new System.Data.OracleClient.OracleParameter("p_JOB_LOCATION", System.Data.OracleClient.OracleType.NVarChar, 152);
+                    OracleParameter lcl_obj_JobLocation = new OracleParameter("p_JOB_LOCATION", OracleDbType.NVarchar2, 152);
                     lcl_obj_JobLocation.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_JobLocation.Value = lcl_obj_Employee.JobLocation;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_ComUniformEligible = new System.Data.OracleClient.OracleParameter("p_IS_UNIFORM_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ComUniformEligible = new OracleParameter("p_IS_UNIFORM_ELIGIBLE", OracleDbType.Int64);
                     lcl_obj_ComUniformEligible.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ComUniformEligible.Value = lcl_obj_Employee.ComUniformEligible;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_BondValidityDate = new System.Data.OracleClient.OracleParameter("p_BOND_VALIDITY_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_BondValidityDate = new OracleParameter("p_BOND_VALIDITY_DATE", OracleDbType.Date);
                     lcl_obj_BondValidityDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BondValidityDate.Value = lcl_obj_Employee.BondValidityDate;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_BondRefference = new System.Data.OracleClient.OracleParameter("p_BOND_REFERENCE", System.Data.OracleClient.OracleType.NVarChar, 128);
+                    OracleParameter lcl_obj_BondRefference = new OracleParameter("p_BOND_REFERENCE", OracleDbType.NVarchar2, 128);
                     lcl_obj_BondRefference.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BondRefference.Value = lcl_obj_Employee.BondRefference;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_BondIssueDate = new System.Data.OracleClient.OracleParameter("p_BOND_ISSUE_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_BondIssueDate = new OracleParameter("p_BOND_ISSUE_DATE", OracleDbType.Date);
                     lcl_obj_BondIssueDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BondIssueDate.Value = lcl_obj_Employee.BondIssueDate;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_BondYear = new System.Data.OracleClient.OracleParameter("p_BOND_YEAR", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_BondYear = new OracleParameter("p_BOND_YEAR", OracleDbType.Int64);
                     lcl_obj_BondYear.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BondYear.Value = lcl_obj_Employee.BondYear;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_eTinEligible = new System.Data.OracleClient.OracleParameter("p_E_TIN_ELIGIBLE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_eTinEligible = new OracleParameter("p_E_TIN_ELIGIBLE", OracleDbType.Int64);
                     lcl_obj_eTinEligible.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_eTinEligible.Value = lcl_obj_Employee.eTinEligible;
 
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_EmployeeId, lcl_obj_EmployeeAcsCode, lcl_obj_EmployeeName, lcl_obj_DesignationCode, lcl_obj_DepartmentCode, lcl_obj_CompanyCode, lcl_obj_RefEmployeeCode, lcl_obj_SupervisorCode, lcl_obj_JoiningDate, lcl_obj_ConfirmationDate, lcl_obj_RetirementDate, lcl_obj_SettlementDate, lcl_obj_OfficialFileNo, lcl_obj_Tin, lcl_obj_Remarks, lcl_obj_IsPfEligible, lcl_obj_PfCode, lcl_obj_IsOtEligible, lcl_obj_SalaryPayableAtBank, lcl_obj_Bank, lcl_obj_IsDeleted, lcl_obj_EmployeeStatus, lcl_obj_IsOnRoster, lcl_obj_ShiftCode, lcl_obj_BankAccount, lcl_obj_NightBillEligible, lcl_obj_JobLocation, lcl_obj_ComUniformEligible, lcl_obj_BondValidityDate, lcl_obj_BondRefference, lcl_obj_BondIssueDate, lcl_obj_BondYear, lcl_obj_eTinEligible };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_EmployeeId, lcl_obj_EmployeeAcsCode, lcl_obj_EmployeeName, lcl_obj_DesignationCode, lcl_obj_DepartmentCode, lcl_obj_CompanyCode, lcl_obj_RefEmployeeCode, lcl_obj_SupervisorCode, lcl_obj_JoiningDate, lcl_obj_ConfirmationDate, lcl_obj_RetirementDate, lcl_obj_SettlementDate, lcl_obj_OfficialFileNo, lcl_obj_Tin, lcl_obj_Remarks, lcl_obj_IsPfEligible, lcl_obj_PfCode, lcl_obj_IsOtEligible, lcl_obj_SalaryPayableAtBank, lcl_obj_Bank, lcl_obj_IsDeleted, lcl_obj_EmployeeStatus, lcl_obj_IsOnRoster, lcl_obj_ShiftCode, lcl_obj_BankAccount, lcl_obj_NightBillEligible, lcl_obj_JobLocation, lcl_obj_ComUniformEligible, lcl_obj_BondValidityDate, lcl_obj_BondRefference, lcl_obj_BondIssueDate, lcl_obj_BondYear, lcl_obj_eTinEligible };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("EMPLOYEE_IU", lcl_obj_SP_Parameters);
                     // return System.UInt64.Parse(lcl_obj_EmployeeCode.Value.ToString());
 
@@ -523,7 +524,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE EMPLOYEE_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployee.Get(ID,DBManger)) : Error Retrieving Employee Data!");
@@ -583,7 +584,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE EMPLOYEE_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE EMPLOYEE_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Employee.Get(ID)) : No Attandance Data Found In The Database!!!");
@@ -643,7 +644,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Employee.GetList(SqlQuery)) : No Attandance Data Found In The Database!!!");
                     }
@@ -707,7 +708,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(lcl_obj_dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Employee.GetList(SqlQuery,DBManager)) : No Attandance Data Found In The Database!!!");
@@ -774,7 +775,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployee.Get(SqlQuery,DBManger)) : Error Retrieving Employee Data!");
@@ -834,7 +835,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Employee.Get(SqlQuery)) : No Employee Data Found In The Database!!!");
@@ -890,7 +891,7 @@ namespace SilkERP360.BML.HRIS
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
                 System.String lcl_str_EmployeeNameTmp = System.String.Empty;
                 System.String lcl_str_SqlQuery = System.String.Format("Select EMPLOYEE_NAME From Employee WHERE EMPLOYEE_CODE = {0} And STATUS = {1} AND IS_DELETED = 1", IP_ui64_EmployeeCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeNameReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeNameReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_EmployeeNameReader.HasRows == false)
                 {
                     return System.String.Empty;
@@ -910,7 +911,7 @@ namespace SilkERP360.BML.HRIS
                 using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
                     System.String lcl_str_DBQuery = System.String.Format("SELECT * FROM employee_image WHERE employee_code = {0} AND IS_DELETED = 1 AND STATUS = 1", IP_ui64_EmployeeCode);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeImageReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeImageReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
                     if (!(lcl_obj_EmployeeImageReader.HasRows))
                     {
                         return null;
@@ -947,7 +948,7 @@ namespace SilkERP360.BML.HRIS
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
                 System.String lcl_str_DBQuery = System.String.Format("SELECT * FROM employee_image WHERE employee_code = {0} AND IS_DELETED = 1 AND STATUS = 1", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeImageReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_DBQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeImageReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_DBQuery);
                 if (!(lcl_obj_EmployeeImageReader.HasRows))
                 {
                     return null;

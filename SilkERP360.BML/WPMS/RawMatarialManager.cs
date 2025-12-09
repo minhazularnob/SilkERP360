@@ -21,7 +21,7 @@ namespace SilkERP360.BML.WPMS
            lcl_ui64_BuyerCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-               System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                lcl_obj_IDReader.Read();
                System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                lcl_obj_IDReader.Close();
@@ -53,7 +53,7 @@ namespace SilkERP360.BML.WPMS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                    lcl_obj_IDReader.Read();
                    System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                    lcl_obj_IDReader.Close();
@@ -81,7 +81,7 @@ namespace SilkERP360.BML.WPMS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format("Select * From WPMS_RAW_MATERIAL Where RM_CODE = {0}", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_Reader.HasRows == false)
                {
@@ -111,7 +111,7 @@ namespace SilkERP360.BML.WPMS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From WPMS_SALES_CONTRACT Where SALES_CONTRACT_CODE = {0}", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From WPMS_SALES_CONTRACT Where SALES_CONTRACT_CODE = {0}", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
                    if (!(lcl_obj_Reader.HasRows))
                    {
                        throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (RawMaterialsManager.Get(ID)) : No RawMaterials Data Found In The Database!!!");
@@ -141,7 +141,7 @@ namespace SilkERP360.BML.WPMS
                    lcl_obj_DBManager.Open();
                }
                System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_Reader.HasRows == false)
                {
@@ -171,7 +171,7 @@ namespace SilkERP360.BML.WPMS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                    if (!(lcl_obj_Reader.HasRows))
                    {
                        throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (RawMaterialsManager.Get(SqlQuery)) : No RawMaterials Data Found In The Database!!!");
@@ -200,7 +200,7 @@ namespace SilkERP360.BML.WPMS
                {
                    lcl_obj_DBManager.Open();
                }
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                if (!(lcl_obj_Reader.HasRows))
                {
                    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error RawMaterialsManager.GetList(SqlQuery,DBManager)) : No RawMaterials Data Found In The Database!!!");
@@ -235,7 +235,7 @@ namespace SilkERP360.BML.WPMS
                        lcl_obj_DBManager.InternalResource.Open();
                    }
 
-                   System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                   
                    System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawMaterials> lcl_objLst_Items2Tmp = new
                        System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawMaterials>();
@@ -267,7 +267,7 @@ namespace SilkERP360.BML.WPMS
                    lcl_obj_DBManager.InternalResource.Open();
                }
 
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
 
                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawMaterials> lcl_objLst_Items2Tmp = new
                    System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawMaterials>();
@@ -298,7 +298,7 @@ namespace SilkERP360.BML.WPMS
                    lcl_obj_DBManager.InternalResource.Open();
                }
 
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
 
                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawMaterials> lcl_objLst_Items2Tmp = new
                    System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawMaterials>();

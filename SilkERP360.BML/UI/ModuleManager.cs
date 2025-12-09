@@ -29,7 +29,7 @@ namespace SilkERP360.BML.UI
                     {
                         SilkERP360.CCL.BusinessEntities.UI.Module lcl_obj_ModuleTmp = new SilkERP360.CCL.BusinessEntities.UI.Module();
                         System.String lcl_str_SqlQuery = System.String.Format("Select * From MODULE where MODULE_CODE = {0} AND STATUS = {1}", IP_ui64_ModuleCode, SilkERP360.CCL.Enums.Status.Active);
-                        System.Data.OracleClient.OracleDataReader lcl_obj_ModuleReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ModuleReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                         if (lcl_obj_ModuleReader.HasRows == false)
                         {
                             return null;
@@ -61,7 +61,7 @@ namespace SilkERP360.BML.UI
             {
                 SilkERP360.CCL.BusinessEntities.UI.Module lcl_obj_ModuleTmp = new SilkERP360.CCL.BusinessEntities.UI.Module();
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From MODULE where MODULE_CODE = {0} AND STATUS = {1} AND IS_DELETED = 1", IP_ui64_ModuleCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ModuleReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ModuleReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_ModuleReader.HasRows == false)
                 {
                     return null;

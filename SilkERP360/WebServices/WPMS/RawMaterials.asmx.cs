@@ -120,7 +120,7 @@ namespace SilkERP360.WebServices.WPMS
                            System.String lcl_str_Query = System.String.Format(@"select e.RM_CODE,e.RM_NAME,d.MONTH,d.PRICE_M_TON From WPMS_RAW_PRODUCT E 
 inner join WPMS_RAW_MATERIAL D on e.RM_CODE=d.rm_code where e.RM_CODE={0}", IP_obj_ddlProductName);
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new FL.SqlFacade();
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeIDReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeIDReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
                 lcl_obj_EmployeeIDReader.Read();
                 System.String lcl_str_RMCode = lcl_obj_EmployeeIDReader["RM_CODE"].ToString();
                 System.String lcl_str_RMName = lcl_obj_EmployeeIDReader["RM_NAME"].ToString();

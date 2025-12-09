@@ -21,7 +21,7 @@ namespace SilkERP360.BML.WPMS
            lcl_ui64_QuotationMCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-               System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                lcl_obj_IDReader.Read();
                System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                lcl_obj_IDReader.Close();
@@ -48,7 +48,7 @@ namespace SilkERP360.BML.WPMS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                    lcl_obj_IDReader.Read();
                    System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                    lcl_obj_IDReader.Close();
@@ -95,7 +95,7 @@ namespace SilkERP360.BML.WPMS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format("Select * From WPMS_Quotation where quotation_code = {0} and status = {1}", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_Reader.HasRows == false)
                {
@@ -125,7 +125,7 @@ namespace SilkERP360.BML.WPMS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From WPMS_QUOTATION Where QUOTATION_CODE = {0}", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From WPMS_QUOTATION Where QUOTATION_CODE = {0}", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
                    if (!(lcl_obj_Reader.HasRows))
                    {
                        throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (QuotationManager.Get(ID)) : No Quotation Data Found In The Database!!!");
@@ -159,7 +159,7 @@ namespace SilkERP360.BML.WPMS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_Reader.HasRows == false)
                {
@@ -190,7 +190,7 @@ namespace SilkERP360.BML.WPMS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                    lcl_obj_Reader.Read();
                   
                     SilkERP360.CCL.BusinessEntities.WPMS.Quotation lcl_obj_QuotationTmp = new SilkERP360.CCL.BusinessEntities.WPMS.Quotation();
@@ -218,7 +218,7 @@ namespace SilkERP360.BML.WPMS
                {
                    lcl_obj_DBManager.Open();
                }
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                if (!(lcl_obj_Reader.HasRows))
                {
                    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error QuotationManager.GetList(SqlQuery,DBManager)) : No Data Found In The Database!!!");
@@ -255,7 +255,7 @@ namespace SilkERP360.BML.WPMS
                                lcl_obj_DBManager.InternalResource.Open();
                            }
 
-                           System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                           Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                            if (!(lcl_obj_Reader.HasRows))
                            {
                                throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (QuotationManager.GetList(SqlQuery)) : No Data Found In The Database!!!");

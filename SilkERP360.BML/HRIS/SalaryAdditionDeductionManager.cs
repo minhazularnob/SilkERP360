@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace SilkERP360.BML.HRIS
             lcl_ui64_SalaryAddDedCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 lcl_obj_IDReader.Read();
                 System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                 lcl_obj_IDReader.Close();
@@ -37,56 +38,56 @@ namespace SilkERP360.BML.HRIS
             //{
             //    SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_SalaryAddDedCode = new System.Data.OracleClient.OracleParameter("p_ADD_DED_CODE", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_SalaryAddDedCode = new OracleParameter("p_ADD_DED_CODE", OracleDbType.Int64);
             //    lcl_obj_SalaryAddDedCode.Direction = System.Data.ParameterDirection.Output;
             //   // lcl_obj_SalaryAddDedCode.Value = lcl_obj_SalaryAddDed.SalaryAddDedCode;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_EmployeeCode = new OracleParameter("p_EMPLOYEE_CODE", OracleDbType.Int64);
             //    lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_EmployeeCode.Value = lcl_obj_SalaryAddDed.EmployeeCode;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_AddOrDed = new System.Data.OracleClient.OracleParameter("p_ADD_OR_DED", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_AddOrDed = new OracleParameter("p_ADD_OR_DED", OracleDbType.Int64);
             //    lcl_obj_AddOrDed.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_AddOrDed.Value = (System.Int32)lcl_obj_SalaryAddDed.AdditionOrDeduction;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_AddDedType = new System.Data.OracleClient.OracleParameter("p_ADD_DED_TYPE", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_AddDedType = new OracleParameter("p_ADD_DED_TYPE", OracleDbType.Int64);
             //    lcl_obj_AddDedType.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_AddDedType.Value = (System.Int32)lcl_obj_SalaryAddDed.AdditionDeductionType;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_Amount = new System.Data.OracleClient.OracleParameter("p_AMOUNT", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_Amount = new OracleParameter("p_AMOUNT", OracleDbType.Int64);
             //    lcl_obj_Amount.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_Amount.Value = lcl_obj_SalaryAddDed.Amount;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_AddDedDate = new System.Data.OracleClient.OracleParameter("p_ADD_DED_DATE", System.Data.OracleClient.OracleType.DateTime);
+            //    OracleParameter lcl_obj_AddDedDate = new OracleParameter("p_ADD_DED_DATE", OracleDbType.Date);
             //    lcl_obj_AddDedDate.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_AddDedDate.Value = lcl_obj_SalaryAddDed.AdditionDeductionDate;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("p_REMARKS", System.Data.OracleClient.OracleType.NVarChar, 512);
+            //    OracleParameter lcl_obj_Remarks = new OracleParameter("p_REMARKS", OracleDbType.NVarchar2, 512);
             //    lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_Remarks.Value = lcl_obj_SalaryAddDed.Remarks;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_EffectiveMonth = new System.Data.OracleClient.OracleParameter("p_EFFECTIVE_MONTH", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_EffectiveMonth = new OracleParameter("p_EFFECTIVE_MONTH", OracleDbType.Int64);
             //    lcl_obj_EffectiveMonth.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_EffectiveMonth.Value = (System.Int32)lcl_obj_SalaryAddDed.EffectiveMonth;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_EffectiveYear = new System.Data.OracleClient.OracleParameter("p_EFFECTIVE_YEAR", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_EffectiveYear = new OracleParameter("p_EFFECTIVE_YEAR", OracleDbType.Int64);
             //    lcl_obj_EffectiveYear.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_EffectiveYear.Value = lcl_obj_SalaryAddDed.EffectiveYear;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_IsProcessed = new System.Data.OracleClient.OracleParameter("p_IS_PROCESSED", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_IsProcessed = new OracleParameter("p_IS_PROCESSED", OracleDbType.Int64);
             //    lcl_obj_IsProcessed.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_IsProcessed.Value = (System.Int16)SilkERP360.CCL.Enums.YesNo.No;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
             //    lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_Status.Value = (System.Int16)SilkERP360.CCL.Enums.Status.Active;
 
-            //    System.Data.OracleClient.OracleParameter lcl_obj_EntryEmployeeCode = new System.Data.OracleClient.OracleParameter("p_ENTRY_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+            //    OracleParameter lcl_obj_EntryEmployeeCode = new OracleParameter("p_ENTRY_EMPLOYEE_CODE", OracleDbType.Int64);
             //    lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
             //    lcl_obj_Status.Value = lcl_obj_SalaryAddDed.EntryEmployeeCode;
 
 
-            //    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAddDedCode, lcl_obj_EmployeeCode, lcl_obj_AddOrDed, lcl_obj_AddDedType, lcl_obj_Amount, lcl_obj_AddDedDate, lcl_obj_Remarks, lcl_obj_EffectiveMonth, lcl_obj_EffectiveYear, lcl_obj_IsProcessed, lcl_obj_Status, lcl_obj_EntryEmployeeCode };
+            //    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAddDedCode, lcl_obj_EmployeeCode, lcl_obj_AddOrDed, lcl_obj_AddDedType, lcl_obj_Amount, lcl_obj_AddDedDate, lcl_obj_Remarks, lcl_obj_EffectiveMonth, lcl_obj_EffectiveYear, lcl_obj_IsProcessed, lcl_obj_Status, lcl_obj_EntryEmployeeCode };
             //    lcl_obj_DBManager.ExecuteStoredProcedure("SALARY_ADDITION_DEDUCTION_IU", lcl_obj_SP_Parameters);
             //    return System.UInt64.Parse(lcl_obj_SalaryAddDedCode.Value.ToString());
             //}, "BMLExceptionPolicy");
@@ -105,51 +106,51 @@ namespace SilkERP360.BML.HRIS
                        {
                            lcl_obj_DBManager.InternalResource.Open();
                        }
-                       System.Data.OracleClient.OracleParameter lcl_obj_SalaryAddDedCode = new System.Data.OracleClient.OracleParameter("p_ADD_DED_CODE", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_SalaryAddDedCode = new OracleParameter("p_ADD_DED_CODE", OracleDbType.Int64);
                        lcl_obj_SalaryAddDedCode.Direction = System.Data.ParameterDirection.Output;
                        // lcl_obj_SalaryAddDedCode.Value = lcl_obj_SalaryAddDed.SalaryAddDedCode;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_EmployeeCode = new OracleParameter("p_EMPLOYEE_CODE", OracleDbType.Int64);
                        lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_EmployeeCode.Value = lcl_obj_SalaryAddDed.EmployeeCode;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_AdditionOrDeduction = new System.Data.OracleClient.OracleParameter("p_ADD_OR_DED", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_AdditionOrDeduction = new OracleParameter("p_ADD_OR_DED", OracleDbType.Int64);
                        lcl_obj_AdditionOrDeduction.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_AdditionOrDeduction.Value = lcl_obj_SalaryAddDed.AdditionOrDeduction;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_AdditionDeductionType = new System.Data.OracleClient.OracleParameter("p_ADD_DED_TYPE", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_AdditionDeductionType = new OracleParameter("p_ADD_DED_TYPE", OracleDbType.Int64);
                        lcl_obj_AdditionDeductionType.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_AdditionDeductionType.Value = lcl_obj_SalaryAddDed.AdditionDeductionType;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_Amount = new System.Data.OracleClient.OracleParameter("p_AMOUNT", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_Amount = new OracleParameter("p_AMOUNT", OracleDbType.Int64);
                        lcl_obj_Amount.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_Amount.Value = lcl_obj_SalaryAddDed.Amount;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_AddDedDate = new System.Data.OracleClient.OracleParameter("p_ADD_DED_DATE", System.Data.OracleClient.OracleType.DateTime);
+                       OracleParameter lcl_obj_AddDedDate = new OracleParameter("p_ADD_DED_DATE", OracleDbType.Date);
                        lcl_obj_AddDedDate.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_AddDedDate.Value = lcl_obj_SalaryAddDed.AdditionDeductionDate;
-                       System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("p_REMARKS", System.Data.OracleClient.OracleType.NVarChar, 512);
+                       OracleParameter lcl_obj_Remarks = new OracleParameter("p_REMARKS", OracleDbType.NVarchar2, 512);
                        lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_Remarks.Value = lcl_obj_SalaryAddDed.Remarks;
-                       System.Data.OracleClient.OracleParameter lcl_obj_EffectiveMonth = new System.Data.OracleClient.OracleParameter("p_EFFECTIVE_MONTH", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_EffectiveMonth = new OracleParameter("p_EFFECTIVE_MONTH", OracleDbType.Int64);
                        lcl_obj_EffectiveMonth.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_EffectiveMonth.Value = lcl_obj_SalaryAddDed.EffectiveMonth;
-                       System.Data.OracleClient.OracleParameter lcl_obj_EffectiveYear = new System.Data.OracleClient.OracleParameter("p_EFFECTIVE_YEAR", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_EffectiveYear = new OracleParameter("p_EFFECTIVE_YEAR", OracleDbType.Int64);
                        lcl_obj_EffectiveYear.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_EffectiveYear.Value = lcl_obj_SalaryAddDed.EffectiveYear;
-                       System.Data.OracleClient.OracleParameter lcl_obj_IsProcessed = new System.Data.OracleClient.OracleParameter("p_IS_PROCESSED", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_IsProcessed = new OracleParameter("p_IS_PROCESSED", OracleDbType.Int64);
                        lcl_obj_IsProcessed.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_IsProcessed.Value = 0;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                        lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_Status.Value = 1;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_EntryEmployeeCode = new System.Data.OracleClient.OracleParameter("p_ENTRY_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_EntryEmployeeCode = new OracleParameter("p_ENTRY_EMPLOYEE_CODE", OracleDbType.Int64);
                        lcl_obj_EntryEmployeeCode.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_EntryEmployeeCode.Value = lcl_obj_SalaryAddDed.EntryEmployeeCode;
 
-                       System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAddDedCode, lcl_obj_EmployeeCode, lcl_obj_AdditionOrDeduction, lcl_obj_AdditionDeductionType, lcl_obj_Amount, lcl_obj_AddDedDate, lcl_obj_Remarks, lcl_obj_EffectiveMonth, lcl_obj_EffectiveYear, lcl_obj_IsProcessed, lcl_obj_Status, lcl_obj_EntryEmployeeCode };
+                       OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAddDedCode, lcl_obj_EmployeeCode, lcl_obj_AdditionOrDeduction, lcl_obj_AdditionDeductionType, lcl_obj_Amount, lcl_obj_AddDedDate, lcl_obj_Remarks, lcl_obj_EffectiveMonth, lcl_obj_EffectiveYear, lcl_obj_IsProcessed, lcl_obj_Status, lcl_obj_EntryEmployeeCode };
                        lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("SALARY_ADDITION_DEDUCTION_IU", lcl_obj_SP_Parameters);
 
                        lcl_obj_DBManager.InternalResource.CommitTransaction();
@@ -202,7 +203,7 @@ namespace SilkERP360.BML.HRIS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format("Select * From SALARY_ADDITION_DEDUCTION Where ADD_DED_CODE = {0} and STATUS = {1}", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_SalaryAddDedReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SalaryAddDedReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_SalaryAddDedReader.HasRows == false)
                {
@@ -242,7 +243,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From SALARY_ADDITION_DEDUCTION Where ADD_DED_CODE = {0} and STATUS = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From SALARY_ADDITION_DEDUCTION Where ADD_DED_CODE = {0} and STATUS = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
        if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalaryAdditionDeductionManager.Get(ID)) : No SalaryAdditionDeduction Data Found In The Database!!!");
@@ -280,7 +281,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     dr.Close();
@@ -328,7 +329,7 @@ namespace SilkERP360.BML.HRIS
                         }
                         System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.SalaryAdditionDeduction> lcl_objLst_SalaryAddDedTmp = new
                            System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.SalaryAdditionDeduction>();
-                        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                         if (!(dr.HasRows))
                         {
                             return lcl_objLst_SalaryAddDedTmp;
@@ -373,7 +374,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_SalaryAddDedReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SalaryAddDedReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_SalaryAddDedReader.HasRows == false)
                 {
@@ -409,7 +410,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalaryAdditionDeductionManager.Get(SqlQuery)) : No SalaryAdditionDeduction Data Found In The Database!!!");

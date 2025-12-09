@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.OracleClient;
+using Oracle.ManagedDataAccess.Client;
 namespace SilkERP360.CCL.Validation
 {
     [System.AttributeUsage(AttributeTargets.Field)]
@@ -10,7 +7,7 @@ namespace SilkERP360.CCL.Validation
     {
         public System.UInt32 Order { get; set; }
         public System.String ParameterName { get; set; }
-        public System.Data.OracleClient.OracleType DataType { get; set; }
+        public OracleDbType DataType { get; set; }
         public System.Data.ParameterDirection ParameterDirection;
     }
 }

@@ -85,7 +85,7 @@ namespace SilkERP360.BML.HRISFactory
                                                                             //WHERE COMP.COMPANY_CODE = {0} AND EMP.JOINING_DATE <= TO_DATE('{1}','dd/mm/yyyy') AND (EMP.EMPLOYEE_STATUS = {2} OR EMP.EMPLOYEE_STATUS = {3} OR EMP.EMPLOYEE_STATUS = {4}) AND EMP.IS_DELETED = 1  Order By  DEPT.RANK,DESIG.RANK ASC", IP_ui64_CompanyCode, IP_dt_Date.ToString("dd/M/yyyy"), (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
                     //System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile> lcl_objLst_EmployeeProfile = lcl_obj_EmployeeProfileManager.GetListWithoutImage(lcl_str_SqlQuery, lcl_obj_DBManager.InternalResource);
 
-                    System.Data.OracleClient.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
 
                     if (!(lcl_obj_WGReader.HasRows))
                     {
@@ -106,7 +106,7 @@ namespace SilkERP360.BML.HRISFactory
                         foreach (SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.WorkGroupOperationMasterProfile lcl_obj_WorkGroupOperationMasterProfile in lcl_objLst_WorkGroupOperationMasterProfile)
                         {
                             lcl_str_SqlQuery = System.String.Format("SELECT * FROM WORK_GROUP_OPERATION_MASTER WHERE WORK_GROUP_CODE = {0} AND WORK_DATE = TO_DATE('{1}','dd/mm/yyyy')", lcl_obj_WorkGroupOperationMasterProfile.WorkGroupCode, IP_dt_Date.ToString("dd/M/yyyy"));
-                            System.Data.OracleClient.OracleDataReader lcl_obj_WGOperationMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGOperationMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                             if (!(lcl_obj_WGOperationMasterReader.HasRows))
                             {
                                 lcl_obj_WGOperationMasterReader.Close();
@@ -165,7 +165,7 @@ namespace SilkERP360.BML.HRISFactory
                                                                             WHERE COMP.COMPANY_CODE = {0} AND EMP.JOINING_DATE <= TO_DATE('{1}','dd/mm/yyyy') AND (EMP.EMPLOYEE_STATUS = {2} OR EMP.EMPLOYEE_STATUS = {3} OR EMP.EMPLOYEE_STATUS = {4}) AND EMP.IS_DELETED = 1  Order By  DEPT.RANK,DESIG.RANK ASC", IP_ui64_CompanyCode, IP_dt_Date.ToString("dd/M/yyyy"), (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
                     //System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile> lcl_objLst_EmployeeProfile = lcl_obj_EmployeeProfileManager.GetListWithoutImage(lcl_str_SqlQuery, lcl_obj_DBManager.InternalResource);
 
-                    System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
 
                     if (!(lcl_obj_EmployeeReader.HasRows))
                     {
@@ -198,7 +198,7 @@ namespace SilkERP360.BML.HRISFactory
                             "ON WGOM.WG_OPERATION_MASTER_CODE = WGOH.WG_OPERATION_MASTER_CODE " +
                             "WHERE WGOH.EMPLOYEE_CODE = {0} AND WGOM.WORK_DATE = TO_DATE('{1}','dd/mm/yyyy')", lcl_obj_EmployeeWorkGroupSchedule.EmployeeCode, IP_dt_Date.ToString("dd/M/yyyy"));
 
-                        System.Data.OracleClient.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
 
                         if (!(lcl_obj_WGReader.HasRows))
                         {

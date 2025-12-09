@@ -52,11 +52,11 @@ namespace SilkERP360.FL
         //    //return lcl_obj_Return;
         //}
 
-        public System.Data.OracleClient.OracleDataReader ExecuteDataReader(System.String IP_str_SqlQuery)
+        public Oracle.ManagedDataAccess.Client.OracleDataReader ExecuteDataReader(System.String IP_str_SqlQuery)
         {
-            System.Data.OracleClient.OracleDataReader lcl_obj_DataReader = null;
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DataReader = null;
             //throws Error.109
-            lcl_obj_DataReader = this.ExceptionManager.Process<System.Data.OracleClient.OracleDataReader>(() =>
+            lcl_obj_DataReader = this.ExceptionManager.Process<Oracle.ManagedDataAccess.Client.OracleDataReader>(() =>
             {
                 return this.m_obj_SqlManager.ExecuteDataReader(IP_str_SqlQuery);
             },

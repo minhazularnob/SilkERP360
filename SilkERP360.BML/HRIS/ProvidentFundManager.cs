@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.Collections;
+using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -20,25 +21,25 @@ namespace SilkERP360.BML.HRIS
             lcl_ui64_EmployeePfCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_PfCode = new System.Data.OracleClient.OracleParameter("v_PF_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PfCode = new OracleParameter("v_PF_CODE", OracleDbType.Int64);
                 lcl_obj_PfCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PfCode.Value = lcl_obj_EmployeePf.PfCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_PfAccountNo = new System.Data.OracleClient.OracleParameter("v_PF_ACCOUNT_NO", System.Data.OracleClient.OracleType.NVarChar);
+                OracleParameter lcl_obj_PfAccountNo = new OracleParameter("v_PF_ACCOUNT_NO", OracleDbType.NVarchar2);
                 lcl_obj_PfAccountNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PfAccountNo.Value = lcl_obj_EmployeePf.PfAccountNo;
-                System.Data.OracleClient.OracleParameter lcl_obj_PfPercentage = new System.Data.OracleClient.OracleParameter("v_PF_PERCENTAGE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PfPercentage = new OracleParameter("v_PF_PERCENTAGE", OracleDbType.Int64);
                 lcl_obj_PfPercentage.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PfPercentage.Value = lcl_obj_EmployeePf.PfPercentage;
-                System.Data.OracleClient.OracleParameter lcl_obj_PfStartDate = new System.Data.OracleClient.OracleParameter("v_PF_START_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_PfStartDate = new OracleParameter("v_PF_START_DATE", OracleDbType.Date);
                 lcl_obj_PfStartDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PfStartDate.Value = lcl_obj_EmployeePf.PfStartDate;
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
                 lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsDeleted.Value = lcl_obj_EmployeePf.IsDeleted;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                 lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Status.Value = lcl_obj_EmployeePf.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_PfCode, lcl_obj_PfAccountNo, lcl_obj_PfPercentage, lcl_obj_PfStartDate, lcl_obj_IsDeleted, lcl_obj_Status, };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_PfCode, lcl_obj_PfAccountNo, lcl_obj_PfPercentage, lcl_obj_PfStartDate, lcl_obj_IsDeleted, lcl_obj_Status, };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS.EmployeePf_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_PfCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -55,25 +56,25 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_PfCode = new System.Data.OracleClient.OracleParameter("v_PF_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_PfCode = new OracleParameter("v_PF_CODE", OracleDbType.Int64);
                     lcl_obj_PfCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PfCode.Value = lcl_obj_EmployeePf.PfCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PfAccountNo = new System.Data.OracleClient.OracleParameter("v_PF_ACCOUNT_NO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PfAccountNo = new OracleParameter("v_PF_ACCOUNT_NO", OracleDbType.NVarchar2);
                     lcl_obj_PfAccountNo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PfAccountNo.Value = lcl_obj_EmployeePf.PfAccountNo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PfPercentage = new System.Data.OracleClient.OracleParameter("v_PF_PERCENTAGE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_PfPercentage = new OracleParameter("v_PF_PERCENTAGE", OracleDbType.Int64);
                     lcl_obj_PfPercentage.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PfPercentage.Value = lcl_obj_EmployeePf.PfPercentage;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PfStartDate = new System.Data.OracleClient.OracleParameter("v_PF_START_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_PfStartDate = new OracleParameter("v_PF_START_DATE", OracleDbType.Date);
                     lcl_obj_PfStartDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PfStartDate.Value = lcl_obj_EmployeePf.PfStartDate;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
                     lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_IsDeleted.Value = lcl_obj_EmployeePf.IsDeleted;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                     lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Status.Value = lcl_obj_EmployeePf.Status;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_PfCode, lcl_obj_PfAccountNo, lcl_obj_PfPercentage, lcl_obj_PfStartDate, lcl_obj_IsDeleted, lcl_obj_Status, };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_PfCode, lcl_obj_PfAccountNo, lcl_obj_PfPercentage, lcl_obj_PfStartDate, lcl_obj_IsDeleted, lcl_obj_Status, };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS.EmployeePf_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_PfCode.Value.ToString());
                 }
@@ -91,7 +92,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE_PF EMPLOYEE_PF_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployeePf.Get(ID,DBManger)) : Error Retrieving EmployeePf Data!");
@@ -121,7 +122,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_PF EMPLOYEE_PF_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_PF EMPLOYEE_PF_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePf.Get(ID)) : No Attandance Data Found In The Database!!!");
@@ -151,7 +152,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePf.GetList(SqlQuery)) : No Attandance Data Found In The Database!!!");
                     }
@@ -185,7 +186,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(lcl_obj_dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePf.GetList(SqlQuery,DBManager)) : No Attandance Data Found In The Database!!!");
@@ -222,7 +223,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployeePf.Get(SqlQuery,DBManger)) : Error Retrieving EmployeePf Data!");
@@ -252,7 +253,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePf.Get(SqlQuery)) : No ProvidentFund Data Found In The Database!!!");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,23 +22,23 @@ namespace SilkERP360.BML.HRIS
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_HolidayDtlCode = new System.Data.OracleClient.OracleParameter("v_HolidayDtlCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_HolidayDtlCode = new OracleParameter("v_HolidayDtlCode", OracleDbType.Int64);
                lcl_obj_HolidayDtlCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_HolidayDtlCode.Value = lcl_obj_HolidayDetails.HolidayDtlCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_HolidayMasterCode = new System.Data.OracleClient.OracleParameter("v_HolidayMasterCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_HolidayMasterCode = new OracleParameter("v_HolidayMasterCode", OracleDbType.Int64);
                lcl_obj_HolidayMasterCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_HolidayMasterCode.Value = lcl_obj_HolidayDetails.HolidayMasterCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_WeekDayName = new System.Data.OracleClient.OracleParameter("v_WeekDayName", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_WeekDayName = new OracleParameter("v_WeekDayName", OracleDbType.Int64);
                lcl_obj_WeekDayName.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_WeekDayName.Value = lcl_obj_HolidayDetails.WeekDayName;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_HolidayDate = new System.Data.OracleClient.OracleParameter("v_HolidayDate", System.Data.OracleClient.OracleType.NVarChar, 32);
+               OracleParameter lcl_obj_HolidayDate = new OracleParameter("v_HolidayDate", OracleDbType.NVarchar2, 32);
                lcl_obj_HolidayDate.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_HolidayDate.Value = lcl_obj_HolidayDetails.HolidayDate;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_HolidayDtlCode, lcl_obj_HolidayMasterCode, lcl_obj_WeekDayName, lcl_obj_HolidayDate };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_HolidayDtlCode, lcl_obj_HolidayMasterCode, lcl_obj_WeekDayName, lcl_obj_HolidayDate };
                lcl_obj_DBManager.ExecuteStoredProcedure("HOLIDAY_DETAILS", lcl_obj_SP_Parameters);
                return System.UInt64.Parse(lcl_obj_HolidayDtlCode.Value.ToString());
            }, "BMLExceptionPolicy");
@@ -56,23 +57,23 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_HolidayDtlCode = new System.Data.OracleClient.OracleParameter("v_HolidayDtlCode", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_HolidayDtlCode = new OracleParameter("v_HolidayDtlCode", OracleDbType.Int64);
                lcl_obj_HolidayDtlCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_HolidayDtlCode.Value = lcl_obj_HolidayDetails.HolidayDtlCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_HolidayMasterCode = new System.Data.OracleClient.OracleParameter("v_HolidayMasterCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_HolidayMasterCode = new OracleParameter("v_HolidayMasterCode", OracleDbType.Int64);
                lcl_obj_HolidayMasterCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_HolidayMasterCode.Value = lcl_obj_HolidayDetails.HolidayMasterCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_WeekDayName = new System.Data.OracleClient.OracleParameter("v_WeekDayName", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_WeekDayName = new OracleParameter("v_WeekDayName", OracleDbType.Int64);
                lcl_obj_WeekDayName.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_WeekDayName.Value = lcl_obj_HolidayDetails.WeekDayName;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_HolidayDate = new System.Data.OracleClient.OracleParameter("v_HolidayDate", System.Data.OracleClient.OracleType.NVarChar, 32);
+               OracleParameter lcl_obj_HolidayDate = new OracleParameter("v_HolidayDate", OracleDbType.NVarchar2, 32);
                lcl_obj_HolidayDate.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_HolidayDate.Value = lcl_obj_HolidayDetails.HolidayDate;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_HolidayDtlCode, lcl_obj_HolidayMasterCode, lcl_obj_WeekDayName, lcl_obj_HolidayDate };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_HolidayDtlCode, lcl_obj_HolidayMasterCode, lcl_obj_WeekDayName, lcl_obj_HolidayDate };
                lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HOLIDAY_DETAILS", lcl_obj_SP_Parameters);
                return System.UInt64.Parse(lcl_obj_HolidayDtlCode.Value.ToString());
                 }
@@ -93,7 +94,7 @@ namespace SilkERP360.BML.HRIS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format("Select * From HOLIDAY_DETAILS Where HOLIDAY_DTL_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_HolidayDtlReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_HolidayDtlReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_HolidayDtlReader.HasRows == false)
                {
@@ -124,7 +125,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From ATTENDANCE_RAW_DTL Where ATTEN_RAW_DTL_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From ATTENDANCE_RAW_DTL Where ATTEN_RAW_DTL_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
        if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (HolidayDetailsManager.Get(ID)) : No HolidayDetails Data Found In The Database!!!");
@@ -152,7 +153,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (HolidayDetailsManager.GetList(SqlQuery,DBManager)) : No HolidayDetails Data Found In The Database!!!");
@@ -186,7 +187,7 @@ namespace SilkERP360.BML.HRIS
                             lcl_obj_DBManager.InternalResource.Open();
                         }
 
-                        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                         if (!(dr.HasRows))
                         {
                             throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (HolidayDetailsManager.GetList(SqlQuery)) : No HolidayDetails Data Found In The Database!!!");
@@ -222,7 +223,7 @@ namespace SilkERP360.BML.HRIS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-               System.Data.OracleClient.OracleDataReader lcl_obj_HolidayDtlReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_HolidayDtlReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_HolidayDtlReader.HasRows == false)
                {
@@ -250,7 +251,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (HolidayDetailsManager.Get(SqlQuery)) : No HolidayDetails Data Found In The Database!!!");

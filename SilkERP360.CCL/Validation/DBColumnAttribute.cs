@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.OracleClient;
+using Oracle.ManagedDataAccess.Client;
+
 
 namespace SilkERP360.CCL.Validation
 {
@@ -10,6 +8,6 @@ namespace SilkERP360.CCL.Validation
     public class DBColumnAttribute : System.Attribute
     {
         public System.String FieldName { get; set; }
-        public System.Data.OracleClient.OracleType DataType { get; set; }
+        public OracleDbType DataType { get; set; }
     }
 }

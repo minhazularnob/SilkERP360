@@ -33,7 +33,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("Select DEPARTMENT_CODE,DEPT_NAME From Department Where Company_Code = {0} AND Status = {1} AND Is_Deleted = 1 order by DEPT_NAME", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_DepartmentReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Departments for The Selected Company Was Not Found!!!");

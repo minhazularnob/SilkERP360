@@ -42,7 +42,7 @@ namespace SilkERP360.BML.UI
             lcl_obj_Menu = this.ExceptionManager.Process<SilkERP360.CCL.BusinessEntities.UI.Menu>(() =>
             {
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From Menu Where MENU_CODE = {0} and STATUS = {1} AND IS_DELETED = 1", IP_ui64_MenuCode, SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_MenuReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MenuReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 lcl_obj_MenuReader.Read();
                 if (lcl_obj_MenuReader.HasRows == false)
                 {
@@ -74,7 +74,7 @@ namespace SilkERP360.BML.UI
                 using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
                     System.String lcl_str_SqlQuery = System.String.Format("Select * From Menu Where MENU_CODE = {0} and STATUS = {1} AND IS_DELETED = 1", IP_ui64_MenuCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MenuReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MenuReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     lcl_obj_MenuReader.Read();
                     if (lcl_obj_MenuReader.HasRows == false)
                     {

@@ -49,7 +49,7 @@ namespace SilkERP360.BML.WPMS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(lcl_obj_Reader.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (RawMaterialsManager.Get(SqlQuery)) : No RawMaterials Data Found In The Database!!!");
@@ -81,7 +81,7 @@ namespace SilkERP360.BML.WPMS
                        lcl_obj_DBManager.InternalResource.Open();
                    }
 
-                   System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                   
                    System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawProduct> lcl_objLst_Items2Tmp = new
                        System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawProduct>();
@@ -111,7 +111,7 @@ namespace SilkERP360.BML.WPMS
                     lcl_obj_DBManager.InternalResource.Open();
                 }
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
 
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawProduct> lcl_objLst_Items2Tmp = new
                     System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawProduct>();

@@ -21,7 +21,7 @@ namespace SilkERP360.BML.HRIS
            lcl_ui64_LeaveApplicationCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-               System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                lcl_obj_IDReader.Read();
                System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                lcl_obj_IDReader.Close();
@@ -54,7 +54,7 @@ namespace SilkERP360.BML.HRIS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                    lcl_obj_IDReader.Read();
                    System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                    lcl_obj_IDReader.Close();
@@ -122,7 +122,7 @@ namespace SilkERP360.BML.HRIS
                        //Update WorkHour in AttendanceMaster
                        //Check If Employee is O.T Eligble
                        lcl_str_SqlQuery = System.String.Format("SELECT IS_OT_ELIGIBLE FROM EMPLOYEE WHERE EMPLOYEE_CODE = {0}", IP_obj_LeaveApplication.EmployeeCode);
-                       System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                       Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                        lcl_obj_EmployeeReader.Read();
                        SilkERP360.CCL.Enums.YesNo lcl_enm_IsOTEligible = (CCL.Enums.YesNo)(System.UInt16.Parse(lcl_obj_EmployeeReader["IS_OT_ELIGIBLE"].ToString()));
                        lcl_obj_EmployeeReader.Close();
@@ -159,7 +159,7 @@ namespace SilkERP360.BML.HRIS
                    lcl_obj_DBManager.Open();
                }
                System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE_LEAVE_APPLICATION WHERE LEAVE_APPLICATION_CODE = {0}", IP_ui64_LeaveApplication);
-               System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                if (lcl_obj_dr.HasRows == false)
                {
                    lcl_obj_dr.Close();
@@ -203,7 +203,7 @@ namespace SilkERP360.BML.HRIS
                        lcl_obj_DBManager.InternalResource.Open();
                    }
                    System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE_LEAVE_APPLICATION WHERE LEAVE_APPLICATION_CODE = {0}", IP_ui64_Code);
-                   System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                    if (lcl_obj_dr.HasRows == false)
                    {
                        return null;
@@ -241,7 +241,7 @@ namespace SilkERP360.BML.HRIS
                    lcl_obj_DBManager.Open();
                }
                System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-               System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                if (lcl_obj_dr.HasRows == false)
                {
                    return null;
@@ -278,7 +278,7 @@ namespace SilkERP360.BML.HRIS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                    if (!(lcl_obj_dr.HasRows))
                    {
                        return null;
@@ -316,7 +316,7 @@ namespace SilkERP360.BML.HRIS
                //}
                System.Collections.Generic.List<CCL.BusinessEntities.HRIS.EmployeeLeaveApplication> lcl_objlist_TmpLeaveApplicationList = new
                   System.Collections.Generic.List<CCL.BusinessEntities.HRIS.EmployeeLeaveApplication>();
-               System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                if (!(lcl_obj_dr.HasRows))
                {
                    lcl_obj_dr.Close();
@@ -361,7 +361,7 @@ namespace SilkERP360.BML.HRIS
 
                    System.Collections.Generic.List<CCL.BusinessEntities.HRIS.EmployeeLeaveApplication> lcl_objlist_TmpLeaveApplicationList = new
                    System.Collections.Generic.List<CCL.BusinessEntities.HRIS.EmployeeLeaveApplication>();
-                   System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                    if (!(lcl_obj_dr.HasRows))
                    {
                        return lcl_objlist_TmpLeaveApplicationList;

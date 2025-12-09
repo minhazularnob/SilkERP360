@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.Collections;
+using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -21,115 +22,115 @@ namespace SilkERP360.BML.HRIS
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeCode.Value = lcl_obj_EmployeePersonal.EmployeeCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_FatherName = new System.Data.OracleClient.OracleParameter("v_FATHER_NAME", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_FatherName = new OracleParameter("v_FATHER_NAME", OracleDbType.NVarchar2, 100);
                 lcl_obj_FatherName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_FatherName.Value = lcl_obj_EmployeePersonal.FatherName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MotherName = new System.Data.OracleClient.OracleParameter("v_MOTHER_NAME", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_MotherName = new OracleParameter("v_MOTHER_NAME", OracleDbType.NVarchar2, 100);
                 lcl_obj_MotherName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MotherName.Value = lcl_obj_EmployeePersonal.MotherName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SpouseName = new System.Data.OracleClient.OracleParameter("v_SPOUSE_NAME", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_SpouseName = new OracleParameter("v_SPOUSE_NAME", OracleDbType.NVarchar2, 100);
                 lcl_obj_SpouseName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SpouseName.Value = lcl_obj_EmployeePersonal.SpouseName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_DateOfBirth = new System.Data.OracleClient.OracleParameter("v_DATE_OF_BIRTH", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_DateOfBirth = new OracleParameter("v_DATE_OF_BIRTH", OracleDbType.Date);
                 lcl_obj_DateOfBirth.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DateOfBirth.Value = lcl_obj_EmployeePersonal.DateOfBirth;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MaritalStatus = new System.Data.OracleClient.OracleParameter("v_MARITAL_STATUS", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_MaritalStatus = new OracleParameter("v_MARITAL_STATUS", OracleDbType.NVarchar2, 64);
                 lcl_obj_MaritalStatus.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MaritalStatus.Value = lcl_obj_EmployeePersonal.MaritalStatus;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Sex = new System.Data.OracleClient.OracleParameter("v_SEX", System.Data.OracleClient.OracleType.Char, 1);
+                OracleParameter lcl_obj_Sex = new OracleParameter("v_SEX", OracleDbType.Char, 1);
                 lcl_obj_Sex.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Sex.Value = lcl_obj_EmployeePersonal.Sex;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Religion = new System.Data.OracleClient.OracleParameter("v_RELIGION", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_Religion = new OracleParameter("v_RELIGION", OracleDbType.NVarchar2, 64);
                 lcl_obj_Religion.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Religion.Value = lcl_obj_EmployeePersonal.Religion;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Nationality = new System.Data.OracleClient.OracleParameter("v_NATIONALITY", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_Nationality = new OracleParameter("v_NATIONALITY", OracleDbType.NVarchar2, 64);
                 lcl_obj_Nationality.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Nationality.Value = lcl_obj_EmployeePersonal.Nationality;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BloodGroup = new System.Data.OracleClient.OracleParameter("v_BLOOD_GROUP", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_BloodGroup = new OracleParameter("v_BLOOD_GROUP", OracleDbType.NVarchar2, 32);
                 lcl_obj_BloodGroup.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BloodGroup.Value = lcl_obj_EmployeePersonal.BloodGroup;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Height = new System.Data.OracleClient.OracleParameter("v_HEIGHT", System.Data.OracleClient.OracleType.NVarChar, 10);
+                OracleParameter lcl_obj_Height = new OracleParameter("v_HEIGHT", OracleDbType.NVarchar2, 10);
                 lcl_obj_Height.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Height.Value = lcl_obj_EmployeePersonal.Height;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Weight = new System.Data.OracleClient.OracleParameter("v_WEIGHT", System.Data.OracleClient.OracleType.NVarChar, 10);
+                OracleParameter lcl_obj_Weight = new OracleParameter("v_WEIGHT", OracleDbType.NVarchar2, 10);
                 lcl_obj_Weight.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Weight.Value = lcl_obj_EmployeePersonal.Weight;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Identification = new System.Data.OracleClient.OracleParameter("v_IDENTIFICATION", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_Identification = new OracleParameter("v_IDENTIFICATION", OracleDbType.NVarchar2, 128);
                 lcl_obj_Identification.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Identification.Value = lcl_obj_EmployeePersonal.Identification;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MobileNo = new System.Data.OracleClient.OracleParameter("v_MOBILE_NO", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_MobileNo = new OracleParameter("v_MOBILE_NO", OracleDbType.NVarchar2, 64);
                 lcl_obj_MobileNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MobileNo.Value = lcl_obj_EmployeePersonal.MobileNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_HomePhoneNo = new System.Data.OracleClient.OracleParameter("v_HOME_PHONE_NO", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_HomePhoneNo = new OracleParameter("v_HOME_PHONE_NO", OracleDbType.NVarchar2, 100);
                 lcl_obj_HomePhoneNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_HomePhoneNo.Value = lcl_obj_EmployeePersonal.HomePhoneNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_FaxNo = new System.Data.OracleClient.OracleParameter("v_FAX_NO", System.Data.OracleClient.OracleType.NVarChar, 20);
+                OracleParameter lcl_obj_FaxNo = new OracleParameter("v_FAX_NO", OracleDbType.NVarchar2, 20);
                 lcl_obj_FaxNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_FaxNo.Value = lcl_obj_EmployeePersonal.FaxNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Email = new System.Data.OracleClient.OracleParameter("v_EMAIL", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_Email = new OracleParameter("v_EMAIL", OracleDbType.NVarchar2, 128);
                 lcl_obj_Email.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Email.Value = lcl_obj_EmployeePersonal.Email;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentAddress = new System.Data.OracleClient.OracleParameter("v_PRESENT_ADDRESS", System.Data.OracleClient.OracleType.NVarChar, 256);
+                OracleParameter lcl_obj_PresentAddress = new OracleParameter("v_PRESENT_ADDRESS", OracleDbType.NVarchar2, 256);
                 lcl_obj_PresentAddress.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentAddress.Value = lcl_obj_EmployeePersonal.PresentAddress;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentPo = new System.Data.OracleClient.OracleParameter("v_PRESENT_PO", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_PresentPo = new OracleParameter("v_PRESENT_PO", OracleDbType.NVarchar2, 128);
                 lcl_obj_PresentPo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentPo.Value = lcl_obj_EmployeePersonal.PresentPo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentPc = new System.Data.OracleClient.OracleParameter("v_PRESENT_PC", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_PresentPc = new OracleParameter("v_PRESENT_PC", OracleDbType.NVarchar2, 64);
                 lcl_obj_PresentPc.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentPc.Value = lcl_obj_EmployeePersonal.PresentPc;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentDistrictCode = new System.Data.OracleClient.OracleParameter("v_PRESENT_DISTRICT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PresentDistrictCode = new OracleParameter("v_PRESENT_DISTRICT_CODE", OracleDbType.Int64);
                 lcl_obj_PresentDistrictCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentDistrictCode.Value = lcl_obj_EmployeePersonal.PresentDistrictCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentAddress = new System.Data.OracleClient.OracleParameter("v_PERMANENT_ADDRESS", System.Data.OracleClient.OracleType.NVarChar, 256);
+                OracleParameter lcl_obj_PermanentAddress = new OracleParameter("v_PERMANENT_ADDRESS", OracleDbType.NVarchar2, 256);
                 lcl_obj_PermanentAddress.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentAddress.Value = lcl_obj_EmployeePersonal.PermanentAddress;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentPo = new System.Data.OracleClient.OracleParameter("v_PERMANENT_PO", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_PermanentPo = new OracleParameter("v_PERMANENT_PO", OracleDbType.NVarchar2, 128);
                 lcl_obj_PermanentPo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentPo.Value = lcl_obj_EmployeePersonal.PermanentPo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentPc = new System.Data.OracleClient.OracleParameter("v_PERMANENT_PC", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_PermanentPc = new OracleParameter("v_PERMANENT_PC", OracleDbType.NVarchar2, 64);
                 lcl_obj_PermanentPc.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentPc.Value = lcl_obj_EmployeePersonal.PermanentPc;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentDistrictCode = new System.Data.OracleClient.OracleParameter("v_PERMANENT_DISTRICT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PermanentDistrictCode = new OracleParameter("v_PERMANENT_DISTRICT_CODE", OracleDbType.Int64);
                 lcl_obj_PermanentDistrictCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentDistrictCode.Value = lcl_obj_EmployeePersonal.PermanentDistrictCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_CitizenCardId = new System.Data.OracleClient.OracleParameter("v_CITIZEN_CARD_ID", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_CitizenCardId = new OracleParameter("v_CITIZEN_CARD_ID", OracleDbType.NVarchar2, 32);
                 lcl_obj_CitizenCardId.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CitizenCardId.Value = lcl_obj_EmployeePersonal.CitizenCardId;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PassportNo = new System.Data.OracleClient.OracleParameter("v_PASSPORT_NO", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_PassportNo = new OracleParameter("v_PASSPORT_NO", OracleDbType.NVarchar2, 32);
                 lcl_obj_PassportNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PassportNo.Value = lcl_obj_EmployeePersonal.PassportNo;
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_EMPLOYEE_PERSONAL", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_EmployeeCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -144,115 +145,115 @@ namespace SilkERP360.BML.HRIS
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeCode.Value = lcl_obj_EmployeePersonal.EmployeeCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_FatherName = new System.Data.OracleClient.OracleParameter("v_FATHER_NAME", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_FatherName = new OracleParameter("v_FATHER_NAME", OracleDbType.NVarchar2, 100);
                 lcl_obj_FatherName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_FatherName.Value = lcl_obj_EmployeePersonal.FatherName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MotherName = new System.Data.OracleClient.OracleParameter("v_MOTHER_NAME", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_MotherName = new OracleParameter("v_MOTHER_NAME", OracleDbType.NVarchar2, 100);
                 lcl_obj_MotherName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MotherName.Value = lcl_obj_EmployeePersonal.MotherName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_SpouseName = new System.Data.OracleClient.OracleParameter("v_SPOUSE_NAME", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_SpouseName = new OracleParameter("v_SPOUSE_NAME", OracleDbType.NVarchar2, 100);
                 lcl_obj_SpouseName.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SpouseName.Value = lcl_obj_EmployeePersonal.SpouseName;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_DateOfBirth = new System.Data.OracleClient.OracleParameter("v_DATE_OF_BIRTH", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_DateOfBirth = new OracleParameter("v_DATE_OF_BIRTH", OracleDbType.Date);
                 lcl_obj_DateOfBirth.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DateOfBirth.Value = lcl_obj_EmployeePersonal.DateOfBirth;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MaritalStatus = new System.Data.OracleClient.OracleParameter("v_MARITAL_STATUS", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_MaritalStatus = new OracleParameter("v_MARITAL_STATUS", OracleDbType.NVarchar2, 64);
                 lcl_obj_MaritalStatus.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MaritalStatus.Value = lcl_obj_EmployeePersonal.MaritalStatus;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Sex = new System.Data.OracleClient.OracleParameter("v_SEX", System.Data.OracleClient.OracleType.Char, 1);
+                OracleParameter lcl_obj_Sex = new OracleParameter("v_SEX", OracleDbType.Char, 1);
                 lcl_obj_Sex.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Sex.Value = lcl_obj_EmployeePersonal.Sex;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Religion = new System.Data.OracleClient.OracleParameter("v_RELIGION", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_Religion = new OracleParameter("v_RELIGION", OracleDbType.NVarchar2, 64);
                 lcl_obj_Religion.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Religion.Value = lcl_obj_EmployeePersonal.Religion;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Nationality = new System.Data.OracleClient.OracleParameter("v_NATIONALITY", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_Nationality = new OracleParameter("v_NATIONALITY", OracleDbType.NVarchar2, 64);
                 lcl_obj_Nationality.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Nationality.Value = lcl_obj_EmployeePersonal.Nationality;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_BloodGroup = new System.Data.OracleClient.OracleParameter("v_BLOOD_GROUP", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_BloodGroup = new OracleParameter("v_BLOOD_GROUP", OracleDbType.NVarchar2, 32);
                 lcl_obj_BloodGroup.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BloodGroup.Value = lcl_obj_EmployeePersonal.BloodGroup;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Height = new System.Data.OracleClient.OracleParameter("v_HEIGHT", System.Data.OracleClient.OracleType.NVarChar, 10);
+                OracleParameter lcl_obj_Height = new OracleParameter("v_HEIGHT", OracleDbType.NVarchar2, 10);
                 lcl_obj_Height.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Height.Value = lcl_obj_EmployeePersonal.Height;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Weight = new System.Data.OracleClient.OracleParameter("v_WEIGHT", System.Data.OracleClient.OracleType.NVarChar, 10);
+                OracleParameter lcl_obj_Weight = new OracleParameter("v_WEIGHT", OracleDbType.NVarchar2, 10);
                 lcl_obj_Weight.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Weight.Value = lcl_obj_EmployeePersonal.Weight;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Identification = new System.Data.OracleClient.OracleParameter("v_IDENTIFICATION", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_Identification = new OracleParameter("v_IDENTIFICATION", OracleDbType.NVarchar2, 128);
                 lcl_obj_Identification.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Identification.Value = lcl_obj_EmployeePersonal.Identification;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MobileNo = new System.Data.OracleClient.OracleParameter("v_MOBILE_NO", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_MobileNo = new OracleParameter("v_MOBILE_NO", OracleDbType.NVarchar2, 64);
                 lcl_obj_MobileNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MobileNo.Value = lcl_obj_EmployeePersonal.MobileNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_HomePhoneNo = new System.Data.OracleClient.OracleParameter("v_HOME_PHONE_NO", System.Data.OracleClient.OracleType.NVarChar, 100);
+                OracleParameter lcl_obj_HomePhoneNo = new OracleParameter("v_HOME_PHONE_NO", OracleDbType.NVarchar2, 100);
                 lcl_obj_HomePhoneNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_HomePhoneNo.Value = lcl_obj_EmployeePersonal.HomePhoneNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_FaxNo = new System.Data.OracleClient.OracleParameter("v_FAX_NO", System.Data.OracleClient.OracleType.NVarChar, 20);
+                OracleParameter lcl_obj_FaxNo = new OracleParameter("v_FAX_NO", OracleDbType.NVarchar2, 20);
                 lcl_obj_FaxNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_FaxNo.Value = lcl_obj_EmployeePersonal.FaxNo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Email = new System.Data.OracleClient.OracleParameter("v_EMAIL", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_Email = new OracleParameter("v_EMAIL", OracleDbType.NVarchar2, 128);
                 lcl_obj_Email.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Email.Value = lcl_obj_EmployeePersonal.Email;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentAddress = new System.Data.OracleClient.OracleParameter("v_PRESENT_ADDRESS", System.Data.OracleClient.OracleType.NVarChar, 256);
+                OracleParameter lcl_obj_PresentAddress = new OracleParameter("v_PRESENT_ADDRESS", OracleDbType.NVarchar2, 256);
                 lcl_obj_PresentAddress.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentAddress.Value = lcl_obj_EmployeePersonal.PresentAddress;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentPo = new System.Data.OracleClient.OracleParameter("v_PRESENT_PO", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_PresentPo = new OracleParameter("v_PRESENT_PO", OracleDbType.NVarchar2, 128);
                 lcl_obj_PresentPo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentPo.Value = lcl_obj_EmployeePersonal.PresentPo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentPc = new System.Data.OracleClient.OracleParameter("v_PRESENT_PC", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_PresentPc = new OracleParameter("v_PRESENT_PC", OracleDbType.NVarchar2, 64);
                 lcl_obj_PresentPc.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentPc.Value = lcl_obj_EmployeePersonal.PresentPc;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PresentDistrictCode = new System.Data.OracleClient.OracleParameter("v_PRESENT_DISTRICT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PresentDistrictCode = new OracleParameter("v_PRESENT_DISTRICT_CODE", OracleDbType.Int64);
                 lcl_obj_PresentDistrictCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PresentDistrictCode.Value = lcl_obj_EmployeePersonal.PresentDistrictCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentAddress = new System.Data.OracleClient.OracleParameter("v_PERMANENT_ADDRESS", System.Data.OracleClient.OracleType.NVarChar, 256);
+                OracleParameter lcl_obj_PermanentAddress = new OracleParameter("v_PERMANENT_ADDRESS", OracleDbType.NVarchar2, 256);
                 lcl_obj_PermanentAddress.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentAddress.Value = lcl_obj_EmployeePersonal.PermanentAddress;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentPo = new System.Data.OracleClient.OracleParameter("v_PERMANENT_PO", System.Data.OracleClient.OracleType.NVarChar, 128);
+                OracleParameter lcl_obj_PermanentPo = new OracleParameter("v_PERMANENT_PO", OracleDbType.NVarchar2, 128);
                 lcl_obj_PermanentPo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentPo.Value = lcl_obj_EmployeePersonal.PermanentPo;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentPc = new System.Data.OracleClient.OracleParameter("v_PERMANENT_PC", System.Data.OracleClient.OracleType.NVarChar, 64);
+                OracleParameter lcl_obj_PermanentPc = new OracleParameter("v_PERMANENT_PC", OracleDbType.NVarchar2, 64);
                 lcl_obj_PermanentPc.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentPc.Value = lcl_obj_EmployeePersonal.PermanentPc;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PermanentDistrictCode = new System.Data.OracleClient.OracleParameter("v_PERMANENT_DISTRICT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_PermanentDistrictCode = new OracleParameter("v_PERMANENT_DISTRICT_CODE", OracleDbType.Int64);
                 lcl_obj_PermanentDistrictCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PermanentDistrictCode.Value = lcl_obj_EmployeePersonal.PermanentDistrictCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_CitizenCardId = new System.Data.OracleClient.OracleParameter("v_CITIZEN_CARD_ID", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_CitizenCardId = new OracleParameter("v_CITIZEN_CARD_ID", OracleDbType.NVarchar2, 32);
                 lcl_obj_CitizenCardId.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CitizenCardId.Value = lcl_obj_EmployeePersonal.CitizenCardId;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_PassportNo = new System.Data.OracleClient.OracleParameter("v_PASSPORT_NO", System.Data.OracleClient.OracleType.NVarChar, 32);
+                OracleParameter lcl_obj_PassportNo = new OracleParameter("v_PASSPORT_NO", OracleDbType.NVarchar2, 32);
                 lcl_obj_PassportNo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_PassportNo.Value = lcl_obj_EmployeePersonal.PassportNo;
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo };
                 lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_PERSONAL_UPDT_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_EmployeeCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -270,95 +271,95 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                     lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EmployeeCode.Value = lcl_obj_EmployeePersonal.EmployeeCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_FatherName = new System.Data.OracleClient.OracleParameter("v_FATHER_NAME", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_FatherName = new OracleParameter("v_FATHER_NAME", OracleDbType.NVarchar2);
                     lcl_obj_FatherName.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_FatherName.Value = lcl_obj_EmployeePersonal.FatherName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_MotherName = new System.Data.OracleClient.OracleParameter("v_MOTHER_NAME", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_MotherName = new OracleParameter("v_MOTHER_NAME", OracleDbType.NVarchar2);
                     lcl_obj_MotherName.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_MotherName.Value = lcl_obj_EmployeePersonal.MotherName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_SpouseName = new System.Data.OracleClient.OracleParameter("v_SPOUSE_NAME", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_SpouseName = new OracleParameter("v_SPOUSE_NAME", OracleDbType.NVarchar2);
                     lcl_obj_SpouseName.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_SpouseName.Value = lcl_obj_EmployeePersonal.SpouseName;
-                    System.Data.OracleClient.OracleParameter lcl_obj_DateOfBirth = new System.Data.OracleClient.OracleParameter("v_DATE_OF_BIRTH", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_DateOfBirth = new OracleParameter("v_DATE_OF_BIRTH", OracleDbType.Date);
                     lcl_obj_DateOfBirth.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_DateOfBirth.Value = lcl_obj_EmployeePersonal.DateOfBirth;
-                    System.Data.OracleClient.OracleParameter lcl_obj_MaritalStatus = new System.Data.OracleClient.OracleParameter("v_MARITAL_STATUS", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_MaritalStatus = new OracleParameter("v_MARITAL_STATUS", OracleDbType.NVarchar2);
                     lcl_obj_MaritalStatus.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_MaritalStatus.Value = lcl_obj_EmployeePersonal.MaritalStatus;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Sex = new System.Data.OracleClient.OracleParameter("v_SEX", System.Data.OracleClient.OracleType.Char);
+                    OracleParameter lcl_obj_Sex = new OracleParameter("v_SEX", OracleDbType.Char);
                     lcl_obj_Sex.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Sex.Value = lcl_obj_EmployeePersonal.Sex;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Religion = new System.Data.OracleClient.OracleParameter("v_RELIGION", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Religion = new OracleParameter("v_RELIGION", OracleDbType.NVarchar2);
                     lcl_obj_Religion.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Religion.Value = lcl_obj_EmployeePersonal.Religion;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Nationality = new System.Data.OracleClient.OracleParameter("v_NATIONALITY", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Nationality = new OracleParameter("v_NATIONALITY", OracleDbType.NVarchar2);
                     lcl_obj_Nationality.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Nationality.Value = lcl_obj_EmployeePersonal.Nationality;
-                    System.Data.OracleClient.OracleParameter lcl_obj_BloodGroup = new System.Data.OracleClient.OracleParameter("v_BLOOD_GROUP", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_BloodGroup = new OracleParameter("v_BLOOD_GROUP", OracleDbType.NVarchar2);
                     lcl_obj_BloodGroup.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BloodGroup.Value = lcl_obj_EmployeePersonal.BloodGroup;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Height = new System.Data.OracleClient.OracleParameter("v_HEIGHT", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Height = new OracleParameter("v_HEIGHT", OracleDbType.NVarchar2);
                     lcl_obj_Height.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Height.Value = lcl_obj_EmployeePersonal.Height;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Weight = new System.Data.OracleClient.OracleParameter("v_WEIGHT", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Weight = new OracleParameter("v_WEIGHT", OracleDbType.NVarchar2);
                     lcl_obj_Weight.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Weight.Value = lcl_obj_EmployeePersonal.Weight;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Identification = new System.Data.OracleClient.OracleParameter("v_IDENTIFICATION", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Identification = new OracleParameter("v_IDENTIFICATION", OracleDbType.NVarchar2);
                     lcl_obj_Identification.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Identification.Value = lcl_obj_EmployeePersonal.Identification;
-                    System.Data.OracleClient.OracleParameter lcl_obj_MobileNo = new System.Data.OracleClient.OracleParameter("v_MOBILE_NO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_MobileNo = new OracleParameter("v_MOBILE_NO", OracleDbType.NVarchar2);
                     lcl_obj_MobileNo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_MobileNo.Value = lcl_obj_EmployeePersonal.MobileNo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_HomePhoneNo = new System.Data.OracleClient.OracleParameter("v_HOME_PHONE_NO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_HomePhoneNo = new OracleParameter("v_HOME_PHONE_NO", OracleDbType.NVarchar2);
                     lcl_obj_HomePhoneNo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_HomePhoneNo.Value = lcl_obj_EmployeePersonal.HomePhoneNo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_FaxNo = new System.Data.OracleClient.OracleParameter("v_FAX_NO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_FaxNo = new OracleParameter("v_FAX_NO", OracleDbType.NVarchar2);
                     lcl_obj_FaxNo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_FaxNo.Value = lcl_obj_EmployeePersonal.FaxNo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Email = new System.Data.OracleClient.OracleParameter("v_EMAIL", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_Email = new OracleParameter("v_EMAIL", OracleDbType.NVarchar2);
                     lcl_obj_Email.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Email.Value = lcl_obj_EmployeePersonal.Email;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PresentAddress = new System.Data.OracleClient.OracleParameter("v_PRESENT_ADDRESS", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PresentAddress = new OracleParameter("v_PRESENT_ADDRESS", OracleDbType.NVarchar2);
                     lcl_obj_PresentAddress.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PresentAddress.Value = lcl_obj_EmployeePersonal.PresentAddress;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PresentPo = new System.Data.OracleClient.OracleParameter("v_PRESENT_PO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PresentPo = new OracleParameter("v_PRESENT_PO", OracleDbType.NVarchar2);
                     lcl_obj_PresentPo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PresentPo.Value = lcl_obj_EmployeePersonal.PresentPo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PresentPc = new System.Data.OracleClient.OracleParameter("v_PRESENT_PC", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PresentPc = new OracleParameter("v_PRESENT_PC", OracleDbType.NVarchar2);
                     lcl_obj_PresentPc.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PresentPc.Value = lcl_obj_EmployeePersonal.PresentPc;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PresentDistrictCode = new System.Data.OracleClient.OracleParameter("v_PRESENT_DISTRICT_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_PresentDistrictCode = new OracleParameter("v_PRESENT_DISTRICT_CODE", OracleDbType.Int64);
                     lcl_obj_PresentDistrictCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PresentDistrictCode.Value = lcl_obj_EmployeePersonal.PresentDistrictCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PermanentAddress = new System.Data.OracleClient.OracleParameter("v_PERMANENT_ADDRESS", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PermanentAddress = new OracleParameter("v_PERMANENT_ADDRESS", OracleDbType.NVarchar2);
                     lcl_obj_PermanentAddress.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PermanentAddress.Value = lcl_obj_EmployeePersonal.PermanentAddress;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PermanentPo = new System.Data.OracleClient.OracleParameter("v_PERMANENT_PO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PermanentPo = new OracleParameter("v_PERMANENT_PO", OracleDbType.NVarchar2);
                     lcl_obj_PermanentPo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PermanentPo.Value = lcl_obj_EmployeePersonal.PermanentPo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PermanentPc = new System.Data.OracleClient.OracleParameter("v_PERMANENT_PC", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PermanentPc = new OracleParameter("v_PERMANENT_PC", OracleDbType.NVarchar2);
                     lcl_obj_PermanentPc.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PermanentPc.Value = lcl_obj_EmployeePersonal.PermanentPc;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PermanentDistrictCode = new System.Data.OracleClient.OracleParameter("v_PERMANENT_DISTRICT_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_PermanentDistrictCode = new OracleParameter("v_PERMANENT_DISTRICT_CODE", OracleDbType.Int64);
                     lcl_obj_PermanentDistrictCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PermanentDistrictCode.Value = lcl_obj_EmployeePersonal.PermanentDistrictCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CitizenCardId = new System.Data.OracleClient.OracleParameter("v_CITIZEN_CARD_ID", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_CitizenCardId = new OracleParameter("v_CITIZEN_CARD_ID", OracleDbType.NVarchar2);
                     lcl_obj_CitizenCardId.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_CitizenCardId.Value = lcl_obj_EmployeePersonal.CitizenCardId;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PassportNo = new System.Data.OracleClient.OracleParameter("v_PASSPORT_NO", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_PassportNo = new OracleParameter("v_PASSPORT_NO", OracleDbType.NVarchar2);
                     lcl_obj_PassportNo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PassportNo.Value = lcl_obj_EmployeePersonal.PassportNo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
                     lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_IsDeleted.Value = lcl_obj_EmployeePersonal.IsDeleted;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                     lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Status.Value = lcl_obj_EmployeePersonal.Status;
 
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo, lcl_obj_IsDeleted, lcl_obj_Status, };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo, lcl_obj_IsDeleted, lcl_obj_Status, };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS.EmployeePersonal_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_EmployeeCode.Value.ToString());
                 }
@@ -376,7 +377,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE_PERSONAL EMPLOYEE_PERSONAL_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployeePersonal.Get(ID,DBManger)) : Error Retrieving EmployeePersonal Data!");
@@ -429,7 +430,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_PERSONAL EMPLOYEE_PERSONAL_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_PERSONAL EMPLOYEE_PERSONAL_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePersonal.Get(ID)) : No EmployeePersonal Data Found In The Database!!!");
@@ -482,7 +483,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePersonal.GetList(SqlQuery)) : No Attandance Data Found In The Database!!!");
                     }
@@ -539,7 +540,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(lcl_obj_dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePersonal.GetList(SqlQuery,DBManager)) : No Attandance Data Found In The Database!!!");
@@ -598,7 +599,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployeePersonal.Get(SqlQuery,DBManger)) : Error Retrieving EmployeePersonal Data!");
@@ -651,7 +652,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeePersonal.Get(SqlQuery)) : No EmployeePersonal Data Found In The Database!!!");

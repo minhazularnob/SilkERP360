@@ -25,7 +25,7 @@ namespace SilkERP360.UI.HRIS
 
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new FL.SqlFacade();
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM DEPARTMENT WHERE DEPARTMENT_CODE = {0}", lcl_str_DepartmentCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 lcl_obj_DepartmentReader.Read();
                 this.txtDepartment.Text = lcl_obj_DepartmentReader["DEPT_NAME"].ToString();
                 this.hdnDepartmentCode.Value = lcl_str_DepartmentCode;

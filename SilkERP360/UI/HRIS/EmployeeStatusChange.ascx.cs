@@ -37,7 +37,7 @@ namespace SilkERP360.UI.HRIS
 
                 //Image show
                 lcl_str_SqlQuery = System.String.Format(@"select image,image_type,image_size from employee_image where employee_code={0} ", lcl_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_IamgeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IamgeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_IamgeReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Image Not Found!!!");
@@ -74,7 +74,7 @@ inner join DEPARTMENT Dp on e.department_code=dp.department_code
 inner join COMPANY C on e.company_code=c.company_code
 where EMPLOYEE_CODE = {0} ", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_EmployeeInfoReader.HasRows))
                 {
 

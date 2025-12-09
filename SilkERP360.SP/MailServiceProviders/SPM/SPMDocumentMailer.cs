@@ -333,7 +333,7 @@ namespace SilkERP360.SP.MailServiceProviders.SPM
                 lcl_str_DBQuery = "SELECT * FROM AUTO_MAIL_LIST WHERE SC_PO_TO = 1 or SC_PO_CC = 1";
                 System.Collections.Generic.List<System.String> lcl_obj_SCPOTOList = new List<string>();
                 System.Collections.Generic.List<System.String> lcl_obj_SCPOCCList = new List<string>();
-                System.Data.OracleClient.OracleDataReader lcl_obj_MailListReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_DBQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MailListReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_DBQuery);
                 if (!(lcl_obj_MailListReader.HasRows))
                 {
                     return -1;

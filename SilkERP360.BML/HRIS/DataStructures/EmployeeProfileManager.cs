@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                                                     on e.designation_code=d.designation_code left outer join EMPLOYEE_IMAGE I
                                                     on E.employee_code=i.employee_code where e.EMPLOYEE_CODE={0}", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_EmployeeReader.HasRows == false)
                 {
@@ -81,7 +82,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                                                     on e.designation_code=d.designation_code left outer join EMPLOYEE_IMAGE I
                                                     on E.COMPANY_CODE=i.employee_code where e.EMPLOYEE_CODE={0}", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
 
-                    System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
 
                     if (lcl_obj_EmployeeReader.HasRows == false)
                     {
@@ -121,7 +122,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     dr.Close();
@@ -188,32 +189,42 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 try
                 {
                     System.String lcl_str_Query = System.String.Format("SELECT * FROM EMPLOYEE EMP JOIN DESIGNATION DESIG ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE JOIN DEPARTMENT DEPT ON EMP.DEPARTMENT_CODE = DEPT.DEPARTMENT_CODE WHERE EMP.COMPANY_CODE = {0} AND (EMPLOYEE_STATUS = {1} OR EMPLOYEE_STATUS = {2} OR EMPLOYEE_STATUS = {3}) AND IS_DELETED = 1 ORDER BY DEPT.RANK,DESIG.RANK ASC", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
-                    System.Data.OracleClient.OracleCommand lcl_obj_EmployeeCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection, lcl_obj_DBManager.Transaction);
-                    System.Data.OracleClient.OracleDataAdapter lcl_obj_EmployeeAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_EmployeeCommand);
+                    OracleCommand lcl_obj_EmployeeCommand = new OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection);
+                    lcl_obj_EmployeeCommand.Transaction = lcl_obj_DBManager.Transaction;
+
+                    OracleDataAdapter lcl_obj_EmployeeAdapter = new OracleDataAdapter(lcl_obj_EmployeeCommand);
                     lcl_obj_EmployeeAdapter.FillSchema(lcl_ds_EmployeeProfile, System.Data.SchemaType.Source, "EMPLOYEE");
                     lcl_obj_EmployeeAdapter.Fill(lcl_ds_EmployeeProfile, "EMPLOYEE");
 
                     lcl_str_Query = System.String.Format("SELECT * FROM COMPANY WHERE COMPANY_CODE = {0}", IP_ui64_CompanyCode);
-                    System.Data.OracleClient.OracleCommand lcl_obj_CompanyCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection, lcl_obj_DBManager.Transaction);
-                    System.Data.OracleClient.OracleDataAdapter lcl_obj_CompanyAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_CompanyCommand);
+                    OracleCommand lcl_obj_CompanyCommand = new OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection);
+                    lcl_obj_CompanyCommand.Transaction = lcl_obj_DBManager.Transaction;
+
+                    OracleDataAdapter lcl_obj_CompanyAdapter = new OracleDataAdapter(lcl_obj_CompanyCommand);
                     lcl_obj_CompanyAdapter.FillSchema(lcl_ds_EmployeeProfile, System.Data.SchemaType.Source, "COMPANY");
                     lcl_obj_CompanyAdapter.Fill(lcl_ds_EmployeeProfile, "COMPANY");
 
                     lcl_str_Query = System.String.Format("SELECT DISTINCT(DESIG.DESIGNATION_CODE),DESIG.DEGN_NAME FROM DESIGNATION DESIG JOIN EMPLOYEE EMP ON DESIG.DESIGNATION_CODE = EMP.DESIGNATION_CODE WHERE EMP.COMPANY_CODE = {0}", IP_ui64_CompanyCode);
-                    System.Data.OracleClient.OracleCommand lcl_obj_DesignationCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection, lcl_obj_DBManager.Transaction);
-                    System.Data.OracleClient.OracleDataAdapter lcl_obj_DesignationAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_DesignationCommand);
+                    OracleCommand lcl_obj_DesignationCommand = new OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection);
+                    lcl_obj_DesignationCommand.Transaction = lcl_obj_DBManager.Transaction;
+
+                    OracleDataAdapter lcl_obj_DesignationAdapter = new OracleDataAdapter(lcl_obj_DesignationCommand);
                     lcl_obj_DesignationAdapter.FillSchema(lcl_ds_EmployeeProfile, System.Data.SchemaType.Source, "DESIGNATION");
                     lcl_obj_DesignationAdapter.Fill(lcl_ds_EmployeeProfile, "DESIGNATION");
 
                     lcl_str_Query = System.String.Format("SELECT DISTINCT(DEPT.DEPARTMENT_CODE),DEPT.DEPT_NAME FROM DEPARTMENT DEPT JOIN EMPLOYEE EMP ON DEPT.DEPARTMENT_CODE = EMP.DEPARTMENT_CODE WHERE EMP.COMPANY_CODE = {0}", IP_ui64_CompanyCode);
-                    System.Data.OracleClient.OracleCommand lcl_obj_DepartmentCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection, lcl_obj_DBManager.Transaction);
-                    System.Data.OracleClient.OracleDataAdapter lcl_obj_DepartmentAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_DepartmentCommand);
+                    OracleCommand lcl_obj_DepartmentCommand = new OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection);
+                    lcl_obj_DepartmentCommand.Transaction = lcl_obj_DBManager.Transaction;
+
+                    OracleDataAdapter lcl_obj_DepartmentAdapter = new OracleDataAdapter(lcl_obj_DepartmentCommand);
                     lcl_obj_DepartmentAdapter.FillSchema(lcl_ds_EmployeeProfile, System.Data.SchemaType.Source, "DEPARTMENT");
                     lcl_obj_DepartmentAdapter.Fill(lcl_ds_EmployeeProfile, "DEPARTMENT");
 
                     lcl_str_Query = System.String.Format("SELECT EMP_SAL_ST.* FROM EMPLOYEE_SALARY_STRUCTURE EMP_SAL_ST JOIN EMPLOYEE EMP ON EMP_SAL_ST.EMPLOYEE_CODE = EMP.EMPLOYEE_CODE WHERE EMP.COMPANY_CODE = {0}", IP_ui64_CompanyCode);
-                    System.Data.OracleClient.OracleCommand lcl_obj_SalaryStructureCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection, lcl_obj_DBManager.Transaction);
-                    System.Data.OracleClient.OracleDataAdapter lcl_obj_SalaryAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_SalaryStructureCommand);
+                    OracleCommand lcl_obj_SalaryStructureCommand = new OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection);
+                    lcl_obj_SalaryStructureCommand.Transaction = lcl_obj_DBManager.Transaction;
+
+                    OracleDataAdapter lcl_obj_SalaryAdapter = new OracleDataAdapter(lcl_obj_SalaryStructureCommand);
                     lcl_obj_SalaryAdapter.FillSchema(lcl_ds_EmployeeProfile, System.Data.SchemaType.Source, "EMPLOYEE_SALARY_STRUCTURE");
                     lcl_obj_SalaryAdapter.Fill(lcl_ds_EmployeeProfile, "EMPLOYEE_SALARY_STRUCTURE");
 
@@ -287,7 +298,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     dr.Close();
@@ -362,7 +373,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     dr.Close();
@@ -433,7 +444,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeProfileManager.GetList(SqlQuery,DBManager)) : No EmployeeProfileManager Data Found In The Database!!!");
@@ -497,7 +508,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeProfileManager.GetList(SqlQuery,DBManager)) : No EmployeeProfileManager Data Found In The Database!!!");
@@ -554,7 +565,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeProfileManager.GetList(SqlQuery,DBManager)) : No EmployeeProfileManager Data Found In The Database!!!");
@@ -602,7 +613,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeProfileManager.GetList(SqlQuery,DBManager)) : No EmployeeProfileManager Data Found In The Database!!!");
@@ -650,7 +661,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeProfileManager.GetList(SqlQuery,DBManager)) : No EmployeeProfileManager Data Found In The Database!!!");
@@ -689,7 +700,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
 

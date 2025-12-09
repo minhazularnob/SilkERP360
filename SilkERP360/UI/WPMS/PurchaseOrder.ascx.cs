@@ -58,7 +58,7 @@ namespace SilkERP360.UI.WPMS
             
             System.String lcl_str_SqlQueryProduct = System.String.Empty;
             lcl_str_SqlQueryProduct = System.String.Format("Select QUOTATION_M_CODE From WPMS_QUOTATION_M order by QUOTATION_M_CODE desc", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryProduct);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryProduct);
             System.Int32 lcl_i32_K = 1;
             while (lcl_obj_Reader.Read())
             {
@@ -77,7 +77,7 @@ namespace SilkERP360.UI.WPMS
          
             System.String lcl_str_SqlQuery1 = System.String.Empty;
             lcl_str_SqlQuery1 = System.String.Format("Select BUYER_CODE,COMPANY_NAME from WPMS_BUYER", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery1);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery1);
             //if (!(lcl_obj_CustomerReader.HasRows))
             //{
             //    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Employee for The Selected Company Was Not Found!!!");
@@ -100,7 +100,7 @@ namespace SilkERP360.UI.WPMS
 
             System.String lcl_str_SqlQuery1 = System.String.Empty;
             lcl_str_SqlQuery1 = System.String.Format("Select ITEM_CATAGORY_CODE,CATAGORY_NAME from WPMS_ITEM_CATAGORY", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery1);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery1);
             //if (!(lcl_obj_CustomerReader.HasRows))
             //{
             //    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Employee for The Selected Company Was Not Found!!!");
@@ -121,7 +121,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010001)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -135,7 +135,7 @@ namespace SilkERP360.UI.WPMS
 
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010002)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -149,7 +149,7 @@ namespace SilkERP360.UI.WPMS
 
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010003)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -163,7 +163,7 @@ namespace SilkERP360.UI.WPMS
 
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010004)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -175,7 +175,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010008)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -188,7 +188,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010009)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -201,7 +201,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010010)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -214,7 +214,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010011)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -227,7 +227,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010012)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -240,7 +240,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010013)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -253,7 +253,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010014)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -265,7 +265,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010015)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -278,7 +278,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010016)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -291,7 +291,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010017)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -304,7 +304,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010018)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -317,7 +317,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010019)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -330,7 +330,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010020)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -343,7 +343,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010021)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -356,7 +356,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010023)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -369,7 +369,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010024)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -382,7 +382,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010025)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -395,7 +395,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010026)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -408,7 +408,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010027)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -421,7 +421,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010028)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -434,7 +434,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010029)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -447,7 +447,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010030)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -460,7 +460,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010031)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -473,7 +473,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010032)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -486,7 +486,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010033)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -499,7 +499,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010034)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -512,7 +512,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010035)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -525,7 +525,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010006)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -538,7 +538,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010005)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -552,7 +552,7 @@ namespace SilkERP360.UI.WPMS
 
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010022)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {
@@ -565,7 +565,7 @@ namespace SilkERP360.UI.WPMS
         {
             System.String lcl_str_SqlQueryHDPE = System.String.Empty;
             lcl_str_SqlQueryHDPE = System.String.Format("select PRICE_M_TON from wpms_raw_material where PRODUCT_UPDATE_CODE = ( select max(PRODUCT_UPDATE_CODE) from wpms_raw_material where RM_CODE =1010007)", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = IP_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryHDPE);
 
             while (lcl_obj_Reader.Read())
             {

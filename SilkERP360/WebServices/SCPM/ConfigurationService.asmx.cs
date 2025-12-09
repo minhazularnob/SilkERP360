@@ -25,7 +25,7 @@ namespace SilkERP360.WebServices.SCPM
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new FL.SqlFacade();
                 lcl_obj_SqlFacade.Initialize();
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_PROCESS WHERE SECTION_CODE = {0}", IP_str_SectionCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ProcessReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ProcessReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_ProcessReader.HasRows == false)
                 {
                     throw new System.Exception("No Production Process was found for the selected Section!!!");
@@ -65,7 +65,7 @@ namespace SilkERP360.WebServices.SCPM
                                                                       "JOIN SCPM_PROCESS PRC ON MACH.PROCESS_CODE = PRC.PROCESS_CODE " +
                                                                       "JOIN COMPANY COMP ON MACH.COMPANY_CODE = COMP.COMPANY_CODE " + 
                                                                       "WHERE MACH.PROCESS_CODE = {0} AND MACH.OPERATIONAL_STATUS = 1", IP_str_ProcessCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_MachineSTRReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineSTRReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_MachineSTRReader.HasRows == false)
                 {
                     throw new System.Exception("No Machine was found for the selected Process!!!");

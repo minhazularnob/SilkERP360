@@ -41,7 +41,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("Select DEPARTMENT_CODE,DEPT_NAME From Department Where Company_Code = {0} AND Status = {1} AND Is_Deleted = 1 order by DEPT_NAME", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_DepartmentReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Departments for The Selected Company Was Not Found!!!");
@@ -61,7 +61,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlShift
                 lcl_str_SqlQuery = System.String.Format(@"Select SHIFT_CODE,SHIFT_NAME||' ('||to_char(START_TIME, 'hh24:mi:ss')||'-To-'||
                 to_char(END_TIME, 'hh24:mi:ss')||')'SHIFT_NAME From Shift Where COMPANY_CODE = {0} AND Status = {1} AND Is_Deleted = 1 order by SHIFT_NAME", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ShiftReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ShiftReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_ShiftReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Shift for The Selected Company Was Not Found!!!");
@@ -79,7 +79,7 @@ namespace SilkERP360.UI.HRIS
 
                 //setup ddlDesignation
                 lcl_str_SqlQuery = System.String.Format(@" SELECT DESIGNATION_CODE, DEGN_NAME FROM DESIGNATION Where COMPANY_CODE = {0} AND Status = {1} AND Is_Deleted = 1 order by DEGN_NAME ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DesignationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DesignationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_DesignationReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Designation for The Selected Company Was Not Found!!!");
@@ -98,7 +98,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_str_SqlQuery = System.String.Format(@"select EMPLOYEE_CODE,EmpName From
                 (select EMPLOYEE_CODE,EMPLOYEE_NAME||'('||EMPLOYEE_ID||')' AS EmpName,IS_DELETED,EMPLOYEE_STATUS
                 From EMPLOYEE )X  Where  EMPLOYEE_STATUS ={1} AND IS_DELETED = 1 Order by EmpName  ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if( (lcl_obj_RefEpmloyeeReader.HasRows)==true)
                 {
                    // throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("RefEmployee Was Not Found!!!");
@@ -116,7 +116,7 @@ namespace SilkERP360.UI.HRIS
                 }
                 //setup ddl_Pers_PresentDistrict
                 lcl_str_SqlQuery = System.String.Format(@"Select DISTRICT_CODE,NAME From district Where is_deleted=1 And status={1}Order by NAME ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_PresentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_PresentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_PresentDistrictReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("PresentDistrict Was Not Found!!!");
@@ -132,7 +132,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_obj_SqlFacade.CloseReader();
                 //setup ddl_Pers_PermanentDistrict
                 lcl_str_SqlQuery = System.String.Format(@"Select DISTRICT_CODE,NAME From district Where is_deleted=1 And status={1}Order by NAME ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_PermanentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_PermanentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_PermanentDistrictReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("PermanentDistrict Was Not Found!!!");
@@ -149,7 +149,7 @@ namespace SilkERP360.UI.HRIS
 
                 //Image show
                 lcl_str_SqlQuery = System.String.Format(@"select image,image_type,image_size from employee_image where employee_code={0} ", lcl_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_IamgeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IamgeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_IamgeReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Image Not Found!!!");
@@ -178,7 +178,7 @@ namespace SilkERP360.UI.HRIS
                 //Show week end
                 lcl_str_SqlQuery = System.String.Format(@"select nvl(day,0) day from employee_weekend where Employee_code={0}", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_weekEndReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_weekEndReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_weekEndReader.HasRows))
                 {
                     lcl_i32_j = 1;
@@ -227,7 +227,7 @@ namespace SilkERP360.UI.HRIS
                                     ,BANK_NAME,IS_DELETED,EMPLOYEE_STATUS,nvl(IS_ON_ROSTER,0) IS_ON_ROSTER,nvl(NIGHT_BILL_ELIGIBLE,0) NIGHT_BILL_ELIGIBLE,JOB_LOCATION,BOND_VALIDITY_DATE,BOND_REFERENCE,BOND_ISSUE_DATE,BOND_YEAR
                                    ,nvl(SHIFT_CODE,0)SHIFT_CODE,nvl(IS_UNIFORM_ELIGIBLE,0)IS_UNIFORM_ELIGIBLE,nvl(E_TIN_ELIGIBLE,0)E_TIN_ELIGIBLE from employee where Employee_code={0}", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_officiallReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_officiallReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_officiallReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("official Information Not Found!!!");
@@ -307,7 +307,7 @@ namespace SilkERP360.UI.HRIS
                                     ,PRESENT_PO,PRESENT_PC,PRESENT_DISTRICT_CODE,PERMANENT_ADDRESS,PERMANENT_PO,PERMANENT_PC,PERMANENT_DISTRICT_CODE,CITIZEN_CARD_ID
                                     ,PASSPORT_NO,IS_DELETED,STATUS from EMPLOYEE_PERSONAL where Employee_code={0}", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_PersonalReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_PersonalReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_PersonalReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Personal Information Not Found!!!");
@@ -351,7 +351,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_str_SqlQuery = System.String.Format(@"select SALARY_STRUCTURE_CODE,EMPLOYEE_CODE,BASIC,HOUSE_RENT,MEDICAL,ENTERTAINMENT,CONVEYENCE,PHONE_BILL,OTHERS
                                    ,GROSS,EFFECTIVE_FROM,EFFECTIVE_UPTO,IS_DELETED,STATUS from employee_salary_structure where Employee_code={0}", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_SalaryReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SalaryReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_SalaryReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Salary Information Not Found!!!");
@@ -377,7 +377,7 @@ namespace SilkERP360.UI.HRIS
                                                     employee_entitle_leave on leave.leave_code=employee_entitle_leave.leave_code
                                                     where Employee_code={0} and company_code={1} ", lcl_ui64_EmployeeCode, lcl_ui64_CompanyCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_LeaveReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_LeaveReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_LeaveReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Leave Information Not Found!!!");
@@ -455,7 +455,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_str_SqlQuery = System.String.Format(@"select EDUCATION_CODE,EXAM_NAME,INST_NAME,BOARD_UNIVERSITY,MAJOR_SUBJECT,DIVISION_CLASS,CGPA,
                 	   						   	PASS_YEAR,EMPLOYEE_CODE from employee_education where Employee_code={0}", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_ob_EducationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_ob_EducationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_ob_EducationReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Education Information Not Found!!!");
@@ -566,7 +566,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_str_SqlQuery = System.String.Format(@"select EXPERIENCE_CODE,EMPLOYER_NAME,ADDRESS,CONTACT_NO,NATURE_OF_JOB,RESPONSIBILITY,
                 	 			 					  FROM_DATE,TO_DATE,EMPLOYEE_CODE from employee_experience where Employee_code={0}", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_ExprienceReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ExprienceReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_ExprienceReader.HasRows))
                 {
                       //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Exprience Information Not Found!!!");
@@ -684,7 +684,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_str_SqlQuery = System.String.Format(@"select REFERENCE_CODE,NAME,ADDRESS,CONTACT_NO,DESIGNATION,COMPANY_ORGANIZATION
                                                  ,EMPLOYEE_CODE from EMPLOYEE_REFERENCE where Employee_code={0}", lcl_ui64_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_REFERENCEReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_REFERENCEReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_REFERENCEReader.HasRows))
                 {
                     //throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Exprience Information Not Found!!!");

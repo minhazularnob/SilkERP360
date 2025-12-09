@@ -20,7 +20,7 @@ namespace SilkERP360.UI.SCPM
                 //this.ddlMachine.Items.Add("-----Select Machine");
                 System.Int32 lcl_i32_DDLStartIndex = 1;
                 System.String lcl_str_SqlQuery = System.String.Format("Select * from SCPM_Machine where status = 1");
-                System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_MachineReader.HasRows))
                 {
                     throw new System.Exception("No Machines Configured for Scratch Card Sections!!!");
@@ -38,7 +38,7 @@ namespace SilkERP360.UI.SCPM
                 //get job order
                 lcl_str_SqlQuery = System.String.Format("Select * from SCPM_SC_J_O Where Production_Status = {0} And Status = 1", (System.Int32)SilkERP360.CCL.SCPMEnumerations.JobOrderProductionStatus.NotCompleted);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_JOReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_JOReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_JOReader.HasRows))
                 {
                     throw new System.Exception("No Job Order in Production Now!!!");

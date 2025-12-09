@@ -21,7 +21,7 @@ namespace SilkERP360.BML.HRIS
            lcl_ui64_WorkGroupOperationMasterCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-               System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                lcl_obj_IDReader.Read();
                System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                lcl_obj_IDReader.Close();
@@ -46,7 +46,7 @@ namespace SilkERP360.BML.HRIS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                    lcl_obj_IDReader.Read();
                    System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                    lcl_obj_IDReader.Close();
@@ -84,7 +84,7 @@ namespace SilkERP360.BML.HRIS
                    lcl_obj_DBManager.Open();
                }
                System.String lcl_str_SqlQuery = System.String.Format("Select * From WORK_GROUP_OPERATION_MASTER WHERE WG_MASTER_CODE = {0}", IP_ui64_Code);
-               System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                if (lcl_obj_dr.HasRows == false)
                {
                    return null;
@@ -138,7 +138,7 @@ namespace SilkERP360.BML.HRIS
                        lcl_obj_DBManager.InternalResource.Open();
                    }
                    System.String lcl_str_SqlQuery = System.String.Format("Select * From WORK_GROUP_OPERATION_MASTER WHERE WG_MASTER_CODE = {0}", IP_ui64_Code);
-                   System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                    if (lcl_obj_dr.HasRows == false)
                    {
                        return null;
@@ -187,7 +187,7 @@ namespace SilkERP360.BML.HRIS
                    lcl_obj_DBManager.Open();
                }
                System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-               System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                if (lcl_obj_dr.HasRows == false)
                {
                    lcl_obj_dr.Close();
@@ -238,7 +238,7 @@ namespace SilkERP360.BML.HRIS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                    if (!(lcl_obj_dr.HasRows))
                    {
                        return null;
@@ -291,7 +291,7 @@ namespace SilkERP360.BML.HRIS
                //}
                System.Collections.Generic.List<CCL.BusinessEntities.HRIS.WorkGroupOperationMaster> lcl_objlist_TmpWorkGroupOperationMasterList = new
                   System.Collections.Generic.List<CCL.BusinessEntities.HRIS.WorkGroupOperationMaster>();
-               System.Data.OracleClient.OracleDataReader lcl_obj_dr = null;
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = null;
                lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                
                if (!(lcl_obj_dr.HasRows))
@@ -353,7 +353,7 @@ namespace SilkERP360.BML.HRIS
 
                    System.Collections.Generic.List<CCL.BusinessEntities.HRIS.WorkGroupOperationMaster> lcl_objlist_TmpWorkGroupOperationMasterList = new
                    System.Collections.Generic.List<CCL.BusinessEntities.HRIS.WorkGroupOperationMaster>();
-                   System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                    if (!(lcl_obj_dr.HasRows))
                    {
                        return lcl_objlist_TmpWorkGroupOperationMasterList;

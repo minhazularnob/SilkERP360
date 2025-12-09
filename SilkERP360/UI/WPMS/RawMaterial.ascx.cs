@@ -19,7 +19,7 @@ namespace SilkERP360.UI.WPMS
             SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new SilkERP360.FL.SqlFacade();
             System.String lcl_str_SqlQuery1 = System.String.Empty;
             lcl_str_SqlQuery1 = System.String.Format("Select RM_CODE,RM_NAME,STATUS FROM WPMS_RAW_PRODUCT Where STATUS=1", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            System.Data.OracleClient.OracleDataReader lcl_obj_CustomerReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery1);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CustomerReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery1);
             //if (!(lcl_obj_CustomerReader.HasRows))
             //{
             //    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Employee for The Selected Company Was Not Found!!!");

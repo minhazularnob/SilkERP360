@@ -1,4 +1,5 @@
-﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.CCL.BusinessEntities.HRIS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,31 +33,31 @@ namespace SilkERP360.BML.HRIS
                     }
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException(lcl_objSB_Msg.ToString());
                 }
-                System.Data.OracleClient.OracleParameter lcl_obj_UserModuleMenusCode = new System.Data.OracleClient.OracleParameter("v_UserModuleMenusCode", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_UserModuleMenusCode = new OracleParameter("v_UserModuleMenusCode", OracleDbType.Int64);
                 lcl_obj_UserModuleMenusCode.Direction = System.Data.ParameterDirection.Output;
                 lcl_obj_UserModuleMenusCode.Value = lcl_obj_MenuPermission.UserModuleMenusCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ModuleCode = new System.Data.OracleClient.OracleParameter("v_ModuleCode", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ModuleCode = new OracleParameter("v_ModuleCode", OracleDbType.Int64);
                 lcl_obj_ModuleCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ModuleCode.Value = lcl_obj_MenuPermission.ModuleCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_UserCode = new System.Data.OracleClient.OracleParameter("v_UserCode", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_UserCode = new OracleParameter("v_UserCode", OracleDbType.Int64);
                 lcl_obj_UserCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_UserCode.Value = lcl_obj_MenuPermission.UserCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MenuCode = new System.Data.OracleClient.OracleParameter("v_MenuCode", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_MenuCode = new OracleParameter("v_MenuCode", OracleDbType.Int64);
                 lcl_obj_MenuCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MenuCode.Value = lcl_obj_MenuPermission.MenuCode;                         
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IsDeleted", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IsDeleted", OracleDbType.Int64);
                 lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsDeleted.Value = lcl_obj_MenuPermission.IsDeleted;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_status = new System.Data.OracleClient.OracleParameter("v_Status", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_status = new OracleParameter("v_Status", OracleDbType.Int64);
                 lcl_obj_status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_status.Value = lcl_obj_MenuPermission.Status;
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_UserModuleMenusCode, lcl_obj_ModuleCode, lcl_obj_UserCode, lcl_obj_MenuCode, lcl_obj_IsDeleted, lcl_obj_status };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_UserModuleMenusCode, lcl_obj_ModuleCode, lcl_obj_UserCode, lcl_obj_MenuCode, lcl_obj_IsDeleted, lcl_obj_status };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_USER_MODULES_MENUS", lcl_obj_SP_Parameters);
 
                 return System.UInt64.Parse(lcl_obj_UserModuleMenusCode.Value.ToString());
@@ -77,31 +78,31 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_UserModuleMenusCode = new System.Data.OracleClient.OracleParameter("v_UserModuleMenusCode", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_UserModuleMenusCode = new OracleParameter("v_UserModuleMenusCode", OracleDbType.Int64);
                 lcl_obj_UserModuleMenusCode.Direction = System.Data.ParameterDirection.Output;
                 lcl_obj_UserModuleMenusCode.Value = lcl_obj_MenuPermission.UserModuleMenusCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ModuleCode = new System.Data.OracleClient.OracleParameter("v_ModuleCode", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ModuleCode = new OracleParameter("v_ModuleCode", OracleDbType.Int64);
                 lcl_obj_ModuleCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ModuleCode.Value = lcl_obj_MenuPermission.ModuleCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_UserCode = new System.Data.OracleClient.OracleParameter("v_UserCode", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_UserCode = new OracleParameter("v_UserCode", OracleDbType.Int64);
                 lcl_obj_UserCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_UserCode.Value = lcl_obj_MenuPermission.UserCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MenuCode = new System.Data.OracleClient.OracleParameter("v_MenuCode", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_MenuCode = new OracleParameter("v_MenuCode", OracleDbType.Int64);
                 lcl_obj_MenuCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MenuCode.Value = lcl_obj_MenuPermission.MenuCode;                         
 
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IsDeleted", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IsDeleted", OracleDbType.Int64);
                 lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsDeleted.Value = lcl_obj_MenuPermission.IsDeleted;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_status = new System.Data.OracleClient.OracleParameter("v_Status", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_status = new OracleParameter("v_Status", OracleDbType.Int64);
                 lcl_obj_status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_status.Value = lcl_obj_MenuPermission.Status;
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_UserModuleMenusCode, lcl_obj_ModuleCode, lcl_obj_UserCode, lcl_obj_MenuCode, lcl_obj_IsDeleted, lcl_obj_status };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_UserModuleMenusCode, lcl_obj_ModuleCode, lcl_obj_UserCode, lcl_obj_MenuCode, lcl_obj_IsDeleted, lcl_obj_status };
                 lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_INS_USER_MODULES_MENUS", lcl_obj_SP_Parameters);
 
                 lcl_obj_DBManager.InternalResource.CommitTransaction();
@@ -127,7 +128,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From USER_MODULE_MENUS Where USER_MODULE_MENUS_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_MenuPermissionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MenuPermissionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_MenuPermissionReader.HasRows == false)
                 {
@@ -159,7 +160,7 @@ namespace SilkERP360.BML.HRIS
                      {
                          lcl_obj_DBManager.InternalResource.Open();
                      }
-                     System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From USER_MODULE_MENUS Where USER_MODULE_MENUS_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                     Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From USER_MODULE_MENUS Where USER_MODULE_MENUS_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
                      if (!(dr.HasRows))
                      {
                          throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (MenuPermissionManager.Get(ID)) : No USER_MODULE_MENUS Data Found In The Database!!!");
@@ -190,7 +191,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (MenuPermissionManager.GetList(SqlQuery,DBManager)) : No USER_MODULE_MENUS Data Found In The Database!!!");
@@ -229,7 +230,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_MenuPermissionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MenuPermissionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_MenuPermissionReader.HasRows == false)
                 {
@@ -261,7 +262,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (MenuPermissionManager.Get(SqlQuery)) : No USER_MODULE_MENUS Data Found In The Database!!!");
@@ -293,7 +294,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (MenuPermission.GetList(SqlQuery)) : No MenuPermission Data Found In The Database!!!");
                     }

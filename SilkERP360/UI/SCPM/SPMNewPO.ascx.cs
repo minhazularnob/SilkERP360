@@ -17,7 +17,7 @@ namespace SilkERP360.UI.SCPM
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("SELECT * FROM SPM_CUSTOMER WHERE IS_ACTIVE = {0}", (System.Int32)SilkERP360.CCL.Enums.YesNo.Yes);
-                System.Data.OracleClient.OracleDataReader lcl_obj_CustomerReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CustomerReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_CustomerReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Departments for The Selected Company Was Not Found!!!");

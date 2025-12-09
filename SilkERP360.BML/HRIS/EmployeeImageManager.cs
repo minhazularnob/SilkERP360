@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -23,19 +22,19 @@ namespace SilkERP360.BML.HRIS
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
-            System.Data.OracleClient.OracleParameter lcl_obj_ImageCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_IMAGE_CODE", System.Data.OracleClient.OracleType.Number);
+            OracleParameter lcl_obj_ImageCode = new OracleParameter("v_EMPLOYEE_IMAGE_CODE", OracleDbType.Int64);
                 lcl_obj_ImageCode.Direction  = System.Data.ParameterDirection.Output;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ImageType = new System.Data.OracleClient.OracleParameter("v_IMAGE_TYPE", System.Data.OracleClient.OracleType.NVarChar);
+                OracleParameter lcl_obj_ImageType = new OracleParameter("v_IMAGE_TYPE", OracleDbType.NVarchar2);
                 lcl_obj_ImageType.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ImageType.Value = lcl_obj_EmployeeImage.ImageType;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ImageSize = new System.Data.OracleClient.OracleParameter("v_IMAGE_SIZE", System.Data.OracleClient.OracleType.Int32);
+                OracleParameter lcl_obj_ImageSize = new OracleParameter("v_IMAGE_SIZE", OracleDbType.Int32);
                 lcl_obj_ImageSize.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ImageSize.Value = lcl_obj_EmployeeImage.ImageSize;
 
                 //convert the image to byte[]
-                System.Data.OracleClient.OracleParameter lcl_obj_Image = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_IMAGE", System.Data.OracleClient.OracleType.Blob);
+                OracleParameter lcl_obj_Image = new OracleParameter("v_EMPLOYEE_IMAGE", OracleDbType.Blob);
                 lcl_obj_Image.Direction = System.Data.ParameterDirection.Input;
                 //lcl_obj_Image.Value =lcl_obj_EmployeeImage.Image ;
                 //System.Drawing.Image.FromStream
@@ -66,11 +65,11 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_Image.Value = ms.ToArray();
                 }
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeImage.EmployeeCode;
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ImageCode, lcl_obj_ImageType,lcl_obj_ImageSize,lcl_obj_Image,lcl_obj_EmployeeCode     };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ImageCode, lcl_obj_ImageType,lcl_obj_ImageSize,lcl_obj_Image,lcl_obj_EmployeeCode     };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_EMPLOYEE_IMAGE", lcl_obj_SP_Parameters);
 
                 return System.UInt64.Parse(lcl_obj_ImageCode.Value.ToString());
@@ -88,19 +87,19 @@ namespace SilkERP360.BML.HRIS
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ImageCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_IMAGE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ImageCode = new OracleParameter("v_EMPLOYEE_IMAGE_CODE", OracleDbType.Int64);
                 lcl_obj_ImageCode.Direction = System.Data.ParameterDirection.Output;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ImageType = new System.Data.OracleClient.OracleParameter("v_IMAGE_TYPE", System.Data.OracleClient.OracleType.NVarChar);
+                OracleParameter lcl_obj_ImageType = new OracleParameter("v_IMAGE_TYPE", OracleDbType.NVarchar2);
                 lcl_obj_ImageType.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ImageType.Value = lcl_obj_EmployeeImage.ImageType;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_ImageSize = new System.Data.OracleClient.OracleParameter("v_IMAGE_SIZE", System.Data.OracleClient.OracleType.Int32);
+                OracleParameter lcl_obj_ImageSize = new OracleParameter("v_IMAGE_SIZE", OracleDbType.Int32);
                 lcl_obj_ImageSize.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ImageSize.Value = lcl_obj_EmployeeImage.ImageSize;
 
                 //convert the image to byte[]
-                System.Data.OracleClient.OracleParameter lcl_obj_Image = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_IMAGE", System.Data.OracleClient.OracleType.Blob);
+                OracleParameter lcl_obj_Image = new OracleParameter("v_EMPLOYEE_IMAGE", OracleDbType.Blob);
                 lcl_obj_Image.Direction = System.Data.ParameterDirection.Input;
                 //lcl_obj_Image.Value =lcl_obj_EmployeeImage.Image ;
                 //System.Drawing.Image.FromStream
@@ -131,11 +130,11 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_Image.Value = ms.ToArray();
                 }
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeImage.EmployeeCode;
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ImageCode, lcl_obj_ImageType, lcl_obj_ImageSize, lcl_obj_Image, lcl_obj_EmployeeCode };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ImageCode, lcl_obj_ImageType, lcl_obj_ImageSize, lcl_obj_Image, lcl_obj_EmployeeCode };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_UPDT_EMPLOYEE_IMAGE", lcl_obj_SP_Parameters);
 
                 return 11;

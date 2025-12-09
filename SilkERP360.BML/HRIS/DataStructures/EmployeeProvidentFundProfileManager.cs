@@ -24,7 +24,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 }
                 SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProvidentFundProfile lcl_obj_EmployeeProvidentFundProfileTemp = new
                                                                     SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProvidentFundProfile();
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     //Return null
@@ -70,7 +70,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 }
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProvidentFundProfile> lcl_objLst_EmployeeProvidentFundProfileTemp = new
                     System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProvidentFundProfile>();
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     //Return Empty Collection
@@ -126,7 +126,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                     //{
                     //    lcl_obj_DBManager.Open();
                     //}
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeProfileManager.GetList(SqlQuery,DBManager)) : No EmployeeProfileManager Data Found In The Database!!!");

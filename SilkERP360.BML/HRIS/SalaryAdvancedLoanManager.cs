@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,36 +22,36 @@ namespace SilkERP360.BML.HRIS
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
 
-               System.Data.OracleClient.OracleParameter lcl_obj_SalaryAdvancedCode = new System.Data.OracleClient.OracleParameter("v_SalaryAdvancedCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_SalaryAdvancedCode = new OracleParameter("v_SalaryAdvancedCode", OracleDbType.Int64);
                lcl_obj_SalaryAdvancedCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_SalaryAdvancedCode.Value = lcl_obj_SalaryAdvndLoan.SalaryAdvancedCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EmployeeCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
                lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_EmployeeCode.Value = lcl_obj_SalaryAdvndLoan.EmployeeCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_EffectMonthe = new System.Data.OracleClient.OracleParameter("v_EffectMonth", System.Data.OracleClient.OracleType.DateTime);
+               OracleParameter lcl_obj_EffectMonthe = new OracleParameter("v_EffectMonth", OracleDbType.Date);
                lcl_obj_EffectMonthe.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_EffectMonthe.Value = lcl_obj_SalaryAdvndLoan.EffectMonth;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Amount = new System.Data.OracleClient.OracleParameter("v_Amount", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_Amount = new OracleParameter("v_Amount", OracleDbType.Int64);
                lcl_obj_Amount.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Amount.Value = lcl_obj_SalaryAdvndLoan.Amount;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("v_Remarks", System.Data.OracleClient.OracleType.NVarChar, 512);
+               OracleParameter lcl_obj_Remarks = new OracleParameter("v_Remarks", OracleDbType.NVarchar2, 512);
                lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Remarks.Value = lcl_obj_SalaryAdvndLoan.Remarks;
-               System.Data.OracleClient.OracleParameter lcl_obj_NoOfInstallment = new System.Data.OracleClient.OracleParameter("v_NoOfInstallment", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_NoOfInstallment = new OracleParameter("v_NoOfInstallment", OracleDbType.Int64);
                lcl_obj_NoOfInstallment.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_NoOfInstallment.Value = lcl_obj_SalaryAdvndLoan.NoOfInstallment;
-               System.Data.OracleClient.OracleParameter lcl_obj_PaidUnpaid = new System.Data.OracleClient.OracleParameter("v_PaidUnpaid", System.Data.OracleClient.OracleType.Char, 1);
+               OracleParameter lcl_obj_PaidUnpaid = new OracleParameter("v_PaidUnpaid", OracleDbType.Char, 1);
                lcl_obj_PaidUnpaid.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_PaidUnpaid.Value = lcl_obj_SalaryAdvndLoan.PaidUnpaid;
-               System.Data.OracleClient.OracleParameter lcl_obj_LoanNo = new System.Data.OracleClient.OracleParameter("v_LoanNo", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_LoanNo = new OracleParameter("v_LoanNo", OracleDbType.Int64);
                lcl_obj_LoanNo.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_LoanNo.Value = lcl_obj_SalaryAdvndLoan.LoanNo;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAdvancedCode, lcl_obj_EmployeeCode, lcl_obj_EffectMonthe, lcl_obj_Amount, lcl_obj_Remarks, lcl_obj_NoOfInstallment, lcl_obj_PaidUnpaid, lcl_obj_LoanNo };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAdvancedCode, lcl_obj_EmployeeCode, lcl_obj_EffectMonthe, lcl_obj_Amount, lcl_obj_Remarks, lcl_obj_NoOfInstallment, lcl_obj_PaidUnpaid, lcl_obj_LoanNo };
                lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_SALARY_ADVANCED_LOAN", lcl_obj_SP_Parameters);
                return System.UInt64.Parse(lcl_obj_SalaryAdvancedCode.Value.ToString());
            }, "BMLExceptionPolicy");
@@ -69,36 +70,36 @@ namespace SilkERP360.BML.HRIS
                        {
                            lcl_obj_DBManager.InternalResource.Open();
                        }
-                       System.Data.OracleClient.OracleParameter lcl_obj_SalaryAdvancedCode = new System.Data.OracleClient.OracleParameter("v_SalaryAdvancedCode", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_SalaryAdvancedCode = new OracleParameter("v_SalaryAdvancedCode", OracleDbType.Int64);
                        lcl_obj_SalaryAdvancedCode.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_SalaryAdvancedCode.Value = lcl_obj_SalaryAdvndLoan.SalaryAdvancedCode;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EmployeeCode", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
                        lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_EmployeeCode.Value = lcl_obj_SalaryAdvndLoan.EmployeeCode;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_EffectMonthe = new System.Data.OracleClient.OracleParameter("v_EffectMonth", System.Data.OracleClient.OracleType.DateTime);
+                       OracleParameter lcl_obj_EffectMonthe = new OracleParameter("v_EffectMonth", OracleDbType.Date);
                        lcl_obj_EffectMonthe.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_EffectMonthe.Value = lcl_obj_SalaryAdvndLoan.EffectMonth;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_Amount = new System.Data.OracleClient.OracleParameter("v_Amount", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_Amount = new OracleParameter("v_Amount", OracleDbType.Int64);
                        lcl_obj_Amount.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_Amount.Value = lcl_obj_SalaryAdvndLoan.Amount;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("v_Remarks", System.Data.OracleClient.OracleType.NVarChar, 512);
+                       OracleParameter lcl_obj_Remarks = new OracleParameter("v_Remarks", OracleDbType.NVarchar2, 512);
                        lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_Remarks.Value = lcl_obj_SalaryAdvndLoan.Remarks;
-                       System.Data.OracleClient.OracleParameter lcl_obj_NoOfInstallment = new System.Data.OracleClient.OracleParameter("v_NoOfInstallment", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_NoOfInstallment = new OracleParameter("v_NoOfInstallment", OracleDbType.Int64);
                        lcl_obj_NoOfInstallment.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_NoOfInstallment.Value = lcl_obj_SalaryAdvndLoan.NoOfInstallment;
-                       System.Data.OracleClient.OracleParameter lcl_obj_PaidUnpaid = new System.Data.OracleClient.OracleParameter("v_PaidUnpaid", System.Data.OracleClient.OracleType.Char, 1);
+                       OracleParameter lcl_obj_PaidUnpaid = new OracleParameter("v_PaidUnpaid", OracleDbType.Char, 1);
                        lcl_obj_PaidUnpaid.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_PaidUnpaid.Value = lcl_obj_SalaryAdvndLoan.PaidUnpaid;
-                       System.Data.OracleClient.OracleParameter lcl_obj_LoanNo = new System.Data.OracleClient.OracleParameter("v_LoanNo", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_LoanNo = new OracleParameter("v_LoanNo", OracleDbType.Int64);
                        lcl_obj_LoanNo.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_LoanNo.Value = lcl_obj_SalaryAdvndLoan.LoanNo;
 
-                       System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAdvancedCode, lcl_obj_EmployeeCode, lcl_obj_EffectMonthe, lcl_obj_Amount, lcl_obj_Remarks, lcl_obj_NoOfInstallment, lcl_obj_PaidUnpaid, lcl_obj_LoanNo };
+                       OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryAdvancedCode, lcl_obj_EmployeeCode, lcl_obj_EffectMonthe, lcl_obj_Amount, lcl_obj_Remarks, lcl_obj_NoOfInstallment, lcl_obj_PaidUnpaid, lcl_obj_LoanNo };
                        lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_SALARY_ADVANCED_LOAN", lcl_obj_SP_Parameters);
                        return System.UInt64.Parse(lcl_obj_SalaryAdvancedCode.Value.ToString());
                    }
@@ -119,7 +120,7 @@ namespace SilkERP360.BML.HRIS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format("Select * From SALARY_ADVANCED_LOAN Where SALARY_ADVANCED_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_SlryAdvndLoanReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SlryAdvndLoanReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_SlryAdvndLoanReader.HasRows == false)
                {
@@ -154,7 +155,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From SALARY_ADVANCED_LOAN Where SALARY_ADVANCED_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From SALARY_ADVANCED_LOAN Where SALARY_ADVANCED_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
        if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalaryAdvancedLoanManager.Get(ID)) : No SalaryAdvancedLoan Data Found In The Database!!!");
@@ -186,7 +187,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalaryAdvancedLoanManager.GetList(SqlQuery,DBManager)) : No SalaryAdvancedLoan Data Found In The Database!!!");
@@ -225,7 +226,7 @@ namespace SilkERP360.BML.HRIS
                             lcl_obj_DBManager.InternalResource.Open();
                         }
 
-                        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                         if (!(dr.HasRows))
                         {
                             throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalaryAdvancedLoanManager.GetList(SqlQuery)) : No SalaryAdvancedLoan Data Found In The Database!!!");
@@ -265,7 +266,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_SlryAdvndLoanReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SlryAdvndLoanReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_SlryAdvndLoanReader.HasRows == false)
                 {
@@ -298,7 +299,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalaryAdvancedLoanManager.Get(SqlQuery)) : No SalaryAdvancedLoan Data Found In The Database!!!");

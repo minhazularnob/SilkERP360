@@ -24,7 +24,7 @@ namespace SilkERP360.BML.HRISFactory
                     }
 
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SALARY_MASTER WHERE COMPANY_CODE = {0} AND SALARY_MONTH = {1} AND SALARY_YEAR = {2}", IP_ui64_CompanyCode, (System.UInt32)IP_end_SalaryMonth, IP_ui16_SalaryYear);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_SalaryMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SalaryMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_SalaryMasterReader.HasRows == true)
                     {
                         lcl_obj_SalaryMasterReader.Close();

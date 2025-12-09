@@ -51,7 +51,7 @@ namespace SilkERP360.SP.SPM
                     }
 
                     System.String lcl_str_DBQuery = System.String.Format("SELECT * FROM SPM_SC_PURCHASE_ORDER WHERE PO_REF_NUMBER = '{0}'", IP_obj_SpmScPurchaseOrder.PoRefNumber);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_POReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_POReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
                     if (lcl_obj_POReader.HasRows == true)
                     {
                         //P.O Already exists in the database
@@ -107,7 +107,7 @@ namespace SilkERP360.SP.SPM
                     }
                     //get Job Order sequence for running year
                     lcl_str_DBQuery = System.String.Format("SELECT COUNT(*) AS JOB_ORDER_COUNT FROM SPM_SC_JOB_ORDER WHERE CUSTOMER_CODE = {0} AND TO_NUMBER(TO_CHAR(ISSUE_DATE,'YYYY')) = {1}", IP_obj_SpmScPurchaseOrder.CustomerCode, lcl_i32_CurrentYear);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_JobOrderCountReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_JobOrderCountReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
                     if (!(lcl_obj_JobOrderCountReader.HasRows))
                     {
                         lcl_i32_ScJobOrderCount = 1;
@@ -182,7 +182,7 @@ namespace SilkERP360.SP.SPM
                     }
 
                     System.String lcl_str_DBQuery = System.String.Format("SELECT * FROM SPM_SM_PURCHASE_ORDER WHERE PO_REF_NUMBER = '{0}'", IP_obj_SpmSmPurchaseOrder.PoRefNumber);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_POReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_POReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_DBQuery);
                     if (lcl_obj_POReader.HasRows == true)
                     {
                         //P.O Already exists in the database

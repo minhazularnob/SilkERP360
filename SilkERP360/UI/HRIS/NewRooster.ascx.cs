@@ -34,7 +34,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("Select DEPT_NAME,COMPANY_CODE from Department Where Department_Code = {0}", lcl_str_DepartmentCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_DepartmentReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Department Details Was Not Found For Department with Code : " + lcl_str_DepartmentCode + "!!!");
@@ -70,7 +70,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlShift
                 lcl_str_SqlQuery = System.String.Format(@"Select SHIFT_CODE,SHIFT_NAME||' ('||to_char(START_TIME, 'hh24:mi:ss')||'-To-'||
                 to_char(END_TIME, 'hh24:mi:ss')||')'SHIFT_NAME From Shift Where COMPANY_CODE = {0} AND Status = {1} AND Is_Deleted = 1 order by SHIFT_NAME", lcl_ui64_CompanyCode.ToString(), (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ShiftReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ShiftReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_ShiftReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Shift for The Selected Company Was Not Found!!!");

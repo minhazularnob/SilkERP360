@@ -31,7 +31,7 @@ namespace SilkERP360.WebServices.SCPM
                 lcl_obj_SqlFacade.Initialize();
                 //check if CardSL is within startsl and end_sl of the batch
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From SCPM_SC_BATCH Where SC_BATCH_CODE = {0}",IP_ui64_BatchCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_BatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_BatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_BatchReader.HasRows))
                 {
                     return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, "Error : Failed To Retrieved Batch Details!!!", false, null);
@@ -72,7 +72,7 @@ namespace SilkERP360.WebServices.SCPM
                 lcl_obj_SqlFacade.Initialize();
                 System.String lcl_str_Query = System.String.Format("Select * From SCPM_SC_FAULTY_PERSO_CARD Where Machine_Code = {0} And SC_Batch_Code = {1} And Re_Persoed = {2}", IP_ui64_MachineCode, IP_ui64_BatchCode, (System.Int32)SilkERP360.CCL.Enums.YesNo.No);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_FaultCardReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_FaultCardReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
 
                 if (!(lcl_obj_FaultCardReader.HasRows))
                 {

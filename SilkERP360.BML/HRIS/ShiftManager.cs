@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,47 +25,47 @@ namespace SilkERP360.BML.HRIS
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
 
-               System.Data.OracleClient.OracleParameter lcl_obj_hiftCode = new System.Data.OracleClient.OracleParameter("v_ShiftCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_hiftCode = new OracleParameter("v_ShiftCode", OracleDbType.Int64);
                lcl_obj_hiftCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_hiftCode.Value = lcl_obj_Shift.ShiftCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_ShiftName = new System.Data.OracleClient.OracleParameter("v_ShiftName", System.Data.OracleClient.OracleType.NVarChar, 20);
+               OracleParameter lcl_obj_ShiftName = new OracleParameter("v_ShiftName", OracleDbType.NVarchar2, 20);
                lcl_obj_ShiftName.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_ShiftName.Value = lcl_obj_Shift.ShiftName;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_StartTime = new System.Data.OracleClient.OracleParameter("v_StartTime", System.Data.OracleClient.OracleType.DateTime);
+               OracleParameter lcl_obj_StartTime = new OracleParameter("v_StartTime", OracleDbType.Date);
                lcl_obj_StartTime.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_StartTime.Value = lcl_obj_Shift.StartTime;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_EndTime = new System.Data.OracleClient.OracleParameter("v_EndTime", System.Data.OracleClient.OracleType.DateTime);
+               OracleParameter lcl_obj_EndTime = new OracleParameter("v_EndTime", OracleDbType.Date);
                lcl_obj_EndTime.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_EndTime.Value = lcl_obj_Shift.EndTime;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_ToleranceTime = new System.Data.OracleClient.OracleParameter("v_ToleranceTime", System.Data.OracleClient.OracleType.DateTime);
+               OracleParameter lcl_obj_ToleranceTime = new OracleParameter("v_ToleranceTime", OracleDbType.Date);
                lcl_obj_ToleranceTime.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_ToleranceTime.Value = lcl_obj_Shift.ToleranceTime;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_SortOrder = new System.Data.OracleClient.OracleParameter("v_SortOrder", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_SortOrder = new OracleParameter("v_SortOrder", OracleDbType.Int64);
                lcl_obj_SortOrder.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_SortOrder.Value = lcl_obj_Shift.SortOrder;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("v_CompanyCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_CompanyCode = new OracleParameter("v_CompanyCode", OracleDbType.Int64);
                lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_CompanyCode.Value = lcl_obj_Shift.CompanyCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_RegularDutyHour = new System.Data.OracleClient.OracleParameter("v_RegularDutyHour", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_RegularDutyHour = new OracleParameter("v_RegularDutyHour", OracleDbType.Int64);
                lcl_obj_RegularDutyHour.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_RegularDutyHour.Value = lcl_obj_Shift.RegularDutyHour;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IsDeleted", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IsDeleted", OracleDbType.Int64);
                lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_IsDeleted.Value = 1;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_Status", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_Status = new OracleParameter("v_Status", OracleDbType.Int64);
                lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Status.Value = 1;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_hiftCode, lcl_obj_ShiftName, lcl_obj_StartTime, lcl_obj_EndTime, lcl_obj_ToleranceTime, lcl_obj_SortOrder, lcl_obj_CompanyCode, lcl_obj_RegularDutyHour, lcl_obj_IsDeleted, lcl_obj_Status };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_hiftCode, lcl_obj_ShiftName, lcl_obj_StartTime, lcl_obj_EndTime, lcl_obj_ToleranceTime, lcl_obj_SortOrder, lcl_obj_CompanyCode, lcl_obj_RegularDutyHour, lcl_obj_IsDeleted, lcl_obj_Status };
                lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_SHIFT", lcl_obj_SP_Parameters);
                return System.UInt64.Parse(lcl_obj_hiftCode.Value.ToString());
            }, "BMLExceptionPolicy");
@@ -83,47 +84,47 @@ namespace SilkERP360.BML.HRIS
                        {
                            lcl_obj_DBManager.InternalResource.Open();
                        }
-                       System.Data.OracleClient.OracleParameter lcl_obj_shiftCode = new System.Data.OracleClient.OracleParameter("v_ShiftCode", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_shiftCode = new OracleParameter("v_ShiftCode", OracleDbType.Int64);
                        lcl_obj_shiftCode.Direction = System.Data.ParameterDirection.Output;
                       // lcl_obj_hiftCode.Value = lcl_obj_Shift.ShiftCode;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_ShiftName = new System.Data.OracleClient.OracleParameter("v_ShiftName", System.Data.OracleClient.OracleType.NVarChar, 20);
+                       OracleParameter lcl_obj_ShiftName = new OracleParameter("v_ShiftName", OracleDbType.NVarchar2, 20);
                        lcl_obj_ShiftName.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_ShiftName.Value = lcl_obj_Shift.ShiftName;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_StartTime = new System.Data.OracleClient.OracleParameter("v_StartTime", System.Data.OracleClient.OracleType.DateTime);
+                       OracleParameter lcl_obj_StartTime = new OracleParameter("v_StartTime", OracleDbType.Date);
                        lcl_obj_StartTime.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_StartTime.Value = lcl_obj_Shift.StartTime;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_EndTime = new System.Data.OracleClient.OracleParameter("v_EndTime", System.Data.OracleClient.OracleType.DateTime);
+                       OracleParameter lcl_obj_EndTime = new OracleParameter("v_EndTime", OracleDbType.Date);
                        lcl_obj_EndTime.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_EndTime.Value = lcl_obj_Shift.EndTime;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_ToleranceTime = new System.Data.OracleClient.OracleParameter("v_ToleranceTime", System.Data.OracleClient.OracleType.DateTime);
+                       OracleParameter lcl_obj_ToleranceTime = new OracleParameter("v_ToleranceTime", OracleDbType.Date);
                        lcl_obj_ToleranceTime.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_ToleranceTime.Value = lcl_obj_Shift.ToleranceTime;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_SortOrder = new System.Data.OracleClient.OracleParameter("v_SortOrder", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_SortOrder = new OracleParameter("v_SortOrder", OracleDbType.Int64);
                        lcl_obj_SortOrder.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_SortOrder.Value = lcl_obj_Shift.SortOrder;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("v_CompanyCode", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_CompanyCode = new OracleParameter("v_CompanyCode", OracleDbType.Int64);
                        lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_CompanyCode.Value = lcl_obj_Shift.CompanyCode;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_RegularDutyHour = new System.Data.OracleClient.OracleParameter("v_RegularDutyHour", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_RegularDutyHour = new OracleParameter("v_RegularDutyHour", OracleDbType.Int64);
                        lcl_obj_RegularDutyHour.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_RegularDutyHour.Value = lcl_obj_Shift.RegularDutyHour;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IsDeleted", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IsDeleted", OracleDbType.Int64);
                        lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_IsDeleted.Value = 1;
 
-                       System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_Status", System.Data.OracleClient.OracleType.Number);
+                       OracleParameter lcl_obj_Status = new OracleParameter("v_Status", OracleDbType.Int64);
                        lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                        lcl_obj_Status.Value = 1;
 
-                       System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_shiftCode, lcl_obj_ShiftName, lcl_obj_StartTime, lcl_obj_EndTime, lcl_obj_ToleranceTime, lcl_obj_SortOrder, lcl_obj_CompanyCode, lcl_obj_RegularDutyHour, lcl_obj_IsDeleted, lcl_obj_Status };
+                       OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_shiftCode, lcl_obj_ShiftName, lcl_obj_StartTime, lcl_obj_EndTime, lcl_obj_ToleranceTime, lcl_obj_SortOrder, lcl_obj_CompanyCode, lcl_obj_RegularDutyHour, lcl_obj_IsDeleted, lcl_obj_Status };
                        lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_INS_SHIFT", lcl_obj_SP_Parameters);
 
                        lcl_obj_DBManager.InternalResource.CommitTransaction();
@@ -148,7 +149,7 @@ namespace SilkERP360.BML.HRIS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format("Select * From SHIFT Where SHIFT_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_ShiftReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ShiftReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_ShiftReader.HasRows == false)
                {
@@ -182,7 +183,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From SHIFT Where SHIFT_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From SHIFT Where SHIFT_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
        if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (ShiftManager.Get(ID)) : No Shift Data Found In The Database!!!");
@@ -214,7 +215,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (ShiftManager.GetList(SqlQuery,DBManager)) : No Shift Data Found In The Database!!!");
@@ -253,7 +254,7 @@ namespace SilkERP360.BML.HRIS
                             lcl_obj_DBManager.InternalResource.Open();
                         }
 
-                        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                         if (!(dr.HasRows))
                         {
                             throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (ShiftManager.GetList(SqlQuery)) : No Shift Data Found In The Database!!!");
@@ -293,7 +294,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ShiftReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ShiftReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_ShiftReader.HasRows == false)
                 {
@@ -326,7 +327,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (ShiftManager.Get(SqlQuery)) : No Shift Data Found In The Database!!!");

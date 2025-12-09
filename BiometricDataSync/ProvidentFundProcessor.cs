@@ -92,7 +92,7 @@ namespace BiometricDataSync
                         //Console.WriteLine("PF for : " + lcl_obj_EmployeeProfile.EmployeeName);
                         //check if PF already Processed for this employee
                         lcl_str_SqlQuery = System.String.Format("SELECT * FROM SALARY_ADDITION_DEDUCTION WHERE EMPLOYEE_CODE = {0} AND EFFECTIVE_MONTH = {1} AND EFFECTIVE_YEAR = {2} AND ADD_DED_TYPE = {3}", lcl_obj_EmployeeProfile.EmployeeCode, (int)this.m_enm_Month, this.m_ui16_Year, (int)SilkERP360.CCL.Enums.AdditionDeductionType.DeductionProvidentFund);
-                        System.Data.OracleClient.OracleDataReader lcl_obj_AdditionDeductionReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_AdditionDeductionReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                         if (lcl_obj_AdditionDeductionReader.HasRows == true)
                         {
                             //ProvidentFund has already been processed

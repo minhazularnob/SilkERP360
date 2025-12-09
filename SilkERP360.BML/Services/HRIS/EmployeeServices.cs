@@ -27,7 +27,7 @@ namespace SilkERP360.BML.Services.HRIS
                     IP_obj_DBmanager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT JOINING_DATE FROM EMPLOYEE WHERE EMPLOYEE_CODE = {0}", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeReader.HasRows))
                 {
                     lcl_obj_EmployeeReader.Close();
@@ -56,7 +56,7 @@ namespace SilkERP360.BML.Services.HRIS
                     IP_obj_DBmanager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT AMOUNT FROM MONTHLY_ALLOWANCE WHERE EMPLOYEE_CODE = {0} AND STATUS = {1}", IP_ui64_EmployeeCode,(System.Int16)CCL.Enums.YesNo.Yes);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeReader.HasRows))
                 {
                     lcl_obj_EmployeeReader.Close();
@@ -78,7 +78,7 @@ namespace SilkERP360.BML.Services.HRIS
                     IP_obj_DBmanager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT BANK_ACCOUNT_NO FROM EMPLOYEE WHERE EMPLOYEE_CODE = {0}", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeReader.HasRows))
                 {
                     lcl_obj_EmployeeReader.Close();
@@ -107,7 +107,7 @@ namespace SilkERP360.BML.Services.HRIS
                     IP_obj_DBmanager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT TIN FROM EMPLOYEE WHERE EMPLOYEE_CODE = {0}", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeReader.HasRows))
                 {
                     lcl_obj_EmployeeReader.Close();
@@ -130,7 +130,7 @@ namespace SilkERP360.BML.Services.HRIS
                     IP_obj_DBmanager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT IS_PF_ELIGIBLE FROM EMPLOYEE WHERE EMPLOYEE_CODE = {0}", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeReader.HasRows))
                 {
                     lcl_obj_EmployeeReader.Close();
@@ -152,7 +152,7 @@ namespace SilkERP360.BML.Services.HRIS
                     IP_obj_DBmanager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT IS_OT_ELIGIBLE FROM EMPLOYEE WHERE EMPLOYEE_CODE = {0}", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = IP_obj_DBmanager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeReader.HasRows))
                 {
                     lcl_obj_EmployeeReader.Close();
@@ -190,7 +190,7 @@ namespace SilkERP360.BML.Services.HRIS
                                                                     JOIN EMPLOYEE_SALARY_STRUCTURE EMP_SAL
                                                                     ON EMP.EMPLOYEE_CODE = EMP_SAL.EMPLOYEE_CODE
                                                                     WHERE EMP.EMPLOYEE_CODE = {0}", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeMiniProfileReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeMiniProfileReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeMiniProfileReader.HasRows))
                 {
                     lcl_obj_EmployeeMiniProfileReader.Close();
@@ -241,7 +241,7 @@ namespace SilkERP360.BML.Services.HRIS
                                                                     JOIN EMPLOYEE_SALARY_STRUCTURE EMP_SAL
                                                                     ON EMP.EMPLOYEE_CODE = EMP_SAL.EMPLOYEE_CODE
                                                                     WHERE COMP.COMPANY_CODE = {0} AND (EMP.EMPLOYEE_STATUS = {1} OR EMP.EMPLOYEE_STATUS = {2} OR EMP.EMPLOYEE_STATUS = {3}) AND EMP.IS_DELETED = 1  Order By DEPT.Rank,DESIG.Rank ASC", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeMiniProfileReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeMiniProfileReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeMiniProfileReader.HasRows))
                 {
                     lcl_obj_EmployeeMiniProfileReader.Close();
@@ -293,7 +293,7 @@ namespace SilkERP360.BML.Services.HRIS
                                                                         JOIN EMPLOYEE_SALARY_STRUCTURE EMP_SAL
                                                                         ON EMP.EMPLOYEE_CODE = EMP_SAL.EMPLOYEE_CODE
                                                                         WHERE COMP.COMPANY_CODE = {0} AND BOND_YEAR != 0 AND (EMP.EMPLOYEE_STATUS = {1} OR EMP.EMPLOYEE_STATUS = {2} OR EMP.EMPLOYEE_STATUS = {3}) AND EMP.IS_DELETED = 1  Order By DESIG.Rank,DEPT.Rank ASC", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeMiniProfileReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeMiniProfileReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (!(lcl_obj_EmployeeMiniProfileReader.HasRows))
                     {
                         lcl_obj_EmployeeMiniProfileReader.Close();

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.OracleClient;
+using System.Data;
 using System.Globalization;
+using System.Linq;
 namespace SilkERP360.SP.HRIS
 {
     public class AttendanceProcessor : System.IDisposable
@@ -712,7 +712,7 @@ namespace SilkERP360.SP.HRIS
         //                            lcl_obj_Attendance.DutyScheduleUpto = lcl_obj_DutyEndDateTime;
         //                            //CHECK BMS_TRANSACTION 
         //                            lcl_str_SqlQuery = System.String.Format("SELECT * FROM BMS_TRANSACTION WHERE (TRAN_DATE_TIME >= TO_DATE('{0}','dd/mm/yyyy hh:mi:ss am')) AND (TRAN_DATE_TIME <= TO_DATE('{1}','dd/mm/yyyy hh:mi:ss am')) AND EMPLOYEE_ID = '{2}' ORDER BY TRAN_DATE_TIME ASC", lcl_obj_DutyStartSearchDateTime.ToString("dd/M/yyyy hh:mm:ss tt"), lcl_obj_DutyEndSearchDateTime.ToString("dd/M/yyyy hh:mm:ss tt"), lcl_obj_EmployeeProfile.EmployeeID);
-        //                            System.Data.OracleClient.OracleDataReader lcl_obj_BMSRowReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+        //                            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_BMSRowReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
         //                            if (!(lcl_obj_BMSRowReader.HasRows))
         //                            {
@@ -792,7 +792,7 @@ namespace SilkERP360.SP.HRIS
         //                                {
         //                                    //get AssessmentStatus of Employee
         //                                    lcl_str_SqlQuery = System.String.Format("SELECT * FROM WORK_GROUP_OPERATION_HISTORY WHERE WG_OPERATION_MASTER_CODE = {0} AND EMPLOYEE_CODE = {1}", lcl_obj_EmpWorkGroupOperationMaster.WorkGroupOperationMasterCode, lcl_obj_EmployeeProfile.EmployeeCode);
-        //                                    System.Data.OracleClient.OracleDataReader lcl_obj_WGOperationHistoryReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+        //                                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGOperationHistoryReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
         //                                    if (!(lcl_obj_WGOperationHistoryReader.HasRows))
         //                                    {
@@ -1120,14 +1120,19 @@ namespace SilkERP360.SP.HRIS
                     System.Data.DataSet lcl_ds_WorkGroupOperationMaster = new System.Data.DataSet("WorkGroupOperationMaster");
 
                     System.String lcl_str_Query = System.String.Format("SELECT WGOM.* FROM WORK_GROUP_OPERATION_MASTER WGOM JOIN WORK_GROUP WG ON WG.WORK_GROUP_CODE = WGOM.WORK_GROUP_CODE WHERE WGOM.WORK_DATE = TO_DATE('{0}','dd/mm/yyyy') AND WG.COMPANY_CODE = {1}", IP_dt_AttendanceDate.ToString("dd/M/yyyy"), IP_ui64_CompanyCode);
-                    System.Data.OracleClient.OracleCommand lcl_obj_WGOMCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection, this.m_obj_DBManager.Transaction);
-                    System.Data.OracleClient.OracleDataAdapter lcl_obj_WGOMAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_WGOMCommand);
+                    OracleCommand lcl_obj_WGOMCommand = new OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection);
+                    lcl_obj_WGOMCommand.Transaction = this.m_obj_DBManager.Transaction;
+
+
+                    OracleDataAdapter lcl_obj_WGOMAdapter = new OracleDataAdapter(lcl_obj_WGOMCommand);
                     lcl_obj_WGOMAdapter.FillSchema(lcl_ds_WorkGroupOperationMaster, System.Data.SchemaType.Source, "WORK_GROUP_OPERATION_MASTER");
                     lcl_obj_WGOMAdapter.Fill(lcl_ds_WorkGroupOperationMaster, "WORK_GROUP_OPERATION_MASTER");
 
                     lcl_str_Query = System.String.Format("SELECT WGOH.* FROM WORK_GROUP_OPERATION_HISTORY WGOH JOIN WORK_GROUP_OPERATION_MASTER WGOM ON WGOM.WG_OPERATION_MASTER_CODE = WGOH.WG_OPERATION_MASTER_CODE WHERE WGOM.WORK_DATE = TO_DATE('{0}','dd/mm/yyyy')", IP_dt_AttendanceDate.ToString("dd/M/yyyy"));
-                    System.Data.OracleClient.OracleCommand lcl_obj_WGOHCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection, this.m_obj_DBManager.Transaction);
-                    System.Data.OracleClient.OracleDataAdapter lcl_obj_WGOHAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_WGOHCommand);
+                    OracleCommand lcl_obj_WGOHCommand = new OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection);
+                    lcl_obj_WGOHCommand.Transaction = this.m_obj_DBManager.Transaction;
+
+                    OracleDataAdapter lcl_obj_WGOHAdapter = new OracleDataAdapter(lcl_obj_WGOHCommand);
                     lcl_obj_WGOHAdapter.FillSchema(lcl_ds_WorkGroupOperationMaster, System.Data.SchemaType.Source, "WORK_GROUP_OPERATION_HISTORY");
                     lcl_obj_WGOHAdapter.Fill(lcl_ds_WorkGroupOperationMaster, "WORK_GROUP_OPERATION_HISTORY");
                     /***************************************************************************************************************/
@@ -1137,6 +1142,12 @@ namespace SilkERP360.SP.HRIS
                                                                 "WHERE TO_DATE('{0}','dd/mm/yyyy') BETWEEN ELA.LEAVE_START_DATE AND ELA.LEAVE_END_DATE", IP_dt_AttendanceDate.ToString("dd/M/yyyy"));
                     System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.EmployeeLeaveApplication> lcl_objLst_LeaveApplicationsRepository =
                                         lcl_obj_EmployeeLeaveApplicationManager.GetList(lcl_str_SqlQuery, this.m_obj_DBManager);
+
+
+                    /***************************************************************************************************************/
+                    ServiceLog.Flush();
+                    GC.Collect();
+
                     /***************************************************************************************************************/
                     ServiceLog.Flush();
                     System.GC.Collect();
@@ -1344,7 +1355,7 @@ namespace SilkERP360.SP.HRIS
                                     lcl_obj_Attendance.DutyScheduleUpto = lcl_obj_DutyEndDateTime;
                                     //CHECK BMS_TRANSACTION 
                                     lcl_str_SqlQuery = System.String.Format("SELECT * FROM BMS_REPOSITORY WHERE (TRAN_DATE_TIME >= TO_DATE('{0}','dd/mm/yyyy hh:mi:ss am')) AND (TRAN_DATE_TIME <= TO_DATE('{1}','dd/mm/yyyy hh:mi:ss am')) AND RTRIM(EMPLOYEE_ID) = '{2}' ORDER BY TRAN_DATE_TIME ASC", lcl_obj_DutyStartSearchDateTime.ToString("dd/M/yyyy hh:mm:ss tt"), lcl_obj_DutyEndSearchDateTime.ToString("dd/M/yyyy hh:mm:ss tt"), lcl_obj_EmployeeProfile.EmployeeID.Trim());
-                                    System.Data.OracleClient.OracleDataReader lcl_obj_BMSRowReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_BMSRowReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                                     if (!(lcl_obj_BMSRowReader.HasRows))
                                     {
@@ -1479,7 +1490,7 @@ namespace SilkERP360.SP.HRIS
                                         {
                                             //get AssessmentStatus of Employee
                                             lcl_str_SqlQuery = System.String.Format("SELECT * FROM WORK_GROUP_OPERATION_HISTORY WHERE WG_OPERATION_MASTER_CODE = {0} AND EMPLOYEE_CODE = {1}", lcl_obj_EmpWorkGroupOperationMaster.WorkGroupOperationMasterCode, lcl_obj_EmployeeProfile.EmployeeCode);
-                                            System.Data.OracleClient.OracleDataReader lcl_obj_WGOperationHistoryReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                                            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGOperationHistoryReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                                             if (!(lcl_obj_WGOperationHistoryReader.HasRows))
                                             {
@@ -1881,14 +1892,18 @@ namespace SilkERP360.SP.HRIS
                 System.Data.DataSet lcl_ds_WorkGroupOperationMaster = new System.Data.DataSet("WorkGroupOperationMaster");
 
                 System.String lcl_str_Query = System.String.Format("SELECT WGOM.* FROM WORK_GROUP_OPERATION_MASTER WGOM JOIN WORK_GROUP WG ON WG.WORK_GROUP_CODE = WGOM.WORK_GROUP_CODE WHERE WGOM.WORK_DATE = TO_DATE('{0}','dd/mm/yyyy') AND WG.COMPANY_CODE = {1}", IP_dt_AttendanceDate.ToString("dd/M/yyyy"), IP_obj_EmployeeProfile.Company.CompanyCode);
-                System.Data.OracleClient.OracleCommand lcl_obj_WGOMCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection, this.m_obj_DBManager.Transaction);
-                System.Data.OracleClient.OracleDataAdapter lcl_obj_WGOMAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_WGOMCommand);
+                OracleCommand lcl_obj_WGOMCommand = new OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection);
+                lcl_obj_WGOMCommand.Transaction = this.m_obj_DBManager.Transaction;
+
+                OracleDataAdapter lcl_obj_WGOMAdapter = new OracleDataAdapter(lcl_obj_WGOMCommand);
                 lcl_obj_WGOMAdapter.FillSchema(lcl_ds_WorkGroupOperationMaster, System.Data.SchemaType.Source, "WORK_GROUP_OPERATION_MASTER");
                 lcl_obj_WGOMAdapter.Fill(lcl_ds_WorkGroupOperationMaster, "WORK_GROUP_OPERATION_MASTER");
 
                 lcl_str_Query = System.String.Format("SELECT WGOH.* FROM WORK_GROUP_OPERATION_HISTORY WGOH JOIN WORK_GROUP_OPERATION_MASTER WGOM ON WGOM.WG_OPERATION_MASTER_CODE = WGOH.WG_OPERATION_MASTER_CODE WHERE WGOM.WORK_DATE = TO_DATE('{0}','dd/mm/yyyy')", IP_dt_AttendanceDate.ToString("dd/M/yyyy"));
-                System.Data.OracleClient.OracleCommand lcl_obj_WGOHCommand = new System.Data.OracleClient.OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection, this.m_obj_DBManager.Transaction);
-                System.Data.OracleClient.OracleDataAdapter lcl_obj_WGOHAdapter = new System.Data.OracleClient.OracleDataAdapter(lcl_obj_WGOHCommand);
+                OracleCommand lcl_obj_WGOHCommand = new OracleCommand(lcl_str_Query, this.m_obj_DBManager.Connection);
+                lcl_obj_WGOHCommand.Transaction = this.m_obj_DBManager.Transaction;
+
+                OracleDataAdapter lcl_obj_WGOHAdapter = new OracleDataAdapter(lcl_obj_WGOHCommand);
                 lcl_obj_WGOHAdapter.FillSchema(lcl_ds_WorkGroupOperationMaster, System.Data.SchemaType.Source, "WORK_GROUP_OPERATION_HISTORY");
                 lcl_obj_WGOHAdapter.Fill(lcl_ds_WorkGroupOperationMaster, "WORK_GROUP_OPERATION_HISTORY");
                 /***************************************************************************************************************/
@@ -2017,7 +2032,7 @@ namespace SilkERP360.SP.HRIS
                         lcl_obj_Attendance.DutyScheduleUpto = lcl_obj_DutyEndDateTime;
                         //CHECK BMS_TRANSACTION 
                         lcl_str_SqlQuery = System.String.Format("SELECT * FROM BMS_REPOSITORY WHERE (TRAN_DATE_TIME >= TO_DATE('{0}','dd/mm/yyyy hh:mi:ss am')) AND (TRAN_DATE_TIME <= TO_DATE('{1}','dd/mm/yyyy hh:mi:ss am')) AND RTRIM(EMPLOYEE_ID) = '{2}' ORDER BY TRAN_DATE_TIME ASC", lcl_obj_DutyStartSearchDateTime.ToString("dd/M/yyyy hh:mm:ss tt"), lcl_obj_DutyEndSearchDateTime.ToString("dd/M/yyyy hh:mm:ss tt"), IP_obj_EmployeeProfile.EmployeeID.Trim());
-                        System.Data.OracleClient.OracleDataReader lcl_obj_BMSRowReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_BMSRowReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                         if (!(lcl_obj_BMSRowReader.HasRows))
                         {
@@ -2149,7 +2164,7 @@ namespace SilkERP360.SP.HRIS
                             {
                                 //get AssessmentStatus of Employee
                                 lcl_str_SqlQuery = System.String.Format("SELECT * FROM WORK_GROUP_OPERATION_HISTORY WHERE WG_OPERATION_MASTER_CODE = {0} AND EMPLOYEE_CODE = {1}", lcl_obj_EmpWorkGroupOperationMaster.WorkGroupOperationMasterCode, IP_obj_EmployeeProfile.EmployeeCode);
-                                System.Data.OracleClient.OracleDataReader lcl_obj_WGOperationHistoryReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGOperationHistoryReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                                 if (!(lcl_obj_WGOperationHistoryReader.HasRows))
                                 {

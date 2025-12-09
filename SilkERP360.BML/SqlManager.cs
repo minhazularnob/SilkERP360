@@ -81,11 +81,11 @@ namespace SilkERP360.BML
         //    return lcl_i32_RowsAffected;
         //}
 
-        public System.Data.OracleClient.OracleDataReader ExecuteDataReader(System.String IP_str_SqlQuery)
+        public Oracle.ManagedDataAccess.Client.OracleDataReader ExecuteDataReader(System.String IP_str_SqlQuery)
         {
-            System.Data.OracleClient.OracleDataReader lcl_obj_DataReader = null;
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DataReader = null;
             //throws Error.109
-            lcl_obj_DataReader = this.ExceptionManager.Process<System.Data.OracleClient.OracleDataReader>(() =>
+            lcl_obj_DataReader = this.ExceptionManager.Process<Oracle.ManagedDataAccess.Client.OracleDataReader>(() =>
             {
                 try
                 {

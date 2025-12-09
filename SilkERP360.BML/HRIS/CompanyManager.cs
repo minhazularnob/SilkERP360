@@ -38,7 +38,7 @@ namespace SilkERP360.BML.HRIS
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
                System.String lcl_str_SqlQuery = System.String.Format("Select NAME From COMPANY Where COMPANY_CODE = {0} AND Status = {1} AND IS_DELETED = 1", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                if (lcl_obj_CompanyReader.HasRows == false)
                {
                    System.String lcl_str_ErrorMessage = System.String.Format("Fatal Error : Company (Code : {0}) Not Found!!!", IP_ui64_CompanyCode);
@@ -73,7 +73,7 @@ namespace SilkERP360.BML.HRIS
                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                {
                    System.String lcl_str_SqlQuery = System.String.Format("Select COMPANY_NAME From COMPANY Where COMPANY_CODE = {0} AND Status = {1} AND IS_DELETED = 1", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                   System.Data.OracleClient.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                    if (lcl_obj_CompanyReader.HasRows == false)
                    {
                        System.String lcl_str_ErrorMessage = System.String.Format("Fatal Error : Company (Code : {0}) Not Found!!!", IP_ui64_CompanyCode);
@@ -196,7 +196,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From COMPANY Where COMPANY_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_CompanyReader.HasRows == false)
                 {
@@ -237,7 +237,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From COMPANY Where COMPANY_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From COMPANY Where COMPANY_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (CompanyManager.Get(ID)) : No Company Data Found In The Database!!!");
@@ -280,7 +280,7 @@ namespace SilkERP360.BML.HRIS
                 //{
                 //    lcl_obj_DBManager.Open();
                 //}
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     dr.Close();
@@ -328,7 +328,7 @@ namespace SilkERP360.BML.HRIS
                             lcl_obj_DBManager.InternalResource.Open();
                         }
 
-                        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                         if (!(dr.HasRows))
                         {
                             throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (CompanyManager.GetList(SqlQuery)) : No Company Data Found In The Database!!!");
@@ -369,7 +369,7 @@ namespace SilkERP360.BML.HRIS
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (CompanyManager.GetAllEmployeeList(SqlQuery)) : No Company Data Found In The Database!!!");
@@ -409,7 +409,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_CompanyReader.HasRows == false)
                 {
@@ -445,7 +445,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (CompanyManager.Get(SqlQuery)) : No Company Data Found In The Database!!!");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,7 @@ namespace SilkERP360.BML.SCPM
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No FaultyPersoCard Data Found In The Database!!!");
@@ -83,7 +84,7 @@ namespace SilkERP360.BML.SCPM
         //        {
         //            lcl_obj_DBManager.Open();
         //        }
-        //        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+        //        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
         //        if (!(dr.HasRows))
         //        {
         //            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No FaultyPersoCard Data Found In The Database!!!");
@@ -117,50 +118,50 @@ namespace SilkERP360.BML.SCPM
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_FaultyCardCode = new System.Data.OracleClient.OracleParameter("p_FAULTY_CARD_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_FaultyCardCode = new OracleParameter("p_FAULTY_CARD_CODE", OracleDbType.Int64);
                 lcl_obj_FaultyCardCode.Direction = System.Data.ParameterDirection.Output;
                 
-                System.Data.OracleClient.OracleParameter lcl_obj_ScBatchCode = new System.Data.OracleClient.OracleParameter("p_SC_BATCH_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ScBatchCode = new OracleParameter("p_SC_BATCH_CODE", OracleDbType.Int64);
                 lcl_obj_ScBatchCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ScBatchCode.Value = lcl_obj_FaultyPersoCard.BatchCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_MachineCode = new System.Data.OracleClient.OracleParameter("p_MACHINE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_MachineCode = new OracleParameter("p_MACHINE_CODE", OracleDbType.Int64);
                 lcl_obj_MachineCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_MachineCode.Value = lcl_obj_FaultyPersoCard.MachineCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_CardSl = new System.Data.OracleClient.OracleParameter("p_CARD_SL", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_CardSl = new OracleParameter("p_CARD_SL", OracleDbType.Int64);
                 lcl_obj_CardSl.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CardSl.Value = lcl_obj_FaultyPersoCard.CardSl;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_FaultType = new System.Data.OracleClient.OracleParameter("p_FAULT_TYPE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_FaultType = new OracleParameter("p_FAULT_TYPE", OracleDbType.Int64);
                 lcl_obj_FaultType.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_FaultType.Value = lcl_obj_FaultyPersoCard.FaultType;
 
-                //System.Data.OracleClient.OracleParameter lcl_obj_FaultDateTime = new System.Data.OracleClient.OracleParameter("p_FAULT_DATE_TIME", System.Data.OracleClient.OracleType.DateTime);
+                //OracleParameter lcl_obj_FaultDateTime = new OracleParameter("p_FAULT_DATE_TIME", OracleDbType.Date);
                 //lcl_obj_FaultDateTime.Direction = System.Data.ParameterDirection.Input;
                 //lcl_obj_FaultDateTime.Value = lcl_obj_FaultyPersoCard.FaultDateTime;
 
-                //System.Data.OracleClient.OracleParameter lcl_obj_RePersoed = new System.Data.OracleClient.OracleParameter("p_RE_PERSOED", System.Data.OracleClient.OracleType.Number);
+                //OracleParameter lcl_obj_RePersoed = new OracleParameter("p_RE_PERSOED", OracleDbType.Int64);
                 //lcl_obj_RePersoed.Direction = System.Data.ParameterDirection.Input;
                 //lcl_obj_RePersoed.Value = lcl_obj_FaultyPersoCard.RePersoed;
 
-                //System.Data.OracleClient.OracleParameter lcl_obj_RePersoDateTime = new System.Data.OracleClient.OracleParameter("p_RE_PERSO_DATE_TIME", System.Data.OracleClient.OracleType.DateTime);
+                //OracleParameter lcl_obj_RePersoDateTime = new OracleParameter("p_RE_PERSO_DATE_TIME", OracleDbType.Date);
                 //lcl_obj_RePersoDateTime.Direction = System.Data.ParameterDirection.Input;
                 //lcl_obj_RePersoDateTime.Value = lcl_obj_FaultyPersoCard.RePersoDateTime;
 
-                //System.Data.OracleClient.OracleParameter lcl_obj_RePersoEmpCode = new System.Data.OracleClient.OracleParameter("p_RE_PERSO_EMP_CODE", System.Data.OracleClient.OracleType.Number);
+                //OracleParameter lcl_obj_RePersoEmpCode = new OracleParameter("p_RE_PERSO_EMP_CODE", OracleDbType.Int64);
                 //lcl_obj_RePersoEmpCode.Direction = System.Data.ParameterDirection.Input;
                 //lcl_obj_RePersoEmpCode.Value = lcl_obj_FaultyPersoCard.RePersoEmpCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EntryEmpCode = new System.Data.OracleClient.OracleParameter("p_ENTRY_EMP_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EntryEmpCode = new OracleParameter("p_ENTRY_EMP_CODE", OracleDbType.Int64);
                 lcl_obj_EntryEmpCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EntryEmpCode.Value = lcl_obj_FaultyPersoCard.EntryEmpCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("p_REMARKS", System.Data.OracleClient.OracleType.NVarChar, 521);
+                OracleParameter lcl_obj_Remarks = new OracleParameter("p_REMARKS", OracleDbType.NVarchar2, 521);
                 lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Remarks.Value = lcl_obj_FaultyPersoCard.Remarks;
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_FaultyCardCode, lcl_obj_ScBatchCode, lcl_obj_MachineCode, lcl_obj_CardSl, lcl_obj_FaultType, lcl_obj_EntryEmpCode, lcl_obj_Remarks };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_FaultyCardCode, lcl_obj_ScBatchCode, lcl_obj_MachineCode, lcl_obj_CardSl, lcl_obj_FaultType, lcl_obj_EntryEmpCode, lcl_obj_Remarks };
                 lcl_obj_DBManager.ExecuteStoredProcedure("INS_SCPM_SC_FAULTY_PERSO_CARD", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_FaultyCardCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -177,40 +178,40 @@ namespace SilkERP360.BML.SCPM
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_FaultyCardCode = new System.Data.OracleClient.OracleParameter("p_FAULTY_CARD_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_FaultyCardCode = new OracleParameter("p_FAULTY_CARD_CODE", OracleDbType.Int64);
                     lcl_obj_FaultyCardCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_FaultyCardCode.Value = lcl_obj_FaultyPersoCard.FaultyCardCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ScBatchCode = new System.Data.OracleClient.OracleParameter("p_SC_BATCH_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ScBatchCode = new OracleParameter("p_SC_BATCH_CODE", OracleDbType.Int64);
                     lcl_obj_ScBatchCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ScBatchCode.Value = lcl_obj_FaultyPersoCard.BatchCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_MachineCode = new System.Data.OracleClient.OracleParameter("p_MACHINE_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_MachineCode = new OracleParameter("p_MACHINE_CODE", OracleDbType.Int64);
                     lcl_obj_MachineCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_MachineCode.Value = lcl_obj_FaultyPersoCard.MachineCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CardSl = new System.Data.OracleClient.OracleParameter("p_CARD_SL", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_CardSl = new OracleParameter("p_CARD_SL", OracleDbType.Int64);
                     lcl_obj_CardSl.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_CardSl.Value = lcl_obj_FaultyPersoCard.CardSl;
-                    System.Data.OracleClient.OracleParameter lcl_obj_FaultType = new System.Data.OracleClient.OracleParameter("p_FAULT_TYPE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_FaultType = new OracleParameter("p_FAULT_TYPE", OracleDbType.Int64);
                     lcl_obj_FaultType.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_FaultType.Value = lcl_obj_FaultyPersoCard.FaultType;
-                    System.Data.OracleClient.OracleParameter lcl_obj_FaultDateTime = new System.Data.OracleClient.OracleParameter("p_FAULT_DATE_TIME", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_FaultDateTime = new OracleParameter("p_FAULT_DATE_TIME", OracleDbType.Date);
                     lcl_obj_FaultDateTime.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_FaultDateTime.Value = lcl_obj_FaultyPersoCard.FaultDateTime;
-                    System.Data.OracleClient.OracleParameter lcl_obj_RePersoed = new System.Data.OracleClient.OracleParameter("p_RE_PERSOED", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_RePersoed = new OracleParameter("p_RE_PERSOED", OracleDbType.Int64);
                     lcl_obj_RePersoed.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_RePersoed.Value = lcl_obj_FaultyPersoCard.RePersoed;
-                    System.Data.OracleClient.OracleParameter lcl_obj_RePersoDateTime = new System.Data.OracleClient.OracleParameter("p_RE_PERSO_DATE_TIME", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_RePersoDateTime = new OracleParameter("p_RE_PERSO_DATE_TIME", OracleDbType.Date);
                     lcl_obj_RePersoDateTime.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_RePersoDateTime.Value = lcl_obj_FaultyPersoCard.RePersoDateTime;
-                    System.Data.OracleClient.OracleParameter lcl_obj_RePersoEmpCode = new System.Data.OracleClient.OracleParameter("p_RE_PERSO_EMP_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_RePersoEmpCode = new OracleParameter("p_RE_PERSO_EMP_CODE", OracleDbType.Int64);
                     lcl_obj_RePersoEmpCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_RePersoEmpCode.Value = lcl_obj_FaultyPersoCard.RePersoEmpCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_EntryEmpCode = new System.Data.OracleClient.OracleParameter("p_ENTRY_EMP_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EntryEmpCode = new OracleParameter("p_ENTRY_EMP_CODE", OracleDbType.Int64);
                     lcl_obj_EntryEmpCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EntryEmpCode.Value = lcl_obj_FaultyPersoCard.EntryEmpCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Remarks = new System.Data.OracleClient.OracleParameter("p_REMARKS", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_Remarks = new OracleParameter("p_REMARKS", OracleDbType.NVarchar2, 512);
                     lcl_obj_Remarks.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Remarks.Value = lcl_obj_FaultyPersoCard.Remarks;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_FaultyCardCode, lcl_obj_ScBatchCode, lcl_obj_MachineCode, lcl_obj_CardSl, lcl_obj_FaultType, lcl_obj_FaultDateTime, lcl_obj_RePersoed, lcl_obj_RePersoDateTime, lcl_obj_RePersoEmpCode, lcl_obj_EntryEmpCode, lcl_obj_Remarks };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_FaultyCardCode, lcl_obj_ScBatchCode, lcl_obj_MachineCode, lcl_obj_CardSl, lcl_obj_FaultType, lcl_obj_FaultDateTime, lcl_obj_RePersoed, lcl_obj_RePersoDateTime, lcl_obj_RePersoEmpCode, lcl_obj_EntryEmpCode, lcl_obj_Remarks };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("SCPM_SC_FAULTY_PERSO_CARD_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_FaultyCardCode.Value.ToString());
                 }

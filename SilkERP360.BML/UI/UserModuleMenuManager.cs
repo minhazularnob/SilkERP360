@@ -31,7 +31,7 @@ namespace SilkERP360.BML.UI
             {
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.UI.UserModuleMenu> lcl_objLst_TmpUserModuleMenus = new System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.UI.UserModuleMenu>();
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From USER_MODULE_MENUS where USER_CODE = {0} and MODULE_CODE = {1} and STATUS = {2} AND IS_DELETED = 1", IP_ui64_UserCode,IP_ui64_ModuleCode, SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_UserModuleMenusReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserModuleMenusReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_UserModuleMenusReader.HasRows == false)
                 {
                     //return empty object
@@ -79,7 +79,7 @@ namespace SilkERP360.BML.UI
                     }
                     System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.UI.UserModuleMenu> lcl_objLst_TmpUserModuleMenus = new System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.UI.UserModuleMenu>();
                     System.String lcl_str_SqlQuery = System.String.Format("Select * From USER_MODULE_MENUS where USER_CODE = {0} and MODULE_CODE = {1} and STATUS = {2} AND IS_DELETED = 1", IP_ui64_UserCode, IP_ui64_ModuleCode, SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_UserModuleMenusReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserModuleMenusReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_UserModuleMenusReader.HasRows == false)
                     {
                         //return empty object

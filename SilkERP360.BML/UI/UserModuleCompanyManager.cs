@@ -32,7 +32,7 @@ namespace SilkERP360.BML.UI
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.UI.UserModuleCompany> lcl_objLst_TmpUserModuleCompany = 
                     new System.Collections.Generic.List<CCL.BusinessEntities.UI.UserModuleCompany>();
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From USER_MODULE_COMPANY where USER_CODE = {0} and STATUS = {2} AND IS_DELETED = 1 ", IP_ui64_UserCode, IP_ui64_ModuleCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_UserModuleCompanyReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserModuleCompanyReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_UserModuleCompanyReader.HasRows == false)
                 {
                     //return empty list. Signifies, no company data access permission granted
@@ -68,7 +68,7 @@ namespace SilkERP360.BML.UI
                     System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.UI.UserModuleCompany> lcl_objLst_TmpUserModuleCompany =
                         new System.Collections.Generic.List<CCL.BusinessEntities.UI.UserModuleCompany>();
                     System.String lcl_str_SqlQuery = System.String.Format("Select * From USER_MODULE_COMPANY where USER_CODE = {0} and STATUS = {2} AND IS_DELETED = 1 ", IP_ui64_UserCode, IP_ui64_ModuleCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_UserModuleCompanyReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserModuleCompanyReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_UserModuleCompanyReader.HasRows == false)
                     {
                         //return empty list. Signifies, no company data access permission granted

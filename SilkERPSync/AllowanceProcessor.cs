@@ -76,7 +76,7 @@ namespace SilkERPSync
             {
                 this.m_obj_DBManager.Open();
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT MA.* FROM MONTHLY_ALLOWANCE MA JOIN EMPLOYEE EMP ON MA.EMPLOYEE_CODE = EMP.EMPLOYEE_CODE WHERE EMP.COMPANY_CODE = {0} AND MA.STATUS = {1}", IP_ui64_CompanyCode, (int)SilkERP360.CCL.Enums.YesNo.Yes);
-                System.Data.OracleClient.OracleDataReader lcl_obj_MonthlyAllowanceReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MonthlyAllowanceReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_MonthlyAllowanceReader.HasRows == true)
                 {
                     System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.MonthlyAllowance> lcl_objLst_MonthlyAllowance = new List<SilkERP360.CCL.BusinessEntities.HRIS.MonthlyAllowance>();
@@ -99,7 +99,7 @@ namespace SilkERPSync
                     {
                         //Check If MonthlyAllowance For the Employee Has Already been Processed
                         lcl_str_SqlQuery = System.String.Format("SELECT * FROM SALARY_ADDITION_DEDUCTION WHERE EMPLOYEE_CODE = {0} AND EFFECTIVE_MONTH = {1} AND EFFECTIVE_YEAR = {2} AND ADD_DED_TYPE = {3}", lcl_obj_MonthlyAllowance.EmployeeCode, (int)this.m_enm_Month, this.m_ui16_Year, (int)SilkERP360.CCL.Enums.AdditionDeductionType.AdditionMonthlyAllowance);
-                        System.Data.OracleClient.OracleDataReader lcl_obj_AdditionDeductionReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_AdditionDeductionReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                         if (lcl_obj_AdditionDeductionReader.HasRows == true)
                         {
                             //Monthly Allowance Has Already Been Processed

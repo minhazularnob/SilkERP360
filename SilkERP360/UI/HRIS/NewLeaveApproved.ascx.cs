@@ -30,7 +30,7 @@ namespace SilkERP360.UI.HRIS
 
                 lcl_str_SqlQuery = System.String.Format(@"select Employee_Code from employee_leave_application where leave_app_code={0}", lcl_ui64_LeaveCode);
 
-                 System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeCodeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                 Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeCodeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (!(lcl_obj_EmployeeCodeReader.HasRows))
                 {
@@ -66,7 +66,7 @@ namespace SilkERP360.UI.HRIS
                 ,LEAVE_ST_DATE,LEAVE_END_DATE,NO_OF_DAYS,REJOIN_DATE ,LEAVE_REASON,REPL_EMPLOYEE_CODE,RECOMMEND_BY
                 From employee_leave_application
                 where leave_app_code={1})A)Y On X.employee_code=Y.employee_code", lcl_ui64_EmployeeCode,lcl_ui64_LeaveCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeInfoReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Employee information Was Not Found!!!");
@@ -109,7 +109,7 @@ namespace SilkERP360.UI.HRIS
                                                         (Select LEAVE_CODE LVCode,leave_st_date,leave_end_date,no_of_days From EMPLOYEE_LEAVE_APPLICATION 
                                                         Where EMPLOYEE_CODE={0} And IS_APPROVED=1 And IS_CANCEL='N')A order by leave_st_date", lcl_str_EmployeeCode);
                 
-                System.Data.OracleClient.OracleDataReader lcl_obj_LeaveEmployeehistoryReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_LeaveEmployeehistoryReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_LeaveEmployeehistoryReader.HasRows))
                 {
                    // throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Leave history Was Not Found!!!");

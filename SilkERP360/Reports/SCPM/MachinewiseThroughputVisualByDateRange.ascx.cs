@@ -16,7 +16,7 @@ namespace SilkERP360.Reports.SCPM
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new FL.SqlFacade();
                 lcl_obj_SqlFacade.Initialize();
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_SECTION WHERE STATUS = {0}", (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_SectionReader.HasRows == false)
                 {
                     throw new System.Exception("Data for 'Production Section' was not found in SilkERP!!!");

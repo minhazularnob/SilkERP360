@@ -25,7 +25,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(@" SELECT EMPLOYEE_CODE FROM EMPLOYEE Where DEPARTMENT_CODE={0} And EMPLOYEE_STATUS={1}", IP_ui64_DepartmentCode, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepertmentEmployeeProfileReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepertmentEmployeeProfileReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_DepertmentEmployeeProfileReader.HasRows == false)
                 {
@@ -69,7 +69,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
 
                     System.String lcl_str_SqlQuery = System.String.Format(@" SELECT EMPLOYEE_CODE FROM EMPLOYEE Where DEPARTMENT_CODE={0} And EMPLOYEE_STATUS={1}", IP_ui64_DepartmentCode, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
 
-                    System.Data.OracleClient.OracleDataReader lcl_obj_DepertmentEmployeeProfileReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepertmentEmployeeProfileReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
 
                     if (lcl_obj_DepertmentEmployeeProfileReader.HasRows == false)
                     {

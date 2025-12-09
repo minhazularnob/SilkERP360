@@ -19,7 +19,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty, lcl_str_SqlQuerym = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("Select USER_CODE,USER_NAME From USERS Where IS_DELETED=1");
-                System.Data.OracleClient.OracleDataReader lcl_obj_UserReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_UserReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("User Not Found!!!");
@@ -37,7 +37,7 @@ namespace SilkERP360.UI.HRIS
                 // Module Load
 
                 lcl_str_SqlQuerym = System.String.Format("select module_code,module_name from Module order by Module_Code");
-                System.Data.OracleClient.OracleDataReader lcl_obj_UserReaderm = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuerym);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserReaderm = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuerym);
                 if (!(lcl_obj_UserReaderm.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Module Not Found!!!");

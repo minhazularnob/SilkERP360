@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,27 +21,27 @@ namespace SilkERP360.BML.WPMS
            lcl_ui64_CustomerCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-               System.Data.OracleClient.OracleParameter lcl_obj_RelationCode = new System.Data.OracleClient.OracleParameter("v_RELATION_CODE", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_RelationCode = new OracleParameter("v_RELATION_CODE", OracleDbType.Int64);
                lcl_obj_RelationCode.Direction = System.Data.ParameterDirection.Output;
                //lcl_obj_WrokGroupCode.Value = lcl_obj_WrokGroup.WorkGroupCode;
-               System.Data.OracleClient.OracleParameter lcl_obj_FinishedProductCode = new System.Data.OracleClient.OracleParameter("v_FINISHED_PRODUCT_CODE", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_FinishedProductCode = new OracleParameter("v_FINISHED_PRODUCT_CODE", OracleDbType.Int64);
                lcl_obj_FinishedProductCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_FinishedProductCode.Value = lcl_obj_RelationBuyerProduct.FinishedProductCode;
-               System.Data.OracleClient.OracleParameter lcl_obj_BuyerCode = new System.Data.OracleClient.OracleParameter("v_BUYER_CODE", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_BuyerCode = new OracleParameter("v_BUYER_CODE", OracleDbType.Int64);
                lcl_obj_BuyerCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_BuyerCode.Value = lcl_obj_RelationBuyerProduct.BuyerCode;
-               System.Data.OracleClient.OracleParameter lcl_obj_Phone = new System.Data.OracleClient.OracleParameter("v_PROCESSING_COST", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_Phone = new OracleParameter("v_PROCESSING_COST", OracleDbType.Int64);
                lcl_obj_Phone.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Phone.Value = lcl_obj_RelationBuyerProduct.ProcessingCost;
-               System.Data.OracleClient.OracleParameter lcl_obj_ContactPersion = new System.Data.OracleClient.OracleParameter("v_PRINTING_CHARGE", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_ContactPersion = new OracleParameter("v_PRINTING_CHARGE", OracleDbType.Int64);
                lcl_obj_ContactPersion.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_ContactPersion.Value = lcl_obj_RelationBuyerProduct.PrintingCharge;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Status.Value = lcl_obj_RelationBuyerProduct.Status;
               
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_RelationCode, lcl_obj_FinishedProductCode, lcl_obj_BuyerCode, lcl_obj_Phone, lcl_obj_ContactPersion, lcl_obj_Status };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_RelationCode, lcl_obj_FinishedProductCode, lcl_obj_BuyerCode, lcl_obj_Phone, lcl_obj_ContactPersion, lcl_obj_Status };
                lcl_obj_DBManager.ExecuteStoredProcedure("WPMS_INS_BUYER_PRODUCT", lcl_obj_SP_Parameters);
                return System.UInt64.Parse(lcl_obj_RelationCode.Value.ToString());
            }, "BMLExceptionPolicy");
@@ -58,57 +59,57 @@ namespace SilkERP360.BML.WPMS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleParameter lcl_obj_RelationCode = new System.Data.OracleClient.OracleParameter("v_RELATION_CODE", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_RelationCode = new OracleParameter("v_RELATION_CODE", OracleDbType.Int64);
                    lcl_obj_RelationCode.Direction = System.Data.ParameterDirection.Output;
                    //lcl_obj_WrokGroupCode.Value = lcl_obj_WrokGroup.WorkGroupCode;
-                   System.Data.OracleClient.OracleParameter lcl_obj_FinishedProductCode = new System.Data.OracleClient.OracleParameter("v_FINISHED_PRODUCT_CODE", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_FinishedProductCode = new OracleParameter("v_FINISHED_PRODUCT_CODE", OracleDbType.Int64);
                    lcl_obj_FinishedProductCode.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_FinishedProductCode.Value = lcl_obj_RelationBuyerProduct.FinishedProductCode;
-                   System.Data.OracleClient.OracleParameter lcl_obj_BuyerCode = new System.Data.OracleClient.OracleParameter("v_BUYER_CODE", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_BuyerCode = new OracleParameter("v_BUYER_CODE", OracleDbType.Int64);
                    lcl_obj_BuyerCode.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_BuyerCode.Value = lcl_obj_RelationBuyerProduct.BuyerCode;
 
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_Width = new System.Data.OracleClient.OracleParameter("v_WIDTH", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_Width = new OracleParameter("v_WIDTH", OracleDbType.Int64);
                    lcl_obj_Width.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Width.Value = lcl_obj_RelationBuyerProduct.Width;
-                   System.Data.OracleClient.OracleParameter lcl_obj_Gusset = new System.Data.OracleClient.OracleParameter("v_GUSSET", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_Gusset = new OracleParameter("v_GUSSET", OracleDbType.Int64);
                    lcl_obj_Gusset.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Gusset.Value = lcl_obj_RelationBuyerProduct.Gusset;
-                   System.Data.OracleClient.OracleParameter lcl_obj_Length = new System.Data.OracleClient.OracleParameter("v_LENGTH", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_Length = new OracleParameter("v_LENGTH", OracleDbType.Int64);
                    lcl_obj_Length.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Length.Value = lcl_obj_RelationBuyerProduct.Length;
-                   System.Data.OracleClient.OracleParameter lcl_obj_Density = new System.Data.OracleClient.OracleParameter("v_DENSITY", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_Density = new OracleParameter("v_DENSITY", OracleDbType.Int64);
                    lcl_obj_Density.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Density.Value = lcl_obj_RelationBuyerProduct.Density;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_Thickness = new System.Data.OracleClient.OracleParameter("v_THICKNESS", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_Thickness = new OracleParameter("v_THICKNESS", OracleDbType.Int64);
                    lcl_obj_Thickness.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Thickness.Value = lcl_obj_RelationBuyerProduct.Thickness;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_PunchOut = new System.Data.OracleClient.OracleParameter("v_PUNCHOUT", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_PunchOut = new OracleParameter("v_PUNCHOUT", OracleDbType.Int64);
                    lcl_obj_PunchOut.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_PunchOut.Value = lcl_obj_RelationBuyerProduct.PunchOut;
-                   System.Data.OracleClient.OracleParameter lcl_obj_ProcessingCost = new System.Data.OracleClient.OracleParameter("v_PROCESSING_COST", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_ProcessingCost = new OracleParameter("v_PROCESSING_COST", OracleDbType.Int64);
                    lcl_obj_ProcessingCost.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_ProcessingCost.Value = lcl_obj_RelationBuyerProduct.ProcessingCost;
 
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_PrintingCharge = new System.Data.OracleClient.OracleParameter("v_PRINTING_CHARGE", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_PrintingCharge = new OracleParameter("v_PRINTING_CHARGE", OracleDbType.Int64);
                    lcl_obj_PrintingCharge.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_PrintingCharge.Value = lcl_obj_RelationBuyerProduct.PrintingCharge;
-                   System.Data.OracleClient.OracleParameter lcl_obj_SpecificationName = new System.Data.OracleClient.OracleParameter("v_SPECIFICATION_NAME", System.Data.OracleClient.OracleType.NVarChar,512);
+                   OracleParameter lcl_obj_SpecificationName = new OracleParameter("v_SPECIFICATION_NAME", OracleDbType.NVarchar2,512);
                    lcl_obj_SpecificationName.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_SpecificationName.Value = lcl_obj_RelationBuyerProduct.SpecificationName;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_Item = new System.Data.OracleClient.OracleParameter("v_ITEMCODE", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_Item = new OracleParameter("v_ITEMCODE", OracleDbType.Int64);
                    lcl_obj_Item.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Item.Value = lcl_obj_RelationBuyerProduct.ItemCode;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                    lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Status.Value = 1;
-                   System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_RelationCode, lcl_obj_FinishedProductCode, lcl_obj_BuyerCode, lcl_obj_Width, lcl_obj_Gusset, lcl_obj_Length, lcl_obj_Density, lcl_obj_Thickness, lcl_obj_PunchOut, lcl_obj_ProcessingCost,lcl_obj_PrintingCharge, lcl_obj_SpecificationName,lcl_obj_Item, lcl_obj_Status };
+                   OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_RelationCode, lcl_obj_FinishedProductCode, lcl_obj_BuyerCode, lcl_obj_Width, lcl_obj_Gusset, lcl_obj_Length, lcl_obj_Density, lcl_obj_Thickness, lcl_obj_PunchOut, lcl_obj_ProcessingCost,lcl_obj_PrintingCharge, lcl_obj_SpecificationName,lcl_obj_Item, lcl_obj_Status };
                    lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("WPMS_INS_BUYER_PRODUCT", lcl_obj_SP_Parameters);
                    lcl_obj_DBManager.InternalResource.CommitTransaction();
                    lcl_obj_DBManager.InternalResource.Close();
@@ -154,7 +155,7 @@ namespace SilkERP360.BML.WPMS
                        lcl_obj_DBManager.InternalResource.Open();
                    }
 
-                   System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                    if (!(lcl_obj_Reader.HasRows))
                    {
                        throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (QuotationManager.GetList(SqlQuery)) : No Data Found In The Database!!!");

@@ -18,7 +18,7 @@ namespace SilkERPDataService.ReadService.SCPM
                     lcl_obj_DBManager.Initialize();
                     lcl_obj_DBManager.Open();
                     
-                    System.Data.OracleClient.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                     if (lcl_obj_ProcessReader.HasRows == false)
                     {
                         throw new System.Exception("Process Data Not Found in the SilkERP database!!!");
@@ -51,7 +51,7 @@ namespace SilkERPDataService.ReadService.SCPM
             System.Collections.Generic.List<SilkERPDataService.Containers.SCPM.SCPMProcess> lcl_objList_ProcessList = new System.Collections.Generic.List<Containers.SCPM.SCPMProcess>();
             try
             {
-                System.Data.OracleClient.OracleDataReader lcl_obj_ProcessReader = IP_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ProcessReader = IP_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (lcl_obj_ProcessReader.HasRows == false)
                 {
                     throw new System.Exception("Process Data Not Found in the SilkERP database!!!");
@@ -84,7 +84,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_PROCESS WHERE PROCESS_CODE = {0} AND STATUS = {1}", IP_ui64_ProcessCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_ProcessReader.HasRows == false)
                     {
                         throw new System.Exception("Section Data for Process Code " + IP_ui64_ProcessCode.ToString() + " Not Found in the SilkERP database!!!");
@@ -120,7 +120,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_PROCESS WHERE PROCESS_CODE = {0} AND STATUS = {1}", IP_ui64_ProcessCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_ProcessReader.HasRows == false)
                     {
                         throw new System.Exception("Section Data for Process Code " + IP_ui64_ProcessCode.ToString() + " Not Found in the SilkERP database!!!");
@@ -155,7 +155,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_PROCESS WHERE SECTION_CODE = {0} AND STATUS = {1}", IP_ui64_SectionCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_ProcessReader.HasRows == false)
                     {
                         throw new System.Exception("Process Data Not Found in the SilkERP database!!!");
@@ -191,7 +191,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 using (SilkERP360.DAL.DBManager lcl_obj_DBManager = IP_obj_DBManager)
                 {
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_PROCESS WHERE SECTION_CODE = {0} AND STATUS = {1}", IP_ui64_SectionCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ProcessReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_ProcessReader.HasRows == false)
                     {
                         throw new System.Exception("Process Data Not Found in the SilkERP database!!!");

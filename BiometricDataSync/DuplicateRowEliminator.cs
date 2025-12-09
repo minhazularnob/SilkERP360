@@ -44,7 +44,7 @@ namespace BiometricDataSync
                 //this.m_obj_DBManager.Open();
                 System.Collections.Generic.List<string> lcl_objLst_DuplicateWorkGroupOperationMasterCode = new List<string>();
                 System.String lcl_str_Query = System.String.Format("SELECT  * FROM    (SELECT  WGOM.*, ROW_NUMBER() OVER (PARTITION BY WORK_GROUP_CODE, WORK_DATE ORDER BY WG_OPERATION_MASTER_CODE) AS rn FROM    WORK_GROUP_OPERATION_MASTER WGOM ) WHERE   rn > 1");
-                System.Data.OracleClient.OracleDataReader lcl_obj_WorkGroupOperationMasterReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_Query);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WorkGroupOperationMasterReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_Query);
                 if (lcl_obj_WorkGroupOperationMasterReader.HasRows == false)
                 {
                     lcl_obj_WorkGroupOperationMasterReader.Close();
@@ -83,7 +83,7 @@ namespace BiometricDataSync
                 this.m_obj_DBManager.Open();
                 System.Collections.Generic.List<string> lcl_objLst_DuplicateLeaveApplicationCode = new List<string>();
                 System.String lcl_str_Query = System.String.Format("SELECT  * FROM    (SELECT  ELA.*, ROW_NUMBER() OVER (PARTITION BY EMPLOYEE_CODE, LEAVE_START_DATE ORDER BY LEAVE_APPLICATION_CODE) AS rn FROM    EMPLOYEE_LEAVE_APPLICATION ELA ) WHERE   rn > 1");
-                System.Data.OracleClient.OracleDataReader lcl_obj_DuplicateLeaveApplicationReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_Query);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DuplicateLeaveApplicationReader = this.m_obj_DBManager.ExecuteDataReader(lcl_str_Query);
                 if (lcl_obj_DuplicateLeaveApplicationReader.HasRows == false)
                 {
                     lcl_obj_DuplicateLeaveApplicationReader.Close();

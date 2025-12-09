@@ -152,7 +152,7 @@ using System.Net.Sockets;
             //    SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new SilkERP360.FL.SqlFacade();
             //    System.String lcl_str_SqlQueryBuyerName = System.String.Empty;
             //    lcl_str_SqlQueryBuyerName = System.String.Format("select Company_Name from wpms_buyer where buyer_code='" + lcl_obj_Quotation.BuyerCode + "'", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            //    System.Data.OracleClient.OracleDataReader lcl_obj_WorkGroupReaderBuyerName = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryBuyerName);
+            //    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WorkGroupReaderBuyerName = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryBuyerName);
 
             //    lcl_obj_WorkGroupReaderBuyerName.Read();
                
@@ -160,21 +160,21 @@ using System.Net.Sockets;
          
             //    System.String lcl_str_SqlQueryContactPerson = System.String.Empty;
             //    lcl_str_SqlQueryContactPerson = System.String.Format("select CONTACT_PERSON from wpms_buyer where buyer_code='" + lcl_obj_Quotation.BuyerCode + "'", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            //    System.Data.OracleClient.OracleDataReader lcl_obj_WorkGroupReaderContactperson = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryContactPerson);
+            //    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WorkGroupReaderContactperson = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryContactPerson);
 
             //    lcl_obj_WorkGroupReaderContactperson.Read();
                
 
             //    System.String lcl_str_SqlQueryEmail = System.String.Empty;
             //    lcl_str_SqlQueryEmail = System.String.Format("select Email from wpms_buyer where buyer_code='" + lcl_obj_Quotation.BuyerCode + "'", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            //    System.Data.OracleClient.OracleDataReader lcl_obj_WorkGroupReaderEmail = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryEmail);
+            //    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WorkGroupReaderEmail = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryEmail);
 
             //    lcl_obj_WorkGroupReaderEmail.Read();
                 
 
             //    System.String lcl_str_SqlQueryAddress = System.String.Empty;
             //    lcl_str_SqlQueryAddress = System.String.Format("select ADDRESS from wpms_buyer where buyer_code='" + lcl_obj_Quotation.BuyerCode + "'", (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-            //    System.Data.OracleClient.OracleDataReader lcl_obj_WorkGroupReaderAddress = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryAddress);
+            //    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WorkGroupReaderAddress = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQueryAddress);
 
             //    lcl_obj_WorkGroupReaderAddress.Read();
               

@@ -25,7 +25,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                     IP_obj_DBManager.Open();
                 }
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = IP_obj_DBManager.ExecuteDataReader(System.String.Format(@"SELECT A.EMPLOYEE_CODE,A.LEAVE_CODE, BALANCE ,LEAVE_NAME, SHORT_NAME,NO_OF_DAYS,IS_CARRY_FORWARDED From (SELECT e.EMPLOYEE_CODE,LEAVE_CODE, BALANCE  
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = IP_obj_DBManager.ExecuteDataReader(System.String.Format(@"SELECT A.EMPLOYEE_CODE,A.LEAVE_CODE, BALANCE ,LEAVE_NAME, SHORT_NAME,NO_OF_DAYS,IS_CARRY_FORWARDED From (SELECT e.EMPLOYEE_CODE,LEAVE_CODE, BALANCE  
                                                                        FROM EMPLOYEE E inner join  EMPLOYEE_ENTITLE_LEAVE ETL on e.EMPLOYEE_CODE=ETL.EMPLOYEE_CODE)A Left outer join (SELECT LEAVE_CODE, LEAVE_NAME, SHORT_NAME, NO_OF_DAYS, COMPANY_CODE,nvl(IS_CARRY_FORWARDED,0)IS_CARRY_FORWARDED,
                                                                        IS_DELETED, STATUS FROM LEAVE)B on A.LEAVE_CODE=B.LEAVE_CODE  where employee_code={0}", IP_ui64_EmployeeCode));
 

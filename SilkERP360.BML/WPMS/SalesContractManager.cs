@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace SilkERP360.BML.WPMS
            lcl_ui64_BuyerCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-               System.Data.OracleClient.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                lcl_obj_IDReader.Read();
                System.UInt64 lcl_ui64_ID = System.UInt64.Parse(lcl_obj_IDReader["ID"].ToString());
                lcl_obj_IDReader.Close();
@@ -45,54 +46,54 @@ namespace SilkERP360.BML.WPMS
                {
                    lcl_obj_DBManager.InternalResource.Open();
                }
-               System.Data.OracleClient.OracleParameter lcl_obj_SalesContractCode = new System.Data.OracleClient.OracleParameter("v_SALES_CONTRACT_CODE", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_SalesContractCode = new OracleParameter("v_SALES_CONTRACT_CODE", OracleDbType.Int64);
                     lcl_obj_SalesContractCode.Direction = System.Data.ParameterDirection.Output;
                     //lcl_obj_WrokGroupCode.Value = lcl_obj_WrokGroup.WorkGroupCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PortOfDelivery = new System.Data.OracleClient.OracleParameter("v_PORT_OF_DELIVERY", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_PortOfDelivery = new OracleParameter("v_PORT_OF_DELIVERY", OracleDbType.NVarchar2, 512);
                     lcl_obj_PortOfDelivery.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PortOfDelivery.Value = lcl_obj_SalesContract.PortOfDelivery;
-                    System.Data.OracleClient.OracleParameter lcl_obj_AdvisingBank = new System.Data.OracleClient.OracleParameter("v_ADVISING_BANK", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_AdvisingBank = new OracleParameter("v_ADVISING_BANK", OracleDbType.NVarchar2, 512);
                     lcl_obj_AdvisingBank.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_AdvisingBank.Value = lcl_obj_SalesContract.AdvisingBank;
-                    System.Data.OracleClient.OracleParameter lcl_obj_LCValidity = new System.Data.OracleClient.OracleParameter("v_LC_VALIDITY", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_LCValidity = new OracleParameter("v_LC_VALIDITY", OracleDbType.Date);
                     lcl_obj_LCValidity.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_LCValidity.Value = lcl_obj_SalesContract.LCValidity;
-                    System.Data.OracleClient.OracleParameter lcl_obj_TransHipment = new System.Data.OracleClient.OracleParameter("v_TRANSSHIPMENT", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_TransHipment = new OracleParameter("v_TRANSSHIPMENT", OracleDbType.NVarchar2, 512);
                     lcl_obj_TransHipment.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_TransHipment.Value = lcl_obj_SalesContract.TransHipment;
-                    System.Data.OracleClient.OracleParameter lcl_obj_HSCode = new System.Data.OracleClient.OracleParameter("v_HS_CODE", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_HSCode = new OracleParameter("v_HS_CODE", OracleDbType.NVarchar2, 512);
                     lcl_obj_HSCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_HSCode.Value = lcl_obj_SalesContract.HSCode;
                     //SilkERP360.BML.WPMS.QuotationManager lcl_obj_Quotationmanager = new SilkERP360.BML.WPMS.QuotationManager();
                     //SilkERP360.CCL.BusinessEntities.WPMS.Quotation lcl_obj_Quotationkend = lcl_obj_Quotationmanager.Get(lcl_ui64_QuotationCode, lcl_obj_DBManager);
-                    System.Data.OracleClient.OracleParameter lcl_obj_QuotationCode = new System.Data.OracleClient.OracleParameter("v_QUOTATION_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_QuotationCode = new OracleParameter("v_QUOTATION_CODE", OracleDbType.Int64);
                     lcl_obj_QuotationCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_QuotationCode.Value = lcl_obj_SalesContract.QuotationCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_BuyerCode = new System.Data.OracleClient.OracleParameter("v_BUYER_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_BuyerCode = new OracleParameter("v_BUYER_CODE", OracleDbType.Int64);
                     lcl_obj_BuyerCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BuyerCode.Value = lcl_obj_SalesContract.BuyerCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_SalesContractDate = new System.Data.OracleClient.OracleParameter("v_SALES_CONTRACT_DATE", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_SalesContractDate = new OracleParameter("v_SALES_CONTRACT_DATE", OracleDbType.Date);
                     lcl_obj_SalesContractDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_SalesContractDate.Value = lcl_obj_SalesContract.SalesContractDate;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Packing = new System.Data.OracleClient.OracleParameter("v_PACKING", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_Packing = new OracleParameter("v_PACKING", OracleDbType.NVarchar2, 512);
                     lcl_obj_Packing.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Packing.Value = lcl_obj_SalesContract.Packing;
-                    System.Data.OracleClient.OracleParameter lcl_obj_TermsOfPayments = new System.Data.OracleClient.OracleParameter("v_TERMS_OF_PAYMENT", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_TermsOfPayments = new OracleParameter("v_TERMS_OF_PAYMENT", OracleDbType.NVarchar2, 512);
                     lcl_obj_TermsOfPayments.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_TermsOfPayments.Value = lcl_obj_SalesContract.TermsOfPayments;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Delivery = new System.Data.OracleClient.OracleParameter("v_DELIVERY", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_Delivery = new OracleParameter("v_DELIVERY", OracleDbType.NVarchar2, 512);
                     lcl_obj_Delivery.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Delivery.Value = lcl_obj_SalesContract.Delivery;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Description = new System.Data.OracleClient.OracleParameter("v_DESCRIPTION", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_Description = new OracleParameter("v_DESCRIPTION", OracleDbType.NVarchar2, 512);
                     lcl_obj_Description.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Description.Value = lcl_obj_SalesContract.Description;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CountryOrigin = new System.Data.OracleClient.OracleParameter("v_COUNTRY_ORIGIN", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_CountryOrigin = new OracleParameter("v_COUNTRY_ORIGIN", OracleDbType.NVarchar2, 512);
                     lcl_obj_CountryOrigin.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_CountryOrigin.Value = lcl_obj_SalesContract.CountryOrigin;
-                    System.Data.OracleClient.OracleParameter lcl_obj_PortofDestination = new System.Data.OracleClient.OracleParameter("v_PORT_OF_DESTINATION", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_PortofDestination = new OracleParameter("v_PORT_OF_DESTINATION", OracleDbType.NVarchar2, 512);
                     lcl_obj_PortofDestination.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_PortofDestination.Value = lcl_obj_SalesContract.PortofDestination;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalesContractCode, lcl_obj_PortOfDelivery, lcl_obj_AdvisingBank, lcl_obj_LCValidity, lcl_obj_TransHipment, lcl_obj_HSCode, lcl_obj_QuotationCode, lcl_obj_BuyerCode, lcl_obj_SalesContractDate, lcl_obj_Packing, lcl_obj_TermsOfPayments, lcl_obj_Delivery, lcl_obj_Description, lcl_obj_CountryOrigin, lcl_obj_PortofDestination };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalesContractCode, lcl_obj_PortOfDelivery, lcl_obj_AdvisingBank, lcl_obj_LCValidity, lcl_obj_TransHipment, lcl_obj_HSCode, lcl_obj_QuotationCode, lcl_obj_BuyerCode, lcl_obj_SalesContractDate, lcl_obj_Packing, lcl_obj_TermsOfPayments, lcl_obj_Delivery, lcl_obj_Description, lcl_obj_CountryOrigin, lcl_obj_PortofDestination };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("WPMS_INS_SALES_CONTRACT", lcl_obj_SP_Parameters);
                    lcl_obj_DBManager.InternalResource.CommitTransaction();
 
@@ -123,7 +124,7 @@ namespace SilkERP360.BML.WPMS
                            lcl_obj_DBManager.Open();
                        }
                         System.String lcl_str_SqlQuery = System.String.Format("Select * From WPMS_SALES_CONTRACT Where SALES_CONTRACT_CODE = {0}", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                        System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                        if (lcl_obj_Reader.HasRows == false)
                        {
                            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error SalesContractManager.Get(SALES_CONTRACT_CODE,DBManger)) : Error Retrieving Sales Contract Data!");
@@ -162,7 +163,7 @@ namespace SilkERP360.BML.WPMS
                            {
                                lcl_obj_DBManager.InternalResource.Open();
                            }
-                            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From WPMS_SALES_CONTRACT Where SALES_CONTRACT_CODE = {0}", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From WPMS_SALES_CONTRACT Where SALES_CONTRACT_CODE = {0}", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
                             if (!(lcl_obj_Reader.HasRows))
                            {
                                throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (CustomerManager.Get(ID)) : No WorkGroup Data Found In The Database!!!");
@@ -202,7 +203,7 @@ namespace SilkERP360.BML.WPMS
                             lcl_obj_DBManager.Open();
                         }
                             System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                             if (lcl_obj_Reader.HasRows == false)
                             {
                                 throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error SalesContractManager.Get(SqlQuery,DBManger)) : Error Retrieving SalesContract Data!");
@@ -241,7 +242,7 @@ namespace SilkERP360.BML.WPMS
                            {
                                lcl_obj_DBManager.InternalResource.Open();
                            }
-                            System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                             if (!(lcl_obj_Reader.HasRows))
                            {
                                throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalesContractManager.Get(SqlQuery)) : No Company Data Found In The Database!!!");
@@ -279,7 +280,7 @@ namespace SilkERP360.BML.WPMS
                        {
                            lcl_obj_DBManager.Open();
                        }
-                        System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                         if (!(lcl_obj_Reader.HasRows))
                        {
                            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error SalesContractManager.GetList(SqlQuery,DBManager)) : No Company Data Found In The Database!!!");
@@ -325,7 +326,7 @@ namespace SilkERP360.BML.WPMS
                                {
                                    lcl_obj_DBManager.InternalResource.Open();
                                }
-                                System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                                 if (!(lcl_obj_Reader.HasRows))
                                 {
                                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (SalesContractManager.GetList(SqlQuery)) : No SalesContract Data Found In The Database!!!");

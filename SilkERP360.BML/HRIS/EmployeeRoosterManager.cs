@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,25 +28,25 @@ namespace SilkERP360.BML.HRIS
             lcl_ui64_EmployeeRoosterCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeRoosterCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_ROOSTER_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeRoosterCode = new OracleParameter("p_EMPLOYEE_ROOSTER_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeRoosterCode.Direction = System.Data.ParameterDirection.Output;
               // lcl_obj_EmployeeRoosterCode.Value = IP_obj_EmployeeRooster.EmployyeRoosterCode;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeRoosterMasterCode = new System.Data.OracleClient.OracleParameter("p_ROOSTER_MASTER_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeRoosterMasterCode = new OracleParameter("p_ROOSTER_MASTER_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeRoosterMasterCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeRoosterMasterCode.Value = IP_obj_EmployeeRooster.EmployeeRoosterMasterCode;
 
 
-                System.Data.OracleClient.OracleParameter lcl_obj_DutyDate = new System.Data.OracleClient.OracleParameter("p_DUTY_DATE", System.Data.OracleClient.OracleType.DateTime);
+                OracleParameter lcl_obj_DutyDate = new OracleParameter("p_DUTY_DATE", OracleDbType.Date);
                 lcl_obj_DutyDate.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_DutyDate.Value = IP_obj_EmployeeRooster.DutyDate;
 
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("p_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("p_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeCode.Value = IP_obj_EmployeeRooster.EmployeeCode;
 
 
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeRoosterCode, lcl_obj_EmployeeRoosterMasterCode, lcl_obj_DutyDate, lcl_obj_EmployeeCode};
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeRoosterCode, lcl_obj_EmployeeRoosterMasterCode, lcl_obj_DutyDate, lcl_obj_EmployeeCode};
                 lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_ROOSTER_IU", lcl_obj_SP_Parameters);
 
                 return System.UInt64.Parse(lcl_obj_EmployeeRoosterCode.Value.ToString());
@@ -72,25 +73,25 @@ namespace SilkERP360.BML.HRIS
                         lcl_obj_DBManager.InternalResource.Open();
                     }
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeRoosterCode = new System.Data.OracleClient.OracleParameter("v_EmployeeRoosterCode", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EmployeeRoosterCode = new OracleParameter("v_EmployeeRoosterCode", OracleDbType.Int64);
                     lcl_obj_EmployeeRoosterCode.Direction = System.Data.ParameterDirection.Output;
                     lcl_obj_EmployeeRoosterCode.Value = lcl_obj_EmployeeRooster.EmployeeRoosterCode;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeRoosterMasterCode = new System.Data.OracleClient.OracleParameter("v_EmployeeRoosterMasterCode", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EmployeeRoosterMasterCode = new OracleParameter("v_EmployeeRoosterMasterCode", OracleDbType.Int64);
                     lcl_obj_EmployeeRoosterMasterCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EmployeeRoosterMasterCode.Value = lcl_obj_EmployeeRooster.EmployeeRoosterMasterCode;
 
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_DutyDate = new System.Data.OracleClient.OracleParameter("v_DutyDate", System.Data.OracleClient.OracleType.DateTime);
+                    OracleParameter lcl_obj_DutyDate = new OracleParameter("v_DutyDate", OracleDbType.Date);
                     lcl_obj_DutyDate.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_DutyDate.Value = lcl_obj_EmployeeRooster.DutyDate;
 
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EmployeeCode", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
                     lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeRooster.EmployeeCode;
 
 
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeRoosterCode, lcl_obj_EmployeeRoosterMasterCode, lcl_obj_DutyDate, lcl_obj_EmployeeCode};
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeRoosterCode, lcl_obj_EmployeeRoosterMasterCode, lcl_obj_DutyDate, lcl_obj_EmployeeCode};
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_INSERT_EMPLOYEERooster", lcl_obj_SP_Parameters);
 
                     return System.UInt64.Parse(lcl_obj_EmployeeRoosterCode.Value.ToString());
@@ -117,7 +118,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE_ROOSTER Where EMPLOYEE_ROOSTER_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeRoosterMasterReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeRoosterMasterReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_EmployeeRoosterMasterReader.HasRows == false)
                 {
@@ -151,7 +152,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeRoosterMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_ROOSTER Where EMPLOYEE_ROOSTER_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeRoosterMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_ROOSTER Where EMPLOYEE_ROOSTER_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
                     if (!(lcl_obj_EmployeeRoosterMasterReader.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeRoosterManager.Get(ID)) : No EmployeeRoosterManager Data Found In The Database!!!");
@@ -188,7 +189,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeRoosterReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeRoosterReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_EmployeeRoosterReader.HasRows == false)
                 {
@@ -222,7 +223,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeRoosterMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeRoosterMasterReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(lcl_obj_EmployeeRoosterMasterReader.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeRoosterManager.SqlQuery(ID)) : No EmployeeRoosterManager Data Found In The Database!!!");
@@ -256,7 +257,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeRooster.GetList(SqlQuery,DBManager)) : No EmployeeRooster Data Found In The Database!!!");
@@ -296,7 +297,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (RoosterMaster.GetList(SqlQuery)) : No RoosterMaster Data Found In The Database!!!");

@@ -235,7 +235,7 @@ namespace SilkERP360.WebServices.HRIS
                 }
                 lcl_obj_SqlFacade = new FL.SqlFacade();
                 lcl_str_SqlQuery = System.String.Format("SELECT * FROM EMPLOYEE WHERE EMPLOYEE_ID = '{0}'", IP_str_EmployeeId);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeReader.HasRows))
                 {
                     //Employee ID does not exist in the database
@@ -278,7 +278,7 @@ namespace SilkERP360.WebServices.HRIS
                                                                     "ON WG_OP_MSTR.WG_OPERATION_MASTER_CODE = WG_OP_HSTRY.WG_OPERATION_MASTER_CODE " +
                                                                     "WHERE WG_OP_MSTR.WORK_DATE = TO_DATE('{0}','DD/MM/YYYY') AND WG_OP_HSTRY.EMPLOYEE_CODE = {1} AND IS_DELETED = 0", IP_dt_WorkDate.ToString("dd/MM/yyyy"), lcl_ui64_EmployeeCode);
 
-                            System.Data.OracleClient.OracleDataReader lcl_obj_WorkGroupOperationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WorkGroupOperationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
 
                             if (lcl_obj_WorkGroupOperationReader.HasRows)
                             {

@@ -32,7 +32,7 @@ namespace SilkERP360.BML.HRIS
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
                 System.String lcl_str_SqlQuery = System.String.Format("Select DEPT_NAME From DEPARTMENT Where DEPARTMENT_CODE = {0} AND STATUS = {1} AND IS_DELETED = 1", IP_ui64_DepartmentCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_DepartmentReader.HasRows == false)
                 {
                     System.String lcl_str_ErrorMessage = System.String.Format("Fatal Error : Department (Code : {0}) Not Found!!!", IP_ui64_DepartmentCode);
@@ -68,7 +68,7 @@ namespace SilkERP360.BML.HRIS
                                                                       "WHERE COMP.COMPANY_CODE = {0} AND " +
                                                                       "COMP.STATUS = 1;", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_DepartmentReader.HasRows == false)
                 {
                     System.String lcl_str_ErrorMessage = System.String.Format("Fatal Error : No Departments For Company (Code : {0}) was Not Found!!!", IP_ui64_CompanyCode);
@@ -114,7 +114,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_DepartmentReader.HasRows == false)
                     {
                         System.String lcl_str_ErrorMessage = System.String.Format("Fatal Error : No Departments For Company (Code : {0}) was Not Found!!!", IP_ui64_CompanyCode);
@@ -227,7 +227,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From DEPARTMENT DEPARTMENT_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorDepartment.Get(ID,DBManger)) : Error Retrieving Department Data!");
@@ -258,7 +258,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From DEPARTMENT DEPARTMENT_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From DEPARTMENT DEPARTMENT_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Department.Get(ID)) : No Attandance Data Found In The Database!!!");
@@ -289,7 +289,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Department.GetList(SqlQuery)) : No Department Data Found In The Database!!!");
                     }
@@ -324,7 +324,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(lcl_obj_dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Department.GetList(SqlQuery,DBManager)) : No Attandance Data Found In The Database!!!");
@@ -361,7 +361,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorDepartment.Get(SqlQuery,DBManger)) : Error Retrieving Department Data!");
@@ -411,7 +411,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Department.Get(SqlQuery)) : No Attandance Data Found In The Database!!!");

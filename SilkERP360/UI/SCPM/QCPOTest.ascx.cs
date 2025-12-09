@@ -44,7 +44,7 @@ namespace SilkERP360.UI.SCPM
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //PVC Sheet Vendor Configuration Configuration
                 System.String lcl_str_SqlQuery = System.String.Format(@"SELECT V.* FROM VENDOR V JOIN VENDOR_GROUP VG ON V.VENDOR_CODE = VG.VENDOR_CODE WHERE VG.GROUP_TYPE = {0} AND V.STATUS = {1} AND V.COMPANY_CODE = {2}", (System.Int16)SilkERP360.CCL.Enums.SCPM.VendorGroup.PVCSheetSupplier, (System.Int16)SilkERP360.CCL.Enums.Status.Active, lcl_ui64_CompanyCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_VendorReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_VendorReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_VendorReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("No Active Vendor Was Found!!!");

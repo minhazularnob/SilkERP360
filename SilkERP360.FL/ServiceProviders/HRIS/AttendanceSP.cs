@@ -43,7 +43,7 @@ namespace SilkERP360.FL.ServiceProviders.HRIS
                 lcl_obj_SqlManager.Initialize();
                 //Get Corresponding EmployeeId
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE EMPLOYEE_CODE = {0}", IP_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeIdReader = lcl_obj_SqlManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeIdReader = lcl_obj_SqlManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeIdReader.HasRows))
                 {
                     lcl_obj_EmployeeIdReader.Close();
@@ -57,7 +57,7 @@ namespace SilkERP360.FL.ServiceProviders.HRIS
                 lcl_str_SqlQuery = System.String.Format("SELECT * FROM BMS_TRANSACTION WHERE RTRIM(EMPLOYEE_ID) = '{0}' AND TRAN_DATE_TIME >= TO_DATE('{1}','dd/mm/yyyy hh:mi:ss am') AND TRAN_DATE_TIME <= TO_DATE('{2}','dd/mm/yyyy hh:mi:ss am') ORDER BY TRAN_DATE_TIME DESC", lcl_str_EmployeeId.Trim(), IP_dt_StartDate.ToString("dd/M/yyyy hh:mm:ss tt"), IP_dt_EndDate.ToString("dd/M/yyyy hh:mm:ss tt"));
                 
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.BMSTransaction> lcl_objLst_BMSTransactionTmp = new List<CCL.BusinessEntities.HRIS.BMSTransaction>();
-                System.Data.OracleClient.OracleDataReader lcl_obj_BMSTransactionReader = lcl_obj_SqlManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_BMSTransactionReader = lcl_obj_SqlManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_BMSTransactionReader.HasRows))
                 {
                     lcl_obj_BMSTransactionReader.Close();
@@ -102,13 +102,13 @@ namespace SilkERP360.FL.ServiceProviders.HRIS
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new SqlFacade();
                 lcl_obj_SqlFacade.Initialize();
                 System.String lcl_str_Query = System.String.Format("SELECT EMP.IS_OT_ELIGIBLE FROM EMPLOYEE EMP JOIN ATTENDANCE ATN ON EMP.EMPLOYEE_CODE = ATN.EMPLOYEE_CODE WHERE ATN.ATTENDANCE_CODE = {0}", IP_ui64_AttendanceCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeProfileReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeProfileReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
                 lcl_obj_EmployeeProfileReader.Read();
                 SilkERP360.CCL.Enums.YesNo lcl_enm_OtEligibility = (SilkERP360.CCL.Enums.YesNo)System.Int32.Parse(lcl_obj_EmployeeProfileReader["IS_OT_ELIGIBLE"].ToString());
                 lcl_obj_EmployeeProfileReader.Close();
                 System.String lcl_str_SqlUpdate = System.String.Empty;
                 lcl_str_Query = System.String.Format("SELECT AM.ATTENDANCE_MASTER_CODE FROM ATTENDANCE_MASTER AM JOIN ATTENDANCE ATTN ON AM.ATTENDANCE_MASTER_CODE = ATTN.ATTENDANCE_MASTER_CODE WHERE ATTN.ATTENDANCE_CODE = {0}", IP_ui64_AttendanceCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_AttendanceMasterReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_AttendanceMasterReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
                 lcl_obj_AttendanceMasterReader.Read();
                 System.UInt64 lcl_ui64_AttendanceMasterCode = System.UInt64.Parse(lcl_obj_AttendanceMasterReader["ATTENDANCE_MASTER_CODE"].ToString());
                 lcl_obj_AttendanceMasterReader.Close();

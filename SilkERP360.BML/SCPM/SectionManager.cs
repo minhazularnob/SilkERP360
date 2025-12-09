@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace SilkERP360.BML.SCPM
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     dr.Close();
@@ -54,7 +55,7 @@ namespace SilkERP360.BML.SCPM
         //        {
         //            lcl_obj_DBManager.Open();
         //        }
-        //        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+        //        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
         //        if (!(dr.HasRows))
         //        {
         //            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No Section Data Found In The Database!!!");
@@ -80,19 +81,19 @@ namespace SilkERP360.BML.SCPM
             lcl_ui64_Section = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_SectionCode = new System.Data.OracleClient.OracleParameter("p_SECTION_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_SectionCode = new OracleParameter("p_SECTION_CODE", OracleDbType.Int64);
                 lcl_obj_SectionCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_SectionCode.Value = lcl_obj_Section.SectionCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("p_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_CompanyCode = new OracleParameter("p_COMPANY_CODE", OracleDbType.Int64);
                 lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_CompanyCode.Value = lcl_obj_Section.CompanyCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_Name = new System.Data.OracleClient.OracleParameter("p_NAME", System.Data.OracleClient.OracleType.NVarChar, 512);
+                OracleParameter lcl_obj_Name = new OracleParameter("p_NAME", OracleDbType.NVarchar2, 512);
                 lcl_obj_Name.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Name.Value = lcl_obj_Section.Name;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                 lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Status.Value = lcl_obj_Section.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SectionCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_Status };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SectionCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_Status };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS.Section_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_SectionCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -109,19 +110,19 @@ namespace SilkERP360.BML.SCPM
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_SectionCode = new System.Data.OracleClient.OracleParameter("p_SECTION_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_SectionCode = new OracleParameter("p_SECTION_CODE", OracleDbType.Int64);
                     lcl_obj_SectionCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_SectionCode.Value = lcl_obj_Section.SectionCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_CompanyCode = new System.Data.OracleClient.OracleParameter("p_COMPANY_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_CompanyCode = new OracleParameter("p_COMPANY_CODE", OracleDbType.Int64);
                     lcl_obj_CompanyCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_CompanyCode.Value = lcl_obj_Section.CompanyCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Name = new System.Data.OracleClient.OracleParameter("p_NAME", System.Data.OracleClient.OracleType.NVarChar, 512);
+                    OracleParameter lcl_obj_Name = new OracleParameter("p_NAME", OracleDbType.NVarchar2, 512);
                     lcl_obj_Name.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Name.Value = lcl_obj_Section.Name;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                     lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Status.Value = lcl_obj_Section.Status;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SectionCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_Status };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SectionCode, lcl_obj_CompanyCode, lcl_obj_Name, lcl_obj_Status };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS.Section_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_SectionCode.Value.ToString());
                 }

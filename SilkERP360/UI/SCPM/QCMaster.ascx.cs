@@ -44,7 +44,7 @@ namespace SilkERP360.UI.SCPM
                 //Populate Production Section
                 System.Int32 lcl_i32_DDLStartIndex = 1;
                 System.String lcl_str_SqlQuery = System.String.Format("Select * from SCPM_Section where status = 1");
-                System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (!(lcl_obj_SectionReader.HasRows))
                 {
@@ -62,7 +62,7 @@ namespace SilkERP360.UI.SCPM
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //Shift Configuration
                 lcl_str_SqlQuery = System.String.Format(@"SELECT * FROM SHIFT WHERE DEPARTMENT_CODE = {0}", lcl_ui64_DepartmentCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ShiftReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ShiftReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_ShiftReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("No Shift Was Found!!!");
@@ -82,7 +82,7 @@ namespace SilkERP360.UI.SCPM
                 //this.ddlMachine.Items.Add("-----Select Machine");
                 //lcl_i32_DDLStartIndex = 1;
                 //lcl_str_SqlQuery = System.String.Format("Select * from SCPM_Machine where status = 1");
-                //System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
+                //Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
                 //if (!(lcl_obj_MachineReader.HasRows))
                 //{
                 //    throw new System.Exception("No Machines Configured for Scratch Card Sections!!!");
@@ -99,7 +99,7 @@ namespace SilkERP360.UI.SCPM
                 this.ddlOperator.Items.Add("-----Select Machine Operator");
                 
                 lcl_str_SqlQuery = System.String.Format(@"SELECT * FROM SILKERP.EMPLOYEE WHERE DEPARTMENT_CODE = {0} AND EMPLOYEE_STATUS = {1}", lcl_ui64_DepartmentCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_sql_Facade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_RefEpmloyeeReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("RefEmployee Was Not Found!!!");

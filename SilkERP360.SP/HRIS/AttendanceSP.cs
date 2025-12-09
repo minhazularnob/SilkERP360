@@ -31,7 +31,7 @@ namespace SilkERP360.SP.HRIS
                     }
                     //Get Assigned Employee List of selected WorkGroup on Selected date
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT EMP.EMPLOYEE_CODE FROM EMPLOYEE EMP JOIN DESIGNATION DESIG ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE WHERE EMP.EMPLOYEE_CODE =Any(SELECT WGOH.EMPLOYEE_CODE FROM WORK_GROUP_OPERATION_MASTER WGOM JOIN WORK_GROUP_OPERATION_HISTORY WGOH ON WGOM.WG_OPERATION_MASTER_CODE = WGOH.WG_OPERATION_MASTER_CODE WHERE WGOM.WORK_GROUP_CODE = {0} AND WGOM.WORK_DATE = TO_DATE('{1}','DD/MM/YYYY')) ORDER BY DESIG.RANK ASC",IP_ui64_WorkGroupCode,IP_dt_AttendanceDate.ToString("dd/MM/yyyy"));
-                    System.Data.OracleClient.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_WGReader.HasRows == false)
                     {
                         //No Employee Assigned To This WG or WG has not yet been configured
@@ -112,7 +112,7 @@ namespace SilkERP360.SP.HRIS
                     }
                     //Get Assigned Employee List of selected WorkGroup on Selected date
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT EMP.EMPLOYEE_CODE FROM EMPLOYEE EMP JOIN DESIGNATION DESIG ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE WHERE DESIG.DESIGNATION_CODE = {0}", IP_ui64_DesignationCode );
-                    System.Data.OracleClient.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_WGReader.HasRows == false)
                     {
                         //No Employee Assigned To This WG or WG has not yet been configured
@@ -196,7 +196,7 @@ namespace SilkERP360.SP.HRIS
                     foreach (System.UInt64 lcl_ui64_DesignationCode in IP_ui64Lst_DesignationCodes)
                     {
                         lcl_str_SqlQuery = System.String.Format("SELECT EMP.EMPLOYEE_CODE FROM EMPLOYEE EMP JOIN DESIGNATION DESIG ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE WHERE DESIG.DESIGNATION_CODE = {0}", lcl_ui64_DesignationCode);
-                        System.Data.OracleClient.OracleDataReader lcl_obj_EmpReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmpReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                         if (lcl_obj_EmpReader.HasRows == false)
                         {
                             //No Employee Assigned To This WG or WG has not yet been configured

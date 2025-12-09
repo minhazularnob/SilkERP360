@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace SilkERP360.BML.SCPM
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No SCJO Data Found In The Database!!!");
@@ -55,7 +56,7 @@ namespace SilkERP360.BML.SCPM
         //        {
         //            lcl_obj_DBManager.Open();
         //        }
-        //        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+        //        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
         //        if (!(dr.HasRows))
         //        {
         //            throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No SCJO Data Found In The Database!!!");
@@ -82,22 +83,22 @@ namespace SilkERP360.BML.SCPM
             lcl_ui64_SCJO = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_ScJOCode = new System.Data.OracleClient.OracleParameter("p_SC_J_O_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ScJOCode = new OracleParameter("p_SC_J_O_CODE", OracleDbType.Int64);
                 lcl_obj_ScJOCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ScJOCode.Value = lcl_obj_SCJO.ScJOCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_ScJONo = new System.Data.OracleClient.OracleParameter("p_SC_J_O_NO", System.Data.OracleClient.OracleType.NVarChar, 256);
+                OracleParameter lcl_obj_ScJONo = new OracleParameter("p_SC_J_O_NO", OracleDbType.NVarchar2, 256);
                 lcl_obj_ScJONo.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ScJONo.Value = lcl_obj_SCJO.ScJONo;
-                System.Data.OracleClient.OracleParameter lcl_obj_Telco = new System.Data.OracleClient.OracleParameter("p_TELCO", System.Data.OracleClient.OracleType.NVarChar, 256);
+                OracleParameter lcl_obj_Telco = new OracleParameter("p_TELCO", OracleDbType.NVarchar2, 256);
                 lcl_obj_Telco.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Telco.Value = lcl_obj_SCJO.Telco;
-                System.Data.OracleClient.OracleParameter lcl_obj_ProductionStatus = new System.Data.OracleClient.OracleParameter("p_PRODUCTION_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_ProductionStatus = new OracleParameter("p_PRODUCTION_STATUS", OracleDbType.Int64);
                 lcl_obj_ProductionStatus.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_ProductionStatus.Value = lcl_obj_SCJO.ProductionStatus;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                 lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Status.Value = lcl_obj_SCJO.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScJOCode, lcl_obj_ScJONo, lcl_obj_Telco, lcl_obj_ProductionStatus, lcl_obj_Status };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScJOCode, lcl_obj_ScJONo, lcl_obj_Telco, lcl_obj_ProductionStatus, lcl_obj_Status };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS.SCJO_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_ScJOCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -114,22 +115,22 @@ namespace SilkERP360.BML.SCPM
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_ScJOCode = new System.Data.OracleClient.OracleParameter("p_SC_J_O_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ScJOCode = new OracleParameter("p_SC_J_O_CODE", OracleDbType.Int64);
                     lcl_obj_ScJOCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ScJOCode.Value = lcl_obj_SCJO.ScJOCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ScJONo = new System.Data.OracleClient.OracleParameter("p_SC_J_O_NO", System.Data.OracleClient.OracleType.NVarChar, 256);
+                    OracleParameter lcl_obj_ScJONo = new OracleParameter("p_SC_J_O_NO", OracleDbType.NVarchar2, 256);
                     lcl_obj_ScJONo.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ScJONo.Value = lcl_obj_SCJO.ScJONo;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Telco = new System.Data.OracleClient.OracleParameter("p_TELCO", System.Data.OracleClient.OracleType.NVarChar, 256);
+                    OracleParameter lcl_obj_Telco = new OracleParameter("p_TELCO", OracleDbType.NVarchar2, 256);
                     lcl_obj_Telco.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Telco.Value = lcl_obj_SCJO.Telco;
-                    System.Data.OracleClient.OracleParameter lcl_obj_ProductionStatus = new System.Data.OracleClient.OracleParameter("p_PRODUCTION_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_ProductionStatus = new OracleParameter("p_PRODUCTION_STATUS", OracleDbType.Int64);
                     lcl_obj_ProductionStatus.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_ProductionStatus.Value = lcl_obj_SCJO.ProductionStatus;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("p_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
                     lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Status.Value = lcl_obj_SCJO.Status;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScJOCode, lcl_obj_ScJONo, lcl_obj_Telco, lcl_obj_ProductionStatus, lcl_obj_Status };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ScJOCode, lcl_obj_ScJONo, lcl_obj_Telco, lcl_obj_ProductionStatus, lcl_obj_Status };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS.SCJO_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_ScJOCode.Value.ToString());
                 }

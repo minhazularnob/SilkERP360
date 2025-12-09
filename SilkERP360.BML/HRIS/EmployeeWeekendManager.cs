@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,19 +28,19 @@ namespace SilkERP360.BML.HRIS
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
 
-               System.Data.OracleClient.OracleParameter lcl_obj_WeekendCode = new System.Data.OracleClient.OracleParameter("v_WeekendCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_WeekendCode = new OracleParameter("v_WeekendCode", OracleDbType.Int64);
                lcl_obj_WeekendCode.Direction = System.Data.ParameterDirection.Output;
                lcl_obj_WeekendCode.Value = lcl_obj_EmpWeekend.WeekendCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EmployeeCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
                lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_EmployeeCode.Value = lcl_obj_EmpWeekend.EmployeeCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Day = new System.Data.OracleClient.OracleParameter("v_Day", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_Day = new OracleParameter("v_Day", OracleDbType.Int64);
                lcl_obj_Day.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Day.Value = lcl_obj_EmpWeekend.Day;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
                lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_WEEKEND_IU", lcl_obj_SP_Parameters);
 
                return System.UInt64.Parse(lcl_obj_WeekendCode.Value.ToString());
@@ -55,19 +56,19 @@ namespace SilkERP360.BML.HRIS
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
 
-               System.Data.OracleClient.OracleParameter lcl_obj_WeekendCode = new System.Data.OracleClient.OracleParameter("v_WeekendCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_WeekendCode = new OracleParameter("v_WeekendCode", OracleDbType.Int64);
                lcl_obj_WeekendCode.Direction = System.Data.ParameterDirection.Output;
                lcl_obj_WeekendCode.Value = lcl_obj_EmpWeekend.WeekendCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EmployeeCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
                lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_EmployeeCode.Value = lcl_obj_EmpWeekend.EmployeeCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Day = new System.Data.OracleClient.OracleParameter("v_Day", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_Day = new OracleParameter("v_Day", OracleDbType.Int64);
                lcl_obj_Day.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Day.Value = lcl_obj_EmpWeekend.Day;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
                lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_WEEKEND_UPD", lcl_obj_SP_Parameters);
 
                return System.UInt64.Parse(lcl_obj_WeekendCode.Value.ToString());
@@ -86,19 +87,19 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_WeekendCode = new System.Data.OracleClient.OracleParameter("v_WeekendCode", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_WeekendCode = new OracleParameter("v_WeekendCode", OracleDbType.Int64);
                lcl_obj_WeekendCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_WeekendCode.Value = lcl_obj_EmpWeekend.WeekendCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EmployeeCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
                lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_EmployeeCode.Value = lcl_obj_EmpWeekend.EmployeeCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Day = new System.Data.OracleClient.OracleParameter("v_Day", System.Data.OracleClient.OracleType.DateTime);
+               OracleParameter lcl_obj_Day = new OracleParameter("v_Day", OracleDbType.Date);
                lcl_obj_Day.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Day.Value = lcl_obj_EmpWeekend.Day;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
                lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_EMPLOYEE_WEEKEND", lcl_obj_SP_Parameters);
                return System.UInt64.Parse(lcl_obj_WeekendCode.Value.ToString());
                 }
@@ -119,7 +120,7 @@ namespace SilkERP360.BML.HRIS
                }
 
                System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE_WEEKEND Where WEEKEND_CODE = {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-               System.Data.OracleClient.OracleDataReader lcl_obj_EmpWeekendReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmpWeekendReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                if (lcl_obj_EmpWeekendReader.HasRows == false)
                {
@@ -150,7 +151,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_WEEKEND Where WEEKEND_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_WEEKEND Where WEEKEND_CODE = {0} and STATUS = {1} IS_DELETED = 1", IP_ui64_Code, SilkERP360.CCL.Enums.Status.Active));
        if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.Get(ID)) : No EmployeeWeekend Data Found In The Database!!!");
@@ -177,7 +178,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery,DBManager)) : No EmployeeWeekend Data Found In The Database!!!");
@@ -211,7 +212,7 @@ namespace SilkERP360.BML.HRIS
                             lcl_obj_DBManager.InternalResource.Open();
                         }
 
-                        System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
                         if (!(dr.HasRows))
                         {
                             throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.GetList(SqlQuery)) : No EmployeeWeekend Data Found In The Database!!!");
@@ -246,7 +247,7 @@ namespace SilkERP360.BML.HRIS
                 }
 
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmpWeekendReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmpWeekendReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (lcl_obj_EmpWeekendReader.HasRows == false)
                 {
@@ -275,7 +276,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
                     if (!(dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeWeekendManager.Get(SqlQuery)) : No EmployeeWeekend Data Found In The Database!!!");

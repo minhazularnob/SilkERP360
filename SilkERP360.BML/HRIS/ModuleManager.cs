@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,31 +32,31 @@ namespace SilkERP360.BML.HRIS
                    }
                    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException(lcl_objSB_Msg.ToString());
                }
-               System.Data.OracleClient.OracleParameter lcl_obj_ModuleCode = new System.Data.OracleClient.OracleParameter("v_ModuleCode", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_ModuleCode = new OracleParameter("v_ModuleCode", OracleDbType.Int64);
                lcl_obj_ModuleCode.Direction = System.Data.ParameterDirection.Output;
                lcl_obj_ModuleCode.Value = lcl_obj_Module.ModuleCode;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_ModuleName = new System.Data.OracleClient.OracleParameter("v_ModuleName", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_ModuleName = new OracleParameter("v_ModuleName", OracleDbType.Int64);
                lcl_obj_ModuleName.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_ModuleName.Value = lcl_obj_Module.ModuleName;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_Shortname = new System.Data.OracleClient.OracleParameter("v_Shortname", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_Shortname = new OracleParameter("v_Shortname", OracleDbType.Int64);
                lcl_obj_Shortname.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_Shortname.Value = lcl_obj_Module.Shortname;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_HomeLink = new System.Data.OracleClient.OracleParameter("v_HomeLink", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_HomeLink = new OracleParameter("v_HomeLink", OracleDbType.Int64);
                lcl_obj_HomeLink.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_HomeLink.Value = lcl_obj_Module.HomeLink;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IsDeleted", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IsDeleted", OracleDbType.Int64);
                lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_IsDeleted.Value = lcl_obj_Module.IsDeleted;
 
-               System.Data.OracleClient.OracleParameter lcl_obj_status = new System.Data.OracleClient.OracleParameter("v_Status", System.Data.OracleClient.OracleType.Number);
+               OracleParameter lcl_obj_status = new OracleParameter("v_Status", OracleDbType.Int64);
                lcl_obj_status.Direction = System.Data.ParameterDirection.Input;
                lcl_obj_status.Value = lcl_obj_Module.Status;
 
-               System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ModuleCode, lcl_obj_ModuleName, lcl_obj_Shortname, lcl_obj_HomeLink, lcl_obj_IsDeleted, lcl_obj_status };
+               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ModuleCode, lcl_obj_ModuleName, lcl_obj_Shortname, lcl_obj_HomeLink, lcl_obj_IsDeleted, lcl_obj_status };
                lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_MODULE", lcl_obj_SP_Parameters);
 
                return System.UInt64.Parse(lcl_obj_ModuleCode.Value.ToString());
@@ -76,31 +77,31 @@ namespace SilkERP360.BML.HRIS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleParameter lcl_obj_ModuleCode = new System.Data.OracleClient.OracleParameter("v_ModuleCode", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_ModuleCode = new OracleParameter("v_ModuleCode", OracleDbType.Int64);
                    lcl_obj_ModuleCode.Direction = System.Data.ParameterDirection.Output;
                   // lcl_obj_ModuleCode.Value = lcl_obj_Module.ModuleCode;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_ModuleName = new System.Data.OracleClient.OracleParameter("v_ModuleName", System.Data.OracleClient.OracleType.NVarChar,256);
+                   OracleParameter lcl_obj_ModuleName = new OracleParameter("v_ModuleName", OracleDbType.NVarchar2,256);
                    lcl_obj_ModuleName.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_ModuleName.Value = lcl_obj_Module.ModuleName;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_Shortname = new System.Data.OracleClient.OracleParameter("v_Shortname", System.Data.OracleClient.OracleType.NVarChar,32);
+                   OracleParameter lcl_obj_Shortname = new OracleParameter("v_Shortname", OracleDbType.NVarchar2,32);
                    lcl_obj_Shortname.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_Shortname.Value = lcl_obj_Module.Shortname;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_HomeLink = new System.Data.OracleClient.OracleParameter("v_HomeLink", System.Data.OracleClient.OracleType.NVarChar,512);
+                   OracleParameter lcl_obj_HomeLink = new OracleParameter("v_HomeLink", OracleDbType.NVarchar2,512);
                    lcl_obj_HomeLink.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_HomeLink.Value = lcl_obj_Module.HomeLink;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IsDeleted", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IsDeleted", OracleDbType.Int64);
                    lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_IsDeleted.Value = 1;
 
-                   System.Data.OracleClient.OracleParameter lcl_obj_status = new System.Data.OracleClient.OracleParameter("v_Status", System.Data.OracleClient.OracleType.Number);
+                   OracleParameter lcl_obj_status = new OracleParameter("v_Status", OracleDbType.Int64);
                    lcl_obj_status.Direction = System.Data.ParameterDirection.Input;
                    lcl_obj_status.Value = 1;
 
-                   System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ModuleCode, lcl_obj_ModuleName, lcl_obj_Shortname, lcl_obj_HomeLink, lcl_obj_IsDeleted, lcl_obj_status };
+                   OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_ModuleCode, lcl_obj_ModuleName, lcl_obj_Shortname, lcl_obj_HomeLink, lcl_obj_IsDeleted, lcl_obj_status };
                    lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS_INS_MODULE", lcl_obj_SP_Parameters);
 
                    lcl_obj_DBManager.InternalResource.CommitTransaction();
@@ -145,7 +146,7 @@ namespace SilkERP360.BML.HRIS
                    {
                        lcl_obj_DBManager.InternalResource.Open();
                    }
-                   System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                   Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                    {
                        throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (Module.GetList(SqlQuery)) : No Module Data Found In The Database!!!");
                    }

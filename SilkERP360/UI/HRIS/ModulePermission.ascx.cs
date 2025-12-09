@@ -18,7 +18,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("Select USER_CODE,USER_NAME From USERS Where IS_DELETED=1");
-                System.Data.OracleClient.OracleDataReader lcl_obj_UserReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_UserReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("User Not Found!!!");
@@ -52,7 +52,7 @@ namespace SilkERP360.UI.HRIS
                                             Inner join DESIGNATION D On E.DESIGNATION_CODE=D.DESIGNATION_CODE
                                             Inner join DEPARTMENT Dp On E.DEPARTMENT_CODE=Dp.DEPARTMENT_CODE
                                             Inner join COMPANY c On E.COMPANY_CODE=c.COMPANY_CODE)B On A.employee_code=B.employee_code");
-            System.Data.OracleClient.OracleDataReader lcl_obj_UserReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+            Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
             if (!(lcl_obj_UserReader.HasRows))
             {
                 throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("User Not Found!!!");

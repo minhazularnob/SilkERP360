@@ -33,7 +33,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("SELECT * FROM DESIGNATION WHERE COMPANY_CODE = {0}", lcl_ui64_CompanyCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DesignationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DesignationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_DesignationReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Designations for The Selected Company Was Not Found!!!");

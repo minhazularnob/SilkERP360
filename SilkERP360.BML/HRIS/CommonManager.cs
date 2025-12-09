@@ -1,9 +1,11 @@
-﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.CCL.BusinessEntities.HRIS;
 using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.ModelClass;
 using SilkERP360.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -30,22 +32,54 @@ namespace SilkERP360.BML.HRIS
             db.ExecuteScalar(insertSql);
         }
 
+        //internal string generateAndSaveToken(DateTime effectiveFrom)
+        //{
+        //    string token = Guid.NewGuid().ToString("N");
+
+        //    string createdDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        //    string expiryDate = effectiveFrom.ToString("yyyy-MM-dd HH:mm:ss");
+
+        //    string sqlInsert = "INSERT INTO TOKENS (TOKEN_ID, CREATED_DATE, IS_VALID, EXPIRY_AT) VALUES" +
+        //    " ('" + token + "', TO_TIMESTAMP('" + createdDate + "', 'YYYY-MM-DD HH24:MI:SS'), 1, TO_TIMESTAMP('" + expiryDate + "', 'YYYY-MM-DD HH24:MI:SS'))";
+
+        //    using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+        //    {
+        //        if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+        //            dbManager.InternalResource.Open();
+
+        //        dbManager.InternalResource.ExecuteNonQuery(sqlInsert);
+        //        dbManager.InternalResource.CommitTransaction();
+        //    }
+
+        //    return token;
+        //}
+
         internal string generateAndSaveToken(DateTime effectiveFrom)
         {
             string token = Guid.NewGuid().ToString("N");
 
-            string createdDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string expiryDate = effectiveFrom.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string sqlInsert = "INSERT INTO TOKENS (TOKEN_ID, CREATED_DATE, IS_VALID, EXPIRY_AT) VALUES" +
-            " ('" + token + "', TO_TIMESTAMP('" + createdDate + "', 'YYYY-MM-DD HH24:MI:SS'), 1, TO_TIMESTAMP('" + expiryDate + "', 'YYYY-MM-DD HH24:MI:SS'))";
-
             using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
             {
-                if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                if (dbManager.InternalResource.ConnectionState != ConnectionState.Open)
                     dbManager.InternalResource.Open();
 
-                dbManager.InternalResource.ExecuteNonQuery(sqlInsert);
+                string sqlInsert = @"
+            INSERT INTO TOKENS (TOKEN_ID, CREATED_DATE, IS_VALID, EXPIRY_AT)
+            VALUES (:TOKEN_ID, :CREATED_DATE, 1, :EXPIRY_AT)";
+
+                // OracleCommand তৈরি (ManagedDataAccess ব্যবহার করে)
+                using (OracleCommand cmd = new OracleCommand(sqlInsert,
+                    (OracleConnection)dbManager.InternalResource.Connection))
+                {
+                    // Parameters add (Types automatically detected)
+                    cmd.Parameters.Add(new OracleParameter("TOKEN_ID", token));
+                    cmd.Parameters.Add(new OracleParameter("CREATED_DATE", DateTime.Now));
+                    cmd.Parameters.Add(new OracleParameter("EXPIRY_AT", effectiveFrom));
+
+                    // Execute query
+                    cmd.ExecuteNonQuery();
+                }
+
                 dbManager.InternalResource.CommitTransaction();
             }
 
@@ -126,7 +160,7 @@ namespace SilkERP360.BML.HRIS
                                             INNER JOIN employee_personal p ON e.employee_code = p.employee_code
                                             WHERE e.employee_code IN ({string.Join(",", employeeCodes)})";
 
-                using (System.Data.OracleClient.OracleDataReader lcl_obj_dr =
+                using (Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr =
                        lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
                 {
                     while (lcl_obj_dr.Read())

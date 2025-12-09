@@ -49,7 +49,7 @@ namespace SilkERP360.BML.UI
                         {
                             lcl_obj_DBManager.InternalResource.Open();
                         }
-                        System.Data.OracleClient.OracleDataReader lcl_obj_UserReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                         if (lcl_obj_UserReader.HasRows == false)
                         {
                             return null;
@@ -102,7 +102,7 @@ namespace SilkERP360.BML.UI
                                     lcl_obj_DBManagerTmp.InternalResource.Open();
                                 }
 
-                                System.Data.OracleClient.OracleDataReader lcl_obj_MenuReader = lcl_obj_DBManagerTmp.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MenuReader = lcl_obj_DBManagerTmp.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                                 if (lcl_obj_MenuReader.HasRows == true)
                                 {
                                     while (lcl_obj_MenuReader.Read())
@@ -128,7 +128,7 @@ namespace SilkERP360.BML.UI
                                         "ON COM.COMPANY_CODE = USR_MOD_COM.COMPANY_CODE WHERE USR_MOD_COM.USER_CODE = {0} " +
                                         "AND USR_MOD_COM.MODULE_CODE = {1} AND USR_MOD_COM.STATUS = 1 AND USR_MOD_COM.IS_DELETED = 1",IP_ui64_UserCode,lcl_ui64_ModuleCode);
 
-                                System.Data.OracleClient.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManagerTmp.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManagerTmp.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                                 if (lcl_obj_CompanyReader.HasRows == true)
                                 {
                                     while (lcl_obj_CompanyReader.Read())

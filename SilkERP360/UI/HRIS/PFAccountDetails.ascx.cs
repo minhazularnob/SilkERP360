@@ -34,7 +34,7 @@ namespace SilkERP360.UI.HRIS
                                                                         JOIN EMPLOYEE_IMAGE IMG
                                                                         ON EMP.EMPLOYEE_CODE = IMG.EMPLOYEE_CODE
                                                                         WHERE COMP.COMPANY_CODE = {0} AND EMP.IS_PF_ELIGIBLE = 1 AND EMP.IS_DELETED = 1", lcl_str_CompanyCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeInfoReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Employee information Was Not Found!!!");

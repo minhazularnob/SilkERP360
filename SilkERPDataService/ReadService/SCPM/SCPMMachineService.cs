@@ -69,7 +69,7 @@ namespace SilkERPDataService.ReadService.SCPM
             {
                 System.Collections.Generic.List<SilkERPDataService.Containers.SCPM.SCMachineThroughput> lcl_objList_MachineThroughputList = new System.Collections.Generic.List<SilkERPDataService.Containers.SCPM.SCMachineThroughput>();
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE_THROUGHPUT WHERE MACHINE_CODE = {0} AND (THROUGHPUT_DT_TM >= TO_DATE('{1}','dd/MM/yyyy') AND THROUGHPUT_DT_TM <= TO_DATE('{2}','dd/MM/yyyy')) ORDER BY THROUGHPUT_DT_TM ASC", IP_ui64_MachineCode, IP_dt_StartDate.ToString("dd/MM/yyyy"), IP_dt_EndDate.ToString("dd/MM/yyyy"));
-                System.Data.OracleClient.OracleDataReader lcl_obj_MachineThroughputReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineThroughputReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_MachineThroughputReader.HasRows == false)
                 {
                     //throw new System.Exception("Machine Throughput Data Not Found in the SilkERP database for the Machine!!!");
@@ -108,7 +108,7 @@ namespace SilkERPDataService.ReadService.SCPM
             {
                 System.Collections.Generic.List<SilkERPDataService.Containers.SCPM.SCMachineThroughput> lcl_objList_MachineThroughputList = new System.Collections.Generic.List<SilkERPDataService.Containers.SCPM.SCMachineThroughput>();
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE_THROUGHPUT WHERE MACHINE_CODE = {0}", IP_ui64_MachineCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_MachineThroughputReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineThroughputReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_MachineThroughputReader.HasRows == false)
                 {
                     throw new System.Exception("Machine Throughput Data Not Found in the SilkERP database for the Machine!!!");
@@ -151,7 +151,7 @@ namespace SilkERPDataService.ReadService.SCPM
             {
                 System.Collections.Generic.List<SilkERPDataService.Containers.SCPM.SCPMMachine> lcl_objList_MachineList = new System.Collections.Generic.List<Containers.SCPM.SCPMMachine>();
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = IP_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = IP_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (lcl_obj_MachineReader.HasRows == false)
                 {
                     //throw new System.Exception("Machine Data Not Found in the SilkERP database!!!");
@@ -199,7 +199,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     //System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE PROCESS_CODE = {0} AND STATUS = {1}", IP_ui64_ProcessCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         //no machine found for the Process. return empty List
@@ -248,7 +248,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE MACHINE_CODE = {0} AND STATUS = {1}", IP_ui64_MachineCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Section Data for Section Code " + IP_ui64_MachineCode.ToString() + " Not Found in the SilkERP database!!!");
@@ -296,7 +296,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE MACHINE_CODE = {0} AND STATUS = {1}", IP_ui64_MachineCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data for Section Code " + IP_ui64_MachineCode.ToString() + " Not Found in the SilkERP database!!!");
@@ -340,7 +340,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 SilkERPDataService.Containers.SCPM.SCPMMachineSTR lcl_obj_MachineSTR = new SilkERPDataService.Containers.SCPM.SCPMMachineSTR();
                     //lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE MACHINE_CODE = {0} AND STATUS = {1}", IP_ui64_MachineCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data for Section Code " + IP_ui64_MachineCode.ToString() + " Not Found in the SilkERP database!!!");
@@ -386,7 +386,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE MACHINE_CODE = {0} AND STATUS = {1}", IP_ui64_MachineCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data for Section Code " + IP_ui64_MachineCode.ToString() + " Not Found in the SilkERP database!!!");
@@ -434,7 +434,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE PROCESS_CODE = {0} AND STATUS = {1}", IP_ui64_ProcessCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data Not Found in the SilkERP database!!!");
@@ -481,7 +481,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 using (SilkERP360.DAL.DBManager lcl_obj_DBManager = IP_obj_DBManager)
                 {
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE PROCESS_CODE = {0} AND STATUS = {1}", IP_ui64_ProcessCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data Not Found in the SilkERP database!!!");
@@ -528,7 +528,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE SECTION_CODE = {0} AND STATUS = {1}", IP_ui64_SectionCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data Not Found in the SilkERP database!!!");
@@ -575,7 +575,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 using (SilkERP360.DAL.DBManager lcl_obj_DBManager = IP_obj_DBManager)
                 {
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE SECTION_CODE = {0} AND STATUS = {1}", IP_ui64_SectionCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data Not Found in the SilkERP database!!!");
@@ -623,7 +623,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_MACHINE WHERE MACHINE_CODE = {0}", IP_ui64_MachineCode.ToString());
-                    System.Data.OracleClient.OracleDataReader lcl_obj_MachineDtlReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_MachineDtlReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_MachineDtlReader.HasRows == false)
                     {
                         throw new System.Exception("Machine Data for Section Code " + IP_ui64_MachineCode.ToString() + " Not Found in the SilkERP database!!!");

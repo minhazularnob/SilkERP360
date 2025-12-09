@@ -59,7 +59,7 @@ namespace SilkERP360.BML.WPMS
                    lcl_obj_DBManager.InternalResource.Open();
                }
 
-               System.Data.OracleClient.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
+               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_Reader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery);
 
                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawProduct> lcl_objLst_Items2Tmp = new
                    System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.WPMS.RawProduct>();

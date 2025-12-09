@@ -33,7 +33,7 @@ namespace SilkERP360.UI.HRIS
                 inner join DESIGNATION DS on E.DESIGNATION_CODE=ds.designation_code
                 Inner join DEPARTMENT Dp on  e.department_code=dp.DEPARTMENT_CODE
                 where employee_code={0}", lcl_ui64_EmployeeCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeInfoReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Employee information Was Not Found!!!");
@@ -60,7 +60,7 @@ namespace SilkERP360.UI.HRIS
                 //Load Leave Type
                 lcl_str_SqlQuery = System.String.Format(@"Select leave_code,short_name
                     from leave Where company_code={0} And is_deleted=1 And status={1} Order by leave_code ", lcl_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_LeaveTypeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_LeaveTypeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_LeaveTypeReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Leave Was Not Found!!!");
@@ -79,7 +79,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_str_SqlQuery = System.String.Format(@"select EMPLOYEE_CODE,EmpName From
                 (select EMPLOYEE_CODE,EMPLOYEE_NAME||'('||EMPLOYEE_ID||')' AS EmpName,IS_DELETED,EMPLOYEE_STATUS,DEPARTMENT_CODE
                 From EMPLOYEE )X  Where DEPARTMENT_CODE={0} AND  EMPLOYEE_STATUS =0  And EMPLOYEE_CODE<>{2} AND IS_DELETED = 1 Order by EmpName  ", lcl_ui64_DepartmentCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active, lcl_ui64_EmployeeCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if ((lcl_obj_RefEpmloyeeReader.HasRows))
                 {
                     //    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("RefEmployee Was Not Found!!!");
@@ -99,7 +99,7 @@ namespace SilkERP360.UI.HRIS
                 lcl_str_SqlQuery = System.String.Format(@"select leave.Short_name,leave.no_of_days as due,(leave.no_of_days-employee_entitle_leave.balance) as Taken,employee_entitle_leave.balance as balance from
                                                         employee_entitle_leave join leave on leave.Leave_code=employee_entitle_leave.Leave_code WHERE employee_code = {0} and employee_entitle_leave.is_deleted=1", lcl_str_EmployeeCode);
 
-                System.Data.OracleClient.OracleDataReader lcl_obj_LeaveEmployeehistoryReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_LeaveEmployeehistoryReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_LeaveEmployeehistoryReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Leave history Was Not Found!!!");

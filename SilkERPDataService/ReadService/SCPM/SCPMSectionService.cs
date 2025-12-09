@@ -17,7 +17,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 using (SilkERP360.DAL.DBManager lcl_obj_DBManager = new SilkERP360.DAL.DBManager(SilkERPDataService.Globals.SilkERPDatabaseConnectionString))
                 {
                     lcl_obj_DBManager.Open();
-                    System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                     if (lcl_obj_SectionReader.HasRows == false)
                     {
                         throw new System.Exception("Section Data Not Found in the SilkERP database!!!");
@@ -55,7 +55,7 @@ namespace SilkERPDataService.ReadService.SCPM
             try
             {
                 System.Collections.Generic.List<SilkERPDataService.Containers.SCPM.SCPMSection> lcl_objList_SectionList = new System.Collections.Generic.List<Containers.SCPM.SCPMSection>();
-                System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = IP_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = IP_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (lcl_obj_SectionReader.HasRows == false)
                 {
                     throw new System.Exception("Section Data Not Found in the SilkERP database!!!");
@@ -90,7 +90,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_SECTION WHERE SECTION_CODE = {0} AND STATUS = {1}", IP_ui64_SectionCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_SectionReader.HasRows == false)
                     {
                         throw new System.Exception("Section Data for Section Code " + IP_ui64_SectionCode.ToString() +  " Not Found in the SilkERP database!!!");
@@ -123,7 +123,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 //SilkERPDataService.Containers.SCPM.SCPMSection lcl_obj_Section = new SilkERPDataService.Containers.SCPM.SCPMSection();
                
                 System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_SECTION WHERE SECTION_CODE = {0} AND STATUS = {1}", IP_ui64_SectionCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_SectionReader.HasRows == false)
                 {
                     throw new System.Exception("Section Data for Section Code " + IP_ui64_SectionCode.ToString() + " Not Found in the SilkERP database!!!");
@@ -156,7 +156,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 {
                     lcl_obj_DBManager.Open();
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_SECTION WHERE COMPANY_CODE = {0} AND STATUS = {1}", IP_ui64_CompanyCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_SectionReader.HasRows == false)
                     {
                         throw new System.Exception("Section Data Not Found in the SilkERP database!!!");
@@ -191,7 +191,7 @@ namespace SilkERPDataService.ReadService.SCPM
                 using (SilkERP360.DAL.DBManager lcl_obj_DBManager = IP_obj_DBManager)
                 {
                     System.String lcl_str_SqlQuery = System.String.Format("SELECT * FROM SCPM_SECTION WHERE COMPANY_CODE = {0} AND STATUS = {1}", IP_ui64_CompanyCode.ToString(), (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_SectionReader.HasRows == false)
                     {
                         throw new System.Exception("Section Data Not Found in the SilkERP database!!!");

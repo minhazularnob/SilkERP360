@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel;
-using System.Collections;
+﻿using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -20,25 +15,25 @@ namespace SilkERP360.BML.HRIS
             lcl_ui64_EmployeeBankAccountsCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                System.Data.OracleClient.OracleParameter lcl_obj_BankAccountCode = new System.Data.OracleClient.OracleParameter("v_BANK_ACCOUNT_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_BankAccountCode = new OracleParameter("v_BANK_ACCOUNT_CODE", OracleDbType.Int64);
                 lcl_obj_BankAccountCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BankAccountCode.Value = lcl_obj_EmployeeBankAccounts.BankAccountCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_BankAccountNumber = new System.Data.OracleClient.OracleParameter("v_BANK_ACCOUNT_NUMBER", System.Data.OracleClient.OracleType.NVarChar);
+                OracleParameter lcl_obj_BankAccountNumber = new OracleParameter("v_BANK_ACCOUNT_NUMBER", OracleDbType.NVarchar2);
                 lcl_obj_BankAccountNumber.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BankAccountNumber.Value = lcl_obj_EmployeeBankAccounts.BankAccountNumber;
-                System.Data.OracleClient.OracleParameter lcl_obj_BankCode = new System.Data.OracleClient.OracleParameter("v_BANK_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_BankCode = new OracleParameter("v_BANK_CODE", OracleDbType.Int64);
                 lcl_obj_BankCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_BankCode.Value = lcl_obj_EmployeeBankAccounts.BankCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                 lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeBankAccounts.EmployeeCode;
-                System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
                 lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_IsDeleted.Value = lcl_obj_EmployeeBankAccounts.IsDeleted;
-                System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+                OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                 lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                 lcl_obj_Status.Value = lcl_obj_EmployeeBankAccounts.Status;
-                System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_BankAccountCode, lcl_obj_BankAccountNumber, lcl_obj_BankCode, lcl_obj_EmployeeCode, lcl_obj_IsDeleted, lcl_obj_Status, };
+                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_BankAccountCode, lcl_obj_BankAccountNumber, lcl_obj_BankCode, lcl_obj_EmployeeCode, lcl_obj_IsDeleted, lcl_obj_Status, };
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS.EmployeeBankAccounts_IU", lcl_obj_SP_Parameters);
                 return System.UInt64.Parse(lcl_obj_BankAccountCode.Value.ToString());
             }, "BMLExceptionPolicy");
@@ -55,25 +50,25 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleParameter lcl_obj_BankAccountCode = new System.Data.OracleClient.OracleParameter("v_BANK_ACCOUNT_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_BankAccountCode = new OracleParameter("v_BANK_ACCOUNT_CODE", OracleDbType.Int64);
                     lcl_obj_BankAccountCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BankAccountCode.Value = lcl_obj_EmployeeBankAccounts.BankAccountCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_BankAccountNumber = new System.Data.OracleClient.OracleParameter("v_BANK_ACCOUNT_NUMBER", System.Data.OracleClient.OracleType.NVarChar);
+                    OracleParameter lcl_obj_BankAccountNumber = new OracleParameter("v_BANK_ACCOUNT_NUMBER", OracleDbType.NVarchar2);
                     lcl_obj_BankAccountNumber.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BankAccountNumber.Value = lcl_obj_EmployeeBankAccounts.BankAccountNumber;
-                    System.Data.OracleClient.OracleParameter lcl_obj_BankCode = new System.Data.OracleClient.OracleParameter("v_BANK_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_BankCode = new OracleParameter("v_BANK_CODE", OracleDbType.Int64);
                     lcl_obj_BankCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_BankCode.Value = lcl_obj_EmployeeBankAccounts.BankCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_EmployeeCode = new System.Data.OracleClient.OracleParameter("v_EMPLOYEE_CODE", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
                     lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeBankAccounts.EmployeeCode;
-                    System.Data.OracleClient.OracleParameter lcl_obj_IsDeleted = new System.Data.OracleClient.OracleParameter("v_IS_DELETED", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
                     lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_IsDeleted.Value = lcl_obj_EmployeeBankAccounts.IsDeleted;
-                    System.Data.OracleClient.OracleParameter lcl_obj_Status = new System.Data.OracleClient.OracleParameter("v_STATUS", System.Data.OracleClient.OracleType.Number);
+                    OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
                     lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
                     lcl_obj_Status.Value = lcl_obj_EmployeeBankAccounts.Status;
-                    System.Data.OracleClient.OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_BankAccountCode, lcl_obj_BankAccountNumber, lcl_obj_BankCode, lcl_obj_EmployeeCode, lcl_obj_IsDeleted, lcl_obj_Status, };
+                    OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_BankAccountCode, lcl_obj_BankAccountNumber, lcl_obj_BankCode, lcl_obj_EmployeeCode, lcl_obj_IsDeleted, lcl_obj_Status, };
                     lcl_obj_DBManager.InternalResource.ExecuteStoredProcedure("HRIS.EmployeeBankAccounts_IU", lcl_obj_SP_Parameters);
                     return System.UInt64.Parse(lcl_obj_BankAccountCode.Value.ToString());
                 }
@@ -91,7 +86,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From EMPLOYEE_BANK_ACCOUNTS EMPLOYEE_BANK_ACCOUNTS_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployeeBankAccounts.Get(ID,DBManger)) : Error Retrieving EmployeeBankAccounts Data!");
@@ -121,7 +116,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_BANK_ACCOUNTS EMPLOYEE_BANK_ACCOUNTS_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format("Select * From EMPLOYEE_BANK_ACCOUNTS EMPLOYEE_BANK_ACCOUNTS_CODE= {0} and STATUS = {1} and IS_DELETED = 1", IP_ui64_Code, (System.UInt32)SilkERP360.CCL.Enums.Status.Active));
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeBankAccounts.Get(ID)) : No Attandance Data Found In The Database!!!");
@@ -151,7 +146,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery); if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeBankAccounts.GetList(SqlQuery)) : No Attandance Data Found In The Database!!!");
                     }
@@ -185,7 +180,7 @@ namespace SilkERP360.BML.HRIS
                 {
                     lcl_obj_DBManager.Open();
                 }
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(IP_str_SqlQuery);
                 if (!(lcl_obj_dr.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeBankAccounts.GetList(SqlQuery,DBManager)) : No Attandance Data Found In The Database!!!");
@@ -225,7 +220,7 @@ namespace SilkERP360.BML.HRIS
                     lcl_obj_DBManager.Open();
                 }
                 System.String lcl_str_SqlQuery = System.String.Format(IP_str_SqlQuery);
-                System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                 if (lcl_obj_dr.HasRows == false)
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal ErrorEmployeeBankAccounts.Get(SqlQuery,DBManger)) : Error Retrieving EmployeeBankAccounts Data!");
@@ -259,7 +254,7 @@ namespace SilkERP360.BML.HRIS
                     {
                         lcl_obj_DBManager.InternalResource.Open();
                     }
-                    System.Data.OracleClient.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(System.String.Format(IP_str_SqlQuery));
                     if (!(lcl_obj_dr.HasRows))
                     {
                         throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException("Fatal Error (EmployeeBankAccounts.Get(SqlQuery)) : No Attandance Data Found In The Database!!!");
@@ -277,9 +272,5 @@ namespace SilkERP360.BML.HRIS
             }, "BMLExceptionPolicy");
             return lcl_obj_EmployeeBankAccounts;
         }
-
-
-
-     
     }
 }

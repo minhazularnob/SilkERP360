@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.OracleClient;
 
 namespace SilkERP360.BML.UI
 {
@@ -72,7 +71,7 @@ namespace SilkERP360.BML.UI
                         lcl_obj_DBManager.InternalResource.Open();
                     }
                     System.String lcl_str_SqlQuery = System.String.Format("Select * From USERS Where UPPER(USER_NAME) = UPPER('{0}') AND PASSWORD = '{1}' AND STATUS = 1",IP_str_UserName,IP_str_Password);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_UserDataReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserDataReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_UserDataReader.HasRows == false)
                     {
                         //Invalid User
@@ -108,7 +107,7 @@ namespace SilkERP360.BML.UI
                 {
                     SilkERP360.CCL.BusinessEntities.UI.User lcl_obj_UserTmp = new SilkERP360.CCL.BusinessEntities.UI.User();
                     System.String lcl_str_SqlQuery = System.String.Format("Select * From USERS Where USER_CODE = {0} And STATUS = {1} AND IS_DELETED = 1", IP_ui64_UserCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                    System.Data.OracleClient.OracleDataReader lcl_obj_UserReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserReader = IP_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                     if (lcl_obj_UserReader.HasRows == false)
                     {
                         return null;
@@ -139,7 +138,7 @@ namespace SilkERP360.BML.UI
                     {
                         SilkERP360.CCL.BusinessEntities.UI.User lcl_obj_UserTmp = new SilkERP360.CCL.BusinessEntities.UI.User();
                         System.String lcl_str_SqlQuery = System.String.Format("Select * From USERS Where USER_CODE = {0} And STATUS = {1}", IP_ui64_UserCode, SilkERP360.CCL.Enums.Status.Active);
-                        System.Data.OracleClient.OracleDataReader lcl_obj_UserReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                        Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_UserReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
                         if (lcl_obj_UserReader.HasRows == false)
                         {
                             return null;

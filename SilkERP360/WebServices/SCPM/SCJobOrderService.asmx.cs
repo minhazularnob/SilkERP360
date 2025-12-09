@@ -32,7 +32,7 @@ namespace SilkERP360.WebServices.SCPM
                 //Step-1
                 //Get the Product_Type that IP_ui64_SectionCode Produces
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From SCPM_SECTION where SECTION_CODE = {0}", IP_ui64_SectionCode.ToString());
-                System.Data.OracleClient.OracleDataReader lcl_obj_SectionReaderReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_SectionReaderReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_SectionReaderReader.HasRows))
                 {
                     //error
@@ -74,7 +74,7 @@ namespace SilkERP360.WebServices.SCPM
                 lcl_obj_SqlFacade.Initialize();
 
                 System.String lcl_str_SqlQuery = System.String.Format("Select Start_Production From SCPM_SC_BATCH Where SC_BATCH_CODE = {0}", IP_ui64_ScBatchCode);
-                System.Data.OracleClient.OracleDataReader lcl_obj_BatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_BatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_BatchReader.HasRows))
                 {
                     //error
@@ -103,7 +103,7 @@ namespace SilkERP360.WebServices.SCPM
                 lcl_obj_SqlFacade.Initialize();
 
                 System.String lcl_str_SqlQuery = System.String.Format("Select * From SCPM_SC_BATCH Where SC_J_O_CODE = {0} AND PRODUCTION_STATUS = {1} And Status = 1", IP_ui64_ScJobOrderCode, (System.Int32)SilkERP360.CCL.SCPMEnumerations.JobOrderProductionStatus.NotCompleted);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ScBatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ScBatchReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
 
                 if (!(lcl_obj_ScBatchReader.HasRows))
                 {

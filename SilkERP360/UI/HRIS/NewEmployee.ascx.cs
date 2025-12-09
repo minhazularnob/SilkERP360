@@ -33,7 +33,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlDepartment
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 lcl_str_SqlQuery = System.String.Format("Select DEPARTMENT_CODE,DEPT_NAME From Department Where Company_Code = {0} AND Status = {1} AND Is_Deleted = 1 order by DEPT_NAME", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DepartmentReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_DepartmentReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Departments for The Selected Company Was Not Found!!!");
@@ -51,7 +51,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlShift
                 lcl_str_SqlQuery = System.String.Format(@"Select SHIFT_CODE,SHIFT_NAME||' ('||to_char(START_TIME, 'hh24:mi:ss')||'-To-'||
 to_char(END_TIME, 'hh24:mi:ss')||')'SHIFT_NAME From Shift Where COMPANY_CODE = {0} AND Status = {1} AND Is_Deleted = 1 order by SHIFT_NAME", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_ShiftReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_ShiftReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_ShiftReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Shift for The Selected Company Was Not Found!!!");
@@ -69,7 +69,7 @@ to_char(END_TIME, 'hh24:mi:ss')||')'SHIFT_NAME From Shift Where COMPANY_CODE = {
 
                 //setup ddlDesignation
                 lcl_str_SqlQuery = System.String.Format(@" SELECT DESIGNATION_CODE, DEGN_NAME FROM DESIGNATION Where COMPANY_CODE = {0} AND Status = {1} AND Is_Deleted = 1 order by DEGN_NAME ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_DesignationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_DesignationReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_DesignationReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("Designation for The Selected Company Was Not Found!!!");
@@ -88,7 +88,7 @@ to_char(END_TIME, 'hh24:mi:ss')||')'SHIFT_NAME From Shift Where COMPANY_CODE = {
                 lcl_str_SqlQuery = System.String.Format(@"select EMPLOYEE_CODE,EmpName From
 (select EMPLOYEE_CODE,EMPLOYEE_NAME||'('||EMPLOYEE_ID||')' AS EmpName,IS_DELETED,EMPLOYEE_STATUS
 From EMPLOYEE )X  Where  EMPLOYEE_STATUS ={1} AND IS_DELETED = 1 Order by EmpName  ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular);
-                System.Data.OracleClient.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_RefEpmloyeeReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("RefEmployee Was Not Found!!!");
@@ -105,7 +105,7 @@ From EMPLOYEE )X  Where  EMPLOYEE_STATUS ={1} AND IS_DELETED = 1 Order by EmpNam
 
                 //setup ddl_Pers_PresentDistrict
                 lcl_str_SqlQuery = System.String.Format(@"Select DISTRICT_CODE,NAME From district Where is_deleted=1 And status={1}Order by NAME ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_PresentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_PresentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_PresentDistrictReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("PresentDistrict Was Not Found!!!");
@@ -121,7 +121,7 @@ From EMPLOYEE )X  Where  EMPLOYEE_STATUS ={1} AND IS_DELETED = 1 Order by EmpNam
                 lcl_obj_SqlFacade.CloseReader();
                 //setup ddl_Pers_PermanentDistrict
                 lcl_str_SqlQuery = System.String.Format(@"Select DISTRICT_CODE,NAME From district Where is_deleted=1 And status={1}Order by NAME ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-                System.Data.OracleClient.OracleDataReader lcl_obj_PermanentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_PermanentDistrictReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_PermanentDistrictReader.HasRows))
                 {
                     throw new SilkERP360.CCL.ExceptionManagement.Exceptions.UIException("PermanentDistrict Was Not Found!!!");
