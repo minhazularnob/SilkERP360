@@ -63,14 +63,16 @@ namespace SilkERP360.BML.HRIS
                 IP_obj_Increment_Request.EmployeeName = empInfo.EmployeeName;
 
 
-                List<UInt64> employeeCodes = IP_obj_ApproverDetails.Select(a => a.EmployeeCode)
-                                                         .ToList();
+                if(IP_obj_ApproverDetails != null)
+                {
+                    List<UInt64> employeeCodes = IP_obj_ApproverDetails.Select(a => a.EmployeeCode).ToList();
 
-                var employeeInfo = _commonManager.GetApproverInfo(employeeCodes);
-                string smsText = $"Increment approval is pending for Employee ID: {empInfo.EmployeeId}, Name: {empInfo.EmployeeName}. Previous Gross: {IP_obj_Increment_Request.PreviousGross}, Proposed Gross: {IP_obj_Increment_Request.IncGross}.";
-                SmsNotifier notifier = new SmsNotifier();
-                if (sendSms) _commonManager.SendSmsToApprovers(employeeInfo, smsText);
-                if (sendMail) SendMailToApprovers(employeeInfo, IP_obj_Increment_Request);
+                    var employeeInfo = _commonManager.GetApproverInfo(employeeCodes);
+                    string smsText = $"Increment approval is pending for Employee ID: {empInfo.EmployeeId}, Name: {empInfo.EmployeeName}. Previous Gross: {IP_obj_Increment_Request.PreviousGross}, Proposed Gross: {IP_obj_Increment_Request.IncGross}.";
+                    SmsNotifier notifier = new SmsNotifier();
+                    if (sendSms) _commonManager.SendSmsToApprovers(employeeInfo, smsText);
+                    if (sendMail) SendMailToApprovers(employeeInfo, IP_obj_Increment_Request);
+                }
 
                 return lcl_ui64_ID;
             }, "BMLExceptionPolicy");

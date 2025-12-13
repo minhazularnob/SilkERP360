@@ -10252,6 +10252,7 @@
     <Content Include="WebServices\HRIS\DesignationService.asmx" />
     <Content Include="WebServices\HRIS\EmployeeService.asmx" />
     <Content Include="WebServices\HRIS\HolidaySrevice.asmx" />
+    <Content Include="WebServices\HRIS\IncrementAndPromotionService.asmx" />
     <Content Include="WebServices\HRIS\IncrementService.asmx" />
     <Content Include="WebServices\HRIS\LeaveService.asmx" />
     <Content Include="WebServices\HRIS\MedicalInfoService.asmx" />
@@ -11066,6 +11067,10 @@
     </Compile>
     <Compile Include="WebServices\HRIS\HolidaySrevice.asmx.cs">
       <DependentUpon>HolidaySrevice.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\HRIS\IncrementAndPromotionService.asmx.cs">
+      <DependentUpon>IncrementAndPromotionService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebServices\HRIS\IncrementService.asmx.cs">

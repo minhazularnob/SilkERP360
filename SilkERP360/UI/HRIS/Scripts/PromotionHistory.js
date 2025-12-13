@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    debugger;
     $('#showIncrementSectionChkBox').prop('checked', false);
 
     loadDatepicker();
@@ -11,7 +10,6 @@
         showButtonPanel: true,
         defaultDate: getFirstDay(),
         onSelect: function (d) {
-            debugger;
             const min = $.datepicker.parseDate(dateFormat, d);
             $("#promotionHistory_txtEndDate").datepicker("option", "minDate", min);
             LoaddAllPromotionHistory();
@@ -49,7 +47,7 @@
         "bJQueryUI": false,
         "bFilter": true,
         "bPaginate": true,
-        "bLengthChange": false,
+        "bLengthChange": true,
         "bSearch": true,
         "oLanguage": {
             "sEmptyTable": "No Promotion History Data Available",
@@ -435,9 +433,10 @@ function CalculateSalary() {
     var lcl_ui32_Medical = (lcl_ui32_Gross * 5) / 100;
 
     $("#txtIncBasicWithPromotion").val(lcl_ui32_Basic);
-    $("#txtIncHR").val(lcl_ui32_HouseRent);
+    $("#txtIncHRWithPromotion").val(lcl_ui32_HouseRent);
     $("#txtIncConvWithPromotion").val(lcl_ui32_Conveyence);
     $("#txtIncMedWithPromotion").val(lcl_ui32_Medical);
+    
 }
 
 function loadDatepicker() {

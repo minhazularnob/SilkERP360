@@ -331,7 +331,7 @@ var dateFormat = "dd/mm/yy"; // or whatever format you want
 
 function getLastDay() {
     var d = new Date();
-    var last = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+    var last = new Date(d.getFullYear(), d.getMonth() + 6, 0);
     return (("0" + last.getDate()).slice(-2)) + "/" + (("0" + (last.getMonth() + 1)).slice(-2)) + "/" + last.getFullYear();
 }
 
