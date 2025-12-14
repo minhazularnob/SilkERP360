@@ -151,7 +151,7 @@ function LoaddAllPromotionHistory() {
 
     var lcl_str_CompanyCode = $('#ddlCompany option:selected').val();
     $.ajax({
-        async: false,
+        async: true,
         type: "POST",
         contentType: "application/json; charset=utf-8",
         url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/GetAllPromotionHistory",
