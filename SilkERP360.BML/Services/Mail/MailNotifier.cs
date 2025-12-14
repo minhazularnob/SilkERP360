@@ -8,7 +8,7 @@ namespace SilkERP360.BML.Services.Mail
 {
     public class MailNotifier
     {
-        private readonly string _apiBaseUrl = "https://localhost:7007/";
+        private readonly string _mailEngineUrl = "http://192.168.200.55/mailEngine/";
 
         public MailNotifier()
         {
@@ -34,7 +34,7 @@ namespace SilkERP360.BML.Services.Mail
                 string json = JsonConvert.SerializeObject(payload);
                 byte[] data = Encoding.UTF8.GetBytes(json);
 
-                var request = (HttpWebRequest)WebRequest.Create(_apiBaseUrl + "api/email/send");
+                var request = (HttpWebRequest)WebRequest.Create(_mailEngineUrl + "api/Email/send");
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 request.ContentLength = data.Length;

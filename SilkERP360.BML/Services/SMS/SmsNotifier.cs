@@ -8,7 +8,7 @@ using SilkERP360.CCL.ModelClass;
 
 public class SmsNotifier
 {
-    private readonly string _rootApiUrl = "http://192.168.200.55/smsEngine/api/Sms/";
+    private readonly string _smsEngineUrl = "http://192.168.200.55/smsEngine/api/Sms/";
 
     public void SendDynamicMessages(List<DynamicMessage> messages)
     {
@@ -47,7 +47,7 @@ public class SmsNotifier
     private void SendRequest(object payload, string endpoint)
     {
         string jsonBody = JsonConvert.SerializeObject(payload);
-        string requestUrl = _rootApiUrl + endpoint;
+        string requestUrl = _smsEngineUrl + endpoint;
 
         var httpRequest = (HttpWebRequest)WebRequest.Create(requestUrl);
         httpRequest.Method = "POST";
