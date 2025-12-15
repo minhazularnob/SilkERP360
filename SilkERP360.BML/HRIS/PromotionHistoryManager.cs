@@ -124,7 +124,7 @@ namespace SilkERP360.BML.HRIS
 
                 if (!string.IsNullOrWhiteSpace(email))
                 {
-                    string token = _commonManager.generateAndSaveToken(Convert.ToDateTime(promotionHistory.EffectiveFrom));
+                    string token = _commonManager.generateAndSaveToken(Convert.ToDateTime(promotionHistory.EffectiveFrom), promotionHistory.PromotionID, "Promotion");
                     string templateName = "Promotion"; // Template name (Promotion.html)
 
                     // ⭐ Generate URL with all required parameters
@@ -200,10 +200,8 @@ namespace SilkERP360.BML.HRIS
                         {
                             ApprovedFinalPromotion(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode);
                         }
-                        if (token != null)
-                        {
-                            _commonManager.updateTokenStatus(lcl_obj_DBManager, token);
-                        }
+                        
+                        _commonManager.updateTokenStatus(lcl_obj_DBManager, IP_ui64_PromotionHistoryCode, "Promotion");
                     }
 
                     lcl_obj_DBManager.InternalResource.CommitTransaction();

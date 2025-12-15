@@ -14,7 +14,7 @@ namespace SilkERP360.BML.HRIS
     public class CommonManager
     {
         internal string hrmBaseUrl = "http://localhost:4674"; // Replace with actual base URL
-        internal string mailTemplateUrl = "http://localhost:5181";
+        internal string mailTemplateUrl = "http://192.168.200.55/mailTemplate/";
 
         internal void SaveApprover(ApproverDetail approver, ulong historyId, DBManager db)
         {
@@ -33,7 +33,7 @@ namespace SilkERP360.BML.HRIS
             db.ExecuteScalar(insertSql);
         }
 
-        internal string generateAndSaveToken(DateTime effectiveFrom)
+        internal string generateAndSaveToken(DateTime effectiveFrom, UInt64 referenceCode, string type)
         {
             string token = Guid.NewGuid().ToString("N");
 
@@ -43,10 +43,9 @@ namespace SilkERP360.BML.HRIS
                     dbManager.InternalResource.Open();
 
                 string sqlInsert = @"
-            INSERT INTO TOKENS (TOKEN_ID, CREATED_DATE, IS_VALID, EXPIRY_AT)
-            VALUES (:TOKEN_ID, :CREATED_DATE, 1, :EXPIRY_AT)";
+            INSERT INTO TOKENS (TOKEN_ID, CREATED_DATE, IS_VALID, EXPIRY_AT, reference_code, type)
+            VALUES (:TOKEN_ID, :CREATED_DATE, 1, :EXPIRY_AT, :reference_code, :type)";
 
-                // OracleCommand তৈরি (ManagedDataAccess ব্যবহার করে)
                 using (OracleCommand cmd = new OracleCommand(sqlInsert,
                     (OracleConnection)dbManager.InternalResource.Connection))
                 {
@@ -54,6 +53,9 @@ namespace SilkERP360.BML.HRIS
                     cmd.Parameters.Add(new OracleParameter("TOKEN_ID", token));
                     cmd.Parameters.Add(new OracleParameter("CREATED_DATE", DateTime.Now));
                     cmd.Parameters.Add(new OracleParameter("EXPIRY_AT", effectiveFrom));
+                    cmd.Parameters.Add(new OracleParameter("reference_code", Convert.ToInt64(referenceCode)));
+                    cmd.Parameters.Add(new OracleParameter("type", type));
+
 
                     // Execute query
                     cmd.ExecuteNonQuery();
@@ -163,22 +165,24 @@ namespace SilkERP360.BML.HRIS
             return employeeInfo;
         }
 
-        internal string updateTokenStatus(System.Object IP_obj_DBManager, string token)
+        internal UInt64 updateTokenStatus(object IP_obj_DBManager, UInt64 referenceCode, string type)
         {
-                // Get the actual DBManager from the pooled object wrapper
-                var dbManagerWrapper = (SilkERP360.CCL.ObjectPool.PooledObjectWrapper<SilkERP360.DAL.DBManager>)IP_obj_DBManager;
-                var lcl_obj_DBManager = dbManagerWrapper.InternalResource;
+            var dbManager = ((SilkERP360.CCL.ObjectPool.PooledObjectWrapper<SilkERP360.DAL.DBManager>)IP_obj_DBManager).InternalResource;
+            if (dbManager.ConnectionState != System.Data.ConnectionState.Open)
+                dbManager.Open();
 
-                if (lcl_obj_DBManager.ConnectionState != System.Data.ConnectionState.Open)
-                {
-                    lcl_obj_DBManager.Open();
-                }
+            using (var cmd = new OracleCommand { Connection = (OracleConnection)dbManager.Connection })
+            {
 
-                string sql = $@"UPDATE TOKENS SET IS_VALID = 0 WHERE TOKEN_ID = '{token}'";
-                System.String lcl_str_SqlQuery = System.String.Format(sql);
+                cmd.CommandText = @"UPDATE TOKENS SET IS_VALID = 0 
+                                WHERE reference_code = :reference_code AND type = :type";
+                cmd.Parameters.Add("reference_code", OracleDbType.Decimal).Value = (decimal)referenceCode;
+                cmd.Parameters.Add("type", OracleDbType.Varchar2).Value = type;
+                cmd.ExecuteNonQuery();
+            }
 
-                lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
-                return token;
+            dbManager.CommitTransaction();
+            return referenceCode;
         }
     }
 }

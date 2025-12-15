@@ -97,7 +97,7 @@ namespace SilkERP360.BML.HRIS
                     int month = Convert.ToInt32(incrementRequest.EffectiveMonth);
                     int year = Convert.ToInt32(incrementRequest.EffectiveYear);
 
-                    string token = _commonManager.generateAndSaveToken(new DateTime(year, month, 1));
+                    string token = _commonManager.generateAndSaveToken(new DateTime(year, month, 1), incrementRequest.IncrementCode, "Increment");
 
                     string templateName = "Increment"; // Increment.html
 
@@ -389,10 +389,7 @@ namespace SilkERP360.BML.HRIS
                         {
                             ApprovedFinalIncrement(lcl_obj_DBManager, IP_ui64_incrementCode);
                         }
-                        if (token != null)
-                        {
-                            _commonManager.updateTokenStatus(lcl_obj_DBManager, token);
-                        }
+                        _commonManager.updateTokenStatus(lcl_obj_DBManager, IP_ui64_incrementCode, "Increment");
                     }
 
                     lcl_obj_DBManager.InternalResource.CommitTransaction();
