@@ -1,4 +1,6 @@
-﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+﻿using Newtonsoft.Json.Linq;
+using SilkERP360.CCL.BusinessEntities.HRIS;
+using SilkERP360.CCL.BusinessEntities.HRIS.Base;
 using SilkERP360.CCL.Enums;
 using SilkERP360.CCL.ModelClass;
 using SilkERP360.CCL.Utils;
@@ -111,8 +113,9 @@ namespace SilkERP360.BML.HRIS
         private void SendMailToApprovers(Dictionary<string, List<string>> employeeInfo, PromotionHistory promotionHistory)
         {
             var mailNotifier = new SilkERP360.BML.Services.Mail.MailNotifier();
-
             string emailSubject = "Promotion Approval Pending";
+
+            string mailTemplateUrl = _commonManager.mailTemplateUrl;
 
             foreach (var approver in employeeInfo)
             {
@@ -122,45 +125,31 @@ namespace SilkERP360.BML.HRIS
                 if (!string.IsNullOrWhiteSpace(email))
                 {
                     string token = _commonManager.generateAndSaveToken(Convert.ToDateTime(promotionHistory.EffectiveFrom));
-                    string emailBody = BuildEmailBody(promotionHistory, employeeCode, token, approver.Key);
+                    string templateName = "Promotion"; // Template name (Promotion.html)
+
+                    // ⭐ Generate URL with all required parameters
+                    string url = $"{mailTemplateUrl}/Mail/Render?template={templateName}" +
+                                 $"&PromotionId={promotionHistory.PromotionID}" +
+                                 $"&Token={token}" +
+                                 $"&EmployeeCode={employeeCode}" +
+                                 $"&ApproverName={Uri.EscapeDataString(approver.Key)}" +
+                                 $"&EmployeeName={Uri.EscapeDataString(promotionHistory.EmployeeName)}" +
+                                 $"&EmployeeId={promotionHistory.EmployeeId}" +
+                                 $"&OldDesignation={Uri.EscapeDataString(promotionHistory.PreviousDesignationName)}" +
+                                 $"&NewDesignation={Uri.EscapeDataString(promotionHistory.CurentDesignationName)}" +
+                                 $"&EffectiveFrom={promotionHistory.EffectiveFrom:dd-MMM-yyyy}" +
+                                 $"&BaseUrl={Uri.EscapeDataString(_commonManager.hrmBaseUrl)}";
+
+                    // ⭐ Email body with link
+                    string emailBody = $"Dear {approver.Key},<br/><br/>" +
+                                       $"A promotion request requires your approval. Please click the link below to view and approve/reject:<br/><br/>" +
+                                       $"<a href='{url}'>Click here to approve/reject promotion</a><br/><br/>" +
+                                       $"Regards,<br/>HR Department";
+
                     mailNotifier.SendEmail(email, emailSubject, emailBody);
                 }
             }
         }
-
-        private string BuildEmailBody(PromotionHistory promotionHistory, ulong employeeCode, string token, string approverName)
-        {
-            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                               "UI/MailTemplate/Promotion.html");
-
-            string html = File.ReadAllText(templatePath);
-
-            // ⭐ Safe EffectiveFrom formatting
-            string effectiveFromFormatted = "";
-
-            if (promotionHistory.EffectiveFrom != null)
-            {
-                if (DateTime.TryParse(Convert.ToString(promotionHistory.EffectiveFrom), out DateTime dt))
-                {
-                    effectiveFromFormatted = dt.ToString("dd-MMM-yyyy");
-                }
-            }
-
-            // ⭐ All replacements
-            html = html.Replace("{ApproverName}", approverName)
-                       .Replace("{EmployeeName}", promotionHistory.EmployeeName)
-                       .Replace("{EmployeeId}", promotionHistory.EmployeeId.ToString())
-                       .Replace("{OldDesignation}", promotionHistory.PreviousDesignationName)
-                       .Replace("{NewDesignation}", promotionHistory.CurentDesignationName)
-                       .Replace("{EffectiveFrom}", effectiveFromFormatted)
-                       .Replace("{EmployeeCode}", employeeCode.ToString())
-                       .Replace("{Token}", token)
-                       .Replace("{BaseUrl}", _commonManager.hrmBaseUrl)
-                       .Replace("{PromotionId}", promotionHistory.PromotionID.ToString());
-
-            return html;
-        }
-        
 
         public ulong UpdatePromotionStatusForApprover(UInt64 IP_ui64_PromotionHistoryCode, UInt64 IP_ui64_ApproverCode, int status, string token = null)
         {

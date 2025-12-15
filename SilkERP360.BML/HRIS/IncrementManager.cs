@@ -82,8 +82,10 @@ namespace SilkERP360.BML.HRIS
         private void SendMailToApprovers(Dictionary<string, List<string>> employeeInfo, IncrementRequest incrementRequest)
         {
             var mailNotifier = new SilkERP360.BML.Services.Mail.MailNotifier();
+            string emailSubject = "Increment Approval Pending";
 
-            string emailSubject = "Promotion Approval Pending";
+            string mailTemplateUrl = _commonManager.mailTemplateUrl;
+
 
             foreach (var approver in employeeInfo)
             {
@@ -95,46 +97,31 @@ namespace SilkERP360.BML.HRIS
                     int month = Convert.ToInt32(incrementRequest.EffectiveMonth);
                     int year = Convert.ToInt32(incrementRequest.EffectiveYear);
 
-                    string token = _commonManager.generateAndSaveToken(Convert.ToDateTime(new DateTime(year,month,1)));
-                    string emailBody = BuildEmailBody(incrementRequest, employeeCode, token, approver.Key);
+                    string token = _commonManager.generateAndSaveToken(new DateTime(year, month, 1));
+
+                    string templateName = "Increment"; // Increment.html
+
+                    // Generate link to new MailTemplateService
+                    string url = $"{mailTemplateUrl}/Mail/Render?template={templateName}" +
+                                 $"&EmployeeCode={employeeCode}" +
+                                 $"&Token={token}" +
+                                 $"&ApproverName={Uri.EscapeDataString(approver.Key)}" +
+                                 $"&EmployeeName={Uri.EscapeDataString(incrementRequest.EmployeeName)}" +
+                                 $"&EmployeeId={incrementRequest.EmployeeId}" +
+                                 $"&PreviousGross={incrementRequest.PreviousGross}" +
+                                 $"&ProposedGross={incrementRequest.IncGross}" +
+                                 $"&EffectiveFrom={Uri.EscapeDataString(new DateTime(year, month, 1).ToString("dd-MMM-yyyy"))}" +
+                                 $"&BaseUrl={Uri.EscapeDataString(_commonManager.hrmBaseUrl)}" +
+                                 $"&incrementCode={incrementRequest.IncrementCode}";
+
+                    string emailBody = $"Dear {approver.Key},<br/><br/>" +
+                                       $"An increment request requires your approval. Please click the link below to view and approve/reject:<br/><br/>" +
+                                       $"<a href='{url}'>Click here to approve/reject increment</a><br/><br/>" +
+                                       $"Regards,<br/>HR Department";
+
                     mailNotifier.SendEmail(email, emailSubject, emailBody);
                 }
             }
-        }
-
-        private string BuildEmailBody(IncrementRequest incrementRequest, ulong employeeCode, string token, string approverName)
-        {
-            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "UI/MailTemplate/Increment.html");
-
-            string html = File.ReadAllText(templatePath);
-
-            // ⭐ Safe EffectiveFrom formatting
-            string effectiveFromFormatted = "";
-
-            if (!string.IsNullOrEmpty(Convert.ToString(incrementRequest.EffectiveMonth)) && !string.IsNullOrEmpty(Convert.ToString(incrementRequest.EffectiveYear)))
-            {
-                int month = Convert.ToInt32(incrementRequest.EffectiveMonth);
-                int year = Convert.ToInt32(incrementRequest.EffectiveYear);
-
-                // Make 1st day of that month
-                DateTime firstDay = new DateTime(year, month, 1);
-
-                effectiveFromFormatted = firstDay.ToString("dd-MMM-yyyy");
-            }
-
-            // ⭐ All replacements
-            html = html.Replace("{ApproverName}", approverName)
-                       .Replace("{EmployeeName}", incrementRequest.EmployeeName)
-                       .Replace("{EmployeeId}", incrementRequest.EmployeeId.ToString())
-                       .Replace("{EffectiveFrom}", effectiveFromFormatted)
-                       .Replace("{EmployeeCode}", employeeCode.ToString())
-                       .Replace("{PreviousGross}", incrementRequest.PreviousGross.ToString())
-                       .Replace("{ProposedGross}", incrementRequest.IncGross.ToString())
-                       .Replace("{Token}", token)
-                       .Replace("{BaseUrl}", _commonManager.hrmBaseUrl)
-                       .Replace("{incrementCode}", incrementRequest.IncrementCode.ToString());
-
-            return html;
         }
 
         private CCL.BusinessEntities.HRIS.IncrementRequest GetEmployeeInfo(UInt64 employeeCode, object IP_obj_DBManager)

@@ -14,6 +14,7 @@ namespace SilkERP360.BML.HRIS
     public class CommonManager
     {
         internal string hrmBaseUrl = "http://localhost:4674"; // Replace with actual base URL
+        internal string mailTemplateUrl = "http://localhost:5181";
 
         internal void SaveApprover(ApproverDetail approver, ulong historyId, DBManager db)
         {
@@ -31,28 +32,6 @@ namespace SilkERP360.BML.HRIS
             string insertSql = approver.GenerateSqlInsert();
             db.ExecuteScalar(insertSql);
         }
-
-        //internal string generateAndSaveToken(DateTime effectiveFrom)
-        //{
-        //    string token = Guid.NewGuid().ToString("N");
-
-        //    string createdDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        //    string expiryDate = effectiveFrom.ToString("yyyy-MM-dd HH:mm:ss");
-
-        //    string sqlInsert = "INSERT INTO TOKENS (TOKEN_ID, CREATED_DATE, IS_VALID, EXPIRY_AT) VALUES" +
-        //    " ('" + token + "', TO_TIMESTAMP('" + createdDate + "', 'YYYY-MM-DD HH24:MI:SS'), 1, TO_TIMESTAMP('" + expiryDate + "', 'YYYY-MM-DD HH24:MI:SS'))";
-
-        //    using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
-        //    {
-        //        if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
-        //            dbManager.InternalResource.Open();
-
-        //        dbManager.InternalResource.ExecuteNonQuery(sqlInsert);
-        //        dbManager.InternalResource.CommitTransaction();
-        //    }
-
-        //    return token;
-        //}
 
         internal string generateAndSaveToken(DateTime effectiveFrom)
         {
