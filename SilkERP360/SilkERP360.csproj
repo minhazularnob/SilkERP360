@@ -10168,8 +10168,6 @@
     <Content Include="UI\login-plug\css\style.css" />
     <Content Include="Globals\Styles\SilkERP_Theme_3\style2.css" />
     <Content Include="UI\login-plug\css\SilkStyle_2.css" />
-    <Content Include="UI\MailTemplate\Increment.html" />
-    <Content Include="UI\MailTemplate\Promotion.html" />
     <Content Include="UI\SCPM\DailyThroughput.ascx" />
     <Content Include="UI\SCPM\QCACDTest.ascx" />
     <Content Include="UI\SCPM\QCBendingTest.ascx" />
