@@ -103,6 +103,7 @@ namespace SilkERP360.BML.HRIS
 
                     // Generate link to new MailTemplateService
                     string url = $"{mailTemplateUrl}/Mail/Render?template={templateName}" +
+                                 $"&IncrementCode={incrementRequest.IncrementCode}" +
                                  $"&EmployeeCode={employeeCode}" +
                                  $"&Token={token}" +
                                  $"&ApproverName={Uri.EscapeDataString(approver.Key)}" +
@@ -111,8 +112,7 @@ namespace SilkERP360.BML.HRIS
                                  $"&PreviousGross={incrementRequest.PreviousGross}" +
                                  $"&ProposedGross={incrementRequest.IncGross}" +
                                  $"&EffectiveFrom={Uri.EscapeDataString(new DateTime(year, month, 1).ToString("dd-MMM-yyyy"))}" +
-                                 $"&BaseUrl={Uri.EscapeDataString(_commonManager.hrmBaseUrl)}" +
-                                 $"&incrementCode={incrementRequest.IncrementCode}";
+                                 $"&BaseUrl={Uri.EscapeDataString(_commonManager.hrmBaseUrl)}";
 
                     string emailBody = $"Dear {approver.Key},<br/><br/>" +
                                        $"An increment request requires your approval. Please click the link below to view and approve/reject:<br/><br/>" +

@@ -102,8 +102,6 @@ namespace SilkERP360.WebServices.HRIS
         {
             try
             {
-                var loggedInUser = HttpContext.Current.Session["USR_CNTXT"];
-
                 SilkERP360.SP.HRIS.IncrementServices locl_obj_incrementService = new SilkERP360.SP.HRIS.IncrementServices();
                 System.UInt64 lcl_ui64_approver_detail_code = locl_obj_incrementService.UpdateIncrementStatusForApprover(IP_ui64_incrementCode, employeeCode, status, token);
 

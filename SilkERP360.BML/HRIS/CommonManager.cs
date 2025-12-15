@@ -13,7 +13,7 @@ namespace SilkERP360.BML.HRIS
 {
     public class CommonManager
     {
-        internal string hrmBaseUrl = "http://localhost:4674"; // Replace with actual base URL
+        internal string hrmBaseUrl = "http://192.168.200.55"; // Replace with actual base URL
         internal string mailTemplateUrl = "http://192.168.200.55/mailTemplate/";
 
         internal void SaveApprover(ApproverDetail approver, ulong historyId, DBManager db)
