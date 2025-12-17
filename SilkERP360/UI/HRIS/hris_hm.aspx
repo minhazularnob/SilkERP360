@@ -237,24 +237,36 @@
                             </div>
                         </div>
                         <hr />
+                        <div class="row align-items-center g-1 compact-bar">
 
-                        <div class="row align-items-center height_rem2" style="margin-top: -7px">
-                            <div class="col-sm-3 d-flex align-items-center" style="margin-top: -17px;">
-                                <label for="ddlCompany" class="me-2 mb-0">Company:</label>
-                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-select" ClientIDMode="Static">
+                            <!-- Company -->
+                            <div class="col-12 col-md-3 d-flex align-items-center">
+                                <label for="ddlCompany" class="me-1 mb-0 small fw-semibold">
+                                    Company:
+                                </label>
+                                <asp:DropDownList
+                                    ID="ddlCompany"
+                                    runat="server"
+                                    CssClass="form-select form-select-sm"
+                                    ClientIDMode="Static">
                                     <asp:ListItem />
                                 </asp:DropDownList>
                             </div>
 
-                            <div id="dvMessageBoard" style="min-height: 30px;" class=" col-sm-8 alert alert-info text-center master_color_liener_gradient p-2 fontSerif">
+                            <!-- Message -->
+                            <div id="dvMessageBoard"
+                                class="col-12 col-md-8 alert alert-info text-center master_color_liener_gradient py-1 px-2 mb-0 d-flex align-items-center justify-content-center">
 
-                                <span id="spnMessage" style="font-size: 14px; font-weight: bold; color: white;">Silk ERP Message Board
+                                <span id="spnMessage" class="fw-bold text-white small text-truncate">Silk ERP Message Board
                                 </span>
                             </div>
 
-                            <div class="col-sm-1 text-start">
+                            <!-- Refresh -->
+                            <div class="col-12 col-md-1 text-center text-md-start">
                                 <a id="lnkRefresh" href="#" onclick="Refresh(event); return false;">
-                                    <img src="../../Globals/Images/icons8-refresh-128.png" alt="Refresh" style="height: 50px; margin-top: -17px" />
+                                    <img src="../../Globals/Images/icons8-refresh-128.png"
+                                        alt="Refresh"
+                                        style="height: 50px;" />
                                 </a>
                             </div>
                         </div>
