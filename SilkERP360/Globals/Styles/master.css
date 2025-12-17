@@ -31,9 +31,13 @@ body, button, input, select, textarea {
     font-family: serif,'Times New Roman', Times !important;
 }
 
-.fontSerif {
-    font-family: serif,'Times New Roman', Times !important;
+.fontSerif,
+.fontSerif input,
+.fontSerif textarea,
+.fontSerif select {
+    font-family: serif, 'Times New Roman', Times !important;
 }
+
 .fontBold {
     font-weight: bold !important;
 }

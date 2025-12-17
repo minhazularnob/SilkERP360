@@ -124,8 +124,12 @@ $(document).ready(function () {
     //  ****************************Bond Validity Final**************************
 
     $('#ddl_BondYear').change(function () {
-
         var dateStr = $("#txt_BondIssueDate").val();
+
+        if (dateStr == '' || dateStr == null)
+        {
+            return;
+        }
 
         var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
 
@@ -179,6 +183,24 @@ $(document).ready(function () {
     $(function () {
         $("#txt_Off_JoiningDate").datepicker();
     });
+    initializeSelect2('ddl_Off_Department', '------ Select Department ------', '100%');
+    initializeSelect2('ddl_Off_RefEmployee', '----- Select REF. Employee -----', '100%');
+    initializeSelect2('ddl_Off_Shift_Code', '----- Select REF. Employee -----', '100%');
+    initializeSelect2('ddl_Off_Designation', '---- Select Designation -----', '100%');
+    initializeSelect2('ddl_Off_Supervisor', '----- Select Supervisor -----', '100%');
+    initializeSelect2('ddl_BondYear', '-----Select Bond Year-----', '100%');
+    initializeSelect2('txtBankName', '----- Select Bank -----', '100%');
+    initializeSelect2('ddl_JobLocation', '----- Select Job Location -----', '100%');
+
+    
+    initializeSelect2('ddl_Pers_MaritalStatus', '-----Select Marital Status-----', '100%');
+    initializeSelect2('ddl_Pers_Sex', '-----Select Gender-----', '100%');
+    initializeSelect2('ddl_Pers_Religion', '----- Select Religion -----', '100%');
+    initializeSelect2('ddl_Pers_BloodGroup', '-----Select Blood Group-----', '100%');
+    initializeSelect2('ddl_Pers_PresentDistrict', '-----Select District-----', '100%');
+    initializeSelect2('ddl_Pers_PermanentDistrict', '----- Select District -----', '100%');
+
+
 });
 ////////////////////for supervisor List //////////////////////////////////
 ////////////////////Check ACS Code //////////////////////////////////
