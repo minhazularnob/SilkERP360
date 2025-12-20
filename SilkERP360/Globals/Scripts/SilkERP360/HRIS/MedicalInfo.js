@@ -1,9 +1,5 @@
-﻿
-$(document).ready(function () {
-
-    //$("#txt_VisitedDate").datepicker({ dateFormat: 'dd/MM/yy', minDate: -15, maxDate: 0 });
+﻿$(document).ready(function () {
     $("#txt_VisitedDate").datepicker({ dateFormat: 'dd/MM/yy', maxDate: 0 });
-
 
     //Load Medical Information();
     GBL_EMPLOYEE_LIST_TABLE = $('#tblMdcnInfoList').dataTable({
@@ -22,8 +18,8 @@ $(document).ready(function () {
 
     });
     initializeSelect2('ddlEmployeeId', 'Select Employee', '35%');
-    initializeSelect2('ddlBloodGroup', 'Select Blood Group', '98%');
-    initializeSelect2('ddlSex', 'Select Gender', '98%');
+    initializeSelect2('ddlBloodGroup', 'Select Blood Group', '97%');
+    initializeSelect2('ddlSex', 'Select Gender', '97%');
 });
 
 $("#combobox").on("keypress", function (keyarg) {
@@ -41,21 +37,17 @@ $(".ip_required").change(function () {
     $(this).css('background-color', 'white');
 });
 
-
-
 function GetEmployeeMedicalInfoProfile(event) {
     var lcl_ui64_EmployeeCode = $('#ddlEmployeeId option:selected').val();
     if (lcl_ui64_EmployeeCode == 0) {
         return;
     }
-    // alert("1");
     var options = {};
     options.url = gbl_URL_Root + "WebServices/HRIS/LeaveService.asmx/GetEmployeeLeaveProfileByEmployeeCode";
     options.dataType = "json";
     options.type = "POST";
-    options.data = "{IP_ui64_EmployeeCode: " + lcl_ui64_EmployeeCode + "}"; // JSON.stringify(lcl_obj_LogFile);
+    options.data = "{IP_ui64_EmployeeCode: " + lcl_ui64_EmployeeCode + "}";
     options.contentType = "application/json; charset=utf-8";
-    //options.processData = false;
     options.success = function (result) {
         var lcl_obj_WSResponse = result.d;
         if (lcl_obj_WSResponse.ResponseCode == 0) {
@@ -66,7 +58,6 @@ function GetEmployeeMedicalInfoProfile(event) {
     options.error = function (err) { ShowErrorMessageBoard(err.statusText); };
 
     $.ajax(options);
-    //evt.preventDefault();}
 }
 
 ////******************************** SAVE Designation  ********************************************////////////
@@ -76,17 +67,14 @@ function Save() {
     if (confirm("Are you sure you want to submit this application?") == true) {
         var lcl_b_InputValidated = true;
         $('.input-required').each(function (i, obj) {
-            //test
             if ($.trim($(this).val().toString()) == '') {
                 $(this).css('background-color', 'red');
                 lcl_b_InputValidated = false;
-                // alert("Fields with red background are mandatory fields.Please input Value!!!");
                 return false;
             }
         });
         if (lcl_b_InputValidated == true) {
             var lcl_obj_MedicineInfo = new Object();
-            // debugger;
 
             lcl_obj_MedicineInfo.EmployeeCode = $('#ddlEmployeeId option:selected').val();
             lcl_obj_MedicineInfo.Age = $("#txt_Age").val();
@@ -103,14 +91,12 @@ function Save() {
                         contentType: "application/json; charset=utf-8",
                         url: gbl_URL_Root + "WebServices/HRIS/MedicalInfoService.asmx/SaveMedicalInfo",
 
-                        data: "{IP_Obj_MedicineInfo:" + JSON.stringify(lcl_obj_MedicineInfo) + "}", //provide input for the getSM_PO method
-                        dataType: "json", /// <reference path= />
+                        data: "{IP_Obj_MedicineInfo:" + JSON.stringify(lcl_obj_MedicineInfo) + "}",
+                        dataType: "json",
                         success: function (response) {
                             var WSReturn = response.d;
                             if (WSReturn.ResponseCode == 0) {
-
                                 DisplayInformation(WSReturn.Message.toString());
-
                                 LoadMedicalInfo();
                                 return false;
                             }
@@ -120,7 +106,6 @@ function Save() {
                         },
                         error: function (data) {
                             alert(data);
-                            // $.unblockUI();
                         }
                     });
         }
@@ -128,10 +113,7 @@ function Save() {
     return false;
 }
 
-/************************ Load Medical Info -*********/
-
 function LoadMedicalInfo() {
-    // debugger;
     var lcl_str_EmployeeCode = $('#ddlEmployeeId option:selected').val();
 
     $.ajax(
@@ -143,8 +125,8 @@ function LoadMedicalInfo() {
             global: true,
             contentType: "application/json; charset=utf-8",
             url: gbl_URL_Root + "WebServices/HRIS/MedicalInfoService.asmx/GetMedicalInfoData",
-            data: "{IP_iu64_EmployeeCode: " + JSON.stringify(lcl_str_EmployeeCode) + "}", //provide input for the getSM_PO method
-            dataType: "json", /// <reference path= />
+            data: "{IP_iu64_EmployeeCode: " + JSON.stringify(lcl_str_EmployeeCode) + "}",
+            dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
                 if (WSReturn.ResponseCode < 0) {
@@ -152,14 +134,12 @@ function LoadMedicalInfo() {
                     return;
                 }
                 var lcl_obj_MedicalInfoList = WSReturn.Data;
-                //CLEAR Ref Employee
                 var lcl_i32_MedicalInfoCode = 0;
 
                 GBL_EMPLOYEE_LIST_TABLE.fnClearTable();
                 var lcl_str_ExtendedAllMedicalInfoData = new Array();
 
                 $.each(lcl_obj_MedicalInfoList, function (index, lcl_obj_ExtendedAllMedicalInfoData) {
-                    //debugger;
                     lcl_str_ExtendedAllMedicalInfoData[lcl_i32_MedicalInfoCode] = new Array();
                     lcl_str_ExtendedAllMedicalInfoData[lcl_i32_MedicalInfoCode][0] = FormatDate(lcl_obj_ExtendedAllMedicalInfoData.VisitedDate);
                     lcl_str_ExtendedAllMedicalInfoData[lcl_i32_MedicalInfoCode][1] = lcl_obj_ExtendedAllMedicalInfoData.Age;
@@ -170,7 +150,6 @@ function LoadMedicalInfo() {
                 });
                 GBL_EMPLOYEE_LIST_TABLE.fnAddData(lcl_str_ExtendedAllMedicalInfoData);
                 $('#dvReportBody').show('slow');
-                //GBL_EMPLOYEE_LIST_TABLE.fnDraw();
             }
         });
 }
