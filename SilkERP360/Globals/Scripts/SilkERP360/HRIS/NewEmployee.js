@@ -1,55 +1,11 @@
-﻿//will store image object of employee after the UserProfile is returned
-//var m_obj_EmployeeImage;
-var numWeekEnd = new Array();
+﻿var numWeekEnd = new Array();
 
 $(document).ready(function () {
     $(function () { $("#tabs").tabs(); });
-    //alert(lcl_str_CompanySelectedIndex);
-    var lcl_str_CompanyCode = $('#ddlCompany option:selected').val();  // $("#txtCompanyCode").val().toString();
-    //alert(lcl_str_CompanyCode);
+    var lcl_str_CompanyCode = $('#ddlCompany option:selected').val();
     var lcl_str_WMData = "{IP_ui64_CompanyCode :" + lcl_str_CompanyCode + "}";
 
-
-    /********************************************************************************************************************
-    //    FORMAT THE TABLE
-    //    ********************************************************************************************************************/
-    //   $('#tblLeave').dataTable({
-    //        "bJQueryUI": true,
-    //        "sScrollY": "700px",
-    //        "bFilter": true,
-    //        "bPaginate": false,
-    //        "bLengthChange": false,
-    //        "oLanguage": {
-    //            "sEmptyTable": "No Department Data Available",
-    //            "sZeroRecords": "No Department Record Found For Your Specified Criteria"
-    //        },
-    //        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-    //            //                        // Bold the grade for all 'A' grade browsers
-    //            //                        if (aData[4] == "A") {
-    //            //                            $('td:eq(4)', nRow).html('<b>A</b>');
-    //            //                        }
-    //        },
-    //        "aoColumns": [
-    //                    { sTitle: 'Leave Name', sWidth: '40%', sClass: 'alignCenter' },
-    //                    { sTitle: 'Number Of Days', sWidth: '30%', sClass: 'alignCenter' },
-    //                   // { sTitle: 'Company Code', sWidth: '22%', sClass: 'alignCenter' },
-    //                    { sTitle: 'Carry Forwarded', sWidth: '30%', sClass: 'alignCenter' },
-    //                   // { sTitle: 'Action', sWidth: '15%', sClass: 'alignCenter' },
-
-    //                  ]
-
-    //    });
-
-    //});
-
-
-
-
-
     LoadLeaveList();
-    // AjaxCallGlobal(gbl_URL_Root + "WebServices/HRIS/LeaveService.asmx", "GetEmployeeLeaveList", lcl_str_WMData, ConfigureLeaveList);
-    // AjaxCallGlobal("~/../../../WebServices/HRIS/LeaveService.asmx", "GetEmployeeLeaveList", lcl_str_WMData, ConfigureLeaveList);
-    //////////////////for supervisor List //////////////////////////////////
     var lcl_str_designationCode = $('#ddl_Off_Department option:selected').val();
 
     var lcl_str_WMDataSup = "{IP_ui64_designationCode :" + lcl_str_designationCode + "}";
@@ -57,11 +13,7 @@ $(document).ready(function () {
     $('input:checkbox[id=chk7]').attr('checked', true);
     CheckBoxCount();
 
-    //AjaxCallGlobal("WebServices/HRIS/LeaveService.asmx", "GetEmployeeLeaveList", lcl_str_WMDataSup, ddlSupervisorList);
-    /*******************************************************Change Event*******************************************/
-
     $('#txt_Sal_Gross').blur(function () { GrossSalaryChange(); });
-    //$('#txt_Off_ACSCode').blur(function () { CheckIfACSCodeExists(); });
     $('#txt_Off_ACSCode').blur(function () { CheckIfACSCodeExists(); });
     $('#txt_Pers_VoterCardNo').blur(function () { CheckIfVoterIDExists(); });
     $('#txt_Pers_PassportNo').blur(function () { CheckIfPassPortNoExists(); });
@@ -69,14 +21,11 @@ $(document).ready(function () {
     $('#txt_Off_AutoRefEmployee').change(function () { AutoRefEmployeeChangeEvent(); });
     $('#ddl_Off_Department').change(function () { DepartmentChangeEvent(); });
     $('#txt_Off_Tin').blur(function () { CheckIfEtinExists(); });
-    //$('#ddl_Off_Supervisor').change(function () { alert($('#ddl_Off_Supervisor option:selected').val().toString()); });
-    // lcl_obj_EmpApp.Employee.Bank = trim($('#txtBankName').val());
 
     // e-TIN *************
 
     $("#chk_eTIN_Eligible").click(function () {
         if ($('#chk_eTIN_Eligible').is(':checked')) {
-            //alert("REF-1 CHECKED");
             $('#txt_Off_Tin').removeAttr('disabled');
             $('#txt_Off_Tin').val('');
 
@@ -92,7 +41,6 @@ $(document).ready(function () {
 
     $("#chkBankSalary").click(function () {
         if ($('#chkBankSalary').is(':checked')) {
-            //alert("REF-1 CHECKED");
             $('#txt_Off_BankAccountCode').removeAttr('disabled');
             $('#txt_Off_BankAccountCode').val('');
 
@@ -108,7 +56,6 @@ $(document).ready(function () {
     //******* Bank Name.....*********
     $("#chkBankSalary").click(function () {
         if ($('#chkBankSalary').is(':checked')) {
-            //alert("REF-1 CHECKED");
             $('#txtBankName').removeAttr('disabled');
             $('#txtBankName').val('');
 
@@ -135,9 +82,6 @@ $(document).ready(function () {
 
         var years = parseInt($('#ddl_BondYear option:selected').val(), 10);
         d.setFullYear(d.getFullYear() + years);
-        //        d.setYear(d.getYear() + 3);
-
-        //            d.setYear(d.getYear() + 3);
         $("#txt_BondValidityDate").datepicker('setDate', d);
 
         var years = parseInt($("#equipment_warrantyLength").val(), 10);
@@ -154,7 +98,6 @@ $(document).ready(function () {
         }
     }
 
-    //// minDate: -2, maxDate: 0,
     /*********************************************************************************************************************************/
     //DatePicker Setting
     $("#txt_Exp_DateFrom").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });

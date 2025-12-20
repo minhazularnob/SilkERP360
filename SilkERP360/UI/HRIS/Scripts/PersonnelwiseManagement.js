@@ -97,7 +97,7 @@ $(document).ready(function () {
                 title: "Employee Edit", cmd: "EmployeeEdit", uiIcon: "",
                 action: function (event, ui) {
                     var lcl_ui64_EmployeeCode = ui.target.data('empcode');
-                    $('#hdrSubForm').text('Employee Edit');
+                    $('#hdrSubForm').text('Employee Edit').addClass('fontSerif');;
 
                     $.ajax({
                         type: "POST",

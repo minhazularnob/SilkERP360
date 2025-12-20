@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class EmployeeEdit {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class EmployeeEdit
+    {
+
         /// <summary>
         /// txtUserEmployeeCode control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtUserEmployeeCode;
-        
+
         /// <summary>
         /// txtEducationCount control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtEducationCount;
-        
+
         /// <summary>
         /// txtExperienceCount control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtExperienceCount;
-        
+
         /// <summary>
         /// txtLeaveCounter control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtLeaveCounter;
-        
+
         /// <summary>
         /// txtCompanyCode control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtCompanyCode;
-        
+
         /// <summary>
         /// txtref1 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtref1;
-        
+
         /// <summary>
         /// txtref2 control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtref2;
-        
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-        
+
         /// <summary>
         /// imgEmployeeImage control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEmployeeImage;
-        
+
         /// <summary>
         /// txt_EI_ImageType control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_EI_ImageType;
-        
+
         /// <summary>
         /// txt_EI_ImageSize control.
         /// </summary>
@@ -110,16 +112,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_EI_ImageSize;
-        
-        /// <summary>
-        /// Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label;
-        
+
         /// <summary>
         /// ddl_Off_Department control.
         /// </summary>
@@ -128,16 +121,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Off_Department;
-        
-        /// <summary>
-        /// Label69 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label69;
-        
+
         /// <summary>
         /// txt_Off_Name control.
         /// </summary>
@@ -146,16 +130,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_Name;
-        
-        /// <summary>
-        /// Label70 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label70;
-        
+
         /// <summary>
         /// ddl_Off_Shift_Code control.
         /// </summary>
@@ -164,16 +139,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Off_Shift_Code;
-        
-        /// <summary>
-        /// Label71 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label71;
-        
+
         /// <summary>
         /// txt_Off_ACSCode control.
         /// </summary>
@@ -182,16 +148,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_ACSCode;
-        
-        /// <summary>
-        /// Label72 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label72;
-        
+
         /// <summary>
         /// ddl_Off_Designation control.
         /// </summary>
@@ -200,16 +157,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Off_Designation;
-        
-        /// <summary>
-        /// Label73 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label73;
-        
+
         /// <summary>
         /// ddl_Off_RefEmployee control.
         /// </summary>
@@ -218,16 +166,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Off_RefEmployee;
-        
-        /// <summary>
-        /// Label74 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label74;
-        
+
         /// <summary>
         /// txt_Off_AutoRefEmployee control.
         /// </summary>
@@ -236,16 +175,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_AutoRefEmployee;
-        
-        /// <summary>
-        /// Label75 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label75;
-        
+
         /// <summary>
         /// ddl_Off_Supervisor control.
         /// </summary>
@@ -254,16 +184,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Off_Supervisor;
-        
-        /// <summary>
-        /// Label76 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label76;
-        
+
         /// <summary>
         /// txt_Off_AutoSuperVisor control.
         /// </summary>
@@ -272,16 +193,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_AutoSuperVisor;
-        
-        /// <summary>
-        /// Label77 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label77;
-        
+
         /// <summary>
         /// txt_Off_JoiningDate control.
         /// </summary>
@@ -290,16 +202,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_JoiningDate;
-        
-        /// <summary>
-        /// Label78 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label78;
-        
+
         /// <summary>
         /// txt_Off_ConfirmationDate control.
         /// </summary>
@@ -308,16 +211,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_ConfirmationDate;
-        
-        /// <summary>
-        /// Label79 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label79;
-        
+
         /// <summary>
         /// txt_Off_RetirementDate control.
         /// </summary>
@@ -326,16 +220,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_RetirementDate;
-        
-        /// <summary>
-        /// Label80 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label80;
-        
+
         /// <summary>
         /// txt_Off_SettlementDate control.
         /// </summary>
@@ -344,16 +229,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_SettlementDate;
-        
-        /// <summary>
-        /// Label81 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label81;
-        
+
         /// <summary>
         /// txt_Off_OfficialFileNo control.
         /// </summary>
@@ -362,16 +238,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_OfficialFileNo;
-        
-        /// <summary>
-        /// Label21 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label21;
-        
+
         /// <summary>
         /// txt_BondRefference control.
         /// </summary>
@@ -380,7 +247,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_BondRefference;
-        
+
         /// <summary>
         /// txt_BondIssueDate control.
         /// </summary>
@@ -389,7 +256,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_BondIssueDate;
-        
+
         /// <summary>
         /// ddl_BondYear control.
         /// </summary>
@@ -398,16 +265,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_BondYear;
-        
-        /// <summary>
-        /// Label18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label18;
-        
+
         /// <summary>
         /// txt_BondValidityDate control.
         /// </summary>
@@ -416,16 +274,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_BondValidityDate;
-        
-        /// <summary>
-        /// Label20 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label20;
-        
+
         /// <summary>
         /// txt_Off_Remarks control.
         /// </summary>
@@ -434,16 +283,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_Remarks;
-        
-        /// <summary>
-        /// Label22 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label22;
-        
+
         /// <summary>
         /// chk_eTIN_Eligible control.
         /// </summary>
@@ -452,16 +292,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk_eTIN_Eligible;
-        
-        /// <summary>
-        /// Label82 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label82;
-        
+
         /// <summary>
         /// txt_Off_Tin control.
         /// </summary>
@@ -470,16 +301,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_Tin;
-        
-        /// <summary>
-        /// Label115 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label115;
-        
+
         /// <summary>
         /// chkBankSalary control.
         /// </summary>
@@ -488,16 +310,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkBankSalary;
-        
-        /// <summary>
-        /// Label116 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label116;
-        
+
         /// <summary>
         /// txt_Off_BankAccountCode control.
         /// </summary>
@@ -506,16 +319,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Off_BankAccountCode;
-        
-        /// <summary>
-        /// Label83 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label83;
-        
+
         /// <summary>
         /// chkOTEligable control.
         /// </summary>
@@ -524,7 +328,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkOTEligable;
-        
+
         /// <summary>
         /// chkPFEligable control.
         /// </summary>
@@ -533,7 +337,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkPFEligable;
-        
+
         /// <summary>
         /// chkRoster control.
         /// </summary>
@@ -542,7 +346,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkRoster;
-        
+
         /// <summary>
         /// checNightBill control.
         /// </summary>
@@ -551,7 +355,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox checNightBill;
-        
+
         /// <summary>
         /// Check_ComUniform control.
         /// </summary>
@@ -560,16 +364,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox Check_ComUniform;
-        
-        /// <summary>
-        /// Label17 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
-        
+
         /// <summary>
         /// txtBankName control.
         /// </summary>
@@ -578,16 +373,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList txtBankName;
-        
-        /// <summary>
-        /// Label114 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label114;
-        
+
         /// <summary>
         /// chk1 control.
         /// </summary>
@@ -596,7 +382,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk1;
-        
+
         /// <summary>
         /// chk2 control.
         /// </summary>
@@ -605,7 +391,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk2;
-        
+
         /// <summary>
         /// chk3 control.
         /// </summary>
@@ -614,7 +400,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk3;
-        
+
         /// <summary>
         /// chk4 control.
         /// </summary>
@@ -623,7 +409,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk4;
-        
+
         /// <summary>
         /// chk5 control.
         /// </summary>
@@ -632,7 +418,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk5;
-        
+
         /// <summary>
         /// chk6 control.
         /// </summary>
@@ -641,7 +427,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk6;
-        
+
         /// <summary>
         /// chk7 control.
         /// </summary>
@@ -650,16 +436,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk7;
-        
-        /// <summary>
-        /// Label19 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label19;
-        
+
         /// <summary>
         /// ddl_JobLocation control.
         /// </summary>
@@ -668,16 +445,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_JobLocation;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// txt_Pers_FatherName control.
         /// </summary>
@@ -686,16 +454,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_FatherName;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
+
         /// <summary>
         /// txt_Pers_MotherName control.
         /// </summary>
@@ -704,16 +463,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_MotherName;
-        
-        /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
+
         /// <summary>
         /// txt_Pers_SpouseName control.
         /// </summary>
@@ -722,16 +472,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_SpouseName;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
+
         /// <summary>
         /// txt_Pers_DateOfBirth control.
         /// </summary>
@@ -740,16 +481,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_DateOfBirth;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
+
         /// <summary>
         /// ddl_Pers_MaritalStatus control.
         /// </summary>
@@ -758,16 +490,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Pers_MaritalStatus;
-        
-        /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
+
         /// <summary>
         /// ddl_Pers_Sex control.
         /// </summary>
@@ -776,16 +499,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Pers_Sex;
-        
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-        
+
         /// <summary>
         /// ddl_Pers_Religion control.
         /// </summary>
@@ -794,16 +508,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Pers_Religion;
-        
-        /// <summary>
-        /// Label8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-        
+
         /// <summary>
         /// txt_Pers_Nationality control.
         /// </summary>
@@ -812,16 +517,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_Nationality;
-        
-        /// <summary>
-        /// Label9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
-        
+
         /// <summary>
         /// ddl_Pers_BloodGroup control.
         /// </summary>
@@ -830,16 +526,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Pers_BloodGroup;
-        
-        /// <summary>
-        /// Label10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
-        
+
         /// <summary>
         /// txt_Pers_Height control.
         /// </summary>
@@ -848,16 +535,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_Height;
-        
-        /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
-        
+
         /// <summary>
         /// txt_Pers_Weight control.
         /// </summary>
@@ -866,16 +544,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_Weight;
-        
-        /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
-        
+
         /// <summary>
         /// txt_Pers_Identification control.
         /// </summary>
@@ -884,16 +553,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_Identification;
-        
-        /// <summary>
-        /// Label13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
-        
+
         /// <summary>
         /// txt_Pers_MobileNo control.
         /// </summary>
@@ -902,16 +562,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_MobileNo;
-        
-        /// <summary>
-        /// Label14 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
-        
+
         /// <summary>
         /// txt_Pers_HomePhone control.
         /// </summary>
@@ -920,16 +571,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_HomePhone;
-        
-        /// <summary>
-        /// Label15 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label15;
-        
+
         /// <summary>
         /// txt_Pers_FaxNo control.
         /// </summary>
@@ -938,16 +580,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_FaxNo;
-        
-        /// <summary>
-        /// Label16 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
-        
+
         /// <summary>
         /// txt_Pers_Email control.
         /// </summary>
@@ -956,16 +589,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_Email;
-        
-        /// <summary>
-        /// Label85 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label85;
-        
+
         /// <summary>
         /// txt_Pers_PresentAddress control.
         /// </summary>
@@ -974,16 +598,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_PresentAddress;
-        
-        /// <summary>
-        /// Label86 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label86;
-        
+
         /// <summary>
         /// txt_Pers_PermanentAddress control.
         /// </summary>
@@ -992,16 +607,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_PermanentAddress;
-        
-        /// <summary>
-        /// Label87 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label87;
-        
+
         /// <summary>
         /// ddl_Pers_PresentDistrict control.
         /// </summary>
@@ -1010,16 +616,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Pers_PresentDistrict;
-        
-        /// <summary>
-        /// Label88 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label88;
-        
+
         /// <summary>
         /// ddl_Pers_PermanentDistrict control.
         /// </summary>
@@ -1028,16 +625,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Pers_PermanentDistrict;
-        
-        /// <summary>
-        /// Label94 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label94;
-        
+
         /// <summary>
         /// txt_Pers_PresentPO control.
         /// </summary>
@@ -1046,16 +634,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_PresentPO;
-        
-        /// <summary>
-        /// Label89 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label89;
-        
+
         /// <summary>
         /// txt_Pers_PermanentPO control.
         /// </summary>
@@ -1064,16 +643,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_PermanentPO;
-        
-        /// <summary>
-        /// Label93 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label93;
-        
+
         /// <summary>
         /// txt_Pers_PresentPC control.
         /// </summary>
@@ -1082,16 +652,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_PresentPC;
-        
-        /// <summary>
-        /// Label90 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label90;
-        
+
         /// <summary>
         /// txt_Pers_PermanentPC control.
         /// </summary>
@@ -1100,16 +661,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_PermanentPC;
-        
-        /// <summary>
-        /// Label92 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label92;
-        
+
         /// <summary>
         /// txt_Pers_VoterCardNo control.
         /// </summary>
@@ -1118,16 +670,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_VoterCardNo;
-        
-        /// <summary>
-        /// Label91 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label91;
-        
+
         /// <summary>
         /// txt_Pers_PassportNo control.
         /// </summary>
@@ -1136,7 +679,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Pers_PassportNo;
-        
+
         /// <summary>
         /// tblEducation control.
         /// </summary>
@@ -1145,7 +688,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTable tblEducation;
-        
+
         /// <summary>
         /// Label95 control.
         /// </summary>
@@ -1154,7 +697,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label95;
-        
+
         /// <summary>
         /// Label96 control.
         /// </summary>
@@ -1163,7 +706,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label96;
-        
+
         /// <summary>
         /// Label97 control.
         /// </summary>
@@ -1172,7 +715,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label97;
-        
+
         /// <summary>
         /// Label98 control.
         /// </summary>
@@ -1181,7 +724,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label98;
-        
+
         /// <summary>
         /// Label99 control.
         /// </summary>
@@ -1190,7 +733,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label99;
-        
+
         /// <summary>
         /// Label100 control.
         /// </summary>
@@ -1199,7 +742,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label100;
-        
+
         /// <summary>
         /// Label101 control.
         /// </summary>
@@ -1208,7 +751,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label101;
-        
+
         /// <summary>
         /// txt_Edu_ExamName control.
         /// </summary>
@@ -1217,7 +760,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Edu_ExamName;
-        
+
         /// <summary>
         /// txt_Edu_BoardUniversity control.
         /// </summary>
@@ -1226,7 +769,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Edu_BoardUniversity;
-        
+
         /// <summary>
         /// txt_Edu_InstituteName control.
         /// </summary>
@@ -1235,7 +778,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Edu_InstituteName;
-        
+
         /// <summary>
         /// txt_Edu_MajorSubject control.
         /// </summary>
@@ -1244,7 +787,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Edu_MajorSubject;
-        
+
         /// <summary>
         /// txt_Edu_DivisionClass control.
         /// </summary>
@@ -1253,7 +796,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Edu_DivisionClass;
-        
+
         /// <summary>
         /// txt_Edu_CGPA control.
         /// </summary>
@@ -1262,7 +805,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Edu_CGPA;
-        
+
         /// <summary>
         /// txt_Edu_PassingYear control.
         /// </summary>
@@ -1271,133 +814,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Edu_PassingYear;
-        
-        /// <summary>
-        /// Label102 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label102;
-        
-        /// <summary>
-        /// Label103 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label103;
-        
-        /// <summary>
-        /// Label104 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label104;
-        
-        /// <summary>
-        /// Label105 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label105;
-        
-        /// <summary>
-        /// Label106 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label106;
-        
-        /// <summary>
-        /// Label107 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label107;
-        
-        /// <summary>
-        /// Label108 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label108;
-        
-        /// <summary>
-        /// txt_Exp_OrganizationName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Exp_OrganizationName;
-        
-        /// <summary>
-        /// txt_Exp_Address control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Exp_Address;
-        
-        /// <summary>
-        /// txt_Exp_Responsibility control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Exp_Responsibility;
-        
-        /// <summary>
-        /// txt_Exp_NatureOfJob control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Exp_NatureOfJob;
-        
-        /// <summary>
-        /// txt_Exp_ContactNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Exp_ContactNo;
-        
-        /// <summary>
-        /// txt_Exp_DateFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Exp_DateFrom;
-        
-        /// <summary>
-        /// txt_Exp_DateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Exp_DateTo;
-        
+
         /// <summary>
         /// tblExperience control.
         /// </summary>
@@ -1406,79 +823,133 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTable tblExperience;
-        
+
         /// <summary>
-        /// Label61 control.
+        /// Label102 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label61;
-        
+        protected global::System.Web.UI.WebControls.Label Label102;
+
         /// <summary>
-        /// Label62 control.
+        /// Label103 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label62;
-        
+        protected global::System.Web.UI.WebControls.Label Label103;
+
         /// <summary>
-        /// Label63 control.
+        /// Label104 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label63;
-        
+        protected global::System.Web.UI.WebControls.Label Label104;
+
         /// <summary>
-        /// Label64 control.
+        /// Label105 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label64;
-        
+        protected global::System.Web.UI.WebControls.Label Label105;
+
         /// <summary>
-        /// Label65 control.
+        /// Label106 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label65;
-        
+        protected global::System.Web.UI.WebControls.Label Label106;
+
         /// <summary>
-        /// Label66 control.
+        /// Label107 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label66;
-        
+        protected global::System.Web.UI.WebControls.Label Label107;
+
         /// <summary>
-        /// Label67 control.
+        /// Label108 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label67;
-        
+        protected global::System.Web.UI.WebControls.Label Label108;
+
         /// <summary>
-        /// Label68 control.
+        /// txt_Exp_OrganizationName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label68;
-        
+        protected global::System.Web.UI.WebControls.TextBox txt_Exp_OrganizationName;
+
+        /// <summary>
+        /// txt_Exp_Address control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Exp_Address;
+
+        /// <summary>
+        /// txt_Exp_Responsibility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Exp_Responsibility;
+
+        /// <summary>
+        /// txt_Exp_NatureOfJob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Exp_NatureOfJob;
+
+        /// <summary>
+        /// txt_Exp_ContactNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Exp_ContactNo;
+
+        /// <summary>
+        /// txt_Exp_DateFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Exp_DateFrom;
+
+        /// <summary>
+        /// txt_Exp_DateTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Exp_DateTo;
+
         /// <summary>
         /// Label59 control.
         /// </summary>
@@ -1487,7 +958,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label59;
-        
+
         /// <summary>
         /// txt_Stan_Sal_Basic control.
         /// </summary>
@@ -1496,7 +967,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_Basic;
-        
+
         /// <summary>
         /// txt_Stan_Sal_HouseRent control.
         /// </summary>
@@ -1505,7 +976,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_HouseRent;
-        
+
         /// <summary>
         /// txt_Stan_Sal_Medical control.
         /// </summary>
@@ -1514,7 +985,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_Medical;
-        
+
         /// <summary>
         /// txt_Stan_Sal_Entertainment control.
         /// </summary>
@@ -1523,7 +994,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_Entertainment;
-        
+
         /// <summary>
         /// txt_Stan_Sal_Conveyence control.
         /// </summary>
@@ -1532,7 +1003,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_Conveyence;
-        
+
         /// <summary>
         /// txt_Stan_Sal_PhoneBill control.
         /// </summary>
@@ -1541,7 +1012,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_PhoneBill;
-        
+
         /// <summary>
         /// txt_Stan_Sal_Others control.
         /// </summary>
@@ -1550,7 +1021,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_Others;
-        
+
         /// <summary>
         /// txt_Stan_Sal_Gross control.
         /// </summary>
@@ -1559,7 +1030,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Stan_Sal_Gross;
-        
+
         /// <summary>
         /// Label60 control.
         /// </summary>
@@ -1568,7 +1039,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label60;
-        
+
         /// <summary>
         /// txt_Sal_Basic control.
         /// </summary>
@@ -1577,7 +1048,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_Basic;
-        
+
         /// <summary>
         /// txt_Sal_HouseRent control.
         /// </summary>
@@ -1586,7 +1057,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_HouseRent;
-        
+
         /// <summary>
         /// txt_Sal_Medical control.
         /// </summary>
@@ -1595,7 +1066,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_Medical;
-        
+
         /// <summary>
         /// txt_Sal_Entertainment control.
         /// </summary>
@@ -1604,7 +1075,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_Entertainment;
-        
+
         /// <summary>
         /// txt_Sal_Conveyence control.
         /// </summary>
@@ -1613,7 +1084,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_Conveyence;
-        
+
         /// <summary>
         /// txt_Sal_PhoneBill control.
         /// </summary>
@@ -1622,7 +1093,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_PhoneBill;
-        
+
         /// <summary>
         /// txt_Sal_Others control.
         /// </summary>
@@ -1631,7 +1102,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_Others;
-        
+
         /// <summary>
         /// txt_Sal_Gross control.
         /// </summary>
@@ -1640,7 +1111,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Sal_Gross;
-        
+
         /// <summary>
         /// tblLeave control.
         /// </summary>
@@ -1649,7 +1120,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTable tblLeave;
-        
+
         /// <summary>
         /// chkLeave control.
         /// </summary>
@@ -1658,52 +1129,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkLeave;
-        
-        /// <summary>
-        /// Label109 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label109;
-        
-        /// <summary>
-        /// Label110 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label110;
-        
-        /// <summary>
-        /// Label111 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label111;
-        
-        /// <summary>
-        /// Label112 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label112;
-        
-        /// <summary>
-        /// Label113 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label113;
-        
+
         /// <summary>
         /// chk_Ref_Reference_1 control.
         /// </summary>
@@ -1712,7 +1138,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk_Ref_Reference_1;
-        
+
         /// <summary>
         /// txt_Ref_Name1 control.
         /// </summary>
@@ -1721,7 +1147,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_Name1;
-        
+
         /// <summary>
         /// txt_Ref_Address1 control.
         /// </summary>
@@ -1730,7 +1156,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_Address1;
-        
+
         /// <summary>
         /// txt_Ref_ContactNo1 control.
         /// </summary>
@@ -1739,7 +1165,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_ContactNo1;
-        
+
         /// <summary>
         /// txt_Ref_Organization1 control.
         /// </summary>
@@ -1748,7 +1174,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_Organization1;
-        
+
         /// <summary>
         /// txt_Ref_Designation1 control.
         /// </summary>
@@ -1757,7 +1183,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_Designation1;
-        
+
         /// <summary>
         /// chk_Ref_Reference_2 control.
         /// </summary>
@@ -1766,7 +1192,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chk_Ref_Reference_2;
-        
+
         /// <summary>
         /// txt_Ref_Name2 control.
         /// </summary>
@@ -1775,7 +1201,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_Name2;
-        
+
         /// <summary>
         /// txt_Ref_Address2 control.
         /// </summary>
@@ -1784,7 +1210,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_Address2;
-        
+
         /// <summary>
         /// txt_Ref_ContactNo2 control.
         /// </summary>
@@ -1793,7 +1219,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_ContactNo2;
-        
+
         /// <summary>
         /// txt_Ref_Organization2 control.
         /// </summary>
@@ -1802,7 +1228,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_Ref_Organization2;
-        
+
         /// <summary>
         /// txt_Ref_Designation2 control.
         /// </summary>

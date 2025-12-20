@@ -1,6 +1,4 @@
-﻿//will store image object of employee after the UserProfile is returned
-//var m_obj_EmployeeImage;
-var numWeekEnd = new Array();
+﻿var numWeekEnd = new Array();
 
 $(document).ready(function () {
     $(function () { $("#tabs").tabs(); });
@@ -11,40 +9,9 @@ $(document).ready(function () {
 
     var lcl_str_WMDataSup = "{IP_ui64_designationCode :" + lcl_str_designationCode + "}";
 
-    //    /********************************************************************************************************************
-    //        FORMAT THE TABLE
-    //        ********************************************************************************************************************/
-    //       $('#tblLeave').dataTable({
-    //            "bJQueryUI": true,
-    //            "sScrollY": "700px",
-    //            "bFilter": true,
-    //            "bPaginate": false,
-    //            "bLengthChange": false,
-    //            "oLanguage": {
-    //                "sEmptyTable": "No Department Data Available",
-    //                "sZeroRecords": "No Department Record Found For Your Specified Criteria"
-    //            },
-    //            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-    //                //                        // Bold the grade for all 'A' grade browsers
-    //                //                        if (aData[4] == "A") {
-    //                //                            $('td:eq(4)', nRow).html('<b>A</b>');
-    //                //                        }
-    //            },
-    //            "aoColumns": [
-    //                        { sTitle: 'Leave Name', sWidth: '40%', sClass: 'alignCenter' },
-    //                        { sTitle: 'Number Of Days', sWidth: '30%', sClass: 'alignCenter' },
-    //                       // { sTitle: 'Company Code', sWidth: '22%', sClass: 'alignCenter' },
-    //                        { sTitle: 'Carry Forwarded', sWidth: '30%', sClass: 'alignCenter' },
-    //                       // { sTitle: 'Action', sWidth: '15%', sClass: 'alignCenter' },
-
-    //                      ]
-
-    //        });
-
     LoadLeaveList();
     CheckBoxCount();
 
-    /// ***************************************************Change Event*******************************************/
 
     $('#txt_Sal_Gross').blur(function () { GrossSalaryChange(); });
     $('#txt_Off_ACSCode').blur(function () { CheckIfACSCodeExists(); });
@@ -54,13 +21,9 @@ $(document).ready(function () {
     $('#txt_Off_AutoRefEmployee').change(function () { AutoRefEmployeeChangeEvent(); });
     $('#ddl_Off_Department').change(function () { DepartmentChangeEvent(); });
     $('#txt_Off_Tin').blur(function () { CheckIfEtinExists(); });
-    //$('#ddl_Off_Supervisor').change(function () { alert($('#ddl_Off_Supervisor option:selected').val().toString()); });
-
-    // e-TIN *************
 
     $("#chk_eTIN_Eligible").click(function () {
         if ($('#chk_eTIN_Eligible').is(':checked')) {
-            //alert("REF-1 CHECKED");
             $('#txt_Off_Tin').removeAttr('disabled');
             $('#txt_Off_Tin').val('');
 
@@ -72,10 +35,8 @@ $(document).ready(function () {
         return true;
 
     });
-    /////////////
     $("#chkBankSalary").click(function () {
         if ($('#chkBankSalary').is(':checked')) {
-            //alert("REF-1 CHECKED");
             $('#txt_Off_BankAccountCode').removeAttr('disabled');
             $('#txt_Off_BankAccountCode').val('');
 
@@ -88,10 +49,8 @@ $(document).ready(function () {
 
     });
 
-    //// ********* Bank Name
     $("#chkBankSalary").click(function () {
         if ($('#chkBankSalary').is(':checked')) {
-            //alert("REF-1 CHECKED");
             $('#txtBankName').removeAttr('disabled');
             $('#txtBankName').val('');
 
@@ -104,9 +63,6 @@ $(document).ready(function () {
 
     });
 
-
-    //  ****************************Bond Validity Final **************************
-
     $('#ddl_BondYear').change(function () {
 
         var dateStr = $("#txt_BondIssueDate").val();
@@ -115,24 +71,17 @@ $(document).ready(function () {
 
         var years = parseInt($('#ddl_BondYear option:selected').val(), 10);
         d.setFullYear(d.getFullYear() + years);
-        //        d.setYear(d.getYear() + 3);
-
-        //            d.setYear(d.getYear() + 3);
         $("#txt_BondValidityDate").datepicker('setDate', d);
 
         var years = parseInt($("#equipment_warrantyLength").val(), 10);
 
     });
 
-    /*********************************************************************************************************************************/
-    //DatePicker Setting
     $("#txt_Exp_DateFrom").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
     $("#txt_Exp_DateTo").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
     $("#txt_Off_JoiningDate").datepicker({ dateFormat: 'dd/MM/yy', showButtonPanel: true, minDate: -2, maxDate: 0,
         onSelect: function (dateStr) {
-            //add 3month with the 'Joining Date' and populate Confirmation date
             var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
-            //var years = parseInt($("#equipment_warrantyLength").val(), 10);
             d.setMonth(d.getMonth() + 3);
             $("#txt_Off_ConfirmationDate").datepicker('setDate', d);
         }
@@ -145,16 +94,31 @@ $(document).ready(function () {
     $("#txt_Pers_DateOfBirth").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true, maxDate: "-18Y" });
     $("#txt_BondValidityDate").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
     $("#txt_BondIssueDate").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
-    /*********************************************************************************************************************************/
 
 
 
     $(function () {
         $("#txt_Off_JoiningDate").datepicker();
     });
+    
+
+    initializeSelect2('ddl_Off_Department', '-----Select Department-----', '100%');
+    initializeSelect2('ddl_Off_RefEmployee', '----- Select REF. Employee -----', '100%');
+    initializeSelect2('ddl_Off_Supervisor', '----- Select Supervisor -----', '100%');
+    initializeSelect2('ddl_BondYear', '-----Select Bond Year-----', '100%');
+    initializeSelect2('txtBankName', '------Select Bank-----', '100%');
+    initializeSelect2('ddl_JobLocation', '------Select Job Location-----', '100%');
+
+    initializeSelect2('ddl_Pers_MaritalStatus', '-----Select Marital Status-----', '100%');
+    initializeSelect2('ddl_Pers_Sex', '-----Select Gender-----', '100%');
+    initializeSelect2('ddl_Pers_Religion', '----- Select Religion -----', '100%');
+    initializeSelect2('ddl_Pers_BloodGroup', '-----Select Blood Group-----', '100%');
+    initializeSelect2('ddl_Pers_PresentDistrict', '-----Select District-----', '100%');
+    initializeSelect2('ddl_Pers_PermanentDistrict', '----- Select District -----', '100%');
+    initializeSelect2('ddl_Off_Shift_Code', '-----Select Shift Code-----', '100%'); 
+    initializeSelect2('ddl_Off_Designation', '-----Select Designation-----', '100%');
+
 });
-////////////////////for supervisor List //////////////////////////////////
-////////////////////Check ACS Code //////////////////////////////////
 function CheckIfACSCodeExists() {
     var lcl_str_PlaceHolderValue = $('#txt_Off_ACSCode').attr("PlaceHolder").toString();
     $('#txt_Off_ACSCode').attr("PlaceHolder", '');
@@ -169,11 +133,10 @@ function CheckIfACSCodeExists() {
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            // url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/CheckIfACSCodeExists",
             url: "~/../../../WebServices/HRIS/EmployeeService.asmx/CheckIfACSCodeExists",
 
-            data: "{IP_str_ACSCode:" + JSON.stringify(lcl_str_ACSValue) + "}", //provide input for the getSM_PO method
-            dataType: "json", /// <reference path= />
+            data: "{IP_str_ACSCode:" + JSON.stringify(lcl_str_ACSValue) + "}",
+            dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
                 if (WSReturn.ResponseCode < 0) {
@@ -186,15 +149,12 @@ function CheckIfACSCodeExists() {
                     $('#txt_Off_ACSCode').attr("PlaceHolder", lcl_str_PlaceHolderValue);
                     return;
                 }
-
-
             },
             error: function (data) {
                 DisplayInformation("Fatal Server Error : Contact Administrator!!!");
             }
         });
 }
-////////////////////Check Voter ID //////////////////////////////////
 function CheckIfVoterIDExists() {
     var lcl_str_PlaceHolderValue = $('#txt_Pers_VoterCardNo').attr("PlaceHolder").toString();
     $('#txt_Pers_VoterCardNo').attr("PlaceHolder", '');
@@ -209,11 +169,10 @@ function CheckIfVoterIDExists() {
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            //url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/CheckIfVoterIDExists",
             url: " ~/../../../WebServices/HRIS/EmployeeService.asmx/CheckIfVoterIDExists",
 
-            data: "{IP_str_VoterID:" + JSON.stringify(lcl_str_VoterIDValue) + "}", //provide input for the getSM_PO method
-            dataType: "json", /// <reference path= />
+            data: "{IP_str_VoterID:" + JSON.stringify(lcl_str_VoterIDValue) + "}",
+            dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
                 if (WSReturn.ResponseCode < 0) {
@@ -226,15 +185,12 @@ function CheckIfVoterIDExists() {
                     $('#txt_Pers_VoterCardNo').attr("PlaceHolder", lcl_str_PlaceHolderValue);
                     return;
                 }
-
-
             },
             error: function (data) {
                 alert("Fatal Server Error : Contact Administrator!!!");
             }
         });
     }
-    ////////////////////Check e-TIN ID //////////////////////////////////
     function CheckIfEtinExists() {
         var lcl_str_PlaceHolderValue = $('#txt_Off_Tin').attr("PlaceHolder").toString();
         $('#txt_Off_Tin').attr("PlaceHolder", '');
@@ -250,8 +206,8 @@ function CheckIfVoterIDExists() {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/CheckIfEtinExists",
-            data: "{IP_str_eTinID:" + JSON.stringify(lcl_str_eTinIDValue) + "}", //provide input for the getSM_PO method
-            dataType: "json", /// <reference path= />
+            data: "{IP_str_eTinID:" + JSON.stringify(lcl_str_eTinIDValue) + "}",
+            dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
                 if (WSReturn.ResponseCode < 0) {
@@ -264,8 +220,6 @@ function CheckIfVoterIDExists() {
                     $('#txt_Off_Tin').attr("PlaceHolder", lcl_str_PlaceHolderValue);
                     return;
                 }
-
-
             },
             error: function (data) {
                 alert("Fatal Server Error : Contact Administrator!!!");
@@ -273,7 +227,6 @@ function CheckIfVoterIDExists() {
         });
     }
 
-////////////////////Check Passport ID //////////////////////////////////
 function CheckIfPassPortNoExists() {
     var lcl_str_PlaceHolderValue = $('#txt_Pers_PassportNo').attr("PlaceHolder").toString();
     $('#txt_Pers_PassportNo').attr("PlaceHolder", '');
@@ -288,11 +241,10 @@ function CheckIfPassPortNoExists() {
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            //url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/CheckIfPassPortNoExists",
             url: " ~/../../../WebServices/HRIS/EmployeeService.asmx/CheckIfPassPortNoExists",
 
-            data: "{IP_str_PassPortNo:" + JSON.stringify(lcl_str_PassPortNoValue) + "}", //provide input for the getSM_PO method
-            dataType: "json", /// <reference path= />
+            data: "{IP_str_PassPortNo:" + JSON.stringify(lcl_str_PassPortNoValue) + "}",
+            dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
                 if (WSReturn.ResponseCode < 0) {
@@ -305,20 +257,12 @@ function CheckIfPassPortNoExists() {
                     $('#txt_Pers_PassportNo').attr("PlaceHolder", lcl_str_PlaceHolderValue);
                     return;
                 }
-
-
             },
             error: function (data) {
                 alert("Fatal Server Error : Contact Administrator!!!");
             }
         });
 }
-
-function ddlSupervisorList(response) {
-
-}
-
-
 
 function ConfigureLeaveList(response) {
 
@@ -343,13 +287,10 @@ function ConfigureLeaveList(response) {
                 $("#txtLeaveCounter").val(lcl_i32_Leave_Counter.toString());
             });
             break;
-        //  DisplaySuccess(lcl_obj_WSResponse.Message);                 
         case 1:
-            //error
             DisplayError(lcl_obj_WSResponse.Message);
             break;
         case 2:
-            //Critical Error
             DisplayError(lcl_obj_WSResponse.Message);
             break;
     }
@@ -359,22 +300,19 @@ function DesignationChangeEvent() {
     var lcl_str_SelectedText = $.trim($('#ddl_Off_Designation option:selected').text());
 
     if (lcl_str_SelectedText == '') {
-        //clear standard salary structure fields
         return;
     }
     var lcl_str_DesignationCode = $.trim($('#ddl_Off_Designation option:selected').val());
 
-    var lcl_str_CompanyCode = $("#ddlCompany option:selected").val(); //Retrieve company code from hidden field
-    //call webservice and get Standard salary structure details
-    //alert(lcl_str_CompanyCode);
+    var lcl_str_CompanyCode = $("#ddlCompany option:selected").val();
     $.ajax(
         {
             async: true,
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: " ~/../../../WebServices/HRIS/DesignationService.asmx/GetDesignationDetails",
-            data: "{IP_ui64_DesignationCode:" + JSON.stringify(lcl_str_DesignationCode) + "}", //provide input for the getSM_PO method
-            dataType: "json", /// <reference path= />
+            data: "{IP_ui64_DesignationCode:" + JSON.stringify(lcl_str_DesignationCode) + "}",
+            dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
 
@@ -396,8 +334,6 @@ function DesignationChangeEvent() {
                 $("#txt_Sal_PhoneBill").val(lcl_obj_Salary_Structure.PhoneBill);
                 $("#txt_Sal_Others").val(lcl_obj_Salary_Structure.Others);
                 $("#txt_Sal_Gross").val(lcl_obj_Salary_Structure.Gross);
-                //$('.currency_field').formatCurrency({ groupDigits: true, positiveFormat: '%n' });
-
             },
             error: function (data) {
                 alert("Fatal Server Error : Contact Administrator!!!");
@@ -409,12 +345,11 @@ function GrossSalaryChange() {
 
     var lcl_str_GrossSalary = $.trim($("#txt_Sal_Gross").val().toString());
     if (lcl_str_GrossSalary == '') {
-        //reset all fields to 0.00
         $(".salary_field").val('0.00');
         $(".gross_salary").val('0.00');
         return false;
     }
-    $(".salary_field").val('0.00'); //zero out all salary fields
+    $(".salary_field").val('0.00');
     lcl_str_GrossSalary = lcl_str_GrossSalary.replace(',', '');
     var lcl_flt_GrossSalary = parseFloat(lcl_str_GrossSalary);
     if (lcl_flt_GrossSalary == 0) {
@@ -430,7 +365,6 @@ function GrossSalaryChange() {
     $("#txt_Sal_Medical").val(lcl_flt_Medical.toString());
     var lcl_flt_Conveyence = (lcl_flt_GrossSalary * 5) / 100;
     $("#txt_Sal_Conveyence").val(lcl_flt_Conveyence.toString());
-    //alert(lcl_flt_GrossSalary.toString());
 }
 $("#tblEducation td img.row_delete_btn").on("click", function () {
 
@@ -442,7 +376,6 @@ $("#tblEducation td img.row_delete_btn").on("click", function () {
         document.getElementById("txtEducationCount").value = lcl_i32_EducationCount.toString();
         srow.fadeOut(500, function () {
             srow.remove();
-            //change the id of the dynamically added controls
             for (var i = 0; i < lcl_i32_EducationCount; i++) {
                 var education_elements = document.getElementsByName("EducationTableRow").item(i);
                 var education_ip_elements = education_elements.getElementsByTagName("input");
@@ -492,8 +425,6 @@ function addEducation() {
                                       "</tr>";
                     $("#tblEducation tbody").append(lcl_str_HTML);
                     $("#tblEducation tbody > tr:last").hide().fadeIn('slow');
-                    //$("#tblEducation tr:last").after(lcl_str_HTML);
-                    //$("#tblEducation tr:last").hide().fadeIn('slow');
                     document.getElementById("txtEducationCount").value = lcl_i32_EducationCount.toString();
                     RefreshEducationControls();
                 }
@@ -552,13 +483,8 @@ function addExperience() {
                     $("#tblExperience tbody").append(lcl_str_HTML);
                     $("#tblExperience tbody > tr:last").hide().fadeIn('slow');
 
-                    //                    $("#tblExperience").append(lcl_str_HTML);
-                    //                    $("#tblExperience tr:last").hide().fadeIn('slow');
                     document.getElementById("txtExperienceCount").value = lcl_i32_ExperienceCount.toString();
                     RefreshExperienceControl();
-
-                    /****************************************************************************************************************/
-                    /****************************************************************************************************************/
                 }
             }
         }
@@ -575,17 +501,10 @@ function RefreshExperienceControl() {
     document.getElementById("txt_Exp_DateTo").value = '';
 }
 
-
-
-/**************************************************************************************************************************/
-/**************************************************************************************************************************/
-//Image Function
 function LoadImage() {
-    //alert("Loading Image");
     var input, file, fr, img;
 
     if (typeof window.FileReader !== 'function') {
-        //write("The file API isn't supported on this browser yet.");
         DisplayInformation("Please Update Your Internet Browser!!!");
         return;
     }
@@ -596,7 +515,6 @@ function LoadImage() {
         return;
     }
     else if (!input.files) {
-        //write("This browser doesn't seem to support the `files` property of file inputs.");
         DisplayInformation("Please Update Your Internet Browser!!!");
         return;
     }
@@ -606,7 +524,6 @@ function LoadImage() {
     }
     else {
         file = input.files[0];
-        //check file type
         var lcl_str_FileType = file.type.toString();
         if ((lcl_str_FileType != "image/png") && (lcl_str_FileType != "image/gif") && (lcl_str_FileType != "image/jpeg") && (lcl_str_FileType != "image/jpg") && (lcl_str_FileType != "image/jpeg")) {
             DisplayInformation("You can select image type 'jpg,gif,png' only!!!");
@@ -644,11 +561,8 @@ function DeleteImage() {
     $("#txt_EI_ImageSize").data('img_size', '0');
     document.getElementById('fileBrowser').value = '';
     $("#fileBrowser").data('emp_img', '');
-    //$("#fileBrowser").data('is_emp_img_added', false);
-    //alert($("#fileBrowser").data('emp_img').toString());
 }
 function BindRefEmpControls() {
-    //alert("OK");
     $("#txt_Off_RefEmployee").autocomplete({
         source: function (request, response) {
             $.ajax({
@@ -731,7 +645,6 @@ function DepartmentChangeEvent() {
             type: "POST",
             global: true,
             contentType: "application/json; charset=utf-8",
-            //url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/GetEmployeeDataByDepartment",
             url: " ~/../../../WebServices/HRIS/EmployeeService.asmx/GetEmployeeDataByDepartment",
 
             data: "{IP_ui64_DepartmentCode:" + JSON.stringify(lcl_str_DepartmentCode) + "}", //provide input for the getSM_PO method
@@ -754,9 +667,6 @@ function DepartmentChangeEvent() {
                     document.getElementById("ddl_Off_Supervisor").options.add(dropdown_options);
                 });
             }
-            ////            error: function (data) {
-            ////                alert("Fatal Server Error : Contact Administrator!!!");
-            ////            }
         });
     return false;
 }
@@ -764,7 +674,6 @@ function DepartmentChangeEvent() {
 
 function toogleReference1Controls() {
     if ($('#chk_Ref_Reference_1').is(':checked')) {
-        //alert("REF-1 CHECKED");
         $('#txt_Ref_Name1').removeAttr('disabled');
         $('#txt_Ref_Name1').val('');
         $('#txt_Ref_Address1').removeAttr('disabled');
@@ -788,7 +697,6 @@ function toogleReference1Controls() {
     $('#txt_Ref_Designation1').val('');
     $('#txt_Ref_Designation1').attr('disabled', true);
     if ($('#chk_Ref_Reference_2').is(':checked')) {
-        //if Reference2 is checked, uncheck Reference 2 also
         $('#chk_Ref_Reference_2').attr('checked', false);
         toogleReference2Controls();
     }
@@ -833,30 +741,6 @@ function Save() {
         /************************************************************************************************************/
 
         var lcl_b_InputValidated = true;
-        //input validation
-        //        $('#apply-form input').blur(function () {
-        //            if (!$(this).val()) {
-        //                $(this).parents('p').addClass('warning');
-        //            }
-        //        });
-        //        $('.input-required').each(function (i, obj) {
-        //            //test
-        //            if ($.trim($(this).val().toString()) == '') {
-        //                $(this).css('background-color', 'red');
-        //                lcl_b_InputValidated = false;
-        //            }
-        //        });
-        //        if (lcl_b_InputValidated == false) {
-        //            alert("The fields with red background are mandatory fields.Please Fill those fields!!!");
-        //            return false;
-        //        }
-        //        
-        //        var lcl_i32_EducationCount = parseInt(document.getElementById("txtEducationCount").value.toString());
-        //        if (parseInt(document.getElementById("txtEducationCount").value.toString()) == 0) {
-        //            alert("please fillup Education Field!!!");
-        //            return false;
-
-        // }
         /************************************************************************************************************/
 
         var lcl_obj_EmpApp = new Object();
@@ -874,14 +758,11 @@ function Save() {
         lcl_obj_EmpApp.Employee.RetirementDate = trim($('#txt_Off_RetirementDate').val());
         lcl_obj_EmpApp.Employee.SettlementDate = trim($('#txt_Off_SettlementDate').val());
         lcl_obj_EmpApp.Employee.OfficialFileNo = trim($('#txt_Off_OfficialFileNo').val());
-       // lcl_obj_EmpApp.Employee.Tin = trim($('#txt_Off_Tin').val());
         lcl_obj_EmpApp.Employee.JobLocation = trim($('#ddl_JobLocation option:selected').val());
         lcl_obj_EmpApp.Employee.BondIssueDate = trim($('#txt_BondIssueDate').val());
         lcl_obj_EmpApp.Employee.BondValidityDate = trim($('#txt_BondValidityDate').val());
         lcl_obj_EmpApp.Employee.BondRefference = trim($('#txt_BondRefference').val());
         lcl_obj_EmpApp.Employee.BondYear = trim($('#ddl_BondYear option:selected').val())
-        // lcl_obj_EmpApp.Employee.PF_Member_No = trim($('#txt_Off_PFMemberNo').val());
-        //lcl_obj_EmpApp.Employee.PF_Start_Date = trim($('#txt_Off_PFStartDate').val());
         lcl_obj_EmpApp.Employee.BankName = trim($('#txtBankName').val());
 
         if ($('#chkBankSalary').is(':checked')) {
@@ -913,9 +794,6 @@ function Save() {
         }
 
         lcl_obj_EmpApp.Employee.ShiftCode = $('#ddl_Off_Shift_Code').val();
-        //lcl_obj_Employee.Entry_Employee_Code = $('#txtUserEmployeeCode').val();
-        //alert("STEP1");
-        //INSTANTIATE Employee_Personal Object
         lcl_obj_EmpApp.EmployeePersonal = new Object();
         lcl_obj_EmpApp.EmployeePersonal.FatherName = trim($('#txt_Pers_FatherName').val());
         lcl_obj_EmpApp.EmployeePersonal.MotherName = trim($('#txt_Pers_MotherName').val());
@@ -944,11 +822,7 @@ function Save() {
         lcl_obj_EmpApp.EmployeePersonal.CitizenCardId = trim($('#txt_Pers_VoterCardNo').val());
         lcl_obj_EmpApp.EmployeePersonal.PassportNo = trim($('#txt_Pers_PassportNo').val());
 
-        //Instantiate Employee_Education Object
-
         var lcl_i32_EducationCount = parseInt(document.getElementById("txtEducationCount").value.toString());
-        //alert("Education Count : " + lcl_i32_EducationCount.toString());
-        //lcl_obj_EmpApp.EmployeeEducationList = new Object();
         lcl_obj_EmpApp.EmployeeEducation = new Array();
 
         for (var i = 0; i < lcl_i32_EducationCount; i++) {
@@ -965,8 +839,6 @@ function Save() {
 
 
         var lcl_i32_WeekEndCount = numWeekEnd.length;
-        //alert("Education Count : " + lcl_i32_EducationCount.toString());
-        //lcl_obj_EmpApp.EmployeeEducationList = new Object();
         lcl_obj_EmpApp.EmployeeWeekEnd = new Array();
         for (var i = 0; i < lcl_i32_WeekEndCount; i++) {
             lcl_obj_EmpApp.EmployeeWeekEnd[i] = new Object();
@@ -999,10 +871,6 @@ function Save() {
         lcl_obj_EmpApp.EmployeeSalaryStructure.PhoneBill = $.trim(($('#txt_Sal_PhoneBill').val().toString().replace(',', '')));
         lcl_obj_EmpApp.EmployeeSalaryStructure.Others = $.trim(($('#txt_Sal_Others').val().toString().replace(',', '')));
         lcl_obj_EmpApp.EmployeeSalaryStructure.Gross = $.trim(($('#txt_Sal_Gross').val().toString().replace(',', '')));
-        //lcl_obj_Employee.Employee_Salary.EffectiveFrom should be put the default date
-
-        //User is not allowed to enter data in Reference-2 without entering data in Reference-1
-        //Initiate Reference Object
         lcl_obj_EmpApp.EmployeeReferenceList = new Array();
         var lcl_obj_Ref_txtName1 = document.getElementById('txt_Ref_Name1');
         var lcl_obj_Ref_txtContactNo1 = document.getElementById('txt_Ref_ContactNo1');
@@ -1060,14 +928,11 @@ function Save() {
 
         lcl_obj_EmpApp.Image = new Object();
         if ($('#fileBrowser').data('is_emp_img_added') == false) {
-            //nullify object if employee image not added
             lcl_obj_EmpApp.Image = null;
         }
         else {
-            //lcl_obj_Employee.Employee_Image.Image = new Image();
             lcl_obj_EmpApp.Image.ImageType = $("#txt_EI_ImageType").val().toString();
             lcl_obj_EmpApp.Image.ImageSize = $("#txt_EI_ImageSize").data('img_size');
-            //lcl_obj_EmpApp.Image.Image = $('#fileBrowser').data('emp_img');
             lcl_obj_EmpApp.Image.Image1 = $('#fileBrowser').data('emp_img');
         }
         $.ajax(
@@ -1077,29 +942,13 @@ function Save() {
                 type: "POST",
                 async: true,
                 contentType: "application/json; charset=utf-8",
-                // url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/UpdateEmployeeAppoinment",
                 url: " ~/../../../WebServices/HRIS/EmployeeService.asmx/UpdateEmployeeAppoinment",
 
-                data: "{IP_obj_EmployeeAppoinment:" + JSON.stringify(lcl_obj_EmpApp) + "}", //provide input for the getSM_PO method
-                dataType: "json", /// <reference path= />
+                data: "{IP_obj_EmployeeAppoinment:" + JSON.stringify(lcl_obj_EmpApp) + "}",
+                dataType: "json",
                 success: function (response) {
                     var WSReturn = response.d;
                     if (WSReturn.ResponseCode == 0) {
-                        //alert(WSReturn.Message);
-                        //$('input').val('');
-                        // $('select').val('');
-                        //$("input:not(:button)").val('');
-                        // $('#txt_Pers_Nationality').val('Bangladeshi');
-                        //$("#tblEducation").find("tr:gt(0)").remove();
-                        //$("#tblExperience").find("tr:gt(0)").remove();
-                        //$("#txtEducationCount").val("0");
-                        //$("#txtExperienceCount").val("0");
-                        //$('#fileBrowser').data('emp_img', '');
-                        //$('#fileBrowser').data('is_emp_img_added', false)
-                        //$("#txt_EI_ImageSize").data('img_size', '0');
-                        //document.getElementById('fileBrowser').value = '';
-                        //document.getElementById("imgEmployeeImage").setAttribute("src", "");
-                        // alert(WSReturn.Message);
                         DisplayInformation(WSReturn.Message);
                         return true;
                     }
@@ -1108,8 +957,6 @@ function Save() {
                     }
                 },
                 error: function (data) {
-                    //alert(data);
-                    // $.unblockUI();
                 }
             });
         return false;
@@ -1127,28 +974,16 @@ function CheckBoxCount() {
 
     for (var i = 0; i < inputList.length; i++) {
         if (inputList[i].type == "checkbox" && inputList[i].checked) {
-
-
-
-            //  WeekEnd[i] = inputList[i].id;
-
             WeekEnd[i] = i + 1;
-
-
-            //numWeckEnd = numWeckEnd + 1;
         }
     }
 
-    //numWeekEnd = WeekEnd
     numWeekEnd = WeekEnd.filter(Number)
-
-    //alert(numWeekEnd);
 }
 
 
 function LoadLeaveList() {
     var lcl_str_CompanyCode = $("#ddlCompany option:selected").val();
-
     if (lcl_str_CompanyCode == 0) {
 
         return
@@ -1162,8 +997,8 @@ function LoadLeaveList() {
 
             url: gbl_URL_Root + "WebServices/HRIS/LeaveService.asmx/GetEmployeeLeaveList",
 
-            data: "{IP_ui64_CompanyCode:" + JSON.stringify(lcl_str_CompanyCode) + "}", //provide input for the getSM_PO method
-            dataType: "json", /// <reference path= />
+            data: "{IP_ui64_CompanyCode:" + JSON.stringify(lcl_str_CompanyCode) + "}",
+            dataType: "json",
             success: function (response) {
                 var WSReturn = response.d;
                 if (WSReturn.ResponseCode == 0) {
@@ -1186,7 +1021,6 @@ function LoadLeaveList() {
                         $("#tblLeave tr:last").hide().fadeIn('slow');
                         $("#txtLeaveCounter").val(lcl_i32_Leave_Counter.toString());
                     });
-                    //DisplayInformation(WSReturn.Data);
                     return true;
 
                 }
@@ -1195,8 +1029,6 @@ function LoadLeaveList() {
                 }
             },
             error: function (data) {
-                // alert(data);
-                // $.unblockUI();
             }
         });
     return false;

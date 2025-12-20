@@ -656,7 +656,7 @@
             </div>
         </div>
         <div id="EducationExperienceTab" style="z-index: 1007;">
-            <div id="mm" style="height: 225px; z-index: 1008;">
+            <div id="mm" style="height: auto; z-index: 1008;">
                 <!-- Education Section -->
                 <div class="table-responsive">
                     <h3 class="fontSerif">Education Details</h3>
