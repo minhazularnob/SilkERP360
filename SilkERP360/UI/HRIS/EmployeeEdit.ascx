@@ -15,7 +15,6 @@
             <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save"
                 ClientIDMode="Static" OnClientClick="return Save();" Style="width: 70px;" />&nbsp;
         </p>
-
     </div>
 
     <div id="tabs" style="width: 99%; height: 900px; overflow-y: auto; position: relative; z-index: 12; top: 0px; left: 1px; z-index: 1002; font-size: small" class="fontSerif fontBold">
@@ -26,7 +25,6 @@
             <li><a href="#SalaryTab">Salary Leaves & Reference</a></li>
             <li><a href="#EducationExperienceTab">Education , Experiance </a></li>
         </ul>
-
         <div id="ImageTab" class="position-relative p-3" style="z-index: 1003;">
             <div class="container">
 
@@ -92,8 +90,7 @@
 
             </div>
         </div>
-
-        <div id="OfficialTab" class="position-relative p-3" style="z-index: 1004; height: 900px;overflow-y: auto">
+        <div id="OfficialTab" class="position-relative p-3" style="z-index: 1004; height: 900px; overflow-y: auto">
             <div class="container-fluid">
 
                 <h2 class="fontSerif">Official Information</h2>
@@ -581,7 +578,6 @@
                 </div>
             </div>
         </div>
-
         <div id="EducationExperienceTab" style="z-index: 1007;">
 
             <!-- ===================== Education Section ===================== -->
@@ -730,7 +726,6 @@
             </div>
 
         </div>
-
         <div id="SalaryTab" class="position-relative p-3" style="z-index: 1010; max-height: 900px; overflow-y: auto;">
             <div class="container-fluid">
 
