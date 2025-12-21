@@ -149,7 +149,8 @@ function LoadMedicalInfo() {
                     lcl_i32_MedicalInfoCode++;
                 });
                 GBL_EMPLOYEE_LIST_TABLE.fnAddData(lcl_str_ExtendedAllMedicalInfoData);
-                $('#dvReportBody').show('slow');
+                GBL_EMPLOYEE_LIST_TABLE.fnDraw();
+                $('#dvReportBody').removeClass('d-none');
             }
         });
 }
