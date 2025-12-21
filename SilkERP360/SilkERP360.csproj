@@ -5853,6 +5853,7 @@
     <Content Include="Globals\Images\delete-3.gif" />
     <Content Include="Globals\Images\delete-4.gif" />
     <Content Include="Globals\Images\delete.png" />
+    <Content Include="Globals\Images\edit.png" />
     <Content Include="Globals\Images\Embedding.jpg" />
     <Content Include="Globals\Images\ERP_Structure-1.jpg" />
     <Content Include="Globals\Images\ERP_Structure-1_W350_H250.png" />

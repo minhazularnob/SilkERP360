@@ -414,13 +414,13 @@ function addEducation() {
                     var lcl_i32_EducationCount = parseInt(document.getElementById("txtEducationCount").value.toString());
                     lcl_i32_EducationCount++;
                     var lcl_str_HTML = "<tr name='EducationTableRow'>" +
-                                            "<td align='center'><input id = 'txt_Edu_ExamName-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:94%;' value = '" + lcl_str_ExamName + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_BoardUniversity-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_BoardUniversity + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_InstituteName-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_InstituteName + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_MajorSubject-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_MajorSubject + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_DivisionClass-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_DivisionClass + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_CGPA-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_CGPA + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_PassingYear-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_PassingYear + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_ExamName-" + lcl_i32_EducationCount.toString() + "' style='width:94%;' value = '" + lcl_str_ExamName + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_BoardUniversity-" + lcl_i32_EducationCount.toString() + "'  style='width:96%;' value = '" + lcl_str_BoardUniversity + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_InstituteName-" + lcl_i32_EducationCount.toString() + "'  style='width:96%;' value = '" + lcl_str_InstituteName + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_MajorSubject-" + lcl_i32_EducationCount.toString() + "'  style='width:96%;' value = '" + lcl_str_MajorSubject + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_DivisionClass-" + lcl_i32_EducationCount.toString() + "'  style='width:92%;' value = '" + lcl_str_DivisionClass + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_CGPA-" + lcl_i32_EducationCount.toString() + "'  style='width:92%;' value = '" + lcl_str_CGPA + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_PassingYear-" + lcl_i32_EducationCount.toString() + "'  style='width:92%;' value = '" + lcl_str_PassingYear + "'></td>" +
                                             "<td align='center'><img src='../../Globals/Images/delete.png' class='row_delete_btn'  style='cursor:pointer;background-color:#ffffff;text-align:right;' title='Delete'/></td>" +
                                       "</tr>";
                     $("#tblEducation tbody").append(lcl_str_HTML);

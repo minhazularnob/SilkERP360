@@ -469,13 +469,13 @@ function addEducation() {
                     var lcl_i32_EducationCount = parseInt(document.getElementById("txtEducationCount").value.toString());
                     lcl_i32_EducationCount++;
                     var lcl_str_HTML = "<tr name='EducationTableRow'>" +
-                                            "<td align='center'><input id = 'txt_Edu_ExamName-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:94%;' value = '" + lcl_str_ExamName + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_BoardUniversity-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_BoardUniversity + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_InstituteName-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_InstituteName + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_MajorSubject-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_MajorSubject + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_DivisionClass-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_DivisionClass + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_CGPA-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_CGPA + "'></td>" +
-                                            "<td align='center'><input id = 'txt_Edu_PassingYear-" + lcl_i32_EducationCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_PassingYear + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_ExamName-" + lcl_i32_EducationCount.toString() + "'  style='width:94%;' value = '" + lcl_str_ExamName + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_BoardUniversity-" + lcl_i32_EducationCount.toString() + "'  style='width:96%;' value = '" + lcl_str_BoardUniversity + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_InstituteName-" + lcl_i32_EducationCount.toString() + "'  style='width:96%;' value = '" + lcl_str_InstituteName + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_MajorSubject-" + lcl_i32_EducationCount.toString() + "'  style='width:96%;' value = '" + lcl_str_MajorSubject + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_DivisionClass-" + lcl_i32_EducationCount.toString() + "'  style='width:92%;' value = '" + lcl_str_DivisionClass + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_CGPA-" + lcl_i32_EducationCount.toString() + "'  style='width:92%;' value = '" + lcl_str_CGPA + "'></td>" +
+                                            "<td align='center'><input id = 'txt_Edu_PassingYear-" + lcl_i32_EducationCount.toString() + "'  style='width:92%;' value = '" + lcl_str_PassingYear + "'></td>" +
                                             "<td align='center'><img src='../../Globals/Images/delete.png' class='row_delete_btn'  style='cursor:pointer;background-color:#ffffff;text-align:right;' title='Delete'/></td>" +
                                       "</tr>";
                     $("#tblEducation tbody").append(lcl_str_HTML);
@@ -529,13 +529,13 @@ function addExperience() {
                     lcl_i32_ExperienceCount++;
 
                     var lcl_str_HTML = "<tr name='ExperienceTableRow'>" +
-                                            "<td align='center'><input id='txt_Exp_OrganizationName-" + lcl_i32_ExperienceCount.toString() + "' readonly='readonly' style='width:94%;' value = '" + lcl_str_Organization + "'></td>" +
-                                            "<td align='center'><input id='txt_Exp_Address-" + lcl_i32_ExperienceCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_Address + "'></td>" +
-                                            "<td align='center'><input id='txt_Exp_Responsibility-" + lcl_i32_ExperienceCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_Responsibility + "'></td>" +
-                                            "<td align='center'><input id='txt_Exp_NatureOfJob-" + lcl_i32_ExperienceCount.toString() + "' readonly='readonly' style='width:96%;' value = '" + lcl_str_NatureOfJob + "'></td>" +
-                                            "<td align='center'><input id='txt_Exp_ContactNo-" + lcl_i32_ExperienceCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_ContactNo + "'></td>" +
-                                            "<td align='center'><input id='txt_Exp_DateFrom-" + lcl_i32_ExperienceCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_DateFrom + "'></td>" +
-                                            "<td align='center'><input id='txt_Exp_DateTo-" + lcl_i32_ExperienceCount.toString() + "' readonly='readonly' style='width:92%;' value = '" + lcl_str_DateTo + "'></td>" +
+                                            "<td align='center'><input id='txt_Exp_OrganizationName-" + lcl_i32_ExperienceCount.toString() + "'  style='width:94%;' value = '" + lcl_str_Organization + "'></td>" +
+                                            "<td align='center'><input id='txt_Exp_Address-" + lcl_i32_ExperienceCount.toString() + "'  style='width:96%;' value = '" + lcl_str_Address + "'></td>" +
+                                            "<td align='center'><input id='txt_Exp_Responsibility-" + lcl_i32_ExperienceCount.toString() + "'  style='width:96%;' value = '" + lcl_str_Responsibility + "'></td>" +
+                                            "<td align='center'><input id='txt_Exp_NatureOfJob-" + lcl_i32_ExperienceCount.toString() + "'  style='width:96%;' value = '" + lcl_str_NatureOfJob + "'></td>" +
+                                            "<td align='center'><input id='txt_Exp_ContactNo-" + lcl_i32_ExperienceCount.toString() + "'  style='width:92%;' value = '" + lcl_str_ContactNo + "'></td>" +
+                                            "<td align='center'><input id='txt_Exp_DateFrom-" + lcl_i32_ExperienceCount.toString() + "'  style='width:92%;' value = '" + lcl_str_DateFrom + "'></td>" +
+                                            "<td align='center'><input id='txt_Exp_DateTo-" + lcl_i32_ExperienceCount.toString() + "'  style='width:92%;' value = '" + lcl_str_DateTo + "'></td>" +
                                             "<td align='center'><img src='../../Globals/Images/delete.png' class='row_delete_btn'  style='cursor:pointer;background-color:#ffffff;text-align:right;' title='Delete'/></td>" +
                                       "</tr>";
                     $("#tblExperience tbody").append(lcl_str_HTML);
@@ -862,14 +862,10 @@ function Save() {
         lcl_obj_EmpApp.Employee.RetirementDate = trim($('#txt_Off_RetirementDate').val());
         lcl_obj_EmpApp.Employee.SettlementDate = trim($('#txt_Off_SettlementDate').val());
         lcl_obj_EmpApp.Employee.OfficialFileNo = trim($('#txt_Off_OfficialFileNo').val());
-       // lcl_obj_EmpApp.Employee.Tin = trim($('#txt_Off_Tin').val());        
         lcl_obj_EmpApp.Employee.JobLocation = trim($('#ddl_JobLocation option:selected').val());
-        // lcl_obj_EmpApp.Employee.PF_Member_No = trim($('#txt_Off_PFMemberNo').val());
-        //lcl_obj_EmpApp.Employee.PF_Start_Date = trim($('#txt_Off_PFStartDate').val());
         lcl_obj_EmpApp.Employee.BondIssueDate = trim($('#txt_BondIssueDate').val());
         lcl_obj_EmpApp.Employee.BondValidityDate = trim($('#txt_BondValidityDate').val());
         lcl_obj_EmpApp.Employee.BondRefference = trim($('#txt_BondRefference').val());
-        //lcl_obj_EmpApp.Employee.BondYear = trim($('#ddl_BondYear').val());
         lcl_obj_EmpApp.Employee.BondYear = trim($('#ddl_BondYear option:selected').val());
         lcl_obj_EmpApp.Employee.Remarks = trim($('#txt_Off_Remarks').val());
 
