@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class BonusMaster {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class BonusMaster
+    {
+
         /// <summary>
         /// ddlBonusMaster control.
         /// </summary>

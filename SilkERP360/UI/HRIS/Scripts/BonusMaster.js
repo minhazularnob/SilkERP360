@@ -4,8 +4,8 @@ $(document).ready(function () {
         "bJQueryUI": true,
         "sScrollY": "auto",
         "bFilter": true,
-        "bPaginate": false,
-        "bLengthChange": false,
+        "bPaginate": true,
+        "bLengthChange": true,
         "bSearch": false,
         "aoColumns": [
                     { sTitle: '<b>Employee</b>', sWidth: '28%', sClass: 'alignCenter' },
@@ -19,7 +19,7 @@ $(document).ready(function () {
                     { sTitle: '<b>Bonus Payable</b>', sWidth: '7%', sClass: 'alignRight' },
                   ]
     });
-    initializeSelect2('ddlBonusMaster', '-----Select Bonus Master-----', '100%');
+    initializeSelect2('ddlBonusMaster', '-----Select Designation-----', '20%');
 });
 
 function GetBonusMaster() {

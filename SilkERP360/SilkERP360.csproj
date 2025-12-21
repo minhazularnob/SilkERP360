@@ -10131,6 +10131,7 @@
     <Content Include="UI\HRIS\Scripts\AttendanceByWorkGroup.js" />
     <Content Include="UI\HRIS\Scripts\AttendanceSummery.js" />
     <Content Include="UI\HRIS\BonusMaster.js" />
+    <Content Include="UI\HRIS\Scripts\BonusMaster.js" />
     <Content Include="UI\HRIS\Scripts\DepartmentwiseAdministration.js" />
     <Content Include="UI\HRIS\Scripts\DepartmentwiseManagement.js" />
     <Content Include="UI\HRIS\Scripts\EmpLeaveApp.js" />
