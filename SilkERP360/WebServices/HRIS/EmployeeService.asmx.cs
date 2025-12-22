@@ -310,11 +310,11 @@ namespace SilkERP360.WebServices.HRIS
                 System.UInt64 lcl_ui64_EmployeeCode = lcl_obj_EmployeeAppoinmentFacade.Save(IP_obj_EmployeeAppoinment);
 
 
-                System.String lcl_str_Query = System.String.Format(@"select EMPLOYEE_ID,employee_name,d.degn_name,dp.DEPT_NAME,c.name,TO_char(JOINING_DATE,'dd-Mon-yyyy')JOINING_DATE From employee E 
+                System.String lcl_str_Query = System.String.Format(@"select E.EMPLOYEE_ID,E.employee_name,d.degn_name,dp.DEPT_NAME,c.name,TO_char(JOINING_DATE,'dd-Mon-yyyy')JOINING_DATE From employee E 
                                                                         inner join DESIGNATION D on e.designation_code=d.designation_code
                                                                         inner join DEPARTMENT Dp on e.department_code=dp.department_code
                                                                         inner join COMPANY C on e.company_code=c.company_code
-                                                                        where EMPLOYEE_CODE = {0} AND IS_DELETED = 1", lcl_ui64_EmployeeCode);
+                                                                        where E.EMPLOYEE_CODE = {0} AND E.IS_DELETED = 1", lcl_ui64_EmployeeCode);
                 SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new FL.SqlFacade();
                 Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeIDReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_Query);
                 lcl_obj_EmployeeIDReader.Read();
