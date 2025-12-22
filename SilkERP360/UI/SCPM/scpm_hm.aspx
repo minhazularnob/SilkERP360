@@ -160,7 +160,6 @@
             <div id="dvHMenu" class="pt-3">
                 <!-- Sidebar menu here -->
             </div>
-            <img src="/Globals/Images/sidebar.png" id="sideBarIcon" class="sidebar-image" />
         </div>
 
         <!-- Main Content Area -->

@@ -106,6 +106,7 @@ function ShowInfoMessageBoard(Message) {
 }
 
 function expandSidebar() {
+    debugger;
     const sidebar = document.getElementById("sidebar");
     const img = document.getElementById("sideBarIcon");
     sidebar.style.width = "300px";
@@ -115,7 +116,7 @@ function expandSidebar() {
 function collapseSidebar() {
     const sidebar = document.getElementById("sidebar");
     const img = document.getElementById("sideBarIcon");
-    sidebar.style.width = "15px";
+    sidebar.style.width = "0px";
     img.style.display = "block"; // Show the image again
 }
 
