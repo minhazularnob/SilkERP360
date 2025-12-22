@@ -118,15 +118,6 @@ namespace SilkERP360.BML.HRIS
                             lcl_obj_EmployeeImage.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                             break;
                     }
-
-
-
-
-
-
-
-
-
                     lcl_obj_Image.Value = ms.ToArray();
                 }
 
@@ -138,8 +129,6 @@ namespace SilkERP360.BML.HRIS
                 lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_UPDT_EMPLOYEE_IMAGE", lcl_obj_SP_Parameters);
 
                 return 11;
-                // System.UInt64.Parse(lcl_obj_ImageCode.Value.ToString());
-
             }, "BMLExceptionPolicy");
 
             return lcl_ui64_ImageCode;
