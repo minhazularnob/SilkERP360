@@ -567,7 +567,6 @@ function LoadAttendanceSummery() {
             global: true,
             url: gbl_URL_Root + "WebServices/UILoaderService.asmx/GetUI",
             data: "{IP_ui64_CompanyCode: " + lcl_str_CompanyCode + ",IP_str_VirtualPath:" + JSON.stringify('~/UI/HRIS/AttendanceSummery.ascx') + "}", //provide input for the getSM_PO method
-            //data: "{IP_ui64_CompanyCode: " + lcl_str_CompanyCode + ",IP_str_VirtualPath:" + JSON.stringify('~/UI/HRIS/NewRooster.ascx') + "}", //provide input for the getSM_PO method
             dataType: "json",
             success: function (response) {
                 var WSResponse = response.d;

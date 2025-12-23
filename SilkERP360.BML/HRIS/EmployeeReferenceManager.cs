@@ -8,9 +8,9 @@ namespace SilkERP360.BML.HRIS
          SilkERP360.CCL.Interfaces.IManagerOperations<SilkERP360.CCL.BusinessEntities.HRIS.EmployeeReference>
     {
         public EmployeeReferenceManager()
-    {
-        this.Initialize();
-    }
+        {
+            this.Initialize();
+        }
         /// <summary>
         /// Save Method
         /// </summary>

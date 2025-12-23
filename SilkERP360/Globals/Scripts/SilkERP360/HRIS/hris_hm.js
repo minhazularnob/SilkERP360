@@ -106,7 +106,6 @@ function ShowInfoMessageBoard(Message) {
 }
 
 function expandSidebar() {
-    debugger;
     const sidebar = document.getElementById("sidebar");
     const img = document.getElementById("sideBarIcon");
     sidebar.style.width = "300px";

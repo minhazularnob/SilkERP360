@@ -27,6 +27,7 @@
             <li><a href="#PersonalTab">Personal</a></li>
             <li><a href="#SalaryTab">Salary  Leaves & Reference</a></li>
             <li><a href="#EducationExperienceTab">Education  Experiance  </a></li>
+            <li><a href="#CertificateTab">Certificate </a></li>
         </ul>
 
         <div id="ImageTab" class="position-relative p-3" style="z-index: 1003;">
@@ -759,5 +760,31 @@
                 </div>
             </div>
         </div>
+        <div id="CertificateTab" style="z-index: 1007;">
+            <div id="mm" style="height: auto; z-index: 1008;">
+                <div class="table-responsive">
+                    <h3 class="fontSerif">Add Certificates</h3>
+                    <input type="file" id="fileInput" multiple
+                        accept=".pdf,.jpg,.jpeg,.png"
+                        onchange="handleFileSelect(this)">
+                    <br>
+                    <br>
+
+                    <table id="fileTable" class="table table-bordered table-striped table-hover mt-3" style="display: none;">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 5%">#</th>
+                                <th>File Name</th>
+                                <th>File Type</th>
+                                <th style="width: 15%">File Size (KB)</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fileTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

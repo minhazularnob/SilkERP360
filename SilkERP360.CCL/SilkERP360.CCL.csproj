@@ -127,6 +127,7 @@
     <Compile Include="BusinessEntities\HRIS\BMSTransaction.cs" />
     <Compile Include="BusinessEntities\HRIS\Bonus.cs" />
     <Compile Include="BusinessEntities\HRIS\BonusMaster.cs" />
+    <Compile Include="BusinessEntities\HRIS\EmployeeCertificate.cs" />
     <Compile Include="BusinessEntities\HRIS\IncrementAndPromotionHistory.cs" />
     <Compile Include="BusinessEntities\HRIS\IncrementRequest.cs" />
     <Compile Include="BusinessEntities\HRIS\PromotionHistory.cs" />

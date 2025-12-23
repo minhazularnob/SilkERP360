@@ -819,7 +819,7 @@ function toogleReference2Controls() {
 }
 
 /***********************************************Save new epmloyee***********************************************************************************/
-function Save() {
+async function Save() {
     if (confirm("Are you sure you want to save this employee?") == true) {
         /************************************************************************************************************/
         var lcl_b_InputValidated = true;
@@ -969,6 +969,41 @@ function Save() {
             lcl_obj_EmpApp.EmployeeExperienceList[j].ToDate = trim($('#txt_Exp_DateTo-' + (j + 1).toString()).val());
         }
 
+        // Employee Certificates
+        if (typeof selectedFiles !== 'undefined' && selectedFiles.length > 0) {
+
+            lcl_obj_EmpApp.EmployeeCertificateList = [];
+
+            for (let index = 0; index < selectedFiles.length; index++) {
+
+                const file = selectedFiles[index];
+
+                const base64Content = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        resolve(e.target.result.split(",")[1]); // Base64 content
+                    };
+
+                    reader.onerror = function () {
+                        reject(new Error("File read failed: " + file.name));
+                    };
+
+                    reader.readAsDataURL(file); // 🔑 FileReader trigger
+                });
+
+                // Object create
+                lcl_obj_EmpApp.EmployeeCertificateList[index] = {
+                    FileType: file.type,
+                    FileSize: file.size,
+                    Certificate: base64Content,
+                    Status: 1,
+                    IsDeleted: 1
+                };
+            }
+        }
+
+
         //Instantiate Employee_Salary Object
         lcl_obj_EmpApp.EmployeeSalaryStructure = new Object();
         lcl_obj_EmpApp.EmployeeSalaryStructure.Basic = $.trim(($('#txt_Sal_Basic').val().toString().replace(',', '')));
@@ -1048,6 +1083,9 @@ function Save() {
             //lcl_obj_EmpApp.Image.Image = $('#fileBrowser').data('emp_img');
             lcl_obj_EmpApp.Image.Image1 = $('#fileBrowser').data('emp_img');
         }
+
+        debugger;
+
         $.ajax(
 
             {
@@ -1129,7 +1167,6 @@ function LoadLeaveList() {
         return
     }
 
-
     $.ajax(
         {
             async: true,
@@ -1176,4 +1213,60 @@ function LoadLeaveList() {
             }
         });
     return false;
+}
+
+
+let selectedFiles = [];
+
+// 1️⃣ Handle file selection
+function handleFileSelect(input) {
+    if (!input.files || input.files.length === 0) return;
+
+    for (let i = 0; i < input.files.length; i++) {
+        selectedFiles.push(input.files[i]);
+    }
+
+    renderFileTable();
+    input.value = ""; // allow reselect same file
+}
+
+// 2️⃣ Render file list table
+function renderFileTable() {
+    const table = document.getElementById("fileTable");
+    const tbody = document.getElementById("fileTableBody");
+
+    tbody.innerHTML = "";
+
+    if (selectedFiles.length === 0) {
+        table.style.display = "none";
+        return;
+    }
+
+    table.style.display = "table";
+
+    selectedFiles.forEach(function (file, index) {
+        const row = document.createElement("tr");
+
+        row.innerHTML =
+            "<td>" + (index + 1) + "</td>" +
+            "<td>" + file.name + "</td>" +
+            "<td>" + (file.type || "N/A") + "</td>" +
+            "<td>" + Math.round(file.size / 1024) + "</td>" +
+            "<td>" +
+            "<span onclick='removeFile(" + index + ")' " +
+            "style='color:red; cursor:pointer; font-weight:bold; text-decoration:underline;'>Remove</span>" +
+            "</td>";
+        tbody.appendChild(row);
+    });
+}
+
+// 3️⃣ Remove selected file
+function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    renderFileTable();
+}
+
+// 4️⃣ Get selected files (for backend use later)
+function getSelectedFiles() {
+    return selectedFiles;
 }

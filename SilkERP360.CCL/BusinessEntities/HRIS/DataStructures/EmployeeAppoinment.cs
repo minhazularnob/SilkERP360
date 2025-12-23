@@ -89,5 +89,12 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS.DataStructures
             set { this.m_obj_Image = value; }
         }
 
+        private System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.EmployeeCertificate> m_objList_EmployeeCertificateList;
+
+        public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.EmployeeCertificate> EmployeeCertificateList
+        {
+            get { return m_objList_EmployeeCertificateList; }
+            set { m_objList_EmployeeCertificateList = value; }
+        }
     }
 }

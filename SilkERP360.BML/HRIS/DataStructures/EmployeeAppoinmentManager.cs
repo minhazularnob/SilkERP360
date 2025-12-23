@@ -148,6 +148,18 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         SilkERP360.BML.HRIS.EmployeeImageManager lcl_obj_EmployeeImageManager = new EmployeeImageManager();
                         lcl_obj_EmployeeImageManager.Save(IP_obj_A.Image, lcl_obj_DBManager);
 
+                        //save Employee Experience
+                        if(IP_obj_A.EmployeeCertificateList != null)
+                        {
+                            SilkERP360.BML.HRIS.EmployeeCertificateManager lcl_obj_EmployeecertificateManager = new SilkERP360.BML.HRIS.EmployeeCertificateManager();
+                            foreach (SilkERP360.CCL.BusinessEntities.HRIS.EmployeeCertificate lcl_obj_EmployeeCertificate in IP_obj_A.EmployeeCertificateList)
+                            {
+                                lcl_obj_EmployeeCertificate.EmployeeCode = lcl_ui64_EmployeeCodeTmp;
+                                lcl_obj_EmployeecertificateManager.Save(lcl_obj_EmployeeCertificate, lcl_obj_DBManager);
+                            }
+                        }
+                        
+
                         SilkERP360.CCL.BusinessEntities.HRIS.EmployeeLeaveAccount lcl_obj_EmployeeLeaveAccount = new CCL.BusinessEntities.HRIS.EmployeeLeaveAccount();
                         lcl_obj_EmployeeLeaveAccount.EmployeeCode = lcl_ui64_EmployeeCodeTmp;
                         lcl_obj_EmployeeLeaveAccount.SL = 14;
