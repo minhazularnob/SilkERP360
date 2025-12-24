@@ -998,12 +998,13 @@ async function Save() {
                     FileSize: file.size,
                     Certificate: base64Content,
                     Status: 1,
-                    IsDeleted: 1
+                    IsDeleted: 1,
+                    FileName: file.name
                 };
             }
         }
 
-
+        debugger;
         //Instantiate Employee_Salary Object
         lcl_obj_EmpApp.EmployeeSalaryStructure = new Object();
         lcl_obj_EmpApp.EmployeeSalaryStructure.Basic = $.trim(($('#txt_Sal_Basic').val().toString().replace(',', '')));

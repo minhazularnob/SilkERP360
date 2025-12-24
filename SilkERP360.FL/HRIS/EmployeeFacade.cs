@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,19 @@ namespace SilkERP360.FL.HRIS
             }, "FLExceptionPolicy");
 
             return lcl_obj_EmployeeImageCore; 
+        }
+
+        public EmployeeCertificate DownloadCertificate(ulong certificateCode)
+        {
+            EmployeeCertificate lcl_obj_Certificate = null;
+            lcl_obj_Certificate = this.ExceptionManager.Process<EmployeeCertificate>(() =>
+            {
+                SilkERP360.BML.HRIS.EmployeeManager lcl_obj_EmployeeManager = new SilkERP360.BML.HRIS.EmployeeManager();
+                lcl_obj_Certificate = lcl_obj_EmployeeManager.DownloadCertificate(certificateCode);
+                return lcl_obj_Certificate;
+            }, "FLExceptionPolicy");
+
+            return lcl_obj_Certificate;
         }
 
         public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeStatusHistory IP_obj_EmployeeStatusHistory)

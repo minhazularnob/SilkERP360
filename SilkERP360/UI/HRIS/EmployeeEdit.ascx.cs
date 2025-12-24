@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO;
 
 namespace SilkERP360.UI.HRIS
 {
@@ -175,6 +177,15 @@ namespace SilkERP360.UI.HRIS
                 }
                 lcl_obj_SqlFacade.CloseReader();
                 }
+
+
+
+
+               
+
+
+
+
                 //Show week end
                 lcl_str_SqlQuery = System.String.Format(@"select nvl(day,0) day from employee_weekend where Employee_code={0}", lcl_ui64_EmployeeCode);
 
@@ -716,9 +727,46 @@ namespace SilkERP360.UI.HRIS
                     }
 
                 }
-                lcl_obj_SqlFacade.CloseReader();
 
                 }
+
+                lcl_obj_SqlFacade.CloseReader();
+
+                //certificate show
+                DataTable dtCertificates = new DataTable();
+                dtCertificates.Columns.Add("FileName", typeof(string));
+                dtCertificates.Columns.Add("EmployeeCertificateCode", typeof(long));
+                dtCertificates.Columns.Add("FileSize", typeof(long));
+                dtCertificates.Columns.Add("FileType", typeof(string));
+
+                // SQL Query
+                string lcl_str_certificateQuery = @"SELECT employee_certificate_code, certificate, employee_code, file_size, file_type, is_deleted, status, File_Name 
+                                                                  FROM employee_certificate
+                                                                  WHERE employee_code = " + lcl_ui64_EmployeeCode;
+
+                // Execute reader
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_certificateReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_certificateQuery);
+
+                if (lcl_obj_certificateReader.HasRows)
+                {
+                    while (lcl_obj_certificateReader.Read())
+                    {
+                        DataRow dr = dtCertificates.NewRow();
+                        dr["FileName"] = lcl_obj_certificateReader["File_Name"].ToString();
+                        dr["EmployeeCertificateCode"] = Convert.ToInt64(lcl_obj_certificateReader["employee_certificate_code"]);
+                        dr["FileSize"] = Convert.ToInt64(lcl_obj_certificateReader["file_size"]);
+                        dr["FileType"] = lcl_obj_certificateReader["file_type"].ToString();
+
+                        dtCertificates.Rows.Add(dr);
+                    }
+                }
+
+                // Bind to GridView
+                gvCertificates.DataSource = dtCertificates;
+                gvCertificates.DataBind();
+
+                // Close reader
+                lcl_obj_SqlFacade.CloseReader();
 
                 lcl_obj_SqlFacade.Close();
 
@@ -737,6 +785,38 @@ namespace SilkERP360.UI.HRIS
         protected void txt_Ref_Organization2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnDownload_Command(object sender, CommandEventArgs e)
+        {
+            SilkERP360.FL.SqlFacade lcl_obj_SqlFacade = new SilkERP360.FL.SqlFacade();
+
+            if (e.CommandName == "Download")
+            {
+                string fileName = e.CommandArgument.ToString();
+
+                // Fetch the certificate from the database
+                string lcl_str_certificateQuery = @"SELECT certificate, file_type FROM employee_certificate WHERE file_name = :FileName";
+
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_certificateReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_certificateQuery);
+
+                    if (lcl_obj_certificateReader.HasRows)
+                    {
+                        lcl_obj_certificateReader.Read();
+
+                        byte[] certificateData = (byte[])lcl_obj_certificateReader["certificate"];
+                        string fileType = lcl_obj_certificateReader["file_type"].ToString();
+
+                        // Send the file as a download
+                        Response.Clear();
+                        Response.Buffer = true;
+                        Response.ContentType = fileType;
+                        Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+                        Response.BinaryWrite(certificateData);
+                        Response.End();
+                    }
+
+            }
         }
     }
 }

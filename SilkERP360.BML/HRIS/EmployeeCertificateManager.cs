@@ -20,9 +20,7 @@ namespace SilkERP360.BML.HRIS
         {
             ulong certificateCode = 0;
 
-            // Convert certificate to byte[] for Oracle BLOB
-            byte[] certificateBytes =
-                System.Text.Encoding.UTF8.GetBytes(IP_obj_A.Certificate);
+            byte[] certificateBytes = Convert.FromBase64String(IP_obj_A.Certificate);
 
             certificateCode = this.ExceptionManager.Process<ulong>(() =>
             {
@@ -47,22 +45,24 @@ namespace SilkERP360.BML.HRIS
 
                 // 2. Insert certificate
                 string insertSql = @"
-            INSERT INTO SILKERP.EMPLOYEE_CERTIFICATE
-            (EMPLOYEE_CERTIFICATE_CODE,
-             CERTIFICATE,
-             FILE_TYPE,
-             FILE_SIZE,
-             EMPLOYEE_CODE,
-             STATUS,
-             IS_DELETED)
-            VALUES
-            (:pCode,
-             :pCertificate,
-             :pFileType,
-             :pFileSize,
-             :pEmployeeCode,
-             :pStatus,
-             :pIsDeleted)";
+                INSERT INTO SILKERP.EMPLOYEE_CERTIFICATE
+                (EMPLOYEE_CERTIFICATE_CODE,
+                 CERTIFICATE,
+                 FILE_TYPE,
+                 FILE_SIZE,
+                 EMPLOYEE_CODE,
+                 STATUS,
+                 IS_DELETED,
+                 file_name)
+                VALUES
+                (:pCode,
+                 :pCertificate,
+                 :pFileType,
+                 :pFileSize,
+                 :pEmployeeCode,
+                 :pStatus,
+                 :pIsDeleted,
+                 :pFileName)";
 
                 using (OracleCommand cmd = new OracleCommand(insertSql, conn))
                 {
@@ -75,6 +75,7 @@ namespace SilkERP360.BML.HRIS
                     cmd.Parameters.Add("pEmployeeCode", OracleDbType.Int64).Value = IP_obj_A.EmployeeCode;
                     cmd.Parameters.Add("pStatus", OracleDbType.Int32).Value = IP_obj_A.Status;
                     cmd.Parameters.Add("pIsDeleted", OracleDbType.Int32).Value = IP_obj_A.IsDeleted;
+                    cmd.Parameters.Add("pFileName", OracleDbType.NVarchar2).Value = IP_obj_A.FileName;
 
                     cmd.ExecuteNonQuery();
                 }

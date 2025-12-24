@@ -1,4 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.CCL.BusinessEntities.HRIS;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -1189,6 +1190,78 @@ namespace SilkERP360.BML.HRIS
             }, "BMLExceptionPolicy");
             return lcl_obj_EmployeeImage;
         }
+
+
+        public EmployeeCertificate DownloadCertificate(ulong IP_ui64_CertificateCode)
+        {
+            EmployeeCertificate certificate = null;
+
+            certificate = this.ExceptionManager.Process<EmployeeCertificate>(() =>
+            {
+                using (var db = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (db.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                        db.InternalResource.Open();
+
+                    string query = string.Format(@"
+                SELECT 
+                    EMPLOYEE_CERTIFICATE_CODE,
+                    CERTIFICATE,
+                    FILE_TYPE,
+                    FILE_SIZE,
+                    EMPLOYEE_CODE,
+                    STATUS,
+                    IS_DELETED,
+                    FILE_NAME
+                FROM EMPLOYEE_CERTIFICATE
+                WHERE EMPLOYEE_CERTIFICATE_CODE = {0}
+                  AND STATUS = 1
+                  AND IS_DELETED = 1",   // ✅ IMPORTANT
+                        IP_ui64_CertificateCode);
+
+                    using (var reader = db.InternalResource.ExecuteDataReader(query))
+                    {
+                        if (!reader.HasRows)
+                            return null;
+
+                        reader.Read();
+
+                        // 🔹 Read full BLOB safely
+                        int blobIndex = reader.GetOrdinal("CERTIFICATE");
+                        long blobLength = reader.GetBytes(blobIndex, 0, null, 0, 0);
+                        byte[] blobData = new byte[blobLength];
+                        long bytesRead = 0;
+
+                        while (bytesRead < blobLength)
+                        {
+                            bytesRead += reader.GetBytes(
+                                blobIndex,
+                                bytesRead,
+                                blobData,
+                                (int)bytesRead,
+                                (int)(blobLength - bytesRead)
+                            );
+                        }
+
+                        return new EmployeeCertificate
+                        {
+                            EmployeeCertificateCode = IP_ui64_CertificateCode,
+                            FileName = reader["FILE_NAME"].ToString(),
+                            FileType = reader["FILE_TYPE"].ToString(), // application/pdf
+                            FileSize = Convert.ToInt64(reader["FILE_SIZE"]),
+                            EmployeeCode = Convert.ToUInt64(reader["EMPLOYEE_CODE"]),
+                            Status = Convert.ToInt32(reader["STATUS"]),
+                            IsDeleted = Convert.ToInt32(reader["IS_DELETED"]),
+                            Certificate = Convert.ToBase64String(blobData) // ✅ full Base64
+                        };
+                    }
+                }
+            }, "BMLExceptionPolicy");
+
+            return certificate;
+        }
+
+
 
         public SilkERP360.CCL.BusinessEntities.HRIS.EmployeeImage GetEmployeeImageFromCode(System.UInt64 IP_ui64_EmployeeCode, System.Object IP_obj_DBManager)
         {

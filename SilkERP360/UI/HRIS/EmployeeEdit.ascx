@@ -24,6 +24,8 @@
             <li><a href="#PersonalTab">Personal</a></li>
             <li><a href="#SalaryTab">Salary Leaves & Reference</a></li>
             <li><a href="#EducationExperienceTab">Education , Experiance </a></li>
+            <li><a href="#CertificateTab">Certificate </a></li>
+
         </ul>
         <div id="ImageTab" class="position-relative p-3" style="z-index: 1003;">
             <div class="container">
@@ -873,5 +875,34 @@
 
             </div>
         </div>
+        <div id="CertificateTab" class="position-relative p-3" style="z-index: 1015;">
+            <div class="container">
+                <h3 class="fontSerif mb-4">Certificate</h3>
+                <asp:GridView ID="gvCertificates" runat="server" AutoGenerateColumns="false"
+                    CssClass="table table-bordered table-striped table-hover mt-3">
+                    <Columns>
+                        <asp:BoundField DataField="FileName" HeaderText="File Name" />
+                        <asp:BoundField DataField="FileType" HeaderText="File Type" />
+                        <asp:BoundField DataField="FileSize" HeaderText="Size (KB)" />
+
+                        <asp:TemplateField HeaderText="Download">
+                            <ItemTemplate>
+<%--                                <asp:Button ID="btnDownload" runat="server"
+                                    Text="Download"
+                                    CommandName="Download"
+                                    CommandArgument='<%# Eval("EmployeeCertificateCode") %>'
+                                    OnCommand="btnDownload_Command"
+                                    CssClass="btn btn-primary btn-sm" />--%>
+                                <button type="button"
+                                    class="btn btn-primary btn-sm"
+                                    onclick="downloadCertificate(<%# Eval("EmployeeCertificateCode") %>)">
+                                    Download
+                                </button>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+
+            </div>
+        </div>
     </div>
-</div>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using SilkERP360.FL.HRIS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -289,6 +291,28 @@ namespace SilkERP360.WebServices.HRIS
                     return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, true);
                 }
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", false, false);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+        /// <summary>
+        /// Passport Validation
+        /// </summary>
+        /// <param name="IP_str_PassPortID"></param>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse DownloadCertificate(ulong certificateCode)
+        {
+            try
+            {
+                EmployeeCertificate employeeCertificate = null;
+                EmployeeFacade employeeFacade = new EmployeeFacade();
+                employeeCertificate = employeeFacade.DownloadCertificate(certificateCode);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, employeeCertificate);
+
             }
             catch (System.Exception Ex)
             {

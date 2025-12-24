@@ -14,6 +14,7 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         public long FileSize { get; set; }               
         public ulong ? EmployeeCode { get; set; }           
         public int Status { get; set; } = 1;             
-        public int IsDeleted { get; set; } = 1;          
+        public int IsDeleted { get; set; } = 1;  
+        public string FileName { get; set; }
     }
 }

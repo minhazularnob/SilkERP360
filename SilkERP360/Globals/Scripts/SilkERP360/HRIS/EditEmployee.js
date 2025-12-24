@@ -1033,3 +1033,174 @@ function LoadLeaveList() {
         });
     return false;
 }
+
+let selectedFiles = [];
+
+// 1️⃣ Handle file selection
+function handleFileSelect(input) {
+    if (!input.files || input.files.length === 0) return;
+
+    for (let i = 0; i < input.files.length; i++) {
+        selectedFiles.push(input.files[i]);
+    }
+
+    renderFileTable();
+    input.value = ""; // allow reselect same file
+}
+
+// 2️⃣ Render file list table
+function renderFileTable() {
+    const table = document.getElementById("fileTable");
+    const tbody = document.getElementById("fileTableBody");
+
+    tbody.innerHTML = "";
+
+    if (selectedFiles.length === 0) {
+        table.style.display = "none";
+        return;
+    }
+
+    table.style.display = "table";
+
+    selectedFiles.forEach(function (file, index) {
+        const row = document.createElement("tr");
+
+        row.innerHTML =
+            "<td>" + (index + 1) + "</td>" +
+            "<td>" + file.name + "</td>" +
+            "<td>" + (file.type || "N/A") + "</td>" +
+            "<td>" + Math.round(file.size / 1024) + "</td>" +
+            "<td>" +
+            "<span onclick='removeFile(" + index + ")' " +
+            "style='color:red; cursor:pointer; font-weight:bold; text-decoration:underline;'>Remove</span>" +
+            "</td>";
+        tbody.appendChild(row);
+    });
+}
+
+// 3️⃣ Remove selected file
+function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    renderFileTable();
+}
+
+// 4️⃣ Get selected files (for backend use later)
+function getSelectedFiles() {
+    return selectedFiles;
+}
+
+//function downloadCertificate(certificateCode) {
+//    $.ajax({
+//        type: "POST",
+//        url: "/WebServices/HRIS/EmployeeService.asmx/DownloadCertificate",
+//        contentType: "application/json; charset=utf-8",
+//        dataType: "json",
+//        data: JSON.stringify({ certificateCode: certificateCode }),
+//        success: function (response) {
+//            debugger;
+
+//            if (!response.d || !response.d.Data.Certificate) {
+//                alert("Certificate not found");
+//                return;
+//            }
+
+//            var cert = response.d.Data;
+
+//            // 🔹 Clean Base64 (VERY IMPORTANT)
+//            var base64 = cert.Certificate.replace(/\s/g, "");
+
+//            // 🔹 Base64 → Blob
+//            function base64ToBlob(base64, mimeType) {
+//                var byteChars = atob(base64);
+//                var byteNumbers = new Array(byteChars.length);
+
+//                for (var i = 0; i < byteChars.length; i++) {
+//                    byteNumbers[i] = byteChars.charCodeAt(i);
+//                }
+
+//                var byteArray = new Uint8Array(byteNumbers);
+//                return new Blob([byteArray], { type: mimeType });
+//            }
+
+//            var blob = base64ToBlob(base64, cert.FileType || "application/pdf");
+
+//            var fileName = cert.FileName;
+
+
+//            // 🔹 Download
+//            var url = window.URL.createObjectURL(blob);
+//            var a = document.createElement("a");
+//            a.href = url;
+//            a.download = fileName;
+
+//            document.body.appendChild(a);
+//            a.click();
+
+//            document.body.removeChild(a);
+//            window.URL.revokeObjectURL(url);
+//        },
+//        error: function () {
+//            alert("Server error!");
+//        }
+//    });
+//}
+
+function downloadCertificate(certificateCode) {
+    $.ajax({
+        type: "POST",
+        url: "/WebServices/HRIS/EmployeeService.asmx/DownloadCertificate",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify({ certificateCode: certificateCode }),
+        success: function (response) {
+
+            if (!response.d || !response.d.Data || !response.d.Data.Certificate) {
+                alert("Certificate not found");
+                return;
+            }
+
+            var cert = response.d.Data;
+
+            // 🔹 Clean Base64 (important)
+            var base64 = cert.Certificate.replace(/\s/g, "");
+
+            // 🔹 Detect MIME type
+            var mimeType = cert.FileType || "application/octet-stream";
+
+            // 🔹 Fix filename
+            var fileName = cert.FileName || "download";
+
+            // 🔹 Add extension if missing
+            if (!fileName.includes(".")) {
+                var ext = mimeType.split("/")[1];
+                if (ext) fileName += "." + ext;
+            }
+
+            // 🔹 Base64 → Blob
+            var byteChars = atob(base64);
+            var byteNumbers = new Array(byteChars.length);
+
+            for (var i = 0; i < byteChars.length; i++) {
+                byteNumbers[i] = byteChars.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+            var blob = new Blob([byteArray], { type: mimeType });
+
+            // 🔹 Download
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+
+            document.body.appendChild(a);
+            a.click();
+
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        },
+        error: function () {
+            alert("Server error!");
+        }
+    });
+}
