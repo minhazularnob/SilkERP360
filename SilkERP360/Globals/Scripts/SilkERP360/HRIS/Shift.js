@@ -3,8 +3,6 @@
     $("#txt_StartTime").datepicker({ dateFormat: 'dd/MM/yy' });
     $("#txt_EndTime").datepicker({ dateFormat: 'dd/MM/yy' });
     $("#txt_ToleranceTime").datepicker({ dateFormat: 'dd/MM/yy' });
-
-
 });
 
 

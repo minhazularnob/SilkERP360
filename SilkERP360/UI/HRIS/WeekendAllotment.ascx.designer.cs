@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class WeekendAllotment {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class WeekendAllotment
+    {
+
         /// <summary>
         /// txtFromDate control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFromDate;
-        
+
         /// <summary>
         /// txtUptoDate control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUptoDate;
-        
+
         /// <summary>
         /// ddlWeekday control.
         /// </summary>

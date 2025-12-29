@@ -6,7 +6,7 @@ $(document).ready(function () {
         "bFilter": true,
         "bPaginate": true,
         "bLengthChange": true,
-        "bSearch": false,
+        "bSearch": true,
         "aoColumns": [
                     { sTitle: '<b>Employee</b>', sWidth: '28%', sClass: 'alignCenter' },
                     { sTitle: '<b>Designation</b>', sWidth: '20%', sClass: 'alignCenter' },

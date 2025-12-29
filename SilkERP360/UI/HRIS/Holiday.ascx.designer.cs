@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class Holiday {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class Holiday
+    {
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-        
+
         /// <summary>
         /// btnClose control.
         /// </summary>
@@ -29,16 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClose;
-        
-        /// <summary>
-        /// Label60 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label60;
-        
+
         /// <summary>
         /// ddl_holidayName control.
         /// </summary>
@@ -47,16 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_holidayName;
-        
-        /// <summary>
-        /// Label62 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label62;
-        
+
         /// <summary>
         /// txt_DecDateTime control.
         /// </summary>
@@ -65,16 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_DecDateTime;
-        
-        /// <summary>
-        /// Label63 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label63;
-        
+
         /// <summary>
         /// txt_StartDate control.
         /// </summary>
@@ -83,16 +58,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_StartDate;
-        
-        /// <summary>
-        /// Label66 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label66;
-        
+
         /// <summary>
         /// txt_EndDate control.
         /// </summary>
@@ -101,16 +67,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_EndDate;
-        
-        /// <summary>
-        /// Label64 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label64;
-        
+
         /// <summary>
         /// txt_NumDays control.
         /// </summary>
@@ -119,16 +76,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_NumDays;
-        
-        /// <summary>
-        /// Label67 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label67;
-        
+
         /// <summary>
         /// txt_Remarks control.
         /// </summary>

@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <div class="table-responsive">
                             <!-- Small text size for table and its contents -->
-                            <table id="tblBonusList" class="table table-bordered table-sm fontSerif">
+                            <table id="tblBonusList" class="table custom-table fontSerif w-100">
                             </table>
                         </div>
                     </div>

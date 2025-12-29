@@ -1,14 +1,8 @@
 ﻿$(document).ready(function () {
-    //$("#txtWorkDateFrom").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
     $("#txtUptoDate").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true, minDate: "+1D", maxDate: "+365D" });
     $("#txtFromDate").datepicker({ dateFormat: 'dd/MM/yy', showButtonPanel: true, minDate: "+1D", maxDate: "+365D",
         onSelect: function (dateStr) {
-            //add 3month with the 'Joining Date' and populate Confirmation date
             var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
-            //var years = parseInt($("#equipment_warrantyLength").val(), 10);
-            //d.setMonth(d.getMonth() + 3);
-            //$("#txtWorkDateUpto").datepicker('setDate', d);
-            //$("#txtWorkDateUpto").datepicker('destroy');
             $("#txtUptoDate").datepicker('option', 'minDate', d);
         }
     });
@@ -21,14 +15,13 @@
         caption: 'Employees',
         initRows: 0,
         columns: [
-        //{ name: 'txtCheckEmployee', display: 'Chk', type: 'checkbox', displayCss: { 'width': '5%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center'} },
                         {name: 'txtEmployeeCode', display: 'Emp. Code', type: 'text', displayCss: { 'width': '10%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center'} },
                         { name: 'txtEmployeeId', display: 'Emp. Id', type: 'text', value: '', displayCss: { 'width': '10%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center' }, ctrlClass: 'peel_off_ip_required' },
                         { name: 'txtEmployeeName', display: 'Emp. Name', type: 'text', value: '', displayCss: { 'width': '25%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center' }, ctrlClass: 'peel_off_ip_required' },
                         { name: 'txtDepartment', display: 'Dept.', type: 'text', value: '', displayCss: { 'width': '20%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center' }, ctrlClass: 'peel_off_ip_required' },
                         { name: 'txtDesignation', display: 'Degn.', type: 'text', value: '', displayCss: { 'width': '25%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center' }, ctrlClass: 'peel_off_ip_required' },
                         { name: 'ddlWeekendDay', type: 'select', display: 'Weekend Day', displayCss: { 'width': '10%', 'text-align': 'center' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlOptions: { 0: 'None', 1: 'Saturday', 2: 'Sunday', 3: 'Monday', 4: 'Tuesday', 5: 'Wednesday', 6: 'Thursday', 7: 'Friday'} },
-                        { name: 'RecordId', type: 'hidden', value: 0 }
+                        { name: 'RecordId', type: 'hidden', value: 0, }
                         ],
         hideButtons: {
             remove: true,
@@ -41,8 +34,8 @@
                 uiButton: { icons: { primary: 'ui-icon-disk' }, text: false },
                 click: function (evtObj, uniqueIndex, rowData) {
                     var lcl_str_EntryEmployeeCode = $('#txtSignedInEmployeeCode').val();
-                    var lcl_str_EmployeeCode = rowData["txtEmployeeCode"]; // $("#txtWGOperationMasterCode").val();
-                    var lcl_str_EmployeeId = rowData["txtEmployeeId"]; // $("#txtWGOperationMasterCode").val();
+                    var lcl_str_EmployeeCode = rowData["txtEmployeeCode"];
+                    var lcl_str_EmployeeId = rowData["txtEmployeeId"];
                     var lcl_i32_WeekendDay = rowData["ddlWeekendDay"];
                     if (lcl_i32_WeekendDay == 0) {
                         DisplayError("Please Select a Weekend Day!!!");
@@ -93,17 +86,6 @@
             }
         ],
         rowDataLoaded: function (caller, record, rowIndex, uniqueIndex) {
-            //            alert("DATA LOADED");
-            //            var lcl_str_WGMasterCode = record["txtWGOperationMasterCode"];  //$('#tblWorkGroupSchedule').appendGrid('getCtrlValue', 'txtWGOperationMasterCode', addedRowIndex);
-            //            var lcl_ctrl_EmployeeId = $(caller).appendGrid('getCellCtrl', 'txtEmployeeId', rowIndex);
-            //            if (lcl_str_WGMasterCode == "0") {
-            //                //RED
-            //                $(lcl_ctrl_EmployeeId).css('background-color', '#FF4C4C');
-            //            }
-            //            else {
-            //                //GREEN
-            //                $(lcl_ctrl_EmployeeId).css('background-color', '#67FF4C');
-            //            }
         },
         hideRowNumColumn: false,
         afterRowAppended: function (caller, parentRowIndex, addedRowIndex) {
@@ -137,7 +119,6 @@ function GetAllEmployees(event) {
             global: true,
             contentType: "application/json; charset=utf-8",
             url: "~/../../../WebServices/HRIS/EmployeeService.asmx/GetEmployeeMiniProfileListByCompany",
-            //url: gbl_URL_Root + "WebServices/HRIS/EmployeeService.asmx/GetRoosterAvailableEmployeeProfileListByDepartment",
             data: "{IP_ui64_CompanyCode:" + JSON.stringify(lcl_ui64_CompanyCode) + "}", //provide input for the getSM_PO method
             dataType: "json", /// <reference path= />
             success: function (response) {
@@ -154,16 +135,6 @@ function GetAllEmployees(event) {
                 //GBL_EMPLOYEE_LIST_TABLE.fnDestroy();
                 var lcl_str_EmployeeData = new Array();
                 $.each(lcl_obj_EmployeeProfileList, function (index, lcl_obj_EmployeeProfile) {
-
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][1] = lcl_obj_EmployeeProfile.EmployeeCode;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][2] = lcl_obj_EmployeeProfile.EmployeeID;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][3] = lcl_obj_EmployeeProfile.EmployeeName;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][4] = lcl_obj_EmployeeProfile.Department.Name;
-//                    lcl_str_EmployeeData[lcl_i32_EmployeeNumber][5] = lcl_obj_EmployeeProfile.Designation.Name;
-//                    
-                    //alert(lcl_obj_EmployeeProfile.JoiningDate.toString());
-                    //var lcl_obj_JoiningDate = lcl_obj_EmployeeProfile.JoiningDate;
-
                     $('#tblEmployees').appendGrid('appendRow', [
                     { txtEmployeeCode: lcl_obj_EmployeeProfile.EmployeeCode.toString(),
                         txtEmployeeId: lcl_obj_EmployeeProfile.EmployeeID.toString(),
@@ -321,8 +292,6 @@ function UploadEmployeeList(evt) {
             $("#lnkUploadEmployeeFile").removeClass("command_button_enabled").addClass("command_button_disabled");
             $('#lnkUploadEmployeeFile').unbind('click');
         }
-        //            $("#lnkUploadEmployeeFile").removeClass("command_button_enabled").addClass("command_button_disabled");
-        //            $('#lnkUploadEmployeeFile').unbind('click');
     };
     options.error = function (err) { ShowErrorMessageBoard(err.statusText); };
     $.ajax(options);
@@ -369,13 +338,9 @@ function Save(event) {
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtEmployeeCode', i);
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeWorkGroupHistoryCode = 0;
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].WorkGroupOperationMasterCode = 0; //to be set in server
-        //var elem = $('#tblWorkgroupEmployee').appendGrid('getCellCtrl', 'ddlAssessmentStatus', 1);
-        //alert($('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', i).toString());
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].AssessmentStatus = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', i);
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeProfile = null;
     }
-    //alert("OP MSTR CONFIGURED");
-    //alert( JSON.stringify(GBL_WorkGroupOperationMaster));
     var options = {};
     options.url = gbl_URL_Root + "WebServices/HRIS/WorkGroupServices.asmx/SaveWorkGroupOperationMasterByDateRange";
     options.dataType = "json";
@@ -392,11 +357,6 @@ function Save(event) {
             return;
         }
         if (lcl_obj_WSResponse.ResponseCode == 0) {
-            //ALL OK
-            //Refresh Controls
-            //GetWorkGroupByDate(event);
-            //$("#lnkAddEmployee").removeClass("command_button_enabled").addClass("command_button_disabled");
-            //$('#lnkAddEmployee').unbind('click');
             $("#lnkUploadLogFile").removeClass("command_button_enabled").addClass("command_button_disabled");
             $('#lnkUploadLogFile').unbind('click');
             $("#lnkSave").removeClass("command_button_enabled").addClass("command_button_disabled");
@@ -419,7 +379,6 @@ function RefreshInput(event) {
     $('.WG_IP').val('');
 
     $("#lnkUploadLogFile").removeClass("command_button_disabled").addClass("command_button_enabled");
-    //$('#lnkUploadLogFile').bind('click',UploadEmployeeList(event));
     $("#lnkSave").removeClass("command_button_enabled").addClass("command_button_disabled");
     $('#lnkSave').unbind('click');
     var lcl_i32_Count = $('#tblWorkgroupEmployee').appendGrid('getRowCount');
