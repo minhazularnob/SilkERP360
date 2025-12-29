@@ -9,7 +9,7 @@ $(document).ready(function () {
         "bJQueryUI": true,
         "bAutoWidth": true,
         "sScrollY": "600px",
-        "sScrollX": "150%",
+        "sScrollX": "200%",
         "sScrollXInner": "150%",
         "bFilter": true,
         "bPaginate": false,
@@ -41,7 +41,8 @@ $(document).ready(function () {
                   ]
 
     });
-
+    initializeSelect2('ddlSalaryMonth', '------ Select Employee ------', '25%');
+    initializeSelect2('ddlSalaryYear', '------ Select Employee ------', '25%');
 });
 
 function PrintSalaryMaster(event) {
