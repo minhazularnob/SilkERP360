@@ -6,6 +6,7 @@ $(document).ready(function () {
     $('#tblWorkgroupAttendance').appendGrid({
         caption: 'Attendance Details',
         initRows: 1,
+        "bLengthChange": true,
         columns: [
                  {name: 'txtAttendanceCode', type: 'hidden' },
                 { name: 'txtEmployeeCode', type: 'hidden' },
