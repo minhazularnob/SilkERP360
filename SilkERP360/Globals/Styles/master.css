@@ -180,3 +180,8 @@ input:not([type="checkbox"]), textarea {
     width: 100% !important;
 }
 
+.moveUp,
+.moveDown {
+    display: none !important;
+}
+

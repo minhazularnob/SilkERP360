@@ -29,6 +29,7 @@
             insert: true,
             append: true
         },
+        rowDragging: true,
         customRowButtons: [
             {
                 uiButton: { icons: { primary: 'ui-icon-disk' }, text: false },

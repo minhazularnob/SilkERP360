@@ -271,8 +271,5 @@
 </div>
 
 <style>
-.moveUp,
-.moveDown {
-    display: none !important;
-}
+
 </style>
