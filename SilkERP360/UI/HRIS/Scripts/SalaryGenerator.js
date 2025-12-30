@@ -9,7 +9,7 @@ $(document).ready(function () {
         initRows: 1,
         columns: [
                                         { name: 'txtDepartmentCode', type: 'hidden', value: 0 },
-                                        { name: 'DepartmentName', display: 'Department', type: 'text', displayCss: { 'width': '50%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center' }, ctrlClass: 'peel_off_ip_required' },
+                                        { name: 'DepartmentName', display: 'Department', type: 'text', displayCss: { 'width': '100%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center' }, ctrlClass: 'peel_off_ip_required' },
                                         { name: 'chkDeptWaiveAbsent', display: 'Waive Absent', type: 'checkbox', displayCss: { 'width': '20%', 'text-align': 'center' }, ctrlCss: { 'width': '100%', 'text-align': 'center' }, ctrlClass: 'peel_off_ip_required',
                                             onChange: function (evt, rowIndex) {
                                                 var lcl_i32_AbsentWaived = $('#tblDepartmentwiseWaiver').appendGrid('getCtrlValue', 'chkDeptWaiveAbsent', rowIndex); //0=NO / 1=YES
@@ -53,11 +53,15 @@ $(document).ready(function () {
             remove: true,
             removeLast: true,
             insert: true,
-            append: true
+            append: true,
         },
-        hideRowNumColumn: false
+        hideRowNumColumn: false,
+        rowDragging: true 
 
     });
+
+   
+
 
     $('#tblEmployeewiseWaiver').appendGrid({
         caption: 'Employeewise Waiver',
@@ -87,7 +91,8 @@ $(document).ready(function () {
             insert: true,
             append: true
         },
-        hideRowNumColumn: false
+        hideRowNumColumn: false,
+        rowDragging: true 
 
     });
 
@@ -128,6 +133,8 @@ $(document).ready(function () {
                   ]
 
     });
+    initializeSelect2('ddlSalaryMonth', '------ Select Month ------', '25%');
+    initializeSelect2('ddlSalaryYear', '------ Select Year ------', '25%');
 });
 
 
@@ -236,7 +243,7 @@ function SalaryGenerationSetup() {
             /**************************************************************************************************************************************************/
             /**************************************************************************************************************************************************/
         }
-
+        $('#tblDepartmentwiseWaiver_MoveUp_2').html('<i class="fas fa-arrow-up"></i>');
     };
 
     options.error = function (err) { alert(err.statusText); ShowErrorMessageBoard(err.statusText); };

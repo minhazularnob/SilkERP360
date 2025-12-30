@@ -32,7 +32,6 @@
     <script src="../../Globals/jQuery/jquery-ui-1.9.1/ui/minified/jquery.ui.datepicker.min.js" type="text/javascript"></script>
     <script src="../../Globals/jQuery/jquery-ui-1.9.1/ui/jquery.ui.effect-fade.js" type="text/javascript"></script>
 
-    <script src="../../Globals/jQuery/jquery-ui-1.10.3/ui/jquery-ui.js" type="text/javascript"></script>
     
 
     <script src="../../Globals/Scripts/plug-ins/blockui-master/jquery.blockUI.js" type="text/javascript"></script>
@@ -76,7 +75,7 @@
 
     <!--****************************************************************************************************************************-->
     <%--//Menu--%>
-    <link rel="stylesheet" type="text/css" href="../../Globals/jQuery/jquery-ui-1.10.3/themes/base/jquery-ui.css" />
+   
     <%--<script src="../../Globals/jQuery/jquery-ui-1.10.3/ui/jquery-ui.js" type="text/javascript"></script>--%>
     <link href="../../Globals/jQuery/jquery-ui-1.10.3/demos/demos.css" rel="stylesheet" type="text/css" />
     <!--****************************************************************************************************************************-->
@@ -88,14 +87,16 @@
     <link href="../../Globals/Styles/scpm.cs" rel="stylesheet" type="text/css" />
     <link href="../../Globals/Styles/ImageStyles.css" rel="stylesheet" type="text/css" />
   
-    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">--%>
 
     <link href="../../Globals/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../../Globals/Styles/master.css" rel="stylesheet" />
     
     <link href="../../Globals/Select2/select2_min_4_1_0.css" rel="stylesheet" />
-    <script src="../../Globals/Select2/select2_min_4.1.0.js"></script>
+    <script src="../../Globals/Select2/select2_min_4.1.0.js" type="text/javascript"></script>
     <link href="../../Globals/fontawesome-free-7.1.0-web/css/all.min.css" rel="stylesheet" />
+     <script src="../../Globals/jQuery/jquery-ui-1.10.3/ui/jquery-ui.js" type="text/javascript"></script>
+
+ <link rel="stylesheet" type="text/css" href="../../Globals/jQuery/jquery-ui-1.10.3/themes/base/jquery-ui.css" />
 
 </head>
 <body>
