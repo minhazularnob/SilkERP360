@@ -7,7 +7,6 @@ $(document).ready(function () {
         caption: 'Attendance Details',
         initRows: 1,
         columns: [
-        //                                 { name: 'Image', display: 'img', type: 'image'},
                  {name: 'txtAttendanceCode', type: 'hidden' },
                 { name: 'txtEmployeeCode', type: 'hidden' },
                 { name: 'txtEmployeeId', display: 'Emp. Id', displayCss: { 'text-align': 'center', 'width': '8%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
@@ -27,31 +26,15 @@ $(document).ready(function () {
                     onChange: function (evt, rowIndex) {
                        
                         return false;
-                        //alert(lcl_str_Status.toString());
                     }
                 },
                 { name: 'txtRemarks', display: 'Remarks', displayCss: { 'text-align': 'center', 'width': '20%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'RecordId', type: 'hidden', value: 0 }
             ],
-//        customRowButtons: [
-//            {
-//                uiButton: { icons: { primary: 'ui-icon-disk' }, text: false },
-//                click: function (evtObj, uniqueIndex, rowData) {
-//                    
-//                }, btnCss: { 'min-width': '20px' },
-//                btnAttr: { title: 'Upload Sample Image' }, atTheFront: true
-//            }
-//        ],
         afterRowAppended: function (caller, parentRowIndex, addedRowIndex) {
             
         },
         beforeRowRemove: function (caller, rowIndex) {
-            //            var lcl_str_ItemCode = $(caller).appendGrid('getCtrlValue', 'txtItemCode', rowIndex);
-            //            if ($.trim(lcl_str_ItemCode) != '') {
-            //                ShowInfoMessageBoard("Operational Error : You are not permitted to delete this row!!!");
-            //                return false;
-            //            }
-            //            return true;
         },
         hideButtons: {
             append: true,
@@ -63,8 +46,7 @@ $(document).ready(function () {
         },
         hideRowNumColumn: true
     });
-
-
+    initializeSelect2('ddlWorkGroup', '------ Select Employee ------', '25%');
 });
 
 function GetAttendanceByWorkGroupDate(event) {
@@ -79,7 +61,7 @@ function GetAttendanceByWorkGroupDate(event) {
         contentType: "application/json; charset=utf-8",
         global: true,
         url: gbl_URL_Root + "WebServices/HRIS/AttendanceService.asmx/GetAttendanceByGroupAndDate",
-        data: "{IP_ui64_WorkGroupCode: " + lcl_ui64_WorkGroupCode + ",IP_dt_AttendanceDate:'" + lcl_dt_AttendanceDate + "'}", //provide input for the getSM_PO method
+        data: "{IP_ui64_WorkGroupCode: " + lcl_ui64_WorkGroupCode + ",IP_dt_AttendanceDate:'" + lcl_dt_AttendanceDate + "'}",
         dataType: "json",
         success: function (response) {
             var WSResponse = response.d;
@@ -106,41 +88,14 @@ function GetAttendanceByWorkGroupDate(event) {
                 DisplayAttendanceMaster();
                 return;
             }
-            //            var lcl_objLst_OvertimeHistoryList = WSResponse.Data;
-            //            var lcl_ui16_NumberOfOTDays = lcl_objLst_OvertimeHistoryList[0].OvertimeList.length;
-            //            //alert(lcl_ui16_NumberOfOTDays);
-            //            //            if (lcl_ui16_NumberOfOTDays > 31) {
-            //            //                DisplayError("Maximum permissible Overtime days is 31!!!");
-            //            //                return;
-            //            //            }
-
-            //            $('#dvOvertime').show('slow');
-            //            var lcl_objArr_OvertimeData = new Array();
-            //            $.each(lcl_objLst_OvertimeHistoryList, function (index, lcl_obj_OvertimeHistory) {
-            //                lcl_objArr_OvertimeData[index] = new Object();
-
-            //                var lcl_obj_EmployeeProfile = lcl_obj_OvertimeHistory.EmployeeProfile;
-            //                var lcl_objLst_OvertimeList = lcl_obj_OvertimeHistory.OvertimeList;
-
-            //                lcl_objArr_OvertimeData[index].EmployeeCode = lcl_obj_EmployeeProfile.EmployeeCode;
-            //                lcl_objArr_OvertimeData[index].EmployeeID = lcl_obj_EmployeeProfile.EmployeeID;
-            //                lcl_objArr_OvertimeData[index].EmployeeName = lcl_obj_EmployeeProfile.EmployeeName;
-            //                lcl_objArr_OvertimeData[index].Designation = lcl_obj_EmployeeProfile.Designation.Name;
-            //                lcl_objArr_OvertimeData[index].TotalOvertime = lcl_obj_OvertimeHistory.TotalOvertime;
-
-            //            });
         },
-        error: function (event, jqxhr, settings, exception) /// <reference path= />
+        error: function (event, jqxhr, settings, exception)
         {
             var lcl_obj_WSResponse = ($.parseJSON(jqxhr.responseText)).d;
             DisplayError(lcl_obj_WSResponse.Message);
         }
     });
 }
-
-
-
-
 
 function DisplayAttendanceMaster() {
     $("#txtTotalProcessed").val(GBLAttendanceMaster.TotalProcessed);
@@ -165,8 +120,6 @@ function DisplayAttendanceMaster() {
         var lcl_objLst_AttendanceRows = new Array();
         var lcl_i32_TotalNightAllowance = 0;
         $.each(GBLAttendanceMaster.AttendanceList, function (index, lcl_obj_Attendance) {
-            //alert(lcl_obj_EmployeeLeaveApplication.LeaveEndDate.toString());
-
             lcl_i32_TotalNightAllowance += lcl_obj_Attendance.NightAllowance;
 
             var lcl_str_DutyScheduleStart = moment(new Date(parseInt(lcl_obj_Attendance.DutyScheduleFrom.substr(6)))).format('DD.MM.YY h:mm A');
@@ -194,8 +147,6 @@ function DisplayAttendanceMaster() {
 
             var lcl_str_AttendanceDetails = lcl_obj_Attendance.EmployeeName + "[" + lcl_obj_Attendance.Designation + "][" + lcl_str_DutyScheduleStart + "-" + lcl_str_DutyScheduleEnd + "]";
 
-            //lcl_i32_TotalManHour += lcl_obj_Attendance.DutyMinutes;
-            //lcl_i32_TotalOvertime += lcl_obj_Attendance.Overtime;
             var lcl_str_NightAllowance = lcl_obj_Attendance.NightAllowance.toString() + ".00";
 
             var lcl_ui64_DutyMinute = lcl_obj_Attendance.DutyMinutes;
@@ -268,7 +219,7 @@ function ProcessAttendanceForWorkGroupByDate(event) {
         contentType: "application/json; charset=utf-8",
         global: true,
         url: gbl_URL_Root + "WebServices/HRIS/AttendanceService.asmx/ProcessAttendanceByGroupAndDate",
-        data: "{IP_ui64_WorkGroupCode: " + lcl_ui64_WorkGroupCode + ",IP_dt_AttendanceDate:'" + lcl_dt_AttendanceDate + "'}", //provide input for the getSM_PO method
+        data: "{IP_ui64_WorkGroupCode: " + lcl_ui64_WorkGroupCode + ",IP_dt_AttendanceDate:'" + lcl_dt_AttendanceDate + "'}",
         dataType: "json",
         success: function (response) {
             var WSResponse = response.d;
@@ -284,31 +235,8 @@ function ProcessAttendanceForWorkGroupByDate(event) {
 
                 return;
             }
-            //            var lcl_objLst_OvertimeHistoryList = WSResponse.Data;
-            //            var lcl_ui16_NumberOfOTDays = lcl_objLst_OvertimeHistoryList[0].OvertimeList.length;
-            //            //alert(lcl_ui16_NumberOfOTDays);
-            //            //            if (lcl_ui16_NumberOfOTDays > 31) {
-            //            //                DisplayError("Maximum permissible Overtime days is 31!!!");
-            //            //                return;
-            //            //            }
-
-            //            $('#dvOvertime').show('slow');
-            //            var lcl_objArr_OvertimeData = new Array();
-            //            $.each(lcl_objLst_OvertimeHistoryList, function (index, lcl_obj_OvertimeHistory) {
-            //                lcl_objArr_OvertimeData[index] = new Object();
-
-            //                var lcl_obj_EmployeeProfile = lcl_obj_OvertimeHistory.EmployeeProfile;
-            //                var lcl_objLst_OvertimeList = lcl_obj_OvertimeHistory.OvertimeList;
-
-            //                lcl_objArr_OvertimeData[index].EmployeeCode = lcl_obj_EmployeeProfile.EmployeeCode;
-            //                lcl_objArr_OvertimeData[index].EmployeeID = lcl_obj_EmployeeProfile.EmployeeID;
-            //                lcl_objArr_OvertimeData[index].EmployeeName = lcl_obj_EmployeeProfile.EmployeeName;
-            //                lcl_objArr_OvertimeData[index].Designation = lcl_obj_EmployeeProfile.Designation.Name;
-            //                lcl_objArr_OvertimeData[index].TotalOvertime = lcl_obj_OvertimeHistory.TotalOvertime;
-
-            //            });
         },
-        error: function (event, jqxhr, settings, exception) /// <reference path= />
+        error: function (event, jqxhr, settings, exception)
         {
             var lcl_obj_WSResponse = ($.parseJSON(jqxhr.responseText)).d;
             DisplayError(lcl_obj_WSResponse.Message);
