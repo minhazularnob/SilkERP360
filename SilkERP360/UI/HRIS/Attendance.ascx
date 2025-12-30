@@ -12,208 +12,122 @@
 <script src="../../Globals/Scripts/plug-ins/moment-develop/moment.js" type="text/javascript"></script>
 <script src="Scripts/Attendance.js" type="text/javascript"></script>
 
-<div id="dvWorkGroupMaster" style="width:100%; border:1px ridge black; margin:0 auto; height:auto;">
-    <table id="tblBody" cellpadding="5px" cellspacing="5px" style="width:100%;">
-        <%--<tr style="padding:5px;">
-            <td style="width:50%; background-color:Gray; padding:2px; height:40px; text-align:center; margin:2px;">
-                <div id="dvNotification" style="display:none;font-weight:bold; color:white; text-align:left; margin-right:1px;">
-               
+<table>
+    <tr>
+        <td>
+            <div class="container-fluid my-4 border border-2 p-3">
+                <!-- Header -->
+                <div class="mb-4 border-bottom pb-3 text-center">
+                    <h2 class="fontSerif">Silkways Group Attendance Management App</h2>
                 </div>
-            </td>
-            <td style="width:0%;padding:2px; height:40px; text-align:center;margin:2px;">
-                &nbsp;
-            </td>
-            <td style="width:50%; background-color:Gray; padding:2px; height:40px; text-align:center;margin-left:1px;">
-                <div id="dvData" style="display:none; color:White;">
-                    <span id="spnData" style=" font-family:Times New Roman; font-size:14px; font-weight:500; color:Aqua;"></span>
-                </div>
-            </td>
-        </tr>--%>
-        <tr>
-            <!--QC HEAD-->
-            <td colspan="3"  style="width:100%; height:auto;">
-                <div id="dvQCHead" style="width:100%; height:100%; border-bottom:2px ridge black;">
-                    
-                    <h1>Silkways Group Attendance Management App</h1>
-                    <br />
-                    <br />
-                    <table style="width:80%; margin:0 auto;" class="ip_control_container" >
-                        <tr>
-                            <td style=" text-align:center;">
-                                <label>Select Attendance Date :</label>
-                                <asp:TextBox ID="txtAttendanceDate" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="60%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                <a id="lnkGetAttendance" href="#" class="command_button_enabled" onclick="GetAttendanceMaster(event);return false;" style=" height:20px; line-height:20px; width:40px;">
-                                        -->>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                    <br />
-                    <br />
-                    <table style="width:80%; margin:0 auto;" class="ip_control_container" >
-                         <tr>
-                            <td style="width:15%; text-align:left;">
-                                <label>Total Processed :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalProcessed" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                            <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%;text-align:left; ">
-                                <label>Total On Leave :</label>
-                            </td>
-                            <td style=" width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalOnLeave" runat="server" CssClass="wg_read_only" style="text-align:center;"  ReadOnly="true"   Width="100%" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:15%; text-align:left;">
-                                <label>Total Holiday :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalOnHoliday" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                            <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%;text-align:left; ">
-                                <label>Total Present :</label>
-                            </td>
-                            <td style=" width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalPresent" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:15%; text-align:left;">
-                                <label>Total Late :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalLate" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                            <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%;text-align:left; ">
-                                <label>Total Absent :</label>
-                            </td>
-                            <td style=" width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalAbsent" runat="server" CssClass="wg_read_only" style="text-align:center;" Width="100%"  ReadOnly="true"  ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:15%; text-align:left;">
-                                <label>M.Hour [OTH-EXP] :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalManHourExpectedOff" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                            <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%; text-align:left;">
-                                <label>M.Hour [OTH-SRVD] :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalManHourServedOff" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:15%; text-align:left;">
-                                <label>M.Hour [O.T-EXP] :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalManHourExpectedOT" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                            <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%; text-align:left;">
-                                <label>M.Hour [O.T SRVD] :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalManHourServedOT" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:15%;text-align:left; ">
-                                <label>Total Overtime :</label>
-                            </td>
-                            <td style=" width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalOvertime" runat="server" CssClass="wg_read_only" style="text-align:center;"  ReadOnly="true"  Width="100%" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                             <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%; text-align:left;">
-                                <label>Salary Processed :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtIsSalaryProcessed" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:15%;text-align:left; ">
-                                <label>Authorization Code :</label>
-                            </td>
-                            <td style=" width:34%; text-align:center;">
-                                <asp:TextBox ID="txtAuthorizationCode" runat="server" CssClass="" style="text-align:center;"  ReadOnly="false"  Width="100%" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                             <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%; text-align:left;">
-                                <label>Total Night Allowance :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalNightAllowance" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width:15%; text-align:left;">
-                                <label>Total Overtime Amount :</label>
-                            </td>
-                            <td style="width:34%; text-align:center;">
-                                <asp:TextBox ID="txtTotalOvertimeAmount" runat="server" CssClass="wg_read_only"  style="text-align:center; background-color:Yellow;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                            <td style="width:2%;">
-                                    &nbsp;
-                            </td>
-                            <td style="width:15%;text-align:left; ">
-                                <label>Avg. Cost Of O.T / Hr :</label>
-                            </td>
-                            <td style=" width:34%; text-align:center;">
-                                <asp:TextBox ID="txtAverageCostOfOvertimePerHour" runat="server" CssClass="wg_read_only"  style="text-align:center;background-color:Yellow;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                &nbsp;
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                &nbsp;
-                            </td>
-                        </tr>
-                     </table>
-                    <div id="dvAttendance" style="">
-                        <table style="width:100%; margin:0 auto;" class="ip_control_container" >
-                            <tr>
-                                <td style=" text-align:center;">
-                                    <table id="tblAttendance">
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+
+                <!-- Attendance Date -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-6 text-center">
+                        <label for="txtAttendanceDate" class="form-label">Select Attendance Date:</label>
+                        <div class="input-group justify-content-center">
+                            <asp:TextBox ID="txtAttendanceDate" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static" Style="max-width: 20%;"></asp:TextBox>
+                            <a id="lnkGetAttendance" href="#" class="btn btn-primary" onclick="GetAttendanceMaster(event);return false;">
+                                <i class="fa fa-search"></i>Search
+                            </a>
+
+                        </div>
                     </div>
-                    <br />
-                    <br />
                 </div>
-            </td>
-        </tr>
-    </table>
-</div>
+
+                <!-- Attendance Stats -->
+                <div class="container my-4">
+                    <!-- Total Processed, Total On Leave, Total Holiday, Total Present -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Processed:</label>
+                            <asp:TextBox ID="txtTotalProcessed" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total On Leave:</label>
+                            <asp:TextBox ID="txtTotalOnLeave" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Holiday:</label>
+                            <asp:TextBox ID="txtTotalOnHoliday" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Present:</label>
+                            <asp:TextBox ID="txtTotalPresent" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <!-- Total Late, Total Absent, M.Hour [OTH-EXP], M.Hour [OTH-SRVD] -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Late:</label>
+                            <asp:TextBox ID="txtTotalLate" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Absent:</label>
+                            <asp:TextBox ID="txtTotalAbsent" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">M.Hour [OTH-EXP]:</label>
+                            <asp:TextBox ID="txtTotalManHourExpectedOff" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">M.Hour [OTH-SRVD]:</label>
+                            <asp:TextBox ID="txtTotalManHourServedOff" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <!-- M.Hour [O.T-EXP], M.Hour [O.T SRVD], Total Overtime, Salary Processed -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">M.Hour [O.T-EXP]:</label>
+                            <asp:TextBox ID="txtTotalManHourExpectedOT" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">M.Hour [O.T SRVD]:</label>
+                            <asp:TextBox ID="txtTotalManHourServedOT" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Overtime:</label>
+                            <asp:TextBox ID="txtTotalOvertime" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Salary Processed:</label>
+                            <asp:TextBox ID="txtIsSalaryProcessed" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <!-- Authorization Code, Total Night Allowance, Total Overtime Amount, Avg. Cost Of O.T / Hr -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Authorization Code:</label>
+                            <asp:TextBox ID="txtAuthorizationCode" runat="server" CssClass="form-control text-center" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Night Allowance:</label>
+                            <asp:TextBox ID="txtTotalNightAllowance" runat="server" CssClass="form-control text-center" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Total Overtime Amount:</label>
+                            <asp:TextBox ID="txtTotalOvertimeAmount" runat="server" CssClass="form-control text-center bg-warning" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-0">Avg. Cost Of O.T / Hr:</label>
+                            <asp:TextBox ID="txtAverageCostOfOvertimePerHour" runat="server" CssClass="form-control text-center bg-warning" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Attendance Table Placeholder -->
+                <div id="dvAttendance" class="table-responsive text-center">
+                    <table id="tblAttendance" class="table table-bordered table-striped mx-auto">
+                        <!-- Dynamic Attendance Rows -->
+                    </table>
+                </div>
+            </div>
+
+        </td>
+    </tr>
+</table>
 

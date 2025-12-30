@@ -7,7 +7,6 @@ $(document).ready(function () {
         caption: 'Attendance Details',
         initRows: 1,
         columns: [
-        //                                 { name: 'Image', display: 'img', type: 'image'},
                  {name: 'txtAttendanceCode', type: 'hidden' },
                 { name: 'txtEmployeeCode', type: 'hidden' },
                 { name: 'txtEmployeeId', display: 'Emp. Id', displayCss: { 'text-align': 'center', 'width': '8%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
@@ -21,8 +20,6 @@ $(document).ready(function () {
                 { name: 'txtOvertimeAuto', display: 'O.T (A)', displayTooltip: '', displayCss: { 'text-align': 'center', 'width': '4%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtOvertimeManual', display: 'O.T (M)', displayTooltip: '', displayCss: { 'width': '4%' }, type: 'text', ctrlAttr: {}, ctrlCss: { width: '100%', 'text-align': 'center' },
                     onChange: function (evt, rowIndex) {
-                        // alert('You have changed value of Album at row ' + rowIndex);
-                        //alert("OVERTIME CHANGED");
                         if (confirm("Are You Sure You want to manually adjust the 'Overtime' for " + $('#tblAttendance').appendGrid('getCtrlValue', 'txtEmplpoeeName', rowIndex) + " ?")) {
                             var lcl_str_EmployeeCode = $("#txtSignedInEmployeeCode").val();
                             var lcl_str_AttendanceCode = $('#tblAttendance').appendGrid('getCtrlValue', 'txtAttendanceCode', rowIndex);
@@ -32,27 +29,21 @@ $(document).ready(function () {
                                 DisplayError("Incorrect Value Enter for manual overtime adjustment!!!");
                                 return false;
                             }
-                            // var lcl_str_OvertimeManualAdjustment = rowData["txtOvertimeManual"]; //$('#tblAttendance').appendGrid('getCtrlValue', 'ddlAttendanceStatus', uniqueIndex);
-                            //var lcl_str_Status = $(lcl_ctrl_Status).val();
-                            //alert();
                             var options = {};
                             options.url = gbl_URL_Root + "WebServices/HRIS/AttendanceService.asmx/AdjustOvertime";
                             options.dataType = "json";
                             options.type = "POST";
                             options.data = "{IP_ui64_AttendanceCode: " + lcl_str_AttendanceCode + ",IP_i32_OvertimeAdjustment: " + lcl_str_ManualOvertimeAdjustment + ",IP_ui64_OvertimeAdjustmentEmpCode:" + lcl_str_EmployeeCode + ",IP_str_Remarks:'" + lcl_str_Remarks + "'}"; // JSON.stringify(lcl_obj_LogFile);
                             options.contentType = "application/json; charset=utf-8";
-                            //options.processData = false;
                             options.success = function (result) {
                                 var lcl_obj_WSResponse = result.d;
                                 if (lcl_obj_WSResponse.ResponseCode == 0) {
                                     DisplaySuccess("Overtime Adjusted Successfully!!");
                                     return true;
-                                    //DisplayLeaveProfile();
                                 }
                                 if (lcl_obj_WSResponse.ResponseCode == 1) {
                                     DisplayInformation(lcl_obj_WSResponse.Message);
                                     return true;
-                                    //DisplayLeaveProfile();
                                 }
                             };
 
@@ -61,21 +52,17 @@ $(document).ready(function () {
                             $.ajax(options);
                         }
                         return false;
-                        //alert(lcl_str_Status.toString());
                     }
                 },
                 { name: 'txtOvertimeTotal', display: 'O.T (T)', displayTooltip: '', displayCss: { 'text-align': 'center', 'width': '4%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtNightAllowance', display: 'N.A', displayTooltip: 'Night Allowance', displayCss: { 'text-align': 'center', 'width': '4%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'ddlAttendanceStatus', type: 'select', display: 'Status', displayCss: { 'width': '5%', 'text-align': 'center' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlOptions: { 0: 'NONE', 1: 'P', 2: 'A', 3: 'L', 4: 'L.A', 5: 'H', 6: 'O.L', 7: 'W', 8: 'W.O.H', 9: 'O.D', 10: 'R.D', 11: 'O.F.T', 12: 'A.N.D', 13: 'A.O.P', 14: 'S.C.H' },
-                    //{ name: 'ddlAttendanceStatus', type: 'select', display: 'Status', displayCss: { 'width': '5%', 'text-align': 'center' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlOptions: { 0: 'NONE', 2: 'A', 3: 'L', 4: 'L.A', 5: 'H', 6: 'O.L', 7: 'W', 8: 'W.O.H', 9: 'O.D', 10: 'R.D', 11: 'O.F.T', 12: 'A.N.D', 13: 'A.O.P', 14: 'S.C.H' },
                     onChange: function (evt, rowIndex) {
-                        // alert('You have changed value of Album at row ' + rowIndex);
                         var lcl_str_EmployeeCode = $("#txtSignedInEmployeeCode").val();
                         var lcl_str_AttendanceCode = $('#tblAttendance').appendGrid('getCtrlValue', 'txtAttendanceCode', rowIndex);
                         var lcl_str_Remarks = $('#tblAttendance').appendGrid('getCtrlValue', 'txtRemarks', rowIndex);
                         var lcl_ctrl_Status = $('#tblAttendance').appendGrid('getCellCtrl', 'ddlAttendanceStatus', rowIndex);
                         var lcl_str_Status = $(lcl_ctrl_Status).find(":selected").text();
-                        //alert(lcl_str_Status.toString());
                         if (lcl_str_Status == 'P') {
                             DisplayInformation("Cannot Change Attendance Status to 'P' Manually!!");
                             evt.preventDefault();
@@ -84,7 +71,6 @@ $(document).ready(function () {
                         lcl_str_Remarks += "||" + lcl_str_EmployeeCode.toString() + " Changed Status To " + lcl_str_Status;
                         $('#tblAttendance').appendGrid('setCtrlValue', 'txtRemarks', rowIndex, lcl_str_Remarks);
                         return false;
-                        //alert(lcl_str_Status.toString());
                     }
                 },
                 { name: 'txtRemarks', display: 'Remarks', displayCss: { 'text-align': 'center', 'width': '20%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
@@ -102,26 +88,21 @@ $(document).ready(function () {
                     var lcl_str_AttendanceCode = rowData["txtAttendanceCode"];
                     var lcl_str_ManualOvertimeAdjustment = rowData["txtRemarks"];
                     var lcl_str_Remarks = rowData["txtRemarks"];
-                    var lcl_str_Status = rowData["ddlAttendanceStatus"]; //$('#tblAttendance').appendGrid('getCtrlValue', 'ddlAttendanceStatus', uniqueIndex);
-                    //alert(lcl_str_Status);
+                    var lcl_str_Status = rowData["ddlAttendanceStatus"];
                     if (lcl_str_Status == '1') {
                         DisplayInformation("Cannot Change Attendance Status to 'P' Manually!!");
                         return;
                     }
-                    //var lcl_str_Status = $(lcl_ctrl_Status).val();
-                    //alert();
                     var options = {};
                     options.url = gbl_URL_Root + "WebServices/HRIS/AttendanceService.asmx/UpdateAttendanceStatus";
                     options.dataType = "json";
                     options.type = "POST";
                     options.data = "{IP_ui64_AttendanceCode: " + lcl_str_AttendanceCode + ",IP_enm_AttendanceStatus: " + lcl_str_Status + ",IP_str_Remarks:'" + lcl_str_Remarks + "'}"; // JSON.stringify(lcl_obj_LogFile);
                     options.contentType = "application/json; charset=utf-8";
-                    //options.processData = false;
                     options.success = function (result) {
                         var lcl_obj_WSResponse = result.d;
                         if (lcl_obj_WSResponse.ResponseCode == 0) {
                             DisplaySuccess("Attendance Status Has Been Changed Successfullly!");
-                            //DisplayLeaveProfile();
                         }
                     };
 
@@ -129,7 +110,8 @@ $(document).ready(function () {
 
                     $.ajax(options);
                 }, btnCss: { 'min-width': '20px' },
-                btnAttr: { title: 'Update Attendance Status' }, atTheFront: true
+                btnAttr: { title: 'Update Attendance Status' },
+                atTheFront: true
             }
         ],
         afterRowAppended: function (caller, parentRowIndex, addedRowIndex) {
@@ -144,12 +126,6 @@ $(document).ready(function () {
             }
         },
         beforeRowRemove: function (caller, rowIndex) {
-            //            var lcl_str_ItemCode = $(caller).appendGrid('getCtrlValue', 'txtItemCode', rowIndex);
-            //            if ($.trim(lcl_str_ItemCode) != '') {
-            //                ShowInfoMessageBoard("Operational Error : You are not permitted to delete this row!!!");
-            //                return false;
-            //            }
-            //            return true;
         },
         hideButtons: {
             append: true,
@@ -159,7 +135,8 @@ $(document).ready(function () {
             remove: true,
             removeLast: true
         },
-        hideRowNumColumn: true
+        hideRowNumColumn: true,
+        rowDragging: true
     });
 });
 

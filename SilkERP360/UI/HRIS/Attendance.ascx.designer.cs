@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class Attendance {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class Attendance
+    {
+
         /// <summary>
         /// txtAttendanceDate control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAttendanceDate;
-        
+
         /// <summary>
         /// txtTotalProcessed control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalProcessed;
-        
+
         /// <summary>
         /// txtTotalOnLeave control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalOnLeave;
-        
+
         /// <summary>
         /// txtTotalOnHoliday control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalOnHoliday;
-        
+
         /// <summary>
         /// txtTotalPresent control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalPresent;
-        
+
         /// <summary>
         /// txtTotalLate control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalLate;
-        
+
         /// <summary>
         /// txtTotalAbsent control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalAbsent;
-        
+
         /// <summary>
         /// txtTotalManHourExpectedOff control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalManHourExpectedOff;
-        
+
         /// <summary>
         /// txtTotalManHourServedOff control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalManHourServedOff;
-        
+
         /// <summary>
         /// txtTotalManHourExpectedOT control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalManHourExpectedOT;
-        
+
         /// <summary>
         /// txtTotalManHourServedOT control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalManHourServedOT;
-        
+
         /// <summary>
         /// txtTotalOvertime control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalOvertime;
-        
+
         /// <summary>
         /// txtIsSalaryProcessed control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIsSalaryProcessed;
-        
+
         /// <summary>
         /// txtAuthorizationCode control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAuthorizationCode;
-        
+
         /// <summary>
         /// txtTotalNightAllowance control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalNightAllowance;
-        
+
         /// <summary>
         /// txtTotalOvertimeAmount control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalOvertimeAmount;
-        
+
         /// <summary>
         /// txtAverageCostOfOvertimePerHour control.
         /// </summary>
