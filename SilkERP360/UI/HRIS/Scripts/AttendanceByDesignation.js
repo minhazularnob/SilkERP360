@@ -6,7 +6,6 @@ $(document).ready(function () {
         caption: 'Attendance Details',
         initRows: 1,
         columns: [
-        //                                 { name: 'Image', display: 'img', type: 'image'},
                  {name: 'txtAttendanceCode', type: 'hidden' },
                 { name: 'txtEmployeeCode', type: 'hidden' },
                 { name: 'txtEmployeeId', display: 'Emp. Id', displayCss: { 'text-align': 'center', 'width': '8%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
