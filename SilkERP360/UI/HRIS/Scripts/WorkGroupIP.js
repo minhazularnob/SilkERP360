@@ -3,7 +3,6 @@ var GBL_UpdateableWorkGroupOperationHistory = new Object();
 var GBL_DeletableWorkGroupOperationHistory = new Object();
 var GBL_InsertableWorkGroupOperationHistory = new Object();
 $(document).ready(function () {
-    //HideMessageBoard();
     ShowMessageBoard("Work Group Management Loaded");
     ShowOperationalDirection("<b>Direction : Select a WorkGroup | Select a Date | Press Synchroniser</b>");
     $("#txtWorkDate").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
@@ -11,27 +10,6 @@ $(document).ready(function () {
     $(".operational_command").prop("disabled", true);
 
     /***************************************************************************************************************************/
-
-
-    //    $("#lnkSyncInclusion").on("click", function () {
-    //        var lcl_i32_RowCount = $('#tblWorkgroupEmployee').appendGrid('getRowCount');
-    //        var lcl_objLst_IncludedWorkGroupOperationHistory = new Array();
-    //        var lcl_i32_IncludedWorkGroupOperationHistoryIndex = 0;
-    //        //Sort Grid and find if new employee has been included
-    //        for (var i = 0; i < lcl_i32_RowCount; i++) {
-    //            var lcl_i32_WGOperationHistoryCode = parseInt($('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtWorkGroupOperationHistoryCode', i));
-    //            if (lcl_i32_WGOperationHistoryCode == 0) {
-    //                lcl_objLst_IncludedWorkGroupOperationHistory[lcl_i32_IncludedWorkGroupOperationHistoryIndex] = new Object();
-    //                lcl_objLst_IncludedWorkGroupOperationHistory[lcl_i32_IncludedWorkGroupOperationHistoryIndex].EmployeeWorkGroupHistoryCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtWorkGroupOperationHistoryCode', i);
-    //                lcl_objLst_IncludedWorkGroupOperationHistory[lcl_i32_IncludedWorkGroupOperationHistoryIndex].WorkGroupOperationMasterCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtWorkGroupOperationMasterCode', i);
-    //                lcl_objLst_IncludedWorkGroupOperationHistory[lcl_i32_IncludedWorkGroupOperationHistoryIndex].EmployeeCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtEmployeeCode', i);
-    //                lcl_objLst_IncludedWorkGroupOperationHistory[lcl_i32_IncludedWorkGroupOperationHistoryIndex].AssessmentStatus = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', i);
-    //            }
-    //        }
-
-    //        
-    //        
-    //    });
 
     $("#lnkSyncInclusion").on("click", function (event) {
         var lcl_b_ReturnValue = SyncWorkGroupInclusion(event);
@@ -53,6 +31,10 @@ $(document).ready(function () {
 
     $("#btnUploadLogFile").click(function (evt) {
     });
+    initializeSelect2('ddlWorkGroup', '------ Select WorkGroup ------', '25%');
+    initializeSelect2('ddlOperationalStatus', '------ Select Operational Status ------', '25%');
+    initializeSelect2('ddlDayAttribute', '------ Select Day Attribute ------', '25%');
+
 
 });
 
@@ -62,7 +44,6 @@ function EmployeeListFileSelected(event) {
     $("#lnkUploadEmployeeFile").removeClass("command_button_disabled").addClass("command_button_enabled");
     $('#lnkUploadEmployeeFile').unbind('click');
     $('#lnkUploadEmployeeFile').bind('click', function (e) {
-        //e.preventDefault();
         UploadEmployeeList(event);
     })
 }
@@ -73,7 +54,6 @@ function UploadEmployeeList(evt) {
     var lcl_dt_Date = $("#txtWorkDate").val();
 
     var fileUpload = $("#fuUploadFile").get(0);
-    //alert(fileUpload);
     var files = fileUpload.files;
     if (files.length == 0) {
         ShowInfoMessageBoard("Operational Error : No files have been selected to be uploaded!!!");
@@ -84,19 +64,17 @@ function UploadEmployeeList(evt) {
     data.append("WorkGroupCode", lcl_ui64_WorkGroupCode);
     data.append("WorkDate", lcl_dt_Date);
     for (var i = 0; i < files.length; i++) {
-        //alert(files[i].name);
         data.append(files[i].name, files[i]);
     }
     var options = {};
     options.url = gbl_URL_Root + "Uploaders/HRIS/EmployeeProfileGenerator.ashx";
     options.type = "POST";
     options.global = true,
-        options.data = data; // JSON.stringify(lcl_obj_LogFile);
+        options.data = data;
     options.contentType = false;
     options.processData = false;
     options.success = function (result) {
         var lcl_obj_WSResponse = result;
-        //var lcl_obj_ResponseObject = lcl_obj_WSResponse.Data;
         if (lcl_obj_WSResponse.ResponseCode == -1) {
             ShowErrorMessageBoard(lcl_obj_WSResponse.Message);
             return;
@@ -140,7 +118,6 @@ function UploadEmployeeList(evt) {
         }
         if (lcl_obj_WSResponse.ResponseCode == 0) {
             //ALL OK
-            //ShowMessageBoard(lcl_obj_WSResponse.Message);
             var lcl_objLst_EmployeeProfile = lcl_obj_WSResponse.Data;
             var lcl_i32_EmployeeCounter = lcl_objLst_EmployeeProfile.length;
             var lcl_i32_Count = $('#tblWorkgroupEmployee').appendGrid('getRowCount');
@@ -201,12 +178,10 @@ function SyncAssessmentStatus(event) {
     options.type = "POST";
     options.data = "{IP_objLst_UpdateableWorkGroupOperationHistory: " + JSON.stringify(lcl_objLst_UpdateableWorkGroupOperationHistory) + "}";
     options.contentType = "application/json; charset=utf-8";
-    //options.processData = false;
     options.success = function (result) {
 
 
         var lcl_obj_WSResponse = result.d;
-        //$(".SyncAssessmentStatus").prop("disabled", true);
         $("#lnkSyncAssessmentStatus").removeClass("command_button_enabled").addClass("command_button_disabled");
         $('#lnkSyncAssessmentStatus').unbind('click');
         GBL_UpdateableWorkGroupOperationHistory = [];
@@ -248,7 +223,6 @@ function SyncWorkGroupRemoval(event) {
     options.type = "POST";
     options.data = "{IP_objLst_DeletableWorkGroupOperationHistory: " + JSON.stringify(lcl_objLst_DeletableWorkGroupOperationHistory) + "}";
     options.contentType = "application/json; charset=utf-8";
-    //options.processData = false;
     options.success = function (result) {
         var lcl_obj_WSResponse = result.d;
         $("#lnkSyncRemoval").removeClass("command_button_enabled").addClass("command_button_disabled");
@@ -327,8 +301,6 @@ function GetWorkGroupByDate(event) {
                 contentType: "application/json; charset=utf-8",
                 global: true,
                 url: gbl_URL_Root + "WebServices/HRIS/WorkGroupServices.asmx/GetWorkGroupDetailsByDate",
-                // url: "~/../../../WebServices/UILoaderService.asmx/GetUIByEmployee",
-
                 data: "{IP_ui64_WorkGroupCode: " + lcl_ui64_WorkGroupCode + ",IP_dt_Date:" + JSON.stringify(lcl_dt_Date) + "}", //provide input for the getSM_PO method
                 dataType: "json",
                 success: function (response) {
@@ -384,6 +356,7 @@ function GetWorkGroupByDate(event) {
                                 insert: true,
                                 append: true
                             },
+                            rowDragging: true,
                             hideRowNumColumn: false,
                             afterRowAppended: function (caller, parentRowIndex, addedRowIndex) {
                                 /*********************************************************************************************************************/
@@ -437,16 +410,6 @@ function GetWorkGroupByDate(event) {
                         lcl_str_HTMLDirection += "Upload CSV File Containing Ids of the employees designated to serve this WorkGroup OR Include Employees one by one!!!";
                         ShowOperationalDirection(lcl_str_HTMLDirection);
                         ShowWorkGroupAttendanceSummery(GBL_WorkGroupOperationMaster);
-                        //                        $("#lnkAddEmployee").addClass("command_button_enabled").removeClass("command_button_disabled");
-                        //                        $('#lnkAddEmployee').bind('click', function (event) {
-                        //                            IncludeEmployeeToWorkGroup(event);
-                        //                        });
-                        //                        $("#fuUploadFile").prop("disabled", true);
-                        //                        $("#lnkSave").addClass("command_button_enabled").removeClass("command_button_disabled");
-                        //                        $('#lnkSave').bind('click', function (event) {
-                        //                            Save(event);
-                        //                        });
-
                     }
                     if (WSResponse.ResponseCode == 0) {
                         ShowInfoMessageBoard(WSResponse.Message);
@@ -497,6 +460,7 @@ function GetWorkGroupByDate(event) {
                                     insert: true,
                                     append: true
                                 },
+                                rowDragging: true,
                                 hideRowNumColumn: false,
                                 afterRowAppended: function (caller, parentRowIndex, addedRowIndex) {
                                     /*********************************************************************************************************************/
@@ -582,17 +546,14 @@ function GetWorkGroupByDate(event) {
                                                 GBL_UpdateableWorkGroupOperationHistory[lcl_str_Key.toString()].WorkGroupOperationMasterCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtWorkGroupOperationMasterCode', rowIndex);
                                                 GBL_UpdateableWorkGroupOperationHistory[lcl_str_Key.toString()].EmployeeCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtEmployeeCode', rowIndex);
                                                 GBL_UpdateableWorkGroupOperationHistory[lcl_str_Key.toString()].AssessmentStatus = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', rowIndex);
-                                                //alert("ACTIVATE ASSESSMENT STATUS");
-                                                //$(".SyncAssessmentStatus").prop("disabled", false);
+                                               
                                                 $("#lnkSyncAssessmentStatus").removeClass("command_button_disabled").addClass("command_button_enabled");
                                                 $('#lnkSyncAssessmentStatus').unbind('click');
-                                                //$('#lnkSyncAssessmentStatus').bind('click');
                                                 $("#lnkSyncAssessmentStatus").on("click", function (event) {
                                                     var lcl_b_ReturnValue = SyncAssessmentStatus(event);
                                                     return lcl_b_ReturnValue;
                                                 });
                                                 var lcl_str_HTMLDirection = "Direction : You have requested Assessment Status of a Personnel!Please sync WorkGroup to have effect.->Press 'Sync Status' button.";
-                                                //lcl_str_HTMLDirection += "Select Start time | Enter duty duration | Upload CSV File Containing Ids of the employees designated to serve this WorkGroup!!!";
                                                 ShowOperationalDirection(lcl_str_HTMLDirection);
                                             }
                                         },
@@ -606,6 +567,7 @@ function GetWorkGroupByDate(event) {
                                     insert: true,
                                     append: true
                                 },
+                                rowDragging: true,
                                 beforeRowRemove: function (caller, rowIndex) {
                                     if (confirm('Are you sure to remove this Employee From the Assigned WorkGroup?')) {
                                         var lcl_str_WorkGroupOperationMasterCode = $(caller).appendGrid('getCtrlValue', 'txtWorkGroupOperationMasterCode', rowIndex);
@@ -618,13 +580,11 @@ function GetWorkGroupByDate(event) {
                                         //EDIT
                                         //Add WorkGroupOperationHistory object to Updateable list
                                         var lcl_str_Key = $(caller).appendGrid('getCtrlValue', 'txtWorkGroupOperationHistoryCode', rowIndex).toString();
-                                        //alert(lcl_str_Key);
                                         GBL_DeletableWorkGroupOperationHistory[lcl_str_Key.toString()] = new Object();
                                         GBL_DeletableWorkGroupOperationHistory[lcl_str_Key.toString()].EmployeeWorkGroupHistoryCode = $(caller).appendGrid('getCtrlValue', 'txtWorkGroupOperationHistoryCode', rowIndex);
                                         GBL_DeletableWorkGroupOperationHistory[lcl_str_Key.toString()].WorkGroupOperationMasterCode = $(caller).appendGrid('getCtrlValue', 'txtWorkGroupOperationMasterCode', rowIndex);
                                         GBL_DeletableWorkGroupOperationHistory[lcl_str_Key.toString()].EmployeeCode = $(caller).appendGrid('getCtrlValue', 'txtEmployeeCode', rowIndex);
                                         GBL_DeletableWorkGroupOperationHistory[lcl_str_Key.toString()].AssessmentStatus = $(caller).appendGrid('getCtrlValue', 'ddlAssessmentStatus', rowIndex);
-                                        //alert(GBL_DeletableWorkGroupOperationHistory.length);
                                         $(".SyncRemoval").prop("disabled", false);
                                         $("#lnkSyncRemoval").removeClass("command_button_disabled").addClass("command_button_enabled");
                                         $('#lnkSyncRemoval').unbind('click');
@@ -633,7 +593,6 @@ function GetWorkGroupByDate(event) {
                                         });
 
                                         var lcl_str_HTMLDirection = "Direction : You have requested a removal of an employee from this schedule!Please sync WorkGroup to have effect.->Press 'Sync Removal' button.";
-                                        //lcl_str_HTMLDirection += "Select Start time | Enter duty duration | Upload CSV File Containing Ids of the employees designated to serve this WorkGroup!!!";
                                         ShowOperationalDirection(lcl_str_HTMLDirection);
                                         return true;
                                     }
@@ -650,7 +609,6 @@ function GetWorkGroupByDate(event) {
                                         //New Employee Inclusion to WorkGroup
                                         //Mark Employee ID red
                                         var lcl_ctrl_EmployeeId = $(caller).appendGrid('getCellCtrl', 'txtEmployeeId', addedRowIndex);
-                                        //$(lcl_ctrl_EmployeeId).css('background-color', 'red');
                                         $(lcl_ctrl_EmployeeId).css('border', '1px solid red');
                                         //NEW INSERTION INTO THE GROUP
                                         var lcl_str_Key = $(caller).appendGrid('getCtrlValue', 'txtEmployeeCode', addedRowIndex).toString();
@@ -661,13 +619,11 @@ function GetWorkGroupByDate(event) {
                                         GBL_InsertableWorkGroupOperationHistory[lcl_str_Key.toString()].AssessmentStatus = $(caller).appendGrid('getCtrlValue', 'ddlAssessmentStatus', addedRowIndex);
                                         $(".SyncInclusion").prop("disabled", false);
                                         var lcl_str_HTMLDirection = "Direction : You have requested inclusion of an employee for this schedule!Please sync WorkGroup to have effect.->Press 'Sync Inclusion' button.";
-                                        //lcl_str_HTMLDirection += "Select Start time | Enter duty duration | Upload CSV File Containing Ids of the employees designated to serve this WorkGroup!!!";
                                         ShowOperationalDirection(lcl_str_HTMLDirection);
                                     }
                                     else {
                                         //Display only
                                         var lcl_ctrl_EmployeeId = $(caller).appendGrid('getCellCtrl', 'txtEmployeeId', addedRowIndex);
-                                        //$(lcl_ctrl_EmployeeId).css('background-color', 'green');
                                         $(lcl_ctrl_EmployeeId).css('border', '1px solid gray');
                                     }
                                     /*********************************************************************************************************************/
@@ -723,9 +679,6 @@ function IncludeEmployeeToWorkGroup(event) {
     var lcl_ui64_CompanyCode = $('#ddlCompany option:selected').val();
     //alert('3');
     var lcl_dt_WorkDate = $('#txtWorkDate').val();
-    //alert('4');
-    //ShowMessageBoard("{IP_ui64_CompanyCode: " + lcl_ui64_CompanyCode + ",IP_dt_WorkDate:'" + lcl_dt_WorkDate + "',IP_str_EmployeeId:'" + lcl_str_EmployeeId + "'}");
-    //return;
     /****************************************************************************************************************************/
     //check if employee id already added to grid
     var lcl_i32_RowCount = $('#tblWorkgroupEmployee').appendGrid('getRowCount');
@@ -846,8 +799,6 @@ function Save(event) {
             GBL_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtEmployeeCode', i);
             GBL_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeWorkGroupHistoryCode = 0;
             GBL_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].WorkGroupOperationMasterCode = 0; //to be set in server
-            //var elem = $('#tblWorkgroupEmployee').appendGrid('getCellCtrl', 'ddlAssessmentStatus', 1);
-            //alert($('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', i).toString());
             GBL_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].AssessmentStatus = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', i);
             GBL_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeProfile = null;
         }
@@ -859,7 +810,6 @@ function Save(event) {
         options.type = "POST";
         options.data = "{IP_obj_WorkGroupOperationMaster: " + JSON.stringify(GBL_WorkGroupOperationMaster) + "}"; // JSON.stringify(lcl_obj_LogFile);
         options.contentType = "application/json; charset=utf-8";
-        //options.processData = false;
         options.success = function (result) {
             var lcl_obj_WSResponse = result.d;
 
@@ -910,21 +860,15 @@ function ShowWorkGroupAttendanceSummery(IP_obj_WorkGroupOperationMaster) {
             lcl_str_HTML += "<br/><b>ATTENDANCE NOT YET PROCESSED</b>";
         }
         else {
-            //lcl_str_HTML += "Attendance :" + "PROCESSED" + "<br/>";
-            //$("#txtAttnProcessingStatus").val("PROCESSED");
             lcl_str_HTML += "<br/><b>ATTENDANCE PROCESSED</b>";
         }
         if (IP_obj_WorkGroupOperationMaster.IsSalaryProcessed == 0) {
-            //$("#txtSalaryProcessingStatus").val("NOT PROCESSED");
             lcl_str_HTML += " | <b>NOT YET PROCESSED FOR SALARY</b>";
         }
         else {
-            //lcl_str_HTML += "Attendance :" + "PROCESSED" + "<br/>";
             lcl_str_HTML += " | <b>PROCESSED FOR SALARY</b>";
         }
         lcl_str_HTML += "</td></tr></table>";
-        //$("#dvWorkGroupAttendanceSummery").html(lcl_str_HTML);
-        //$("#dvWorkGroupAttendanceSummery").show('slow');
     }
     ShowData(lcl_str_HTML);
 }
@@ -932,23 +876,14 @@ function ShowWorkGroupAttendanceSummery(IP_obj_WorkGroupOperationMaster) {
 function ShowData(HtmlData) {
     $('#dvData').hide('slow', function () {
         $('#dvData').html(HtmlData);
-        //                $("#dvData span").text(Data);
-        //                $('#spnData').css('color', 'white');
-        //                //$('#dvNotification').css('background-color', 'green');
         $('#dvData').show('slow');
     });
-    //$('#dvMessageBoard').fadeOut().next().delay(500).fadeIn();
 }
 
 function HideData() {
     $('#dvData').hide('slow', function () {
         $('#dvData').html("");
-        //                $("#dvData span").text(Data);
-        //                $('#spnData').css('color', 'white');
-        //                //$('#dvNotification').css('background-color', 'green');
-        //$('#dvData').show('slow');
     });
-    //$('#dvMessageBoard').fadeOut().next().delay(500).fadeIn();
 }
 
 function ShowOperationalDirection(HtmlMessage) {
@@ -956,8 +891,4 @@ function ShowOperationalDirection(HtmlMessage) {
         $("#dvNotification").html(HtmlMessage);
         $('#dvNotification').show('slow');
     });
-    //$('#dvMessageBoard').fadeOut().next().delay(500).fadeIn();
 }
-
-        
-        
