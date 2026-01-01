@@ -24,27 +24,10 @@ GBLLeaveCategory [1] = "Paid";
 GBLLeaveCategory [2] = "Unpaid";
 
 $(document).ready(function () {
-
-    //    $('#txtSearchEmployee').keypress(function (e) {
-    //        var key = e.which;
-    //        if (key == 13)  // the enter key code
-    //        {
-    //            alert("a");
-    //            var lcl_str_Search = $("#txtSearchEmployee").val();
-    //            alert(lcl_str_Search);
-    //            $("#ddlEmployeeId option:contains(" + lcl_str_Search + ")").attr('selected', 'selected');
-    //            return false;
-
-    //            $('#ddlEmployeeId option')
-    //                .filter(function () { return $.trim($(this).text()).contains(lcl_str_Search); })
-    //                .attr('selected', true);
-    //            }
-    //    });
-
-    $("#ddlEmployeeId").combobox();
+    //$("#ddlEmployeeId").combobox();
 
     $("#combobox").on("keypress", function (keyarg) {
-        if (keyarg.keyCode == 13) { //Enter keycode
+        if (keyarg.keyCode == 13) {
             GetEmployeeLeaveProfile(keyarg);
         }
     });
@@ -92,22 +75,16 @@ $(document).ready(function () {
                     options.contentType = "application/json; charset=utf-8";
                     options.processData = false;
                     options.success = function (result) {
-                        //alert("a");
 
                         var lcl_obj_WSResponse = result.d;
-                        //alert("b");
                         if (lcl_obj_WSResponse.ResponseCode == -1) {
                             DisplayInformation(lcl_obj_WSResponse.Message);
-                            //DisplayLeaveProfile();
                             return;
                         }
                         if (lcl_obj_WSResponse.ResponseCode == 0) {
-                            //alert(uniqueIndex);
                             var lcl_i32_RowIndex = $('#tblEmpLeaveAppList').appendGrid('getRowIndex', uniqueIndex);
                             $('#tblEmpLeaveAppList').appendGrid('removeRow', lcl_i32_RowIndex);
-                            //alert("d");
                             DisplaySuccess(lcl_obj_WSResponse.Message);
-                            //DisplayLeaveProfile();
                             return;
                         }
                         DisplayError(lcl_obj_WSResponse.Message);
@@ -137,11 +114,7 @@ $(document).ready(function () {
 
     $("#txtStartDate").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true,
         onSelect: function (dateStr) {
-            //add 3month with the 'Joining Date' and populate Confirmation date
             var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
-            //var years = parseInt($("#equipment_warrantyLength").val(), 10);
-            //d.setMonth(d.getMonth() + 3);
-            //$("#txtEndDate").datepicker('minDate', d);
             $("#txtEndDate").datepicker("option", "minDate", d);
             $("#txtEndDate").datepicker('setDate', d);
             d.setDate(d.getDate() + 1);
@@ -160,12 +133,11 @@ $(document).ready(function () {
             $("#txtNumOfDays").val(NumOfDays);
             EndDate.setDate(EndDate.getDate() + 1);
             $("#txtRejoinDate").val((EndDate.getDate()).toString() + '/' + GBL_Months[EndDate.getMonth()] + '/' + EndDate.getFullYear().toString());
-            //var years = parseInt($("#equipment_warrantyLength").val(), 10);
-            // d.setMonth(d.getMonth() + 3);
-
-            //$("#txtEndDate").datepicker('setDate', d);
         }
     });
+    initializeSelect2('ddlEmployeeId', '------ Select Employee ------', '25%'); 
+    initializeSelect2('ddlLeaveType', '------ Select Leave Type ------', '25%');
+    initializeSelect2('ddlLeaveCategory', '------ Select Leave Type ------', '25%');
 });
 
 function GetEmployeeLeaveProfile(event) {
@@ -178,9 +150,8 @@ function GetEmployeeLeaveProfile(event) {
     options.url = gbl_URL_Root + "WebServices/HRIS/LeaveService.asmx/GetEmployeeLeaveProfileByEmployeeCode";
     options.dataType = "json";
     options.type = "POST";
-    options.data = "{IP_ui64_EmployeeCode: " + lcl_ui64_EmployeeCode + "}"; // JSON.stringify(lcl_obj_LogFile);
+    options.data = "{IP_ui64_EmployeeCode: " + lcl_ui64_EmployeeCode + "}";
     options.contentType = "application/json; charset=utf-8";
-    //options.processData = false;
     options.success = function (result) {
         var lcl_obj_WSResponse = result.d;
         if (lcl_obj_WSResponse.ResponseCode == 0) {
@@ -192,7 +163,6 @@ function GetEmployeeLeaveProfile(event) {
     options.error = function (err) { ShowErrorMessageBoard(err.statusText); };
 
     $.ajax(options);
-    //evt.preventDefault();}
 }
 
 
@@ -211,7 +181,6 @@ function DisplayLeaveProfile() {
     }
     if (GBLEmployeeLeaveProfile.EmployeeLeaveApplicationList != null) {
         $.each(GBLEmployeeLeaveProfile.EmployeeLeaveApplicationList, function (index, lcl_obj_EmployeeLeaveApplication) {
-            //alert(lcl_obj_EmployeeLeaveApplication.LeaveEndDate.toString());
             $('#tblEmpLeaveAppList').appendGrid('appendRow', [
             { txtLALeaveAppCode: lcl_obj_EmployeeLeaveApplication.LeaveApplicationCode,
                 txtLALeaveType: GBLLeaveType[lcl_obj_EmployeeLeaveApplication.LeaveType],
