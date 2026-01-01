@@ -12,60 +12,43 @@
 <script src="../../Globals/Scripts/plug-ins/moment-develop/moment.js" type="text/javascript"></script>
 <script src="Scripts/EmployeeWorkGroupSchedule.js" type="text/javascript"></script>
 
-<div id="dvWorkGroupMaster" style="width:100%; border:1px ridge black; margin:0 auto; height:auto;">
-    <table id="tblBody" cellpadding="5px" cellspacing="5px" style="width:100%;">
-        <%--<tr style="padding:5px;">
-            <td style="width:50%; background-color:Gray; padding:2px; height:40px; text-align:center; margin:2px;">
-                <div id="dvNotification" style="display:none;font-weight:bold; color:white; text-align:left; margin-right:1px;">
-               
-                </div>
-            </td>
-            <td style="width:0%;padding:2px; height:40px; text-align:center;margin:2px;">
-                &nbsp;
-            </td>
-            <td style="width:50%; background-color:Gray; padding:2px; height:40px; text-align:center;margin-left:1px;">
-                <div id="dvData" style="display:none; color:White;">
-                    <span id="spnData" style=" font-family:Times New Roman; font-size:14px; font-weight:500; color:Aqua;"></span>
-                </div>
-            </td>
-        </tr>--%>
-        <tr>
-            <!--QC HEAD-->
-            <td colspan="3"  style="width:100%; height:auto;">
-                <div id="dvQCHead" style="width:100%; height:100%; border-bottom:2px ridge black;">
-                    
-                    <h1>Silkways Group Employee WorkGroup Schedule</h1>
-                    <br />
-                    <br />
-                    <table style="width:80%; margin:0 auto;" class="ip_control_container" >
-                        <tr>
-                            <td style=" text-align:center;">
-                                <label>Select Date :</label>
-                                <asp:TextBox ID="txtScheduleDate" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="60%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                <a id="lnkGetSchedule" href="#" class="command_button_enabled" onclick="GetEmployeeSchedule(event);return false;" style=" height:20px; line-height:20px; width:40px;">
-                                        -->>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                    <br />
-                    <br />
-                    
-                    <div id="dvWorkGroupSchedule" style="">
-                        <table style="width:100%; margin:0 auto;" class="ip_control_container" >
-                            <tr>
-                                <td style=" text-align:center;">
-                                    <table id="tblWorkGroupSchedule">
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+<div class="container-fluid my-4" id="dvWorkGroupMaster">
+    <div class="card shadow-sm">
+
+        <!-- Page Header -->
+        <div class="card-header text-center bg-white border-bottom">
+            <h1 class=" fontSerif mb-0">Silkways Group Employee WorkGroup Schedule</h1>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+            <!-- Filter Section -->
+            <div class="mb-4">
+                <div class="row justify-content-center align-items-center g-2">
+
+                    <div class="col-md-4 d-flex align-items-center">
+                        <label for="txtScheduleDate" class="form-label mb-0 me-2">Select Date:</label>
+                        <asp:TextBox ID="txtScheduleDate" runat="server"
+                            CssClass="form-control text-center wg_read_only"
+                            Style="width: 60%;" ReadOnly="true" ClientIDMode="Static" />
+                        <a id="lnkGetSchedule" href="#" class="btn btn-primary ms-2" style="font-size: small"
+                            onclick="GetEmployeeSchedule(event); return false;">
+                            <i class="fa fa-search me-1"></i> Search
+                        </a>
                     </div>
-                    <br />
-                    <br />
+
                 </div>
-            </td>
-        </tr>
-    </table>
+            </div>
+
+            <!-- WorkGroup Schedule Table -->
+            <div id="dvWorkGroupSchedule" class="table-responsive">
+                <table id="tblWorkGroupSchedule" class="table table-bordered table-striped w-100">
+                    <!-- Schedule content will be dynamically loaded here -->
+                </table>
+            </div>
+
+        </div>
+    </div>
 </div>
 
