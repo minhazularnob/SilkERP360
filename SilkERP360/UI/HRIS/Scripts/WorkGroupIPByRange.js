@@ -1,24 +1,14 @@
 ﻿$(document).ready(function () {
-    //$("#txtWorkDateFrom").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
     $("#txtWorkDateUpto").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true, minDate: 0, maxDate: "+365D" });
     $("#txtWorkDateFrom").datepicker({ dateFormat: 'dd/MM/yy', showButtonPanel: true, minDate: 0, maxDate: "+365D",
         onSelect: function (dateStr) {
             //add 3month with the 'Joining Date' and populate Confirmation date
             var d = $.datepicker.parseDate('dd/MM/yy', dateStr);
-            //var years = parseInt($("#equipment_warrantyLength").val(), 10);
-            //d.setMonth(d.getMonth() + 3);
-            //$("#txtWorkDateUpto").datepicker('setDate', d);
-            //$("#txtWorkDateUpto").datepicker('destroy');
             $("#txtWorkDateUpto").datepicker('option', 'minDate', d);
         }
     });
 
     $("#txtDutyStartsAt").timepicker({ timeFormat: "hh:mm:ss TT" });
-
-    //    $('#lnkRefresh').bind('click', function (event) {
-    //        RefreshInput(event);
-    //    });
-
     $("#lnkSave").removeClass("command_button_enabled").addClass("command_button_disabled");
 
 
@@ -55,6 +45,9 @@
             /*********************************************************************************************************************/
         }
     });
+    initializeSelect2('ddlWorkGroup', '------ Select WorkGroup ------', '25%');
+    initializeSelect2('ddlOperationalStatus', '------ Select Operational Status ------', '25%');
+
 });
 
 function EmployeeListFileSelected(event) {
@@ -62,7 +55,6 @@ function EmployeeListFileSelected(event) {
     //Activate the Upload file button
     $("#lnkUploadEmployeeFile").removeClass("command_button_disabled").addClass("command_button_enabled");
     $('#lnkUploadEmployeeFile').bind('click', function (e) {
-        //e.preventDefault();
         UploadEmployeeList(event);
     })
 }
@@ -103,12 +95,11 @@ function UploadEmployeeList(evt) {
     options.url = gbl_URL_Root + "Uploaders/HRIS/EmployeeProfileGeneratorForWorkGroupByDateRange.ashx";
     options.type = "POST";
     options.global = true,
-        options.data = data; // JSON.stringify(lcl_obj_LogFile);
+        options.data = data;
     options.contentType = false;
     options.processData = false;
     options.success = function (result) {
         var lcl_obj_WSResponse = result;
-        //var lcl_obj_ResponseObject = lcl_obj_WSResponse.Data;
         if (lcl_obj_WSResponse.ResponseCode == -1) {
             DisplayError(lcl_obj_WSResponse.Message);
             return;
@@ -152,7 +143,6 @@ function UploadEmployeeList(evt) {
         }
         if (lcl_obj_WSResponse.ResponseCode == 0) {
             //ALL OK
-            //ShowMessageBoard(lcl_obj_WSResponse.Message);
             var lcl_objLst_EmployeeProfile = lcl_obj_WSResponse.Data;
             var lcl_i32_EmployeeCounter = lcl_objLst_EmployeeProfile.length;
             var lcl_i32_Count = $('#tblWorkgroupEmployee').appendGrid('getRowCount');
@@ -240,20 +230,16 @@ function Save(event) {
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeCode = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'txtEmployeeCode', i);
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeWorkGroupHistoryCode = 0;
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].WorkGroupOperationMasterCode = 0; //to be set in server
-        //var elem = $('#tblWorkgroupEmployee').appendGrid('getCellCtrl', 'ddlAssessmentStatus', 1);
-        //alert($('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', i).toString());
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].AssessmentStatus = $('#tblWorkgroupEmployee').appendGrid('getCtrlValue', 'ddlAssessmentStatus', i);
         lcl_obj_WorkGroupOperationMaster.WorkGroupOperationHistoryCollection[i].EmployeeProfile = null;
     }
-    //alert("OP MSTR CONFIGURED");
-    //alert( JSON.stringify(GBL_WorkGroupOperationMaster));
+  
     var options = {};
     options.url = gbl_URL_Root + "WebServices/HRIS/WorkGroupServices.asmx/SaveWorkGroupOperationMasterByDateRange";
     options.dataType = "json";
     options.type = "POST";
     options.data = "{IP_dt_DateFrom:'" + lcl_dt_DateFrom + "',IP_dt_DateUpto:'" + lcl_dt_DateUpto + "',IP_obj_WorkGroupOperationMaster: " + JSON.stringify(lcl_obj_WorkGroupOperationMaster) + "}"; // JSON.stringify(lcl_obj_LogFile);
     options.contentType = "application/json; charset=utf-8";
-    //options.processData = false;
     options.success = function (result) {
         var lcl_obj_WSResponse = result.d;
 
@@ -263,16 +249,10 @@ function Save(event) {
             return;
         }
         if (lcl_obj_WSResponse.ResponseCode == 0) {
-            //ALL OK
-            //Refresh Controls
-            //GetWorkGroupByDate(event);
-            //$("#lnkAddEmployee").removeClass("command_button_enabled").addClass("command_button_disabled");
-            //$('#lnkAddEmployee').unbind('click');
             $("#lnkUploadLogFile").removeClass("command_button_enabled").addClass("command_button_disabled");
             $('#lnkUploadLogFile').unbind('click');
             $("#lnkSave").removeClass("command_button_enabled").addClass("command_button_disabled");
             $('#lnkSave').unbind('click');
-            //RefreshInput();
             DisplaySuccess(lcl_obj_WSResponse.Message);
         }
     };
@@ -290,7 +270,6 @@ function RefreshInput(event) {
     $('.WG_IP').val('');
 
     $("#lnkUploadLogFile").removeClass("command_button_disabled").addClass("command_button_enabled");
-    //$('#lnkUploadLogFile').bind('click',UploadEmployeeList(event));
     $("#lnkSave").removeClass("command_button_enabled").addClass("command_button_disabled");
     $('#lnkSave').unbind('click');
     var lcl_i32_Count = $('#tblWorkgroupEmployee').appendGrid('getRowCount');
