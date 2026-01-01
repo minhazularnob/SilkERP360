@@ -17,7 +17,7 @@
 
         <!-- Page Header -->
         <div class="card-header text-center bg-white border-bottom">
-            <h1 class=" fontSerif mb-0">Silkways Group Employee WorkGroup Schedule</h1>
+            <h2 class=" fontSerif mb-0">Silkways Group Employee WorkGroup Schedule</h2>
         </div>
 
         <!-- Body -->
@@ -34,7 +34,7 @@
                             Style="width: 60%;" ReadOnly="true" ClientIDMode="Static" />
                         <a id="lnkGetSchedule" href="#" class="btn btn-primary ms-2" style="font-size: small"
                             onclick="GetEmployeeSchedule(event); return false;">
-                            <i class="fa fa-search me-1"></i> Search
+                            <i class="fa fa-search me-1"></i>
                         </a>
                     </div>
 

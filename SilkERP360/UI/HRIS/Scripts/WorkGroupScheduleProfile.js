@@ -5,7 +5,6 @@
         caption: 'Employee WorkGroup Schedule',
         initRows: 0,
         columns: [
-        //                                 { name: 'Image', display: 'img', type: 'image'},
                  {name: 'txtWGOperationMasterCode', type: 'hidden' },
                 { name: 'txtWorkGroupCode', type: 'hidden' },
                 { name: 'txtWorkGroupName', display: 'Work Group Name', displayCss: { 'text-align': 'center', 'width': '20%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
@@ -13,7 +12,6 @@
                 { name: 'txtDutyStartFrom', display: 'Duty Start From', ctrlClass: 'time_input', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'time', ctrlAttr: {}, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtDutyHour', display: 'Duty Hour', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'text', ctrlAttr: {}, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtOvertimeLimit', display: 'Overtime Limit', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'text', ctrlAttr: {}, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
-        //{ name: 'txtIsAttendanceProcessed', display: 'Attn. Prc.', displayCss: { 'text-align': 'center', 'width': '20%' }, type: 'text', ctrlAttr: {}, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
                 {name: 'ddlIsAttendanceProcessed', type: 'select', display: 'Attn. Prc. Status', displayCss: { 'width': '20%', 'text-align': 'center' }, ctrlAttr: { 'disabled': 'disabled' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlOptions: { 0: 'Not Yet Processed', 1: 'Processed'} },
                 { name: 'ddlOperationalStatus', type: 'select', display: 'Op. Status', displayCss: { 'width': '20%', 'text-align': 'center' }, ctrlAttr: {}, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlOptions: { 0: 'Not Yet Scheduled', 1: 'On', 2: 'Off', 3: 'Holiday Off', 4: 'Weekend Off', 5: 'Scheduled Off', 6: 'Duty On Holiday', 7: 'Shift Change Duty', 8: 'Shift Change Off'} },
                 { name: 'RecordId', type: 'hidden', value: 0 }
@@ -22,7 +20,7 @@
             {
                 uiButton: { icons: { primary: 'ui-icon-disk' }, text: false },
                 click: function (evtObj, uniqueIndex, rowData) {
-                    var lcl_str_WGOperationMasterCode = rowData["txtWGOperationMasterCode"]; // $("#txtWGOperationMasterCode").val();
+                    var lcl_str_WGOperationMasterCode = rowData["txtWGOperationMasterCode"];
                     if (lcl_str_WGOperationMasterCode == 0) {
                         DisplayError("WorkGroup Has Not Yet Been Configured!!!Edit/Update Denied!!!");
                         return;
@@ -51,16 +49,13 @@
                     var lcl_str_AttendanceCode = rowData["txtAttendanceCode"];
                     var lcl_str_ManualOvertimeAdjustment = rowData["txtRemarks"];
                     var lcl_str_Remarks = rowData["txtRemarks"];
-                    var lcl_str_Status = rowData["ddlAttendanceStatus"]; //$('#tblAttendance').appendGrid('getCtrlValue', 'ddlAttendanceStatus', uniqueIndex);
-                    //var lcl_str_Status = $(lcl_ctrl_Status).val();
-                    //alert();
+                    var lcl_str_Status = rowData["ddlAttendanceStatus"];
                     var options = {};
                     options.url = gbl_URL_Root + "WebServices/HRIS/WorkGroupServices.asmx/UpdateWorkGroupOperationMaster";
                     options.dataType = "json";
                     options.type = "POST";
                     options.data = "{IP_obj_WorkGroupOperationMasterProfile: " + JSON.stringify(lcl_obj_WorkGroupOperationMasterProfile) + "}"; // JSON.stringify(lcl_obj_LogFile);
                     options.contentType = "application/json; charset=utf-8";
-                    //options.processData = false;
                     options.success = function (result) {
                         var lcl_obj_WSResponse = result.d;
                         if (lcl_obj_WSResponse.ResponseCode == -1) {
@@ -69,7 +64,6 @@
                         }
                         if (lcl_obj_WSResponse.ResponseCode == 0) {
                             DisplaySuccess(lcl_obj_WSResponse.Message);
-                            //DisplayLeaveProfile();
                         }
                     };
 
@@ -81,17 +75,6 @@
             }
         ],
         rowDataLoaded: function (caller, record, rowIndex, uniqueIndex) {
-            //            alert("DATA LOADED");
-            //            var lcl_str_WGMasterCode = record["txtWGOperationMasterCode"];  //$('#tblWorkGroupSchedule').appendGrid('getCtrlValue', 'txtWGOperationMasterCode', addedRowIndex);
-            //            var lcl_ctrl_EmployeeId = $(caller).appendGrid('getCellCtrl', 'txtEmployeeId', rowIndex);
-            //            if (lcl_str_WGMasterCode == "0") {
-            //                //RED
-            //                $(lcl_ctrl_EmployeeId).css('background-color', '#FF4C4C');
-            //            }
-            //            else {
-            //                //GREEN
-            //                $(lcl_ctrl_EmployeeId).css('background-color', '#67FF4C');
-            //            }
         },
         hideButtons: {
             append: true,
@@ -103,13 +86,6 @@
         },
         hideRowNumColumn: false
     });
-
-    //    var lcl_i32_Count = $('#tblWorkGroupSchedule').appendGrid('getRowCount');
-    //    for (var i = 0; i < lcl_i32_Count; i++) {
-    //        //$('#tblWorkgroupEmployee').appendGrid('removeRow', 0);
-    //        var elem = $('#tblWorkGroupSchedule').appendGrid('getCellCtrl', 'txtDutyStartFrom', i);
-    //        $(elem).timepicker({ timeFormat: "hh:mm:ss TT" });
-    //    }
 });
 
 function GetWorkGroupSchedule(event) {
@@ -119,42 +95,27 @@ function GetWorkGroupSchedule(event) {
         DisplayError("Please Select Date!");
         return;
     }
-
-    //    var lcl_i32_Count = $('#tblWorkGroupSchedule').appendGrid('getRowCount');
-    //    lcl_i32_Count -= 1;
-    //    for (var i = lcl_i32_Count; i >= 0; lcl_i32_Count--) {
-    //        $('#tblWorkGroupSchedule').appendGrid('removeRow', lcl_i32_Count);
-    //    }
-    // alert("1");
+   
     var options = {};
     options.url = gbl_URL_Root + "WebServices/HRIS/WorkGroupServices.asmx/GetWorkGroupSchedule";
     options.dataType = "json";
     options.type = "POST";
     options.data = "{IP_ui64_CompanyCode: " + lcl_ui64_CompanyCode + ",IP_dt_Date: '" + lcl_dt_ScheduleDate + "'}"; // JSON.stringify(lcl_obj_LogFile);
     options.contentType = "application/json; charset=utf-8";
-    //options.processData = false;
     options.success = function (result) {
         var lcl_obj_WSResponse = result.d;
         if (lcl_obj_WSResponse.ResponseCode == 0) {
             var WorkGroupScheduleList = lcl_obj_WSResponse.Data;
             DisplayEmployeeWorkGroupSchedule(WorkGroupScheduleList);
-            //DisplayLeaveProfile();
         }
     };
 
     options.error = function (err) { ShowErrorMessageBoard(err.statusText); };
 
     $.ajax(options);
-    //evt.preventDefault();}
 }
 
 function DisplayEmployeeWorkGroupSchedule(WorkGroupScheduleList) {
-
-    //    var lcl_i32_Count = $('#tblWorkGroupSchedule').appendGrid('getRowCount');
-    //    for (var i = 0; i < lcl_i32_Count; i++) {
-    //        $('#tblWorkGroupSchedule').appendGrid('removeRow', 0);
-    //    }
-
     var lcl_objLst_WorkGroupSchedule = new Array();
     $.each(WorkGroupScheduleList, function (index, WorkGroupSchedule) {
         lcl_objLst_WorkGroupSchedule[index] = new Object();
@@ -168,11 +129,7 @@ function DisplayEmployeeWorkGroupSchedule(WorkGroupScheduleList) {
         lcl_objLst_WorkGroupSchedule[index].txtOvertimeLimit = WorkGroupSchedule.OvertimeLimit;
         lcl_objLst_WorkGroupSchedule[index].ddlIsAttendanceProcessed = WorkGroupSchedule.IsAttendanceProcessed;
         lcl_objLst_WorkGroupSchedule[index].ddlOperationalStatus = WorkGroupSchedule.OperationalStatus;
-
-
-        //$('#tblWorkGroupSchedule').appendGrid('load', [lcl_objLst_EmployeeWorkGroupSchedule[index]]);
     });
 
     $('#tblWorkGroupSchedule').appendGrid('load', lcl_objLst_WorkGroupSchedule);
-
 }
