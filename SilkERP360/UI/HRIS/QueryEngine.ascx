@@ -1,12 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="QueryEngine.ascx.cs" Inherits="SilkERP360.UI.HRIS.QueryEngine" %>
 <link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />
-<%--<script src="../../Globals/jQuery/jquery-1.10.2.min.js" type="text/javascript"></script>--%>
 
-<link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.theme.css" rel="stylesheet"
-        type="text/css" />
-    <link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet"
-        type="text/css" />
-    <script src="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.js" type="text/javascript"></script>
+<link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.theme.css" rel="stylesheet" type="text/css" />
+<link href="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="../../Globals/jQuery/jquery-ui-1.11.2.custom/jquery-ui.js" type="text/javascript"></script>
 
 <link href="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.css" rel="stylesheet" type="text/css" />
 <script src="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.js" type="text/javascript"></script>
@@ -25,213 +22,200 @@
 <script src="Scripts/QueryEngine.js" type="text/javascript"></script>
 
 
-<div id="dvWorkGroupMaster" style="width:100%; border:1px ridge black; margin:0 auto; height:auto;">
-    <h1>Silkways Group HRIS Query Engine (Employeewise Query)</h1>
-                    <br />
-                    <br />
-    <table id="tblBody" cellpadding="5px" cellspacing="5px" style="width:100%;">
-        <tr style="padding:5px;">
-            <td style="width:100%; padding:2px; height:25px; text-align:center; margin:2px;">
-                <label>Select Query Type :  </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="ddlQueryType" runat="server" Width="50%" ClientIDMode="Static">
-                    <asp:ListItem Value="0">----- Select Report Type</asp:ListItem>
-                    <asp:ListItem Value="1">Employee Movement Tracker</asp:ListItem>
-                    <asp:ListItem Value="2">Employeewise Attendance By Date Range</asp:ListItem>
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:100%; padding:0px; height:25px; text-align:center; margin:0px;">
-                <div class='ui-widget'>
-                    <label>Select Employee :   </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:DropDownList ID="ddlEmployeeId" runat="server" Width="70%" ClientIDMode="Static">
-                        <asp:ListItem>----- Select Employee </asp:ListItem>
+<div id="dvWorkGroupMaster" class="container-fluid my-4">
+    <div class="card shadow-sm border-0">
+        <!-- Header -->
+        <div class="card shadow-sm">
+            <h2 class="mb-0 fontSerif fw-bold">Silkways Group HRIS Query Engine (Employeewise Query)</h2>
+        </div>
+
+        <div class="card-body p-4">
+
+            <!-- Query Type Selection -->
+            <div class="row mb-4">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <label for="ddlQueryType" class="form-label fw-bold">Select Query Type :</label>
+                    <asp:DropDownList ID="ddlQueryType" runat="server" CssClass="form-select form-select-lg" ClientIDMode="Static">
+                        <asp:ListItem Value="0">----- Select Report Type</asp:ListItem>
+                        <asp:ListItem Value="1">Employee Movement Tracker</asp:ListItem>
+                        <asp:ListItem Value="2">Employeewise Attendance By Date Range</asp:ListItem>
                     </asp:DropDownList>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <br />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <hr style="width:100%;" />
-            </td>
-        </tr>
-        <tr style="padding:5px;">
-            <td style="width:100%; padding:2px; height:40px; text-align:center; margin:2px;">
-                <div id="dvQueryInputEmployeeMovement" class="DV_QI_EMPLOYEE_MOVEMENT" style='width:100%;'>
-                    <table id="Table1" class="ip_control_container" style="width:30%; border:0px solid green; padding:10px; background-color:inherit; margin:0 auto;">
-                        <tr style="width:100%;">
-                            <td style='text-align:left; width:40%;'>
-                                <label>Start Date & Time :</label>
-                            </td>
-                            <td style='text-align:left; width:60%; padding-top:5px;'>
-                                <asp:TextBox ID="txtStartDateTime" CssClass="QI_EMPLOYEE_MOVEMENT_CTRL" Enabled="false" ReadOnly="true" runat="server" Width="98%" ClientIDMode="Static">
-                                </asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style='text-align:left;'>
-                                <label>End Date & Time :</label>
-                            </td>
-                            <td style='text-align:left;'>
-                                <asp:TextBox ID="txtEndDateTime" CssClass="QI_EMPLOYEE_MOVEMENT_CTRL" Enabled="false" ReadOnly="true"  runat="server" Width="98%" ClientIDMode="Static">
-                                </asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style='text-align:right; padding:5px; padding-right:0px;'>
-                                <a id="lnkGetEmployeeMovement" href="#" class="command_button_disabled QI_EMPLOYEE_MOVEMENT_CTRL" style=" height:20px; line-height:20px; width:120px;">
-                                    Get Movement
-                                </a>
-                                <a id="lnkGetEmployeewiseAttendance" href="#" class="command_button_disabled QI_EMPLOYEE_MOVEMENT_CTRL" style=" height:20px; line-height:20px; width:120px;">
-                                    Get Attendance
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
+                <div class="col-4"></div>
+
+            </div>
+
+            <!-- Employee Selection -->
+            <div class="row mb-4">
+                <div class="col-4"></div>
+
+                <div class="col-4">
+                    <label for="ddlEmployeeId" class="form-label fw-bold">Select Employee :</label>
+                    <asp:DropDownList ID="ddlEmployeeId" runat="server" CssClass="form-select form-select-lg" ClientIDMode="Static">
+                        <asp:ListItem>----- Select Employee</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="dvDataDisplay" style="width:100%;">
-                    <div id="dvMovementData" style="width:60%; margin:0 auto; display:none">
-                        <table id="tblMovementData">
-                        </table>
+                <div class="col-4"></div>
+
+            </div>
+
+            <hr class="my-5 border-secondary">
+
+            <!-- Date Inputs & Buttons -->
+            <div id="dvQueryInputEmployeeMovement" class="DV_QI_EMPLOYEE_MOVEMENT">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="txtStartDateTime" class="form-label">Start Date & Time :</label>
+                                <asp:TextBox ID="txtStartDateTime"
+                                    CssClass="form-control QI_EMPLOYEE_MOVEMENT_CTRL"
+                                    Enabled="false"
+                                    ReadOnly="true"
+                                    runat="server"
+                                    ClientIDMode="Static" />
+                            </div>
+                            <div class="col-12">
+                                <label for="txtEndDateTime" class="form-label">End Date & Time :</label>
+                                <asp:TextBox ID="txtEndDateTime"
+                                    CssClass="form-control QI_EMPLOYEE_MOVEMENT_CTRL"
+                                    Enabled="false"
+                                    ReadOnly="true"
+                                    runat="server"
+                                    ClientIDMode="Static" />
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-4">
+                            <a id="lnkGetEmployeeMovement" style="min-width:179px; padding: 1px"
+                                href="#"
+                                class="btn btn-success btn-lg me-3 QI_EMPLOYEE_MOVEMENT_CTRL command_button_disabled">
+                                <i class="fas fa-route me-2"></i>Get Movement
+                            </a>
+
+                            <a id="lnkGetEmployeewiseAttendance" style="min-width:179px; padding: 1px"
+                                href="#"
+                                class="btn btn-primary btn-lg QI_EMPLOYEE_MOVEMENT_CTRL command_button_disabled">
+                                <i class="fas fa-calendar-check me-2"></i>Get Attendance
+                            </a>
+
+                        </div>
                     </div>
-                    <div id="dvEmployeewiseAttendance" style="width:100%; display:none;">
-                        <br />
-                        <br />
-                        <h2>Employee Attendance Details</h2>
-                        <br />
-                        <table style="width:90%; margin:0 auto;" class="ip_control_container" >
-                            <%--<tr>
-                                <td>
-                                    &nbsp;
-                                </td>
-                            </tr>--%>
-                            <tr>
-                                <td rowspan="6" style="width:12%; border:1px;">
-                                    <!--Employee Image-->
-                                    <asp:Image ID="imgEmployeeImage" runat="server" ClientIDMode="Static" Height="125px" Width="140px" style=" border:1px;" />
-                                </td>
-                                <td style="width:23%; text-align:left;">
-                                    <label>Company :</label>
-                                </td>
-                                <td style="width:20%; text-align:center;">
-                                    <asp:TextBox ID="txtEACompany" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                                <td style="width:2%;">
-                                        &nbsp;
-                                </td>
-                                <td style="width:23%;text-align:left; ">
+                </div>
+            </div>
 
-                                </td>
-                                <td style=" width:20%; text-align:center;">
+            <!-- Data Display Area -->
+            <div id="dvDataDisplay">
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:left;">
-                                    <label>Employee Id :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEAEmployeeId" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                                <td style="">
-                                        &nbsp;
-                                </td>
-                                <td style="text-align:left; ">
-                                    <label>Department :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEADepartment" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:left;">
-                                    <label>Employee Name :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEAEmployeeName" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                                <td style="">
-                                        &nbsp;
-                                </td>
-                                <td style="text-align:left; ">
-                                    <label>Designation :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEADesignation" runat="server" CssClass="wg_read_only" style="text-align:center;" Width="100%"  ReadOnly="true"  ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:left;">
-                                    <label>Tot M.Hour Committed :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEATotalManHourCommitted" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                                <td style="">
-                                        &nbsp;
-                                </td>
-                                <td style="text-align:left;">
-                                    <label>Tot M.Hour Served :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEATotalManHourServed" runat="server" CssClass="wg_read_only"  style="text-align:center;" Width="100%" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:left; ">
-                                    <label>Tot Overtime :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEATotalOvertime" runat="server" CssClass="wg_read_only" style="text-align:center;"  ReadOnly="true"  Width="100%" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                                 <td style="">
-                                        &nbsp;
-                                </td>
-                                <td style="text-align:left;">
-                                    <label>Total Absent % (Ctx : TotalWorkingDays) :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtTotalAbsentPercentage" runat="server" CssClass="wg_read_only" style="text-align:center;"  ReadOnly="true"  Width="100%" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align:left; ">
-                                    <label>Att Date Range :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtEAAttendanceDateRange" runat="server" CssClass="wg_read_only" style="text-align:center;"  ReadOnly="true"  Width="100%" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                                <td style="">
-                                        &nbsp;
-                                </td>
-                                <td style="text-align:left;">
-                                    <label>Total Late % (Ctx : TotalWorkingDays) :</label>
-                                </td>
-                                <td style="text-align:center;">
-                                    <asp:TextBox ID="txtTotalLatePercentage" runat="server" CssClass="wg_read_only" style="text-align:center;"  ReadOnly="true"  Width="100%" ClientIDMode="Static"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <%--<tr>
-                                <td>
-                                    &nbsp;
-                                </td>
-                            </tr>--%>
-                        </table>
-                        <br />
-                        <table id="tblEmployeewiseAttendance">
+                <!-- Employee Movement Table -->
+                <div id="dvMovementData" class="my-5" style="display: none;">
+                    <h2 class="text-center text-primary mb-4 fw-bold fontSerif">Employee Movement Tracker</h2>
+                    <div class="table-responsive">
+                        <table id="tblMovementData" class="table custom-table fontSerif w-100">
                         </table>
                     </div>
                 </div>
-            </td>
-        </tr>
-    </table>
+
+                <!-- Employee Attendance Details -->
+                <div id="dvEmployeewiseAttendance" style="display: none;">
+                    <h2 class="text-center mb-5 text-primary fw-bold fontSerif">Employee Attendance Details</h2>
+
+                    <!-- Employee Info Card (Compact & Beautiful) -->
+                    <div class="row justify-content-center mb-5 fontSerif">
+                        <div class="col-lg-11 col-xl-10">
+                            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                                <div class="card-body p-4 p-md-5">
+                                    <div class="row g-4 align-items-start">
+
+                                        <!-- Left: Employee Photo -->
+                                        <div class="col-md-2 text-center">
+                                            <asp:Image ID="imgEmployeeImage"
+                                                runat="server"
+                                                ClientIDMode="Static"
+                                                CssClass="img-fluid rounded-4 shadow border"
+                                                Height="180px"
+                                                Width="160px"
+                                                Style="object-fit: cover; border: 4px solid #fff;" />
+                                        </div>
+
+                                        <!-- Middle: Personal & Organizational Info -->
+                                        <div class="col-md-5">
+                                            <div class="row g-2">
+                                                <div class="col-5 col-sm-4 fw-semibold text-secondary">Company :</div>
+                                                <div class="col-7 col-sm-8">
+                                                    <asp:TextBox ID="txtEACompany" runat="server" CssClass="form-control form-control-sm bg-light wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-5 col-sm-4 fw-semibold text-secondary">Employee Id :</div>
+                                                <div class="col-7 col-sm-8">
+                                                    <asp:TextBox ID="txtEAEmployeeId" runat="server" CssClass="form-control form-control-sm bg-light wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-5 col-sm-4 fw-semibold text-secondary">Employee Name :</div>
+                                                <div class="col-7 col-sm-8">
+                                                    <asp:TextBox ID="txtEAEmployeeName" runat="server" CssClass="form-control form-control-sm bg-light wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-5 col-sm-4 fw-semibold text-secondary">Department :</div>
+                                                <div class="col-7 col-sm-8">
+                                                    <asp:TextBox ID="txtEADepartment" runat="server" CssClass="form-control form-control-sm bg-light wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-5 col-sm-4 fw-semibold text-secondary">Designation :</div>
+                                                <div class="col-7 col-sm-8">
+                                                    <asp:TextBox ID="txtEADesignation" runat="server" CssClass="form-control form-control-sm bg-light wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Right: Attendance Summary (Highlighted) -->
+                                        <div class="col-md-5">
+                                            <div class="row g-2">
+                                                <div class="col-6 col-sm-5 fw-semibold text-secondary">Tot M.Hour Committed :</div>
+                                                <div class="col-6 col-sm-7">
+                                                    <asp:TextBox ID="txtEATotalManHourCommitted" runat="server" CssClass="form-control form-control-sm bg-light wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-6 col-sm-5 fw-semibold text-secondary">Tot M.Hour Served :</div>
+                                                <div class="col-6 col-sm-7">
+                                                    <asp:TextBox ID="txtEATotalManHourServed" runat="server" CssClass="form-control form-control-sm bg-light wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-6 col-sm-5 fw-semibold text-success">Tot Overtime :</div>
+                                                <div class="col-6 col-sm-7">
+                                                    <asp:TextBox ID="txtEATotalOvertime" runat="server" CssClass="form-control form-control-sm bg-success text-white fw-bold wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-6 col-sm-5 fw-semibold text-warning">Total Absent % :</div>
+                                                <div class="col-6 col-sm-7">
+                                                    <asp:TextBox ID="txtTotalAbsentPercentage" runat="server" CssClass="form-control form-control-sm bg-warning text-dark fw-bold wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-6 col-sm-5 fw-semibold text-info">Total Late % :</div>
+                                                <div class="col-6 col-sm-7">
+                                                    <asp:TextBox ID="txtTotalLatePercentage" runat="server" CssClass="form-control form-control-sm bg-info text-white fw-bold wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+
+                                                <div class="col-6 col-sm-5 fw-semibold text-secondary">Att Date Range :</div>
+                                                <div class="col-6 col-sm-7">
+                                                    <asp:TextBox ID="txtEAAttendanceDateRange" runat="server" CssClass="form-control form-control-sm bg-secondary text-white wg_read_only" ReadOnly="true" ClientIDMode="Static" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Table -->
+                    <div class="table-responsive mt-5">
+                        <table id="tblEmployeewiseAttendance" class="table custom-table fontSerif w-100">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

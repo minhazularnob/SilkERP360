@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SilkERP360.UI.HRIS {
-    
-    
-    public partial class QueryEngine {
-        
+namespace SilkERP360.UI.HRIS
+{
+
+
+    public partial class QueryEngine
+    {
+
         /// <summary>
         /// ddlQueryType control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlQueryType;
-        
+
         /// <summary>
         /// ddlEmployeeId control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmployeeId;
-        
+
         /// <summary>
         /// txtStartDateTime control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDateTime;
-        
+
         /// <summary>
         /// txtEndDateTime control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDateTime;
-        
+
         /// <summary>
         /// imgEmployeeImage control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEmployeeImage;
-        
+
         /// <summary>
         /// txtEACompany control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEACompany;
-        
+
         /// <summary>
         /// txtEAEmployeeId control.
         /// </summary>
@@ -74,16 +76,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEAEmployeeId;
-        
-        /// <summary>
-        /// txtEADepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEADepartment;
-        
+
         /// <summary>
         /// txtEAEmployeeName control.
         /// </summary>
@@ -92,7 +85,16 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEAEmployeeName;
-        
+
+        /// <summary>
+        /// txtEADepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEADepartment;
+
         /// <summary>
         /// txtEADesignation control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEADesignation;
-        
+
         /// <summary>
         /// txtEATotalManHourCommitted control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEATotalManHourCommitted;
-        
+
         /// <summary>
         /// txtEATotalManHourServed control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEATotalManHourServed;
-        
+
         /// <summary>
         /// txtEATotalOvertime control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEATotalOvertime;
-        
+
         /// <summary>
         /// txtTotalAbsentPercentage control.
         /// </summary>
@@ -137,16 +139,7 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalAbsentPercentage;
-        
-        /// <summary>
-        /// txtEAAttendanceDateRange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEAAttendanceDateRange;
-        
+
         /// <summary>
         /// txtTotalLatePercentage control.
         /// </summary>
@@ -155,5 +148,14 @@ namespace SilkERP360.UI.HRIS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotalLatePercentage;
+
+        /// <summary>
+        /// txtEAAttendanceDateRange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEAAttendanceDateRange;
     }
 }

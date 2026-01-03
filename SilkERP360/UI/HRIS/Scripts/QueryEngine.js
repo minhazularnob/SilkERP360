@@ -2,6 +2,7 @@
 var GBL_TBL_EMPLOYEE_WISE_ATTENDANCE;
 $(document).ready(function () {
 
+
     GBL_TBL_EMPLOYEE_WISE_ATTENDANCE = $('#tblEmployeewiseAttendance').dataTable({
         "bJQueryUI": true,
         "sScrollY": "auto",
@@ -83,29 +84,25 @@ $(document).ready(function () {
         }
     });
 
-    $("#ddlEmployeeId").combobox();
+    //$("#ddlEmployeeId").combobox();
+    initializeSelect2('ddlQueryType', '------ Select Employee ------', '25%');
+
+    initializeSelect2('ddlEmployeeId', '------ Select Employee ------', '25%');
+
 
     $("#txtStartDateTime").datetimepicker({ dateFormat: 'dd/MM/yy', timeFormat: 'hh:mm tt', showButtonPanel: true, maxDate: 0,
         onSelect: function (dateStr) {
-            //add 3month with the 'Joining Date' and populate Confirmation date
-            //var d = $.datetimepicker.parseDate('dd/MM/yy hh:mm tt', dateStr);
-            //var years = parseInt($("#equipment_warrantyLength").val(), 10);
-            //d.setMonth(d.getMonth() + 3);
-            //$("#txt_Off_ConfirmationDate").datepicker('setDate', d);
         }
     });
     $("#txtEndDateTime").datetimepicker({ dateFormat: 'dd/MM/yy', timeFormat: 'hh:mm tt', showButtonPanel: true,  maxDate: 0,
         onSelect: function (dateStr) {
-            //add 3month with the 'Joining Date' and populate Confirmation date
-            //var d = $.datetimepicker.parseDate('dd/MM/yy hh:mm tt', dateStr);
-            //var years = parseInt($("#equipment_warrantyLength").val(), 10);
-            //d.setMonth(d.getMonth() + 3);
-            //$("#txt_Off_ConfirmationDate").datepicker('setDate', d);
+           
         }
     });
 });
 
 function GetEmployeewiseAttendanceByDateRange() {
+    debugger;
     var lcl_ui64_EmployeeCode = $('#ddlEmployeeId option:selected').val();
     var lcl_dt_StartDateTime = $("#txtStartDateTime").val();
     var lcl_dt_EndDateTime = $("#txtEndDateTime").val();
