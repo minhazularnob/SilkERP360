@@ -1,6 +1,4 @@
-﻿
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('#ddl_sal_Addition').attr('disabled', true);
     $('#ddl_sal_Deduction').attr('disabled', true);
     debugger;
@@ -35,7 +33,15 @@ $(document).ready(function () {
                      ]
 
     });
-    
+    initializeSelect2('ddl_sal_AddOrDed', '------ Select Addition/Deduction ------', '25%');
+    initializeSelect2('ddl_sal_Addition', '------ Select Addition ------', '25%');
+    initializeSelect2('ddl_sal_Deduction', '------ Select Deduction ------', '25%');
+    initializeSelect2('ddl_sal_EffectMonth', '------ Select Effective Month ------', '25%');
+    initializeSelect2('ddl_sal_EffectYear', '------ Select Effective Year ------', '25%');
+
+
+
+
 
 });
 ////******************************** SAVE SALARY ADDITION DEDUCTION  ********************************************////////////

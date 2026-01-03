@@ -72,7 +72,7 @@ $(document).ready(function () {
                 title: "Salary Addition/Deduction", cmd: "SalaryAdditionORdeduction", uiIcon: "",
                 action: function (event, ui) {
                     var lcl_ui64_EmployeeCode = ui.target.data('empcode');
-                    $('#hdrSubForm').text('Salary Addition/deduction');
+                    $('#hdrSubForm').text('Salary Addition/deduction').addClass('fontSerif');;
 
                     $.ajax({
                         type: "POST",
