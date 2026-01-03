@@ -43,7 +43,7 @@
                                     <asp:ListItem Value="">-- Select Employee --</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                            
+
                             <div class="col-md-2">
                                 <asp:Label ID="Label1" runat="server" AssociatedControlID="isRosterable">Is Rosterable:</asp:Label>
                             </div>
@@ -58,11 +58,15 @@
                         <!-- Row 4: Save and Clear Buttons -->
                         <div class="row mb-3">
                             <div class="col-md-4"></div>
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <asp:Button ID="btnSaveDept" ClientIDMode="Static" Text="Save" runat="server" CssClass="btn btn-primary showSaveBtn" OnClientClick="Save(); return false;" />
+                            <div class="col-md-2 text-end">
+                                <button class="btn btn-primary" onclick="Save(); return false;">
+                                    <i class="fa fa-save me-1"></i>Save
+                                </button>
                             </div>
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <asp:Button ID="btnClearDept" ClientIDMode="Static" Text="Clear" runat="server" CssClass="btn btn-secondary" OnClientClick="clearFields(); return false;" />
+                            <div class="col-md-2 text-start">
+                                <button class="btn btn-secondary" onclick="clearFields(); return false;">
+                                    <i class="fa fa-eraser me-1"></i>Clear
+                                </button>
                             </div>
                             <div class="col-md-4"></div>
                         </div>
@@ -131,7 +135,7 @@
                     </div>
 
                     <!-- Row 3 -->
-                    <div class="row mb-3">  
+                    <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="deptStatus" class="form-label">Status</label>
                             <asp:DropDownList ID="deptStatus" runat="server" CssClass="form-control select2" Width="95%" ClientIDMode="Static">

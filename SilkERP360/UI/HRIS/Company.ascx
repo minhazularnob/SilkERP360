@@ -27,7 +27,7 @@
                                 <asp:Label ID="Label12" runat="server" AssociatedControlID="txt_CompanyName">Company Name:</asp:Label>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txt_CompanyName" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Company Name" ></asp:TextBox>
+                                <asp:TextBox ID="txt_CompanyName" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Company Name"></asp:TextBox>
                             </div>
                             <div class="col-md-2">
                                 <asp:Label ID="Label2" runat="server" AssociatedControlID="txt_CompShortName">Short Name:</asp:Label>
@@ -82,13 +82,15 @@
                         <!-- Row 5: Save and Clear Buttons -->
                         <div class="row mb-3">
                             <div class="col-md-4"></div>
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <asp:Button ID="Button2" ClientIDMode="Static" Text="Save" runat="server"
-                                    CssClass="btn btn-primary showSaveBtn" OnClientClick="Save(); return false;" />
+                            <div class="col-md-2 text-end">
+                                <button class="btn btn-primary text-end" onclick="Save(); return false;">
+                                    <i class="fa fa-save"></i>Save
+                                </button>
                             </div>
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <asp:Button ID="Button1" ClientIDMode="Static" Text="Clear" runat="server"
-                                    CssClass="btn btn-secondary" OnClientClick="clearFields(); return false;" />
+                            <div class="col-md-2 text-start">
+                                <button class="btn btn-secondary " onclick="clearFields(); return false;">
+                                    <i class="fa fa-eraser"></i>Clear
+                                </button>
                             </div>
                             <div class="col-md-4"></div>
                         </div>

@@ -6,36 +6,35 @@
 <div class="container-fluid">
     <div class="card shadow-sm">
         <div class="card-header text-center border-bottom">
-            <h4 class="mb-0">Medical Information</h4>
+            <h2 class="mb-0 fontSerif">Medical Information</h2>
         </div>
         <div class="card-body">
-            <div class="row mb-4 justify-content-center">
-                <div class="col-md-8 text-center">
-
-                    <label class="form-label fw-bold d-block mb-2">
-                        Select Employee
-                    </label>
-
+            <div class="row mb-4">
+                <div class="col-3"></div>
+                <div class="col-md-4 text-start">
                     <asp:DropDownList ID="ddlEmployeeId" runat="server"
                         ClientIDMode="Static"
                         CssClass="form-select mb-3">
                         <asp:ListItem></asp:ListItem>
                     </asp:DropDownList>
                     <div></div>
-
-                    <button class="btn btn-primary px-4 mt-2"
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary"
                         onclick="GetEmployeeMedicalInfoProfile(event);LoadMedicalInfo(); return false;">
-                        Show
+                        <i class="fa fa-search me-2"></i>
                     </button>
-
                 </div>
             </div>
 
             <!-- Medical Form -->
-            <div class="row g-3">
+            <div class="row g-3 align-items-center">
 
-                <div class="col-md-6">
-                    <label class="form-label">Visit Date</label>
+                <!-- Visit Date -->
+                <div class="col-md-3 text-end">
+                    <label class="form-label fw-bold" for="txt_VisitedDate">Visit Date</label>
+                </div>
+                <div class="col-md-3">
                     <asp:TextBox ID="txt_VisitedDate" runat="server"
                         ClientIDMode="Static"
                         ReadOnly="true"
@@ -44,8 +43,11 @@
                     </asp:TextBox>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Blood Group</label>
+                <!-- Blood Group -->
+                <div class="col-md-1 text-end">
+                    <label class="form-label fw-bold" for="ddlBloodGroup">Blood Group</label>
+                </div>
+                <div class="col-md-3">
                     <asp:DropDownList ID="ddlBloodGroup" runat="server"
                         ClientIDMode="Static"
                         CssClass="form-select">
@@ -61,8 +63,11 @@
                     </asp:DropDownList>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Age</label>
+                <!-- Age -->
+                <div class="col-md-3 text-end">
+                    <label class="form-label fw-bold" for="txt_Age">Age</label>
+                </div>
+                <div class="col-md-3">
                     <asp:TextBox ID="txt_Age" runat="server"
                         ClientIDMode="Static"
                         CssClass="form-control"
@@ -70,8 +75,11 @@
                     </asp:TextBox>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Sex</label>
+                <!-- Sex -->
+                <div class="col-md-1 text-end">
+                    <label class="form-label fw-bold" for="ddlSex">Sex</label>
+                </div>
+                <div class="col-md-3">
                     <asp:DropDownList ID="ddlSex" runat="server"
                         ClientIDMode="Static"
                         CssClass="form-select">
@@ -81,35 +89,42 @@
                     </asp:DropDownList>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Diagnosis</label>
+                <!-- Diagnosis -->
+                <div class="col-md-3 text-end">
+                    <label class="form-label fw-bold" for="txt_Diagnosis">Diagnosis</label>
+                </div>
+                <div class="col-md-3">
                     <asp:TextBox ID="txt_Diagnosis" runat="server"
                         ClientIDMode="Static"
                         TextMode="MultiLine"
                         Rows="3"
                         CssClass="form-control"
-                        Placeholder="Diagnosis" style="width: 94%">
+                        Placeholder="Diagnosis">
                     </asp:TextBox>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Remarks</label>
+                <!-- Remarks -->
+                <div class="col-md-1 text-end">
+                    <label class="form-label fw-bold" for="txt_Remarks">Remarks</label>
+                </div>
+                <div class="col-md-3">
                     <asp:TextBox ID="txt_Remarks" runat="server"
                         ClientIDMode="Static"
                         TextMode="MultiLine"
                         Rows="3"
                         CssClass="form-control"
-                        Placeholder="Remarks" style="width: 94%">
+                        Placeholder="Remarks">
                     </asp:TextBox>
                 </div>
+
             </div>
 
             <!-- Save Button -->
             <div class="text-center mt-4">
-                <button class="btn btn-success px-5"
-                    onclick="Save(); return false;">
-                    Save
+                <button class="btn btn-primary px-5" onclick="Save(); return false;">
+                    <i class="fa fa-save me-2"></i>Save
                 </button>
+
             </div>
 
         </div>
@@ -119,7 +134,7 @@
     <div id="dvReportBody" class="card mt-4 d-none">
         <div class="card-body">
             <table id="tblMdcnInfoList"
-                class="table table-bordered table-striped">
+                class="table custom-table fontSerif w-100">
             </table>
         </div>
     </div>

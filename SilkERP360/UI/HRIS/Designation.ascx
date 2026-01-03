@@ -111,20 +111,23 @@
                             <div class="col-md-4">
                                 <asp:TextBox ID="txt_degRank" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Rank" TextMode="Number"></asp:TextBox>
                             </div>
-                            
-                        </div>  
+
+                        </div>
 
                         <!-- Row 7: Save and Clear Buttons -->
                         <div class="row mb-3">
                             <div class="col-md-4"></div>
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <asp:Button ID="btnSave" ClientIDMode="Static" Text="Save" runat="server" CssClass="btn btn-primary" OnClientClick="SaveDesignation(); return false;" />
+                            <div class="col-md-2 text-end">
+                                <button class="btn btn-primary" onclick="SaveDesignation(); return false;">
+                                    <i class="fa fa-save me-1"></i>Save
+                                </button>
                             </div>
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <asp:Button ID="btnClear"  ClientIDMode="Static" Text="Clear" runat="server" CssClass="btn btn-secondary" OnClientClick="clearFields()" />
+                            <div class="col-md-2 text-start">
+                                <button class="btn btn-secondary" onclick="clearFields(); return false;">
+                                    <i class="fa fa-eraser me-1"></i>Clear
+                                </button>
                             </div>
                             <div class="col-md-4">
-                                    
                             </div>
                         </div>
 
@@ -260,7 +263,7 @@
                             <label for="degRankModal" class="form-label">Rank</label>
                             <input type="number" class="form-control" id="degRankModal">
                         </div>
-                        
+
                     </div>
 
                 </form>

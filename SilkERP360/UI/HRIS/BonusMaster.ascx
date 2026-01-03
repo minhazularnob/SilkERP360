@@ -5,7 +5,7 @@
 <table id="tblBody" cellpadding="5px" cellspacing="5px" style="width: 100%;">
     <tr style="padding: 5px;">
         <td style="width: 100%; background-color: white; padding: 2px; height: 40px; text-align: center; margin: 2px;">
-            <div class="container-fluid" style="border: 1px ridge black;">
+            <div class="container-fluid">
                 <h1 class="text-center fontSerif">BONUS MASTER</h1>
 
                 <!-- Row for form elements -->
@@ -22,13 +22,15 @@
                     </div>
 
                     <!-- Button -->
-                    <div class="col-md-2">
+                    <div class="col-md-2 text-start">
                         <a id="lnkGetBonusMaster"
                             href="#"
-                            onclick="GetBonusMaster()"
-                            class="btn btn-primary fontSerif w-100"
-                            style="height: 36px;">Get Bonus
+                            onclick="GetBonusMaster(); return false;"
+                            class="btn btn-primary fontSerif"
+                            style="min-width:122px">
+                            <i class="fa fa-gift me-2"></i>Get Bonus
                         </a>
+
                     </div>
                 </div>
                 <!-- Table displaying bonus list -->

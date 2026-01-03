@@ -42,7 +42,9 @@
                     <input type="checkbox" id="saveAllMenusCheckBoxId" class="checkbox-input" checked="checked">
                     Save Together
                 </label>
-                <button type="button" id="saveBtnId" class="btn btn-primary">Save</button>
+                <button type="button" id="saveBtnId" class="btn btn-primary">
+                    <i class="fa fa-save me-1"></i>Save
+                </button>
                 <table id="tblMenuPermissionList">
                     <!-- Table rows will be dynamically loaded -->
                 </table>

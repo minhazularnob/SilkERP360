@@ -43,8 +43,9 @@
                                     </asp:DropDownList>
                                     <button id="btnShow" class="btn btn-primary ms-3"
                                         onclick="DisplayIncrementHistory(event); return false;">
-                                        Show
+                                        <i class="fa fa-search me-2"></i>
                                     </button>
+
                                 </div>
                             </div>
                         </div>

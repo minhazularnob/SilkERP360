@@ -87,24 +87,6 @@ namespace SilkERP360.UI.HRIS
         protected global::System.Web.UI.WebControls.DropDownList isRosterable;
 
         /// <summary>
-        /// btnSaveDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveDept;
-
-        /// <summary>
-        /// btnClearDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClearDept;
-
-        /// <summary>
         /// deptCompanyCode control.
         /// </summary>
         /// <remarks>

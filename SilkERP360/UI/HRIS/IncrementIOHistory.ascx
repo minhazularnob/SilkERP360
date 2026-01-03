@@ -26,8 +26,9 @@
                                     </asp:DropDownList>
                                     <button id="btnShow" class="btn btn-primary ms-3"
                                         onclick="DisplayIncrementHistory(event); return false;">
-                                        Show
+                                        <i class="fa fa-search me-2"></i>
                                     </button>
+
                                 </div>
                             </div>
                         </div>
@@ -84,16 +85,16 @@
                                     <label for="txtIncGross" class="form-label">Increment Gross:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtIncGross" runat="server" 
-                                        CssClass="form-control text-center INC_IP" 
+                                    <asp:TextBox ID="txtIncGross" runat="server"
+                                        CssClass="form-control text-center INC_IP"
                                         ReadOnly="false" ClientIDMode="Static" TextMode="Number"></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 text-md-end">
                                     <label for="txtCurrGross" class="form-label">Current Gross:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtCurrGross" runat="server" 
-                                        CssClass="form-control text-center INC_IP" 
+                                    <asp:TextBox ID="txtCurrGross" runat="server"
+                                        CssClass="form-control text-center INC_IP"
                                         ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
                                 </div>
 
@@ -102,16 +103,16 @@
                                     <label for="txtIncBasic" class="form-label">Inc. Basic:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtIncBasic" runat="server" 
-                                        CssClass="form-control text-end INC_IP" 
+                                    <asp:TextBox ID="txtIncBasic" runat="server"
+                                        CssClass="form-control text-end INC_IP"
                                         ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 text-md-end">
                                     <label for="txtIncHR" class="form-label">Inc. House Rent:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtIncHR" runat="server" 
-                                        CssClass="form-control text-end INC_IP" 
+                                    <asp:TextBox ID="txtIncHR" runat="server"
+                                        CssClass="form-control text-end INC_IP"
                                         ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                 </div>
 
@@ -120,16 +121,16 @@
                                     <label for="txtIncConv" class="form-label">Inc. Conveyance:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtIncConv" runat="server" 
-                                        CssClass="form-control text-end INC_IP" 
+                                    <asp:TextBox ID="txtIncConv" runat="server"
+                                        CssClass="form-control text-end INC_IP"
                                         ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 text-md-end">
                                     <label for="txtIncMed" class="form-label">Inc. Medical:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtIncMed" runat="server" 
-                                        CssClass="form-control text-end INC_IP" 
+                                    <asp:TextBox ID="txtIncMed" runat="server"
+                                        CssClass="form-control text-end INC_IP"
                                         ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
                                 </div>
 
@@ -138,8 +139,8 @@
                                     <label for="txtIncEnt" class="form-label">Inc. Entertainment:</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:TextBox ID="txtIncEnt" runat="server" 
-                                        CssClass="form-control text-end INC_IP" 
+                                    <asp:TextBox ID="txtIncEnt" runat="server"
+                                        CssClass="form-control text-end INC_IP"
                                         Text="0" ReadOnly="false" ClientIDMode="Static"></asp:TextBox>
                                 </div>
                                 <div class="col-md-2 text-md-end">
@@ -155,13 +156,13 @@
 
                             <!-- Save Button -->
                             <div class="text-center mt-4">
-                                <a id="A1" href="#" class="btn btn-success px-4" 
+                                <a id="A1" href="#" class="btn btn-primary px-4"
                                     onclick="SaveIncrement(event); return false;">
-                                    Save
+                                    <i class="fa fa-save me-2"></i>Save
                                 </a>
                             </div>
 
-                                
+
                         </div>
 
                         <!-- Report Body -->
