@@ -35,6 +35,8 @@
     <link href="Globals/Styles/SilkERP_Theme_3/style2.css" rel="stylesheet" type="text/css" />
     <link href="Globals/Styles/SilkERP_Theme_3/animate-custom.css" rel="stylesheet" type="text/css" />
     <link href="Globals/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Globals/fontawesome-free-7.1.0-web/css/all.min.css" rel="stylesheet" />
+
 
     <script src="Globals/Scripts/SilkERP360/globals.js" type="text/javascript"></script>
     <script src="Globals/Scripts/SilkERP360/index.js" type="text/javascript"></script>
@@ -69,7 +71,12 @@
             </div>
 
             <div class="d-grid mb-3">
-              <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-lg btn-fade" style="height: 2rem; font-size: large"  Text="Sign In" ClientIDMode="Static" OnClientClick="Login();return false;" />
+                <button id="btnLogin" class="btn btn-primary btn-lg btn-fade"
+                    style="height: 2.5rem; font-size: large; display: flex; align-items: center; justify-content: center;"
+                    onclick="Login(); return false;">
+                    <i class="fa fa-sign-in-alt me-2"></i>Sign In
+                </button>
+
             </div>
 
             <div class="text-center">
@@ -102,7 +109,11 @@
             </div>
 
             <div class="d-grid mb-3">
-              <asp:Button ID="btnChangePasword" runat="server" CssClass="btn btn-success btn-lg btn-fade" style="height: 2rem;  font-size: large" Text="Update" ClientIDMode="Static" OnClientClick="ChangePassword();return false;" />
+                <button id="btnChangePassword" class="btn btn-success btn-lg btn-fade"
+                    style="height: 2.5rem; font-size: large; display: flex; align-items: center; justify-content: center;"
+                    onclick="ChangePassword(); return false;">
+                    <i class="fa fa-key me-2"></i>Update
+                </button>
             </div>
 
             <div class="text-center">

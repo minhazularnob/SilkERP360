@@ -7,10 +7,20 @@
 
                 <!-- Employee Holiday Form Header -->
                 <div class="mb-4">
-                    <h2 class="text-center">Employee Holiday Form</h2>
+                    <h2 class="text-center fontSerif">Employee Holiday Form</h2>
                     <div class="d-flex justify-content-end gap-2">
-                        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary w-auto" Text="Save" ClientIDMode="Static" OnClientClick="Save(); return false;" />
-                        <asp:Button ID="btnClose" runat="server" CssClass="btn btn-secondary w-auto" Text="Close" ClientIDMode="Static" OnClientClick="return false;" />
+                        <!-- Save Button -->
+                        <button id="btnSave" class="btn btn-primary"
+                            onclick="Save(); return false;">
+                            <i class="fa fa-save me-2"></i>Save
+                        </button>
+
+                        <!-- Close Button -->
+                        <button id="btnClose" class="btn btn-secondary"
+                            onclick="return false;">
+                            <i class="fa fa-times me-2"></i>Close
+                        </button>
+
                     </div>
                 </div>
 

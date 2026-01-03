@@ -73,8 +73,13 @@
 
                         <!-- Buttons Section -->
                         <div class="d-flex justify-content-center mt-3 gap-2">
-                            <a id="lnkSalaryGenerationSetup" href="#" class="btn btn-primary flex-fill" style="max-width: 180px;" onclick="GetSalaryMaster(event); return false;">Get Salary Master
+                            <a id="lnkSalaryGenerationSetup" href="#"
+                                class="btn btn-primary flex-fill"
+                                style="max-width: 180px;"
+                                onclick="GetSalaryMaster(event); return false;">
+                                <i class="fa fa-search me-2"></i>Get Salary Master
                             </a>
+
                             <a id="A1" href="#" class="command_button_enabled flex-fill" style="max-width: 180px; display: none;" onclick="PrintSalaryMaster(event); return false;">Print Salary Sheet
                             </a>
                             <a id="A2" href="#" class="command_button_enabled flex-fill" style="max-width: 180px; display: none;" onclick="PrintSalarySlip(event); return false;">Print Salary Slip
