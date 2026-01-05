@@ -230,6 +230,42 @@ Left outer join
             }, "FLExceptionPolicy");
             return lcl_obj_EmployeeProfileList;
         }
+        public SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo GetEmployeeIdCardInfo(System.UInt64 IP_ui64_EmployeeCode)
+        {
+            SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo lcl_obj_EmployeeProfileList = null;
+            lcl_obj_EmployeeProfileList = this.ExceptionManager.Process<SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo>(() =>
+            {
+                System.String lcl_str_SqlQuery = "";
+                  lcl_str_SqlQuery = System.String.Format(@"SELECT EMP.EMPLOYEE_CODE
+	                                                        ,EMP.EMPLOYEE_ID
+	                                                        ,EMP.EMPLOYEE_NAME
+	                                                        ,EMP.JOINING_DATE
+	                                                        ,EMP.EMPLOYEE_STATUS
+	                                                        ,COMP.NAME
+	                                                        ,DEPT.DEPT_NAME
+	                                                        ,DESIG.DEGN_NAME
+	                                                        ,IMG.IMAGE
+	                                                        ,IMG.IMAGE_TYPE
+	                                                        ,IMG.IMAGE_SIZE
+	                                                        ,emp_p.blood_group
+                                                            ,emp_p.citizen_card_id
+                                                            ,emp_p.mobile_no
+                                                            ,IMG.IMAGE
+                                                            ,IMG.IMAGE_TYPE
+                                                            ,IMG.IMAGE_SIZE
+                                                        FROM EMPLOYEE EMP
+                                                        JOIN EMPLOYEE_PERSONAL EMP_P ON EMP.EMPLOYEE_CODE = EMP_P.EMPLOYEE_CODE
+                                                        JOIN COMPANY COMP ON EMP.COMPANY_CODE = COMP.COMPANY_CODE
+                                                        JOIN DEPARTMENT DEPT ON EMP.DEPARTMENT_CODE = DEPT.DEPARTMENT_CODE
+                                                        JOIN DESIGNATION DESIG ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE
+                                                        JOIN EMPLOYEE_IMAGE IMG ON EMP.EMPLOYEE_CODE = IMG.EMPLOYEE_CODE where EMP.EMPLOYEE_CODE={0}", IP_ui64_EmployeeCode);
+
+                SilkERP360.BML.HRIS.DataStructures.EmployeeProfileManager lcl_obj_EmployeeProfileManager = new SilkERP360.BML.HRIS.DataStructures.EmployeeProfileManager();
+                SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo lcl_obj_EmployeeProfileListTmp = lcl_obj_EmployeeProfileManager.GetEmployeeIdCardInfo(lcl_str_SqlQuery);
+                return lcl_obj_EmployeeProfileListTmp;
+            }, "FLExceptionPolicy");
+            return lcl_obj_EmployeeProfileList;
+        }
 
         public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile> GetEmployeeSalaryAddDed(System.UInt64 IP_iu64_EmployeeCode)
         {

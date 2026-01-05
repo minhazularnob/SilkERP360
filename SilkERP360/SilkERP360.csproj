@@ -10047,6 +10047,7 @@
     <Content Include="UI\HRIS\Designation.ascx" />
     <Content Include="UI\HRIS\EmpLeaveApp.ascx" />
     <Content Include="UI\HRIS\EmployeeEdit.ascx" />
+    <Content Include="UI\HRIS\EmployeeIDCardInfo.ascx" />
     <Content Include="UI\HRIS\EmployeeListContextMenu.ascx" />
     <Content Include="UI\HRIS\EmployeeMovement.ascx" />
     <Content Include="UI\HRIS\EmployeeStatusChange.ascx" />
@@ -10140,6 +10141,7 @@
     <Content Include="UI\HRIS\Scripts\EmployeeMovement.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeWorkGroupSchedule.js" />
     <Content Include="UI\HRIS\Scripts\IncrementAndPromotionList.js" />
+    <Content Include="UI\HRIS\Scripts\EmployeeIdCardInfo.js" />
     <Content Include="UI\HRIS\Scripts\PromotionHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementIOHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementSummery.js" />
@@ -10504,6 +10506,13 @@
     </Compile>
     <Compile Include="UI\HRIS\EmployeeEdit.ascx.designer.cs">
       <DependentUpon>EmployeeEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HRIS\EmployeeIDCardInfo.ascx.cs">
+      <DependentUpon>EmployeeIDCardInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HRIS\EmployeeIDCardInfo.ascx.designer.cs">
+      <DependentUpon>EmployeeIDCardInfo.ascx</DependentUpon>
     </Compile>
     <Compile Include="UI\HRIS\EmployeeListContextMenu.ascx.cs">
       <DependentUpon>EmployeeListContextMenu.ascx</DependentUpon>

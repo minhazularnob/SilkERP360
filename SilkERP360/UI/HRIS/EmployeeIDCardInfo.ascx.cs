@@ -7,11 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace SilkERP360.UI.HRIS
 {
-    public partial class MedicalInfo : System.Web.UI.UserControl
+    public partial class EmployeeIDCardInfo : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             try
             {
                 System.String lcl_str_CompanyCode = this.Session["comp_c"].ToString();
@@ -33,7 +32,7 @@ namespace SilkERP360.UI.HRIS
                                                                         ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE
                                                                         JOIN EMPLOYEE_IMAGE IMG
                                                                         ON EMP.EMPLOYEE_CODE = IMG.EMPLOYEE_CODE
-                                                                        WHERE COMP.COMPANY_CODE = {0} AND (EMP.EMPLOYEE_STATUS = {1} OR EMP.EMPLOYEE_STATUS = {2} OR EMP.EMPLOYEE_STATUS = {3}) AND EMP.IS_DELETED = 1", lcl_str_CompanyCode,(System.UInt16)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.UInt16)SilkERP360.CCL.Enums.EmployeeStatus.Temporary, (System.UInt16)SilkERP360.CCL.Enums.EmployeeStatus.Regular);
+                                                                        WHERE COMP.COMPANY_CODE = {0} AND (EMP.EMPLOYEE_STATUS = {1} OR EMP.EMPLOYEE_STATUS = {2} OR EMP.EMPLOYEE_STATUS = {3}) AND EMP.IS_DELETED = 1", lcl_str_CompanyCode, (System.UInt16)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.UInt16)SilkERP360.CCL.Enums.EmployeeStatus.Temporary, (System.UInt16)SilkERP360.CCL.Enums.EmployeeStatus.Regular);
                 Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeInfoReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if (!(lcl_obj_EmployeeInfoReader.HasRows))
                 {
@@ -49,7 +48,7 @@ namespace SilkERP360.UI.HRIS
                     lcl_obj_EmployeeId.Text = lcl_obj_EmployeeInfoReader["EMPLOYEE_NAME"].ToString() + " [" + lcl_obj_EmployeeInfoReader["EMPLOYEE_ID"].ToString() + "]";
                     this.ddlEmployeeId.Items.Insert(lcl_ui32_Index++, lcl_obj_EmployeeId);
 
-                    
+
                 }
                 lcl_obj_EmployeeInfoReader.Close();
             }

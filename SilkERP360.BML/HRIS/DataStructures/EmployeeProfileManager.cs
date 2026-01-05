@@ -688,6 +688,61 @@ namespace SilkERP360.BML.HRIS.DataStructures
             }, "BMLExceptionPolicy");
             return lcl_objLst_EpmProfile;
         }
+
+        public SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo GetEmployeeIdCardInfo(string IP_str_SqlQuery)
+        {
+            SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo lcl_obj_EmployeeIdCardInfo =
+                this.ExceptionManager.Process<SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo>(() =>
+                {
+                    using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                    {
+                        if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                        {
+                            lcl_obj_DBManager.InternalResource.Open();
+                        }
+
+                        using (Oracle.ManagedDataAccess.Client.OracleDataReader dr =
+                       lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
+                        {
+                            if (!dr.HasRows)
+                            {
+                                throw new SilkERP360.CCL.ExceptionManagement.Exceptions.BMLException(
+                            "No Employee Id Card Info Found In The Database!");
+                            }
+
+                            SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo lcl_obj_EmployeeIdCard = new SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo();
+
+                            if (dr.Read())
+                            {
+                                lcl_obj_EmployeeIdCard.EmployeeCode = Convert.ToUInt64(dr["EMPLOYEE_CODE"]);
+                                lcl_obj_EmployeeIdCard.EmployeeId = Convert.ToString(dr["EMPLOYEE_ID"]);
+                                lcl_obj_EmployeeIdCard.EmployeeName = Convert.ToString(dr["EMPLOYEE_NAME"]);
+                                lcl_obj_EmployeeIdCard.JoiningDate = Convert.ToDateTime(dr["JOINING_DATE"]);
+                                lcl_obj_EmployeeIdCard.CompanyName = Convert.ToString(dr["NAME"]);
+                                lcl_obj_EmployeeIdCard.DesignationName = Convert.ToString(dr["DEGN_NAME"]);
+                                lcl_obj_EmployeeIdCard.DepartmentName = Convert.ToString(dr["DEPT_NAME"]);
+                                lcl_obj_EmployeeIdCard.CitizenCardID = Convert.ToString(dr["citizen_card_id"]);
+                                lcl_obj_EmployeeIdCard.MobileNo = Convert.ToString(dr["mobile_no"]);
+                                lcl_obj_EmployeeIdCard.BloodGroup = Convert.ToString(dr["blood_group"]);
+                                // Employee Photo
+                                if (dr["IMAGE"] != DBNull.Value)
+                                {
+                                    lcl_obj_EmployeeIdCard.EmployeePhoto = (byte[])dr["IMAGE"];
+                                    lcl_obj_EmployeeIdCard.EmployeePhotoType = Convert.ToString(dr["IMAGE_TYPE"]);
+                                    lcl_obj_EmployeeIdCard.EmployeePhotoBase64 =
+                                        "data:" + lcl_obj_EmployeeIdCard.EmployeePhotoType + ";base64," +
+                                        Convert.ToBase64String(lcl_obj_EmployeeIdCard.EmployeePhoto);
+                                }
+                            }
+
+                            return lcl_obj_EmployeeIdCard;
+                        }
+                    }
+                }, "BMLExceptionPolicy");
+
+            return lcl_obj_EmployeeIdCardInfo;
+        }
+
         public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile> GetListAddDed(string IP_str_SqlQuery)
         {
             System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile> lcl_objLst_EpmProfile = null;

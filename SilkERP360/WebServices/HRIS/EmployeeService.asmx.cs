@@ -477,6 +477,28 @@ namespace SilkERP360.WebServices.HRIS
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
             }
         }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetEmployeeIdCardInfo(System.UInt64 IP_ui64_EmployeeCode)
+        {
+            try
+            {
+                SilkERP360.FL.HRIS.DataStructures.EmployeeProfileFacade lcl_obj_EmployeeProfileFacade = new FL.HRIS.DataStructures.EmployeeProfileFacade();
+                SilkERP360.CCL.BusinessEntities.HRIS.EmployeeIdCardInfo lcl_objLst_EmployeeProfile = lcl_obj_EmployeeProfileFacade.GetEmployeeIdCardInfo(IP_ui64_EmployeeCode);
+
+
+                if (lcl_objLst_EmployeeProfile != null)
+                {
+                    return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_EmployeeProfile);
+                }
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 1, "Data not found", true, lcl_objLst_EmployeeProfile);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
         [System.Web.Services.WebMethod(EnableSession = true)]
         public SilkERP360.CCL.Misc.WSResponse GetSalaryAditionDeduction(System.UInt64 IP_iu64_EmployeeCode)
         {
