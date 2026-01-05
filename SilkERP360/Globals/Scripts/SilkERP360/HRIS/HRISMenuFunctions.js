@@ -436,6 +436,7 @@ function LoadEmployeeIdCardInfo() {
                 $('#dvUIContainer').css({ "visibility": "visible" }).fadeIn('slow');
             }
         });
+}
 
 function LoadPFAccountSummery() {
     var lcl_ui32_CompanySelectedIndex = $('#ddlCompany option:selected').index();
