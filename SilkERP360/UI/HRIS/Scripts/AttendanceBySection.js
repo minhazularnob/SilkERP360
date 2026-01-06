@@ -21,7 +21,8 @@ $(document).ready(function () {
 
                 { name: 'txtOvertimeTotal', display: 'O.T (T)', displayTooltip: '', displayCss: { 'text-align': 'center', 'width': '4%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtNightAllowance', display: 'N.A', displayTooltip: 'Night Allowance', displayCss: { 'text-align': 'center', 'width': '4%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
-                { name: 'ddlAttendanceStatus', type: 'select', display: 'Status', displayCss: { 'width': '5%', 'text-align': 'center' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlAttr: { 'disabled': 'disabled' }, ctrlOptions: { 0: 'NONE', 1: 'P', 2: 'A', 3: 'L', 4: 'L.A', 5: 'H', 6: 'O.L', 7: 'W', 8: 'W.O.H', 9: 'O.D', 10: 'R.D', 11: 'O.F.T', 12: 'A.N.D', 13: 'A.O.P', 14: 'S.C.H' },
+            {
+                name: 'ddlAttendanceStatus', type: 'select', display: 'Status', displayCss: { 'width': '5%', 'text-align': 'center' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlAttr: { 'disabled': 'disabled' }, ctrlOptions: { 0: 'NONE', 1: 'PRESENT', 2: 'ABSENT', 3: 'LATE', 4: 'LATE APPROVED', 5: 'HOLIDAY', 6: 'ON LEAVE', 7: 'WEEKEND', 8: 'WORK ON HOLIDAY', 9: 'OUTSIDE DUTY', 10: 'REPLACEMENT DUTY', 11: 'ON FOREIGN TOUR', 12: 'ABSENT NO DATA Found', 13: 'ABSENT OVERRIDDEN PRESENT', 14: 'SHIFT CHANGE HOLIDAY' },
                     onChange: function (evt, rowIndex) {
 
                         return false;

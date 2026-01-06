@@ -119,8 +119,25 @@
 
                 </div>
 
+
+
                 <!-- Attendance Table Placeholder -->
                 <div id="dvAttendance" class="table-responsive text-center">
+                    <div class="row">
+                        <div class="col-1">
+                            <label>
+                                <input type="checkbox" id="chkSelectAllRows">
+                                Select/Deselect All</label>
+                        </div>
+                        <div class="col-3 text-start mb-2">
+                            <button type="button"
+                                class="btn btn-primary btn-sm px-4 shadow-sm"
+                                onclick="BulkUpdateAttendance()">
+                                <i class="fa fa-pencil me-2"></i>
+                                Update Selected Attendance
+                            </button>
+                        </div>
+                    </div>
                     <table id="tblAttendance" class="table table-bordered table-striped mx-auto">
                         <!-- Dynamic Attendance Rows -->
                     </table>

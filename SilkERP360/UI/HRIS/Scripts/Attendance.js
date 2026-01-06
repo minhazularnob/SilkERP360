@@ -7,6 +7,11 @@ $(document).ready(function () {
         caption: 'Attendance Details',
         initRows: 1,
         columns: [
+                {
+                name: 'chkSelect', display: '', type: 'checkbox', displayCss: { 'text-align': 'center', 'width': '1%' },
+                    ctrlCss: { 'margin': 'auto', 'text-align': 'center' },
+                    value: false
+                },
                  {name: 'txtAttendanceCode', type: 'hidden' },
                 { name: 'txtEmployeeCode', type: 'hidden' },
                 { name: 'txtEmployeeId', display: 'Emp. Id', displayCss: { 'text-align': 'center', 'width': '8%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
@@ -56,7 +61,8 @@ $(document).ready(function () {
                 },
                 { name: 'txtOvertimeTotal', display: 'O.T (T)', displayTooltip: '', displayCss: { 'text-align': 'center', 'width': '4%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtNightAllowance', display: 'N.A', displayTooltip: 'Night Allowance', displayCss: { 'text-align': 'center', 'width': '4%' }, type: 'text', ctrlClass: 'required', value: 0, ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
-                { name: 'ddlAttendanceStatus', type: 'select', display: 'Status', displayCss: { 'width': '5%', 'text-align': 'center' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlOptions: { 0: 'NONE', 1: 'P', 2: 'A', 3: 'L', 4: 'L.A', 5: 'H', 6: 'O.L', 7: 'W', 8: 'W.O.H', 9: 'O.D', 10: 'R.D', 11: 'O.F.T', 12: 'A.N.D', 13: 'A.O.P', 14: 'S.C.H' },
+            {
+                name: 'ddlAttendanceStatus', type: 'select', display: 'Status', displayCss: { 'width': '5%', 'text-align': 'center' }, ctrlCss: { 'width': '96%', 'text-align': 'center' }, ctrlOptions: { 0: 'NONE', 1: 'PRESENT', 2: 'ABSENT', 3: 'LATE', 4: 'LATE APPROVED', 5: 'HOLIDAY', 6: 'ON LEAVE', 7: 'WEEKEND', 8: 'WORK ON HOLIDAY', 9: 'OUTSIDE DUTY', 10: 'REPLACEMENT DUTY', 11: 'ON FOREIGN TOUR', 12: 'ABSENT NO DATA Found', 13: 'ABSENT OVERRIDDEN PRESENT', 14: 'SHIFT CHANGE HOLIDAY' },
                     onChange: function (evt, rowIndex) {
                         var lcl_str_EmployeeCode = $("#txtSignedInEmployeeCode").val();
                         var lcl_str_AttendanceCode = $('#tblAttendance').appendGrid('getCtrlValue', 'txtAttendanceCode', rowIndex);
@@ -139,6 +145,209 @@ $(document).ready(function () {
         rowDragging: true
     });
 });
+
+$('#chkSelectAllRows').on('change', function () {
+    var isChecked = $(this).is(':checked');
+    var rowCount = $('#tblAttendance').appendGrid('getRowCount');
+
+    for (var i = 0; i < rowCount; i++) {
+        $('#tblAttendance').appendGrid('setCtrlValue', 'chkSelect', i, isChecked);
+    }
+});
+
+function BulkUpdateAttendance() {
+    if (!CheckAuthorization()) {
+        DisplayInformation("You are not authorized to edit the Attendance Status!");
+        return;
+    }
+
+    var rowCount = $('#tblAttendance').appendGrid('getRowCount');
+    var rowsToUpdate = [];
+    var skippedPRows = []; // collect PRESENT rows
+
+    // Collect all checked rows
+    for (var i = 0; i < rowCount; i++) {
+
+        var isChecked = $('#tblAttendance').appendGrid('getCtrlValue', 'chkSelect', i);
+        if (!isChecked) continue;
+
+        var statusCtrl = $('#tblAttendance').appendGrid('getCellCtrl', 'ddlAttendanceStatus', i);
+        var status = $(statusCtrl).find(":selected").val();
+        var remarks = $('#tblAttendance').appendGrid('getCtrlValue', 'txtRemarks', i);
+        var attendanceCode = $('#tblAttendance').appendGrid('getCtrlValue', 'txtAttendanceCode', i);
+
+        // Collect PRESENT rows, don't alert here
+        if (status == '1') {
+            skippedPRows.push(i + 1); // store row number
+            continue;
+        }
+
+        rowsToUpdate.push({
+            AttendanceCode: attendanceCode,
+            AttendanceStatus: status,
+            Remarks: remarks
+        });
+    }
+
+    // Show PRESENT warning once
+    if (skippedPRows.length > 0) {
+        DisplayInformation(
+            "Attendance Status 'PRESENT' cannot be changed manually.\n" +
+            "Skipped Rows: " + skippedPRows.join(", ")
+        );
+    }
+
+    if (rowsToUpdate.length === 0) {
+        DisplayInformation("No valid rows selected for update.");
+        return;
+    }
+
+    // Track results
+    var successCount = 0;
+    var failCount = 0;
+    var messages = [];
+
+    // Sequential AJAX update
+    function updateRow(index) {
+
+        if (index >= rowsToUpdate.length) {
+            // All rows done → show summary
+            var summary = "Attendance Update Complete\n\n";
+            summary += "Success: " + successCount + "\n";
+            summary += "Failed: " + failCount;
+
+            if (messages.length > 0) {
+                summary += "\n\nDetails:\n" + messages.join("\n");
+            }
+
+            DisplayInformation(summary);
+            return;
+        }
+
+        var row = rowsToUpdate[index];
+
+        $.ajax({
+            url: gbl_URL_Root + "WebServices/HRIS/AttendanceService.asmx/UpdateAttendanceStatus",
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                IP_ui64_AttendanceCode: row.AttendanceCode,
+                IP_enm_AttendanceStatus: row.AttendanceStatus,
+                IP_str_Remarks: row.Remarks
+            }),
+            success: function (result) {
+
+                if (result && result.d && result.d.ResponseCode == 0) {
+                    successCount++;
+                } else {
+                    failCount++;
+                    messages.push(
+                        "AttendanceCode " + row.AttendanceCode + ": " +
+                        (result && result.d ? result.d.Message : "Unknown error")
+                    );
+                }
+
+                updateRow(index + 1);
+            },
+            error: function (err) {
+                failCount++;
+                messages.push(
+                    "AttendanceCode " + row.AttendanceCode + ": " + err.statusText
+                );
+                updateRow(index + 1);
+            }
+        });
+    }
+
+    // Start updating from first row
+    updateRow(0);
+}
+
+
+//function BulkUpdateAttendance() {
+//    if (!CheckAuthorization()) {
+//        DisplayInformation("You are not authorized to edit the Attendance Status!");
+//        return;
+//    }
+
+//    var rowCount = $('#tblAttendance').appendGrid('getRowCount');
+//    var rowsToUpdate = [];
+
+//    // Collect all checked rows
+//    for (var i = 0; i < rowCount; i++) {
+//        var isChecked = $('#tblAttendance').appendGrid('getCtrlValue', 'chkSelect', i);
+//        if (!isChecked) continue;
+
+//        var statusCtrl = $('#tblAttendance').appendGrid('getCellCtrl', 'ddlAttendanceStatus', i);
+//        var status = $(statusCtrl).find(":selected").val();
+//        var remarks = $('#tblAttendance').appendGrid('getCtrlValue', 'txtRemarks', i);
+//        var attendanceCode = $('#tblAttendance').appendGrid('getCtrlValue', 'txtAttendanceCode', i);
+
+//        if (status == '1') { // P
+//            DisplayInformation("Cannot change Attendance Status to 'P' manually. Skipping row " + (i + 1));
+//            continue;
+//        }
+
+//        rowsToUpdate.push({
+//            AttendanceCode: attendanceCode,
+//            AttendanceStatus: status,
+//            Remarks: remarks
+//        });
+//    }
+
+//    if (rowsToUpdate.length === 0) {
+//        DisplayInformation("No rows selected for update.");
+//        return;
+//    }
+
+//    // Track results
+//    var successCount = 0;
+//    var failCount = 0;
+//    var messages = [];
+
+//    // Sequential AJAX update
+//    function updateRow(index) {
+//        if (index >= rowsToUpdate.length) {
+//            // All rows done → show summary
+//            var summary = `Attendance Update Complete:\nSuccess: ${successCount}\nFailed: ${failCount}`;
+//            if (messages.length > 0) summary += "\n\nDetails:\n" + messages.join("\n");
+//            DisplayInformation(summary);
+//            return;
+//        }
+
+//        var row = rowsToUpdate[index];
+//        $.ajax({
+//            url: gbl_URL_Root + "WebServices/HRIS/AttendanceService.asmx/UpdateAttendanceStatus",
+//            dataType: "json",
+//            type: "POST",
+//            data: JSON.stringify({
+//                IP_ui64_AttendanceCode: row.AttendanceCode,
+//                IP_enm_AttendanceStatus: row.AttendanceStatus,
+//                IP_str_Remarks: row.Remarks
+//            }),
+//            contentType: "application/json; charset=utf-8",
+//            success: function (result) {
+//                var response = result.d;
+//                if (response.ResponseCode == 0) {
+//                    successCount++;
+//                } else {
+//                    failCount++;
+//                    messages.push(`AttendanceCode ${row.AttendanceCode}: ${response.Message}`);
+//                }
+//                updateRow(index + 1); // next row
+//            },
+//            error: function (err) {
+//                failCount++;
+//                messages.push(`AttendanceCode ${row.AttendanceCode}: ${err.statusText}`);
+//                updateRow(index + 1); // continue even on error
+//            }
+//        });
+//    }
+
+//    // Start updating from first row
+//    updateRow(0);
+//}
 
 /*
 //Check Authrization. If Authrization Code Matches, returns TRUE else returns FALSE
