@@ -144,6 +144,7 @@ $(document).ready(function () {
         hideRowNumColumn: true,
         rowDragging: true
     });
+    initializeSelect2('ddlBulkAttendanceStatus', '------ Select Status ------', '25%');
 });
 
 $('#chkSelectAllRows').on('change', function () {
@@ -163,9 +164,9 @@ function BulkUpdateAttendance() {
 
     var rowCount = $('#tblAttendance').appendGrid('getRowCount');
     var rowsToUpdate = [];
-    var skippedPRows = []; // collect PRESENT rows
+    var skippedPRows = [];
+    var selectedStatuses = []; // 🔹 collect statuses of selected rows
 
-    // Collect all checked rows
     for (var i = 0; i < rowCount; i++) {
 
         var isChecked = $('#tblAttendance').appendGrid('getCtrlValue', 'chkSelect', i);
@@ -176,9 +177,12 @@ function BulkUpdateAttendance() {
         var remarks = $('#tblAttendance').appendGrid('getCtrlValue', 'txtRemarks', i);
         var attendanceCode = $('#tblAttendance').appendGrid('getCtrlValue', 'txtAttendanceCode', i);
 
-        // Collect PRESENT rows, don't alert here
+        // collect selected statuses
+        selectedStatuses.push(status);
+
+        // PRESENT skip
         if (status == '1') {
-            skippedPRows.push(i + 1); // store row number
+            skippedPRows.push(i + 1);
             continue;
         }
 
@@ -189,7 +193,17 @@ function BulkUpdateAttendance() {
         });
     }
 
-    // Show PRESENT warning once
+    // 🔴 CHECK: selected rows status must be same
+    var uniqueStatuses = [...new Set(selectedStatuses)];
+    if (uniqueStatuses.length > 1) {
+        DisplayInformation(
+            "Selected rows have different Attendance Status.\n" +
+            "Please select rows with SAME status to bulk update."
+        );
+        return;
+    }
+
+    // PRESENT warning
     if (skippedPRows.length > 0) {
         DisplayInformation(
             "Attendance Status 'PRESENT' cannot be changed manually.\n" +
@@ -202,16 +216,13 @@ function BulkUpdateAttendance() {
         return;
     }
 
-    // Track results
     var successCount = 0;
     var failCount = 0;
     var messages = [];
 
-    // Sequential AJAX update
     function updateRow(index) {
 
         if (index >= rowsToUpdate.length) {
-            // All rows done → show summary
             var summary = "Attendance Update Complete\n\n";
             summary += "Success: " + successCount + "\n";
             summary += "Failed: " + failCount;
@@ -237,7 +248,6 @@ function BulkUpdateAttendance() {
                 IP_str_Remarks: row.Remarks
             }),
             success: function (result) {
-
                 if (result && result.d && result.d.ResponseCode == 0) {
                     successCount++;
                 } else {
@@ -247,7 +257,6 @@ function BulkUpdateAttendance() {
                         (result && result.d ? result.d.Message : "Unknown error")
                     );
                 }
-
                 updateRow(index + 1);
             },
             error: function (err) {
@@ -260,94 +269,65 @@ function BulkUpdateAttendance() {
         });
     }
 
-    // Start updating from first row
     updateRow(0);
 }
 
+$('#ddlBulkAttendanceStatus').on('change', function () {
 
-//function BulkUpdateAttendance() {
-//    if (!CheckAuthorization()) {
-//        DisplayInformation("You are not authorized to edit the Attendance Status!");
-//        return;
-//    }
+    var selectedStatus = $(this).val();
 
-//    var rowCount = $('#tblAttendance').appendGrid('getRowCount');
-//    var rowsToUpdate = [];
+    if (selectedStatus === "") return;
 
-//    // Collect all checked rows
-//    for (var i = 0; i < rowCount; i++) {
-//        var isChecked = $('#tblAttendance').appendGrid('getCtrlValue', 'chkSelect', i);
-//        if (!isChecked) continue;
+    // PRESENT manually not allowed
+    if (selectedStatus === "1") {
+        DisplayInformation("Attendance Status 'PRESENT' cannot be changed manually!");
+        $(this).val("");
+        return;
+    }
 
-//        var statusCtrl = $('#tblAttendance').appendGrid('getCellCtrl', 'ddlAttendanceStatus', i);
-//        var status = $(statusCtrl).find(":selected").val();
-//        var remarks = $('#tblAttendance').appendGrid('getCtrlValue', 'txtRemarks', i);
-//        var attendanceCode = $('#tblAttendance').appendGrid('getCtrlValue', 'txtAttendanceCode', i);
+    var rowCount = $('#tblAttendance').appendGrid('getRowCount');
+    var affectedRows = 0;
+    var skippedPRows = [];
 
-//        if (status == '1') { // P
-//            DisplayInformation("Cannot change Attendance Status to 'P' manually. Skipping row " + (i + 1));
-//            continue;
-//        }
+    for (var i = 0; i < rowCount; i++) {
 
-//        rowsToUpdate.push({
-//            AttendanceCode: attendanceCode,
-//            AttendanceStatus: status,
-//            Remarks: remarks
-//        });
-//    }
+        var isChecked = $('#tblAttendance').appendGrid('getCtrlValue', 'chkSelect', i);
+        if (!isChecked) continue;
 
-//    if (rowsToUpdate.length === 0) {
-//        DisplayInformation("No rows selected for update.");
-//        return;
-//    }
+        var statusCtrl = $('#tblAttendance').appendGrid('getCellCtrl', 'ddlAttendanceStatus', i);
+        var currentStatus = $(statusCtrl).val();
 
-//    // Track results
-//    var successCount = 0;
-//    var failCount = 0;
-//    var messages = [];
+        // Skip PRESENT rows
+        if (currentStatus == "1") {
+            skippedPRows.push(i + 1);
+            continue;
+        }
 
-//    // Sequential AJAX update
-//    function updateRow(index) {
-//        if (index >= rowsToUpdate.length) {
-//            // All rows done → show summary
-//            var summary = `Attendance Update Complete:\nSuccess: ${successCount}\nFailed: ${failCount}`;
-//            if (messages.length > 0) summary += "\n\nDetails:\n" + messages.join("\n");
-//            DisplayInformation(summary);
-//            return;
-//        }
+        // Change status in grid
+        $(statusCtrl).val(selectedStatus);
 
-//        var row = rowsToUpdate[index];
-//        $.ajax({
-//            url: gbl_URL_Root + "WebServices/HRIS/AttendanceService.asmx/UpdateAttendanceStatus",
-//            dataType: "json",
-//            type: "POST",
-//            data: JSON.stringify({
-//                IP_ui64_AttendanceCode: row.AttendanceCode,
-//                IP_enm_AttendanceStatus: row.AttendanceStatus,
-//                IP_str_Remarks: row.Remarks
-//            }),
-//            contentType: "application/json; charset=utf-8",
-//            success: function (result) {
-//                var response = result.d;
-//                if (response.ResponseCode == 0) {
-//                    successCount++;
-//                } else {
-//                    failCount++;
-//                    messages.push(`AttendanceCode ${row.AttendanceCode}: ${response.Message}`);
-//                }
-//                updateRow(index + 1); // next row
-//            },
-//            error: function (err) {
-//                failCount++;
-//                messages.push(`AttendanceCode ${row.AttendanceCode}: ${err.statusText}`);
-//                updateRow(index + 1); // continue even on error
-//            }
-//        });
-//    }
+        // Auto update remarks
+        var remarks = $('#tblAttendance').appendGrid('getCtrlValue', 'txtRemarks', i);
+        var statusText = $('#ddlBulkAttendanceStatus option:selected').text();
+        remarks += " || Bulk status changed to " + statusText;
+        $('#tblAttendance').appendGrid('setCtrlValue', 'txtRemarks', i, remarks);
 
-//    // Start updating from first row
-//    updateRow(0);
-//}
+        affectedRows++;
+    }
+
+    if (affectedRows === 0) {
+        DisplayInformation("No valid selected rows found!");
+        $(this).val("");
+        return;
+    }
+
+    if (skippedPRows.length > 0) {
+        DisplayInformation(
+            "Skipped PRESENT rows: " + skippedPRows.join(", ")
+        );
+    }
+});
+
 
 /*
 //Check Authrization. If Authrization Code Matches, returns TRUE else returns FALSE
@@ -514,9 +494,6 @@ function DisplayAttendanceMaster() {
         });
         $("#txtTotalNightAllowance").val(lcl_i32_TotalNightAllowance.toString() + ".00");
         }
+}
 
-//        lcl_i32_TotalManHour = parseInt(lcl_i32_TotalManHour / 60);
-//        lcl_i32_TotalOvertime = parseInt(lcl_i32_TotalOvertime / 60);
-//        $("#txtTotalManHour").val((lcl_i32_TotalManHour + " Hrs."));
-//        $("#txtTotalOvertime").val((lcl_i32_TotalOvertime + " Hrs."));
-    }
+

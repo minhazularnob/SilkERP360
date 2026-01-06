@@ -130,6 +130,23 @@
                                 Select/Deselect All</label>
                         </div>
                         <div class="col-3 text-start mb-2">
+                            <select id="ddlBulkAttendanceStatus" class="form-select form-select-sm" style="width: 90% !important" >
+                                <option value="">-- Select Status --</option>
+                                <option value="2">ABSENT</option>
+                                <option value="3">LATE</option>
+                                <option value="4">LATE APPROVED</option>
+                                <option value="6">ON LEAVE</option>
+                                <option value="5">HOLIDAY</option>
+                                <option value="8">WORK ON HOLIDAY</option>
+                                <option value="9">OUTSIDE DUTY</option>
+                                <option value="10">REPLACEMENT DUTY</option>
+                                <option value="11">ON FOREIGN TOUR</option>
+                                <option value="13">ABSENT OVERRIDDEN PRESENT</option>
+                                <option value="14">SHIFT CHANGE HOLIDAY</option>
+                            </select>
+                        </div>
+
+                        <div class="col-3 text-start mb-2">
                             <button type="button"
                                 class="btn btn-primary btn-sm px-4 shadow-sm"
                                 onclick="BulkUpdateAttendance()">
