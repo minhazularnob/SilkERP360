@@ -8,7 +8,9 @@
                  {name: 'txtWGOperationMasterCode', type: 'hidden' },
                 { name: 'txtWorkGroupCode', type: 'hidden' },
                 { name: 'txtWorkGroupName', display: 'Work Group Name', displayCss: { 'text-align': 'center', 'width': '20%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
-                { name: 'txtWorkGroupStrength', display: 'Worker Strength', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
+            { name: 'txtWorkGroupStrength', display: 'Worker Strength', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center' } },
+            { name: 'DutyStartFrom', display: 'Start From', displayCss: { 'text-align': 'center', 'width': '20%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center' } },
+
                 { name: 'txtDutyStartFrom', display: 'Duty Start From', ctrlClass: 'time_input', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'time', ctrlAttr: {}, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtDutyHour', display: 'Duty Hour', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'text', ctrlAttr: {}, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
                 { name: 'txtOvertimeLimit', display: 'Overtime Limit', displayCss: { 'text-align': 'center', 'width': '10%' }, type: 'text', ctrlAttr: {}, ctrlClass: 'required', value: '', ctrlCss: { width: '100%', 'text-align': 'center'} },
@@ -26,10 +28,14 @@
                         return;
                     }
 
+                    
+                    var timeValue = rowData["txtDutyStartFrom"];  // "09:00" from input
+                    var lcl_str_StartTime = formatTimeForOracle(timeValue);
+
                     var lcl_obj_WorkGroupOperationMasterProfile = new Object();
                     lcl_obj_WorkGroupOperationMasterProfile.WorkGroupOperationMasterCode = lcl_str_WGOperationMasterCode;
-                    var lcl_str_StartTime = rowData["txtDutyStartFrom"];
-                    lcl_obj_WorkGroupOperationMasterProfile.DutyFrom = rowData["txtDutyStartFrom"];
+                    var lcl_str_StartTime = lcl_str_StartTime;
+                    lcl_obj_WorkGroupOperationMasterProfile.DutyFrom = lcl_str_StartTime;
                     lcl_obj_WorkGroupOperationMasterProfile.DutyHour = rowData["txtDutyHour"];
                     lcl_obj_WorkGroupOperationMasterProfile.OvertimeLimit = rowData["txtOvertimeLimit"];
                     lcl_obj_WorkGroupOperationMasterProfile.IsAttendanceProcessed = rowData["ddlIsAttendanceProcessed"];
@@ -88,6 +94,22 @@
     });
 });
 
+function formatTimeForOracle(timeValue) {
+    if (!timeValue) return "";
+
+    var parts = timeValue.split(':');
+    var hour = parseInt(parts[0], 10);
+    var minute = parts[1];
+
+    var ampm = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12;
+    hour = hour === 0 ? 12 : hour;
+
+    var hourStr = hour < 10 ? "0" + hour : "" + hour;
+
+    return hourStr + ":" + minute + ":00 " + ampm;
+}
+
 function GetWorkGroupSchedule(event) {
     var lcl_ui64_CompanyCode = $('#ddlCompany option:selected').val();
     var lcl_dt_ScheduleDate = $('#txtScheduleDate').val();
@@ -123,7 +145,8 @@ function DisplayEmployeeWorkGroupSchedule(WorkGroupScheduleList) {
         lcl_objLst_WorkGroupSchedule[index].txtWGOperationMasterCode = WorkGroupSchedule.WorkGroupOperationMasterCode;
         lcl_objLst_WorkGroupSchedule[index].txtWorkGroupCode = WorkGroupSchedule.WorkGroupCode;
         lcl_objLst_WorkGroupSchedule[index].txtWorkGroupName = WorkGroupSchedule.WorkGroupName;
-        lcl_objLst_WorkGroupSchedule[index].txtWorkGroupStrength = WorkGroupSchedule.WorkerStrength;
+        lcl_objLst_WorkGroupSchedule[index].txtWorkGroupStrength = WorkGroupSchedule.WorkerStrength; 
+        lcl_objLst_WorkGroupSchedule[index].DutyStartFrom = WorkGroupSchedule.DutyFrom;
         lcl_objLst_WorkGroupSchedule[index].txtDutyStartFrom = WorkGroupSchedule.DutyFrom;
         lcl_objLst_WorkGroupSchedule[index].txtDutyHour = WorkGroupSchedule.DutyHour;
         lcl_objLst_WorkGroupSchedule[index].txtOvertimeLimit = WorkGroupSchedule.OvertimeLimit;
