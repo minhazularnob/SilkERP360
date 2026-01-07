@@ -23,6 +23,16 @@ namespace SilkERP360.FL.ServiceProviders.HRIS
             return Response;
         }
 
+        public System.Int32 DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList)
+        {
+            System.Int32 Response = this.ExceptionManager.Process<System.Int32>(() =>
+            {
+                SilkERP360.BML.HRISFactory.WorkGroupFactory lcl_obj_WorkGroupFactory = new BML.HRISFactory.WorkGroupFactory();
+                return lcl_obj_WorkGroupFactory.DeleteWorkGroupOperationMaster(IP_obj_workGroupMasterCodeList);
+            }, "FLExceptionPolicy");
+            return Response;
+        }
+
         public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.WorkGroupOperationMasterProfile> GetWorkGroupSchedules(System.UInt64 IP_ui64_CompanyCode, System.DateTime IP_dt_Date)
         {
             System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.WorkGroupOperationMasterProfile> lcl_objLst_WorkGroupOperationMasterProfileRet = null;

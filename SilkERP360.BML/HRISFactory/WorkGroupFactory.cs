@@ -61,6 +61,50 @@ namespace SilkERP360.BML.HRISFactory
             return Response;
         }
 
+        public System.Int32 DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList)
+        {
+            // Nothing to delete
+            if (IP_obj_workGroupMasterCodeList == null || IP_obj_workGroupMasterCodeList.Count == 0)
+                return -1;
+            System.Int32 Response = this.ExceptionManager.Process<System.Int32>(() =>
+            {
+                SilkERP360.BML.HRIS.WorkGroupManager lcl_obj_WorkGroupManager = new BML.HRIS.WorkGroupManager();
+                lcl_obj_WorkGroupManager.Initialize();
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+                    System.String lcl_str_SqlUpdate = System.String.Empty;
+
+                    string idList = string.Join(",", IP_obj_workGroupMasterCodeList);
+
+                    System.String lcl_str_SqlQuery = $"SELECT WG_OPERATION_MASTER_CODE FROM work_group_operation_master WHERE wg_operation_master_code IN ({idList}) and is_processed=1";
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_WGReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+
+                    if (lcl_obj_WGReader.HasRows)
+                    {
+                        lcl_obj_WGReader.Close();
+                        return -1;
+                    }
+
+                    string sqlDeleteChild = $"DELETE FROM work_group_operation_history WHERE wg_operation_master_code IN ({idList})";
+                    lcl_obj_DBManager.InternalResource.ExecuteNonQuery(sqlDeleteChild);
+
+                    // 2️⃣ Delete from parent table
+                    string sqlDeleteParent = $"DELETE FROM work_group_operation_master WHERE wg_operation_master_code IN ({idList})";
+                    lcl_obj_DBManager.InternalResource.ExecuteNonQuery(sqlDeleteParent);
+
+                    lcl_obj_DBManager.InternalResource.CommitTransaction();
+                    lcl_obj_DBManager.InternalResource.Close();
+
+                }
+                return 0;
+            }, "BMLExceptionPolicy");
+            return Response;
+        }
+
         /// <summary>
         /// Gets WorkGroupOperation Master details for all WorkGroups of a Company for a date
         /// </summary>

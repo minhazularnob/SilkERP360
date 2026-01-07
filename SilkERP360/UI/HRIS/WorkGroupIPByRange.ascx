@@ -190,6 +190,7 @@
             <!--QC Test Body-->
             <td colspan="3" style="width:100%; height:auto;">
                 <div id="dvWorkgroupEmployee" class="qc_test_form_container" style="width:100%; height:auto; border:0px ridge black; display:none;">
+                    
                     <table id="tblWorkgroupEmployee">
                     </table>
                 </div>

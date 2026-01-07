@@ -44,8 +44,33 @@
                 </div>
             </div>
 
+            <div class="row align-items-end g-2">
+                <div class="col-12 col-md-3 mb-1">
+                    <label for="authorizationCodeText" class="form-label">
+                        Authorization Code:
+                    </label>
+                    <input
+                        type="text"
+                        id="authorizationCodeText"
+                        class="form-control"
+                        placeholder="Enter authorization code to delete workgroup" />
+                </div>
+
+                <div class="col-12 col-md-auto mb-1">
+                    <button
+                        id="btnDeleteWorkGroup" type="button"
+                        class="btn btn-danger w-100 w-md-auto fs-6">
+                        <i class="fa fa-trash me-2"></i>
+                        Delete WorkGroup
+                    </button>
+                </div>
+            </div>
+
             <!-- WorkGroup Schedule Table -->
             <div id="dvWorkGroupSchedule" class="table-responsive">
+                <label>
+                    <input type="checkbox" id="chkUncheckAllRows">
+                    Select/Deselect All</label>
                 <table id="tblWorkGroupSchedule" class="table table-bordered table-striped w-100">
                     <!-- Schedule content will load here dynamically -->
                 </table>

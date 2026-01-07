@@ -1,10 +1,12 @@
-﻿$(document).ready(function () {
+﻿var EDIT_AUTHORIZATION_CODE = "apwsyrzftm";
+$(document).ready(function () {
     $("#txtScheduleDate").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true });
     $(".time_input").timepicker({ timeFormat: "hh:mm:ss TT" });
     $('#tblWorkGroupSchedule').appendGrid({
         caption: 'Employee WorkGroup Schedule',
         initRows: 0,
         columns: [
+            { name: 'chkSelect', display: '', type: 'checkbox', value: false, displayCss: { 'width': '1%', 'text-align': 'center' }, ctrlCss: { 'margin': 'auto', 'display': 'block' } },
                  {name: 'txtWGOperationMasterCode', type: 'hidden' },
                 { name: 'txtWorkGroupCode', type: 'hidden' },
                 { name: 'txtWorkGroupName', display: 'Work Group Name', displayCss: { 'text-align': 'center', 'width': '20%' }, type: 'text', ctrlAttr: { 'readonly': 'readonly' }, ctrlCss: { width: '100%', 'text-align': 'center'} },
@@ -154,5 +156,93 @@ function DisplayEmployeeWorkGroupSchedule(WorkGroupScheduleList) {
         lcl_objLst_WorkGroupSchedule[index].ddlOperationalStatus = WorkGroupSchedule.OperationalStatus;
     });
 
+
+
     $('#tblWorkGroupSchedule').appendGrid('load', lcl_objLst_WorkGroupSchedule);
+}
+
+$('#btnDeleteWorkGroup').click(function () {
+    var authCode = $('#authorizationCodeText').val().trim();
+    if (!authCode) {
+        DisplayError("Please enter authorization code to delete workgroup.");
+        return;
+    }
+    else if (authCode !== EDIT_AUTHORIZATION_CODE) {  // compare properly
+        DisplayError("Wrong Authorization Code.");
+        return;
+    }
+
+    var rows = $('#tblWorkGroupSchedule').appendGrid('getAllValue');
+    var workGroupMasterCodeList = [];
+    // iterate backward to remove rows
+    for (var i = rows.length - 1; i >= 0; i--) {
+        if (rows[i].chkSelect) {
+            hasChecked = true;
+
+            // check if attendance is processed
+            if (rows[i].ddlIsAttendanceProcessed == 1) {
+                DisplayError(`You cannot delete this workgroup because attendance has already been processed for this workgroup ${rows[i].txtWorkGroupName}.`);
+                return;
+            }
+            if (rows[i].txtWGOperationMasterCode == 0) {
+                DisplayError(`No workgroup operation master code found for ${rows[i].txtWorkGroupName}.`);
+                return;
+            }
+            workGroupMasterCodeList.push(rows[i].txtWGOperationMasterCode);
+        }
+    }
+
+    $.ajax({
+        url: gbl_URL_Root.replace(/\/?$/, "/") + "WebServices/HRIS/WorkGroupServices.asmx/DeleteWorkGroupOperationMaster",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify({ IP_obj_workGroupMasterCodeList: workGroupMasterCodeList }),
+        success: function (result) {
+            var lcl_obj_WSResponse = result.d;
+            if (lcl_obj_WSResponse.ResponseCode == -1) {
+                DisplayError(lcl_obj_WSResponse.Message);
+            } else if (lcl_obj_WSResponse.ResponseCode == 0) {
+                DisplaySuccess(lcl_obj_WSResponse.Message);
+                // Refresh the appendGrid table
+                GetWorkGroupSchedule(); // Call your existing function to reload data
+                clear();
+            }
+        },
+        error: function (xhr, status, error) {
+            DisplayError("AJAX error: " + error);
+        }
+    });
+});
+
+$('#chkUncheckAllRows').on('change', function () {
+    debugger;
+    var isChecked = $(this).is(':checked'); // true if checked
+    var rowCount = $('#tblWorkGroupSchedule').appendGrid('getRowCount');
+    var selectableCount = 0; // counter for eligible rows
+
+    for (var i = 0; i < rowCount; i++) {
+        var wgCode = $('#tblWorkGroupSchedule').appendGrid('getCtrlValue', 'txtWGOperationMasterCode', i);
+        var isAttendanceProcessed = $('#tblWorkGroupSchedule').appendGrid('getCtrlValue', 'ddlIsAttendanceProcessed', i);
+
+        // Only allow checking if WG is valid AND attendance is not processed
+        if (wgCode != 0 && wgCode !== "0" && wgCode !== null && isAttendanceProcessed != 1 && isAttendanceProcessed !== "1") {
+            $('#tblWorkGroupSchedule').appendGrid('setCtrlValue', 'chkSelect', i, isChecked);
+            selectableCount++; // count this row
+        } else {
+            // Always uncheck rows that shouldn't be selected
+            $('#tblWorkGroupSchedule').appendGrid('setCtrlValue', 'chkSelect', i, false);
+        }
+    }
+
+    // Show message if no rows were eligible
+    if (selectableCount === 0 && isChecked) {
+        DisplayError("No rows are available to select.");
+        $(this).prop('checked', false); // uncheck the header checkbox
+    }
+});
+
+function clear() {
+    $('#chkUncheckAllRows').prop('checked', false);
+    $('#authorizationCodeText').val('');
 }
