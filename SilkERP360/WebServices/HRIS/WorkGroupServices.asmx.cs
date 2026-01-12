@@ -40,12 +40,12 @@ namespace SilkERP360.WebServices.HRIS
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public SilkERP360.CCL.Misc.WSResponse DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList)
+        public SilkERP360.CCL.Misc.WSResponse DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList, string User)
         {
             try
             {
                 SilkERP360.FL.ServiceProviders.HRIS.WorkGroupSP lcl_obj_WorkGroupSP = new FL.ServiceProviders.HRIS.WorkGroupSP();
-                System.Int32 Response = lcl_obj_WorkGroupSP.DeleteWorkGroupOperationMaster(IP_obj_workGroupMasterCodeList);
+                System.Int32 Response = lcl_obj_WorkGroupSP.DeleteWorkGroupOperationMaster(IP_obj_workGroupMasterCodeList, User);
                 if (Response == -1)
                 {
                     return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -1, "Status : Delete Denied!!", true, null);

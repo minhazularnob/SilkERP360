@@ -37,8 +37,10 @@ namespace SilkERP360.BML.HRIS
        public ulong Save(CCL.BusinessEntities.HRIS.WorkGroupOperationMaster IP_obj_WorkGroupOperationMaster)
        {
            System.UInt64 lcl_ui64_WorkGroupOperationMasterCode = 0;
-           System.String lcl_str_SqlQuery = System.String.Format("SELECT SEQ_WG_OP_MASTER.NEXTVAL AS ID FROM DUAL");
-           lcl_ui64_WorkGroupOperationMasterCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            //System.String lcl_str_SqlQuery = System.String.Format("SELECT SEQ_WG_OP_MASTER.NEXTVAL AS ID FROM DUAL");
+            System.String lcl_str_SqlQuery = System.String.Format("select max(wg_operation_master_code)+1 as ID from work_group_operation_master");
+
+            lcl_ui64_WorkGroupOperationMasterCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                {

@@ -197,7 +197,7 @@ $('#btnDeleteWorkGroup').click(function () {
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        data: JSON.stringify({ IP_obj_workGroupMasterCodeList: workGroupMasterCodeList }),
+        data: JSON.stringify({ IP_obj_workGroupMasterCodeList: workGroupMasterCodeList, User: $('#txtUserName').text() }),
         success: function (result) {
             var lcl_obj_WSResponse = result.d;
             if (lcl_obj_WSResponse.ResponseCode == -1) {

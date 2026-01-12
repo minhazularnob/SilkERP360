@@ -1,0 +1,320 @@
+﻿/******************************************************************************************************************/
+/******************************************************************************************************************/
+/**HORIZONTAL MENU CSS**/
+/*
+-moz-box-shadow: 0px 0px 7px 3px #888888;
+    -webkit-box-shadow: 0px 0px 7px 3px #888888;
+    box-shadow: 0px 0px 7px 3px #888888;
+*/
+#mnuHRIS 
+{
+    z-index:1;
+	margin: 0;
+	padding: 7px 6px 0;
+	line-height: 50%; /*The height of the menu bar*/
+	border-radius: 0em;
+	width:100%;
+
+	-webkit-border-radius: 0em;
+	-moz-border-radius: 0em;
+	/*box-shadow: 10px 10px 5px #888888;
+	-webkit-box-shadow: 10px 10px 10px #888888;
+	-moz-box-shadow: 10px 10px 10px #888888;*/
+	-moz-box-shadow: 0px 0px 7px 3px #888888;
+    -webkit-box-shadow: 0px 0px 7px 3px #888888;
+    box-shadow: 0px 0px 7px 3px #888888;
+
+	background: #8b8b8b; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#5fbf00', endColorstr='#3f7f00'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#5fbf00), to(#3f7f00)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #5fbf00,  #3f7f00); /* for firefox 3.6+ */
+    
+	border: solid 1px #6d6d6d;
+}
+#mnuHRIS li {
+	margin: 0 5px;
+	padding: 0 0 8px;
+	float: left;
+	position: relative;
+	list-style: none;
+}
+/* main level link */
+#mnuHRIS a 
+{
+    height:10px;
+    font-family:Verdana;
+    font-size:10px;
+	font-weight: bold;
+	color: #e7e5e5;
+	text-decoration: none;
+	display: block;
+	padding:  8px 20px;
+	margin: 0;
+	border-radius:1.6em;
+	-webkit-border-radius: 1.6em;
+	-moz-border-radius: 1.6em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+/* main level link hover */
+#mnuHRIS .current a, #mnuHRIS li:hover > a {
+	background: #d1d1d1; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#a1a1a1'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#a1a1a1)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #ebebeb,  #a1a1a1); /* for firefox 3.6+ */
+
+	color: #444;
+	border-top: solid 0px #f8f8f8;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+	z-index:1;
+}
+/* sub levels link hover */
+#mnuHRIS ul li:hover a, #mnuHRIS li:hover li a {
+	background: none;
+	border: none;
+	color: #666;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+#mnuHRIS ul a:hover {
+	background: #0399d4 !important; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#04acec', endColorstr='#0186ba'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba)) !important; /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #04acec,  #0186ba) !important; /* for firefox 3.6+ */
+
+	color: #fff !important;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+	z-index:1;
+}
+/* level 2 list */
+#mnuHRIS ul {
+	background: #ddd; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cfcfcf'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cfcfcf)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #ffffff,  #cfcfcf); /* for firefox 3.6+ */
+
+	display: none;
+	margin: 0;
+	padding: 0;
+	width: 185px;
+	position: absolute;
+	top: 35px;
+	left: 0;
+	border: solid 1px #b4b4b4;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+/* dropdown */
+#mnuHRIS li:hover > ul {
+	display: block;
+}
+#mnuHRIS ul li {
+	float: none;
+	margin: 0;
+	padding: 0;
+}
+#mnuHRIS ul a {
+	font-weight: normal;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .9);
+}
+/* level 3+ list */
+#mnuHRIS ul ul {
+	left: 181px;
+	top: -3px;
+}
+/* rounded corners for first and last child */
+#mnuHRIS ul li:first-child > a {
+	-webkit-border-top-left-radius: 9px;
+	-moz-border-radius-topleft: 9px;
+	-webkit-border-top-right-radius: 9px;
+	-moz-border-radius-topright: 9px;
+}
+#mnuHRIS ul li:last-child > a {
+	-webkit-border-bottom-left-radius: 9px;
+	-moz-border-radius-bottomleft: 9px;
+	-webkit-border-bottom-right-radius: 9px;
+	-moz-border-radius-bottomright: 9px;
+}
+/* clearfix */
+#mnuHRIS:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+#mnuHRIS {
+	display: inline-block;
+}
+html[xmlns] #mnuHRIS {
+	display: block;
+}
+* html #mnuHRIS {
+	height: 1%;
+}
+/******************************************************************************************************************/
+/******************************************************************************************************************/
+#mnuSCPM
+{
+    z-index:1;
+	margin: 0;
+	padding: 7px 6px 0;
+	line-height: 50%; /*The height of the menu bar*/
+	border-radius: 0em;
+	width:100%;
+
+	-webkit-border-radius: 0em;
+	-moz-border-radius: 0em;
+	/*box-shadow: 10px 10px 5px #888888;
+	-webkit-box-shadow: 10px 10px 10px #888888;
+	-moz-box-shadow: 10px 10px 10px #888888;*/
+	-moz-box-shadow: 0px 0px 7px 3px #888888;
+    -webkit-box-shadow: 0px 0px 7px 3px #888888;
+    box-shadow: 0px 0px 7px 3px #888888;
+
+	background: #8b8b8b; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#5fbf00', endColorstr='#3f7f00'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#5fbf00), to(#3f7f00)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #5fbf00,  #3f7f00); /* for firefox 3.6+ */
+    
+	border: solid 1px #6d6d6d;
+}
+#mnuSCPM li {
+	margin: 0 5px;
+	padding: 0 0 8px;
+	float: left;
+	position: relative;
+	list-style: none;
+}
+/* main level link */
+#mnuSCPM a 
+{
+    height:10px;
+    font-family:Verdana;
+    font-size:10px;
+	font-weight: bold;
+	color: #e7e5e5;
+	text-decoration: none;
+	display: block;
+	padding:  8px 20px;
+	margin: 0;
+	border-radius:1.6em;
+	-webkit-border-radius: 1.6em;
+	-moz-border-radius: 1.6em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+/* main level link hover */
+#mnuSCPM .current a, #mnuSCPM li:hover > a {
+	background: #d1d1d1; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#a1a1a1'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#a1a1a1)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #ebebeb,  #a1a1a1); /* for firefox 3.6+ */
+
+	color: #444;
+	border-top: solid 0px #f8f8f8;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+	z-index:1;
+}
+/* sub levels link hover */
+#mnuSCPM ul li:hover a, #mnuSCPM li:hover li a {
+	background: none;
+	border: none;
+	color: #666;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+#mnuSCPM ul a:hover {
+	background: #0399d4 !important; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#04acec', endColorstr='#0186ba'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba)) !important; /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #04acec,  #0186ba) !important; /* for firefox 3.6+ */
+
+	color: #fff !important;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+	z-index:1;
+}
+/* level 2 list */
+#mnuSCPM ul {
+	background: #ddd; /* for non-css3 browsers */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cfcfcf'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cfcfcf)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #ffffff,  #cfcfcf); /* for firefox 3.6+ */
+
+	display: none;
+	margin: 0;
+	padding: 0;
+	width: 185px;
+	position: absolute;
+	top: 35px;
+	left: 0;
+	border: solid 1px #b4b4b4;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+/* dropdown */
+#mnuSCPM li:hover > ul {
+	display: block;
+}
+#mnuSCPM ul li {
+	float: none;
+	margin: 0;
+	padding: 0;
+}
+#mnuSCPM ul a {
+	font-weight: normal;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .9);
+}
+/* level 3+ list */
+#mnuSCPM ul ul {
+	left: 181px;
+	top: -3px;
+}
+/* rounded corners for first and last child */
+#mnuSCPM ul li:first-child > a {
+	-webkit-border-top-left-radius: 9px;
+	-moz-border-radius-topleft: 9px;
+	-webkit-border-top-right-radius: 9px;
+	-moz-border-radius-topright: 9px;
+}
+#mnuSCPM ul li:last-child > a {
+	-webkit-border-bottom-left-radius: 9px;
+	-moz-border-radius-bottomleft: 9px;
+	-webkit-border-bottom-right-radius: 9px;
+	-moz-border-radius-bottomright: 9px;
+}
+/* clearfix */
+#mnuSCPM:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+#mnuSCPM {
+	display: inline-block;
+}
+html[xmlns] #mnuSCPM {
+	display: block;
+}
+* html #mnuSCPM {
+	height: 1%;
+}

@@ -17,8 +17,9 @@ namespace SilkERP360.BML.HRIS
        public ulong Save(CCL.BusinessEntities.HRIS.WorkGroupOperationHistory IP_obj_WorkGroupOperationHistory, object IP_obj_DBManager)
        {
            System.UInt64 lcl_ui64_WorkGroupHistoryCode = 0;
-           System.String lcl_str_SqlQuery = System.String.Format("SELECT SEQ_WG_OP_HISTORY.NEXTVAL AS ID FROM DUAL");
-           lcl_ui64_WorkGroupHistoryCode = this.ExceptionManager.Process<System.UInt64>(() =>
+           //System.String lcl_str_SqlQuery = System.String.Format("SELECT SEQ_WG_OP_HISTORY.NEXTVAL AS ID FROM DUAL");
+            System.String lcl_str_SqlQuery = System.String.Format("select max(wg_operation_history_code)+1 as ID from work_group_operation_history");
+            lcl_ui64_WorkGroupHistoryCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);

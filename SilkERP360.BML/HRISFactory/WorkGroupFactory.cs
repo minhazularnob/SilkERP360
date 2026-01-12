@@ -61,7 +61,7 @@ namespace SilkERP360.BML.HRISFactory
             return Response;
         }
 
-        public System.Int32 DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList)
+        public System.Int32 DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList, string User)
         {
             // Nothing to delete
             if (IP_obj_workGroupMasterCodeList == null || IP_obj_workGroupMasterCodeList.Count == 0)
@@ -88,6 +88,78 @@ namespace SilkERP360.BML.HRISFactory
                         lcl_obj_WGReader.Close();
                         return -1;
                     }
+
+                    /* Insert HISTORY backup */
+                    string sqlInsertHistoryBkp = $@"INSERT INTO work_group_operation_history_bkp
+                                                    (WG_OPERATION_HISTORY_CODE,
+                                                     WG_OPERATION_MASTER_CODE,
+                                                     EMPLOYEE_CODE,
+                                                     ASSESSMENT_STATUS,
+                                                     IS_DELETED)
+                                                    SELECT
+                                                     WG_OPERATION_HISTORY_CODE,
+                                                     WG_OPERATION_MASTER_CODE,
+                                                     EMPLOYEE_CODE,
+                                                     ASSESSMENT_STATUS,
+                                                     IS_DELETED
+                                                    FROM work_group_operation_history
+                                                    WHERE wg_operation_master_code IN ({idList})";
+
+                    lcl_obj_DBManager.InternalResource.ExecuteNonQuery(sqlInsertHistoryBkp);
+
+                    /*Insert MASTER backup */
+                    string sqlInsertMasterBkp = $@"INSERT INTO work_group_operation_master_bkp
+                                                    (
+                                                     WG_OPERATION_MASTER_CODE,
+                                                     WORK_GROUP_CODE,
+                                                     WORK_DATE,
+                                                     WORKER_STRENGTH,
+                                                     OPERATIONAL_STATUS,
+                                                     IS_PROCESSED,
+                                                     TOTAL_PRESENT,
+                                                     TOTAL_ABSENT,
+                                                     TOTAL_LATE,
+                                                     DUTY_START_FROM,
+                                                     DUTY_HOUR,
+                                                     IS_PROCESSED_FOR_SALARY,
+                                                     DAY_ATTRIBUTE,
+                                                     ENTRY_EMPLOYEE_CODE,
+                                                     ENTRY_DATE,
+                                                     TOTAL_MAN_HOUR,
+                                                     TOTAL_OVERTIME,
+                                                     TOTAL_LEAVE,
+                                                     TOTAL_OFF,
+                                                     OVERTIME_LIMIT,
+                                                     DELETED_BY,
+                                                     DELETED_TIME
+                                                    )
+                                                    SELECT
+                                                     WG_OPERATION_MASTER_CODE,
+                                                     WORK_GROUP_CODE,
+                                                     WORK_DATE,
+                                                     WORKER_STRENGTH,
+                                                     OPERATIONAL_STATUS,
+                                                     IS_PROCESSED,
+                                                     TOTAL_PRESENT,
+                                                     TOTAL_ABSENT,
+                                                     TOTAL_LATE,
+                                                     DUTY_START_FROM,
+                                                     DUTY_HOUR,
+                                                     IS_PROCESSED_FOR_SALARY,
+                                                     DAY_ATTRIBUTE,
+                                                     ENTRY_EMPLOYEE_CODE,
+                                                     ENTRY_DATE,
+                                                     TOTAL_MAN_HOUR,
+                                                     TOTAL_OVERTIME,
+                                                     TOTAL_LEAVE,
+                                                     TOTAL_OFF,
+                                                     OVERTIME_LIMIT,
+                                                     '{User}',
+                                                     SYSDATE
+                                                    FROM work_group_operation_master
+                                                    WHERE wg_operation_master_code IN ({idList})";
+
+                    lcl_obj_DBManager.InternalResource.ExecuteNonQuery(sqlInsertMasterBkp);
 
                     string sqlDeleteChild = $"DELETE FROM work_group_operation_history WHERE wg_operation_master_code IN ({idList})";
                     lcl_obj_DBManager.InternalResource.ExecuteNonQuery(sqlDeleteChild);

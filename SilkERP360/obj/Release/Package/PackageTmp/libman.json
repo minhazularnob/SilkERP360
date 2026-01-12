@@ -1,0 +1,14 @@
+{
+  "version": "3.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+    {
+      "library": "tom-select@2.3.1",
+      "destination": "Globals/tom-select/",
+      "files": [
+        "dist/css/tom-select.css",
+        "dist/js/tom-select.complete.min.js"
+      ]
+    }
+  ]
+}

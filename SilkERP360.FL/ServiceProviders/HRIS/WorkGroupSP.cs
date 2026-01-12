@@ -23,12 +23,12 @@ namespace SilkERP360.FL.ServiceProviders.HRIS
             return Response;
         }
 
-        public System.Int32 DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList)
+        public System.Int32 DeleteWorkGroupOperationMaster(List<UInt64> IP_obj_workGroupMasterCodeList, string User)
         {
             System.Int32 Response = this.ExceptionManager.Process<System.Int32>(() =>
             {
                 SilkERP360.BML.HRISFactory.WorkGroupFactory lcl_obj_WorkGroupFactory = new BML.HRISFactory.WorkGroupFactory();
-                return lcl_obj_WorkGroupFactory.DeleteWorkGroupOperationMaster(IP_obj_workGroupMasterCodeList);
+                return lcl_obj_WorkGroupFactory.DeleteWorkGroupOperationMaster(IP_obj_workGroupMasterCodeList,User);
             }, "FLExceptionPolicy");
             return Response;
         }
