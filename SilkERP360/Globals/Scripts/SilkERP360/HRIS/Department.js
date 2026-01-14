@@ -138,7 +138,6 @@ function Save() {
 }
 
 function UpdateDept() {
-    debugger;
     var lcl_obj_Department = new Object();
     lcl_obj_Department.DepartmentCode = $("#deptCode").val();
     lcl_obj_Department.DeptName = $("#deptName").val();

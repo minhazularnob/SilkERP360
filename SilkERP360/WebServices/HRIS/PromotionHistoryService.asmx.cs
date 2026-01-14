@@ -132,5 +132,20 @@ namespace SilkERP360.WebServices.HRIS
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
             }
         }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetAllNotifications(System.UInt64 IP_ui64_companyCode)
+        {
+            try
+            {
+                SilkERP360.SP.HRIS.PromotionHistoryService lcl_obj_promotionHistoryService = new SilkERP360.SP.HRIS.PromotionHistoryService();
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Notification> lcl_objLst_Notification = lcl_obj_promotionHistoryService.GetAllNotifications(IP_ui64_companyCode);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_Notification);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
     }
 }

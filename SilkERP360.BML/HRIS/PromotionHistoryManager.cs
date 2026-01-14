@@ -359,6 +359,49 @@ namespace SilkERP360.BML.HRIS
             }, "BMLExceptionPolicy");
         }
 
+        public List<SilkERP360.CCL.BusinessEntities.HRIS.Notification> GetAllNotifications(string IP_str_SqlQuery)
+        {
+            return this.ExceptionManager.Process<List<SilkERP360.CCL.BusinessEntities.HRIS.Notification>>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    // Execute reader
+                    using (Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
+                    {
+                        List<SilkERP360.CCL.BusinessEntities.HRIS.Notification> lcl_obj_notificationList = new List<SilkERP360.CCL.BusinessEntities.HRIS.Notification>();
+
+                        // If no rows → return empty list (not exception)
+                        if (!lcl_obj_dr.HasRows)
+                        {
+                            return lcl_obj_notificationList;
+                        }
+
+                        // Populate list
+                        while (lcl_obj_dr.Read())
+                        {
+                            var item = new SilkERP360.CCL.BusinessEntities.HRIS.Notification();
+
+                            item.EmployeeCode = Convert.ToInt64(lcl_obj_dr["Employee_Code"]);
+                            item.EmployeeID = lcl_obj_dr["Employee_Id"]?.ToString();
+                            item.EmployeeName = lcl_obj_dr["Employee_Name"]?.ToString();
+                            item.ConfirmationDate = lcl_obj_dr["confirmation_date"]?.ToString();
+                            item.JoiningDate = lcl_obj_dr["joining_date"]?.ToString();
+
+                            lcl_obj_notificationList.Add(item);
+                        }
+
+                        return lcl_obj_notificationList;
+                    }
+                }
+            }, "BMLExceptionPolicy");
+        }
+
+
         public List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> GetAllApprovers(string IP_str_SqlQuery)
         {
             return this.ExceptionManager.Process<List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail>>(() =>

@@ -49,6 +49,7 @@
 <script type="text/javascript">
     $('#boxclose').click(function () {
         $("#dvSubForm").fadeOut(300);
+        //$('#ddlDepartment').trigger('change');
     });
 </script>
 
@@ -99,14 +100,17 @@
                                     <table class="table w-100">
                                         <tr>
                                             <td class="text-center p-2">
-                                                <asp:DropDownList ID="ddlDepartment"
-                                                    runat="server"
-                                                    CssClass="input_required clear w-100"
-                                                    ClientIDMode="Static">
-                                                    <asp:ListItem Value="0">
-                                                        -----Select The Department For Which the Rooster is to be created
-                                                    </asp:ListItem>
-                                                </asp:DropDownList>
+                                                    <asp:DropDownList ID="ddlDepartment"
+                                                        runat="server"
+                                                        CssClass="input_required clear w-100"
+                                                        ClientIDMode="Static"
+                                                        onchange="">
+
+                                                        <asp:ListItem Value="0">
+                                                            -----Select The Department For Which the Rooster is to be created
+                                                        </asp:ListItem>
+                                                    </asp:DropDownList>
+                                                
                                             </td>
                                         </tr>
                                     </table>

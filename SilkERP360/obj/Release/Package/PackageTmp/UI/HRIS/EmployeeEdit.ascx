@@ -13,7 +13,7 @@
     <div id="cmd" style="width: 99%; z-index: 1001;">
         <p class="login button">
             <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save"
-                ClientIDMode="Static" OnClientClick="return Save();" Style="width: 70px;" />&nbsp;
+                ClientIDMode="Static" OnClientClick="Save(); return false;" Style="width: 70px;" />&nbsp;
         </p>
     </div>
 
@@ -127,8 +127,8 @@
                 <div class="row mb-3">
                     <label class="col-sm-1 col-form-label">ACS Code</label>
                     <div class="col-sm-5">
-                        <asp:TextBox ID="txt_Off_ACSCode" runat="server" ClientIDMode="Static"
-                            CssClass="form-control input-required width-100" PlaceHolder="ACS Code">
+                        <asp:TextBox ID="txt_Off_ACSCode" runat="server" ClientIDMode="Static" ReadOnly="true"
+                            CssClass="form-control input-required width-100" PlaceHolder="ACS Code" Enabled="false" >
                         </asp:TextBox>
                     </div>
 
@@ -179,7 +179,7 @@
                     <label class="col-sm-1 col-form-label">Join Date</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_Off_JoiningDate" runat="server" ReadOnly="true" ClientIDMode="Static"
-                            CssClass="form-control input-required width-100" PlaceHolder="Joining Date">
+                            CssClass="form-control input-required width-100" PlaceHolder="Joining Date" Enabled="false">
                         </asp:TextBox>
                     </div>
 
@@ -587,7 +587,7 @@
                 <div class="table-responsive">
                     <h3 class="fontSerif">Education Details</h3>
 
-                    <table id="tblEducation" runat="server" class="table table-bordered w-100">
+                    <table id="tblEducation" ClientIDMode="Static"  runat="server" class="table table-bordered w-100">
                         <thead class="table-light text-center">
                             <tr>
                                 <th style="width: 15%">
@@ -877,7 +877,27 @@
         </div>
         <div id="CertificateTab" class="position-relative p-3" style="z-index: 1015;">
             <div class="container">
-                <h3 class="fontSerif mb-4">Certificate</h3>
+                <h3 class="fontSerif">Add Certificates</h3>
+                <input type="file" id="fileInput" multiple
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onchange="handleFileSelect(this)">
+                <br>
+                <br>
+
+                <table id="fileTable" class="table table-bordered table-striped table-hover mt-3" style="display: none;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 5%">#</th>
+                            <th>File Name</th>
+                            <th>File Type</th>
+                            <th style="width: 15%">File Size (KB)</th>
+                            <th style="width: 10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fileTableBody"></tbody>
+                </table>
+
+
                 <asp:GridView ID="gvCertificates" runat="server" AutoGenerateColumns="false"
                     CssClass="table table-bordered table-striped table-hover mt-3">
                     <Columns>
@@ -887,12 +907,6 @@
 
                         <asp:TemplateField HeaderText="Download">
                             <ItemTemplate>
-<%--                                <asp:Button ID="btnDownload" runat="server"
-                                    Text="Download"
-                                    CommandName="Download"
-                                    CommandArgument='<%# Eval("EmployeeCertificateCode") %>'
-                                    OnCommand="btnDownload_Command"
-                                    CssClass="btn btn-primary btn-sm" />--%>
                                 <button type="button"
                                     class="btn btn-primary btn-sm"
                                     onclick="downloadCertificate(<%# Eval("EmployeeCertificateCode") %>)">

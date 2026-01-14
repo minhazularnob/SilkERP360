@@ -131,6 +131,7 @@
     <Compile Include="BusinessEntities\HRIS\EmployeeIdCardInfo.cs" />
     <Compile Include="BusinessEntities\HRIS\IncrementAndPromotionHistory.cs" />
     <Compile Include="BusinessEntities\HRIS\IncrementRequest.cs" />
+    <Compile Include="BusinessEntities\HRIS\Notification.cs" />
     <Compile Include="BusinessEntities\HRIS\PromotionHistory.cs" />
     <Compile Include="BusinessEntities\HRIS\Company.cs" />
     <Compile Include="BusinessEntities\HRIS\DataStructures\CompanyDepartments.cs" />

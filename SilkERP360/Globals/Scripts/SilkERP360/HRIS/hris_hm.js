@@ -140,7 +140,98 @@ function changeCompanyLogo() {
 
         }
     }
+    debugger;
+    if ($('#ddlCompany option:selected').val() != '') {
+        CountNotification();
+    }
+    else {
+        $('#notificationCount').text(0);
+    }
+    
+
 };
+
+function CountNotification() {
+    var lcl_str_CompanyCode = $('#ddlCompany option:selected').val();
+    $.ajax({
+        async: true,
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/GetAllNotifications",
+        data: JSON.stringify({
+            IP_ui64_companyCode: lcl_str_CompanyCode
+        }),
+        dataType: "json",
+        success: function (response) {
+            var WSReturn = response.d;
+            if (WSReturn.ResponseCode < 0) {
+                DisplayError(WSReturn.Message);
+                return;
+            }
+
+            $('#notificationCount').text(WSReturn.Data.length);
+        },
+        error: function (err) {
+            console.error("Error Counting Notifications:", err);
+        }
+    });
+}
+
+function loadNotifications() {
+    if ($('#ddlCompany option:selected').val() == '') {
+        DisplayError("A Company Must Be Selected Before Before Launching Notification Process!!!");
+        return;
+    }
+
+    // Open modal manually
+    var modal = new bootstrap.Modal(document.getElementById('notificationModal'));
+    modal.show();
+
+    var lcl_str_CompanyCode = $('#ddlCompany option:selected').val();
+    $.ajax({
+        async: true,
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: gbl_URL_Root + "WebServices/HRIS/PromotionHistoryService.asmx/GetAllNotifications",
+        data: JSON.stringify({
+            IP_ui64_companyCode: lcl_str_CompanyCode
+        }),
+        dataType: "json",
+        success: function (response) {
+            var WSReturn = response.d;
+            if (WSReturn.ResponseCode < 0) {
+                DisplayError(WSReturn.Message);
+                return;
+            }
+
+            var lcl_obj_DesignationList = WSReturn.Data;
+
+            // Clear existing table data
+            GBL_NOTIFICATION_LIST_TABLE.fnClearTable();
+
+            // Map promotion data to the DataTable format
+            var mappedData = [];
+            $.each(lcl_obj_DesignationList, function (index, item) {
+                mappedData.push({
+                    "SL": index + 1,
+                    "EmployeeID": item.EmployeeID,
+                    "EmployeeName": item.EmployeeName,
+                    "JoiningDate": item.JoiningDate,
+                    "ConfirmationDate": item.ConfirmationDate
+                });
+            });
+
+            // Add mapped data to DataTable
+            GBL_NOTIFICATION_LIST_TABLE.fnAddData(mappedData);
+            GBL_NOTIFICATION_LIST_TABLE.fnDraw();
+        },
+        error: function (err) {
+            console.error("Error loading Notifications:", err);
+        }
+    });
+}
+
+
 
 function loadEmployeeComapanyLogo() {
    

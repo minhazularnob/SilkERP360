@@ -57,6 +57,20 @@ namespace SilkERP360.SP.HRIS
             return lcl_obj_Designation;
         }
 
+        public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Notification> GetAllNotifications(System.UInt64 IP_ui64_companyCode)
+        {
+            System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Notification> lcl_obj_Notification = null;
+            lcl_obj_Notification = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Notification>>(() =>
+            {
+                System.String lcl_str_SqlQuery = System.String.Format(@"select Employee_Code,Employee_Id,Employee_Name,is_deleted,confirmation_date,joining_date from employee where is_deleted=1 and employee_status=2 and company_code={0} AND confirmation_date >= TRUNC(SYSDATE)
+                                                                        AND confirmation_date < TRUNC(SYSDATE)+7", IP_ui64_companyCode);
+                SilkERP360.BML.HRIS.PromotionHistoryManager lcl_obj_PromotionHistoryManager = new SilkERP360.BML.HRIS.PromotionHistoryManager();
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Notification> lcl_obj_DesignationTmp = lcl_obj_PromotionHistoryManager.GetAllNotifications(lcl_str_SqlQuery);
+                return lcl_obj_DesignationTmp;
+            }, "SPExceptionPolicy");
+            return lcl_obj_Notification;
+        }
+
         public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> GetAllApprovers()
         {
             System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.ApproverDetail> lcl_obj_approver_list = null;
