@@ -3,7 +3,7 @@ var CLIPBOARD = "";
 
 $(document).ready(function () {
     var lcl_ui64_CompanyCode = $("#ddlCompany option:selected").val();
-    $('#ddlDepartment').change(function () { DepartmentChangeEvent(); });
+    //$('#ddlDepartment').change(function () { DepartmentChangeEvent(); });
     initializeSelect2('ddlDepartment', '', '50%');
 
     GBL_EMPLOYEE_LIST_TABLE = $('#tblEmployeeList').dataTable({
@@ -155,16 +155,73 @@ $(document).ready(function () {
     });
 });
 
+$("#ddlDepartment").change(function () {
+    DepartmentChangeEventPersonalWiseManagement();
+});
 
-function DepartmentChangeEvent() {
-    var lcl_str_DepartmentCode = $.trim($('#ddlDepartment option:selected').val());
+function DepartmentChangeEventPersonalWiseManagement() {
+    var lcl_str_DepartmentCode = $('#ddlDepartment').val();
     if (lcl_str_DepartmentCode == "0") return;
 
     var lcl_str_CompanyCode = $("#ddlCompany option:selected").val();
     GBL_EMPLOYEE_LIST_TABLE.fnClearTable();
 
     $.ajax({
-        async: true,
+        async: false,
+        type: "POST",
+        global: true,
+        contentType: "application/json; charset=utf-8",
+        url: "~/../../../WebServices/HRIS/EmployeeService.asmx/GetAvailableEmployeeProfileListByDepartment",
+        data: "{IP_ui64_DepartmentCode:" + JSON.stringify(lcl_str_DepartmentCode) + "}",
+        dataType: "json",
+        success: function (response) {
+            var WSReturn = response.d;
+            if (WSReturn.ResponseCode < 0) { DisplayError(WSReturn.Message); return; }
+
+            var lcl_obj_EmployeeProfileList = WSReturn.Data;
+            var lcl_i32_EmployeeNumber = 0;
+            var lcl_str_EmployeeData = new Array();
+
+            $.each(lcl_obj_EmployeeProfileList, function (index, lcl_obj_EmployeeProfile) {
+                var lcl_str_EmployeeImage = "data:" + lcl_obj_EmployeeProfile.Image.ImageType + ";base64," + lcl_obj_EmployeeProfile.Image.ImageData;
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber] = new Array();
+
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber][0] = "<img id='imgEmployee-" + lcl_i32_EmployeeNumber.toString() + "' src='" + lcl_str_EmployeeImage + "' width='30px' height='30px'/>";
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber][1] = lcl_obj_EmployeeProfile.EmployeeID;
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber][2] = lcl_obj_EmployeeProfile.EmployeeName;
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber][3] = lcl_obj_EmployeeProfile.Designation.Name;
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber][4] = lcl_obj_EmployeeProfile.Salary + ".00";
+
+                var parsedDate = new Date(parseInt(lcl_obj_EmployeeProfile.JoiningDate.substr(6)));
+                var lcl_obj_JoiningDate = new Date(parsedDate);
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber][5] = $.datepicker.formatDate("dd/MM/yy", lcl_obj_JoiningDate);
+
+                lcl_str_EmployeeData[lcl_i32_EmployeeNumber][6] =
+                    "<a id='hlnkContextMenu-" + lcl_i32_EmployeeNumber.toString() + "' " +
+                    "rel='hlnkContextMenu" + lcl_i32_EmployeeNumber.toString() + "' " +
+                    "class='btn btn-light btn-sm ctx_mnu' " +
+                    "data-empcode='" + lcl_obj_EmployeeProfile.EmployeeCode.toString() + "' " +
+                    "href='#'>⋮</a>";
+
+                lcl_i32_EmployeeNumber++;
+            });
+
+            GBL_EMPLOYEE_LIST_TABLE.fnAddData(lcl_str_EmployeeData);
+        }
+    });
+}
+
+
+
+function DepartmentChangeEvent() {
+    var lcl_str_DepartmentCode = $('#ddlDepartment').val();
+    if (lcl_str_DepartmentCode == "0") return;
+
+    var lcl_str_CompanyCode = $("#ddlCompany option:selected").val();
+    GBL_EMPLOYEE_LIST_TABLE.fnClearTable();
+
+    $.ajax({
+        async: false,
         type: "POST",
         global: true,
         contentType: "application/json; charset=utf-8",

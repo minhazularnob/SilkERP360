@@ -99,7 +99,7 @@ namespace SilkERP360.UI.HRIS
                 //setup ddlRefEpmloyee
                 lcl_str_SqlQuery = System.String.Format(@"select EMPLOYEE_CODE,EmpName From
                 (select EMPLOYEE_CODE,EMPLOYEE_NAME||'('||EMPLOYEE_ID||')' AS EmpName,IS_DELETED,EMPLOYEE_STATUS
-                From EMPLOYEE )X  Where  EMPLOYEE_STATUS ={1} AND IS_DELETED = 1 Order by EmpName  ", lcl_str_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
+                From EMPLOYEE )X  Where IS_DELETED = 1 Order by EmpName  ", lcl_str_CompanyCode);
                 Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_RefEpmloyeeReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_SqlQuery);
                 if( (lcl_obj_RefEpmloyeeReader.HasRows)==true)
                 {
@@ -252,7 +252,15 @@ namespace SilkERP360.UI.HRIS
                         txt_Off_ACSCode.Text = lcl_obj_officiallReader["EMPLOYEE_ACS_CODE"].ToString();
                         ddl_Off_Designation.Items.FindByValue(lcl_obj_officiallReader["DESIGNATION_CODE"].ToString()).Selected = true;
                         ddl_Off_RefEmployee.Items.FindByValue(lcl_obj_officiallReader["REF_EMPLOYEE_CODE"].ToString()).Selected = true;
-                        ddl_Off_Supervisor.Items.FindByValue(lcl_obj_officiallReader["SUPERVISOR_CODE"].ToString()).Selected = true;
+                        //ddl_Off_Supervisor.Items.FindByValue(lcl_obj_officiallReader["SUPERVISOR_CODE"].ToString()).Selected = true;
+                        string supervisorCode = lcl_obj_officiallReader["SUPERVISOR_CODE"].ToString();
+                        ListItem item = ddl_Off_Supervisor.Items.FindByValue(supervisorCode);
+
+                        if (item != null)
+                        {
+                            item.Selected = true;
+                        }
+
                         txt_Off_JoiningDate.Text = String.Format("{0:dd/MMMM/yyyy}", lcl_obj_officiallReader["JOINING_DATE"]);
                         txt_Off_ConfirmationDate.Text = String.Format("{0:dd/MMMM/yyyy}", lcl_obj_officiallReader["CONFIRMATION_DATE"]);
                         txt_Off_RetirementDate.Text = String.Format("{0:dd/MMMM/yyyy}", lcl_obj_officiallReader["RETIREMENT_DATE"]);
@@ -333,8 +341,22 @@ namespace SilkERP360.UI.HRIS
 
                     txt_Pers_DateOfBirth.Text =String.Format("{0:dd/MMMM/yyyy}",  lcl_obj_PersonalReader["DATE_OF_BIRTH"]);
                     ddl_Pers_MaritalStatus.Items.FindByValue( lcl_obj_PersonalReader["MARITAL_STATUS"].ToString()).Selected = true;
-                    ddl_Pers_Sex.Items.FindByValue(lcl_obj_PersonalReader["SEX"].ToString()).Selected = true;
-                    ddl_Pers_Religion.Items.FindByValue(lcl_obj_PersonalReader["RELIGION"].ToString()).Selected = true;
+                        string sexValue = lcl_obj_PersonalReader["SEX"].ToString();
+                        ListItem item = ddl_Pers_Sex.Items.FindByValue(sexValue);
+
+                        if (item != null)
+                        {
+                            item.Selected = true;
+                        }
+
+                        string religionValue = lcl_obj_PersonalReader["RELIGION"].ToString();
+                        ListItem religionItem = ddl_Pers_Religion.Items.FindByValue(religionValue);
+
+                        if (religionItem != null)
+                        {
+                            religionItem.Selected = true;
+                        }
+
                     txt_Pers_Nationality.Text = lcl_obj_PersonalReader["NATIONALITY"].ToString();
                     ddl_Pers_BloodGroup.Items.FindByValue(lcl_obj_PersonalReader["BLOOD_GROUP"].ToString()).Selected = true;
                     txt_Pers_Height.Text = lcl_obj_PersonalReader["HEIGHT"].ToString();

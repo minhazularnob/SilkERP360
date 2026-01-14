@@ -85,7 +85,7 @@ $(document).ready(function () {
             d.setMonth(d.getMonth() + 3);
             $("#txt_Off_ConfirmationDate").datepicker('setDate', d);
         }
-    });
+    }).attr('readonly', 'readonly');;
 
     $("#txt_Off_ConfirmationDate").datepicker({ dateFormat: 'dd/MM/yy', showButtonPanel: true });
     $("#txt_Off_RetirementDate").datepicker({ dateFormat: 'dd/MM/yy', changeMonth: true, changeYear: true, showButtonPanel: true, minDate: 0 });
@@ -433,6 +433,17 @@ function addEducation() {
     }
 }
 
+$(document).on("click", ".row_delete_btn", function () {
+
+    // this = clicked delete image
+    var currentRow = $(this).closest("tr");
+
+    // remove only that row
+    currentRow.remove();
+
+});
+
+
 function RefreshEducationControls() {
     document.getElementById("txt_Edu_ExamName").value = '';
     document.getElementById("txt_Edu_InstituteName").value = '';
@@ -735,8 +746,7 @@ function toogleReference2Controls() {
 }
 
 /***********************************************Save new epmloyee***********************************************************************************/
-function Save() {
-
+async function Save() {
     if (confirm("Are you sure you want to save this employee?") == true) {
         /************************************************************************************************************/
 
@@ -827,7 +837,12 @@ function Save() {
 
         for (var i = 0; i < lcl_i32_EducationCount; i++) {
             lcl_obj_EmpApp.EmployeeEducation[i] = new Object(); //txt_Edu_EDUCATION_CODE
-            lcl_obj_EmpApp.EmployeeEducation[i].EducationCode = trim($('#txt_Edu_CODE-' + (i + 1).toString()).val());
+            if ($('#txt_Edu_CODE-' + (i + 1).toString()).val() == undefined) {
+                lcl_obj_EmpApp.EmployeeEducation[i].EducationCode = 0;
+            }
+            else {
+                lcl_obj_EmpApp.EmployeeEducation[i].EducationCode = trim($('#txt_Edu_CODE-' + (i + 1).toString()).val());
+            }
             lcl_obj_EmpApp.EmployeeEducation[i].ExamName = trim($('#txt_Edu_ExamName-' + (i + 1).toString()).val());
             lcl_obj_EmpApp.EmployeeEducation[i].InstName = trim($('#txt_Edu_InstituteName-' + (i + 1).toString()).val());
             lcl_obj_EmpApp.EmployeeEducation[i].BoardUniversity = trim($('#txt_Edu_BoardUniversity-' + (i + 1).toString()).val());
@@ -906,6 +921,41 @@ function Save() {
             }
         }
 
+        //certificates
+        if (typeof selectedFiles !== 'undefined' && selectedFiles.length > 0) {
+
+            lcl_obj_EmpApp.EmployeeCertificateList = [];
+
+            for (let index = 0; index < selectedFiles.length; index++) {
+
+                const file = selectedFiles[index];
+
+                const base64Content = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        resolve(e.target.result.split(",")[1]); // Base64 content
+                    };
+
+                    reader.onerror = function () {
+                        reject(new Error("File read failed: " + file.name));
+                    };
+
+                    reader.readAsDataURL(file); // 🔑 FileReader trigger
+                });
+
+                // Object create
+                lcl_obj_EmpApp.EmployeeCertificateList[index] = {
+                    FileType: file.type,
+                    FileSize: file.size,
+                    Certificate: base64Content,
+                    Status: 1,
+                    IsDeleted: 1,
+                    FileName: file.name
+                };
+            }
+        }
+
 
         //INITIATE Employee_Entitle_Leave Object
         var lcl_i32_Leave_Counter = parseInt($("#txtLeaveCounter").val().toString());
@@ -935,12 +985,11 @@ function Save() {
             lcl_obj_EmpApp.Image.ImageSize = $("#txt_EI_ImageSize").data('img_size');
             lcl_obj_EmpApp.Image.Image1 = $('#fileBrowser').data('emp_img');
         }
+
         $.ajax(
-
             {
-
                 type: "POST",
-                async: true,
+                async: false,
                 contentType: "application/json; charset=utf-8",
                 url: " ~/../../../WebServices/HRIS/EmployeeService.asmx/UpdateEmployeeAppoinment",
 
@@ -1202,5 +1251,45 @@ function downloadCertificate(certificateCode) {
         error: function () {
             alert("Server error!");
         }
+    });
+}
+
+function handleFileSelect(input) {
+    if (!input.files || input.files.length === 0) return;
+
+    for (let i = 0; i < input.files.length; i++) {
+        selectedFiles.push(input.files[i]);
+    }
+
+    renderFileTable();
+    input.value = ""; // allow reselect same file
+}
+
+function renderFileTable() {
+    const table = document.getElementById("fileTable");
+    const tbody = document.getElementById("fileTableBody");
+
+    tbody.innerHTML = "";
+
+    if (selectedFiles.length === 0) {
+        table.style.display = "none";
+        return;
+    }
+
+    table.style.display = "table";
+
+    selectedFiles.forEach(function (file, index) {
+        const row = document.createElement("tr");
+
+        row.innerHTML =
+            "<td>" + (index + 1) + "</td>" +
+            "<td>" + file.name + "</td>" +
+            "<td>" + (file.type || "N/A") + "</td>" +
+            "<td>" + Math.round(file.size / 1024) + "</td>" +
+            "<td>" +
+            "<span onclick='removeFile(" + index + ")' " +
+            "style='color:red; cursor:pointer; font-weight:bold; text-decoration:underline;'>Remove</span>" +
+            "</td>";
+        tbody.appendChild(row);
     });
 }

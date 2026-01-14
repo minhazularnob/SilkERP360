@@ -49,6 +49,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         foreach (SilkERP360.CCL.BusinessEntities.HRIS.EmployeeEducation lcl_obj_EmployeeEducation in IP_obj_A.EmployeeEducation)
                         {
                             lcl_obj_EmployeeEducation.EmployeeCode = lcl_ui64_EmployeeCodeTmp;
+                            if(lcl_obj_EmployeeEducation.EducationCode == 0)
                             lcl_obj_EmployeeEducationManager.Update(lcl_obj_EmployeeEducation, lcl_obj_DBManager);
                         }
                         //save EmployeeWeekEnd
@@ -87,6 +88,18 @@ namespace SilkERP360.BML.HRIS.DataStructures
                             SilkERP360.BML.HRIS.EmployeeImageManager lcl_obj_EmployeeImageManager = new EmployeeImageManager();
                             lcl_obj_EmployeeImageManager.Update(IP_obj_A.Image, lcl_obj_DBManager);
                         }
+
+                        if(IP_obj_A.EmployeeCertificateList != null)
+                        {
+                            SilkERP360.BML.HRIS.EmployeeCertificateManager lcl_obj_EmployeecertificateManager = new SilkERP360.BML.HRIS.EmployeeCertificateManager();
+                            foreach (SilkERP360.CCL.BusinessEntities.HRIS.EmployeeCertificate lcl_obj_EmployeeCertificate in IP_obj_A.EmployeeCertificateList)
+                            {
+                                lcl_obj_EmployeeCertificate.EmployeeCode = lcl_ui64_EmployeeCodeTmp;
+                                lcl_obj_EmployeecertificateManager.Save(lcl_obj_EmployeeCertificate, lcl_obj_DBManager);
+                            }
+                        }
+
+
                         lcl_obj_DBManager.CommitTransaction();
 
                     }
@@ -148,7 +161,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         SilkERP360.BML.HRIS.EmployeeImageManager lcl_obj_EmployeeImageManager = new EmployeeImageManager();
                         lcl_obj_EmployeeImageManager.Save(IP_obj_A.Image, lcl_obj_DBManager);
 
-                        //save Employee Experience
+                        //save Employee certificate
                         if(IP_obj_A.EmployeeCertificateList != null)
                         {
                             SilkERP360.BML.HRIS.EmployeeCertificateManager lcl_obj_EmployeecertificateManager = new SilkERP360.BML.HRIS.EmployeeCertificateManager();
@@ -186,10 +199,6 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         lcl_obj_DBManager.CommitTransaction();
 
                     }
-
-                    
-                    
-
                     return lcl_ui64_EmployeeCodeTmp;
                 }, "BMLExceptionPolicy");
             return lcl_ui64_EmployeeCode;

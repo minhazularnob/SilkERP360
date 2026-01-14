@@ -654,6 +654,59 @@
                     </table>
                 </div>
 
+                 <!-- Reference Information -->
+                <h3 class="fontSerif mt-4 mb-3">Reference Information</h3>
+
+                <div class="table-responsive">
+                    <table id="tblReference" class="table table-bordered w-100">
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Phone / Mobile</th>
+                                <th>Organization</th>
+                                <th>Designation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <asp:CheckBox ID="chk_Ref_Reference_1" runat="server" Text="Reference 1"
+                                        ClientIDMode="Static" AutoPostBack="false" OnClick="return toogleReference1Controls();" />
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Name1" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Address1" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_ContactNo1" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Organization1" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Designation1" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <asp:CheckBox ID="chk_Ref_Reference_2" runat="server" Text="Reference 2"
+                                        ClientIDMode="Static" AutoPostBack="false" OnClick="return toogleReference2Controls();" />
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Name2" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Address2" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_ContactNo2" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Organization2" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                                <td>
+                                    <asp:TextBox ID="txt_Ref_Designation2" runat="server" ClientIDMode="Static" class="form-control" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
         <div id="EducationExperienceTab" style="z-index: 1007;">

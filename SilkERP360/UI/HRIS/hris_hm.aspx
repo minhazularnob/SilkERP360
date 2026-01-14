@@ -14,7 +14,7 @@
         }
     </style>
 
-<script src="../../Globals/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../../Globals/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="../../Globals/jQuery/jquery-ui-1.9.1/external/globalize.js" type="text/javascript"></script>
     <script src="../../Globals/jQuery/jquery-ui-1.9.1/ui/minified/jquery.ui.core.min.js" type="text/javascript"></script>
     <script src="../../Globals/jQuery/jquery-ui-1.9.1/ui/minified/jquery.ui.widget.min.js" type="text/javascript"></script>

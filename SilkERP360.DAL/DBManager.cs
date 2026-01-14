@@ -125,28 +125,64 @@ namespace SilkERP360.DAL
         /// <returns>void</returns>
         public void Open()
         {
-            //THROWS Error 100
             this.ExceptionManager.Process(() =>
             {
-                if (this.m_TransactionState == SilkERP360.DAL.TransactionState.Pending)
+                // Handle pending transaction
+                if (this.m_TransactionState == TransactionState.Pending)
                 {
-                    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.DALException("A Transaction is in a pending state.Cannot open another connection without committing the transaction!!!");
+                    try
+                    {
+                        if (this.m_obj_OracleConnection.DataSource == "")
+                            this.m_obj_OracleConnection = new OracleConnection(this.m_str_ConnectionString);
+
+                        if (this.m_obj_OracleConnection.State != System.Data.ConnectionState.Open)
+                        {
+                            this.m_obj_OracleConnection.Open();
+                        }
+                        // Rollback the existing transaction safely
+
+                        if (this.m_obj_OracleConnection != null && this.m_obj_OracleConnection.State == System.Data.ConnectionState.Open && this.m_obj_OracleTransaction.Connection != null)
+                        {
+                            this.m_obj_OracleTransaction.Rollback();
+                            this.m_TransactionState = TransactionState.Rolledback;
+                        }
+                        else
+                        {
+                            this.m_TransactionState = TransactionState.Closed;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Optional: log or wrap in your DALException
+                        throw new SilkERP360.CCL.ExceptionManagement.Exceptions.DALException(
+                            "Failed to rollback pending transaction before opening a new connection.", ex
+                        );
+                    }
                 }
-                if (this.m_obj_OracleConnection.State == System.Data.ConnectionState.Open)
-                {
-                    throw new SilkERP360.CCL.ExceptionManagement.Exceptions.DALException("Cannot open an already opened Connection!!!");
-                }
-                if (!(this.m_obj_OracleConnection.State == System.Data.ConnectionState.Open))
+
+                // Ensure connection is closed before opening
+                if (this.m_obj_OracleConnection.State != System.Data.ConnectionState.Open)
                 {
                     this.m_obj_OracleConnection.Open();
                 }
+
+                // Open connection
+
+                // Begin a new transaction
                 this.m_obj_OracleTransaction = this.m_obj_OracleConnection.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
-                this.m_TransactionState = SilkERP360.DAL.TransactionState.Pending;
+                this.m_TransactionState = TransactionState.Pending;
+
+                // Create command object tied to the transaction
                 this.m_obj_OracleCommand = this.m_obj_OracleConnection.CreateCommand();
                 this.m_obj_OracleCommand.Transaction = this.m_obj_OracleTransaction;
-            },
-                                                    "DALExceptionPolicy");
+
+            }, "DALExceptionPolicy");
         }
+
+
+
+
+
 
         /// <summary>
         /// Closes the Database Connection
