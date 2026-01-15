@@ -659,7 +659,6 @@ namespace SilkERP360.BML.HRIS
                     SALARY_PAYABLE_AT_BANK  = :p_SALARY_PAYABLE_AT_BANK,
                     BANK_ACCOUNT_NO         = :p_BANK_ACC_NO,
                     IS_DELETED              = :p_IS_DELETED,
-                    EMPLOYEE_STATUS         = :p_EMPLOYEE_STATUS,
                     IS_ON_ROSTER            = :p_IS_ON_ROSTER,
                     SHIFT_CODE              = :p_SHIFT_CODE,
                     BANK_NAME               = :p_BANK_NAME,
@@ -732,9 +731,6 @@ namespace SilkERP360.BML.HRIS
 
                     cmd.Parameters.Add(":p_IS_DELETED", OracleDbType.Int64)
                         .Value = 1;
-
-                    cmd.Parameters.Add(":p_EMPLOYEE_STATUS", OracleDbType.Int64)
-                        .Value = lcl_obj_Employee.EmployeeStatus;
 
                     cmd.Parameters.Add(":p_IS_ON_ROSTER", OracleDbType.Int64)
                         .Value = lcl_obj_Employee.IsOnRoster;

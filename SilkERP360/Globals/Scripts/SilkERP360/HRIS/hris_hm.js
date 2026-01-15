@@ -140,15 +140,12 @@ function changeCompanyLogo() {
 
         }
     }
-    debugger;
     if ($('#ddlCompany option:selected').val() != '') {
         CountNotification();
     }
     else {
         $('#notificationCount').text(0);
     }
-    
-
 };
 
 function CountNotification() {

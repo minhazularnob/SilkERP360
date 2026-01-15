@@ -1,213 +1,144 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeStatusChange.ascx.cs" Inherits="SilkERP360.UI.HRIS.EmployeeStatusChange" %>
-
-
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeStatusChange.ascx.cs"
+    Inherits="SilkERP360.UI.HRIS.EmployeeStatusChange" %>
 
 <script src="../../Globals/Scripts/SilkERP360/HRIS/EmployeeStatusChange.js" type="text/javascript"></script>
 
-<div id="dvBody" class="ui_control_wrapper" >
-    <div id="cmd" style="width:99%;">
-        
-        <p class="login button"> 
+<table id="tblBody" cellpadding="5px" cellspacing="5px" style="width:100%;">
+    <tr>
+        <td>
+            <div class="container-fluid my-4" id="dvEmployeeStatusChange">
+                <div class="card shadow-sm">
 
-            <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save" ClientIDMode="Static" OnClientClick="Save(); return false;" style="width:70px;" />&nbsp;
-            
-        </p>
-    
-        
-    </div>
+                    <!-- Page Header -->
+                    <div class="card-header text-center bg-white">
+                        <h3 class="fontSerif mb-0">Employee Status Change</h3>
+                    </div>
 
+                    <div class="card-body">
 
-<div id="ImagTab">
-<center>
-    <table id="tblphot" >
-    
-        <tr>
-        <td style="width:40%"></td>
-        <td style="width:40%"></td>
-        <td style="width:20%"></td>
-        </tr>
+                        <!-- Employee Image Section -->
+                        <div class="row mb-4">
+                            <div class="col-md-12 text-center">
+                                <asp:Image ID="imgEmployeeImage" runat="server"
+                                    ClientIDMode="Static"
+                                    CssClass="img-thumbnail"
+                                    Height="160px"
+                                    Width="160px" />
+                            </div>
+                        </div>
 
-        <tr>
-        <td style="width:40%"></td>
-        <td style="width:30%"></td>
-        <td style="width:30%"></td>
-        </tr>
+                        <!-- Employee Information -->
+                        <div class="border-bottom pb-3 mb-4">
 
-        <tr>
-        <td style="width:40%"></td>
-        <td style="width:30%"></td>
-        <td style="width:30%"></td>
-        </tr>
-        
-        <tr>
-        <td style="width:40%"></td>
-        <td style="width:30%" height="35px"></td>
-        <td style="width:30%"></td>
-        </tr>
+                            <!-- Row 1 -->
+                            <div class="row g-2 align-items-center">
+                                <div class="col-md-3 text-md-end">
+                                    <label for="txt_emp_ID" class="form-label">Employee ID:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txt_emp_ID" runat="server"
+                                        ClientIDMode="Static"
+                                        CssClass="form-control"
+                                        ReadOnly="true" />
+                                </div>
 
-        <tr>
-        <td colspan="3" style="width: 70%">
-        
+                                <div class="col-md-2 text-md-end">
+                                    <label for="txt_emp_Name" class="form-label">Employee Name:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txt_emp_Name" runat="server"
+                                        ClientIDMode="Static"
+                                        CssClass="form-control"
+                                        ReadOnly="true" />
+                                </div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div class="row g-2 align-items-center mt-2">
+                                <div class="col-md-3 text-md-end">
+                                    <label for="txt_Designation" class="form-label">Designation:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txt_Designation" runat="server"
+                                        ClientIDMode="Static"
+                                        CssClass="form-control"
+                                        ReadOnly="true" />
+                                </div>
+
+                                <div class="col-md-2 text-md-end">
+                                    <label for="txt_Department" class="form-label">Department:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txt_Department" runat="server"
+                                        ClientIDMode="Static"
+                                        CssClass="form-control"
+                                        ReadOnly="true" />
+                                </div>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div class="row g-2 align-items-center mt-2">
+                                <div class="col-md-3 text-md-end">
+                                    <label for="txt_Currnt_status" class="form-label">Current Status:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txt_Currnt_status" runat="server"
+                                        ClientIDMode="Static"
+                                        CssClass="form-control"
+                                        ReadOnly="true" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Status Change Section -->
+                        <div class="border-bottom pb-3 mb-4">
+
+                            <div class="row g-2 align-items-center">
+                                <div class="col-md-3 text-md-end">
+                                    <label for="ddl_Off_ChangeStatus" class="form-label">Change Status To:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:DropDownList ID="ddl_Off_ChangeStatus" runat="server"
+                                        ClientIDMode="Static"
+                                        CssClass="form-select">
+                                        <asp:ListItem Value="0">-- Select Status --</asp:ListItem>
+                                        <asp:ListItem Value="3">Resigned</asp:ListItem>
+                                        <asp:ListItem Value="5">Terminated</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+
+                                <div class="col-md-2 text-md-end">
+                                    <label for="txt_Efct_Date" class="form-label">Effective Date:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:TextBox ID="txt_Efct_Date" runat="server"
+                                        ClientIDMode="Static"
+                                        CssClass="form-control"
+                                        Placeholder="Effective Date" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-center gap-2 mt-3">
+                            <button type="button"
+                                class="btn btn-success flex-fill"
+                                style="max-width:150px;"
+                                onclick="Save();">
+                                Save
+                            </button>
+
+                            <asp:Button ID="btnClear"
+                                runat="server"
+                                Text="Clear"
+                                CssClass="btn btn-secondary flex-fill"
+                                Style="max-width:150px;"
+                                OnClientClick="return false;" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </td>
-        </tr>
-
-        <tr>
-        <td align="center" colspan="3">
-                        &nbsp;</td>
-        </tr>
-
-        <tr>
-        <td style="width:40%">&nbsp;</td>
-        <td style="width:30%" align="right">
-                    <asp:Image ID="imgEmployeeImage" runat="server" ClientIDMode="Static" 
-                        Height="159px" Width="160px" />
-        <td style="width:30%">&nbsp;</td>
-        </tr>
-
-        <tr>
-        <td style="width:40%">&nbsp;</td>
-        <td style="width:30%" align="right">
-                    &nbsp;</td>
-        <td style="width:30%">&nbsp;</td>
-        </tr>        
-
-        </table>
-        </center>
-    </div>
-    <div id="OfficialTab"  ><!-- OFFICIAL TAB CONFIGURATION  class="center_div" -->
-        <%--<center>--%>
-        <table id="tblOfficial" style="width:100%; height:auto; table-layout: fixed;">
-        
-                      <tr>
-                    <td style="width:25%" align="left">                    
-                        &nbsp;</td>
-                     <td style="width:15%" align="left">                    
-                        <asp:Label ID="Label1" runat="server" Text="Employee ID">
-                        </asp:Label>
-                          </td>
-                     <td style="width:32%" align="left">                    
-                         <asp:TextBox ID="txt_emp_ID" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="input-required" PlaceHolder="Employee ID">
-                         </asp:TextBox>
-                          </td>
-                     <td style="width:28%" align="left">                    
-                         &nbsp;</td>
-              </tr>
-             <tr>
-                    <td style="width:15%" align="left">
-                        &nbsp;</td>
-                  <td style="width:35%" align="left">                    
-                        <asp:Label ID="Label2" runat="server" Text="Employee Name">
-                        </asp:Label>
-                    </td>
-                 <td style="width:15%" align="left">                    
-                         <asp:TextBox ID="txt_emp_Name" runat="server" ClientIDMode="Static" ReadOnly="true" 
-                             CssClass="input-required" PlaceHolder="Emp. Name">
-                         </asp:TextBox>
-                    </td>
-                 <td style="width:35%" align="left">                                    
-                        &nbsp;</td>
-              </tr>
-              <tr>
-                <td style="width:15%" align="left">                    
-                        &nbsp;</td>
-                 <td style="width:35%" align="left">                    
-                         <asp:Label ID="Label72" runat="server" Text="Designation">
-                         </asp:Label>
-                   </td>
-                 <td style="width:15%" align="left">                    
-                         <asp:TextBox ID="txt_Designation" runat="server" ClientIDMode="Static" ReadOnly="true"
-                            CssClass="input-required" PlaceHolder="Designation" >
-                         </asp:TextBox>
-                    </td>
-                 <td style="width:35%" align="left">                    
-                        &nbsp;</td>
-            </tr>
-            
-                   <tr>
-                <td style="width:15%" align="left">
-                    
-                    &nbsp;</td>
-                 <td style="width:35%" align="left">
-                    
-                         <asp:Label ID="Label73" runat="server" Text="Department">
-                         </asp:Label>
-                       </td>
-                 <td style="width:15%" align="left">
-                    
-                         <asp:TextBox ID="txt_Department" runat="server" ClientIDMode="Static" ReadOnly="true"
-                             CssClass="input-required" PlaceHolder="Department" >
-                         </asp:TextBox>
-                       </td>
-                 <td style="width:35%" align="left">
-                    
-                     &nbsp;</td>
-              </tr>
-
-            
-                   <tr>
-                <td style="width:15%" align="left">
-                    
-                    &nbsp;</td>
-                 <td style="width:35%" align="left">
-                    
-                         <asp:Label ID="Label74" runat="server" Text="Status"></asp:Label>
-                       </td>
-                 <td style="width:15%" align="left">
-                    
-                         <asp:TextBox ID="txt_Currnt_status" runat="server" ClientIDMode="Static" ReadOnly="true"
-                             CssClass="input-required" PlaceHolder="Current Status" >
-                         </asp:TextBox>
-                       </td>
-                 <td style="width:35%" align="left">
-                    
-                     &nbsp;</td>
-              </tr>
-
-            
-                   <tr>
-                <td style="width:15%" align="left">
-                    
-                    &nbsp;</td>
-                 <td style="width:35%" align="left">
-                    
-                         <asp:Label ID="Label76" runat="server" Text="Change Status To :"></asp:Label>
-                       </td>
-                 <td style="width:15%" align="left">
-                    
-                     <asp:DropDownList ID="ddl_Off_ChangeStatus" runat="server" ClientIDMode="Static"
-                             CssClass="input-required" PlaceHolder="Change Status">
-                             <asp:ListItem Value="0">----Select Change Status</asp:ListItem>
-                                    <asp:ListItem Value="3">Resigned</asp:ListItem>
-                                    <asp:ListItem Value="5">Terminated</asp:ListItem>
-                                   
-                         </asp:DropDownList>
-                       </td>
-                 <td style="width:35%" align="left">
-                    
-                     &nbsp;</td>
-              </tr>
-            
-             <tr>
-                    <td style="width:15%" align="left">                    
-                        &nbsp;</td>
-                 <td style="width:35%" align="left">
-                    
-                         <asp:Label ID="Label75" runat="server" Text="Effective Date">
-                         </asp:Label>
-                    </td>
-                 <td style="width:15%" align="left">                    
-                    
-                         <asp:TextBox ID="txt_Efct_Date" runat="server" ClientIDMode="Static" 
-                             CssClass="input-required" PlaceHolder="Effective Date" >
-                         
-                         </asp:TextBox>
-                    </td>
-                 <td style="width:35%" align="left">
-                    
-                     &nbsp;</td>
-              </tr>
-                      
-    
-    </table>
-        <%--</center>--%>
-    </div>
+    </tr>
+</table>
