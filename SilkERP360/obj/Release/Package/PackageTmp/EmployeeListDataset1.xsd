@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeeListDataset1" targetNamespace="http://tempuri.org/EmployeeListDataset1.xsd" xmlns:mstns="http://tempuri.org/EmployeeListDataset1.xsd" xmlns="http://tempuri.org/EmployeeListDataset1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VIEWEMPLOYEELISTTableAdapter" GeneratorDataComponentClassName="VIEWEMPLOYEELISTTableAdapter" Name="VIEWEMPLOYEELIST" UserDataComponentName="VIEWEMPLOYEELISTTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Web.config)" DbObjectName="SILKERP.VIEWEMPLOYEELIST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT EMPLOYEE_CODE, EMPLOYEE_ID, EMPLOYEE_NAME, DEGN_NAME, JOINING_DATE, CONFIRMATION_DATE, JOB_LOCATION, BLOOD_GROUP FROM SILKERP.VIEWEMPLOYEELIST</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EMPLOYEE_CODE" DataSetColumn="EMPLOYEE_CODE" />
+              <Mapping SourceColumn="EMPLOYEE_ID" DataSetColumn="EMPLOYEE_ID" />
+              <Mapping SourceColumn="EMPLOYEE_NAME" DataSetColumn="EMPLOYEE_NAME" />
+              <Mapping SourceColumn="DEGN_NAME" DataSetColumn="DEGN_NAME" />
+              <Mapping SourceColumn="JOINING_DATE" DataSetColumn="JOINING_DATE" />
+              <Mapping SourceColumn="CONFIRMATION_DATE" DataSetColumn="CONFIRMATION_DATE" />
+              <Mapping SourceColumn="JOB_LOCATION" DataSetColumn="JOB_LOCATION" />
+              <Mapping SourceColumn="BLOOD_GROUP" DataSetColumn="BLOOD_GROUP" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeeListDataset1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="EmployeeListDataset1" msprop:Generator_DataSetName="EmployeeListDataset1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VIEWEMPLOYEELIST" msprop:Generator_RowEvHandlerName="VIEWEMPLOYEELISTRowChangeEventHandler" msprop:Generator_RowDeletedName="VIEWEMPLOYEELISTRowDeleted" msprop:Generator_RowDeletingName="VIEWEMPLOYEELISTRowDeleting" msprop:Generator_RowEvArgName="VIEWEMPLOYEELISTRowChangeEvent" msprop:Generator_TablePropName="VIEWEMPLOYEELIST" msprop:Generator_RowChangedName="VIEWEMPLOYEELISTRowChanged" msprop:Generator_RowChangingName="VIEWEMPLOYEELISTRowChanging" msprop:Generator_TableClassName="VIEWEMPLOYEELISTDataTable" msprop:Generator_RowClassName="VIEWEMPLOYEELISTRow" msprop:Generator_TableVarName="tableVIEWEMPLOYEELIST" msprop:Generator_UserTableName="VIEWEMPLOYEELIST">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_CODE" msprop:Generator_UserColumnName="EMPLOYEE_CODE" type="xs:decimal" />
+              <xs:element name="EMPLOYEE_ID" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_ID" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_IDColumn" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_ID" msprop:Generator_UserColumnName="EMPLOYEE_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMPLOYEE_NAME" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_NAME" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_NAME" msprop:Generator_UserColumnName="EMPLOYEE_NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DEGN_NAME" msprop:Generator_ColumnPropNameInRow="DEGN_NAME" msprop:Generator_ColumnPropNameInTable="DEGN_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnDEGN_NAME" msprop:Generator_UserColumnName="DEGN_NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JOINING_DATE" msprop:Generator_ColumnPropNameInRow="JOINING_DATE" msprop:Generator_ColumnPropNameInTable="JOINING_DATEColumn" msprop:Generator_ColumnVarNameInTable="columnJOINING_DATE" msprop:Generator_UserColumnName="JOINING_DATE" type="xs:dateTime" />
+              <xs:element name="CONFIRMATION_DATE" msprop:Generator_ColumnPropNameInRow="CONFIRMATION_DATE" msprop:Generator_ColumnPropNameInTable="CONFIRMATION_DATEColumn" msprop:Generator_ColumnVarNameInTable="columnCONFIRMATION_DATE" msprop:Generator_UserColumnName="CONFIRMATION_DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="JOB_LOCATION" msprop:Generator_ColumnPropNameInRow="JOB_LOCATION" msprop:Generator_ColumnPropNameInTable="JOB_LOCATIONColumn" msprop:Generator_ColumnVarNameInTable="columnJOB_LOCATION" msprop:Generator_UserColumnName="JOB_LOCATION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="152" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BLOOD_GROUP" msprop:Generator_ColumnPropNameInRow="BLOOD_GROUP" msprop:Generator_ColumnPropNameInTable="BLOOD_GROUPColumn" msprop:Generator_ColumnVarNameInTable="columnBLOOD_GROUP" msprop:Generator_UserColumnName="BLOOD_GROUP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $("#txt_Efct_Date").datepicker({ dateFormat: "dd/MM/yy", maxDate: 0 }).datepicker("setDate", new Date());
+    initializeSelect2('ddl_Off_ChangeStatus', '-----Select Status-----', '100%');
 });
 
 

@@ -22,5 +22,23 @@ namespace SilkERP360.UI.HRIS
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList reportName;
+
+        /// <summary>
+        /// rptTxtStartDateTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox rptTxtStartDateTime;
+
+        /// <summary>
+        /// rptTxtEndDateTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox rptTxtEndDateTime;
     }
 }

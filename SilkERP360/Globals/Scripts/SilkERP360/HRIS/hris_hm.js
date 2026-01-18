@@ -252,7 +252,7 @@ function generateCompanyimagePath(companyCode) {
     var imagePath = '';
     switch (companyCode) {
         case '110000000001':
-            imagePath = '../../Globals/Images/Silkways_card&printing_ltd.png';
+            imagePath = '../../Globals/Images/Silkways_card_printing_ltd.png';
             break;
         case '110000000002':
             imagePath = '../../Globals/Images/wellpac_Logo.png';
@@ -261,7 +261,7 @@ function generateCompanyimagePath(companyCode) {
             imagePath = '../../Globals/Images/Silkways_Agro_Logo.png';
             break;
         case '110000000004':
-            imagePath = '../../Globals/Images/Silkways_Tours&Travels_Logo.png';
+            imagePath = '../../Globals/Images/Silkways_Tours_Travels_Logo.png';
             break;
         case '110000000019':
             imagePath = '../../Globals/Images/Silkways_Cargo_Service_Logo.png';

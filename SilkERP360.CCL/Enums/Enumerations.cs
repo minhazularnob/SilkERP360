@@ -287,13 +287,7 @@ namespace SilkERP360.CCL.Enums
         OUTSIDE_DUTY = 9, //Outside Duty
         REPLACEMENT_DUTY = 10,
         ON_FOREIGN_TOUR = 11,
-        /// <summary>
-        /// When employees WorkGroupData Not Found, LeaveApplication Not Found
-        /// </summary>
         ABSENT_NO_DATA_FOUND = 12,
-        /// <summary>
-        /// Was originally Absent, but overridden to Present
-        /// </summary>
         ABSENT_OVERRIDDEN_PRESENT = 13,
         SHIFT_CHANGE_HOLIDAY = 14
     }

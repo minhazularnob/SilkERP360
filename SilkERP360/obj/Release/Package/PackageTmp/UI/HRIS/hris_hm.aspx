@@ -198,7 +198,7 @@
 
                             <!-- Message -->
                             <div id="dvMessageBoard"
-                                class="col-md-8 alert alert-info text-center master_color_liener_gradient py-1 px-2 mb-0 d-flex align-items-center justify-content-center">
+                                class="col-md-7 alert alert-info text-center master_color_liener_gradient py-1 px-2 mb-0 d-flex align-items-center justify-content-center">
 
                                 <span id="spnMessage" class="fw-bold text-white small text-truncate">Silk ERP Message Board
                                 </span>
@@ -212,10 +212,18 @@
                                         style="height: 50px;" />
                                 </a>
                             </div>
+                            <div class="col-md-1 text-center text-md-start">
+                                <!-- Notification Button -->
+                                <button type="button" class="notification-btn" data-bs-target="#notificationModal"  onclick="loadNotifications()">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="" id="notificationCount">0
+                                    </span>
+                                    <!-- unread count -->
+                                </button>
+                            </div>
                         </div>
                         <hr />
                     </div>
-
                     <!-- Main UI Content Area -->
                     <div class="div_bg_gradient_gray p-3 border rounded" style="min-height: 500px; border-left: 2px #a9a9a9 outset;">
                         <div class="ui_control_wrapper1" style="text-align: left;">
@@ -260,6 +268,31 @@
         </div>
 
     </form>
+
+
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <table id="notificationTable" class="table custom-table fontSerif w-100""></table>
+            </div>
+
+            <div class="modal-footer">
+                <%--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" form="departmentForm" class="btn btn-primary" onclick="UpdateDept()">Save changes</button>--%>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 <!-- Footer -->
@@ -299,4 +332,25 @@
             width: width
         });
     }
+
+        GBL_NOTIFICATION_LIST_TABLE = $('#notificationTable').dataTable({
+            "bJQueryUI": false,
+            "bFilter": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bSearch": true,
+            "oLanguage": {
+                "sEmptyTable": "No Notification Data Available",
+                "sZeroRecords": "No Notification Data Found For Your Specified Criteria"
+            },
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            },
+            "aoColumns": [
+                { "mData": "SL", "sTitle": "Sl.", "sClass": "alignCenter", "bVisible": true },
+                { "mData": "EmployeeID", "sTitle": "EmployeeID", "sClass": "alignCenter" },
+                { "mData": "EmployeeName", "sTitle": "EmployeeName", "sClass": "alignCenter" },
+                { "mData": "JoiningDate", "sTitle": "JoiningDate", "sClass": "alignCenter" },
+                { "mData": "ConfirmationDate", "sTitle": "ConfirmationDate", "sClass": "alignCenter" }
+            ]
+        });
 </script>

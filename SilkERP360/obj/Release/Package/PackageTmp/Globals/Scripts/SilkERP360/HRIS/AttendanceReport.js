@@ -4,7 +4,6 @@
 });
 
 function reportSubmit() {
-    debugger;
     //var ddlEmp = $("#ddlEmp");
     var searchObj = new Array();
 

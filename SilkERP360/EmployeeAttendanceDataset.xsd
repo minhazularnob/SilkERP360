@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeeAttendanceDataset" targetNamespace="http://tempuri.org/EmployeeAttendanceDataset.xsd" xmlns:mstns="http://tempuri.org/EmployeeAttendanceDataset.xsd" xmlns="http://tempuri.org/EmployeeAttendanceDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionString.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VIEWATTENDENCEBYEMPLOYEETableAdapter" GeneratorDataComponentClassName="VIEWATTENDENCEBYEMPLOYEETableAdapter" Name="VIEWATTENDENCEBYEMPLOYEE" UserDataComponentName="VIEWATTENDENCEBYEMPLOYEETableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Web.config)" DbObjectName="SILKERP.VIEWATTENDENCEBYEMPLOYEE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ATTENDANCE_CODE, ATTENDANCE_MASTER_CODE, ATTENDANCE_DATE, EMPLOYEE_CODE, DUTY_FROM, IN_THROUGH, DUTY_UPTO, OUT_THROUGH, DUTY_MINUTES, OVERTIME_AUTO, ATTN_STATUS, REMARKS, WG_OPERATION_MASTER_CODE, EMPLOYEE_ID, EMPLOYEE_NAME, DEPARTMENT, DESIGNATION, STATUS_OVERRIDE_EMPLOYEE_CODE, PAID_PER_HOUR, OVERTIME_ENTRY_TYPE, OVERTIME_ENTRY_EMPLOYEE_CODE, DUTY_SCHEDULE_FROM, DUTY_SCHEDULE_UPTO, OVERTIME_MANUAL_ADJUSTMENT, OVERTIME_TOTAL, MANUAL_OT_ADJUSTMENT_EMP_CODE, IN_DOOR_NO, OUT_DOOR_NO, NIGHT_ALLOWANCE FROM SILKERP.VIEWATTENDENCEBYEMPLOYEE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ATTENDANCE_CODE" DataSetColumn="ATTENDANCE_CODE" />
+              <Mapping SourceColumn="ATTENDANCE_MASTER_CODE" DataSetColumn="ATTENDANCE_MASTER_CODE" />
+              <Mapping SourceColumn="ATTENDANCE_DATE" DataSetColumn="ATTENDANCE_DATE" />
+              <Mapping SourceColumn="EMPLOYEE_CODE" DataSetColumn="EMPLOYEE_CODE" />
+              <Mapping SourceColumn="DUTY_FROM" DataSetColumn="DUTY_FROM" />
+              <Mapping SourceColumn="IN_THROUGH" DataSetColumn="IN_THROUGH" />
+              <Mapping SourceColumn="DUTY_UPTO" DataSetColumn="DUTY_UPTO" />
+              <Mapping SourceColumn="OUT_THROUGH" DataSetColumn="OUT_THROUGH" />
+              <Mapping SourceColumn="DUTY_MINUTES" DataSetColumn="DUTY_MINUTES" />
+              <Mapping SourceColumn="OVERTIME_AUTO" DataSetColumn="OVERTIME_AUTO" />
+              <Mapping SourceColumn="ATTN_STATUS" DataSetColumn="ATTN_STATUS" />
+              <Mapping SourceColumn="REMARKS" DataSetColumn="REMARKS" />
+              <Mapping SourceColumn="WG_OPERATION_MASTER_CODE" DataSetColumn="WG_OPERATION_MASTER_CODE" />
+              <Mapping SourceColumn="EMPLOYEE_ID" DataSetColumn="EMPLOYEE_ID" />
+              <Mapping SourceColumn="EMPLOYEE_NAME" DataSetColumn="EMPLOYEE_NAME" />
+              <Mapping SourceColumn="DEPARTMENT" DataSetColumn="DEPARTMENT" />
+              <Mapping SourceColumn="DESIGNATION" DataSetColumn="DESIGNATION" />
+              <Mapping SourceColumn="STATUS_OVERRIDE_EMPLOYEE_CODE" DataSetColumn="STATUS_OVERRIDE_EMPLOYEE_CODE" />
+              <Mapping SourceColumn="PAID_PER_HOUR" DataSetColumn="PAID_PER_HOUR" />
+              <Mapping SourceColumn="OVERTIME_ENTRY_TYPE" DataSetColumn="OVERTIME_ENTRY_TYPE" />
+              <Mapping SourceColumn="OVERTIME_ENTRY_EMPLOYEE_CODE" DataSetColumn="OVERTIME_ENTRY_EMPLOYEE_CODE" />
+              <Mapping SourceColumn="DUTY_SCHEDULE_FROM" DataSetColumn="DUTY_SCHEDULE_FROM" />
+              <Mapping SourceColumn="DUTY_SCHEDULE_UPTO" DataSetColumn="DUTY_SCHEDULE_UPTO" />
+              <Mapping SourceColumn="OVERTIME_MANUAL_ADJUSTMENT" DataSetColumn="OVERTIME_MANUAL_ADJUSTMENT" />
+              <Mapping SourceColumn="OVERTIME_TOTAL" DataSetColumn="OVERTIME_TOTAL" />
+              <Mapping SourceColumn="MANUAL_OT_ADJUSTMENT_EMP_CODE" DataSetColumn="MANUAL_OT_ADJUSTMENT_EMP_CODE" />
+              <Mapping SourceColumn="IN_DOOR_NO" DataSetColumn="IN_DOOR_NO" />
+              <Mapping SourceColumn="OUT_DOOR_NO" DataSetColumn="OUT_DOOR_NO" />
+              <Mapping SourceColumn="NIGHT_ALLOWANCE" DataSetColumn="NIGHT_ALLOWANCE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeeAttendanceDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="EmployeeAttendanceDataset" msprop:Generator_DataSetName="EmployeeAttendanceDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VIEWATTENDENCEBYEMPLOYEE" msprop:Generator_RowEvHandlerName="VIEWATTENDENCEBYEMPLOYEERowChangeEventHandler" msprop:Generator_RowDeletedName="VIEWATTENDENCEBYEMPLOYEERowDeleted" msprop:Generator_RowDeletingName="VIEWATTENDENCEBYEMPLOYEERowDeleting" msprop:Generator_RowEvArgName="VIEWATTENDENCEBYEMPLOYEERowChangeEvent" msprop:Generator_TablePropName="VIEWATTENDENCEBYEMPLOYEE" msprop:Generator_RowChangedName="VIEWATTENDENCEBYEMPLOYEERowChanged" msprop:Generator_RowChangingName="VIEWATTENDENCEBYEMPLOYEERowChanging" msprop:Generator_TableClassName="VIEWATTENDENCEBYEMPLOYEEDataTable" msprop:Generator_RowClassName="VIEWATTENDENCEBYEMPLOYEERow" msprop:Generator_TableVarName="tableVIEWATTENDENCEBYEMPLOYEE" msprop:Generator_UserTableName="VIEWATTENDENCEBYEMPLOYEE">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ATTENDANCE_CODE" msprop:Generator_ColumnPropNameInRow="ATTENDANCE_CODE" msprop:Generator_ColumnPropNameInTable="ATTENDANCE_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnATTENDANCE_CODE" msprop:Generator_UserColumnName="ATTENDANCE_CODE" type="xs:decimal" />
+              <xs:element name="ATTENDANCE_MASTER_CODE" msprop:Generator_ColumnPropNameInRow="ATTENDANCE_MASTER_CODE" msprop:Generator_ColumnPropNameInTable="ATTENDANCE_MASTER_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnATTENDANCE_MASTER_CODE" msprop:Generator_UserColumnName="ATTENDANCE_MASTER_CODE" type="xs:decimal" />
+              <xs:element name="ATTENDANCE_DATE" msprop:Generator_ColumnPropNameInRow="ATTENDANCE_DATE" msprop:Generator_ColumnPropNameInTable="ATTENDANCE_DATEColumn" msprop:Generator_ColumnVarNameInTable="columnATTENDANCE_DATE" msprop:Generator_UserColumnName="ATTENDANCE_DATE" type="xs:dateTime" />
+              <xs:element name="EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_CODE" msprop:Generator_UserColumnName="EMPLOYEE_CODE" type="xs:decimal" />
+              <xs:element name="DUTY_FROM" msprop:Generator_ColumnPropNameInRow="DUTY_FROM" msprop:Generator_ColumnPropNameInTable="DUTY_FROMColumn" msprop:Generator_ColumnVarNameInTable="columnDUTY_FROM" msprop:Generator_UserColumnName="DUTY_FROM" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IN_THROUGH" msprop:Generator_ColumnPropNameInRow="IN_THROUGH" msprop:Generator_ColumnPropNameInTable="IN_THROUGHColumn" msprop:Generator_ColumnVarNameInTable="columnIN_THROUGH" msprop:Generator_UserColumnName="IN_THROUGH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUTY_UPTO" msprop:Generator_ColumnPropNameInRow="DUTY_UPTO" msprop:Generator_ColumnPropNameInTable="DUTY_UPTOColumn" msprop:Generator_ColumnVarNameInTable="columnDUTY_UPTO" msprop:Generator_UserColumnName="DUTY_UPTO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OUT_THROUGH" msprop:Generator_ColumnPropNameInRow="OUT_THROUGH" msprop:Generator_ColumnPropNameInTable="OUT_THROUGHColumn" msprop:Generator_ColumnVarNameInTable="columnOUT_THROUGH" msprop:Generator_UserColumnName="OUT_THROUGH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DUTY_MINUTES" msprop:Generator_ColumnPropNameInRow="DUTY_MINUTES" msprop:Generator_ColumnPropNameInTable="DUTY_MINUTESColumn" msprop:Generator_ColumnVarNameInTable="columnDUTY_MINUTES" msprop:Generator_UserColumnName="DUTY_MINUTES" type="xs:decimal" />
+              <xs:element name="OVERTIME_AUTO" msprop:Generator_ColumnPropNameInRow="OVERTIME_AUTO" msprop:Generator_ColumnPropNameInTable="OVERTIME_AUTOColumn" msprop:Generator_ColumnVarNameInTable="columnOVERTIME_AUTO" msprop:Generator_UserColumnName="OVERTIME_AUTO" type="xs:decimal" />
+              <xs:element name="ATTN_STATUS" msprop:Generator_ColumnPropNameInRow="ATTN_STATUS" msprop:Generator_ColumnPropNameInTable="ATTN_STATUSColumn" msprop:Generator_ColumnVarNameInTable="columnATTN_STATUS" msprop:Generator_UserColumnName="ATTN_STATUS" type="xs:decimal" />
+              <xs:element name="REMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_UserColumnName="REMARKS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WG_OPERATION_MASTER_CODE" msprop:Generator_ColumnPropNameInRow="WG_OPERATION_MASTER_CODE" msprop:Generator_ColumnPropNameInTable="WG_OPERATION_MASTER_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnWG_OPERATION_MASTER_CODE" msprop:Generator_UserColumnName="WG_OPERATION_MASTER_CODE" type="xs:decimal" />
+              <xs:element name="EMPLOYEE_ID" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_ID" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_IDColumn" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_ID" msprop:Generator_UserColumnName="EMPLOYEE_ID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMPLOYEE_NAME" msprop:Generator_ColumnPropNameInRow="EMPLOYEE_NAME" msprop:Generator_ColumnPropNameInTable="EMPLOYEE_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnEMPLOYEE_NAME" msprop:Generator_UserColumnName="EMPLOYEE_NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DEPARTMENT" msprop:Generator_ColumnPropNameInRow="DEPARTMENT" msprop:Generator_ColumnPropNameInTable="DEPARTMENTColumn" msprop:Generator_ColumnVarNameInTable="columnDEPARTMENT" msprop:Generator_UserColumnName="DEPARTMENT">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESIGNATION" msprop:Generator_ColumnPropNameInRow="DESIGNATION" msprop:Generator_ColumnPropNameInTable="DESIGNATIONColumn" msprop:Generator_ColumnVarNameInTable="columnDESIGNATION" msprop:Generator_UserColumnName="DESIGNATION">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATUS_OVERRIDE_EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInRow="STATUS_OVERRIDE_EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInTable="STATUS_OVERRIDE_EMPLOYEE_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnSTATUS_OVERRIDE_EMPLOYEE_CODE" msprop:Generator_UserColumnName="STATUS_OVERRIDE_EMPLOYEE_CODE" type="xs:decimal" />
+              <xs:element name="PAID_PER_HOUR" msprop:Generator_ColumnPropNameInRow="PAID_PER_HOUR" msprop:Generator_ColumnPropNameInTable="PAID_PER_HOURColumn" msprop:Generator_ColumnVarNameInTable="columnPAID_PER_HOUR" msprop:Generator_UserColumnName="PAID_PER_HOUR" type="xs:decimal" />
+              <xs:element name="OVERTIME_ENTRY_TYPE" msprop:Generator_ColumnPropNameInRow="OVERTIME_ENTRY_TYPE" msprop:Generator_ColumnPropNameInTable="OVERTIME_ENTRY_TYPEColumn" msprop:Generator_ColumnVarNameInTable="columnOVERTIME_ENTRY_TYPE" msprop:Generator_UserColumnName="OVERTIME_ENTRY_TYPE" type="xs:decimal" />
+              <xs:element name="OVERTIME_ENTRY_EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInRow="OVERTIME_ENTRY_EMPLOYEE_CODE" msprop:Generator_ColumnPropNameInTable="OVERTIME_ENTRY_EMPLOYEE_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnOVERTIME_ENTRY_EMPLOYEE_CODE" msprop:Generator_UserColumnName="OVERTIME_ENTRY_EMPLOYEE_CODE" type="xs:decimal" />
+              <xs:element name="DUTY_SCHEDULE_FROM" msprop:Generator_ColumnPropNameInRow="DUTY_SCHEDULE_FROM" msprop:Generator_ColumnPropNameInTable="DUTY_SCHEDULE_FROMColumn" msprop:Generator_ColumnVarNameInTable="columnDUTY_SCHEDULE_FROM" msprop:Generator_UserColumnName="DUTY_SCHEDULE_FROM" type="xs:dateTime" />
+              <xs:element name="DUTY_SCHEDULE_UPTO" msprop:Generator_ColumnPropNameInRow="DUTY_SCHEDULE_UPTO" msprop:Generator_ColumnPropNameInTable="DUTY_SCHEDULE_UPTOColumn" msprop:Generator_ColumnVarNameInTable="columnDUTY_SCHEDULE_UPTO" msprop:Generator_UserColumnName="DUTY_SCHEDULE_UPTO" type="xs:dateTime" />
+              <xs:element name="OVERTIME_MANUAL_ADJUSTMENT" msprop:Generator_ColumnPropNameInRow="OVERTIME_MANUAL_ADJUSTMENT" msprop:Generator_ColumnPropNameInTable="OVERTIME_MANUAL_ADJUSTMENTColumn" msprop:Generator_ColumnVarNameInTable="columnOVERTIME_MANUAL_ADJUSTMENT" msprop:Generator_UserColumnName="OVERTIME_MANUAL_ADJUSTMENT" type="xs:decimal" />
+              <xs:element name="OVERTIME_TOTAL" msprop:Generator_ColumnPropNameInRow="OVERTIME_TOTAL" msprop:Generator_ColumnPropNameInTable="OVERTIME_TOTALColumn" msprop:Generator_ColumnVarNameInTable="columnOVERTIME_TOTAL" msprop:Generator_UserColumnName="OVERTIME_TOTAL" type="xs:decimal" />
+              <xs:element name="MANUAL_OT_ADJUSTMENT_EMP_CODE" msprop:Generator_ColumnPropNameInRow="MANUAL_OT_ADJUSTMENT_EMP_CODE" msprop:Generator_ColumnPropNameInTable="MANUAL_OT_ADJUSTMENT_EMP_CODEColumn" msprop:Generator_ColumnVarNameInTable="columnMANUAL_OT_ADJUSTMENT_EMP_CODE" msprop:Generator_UserColumnName="MANUAL_OT_ADJUSTMENT_EMP_CODE" type="xs:decimal" />
+              <xs:element name="IN_DOOR_NO" msprop:Generator_ColumnPropNameInRow="IN_DOOR_NO" msprop:Generator_ColumnPropNameInTable="IN_DOOR_NOColumn" msprop:Generator_ColumnVarNameInTable="columnIN_DOOR_NO" msprop:Generator_UserColumnName="IN_DOOR_NO" type="xs:decimal" />
+              <xs:element name="OUT_DOOR_NO" msprop:Generator_ColumnPropNameInRow="OUT_DOOR_NO" msprop:Generator_ColumnPropNameInTable="OUT_DOOR_NOColumn" msprop:Generator_ColumnVarNameInTable="columnOUT_DOOR_NO" msprop:Generator_UserColumnName="OUT_DOOR_NO" type="xs:decimal" />
+              <xs:element name="NIGHT_ALLOWANCE" msprop:Generator_ColumnPropNameInRow="NIGHT_ALLOWANCE" msprop:Generator_ColumnPropNameInTable="NIGHT_ALLOWANCEColumn" msprop:Generator_ColumnVarNameInTable="columnNIGHT_ALLOWANCE" msprop:Generator_UserColumnName="NIGHT_ALLOWANCE" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

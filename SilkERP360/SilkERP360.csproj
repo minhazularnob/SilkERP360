@@ -5898,11 +5898,11 @@
     <Content Include="Globals\Images\SilkERP_Txt_Logo_v_4.png" />
     <Content Include="Globals\Images\Silkspoon_logo.png" />
     <Content Include="Globals\Images\Silkways_Agro_Logo.png" />
-    <Content Include="Globals\Images\Silkways_card&amp;printing_ltd.png" />
+    <Content Include="Globals\Images\Silkways_card_printing_ltd.png" />
     <Content Include="Globals\Images\Silkways_Cargo_Service_Logo.png" />
     <Content Include="Globals\Images\Silkways_Group_logo.png" />
     <Content Include="Globals\Images\Silkways_Solutions_Logo.png" />
-    <Content Include="Globals\Images\Silkways_Tours&amp;Travels_Logo.png" />
+    <Content Include="Globals\Images\Silkways_Tours_Travels_Logo.png" />
     <Content Include="Globals\Images\SilkwaysGroupLogo.jpg" />
     <Content Include="Globals\Images\upload.jpg" />
     <Content Include="Globals\Images\Wavy_Gen-01_Single-07.jpg" />
@@ -10327,6 +10327,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeAttendanceDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeAttendanceDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeListDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -11340,6 +11345,17 @@
     <Content Include="EmployeeListDataSet.xsc">
       <DependentUpon>EmployeeListDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="EmployeeAttendanceDataset.xsc">
+      <DependentUpon>EmployeeAttendanceDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="EmployeeAttendanceDataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeAttendanceDataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="EmployeeAttendanceDataset.xss">
+      <DependentUpon>EmployeeAttendanceDataset.xsd</DependentUpon>
+    </Content>
     <None Include="EmployeeListDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>EmployeeListDataSet.Designer.cs</LastGenOutput>
@@ -11726,6 +11742,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Attendance.rdlc" />
     <EmbeddedResource Include="Reports\EmployeeList.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
