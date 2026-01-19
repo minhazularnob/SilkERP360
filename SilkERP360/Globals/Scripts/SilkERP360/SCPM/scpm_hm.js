@@ -2,7 +2,6 @@
 $(document).ready(function () {
     $('div').css("font-family", "Verdana");
     $('#dvHMenu').html(lcl_str_HorizontalMenuHTML); //lcl_str_HorizontalMenuHTML variable in scpm_hm code behind
-    console.log(lcl_str_HorizontalMenuHTML);
     loadEmployeeComapanyLogo();
     setCompanyName($('#companyIdHidden').val());
 });

@@ -84,11 +84,11 @@
     <%--<script src="../../Globals/LoginForm/modernizr.custom.63321.js" type="text/javascript"></script>--%>
     <script src="../../Globals/Scripts/SilkERP360/globals.js" type="text/javascript"></script>
     
-    <%--<script src="../../Globals/Scripts/plug-ins/auto-logout/CheckBrowserClose.js" type="text/javascript"></script>
+    <script src="../../Globals/Scripts/plug-ins/auto-logout/CheckBrowserClose.js" type="text/javascript"></script>
     <script src="../../Globals/Scripts/plug-ins/auto-logout/jquery.idle-timer.js" type="text/javascript"></script>
     <script src="../../Globals/Scripts/plug-ins/auto-logout/timeout-dialog.js" type="text/javascript"></script>
     <link href="../../Globals/Scripts/plug-ins/auto-logout/timeout-dialog.css" rel="stylesheet" type="text/css" />
-    <script src="../../Globals/Scripts/plug-ins/auto-logout/auto-logout.js" type="text/javascript"></script>--%>
+    <script src="../../Globals/Scripts/plug-ins/auto-logout/auto-logout.js" type="text/javascript"></script>
 
 
 
@@ -105,6 +105,7 @@
     
 <%-- ***************************************Conmmon js method *****************************************--%>
     <link href="../../Globals/Styles/SilkERP_Theme_3/demo.css" rel="stylesheet" type="text/css" />
+    <link href="../../Globals/fontawesome-free-7.1.0-web/css/all.min.css" rel="stylesheet" />
     <link href="../../Globals/Styles/SilkERP_Theme_3/style2.css" rel="stylesheet" type="text/css" />
     <link href="../../Globals/Styles/SilkERP_Theme_3/animate-custom.css" rel="stylesheet"
         type="text/css" />
@@ -154,87 +155,135 @@
 <%--*************************************************************************************************************************************--%> 
     
     <div class="container-fluid" style="font-family: serif; height: 800px; padding: 0;">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-auto p-0 silkways_solid_Blue" id="sidebar" onmouseover="expandSidebar()" onmouseout="collapseSidebar()">
-            <div id="dvHMenu" class="pt-3">
-                <!-- Sidebar menu here -->
-            </div>
-        </div>
-
-        <!-- Main Content Area -->
-        <div class="col ps-3">
-            <!-- Top Bar (optional) -->
-            <div class="bg-white border-bottom mb-2">
-                <!-- Horizontal menu or top nav (optional) -->
-            </div>
-
-            <!-- Header Info -->
-            <div class="bg-light p-3 mb-3 rounded shadow-sm">
                 <div class="row">
-                    <div class="col-md-1">
-                        <!-- Optional Company Logo -->
-                        <img id="companyLogoForEmployee" src="" alt="logo" style="height: 70px; width: 90px; object-fit: contain;" />
+                <div class="col-auto p-0 silkways_solid_Blue" id="sidebar">
+                    <img src="/Globals/Images/sidebar.png" id="sideBarIcon" style="margin-top:5%" class="sidebar-image" onclick="expandSidebar()" />
+    
+                    <div style="text-align: right;">
+                        <i onmouseover="this.style.background='rgba(255,0,0,0.8)'; this.style.transform='scale(1.15) rotate(90deg)';"
+                            onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1) rotate(0deg)';"
+                            title="Close" class="fa-solid fa-xmark" style="background: rgba(0,0,0,0.5); margin-right:5px;margin-bottom:-10px; border-radius: 50%; color: #fff; cursor: pointer; z-index: 9999; width: 40px; height: 40px; align-items: center; padding: 2%; font-size: 28px; transition: all 0.2s ease;"
+                            onclick="collapseSidebar()"></i>
                     </div>
-
-                    <div class="col-md-6 ps-5">
-                        <span class="silkerp_logo silkways_solid_Blue_font fs-4 fontSerif fontBold">Silkways Enterprise Resource Planner (SilkERP360)</span><br />
-                        <span class="module_title silkways_solid_Orange_font fs-4 fontSerif fontBold">Silkcard Production Manager (SCPM) v.1.0</span>
-                    </div>
-
-                    <div class="col-md-2 fontSerif silkways_solid_Blue_font" style="font-size: smaller;">
-                        <p class="mb-0">
-                            <strong>Name:</strong>
-                            <asp:Label ID="txtName" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
-                        </p>
-                        <p class="mb-0">
-                            <strong>Username:</strong>
-                            <asp:Label ID="txtUserName" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
-                        </p>
-                        <p class="mb-0">
-                            <strong>Designation:</strong>
-                            <asp:Label ID="txtDesignation" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
-                        </p>
-                        <div class="d-flex mb-0 fontSerif">
-                            <p class="mb-0 me-3">
-                                <strong>IP:</strong>
-                                <asp:Label ID="txtIP" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
-                            </p>
-                            <p class="mb-0">
-                                <strong>Acc Lvl:</strong>
-                                <asp:Label ID="txtAccessLevel" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 d-flex align-items-center" style="font-family: 'Georgia', serif;">
-                        <asp:Image ID="imgEmpImage" runat="server" Width="100px" Height="100px" CssClass="img-thumbnail border-0 me-2" />
-                        <div class="d-flex flex-column justify-content-center small fontSerif silkways_solid_Orange_font" style="line-height: 1.3">
-                            <asp:Label ID="lblDay" runat="server" CssClass="day fw-bold" ClientIDMode="Static" />
-                            <asp:Label ID="lblMonth" runat="server" CssClass="month fw-bold" ClientIDMode="Static" />
-                            <asp:Label ID="lblYear" runat="server" CssClass="year fw-bold" ClientIDMode="Static" />
-                        </div>
-                    </div>
-
-                    <div id="companyLogoDiv" class="col-md-1" style="padding: 0px; display: none">
-                        <img id="comapanyLogo" src="../../Globals/Images/Silkways_Solutions_Logo.png" alt="logo" />
+                    <div id="dvHMenu" class="pt-3">
                     </div>
                 </div>
 
-                <hr />
-            </div>
+                <!-- Main Content Area -->
+                <div class="col ps-3">
+                    <!-- Optional Top Menu -->
+                    <div class="bg-white border-bottom mb-2">
+                        <!-- Leave this empty or use for a horizontal top nav -->
+                    </div>
 
-            <!-- Main UI Content Area -->
-            <div class="div_bg_gradient_gray p-3 border rounded" style="min-height: 500px; border-left: 2px #a9a9a9 outset;">
-                <div class="ui_control_wrapper1" style="text-align: left;">
-                    <div id="dvUIContainer" style="visibility: hidden; height: 100%; padding: 5px;">
-                        <!-- Your dynamic SCPM UI content goes here -->
-                        <br />
+                    <!-- Header Info Block -->
+                    <div class="bg-light p-3 mb-3 rounded shadow-sm">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img id="companyLogoForEmployee" src="" alt="logo" style="height: 70px; width: 90px object-fit: contain;" />
+                            </div>
+
+                            <div class="col-md-6 ps-5">
+                                <span class="silkerp_logo silkways_solid_Blue_font fs-4 fontSerif fontBold">Silkways Enterprise Resource Planner (SilkERP360)</span><br />
+                                <span class="module_title silkways_solid_Orange_font fs-4 fontSerif fontBold">Human Resource Information Management System v.1.0</span>
+                            </div>
+
+                            <div class="col-md-2 fontSerif silkways_solid_Blue_font" style="font-size: smaller;">
+                                <p class="mb-0 ">
+                                    <strong>Name:</strong>
+                                    <asp:Label ID="txtName" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                                </p>
+                                <p class="mb-0 ">
+                                    <strong>Username:</strong>
+                                    <asp:Label ID="txtUserName" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                                </p>
+                                <p class="mb-0 ">
+                                    <strong>Designation:</strong>
+                                    <asp:Label ID="txtDesignation" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                                </p>
+                                <!-- IP and Acc Lvl in one line -->
+                                <div class="d-flex mb-0 fontSerif">
+                                    <p class="mb-0 me-3">
+                                        <strong>IP:</strong>
+                                        <asp:Label ID="txtIP" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                                    </p>
+                                    <p class="mb-0">
+                                        <strong>Acc Lvl:</strong>
+                                        <asp:Label ID="txtAccessLevel" runat="server" CssClass="fw-bold" ClientIDMode="Static" />
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 d-flex align-items-center" style="font-family: 'Georgia', serif;">
+                                <!-- Image on the left -->
+                                <asp:Image ID="imgEmpImage" runat="server" Width="100px" Height="100px" CssClass="img-thumbnail border-0 me-2" />
+
+                                <!-- Date stacked vertically to the right -->
+                                <div class="d-flex flex-column justify-content-center small fontSerif silkways_solid_Orange_font" style="line-height: 1.3">
+                                    <asp:Label ID="lblDay" runat="server" CssClass="day fw-bold" ClientIDMode="Static" />
+                                    <asp:Label ID="lblMonth" runat="server" CssClass="month fw-bold" ClientIDMode="Static" />
+                                    <asp:Label ID="lblYear" runat="server" CssClass="year fw-bold" ClientIDMode="Static" />
+                                </div>
+                            </div>
+
+                            <div id="companyLogoDiv" class="col-md-1" style="padding: 0px; display: none">
+                                <img id="comapanyLogo" src="../../Globals/Images/Silkways_Solutions_Logo.png" alt="logo"  />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row align-items-center g-1 compact-bar">
+
+                            <!-- Company -->
+                            <div class="col-md-3 align-items-center">
+                                <asp:DropDownList
+                                    ID="ddlCompany"
+                                    runat="server"
+                                    CssClass="form-select form-select-sm"
+                                    ClientIDMode="Static">
+                                    <asp:ListItem />
+                                </asp:DropDownList>
+                            </div>
+
+                            <!-- Message -->
+                            <div id="dvMessageBoard"
+                                class="col-md-7 alert alert-info text-center master_color_liener_gradient py-1 px-2 mb-0 d-flex align-items-center justify-content-center">
+
+                                <span id="spnMessage" class="fw-bold text-white small text-truncate">Silk ERP Message Board
+                                </span>
+                            </div>
+
+                            <!-- Refresh -->
+                            <div class="col-md-1 text-center text-md-start">
+                                <a id="lnkRefresh" href="#" onclick="Refresh(event); return false;">
+                                    <img src="../../Globals/Images/icons8-refresh-128.png"
+                                        alt="Refresh"
+                                        style="height: 50px;" />
+                                </a>
+                            </div>
+                            <div class="col-md-1 text-center text-md-start">
+                                <!-- Notification Button -->
+                                <button type="button" class="notification-btn" data-bs-target="#notificationModal"  onclick="loadNotifications()">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="" id="notificationCount">0
+                                    </span>
+                                    <!-- unread count -->
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                    <!-- Main UI Content Area -->
+                    <div class="div_bg_gradient_gray p-3 border rounded" style="min-height: 500px; border-left: 2px #a9a9a9 outset;">
+                        <div class="ui_control_wrapper1" style="text-align: left;">
+                            <div id="dvUIContainer" style="visibility: hidden; height: 100%; padding: 5px;">
+                                <!-- Your dynamic UI content goes here -->
+                                <br />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 
     <!-- Footer -->
     <footer class="footer_master_color_liener_gradient text-white py-3 border-top fontSerif" style="font-size: 0.95rem; opacity: 0.95;">
