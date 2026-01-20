@@ -38,7 +38,7 @@ namespace SilkERP360.BML.HRIS
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
                System.String lcl_str_SqlQuery = System.String.Format("Select NAME From COMPANY Where COMPANY_CODE = {0} AND Status = {1} AND IS_DELETED = 1", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.Status.Active);
-               Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
+                Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_CompanyReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
                if (lcl_obj_CompanyReader.HasRows == false)
                {
                    System.String lcl_str_ErrorMessage = System.String.Format("Fatal Error : Company (Code : {0}) Not Found!!!", IP_ui64_CompanyCode);

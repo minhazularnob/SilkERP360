@@ -82,7 +82,7 @@ namespace SilkERP360.BML.HRIS
         private void SendMailToApprovers(Dictionary<string, List<string>> employeeInfo, IncrementRequest incrementRequest)
         {
             var mailNotifier = new SilkERP360.BML.Services.Mail.MailNotifier();
-            string emailSubject = "Increment Approval Pending";
+            string emailSubject = "Increment Approval Pending-"+ DateTime.Now.ToString();
 
             string mailTemplateUrl = _commonManager.mailTemplateUrl;
 

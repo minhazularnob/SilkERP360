@@ -113,7 +113,7 @@ namespace SilkERP360.BML.HRIS
         private void SendMailToApprovers(Dictionary<string, List<string>> employeeInfo, PromotionHistory promotionHistory)
         {
             var mailNotifier = new SilkERP360.BML.Services.Mail.MailNotifier();
-            string emailSubject = "Promotion Approval Pending";
+            string emailSubject = "Promotion Approval Pending-"+DateTime.Now.ToString();
 
             string mailTemplateUrl = _commonManager.mailTemplateUrl;
 
