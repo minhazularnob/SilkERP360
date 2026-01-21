@@ -30,7 +30,7 @@ namespace SilkERP360.SP.HRIS
                                                                             UNION ALL
                                                                             SELECT INCREMENT_CODE, EMPLOYEE_CODE, INCREMENT_DATE, PREVIOUS_GROSS, INC_BASIC, INC_HOURSE_RENT, INC_CONVEYENCE, INC_MEDICAL, INC_ENTERTAINMENT, INC_GROSS, ENTRY_DATE, ENTRY_EMPLOYEE_CODE, EFFECTIVE_MONTH, EFFECTIVE_YEAR, is_approved
                                                                             FROM salary_increment_request
-                                                                            WHERE EMPLOYEE_CODE = {0})inc_data LEFT JOIN promotion_approvers approvers
+                                                                            WHERE EMPLOYEE_CODE = {0} and salary_increment_request.INCREMENT_CODE not in(select increment_mapping.increment_request_code from increment_mapping))inc_data LEFT JOIN promotion_approvers approvers
                                                                             ON inc_data.INCREMENT_CODE = approvers.history_id and  approvers.employee_code={2} ORDER BY EFFECTIVE_YEAR, EFFECTIVE_MONTH ASC", IP_ui64_EmployeeCode,(int)ApproveStatus.Approved, IP_ui64_user_employee_code);
 
                     SilkERP360.BML.HRIS.IncrementManager lcl_obj_IncrementManager = new BML.HRIS.IncrementManager();
