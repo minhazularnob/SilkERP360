@@ -11,7 +11,9 @@ namespace SilkERP360.PromotionUpdater
         {
             string connStr = DALObjectPoolManager.CONNECTION_STRING;
             var executor = new PromotionUpdater(connStr);
+            var LeaveExecutor = new LeaveUpdater(connStr);
             executor.ExecutePromotionsAndIncrement();
+            LeaveExecutor.ExecuteCasualLeaveUpdate();
         }
     }
 }

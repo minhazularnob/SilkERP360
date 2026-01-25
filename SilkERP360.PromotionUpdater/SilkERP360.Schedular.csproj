@@ -81,7 +81,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="IncrementUpdater.cs" />
+    <Compile Include="LeaveUpdater.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PromotionUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

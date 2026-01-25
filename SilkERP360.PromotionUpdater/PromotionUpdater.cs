@@ -10,6 +10,7 @@ namespace SilkERP360.PromotionUpdater
     {
         private readonly string _connectionString;
         DateTime sysDate = DateTime.Now.Date;
+        Common common = new Common();
         public PromotionUpdater(string connectionString)
         {
             _connectionString = connectionString;
@@ -63,7 +64,7 @@ namespace SilkERP360.PromotionUpdater
                       AND ph.isapproved = 1
                 )";
 
-            ExecuteNonQuery(conn, tran, sql);
+            common.ExecuteNonQuery(conn, tran, sql);
             Console.WriteLine("Rejected old salary increment requests.");
         }
 
@@ -78,7 +79,7 @@ namespace SilkERP360.PromotionUpdater
                 WHERE isapproved = 1
                   AND effective_from < TRUNC(SYSDATE)";
 
-            ExecuteNonQuery(conn, tran, sql);
+            common.ExecuteNonQuery(conn, tran, sql);
             Console.WriteLine("Rejected outdated promotions.");
         }
 
@@ -104,7 +105,7 @@ namespace SilkERP360.PromotionUpdater
                       AND p.effective_from = TRUNC(SYSDATE)
                 )";
 
-            ExecuteNonQuery(conn, tran, sql);
+            common.ExecuteNonQuery(conn, tran, sql);
             Console.WriteLine("Employee designations updated.");
         }
 
@@ -307,7 +308,7 @@ namespace SilkERP360.PromotionUpdater
                 WHERE isapproved = 2
                   AND effective_from = TRUNC(SYSDATE)";
 
-            ExecuteNonQuery(conn, tran, sql);
+            common.ExecuteNonQuery(conn, tran, sql);
         }
 
         // --------------------------------------------------------------------
@@ -318,20 +319,9 @@ namespace SilkERP360.PromotionUpdater
             string sql = @"UPDATE tokens SET is_valid = 0 
                            WHERE expiry_at < SYSDATE AND is_valid = 1";
 
-            ExecuteNonQuery(conn, tran, sql);
+            common.ExecuteNonQuery(conn, tran, sql);
         }
 
-        // --------------------------------------------------------------------
-        // Helper for simple non-query execution
-        // --------------------------------------------------------------------
-        private void ExecuteNonQuery(OracleConnection conn, OracleTransaction tran, string sql)
-        {
-            using (var cmd = new OracleCommand(sql, conn))
-            {
-                cmd.Transaction = tran;
-                cmd.ExecuteNonQuery();
-            }
-        }
     }
 
     // Helper DTO
