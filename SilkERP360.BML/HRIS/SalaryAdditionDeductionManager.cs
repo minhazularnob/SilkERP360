@@ -18,7 +18,7 @@ namespace SilkERP360.BML.HRIS
         {
             System.UInt64 lcl_ui64_SalaryAddDedCode = 0;
             
-            System.String lcl_str_SqlQuery = System.String.Format("SELECT SALARY_ADDITION_DEDUCTION_SEQ.NEXTVAL AS ID FROM DUAL");
+            System.String lcl_str_SqlQuery = System.String.Format("SELECT max(add_ded_code)+1 as ID from salary_addition_deduction");
             lcl_ui64_SalaryAddDedCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;

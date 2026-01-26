@@ -16,7 +16,7 @@ namespace SilkERP360.BML.HRIS
         public ulong Save(CCL.BusinessEntities.HRIS.Salary IP_obj_Salary, object IP_obj_DBManager)
         {
             System.UInt64 lcl_ui64_SalaryCode = 0;
-            System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", IP_obj_Salary.GetSequence());
+            System.String lcl_str_SqlQuery = System.String.Format("SELECT max(salary_code)+1 as ID from salary");
             lcl_ui64_SalaryCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
@@ -36,7 +36,7 @@ namespace SilkERP360.BML.HRIS
         public ulong Save(CCL.BusinessEntities.HRIS.Salary IP_obj_Salary)
         {
             System.UInt64 lcl_ui64_SalaryCode = 0;
-            System.String lcl_str_SqlQuery = System.String.Format("SELECT SEQ_SALARY.NEXTVAL AS ID FROM DUAL", IP_obj_Salary.GetSequence());
+            System.String lcl_str_SqlQuery = System.String.Format("SELECT max(salary_code)+1 as ID from salary");
             lcl_ui64_SalaryCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
                 using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
