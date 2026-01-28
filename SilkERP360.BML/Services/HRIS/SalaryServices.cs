@@ -187,7 +187,7 @@ namespace SilkERP360.BML.Services.HRIS
                     CCL.Misc.Mailer lcl_obj_Mailer = new CCL.Misc.Mailer(lcl_objLst_MailListTo, lcl_objLst_MailListCC);
                     lcl_obj_DBManager.InternalResource.CommitTransaction();
                     lcl_obj_DBManager.InternalResource.Close();
-                    lcl_obj_Mailer.SendMail(lcl_str_MailSubject, lcl_str_SalaryReport);
+                    //lcl_obj_Mailer.SendMail(lcl_str_MailSubject, lcl_str_SalaryReport);
 
                  
                     /******************************************************************************************************************************************/

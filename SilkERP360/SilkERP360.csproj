@@ -10123,6 +10123,7 @@
     <Content Include="UI\HRIS\hris_hm.aspx" />
     <Content Include="UI\HRIS\HRReport.ascx" />
     <Content Include="UI\HRIS\IncrementAndPromotionList.ascx" />
+    <Content Include="UI\HRIS\EmployeeTax.ascx" />
     <Content Include="UI\HRIS\PromotionHistory.ascx" />
     <Content Include="UI\HRIS\IncrementIOHistory.ascx" />
     <Content Include="UI\HRIS\IncrementSummery.ascx" />
@@ -10165,6 +10166,7 @@
     <Content Include="UI\HRIS\Scripts\EmployeeWorkGroupSchedule.js" />
     <Content Include="UI\HRIS\Scripts\IncrementAndPromotionList.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeIdCardInfo.js" />
+    <Content Include="UI\HRIS\Scripts\EmployeeTax.js" />
     <Content Include="UI\HRIS\Scripts\PromotionHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementIOHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementSummery.js" />
@@ -10290,6 +10292,7 @@
     <Content Include="WebServices\HRIS\SalaryAddDedService.asmx" />
     <Content Include="WebServices\HRIS\SalaryService.asmx" />
     <Content Include="WebServices\HRIS\ShiftService.asmx" />
+    <Content Include="WebServices\HRIS\TaxService.asmx" />
     <Content Include="WebServices\HRIS\UserInterfaceLoaderService.asmx" />
     <Content Include="WebServices\HRIS\WeekendManagementService.asmx" />
     <Content Include="WebServices\HRIS\WorkGroupServices.asmx" />
@@ -10655,6 +10658,13 @@
     </Compile>
     <Compile Include="UI\HRIS\IncrementAndPromotionList.ascx.designer.cs">
       <DependentUpon>IncrementAndPromotionList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HRIS\EmployeeTax.ascx.cs">
+      <DependentUpon>EmployeeTax.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HRIS\EmployeeTax.ascx.designer.cs">
+      <DependentUpon>EmployeeTax.ascx</DependentUpon>
     </Compile>
     <Compile Include="UI\HRIS\PromotionHistory.ascx.cs">
       <DependentUpon>PromotionHistory.ascx</DependentUpon>
@@ -11179,6 +11189,10 @@
     </Compile>
     <Compile Include="WebServices\HRIS\ShiftService.asmx.cs">
       <DependentUpon>ShiftService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\HRIS\TaxService.asmx.cs">
+      <DependentUpon>TaxService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebServices\HRIS\UserInterfaceLoaderService.asmx.cs">

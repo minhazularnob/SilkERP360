@@ -113,6 +113,7 @@
     <Compile Include="HRIS\AttendanceSP.cs" />
     <Compile Include="HRIS\BonusServices.cs" />
     <Compile Include="HRIS\IncrementAndPromotionHistoryService.cs" />
+    <Compile Include="HRIS\EmployeeTaxService.cs" />
     <Compile Include="HRIS\PromotionHistoryService.cs" />
     <Compile Include="HRIS\CompanyService.cs" />
     <Compile Include="HRIS\EmployeeSP.cs" />

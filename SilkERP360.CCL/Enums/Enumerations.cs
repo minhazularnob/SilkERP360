@@ -383,4 +383,9 @@ namespace SilkERP360.CCL.Enums
         Approved = 2,
         Promoted = 3
     }
+    public enum IsTaxDeduction
+    {
+        Enabled = 1,
+        Disabled = 0
+    }
 }
