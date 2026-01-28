@@ -37,7 +37,7 @@
                 "sClass": "alignRight",
                 "sWidth": "10%",
                 "mRender": function (data, type, row) {
-                    return '<input type="number" class="txtTaxAmount" data-employeeid="' + row.EmployeeId + '" value="' + (data || 0) + '" />';
+                    return '<input type="number" class="txtTaxAmount" data-employeeid="' + row.EmployeeId + '" value="' + (data || 0) + '" min="0" />';
                 }
             }
         ]
@@ -159,6 +159,11 @@ $(document).on('change', '#tblEmployeeTaxList .chkTaxDeduct', function () {
     // Update header checkbox
     $('#tblEmployeeTaxList #chkSelectAll').prop('checked', total === checked);
 });
+
+$(document).on('input', '.txtTaxAmount', function () {
+    if (parseFloat(this.value) < 0) this.value = 0;
+});
+
 
 
 
