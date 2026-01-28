@@ -419,7 +419,7 @@ namespace SilkERP360.BML.HRIS
                 else
                 {
                     UInt64 newCode = Convert.ToUInt64(
-                        db.ExecuteScalar("SELECT NVL(MAX(ADD_DED_CODE),1000000000000000) FROM SALARY_ADDITION_DEDUCTION")) + 1;
+                        db.ExecuteScalar("SELECT NVL(MAX(ADD_DED_CODE),1200000000) FROM SALARY_ADDITION_DEDUCTION")) + 1;
 
                     db.ExecuteNonQuery(
                         $"INSERT INTO SALARY_ADDITION_DEDUCTION " +
