@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -380,6 +381,59 @@ namespace SilkERP360.BML.HRIS
             }, "BMLExceptionPolicy");
             return lcl_obj_SalaryMaster;
         }
+
+        public bool ProcessIncomeTax(UInt64 empCode, int month, UInt16 year, object dbObj)
+        {
+            return this.ExceptionManager.Process<bool>(() =>
+            {
+                var db = (SilkERP360.DAL.DBManager)dbObj;
+                if (db.ConnectionState != System.Data.ConnectionState.Open) db.Open();
+
+                object addDedCode = db.ExecuteScalar(
+                    $"SELECT ADD_DED_CODE FROM SALARY_ADDITION_DEDUCTION " +
+                    $"WHERE EMPLOYEE_CODE={empCode} AND EFFECTIVE_MONTH={month} AND EFFECTIVE_YEAR={year} " +
+                    $"AND ADD_OR_DED=2 AND ADD_DED_TYPE=3");
+
+                object taxObj = db.ExecuteScalar(
+                    $"SELECT TAX_AMOUNT FROM EMPLOYEE_TAX " +
+                    $"WHERE EMPLOYEE_CODE={empCode} AND IS_TAX_DEDUCTION=1 AND TAX_AMOUNT>0");
+
+                //  No tax → delete if exists
+                if (taxObj == null || taxObj == DBNull.Value)
+                {
+                    if (addDedCode != null)
+                        db.ExecuteNonQuery($"DELETE FROM SALARY_ADDITION_DEDUCTION WHERE ADD_DED_CODE={addDedCode}");
+                    return true;
+                }
+
+                decimal taxAmount = Convert.ToDecimal(taxObj);
+
+                //  Update
+                if (addDedCode != null)
+                {
+                    db.ExecuteNonQuery(
+                        $"UPDATE SALARY_ADDITION_DEDUCTION SET AMOUNT={taxAmount}, IS_PROCESSED=0, ENTRY_DATE=SYSDATE " +
+                        $"WHERE ADD_DED_CODE={addDedCode}");
+                }
+                //  Insert
+                else
+                {
+                    UInt64 newCode = Convert.ToUInt64(
+                        db.ExecuteScalar("SELECT NVL(MAX(ADD_DED_CODE),1000000000000000) FROM SALARY_ADDITION_DEDUCTION")) + 1;
+
+                    db.ExecuteNonQuery(
+                        $"INSERT INTO SALARY_ADDITION_DEDUCTION " +
+                        $"(ADD_DED_CODE,EMPLOYEE_CODE,ADD_OR_DED,ADD_DED_TYPE,AMOUNT,ADD_DED_DATE," +
+                        $"EFFECTIVE_MONTH,EFFECTIVE_YEAR,IS_PROCESSED,STATUS,ENTRY_EMPLOYEE_CODE,ENTRY_DATE) " +
+                        $"VALUES({newCode},{empCode},2,3,{taxAmount},SYSDATE,{month},{year},0,1,{empCode},SYSDATE)");
+                }
+
+                return true;
+            }, "BMLExceptionPolicy");
+        }
+
+
+
 
         public CCL.BusinessEntities.HRIS.SalaryMaster Get(ulong IP_ui64_Code)
         {

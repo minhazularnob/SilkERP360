@@ -144,6 +144,7 @@ namespace SilkERP360.UI.HRIS
                 System.Web.UI.WebControls.ListItem lcl_obj_DeductionItem3 = new System.Web.UI.WebControls.ListItem();
                 lcl_obj_DeductionItem3.Value = ((System.Int32)SilkERP360.CCL.Enums.AdditionDeductionType.DeductionIncomeTax).ToString();
                 lcl_obj_DeductionItem3.Text = SilkERP360.CCL.Enums.AdditionDeductionType.DeductionIncomeTax.ToString();
+                lcl_obj_DeductionItem3.Enabled = false;
                 this.ddl_sal_Deduction.Items.Insert(3, lcl_obj_DeductionItem3);
 
                 System.Web.UI.WebControls.ListItem lcl_obj_DeductionItem4 = new System.Web.UI.WebControls.ListItem();
@@ -154,6 +155,7 @@ namespace SilkERP360.UI.HRIS
                 System.Web.UI.WebControls.ListItem lcl_obj_DeductionItem5 = new System.Web.UI.WebControls.ListItem();
                 lcl_obj_DeductionItem5.Value = ((System.Int32)SilkERP360.CCL.Enums.AdditionDeductionType.DeductionUnpaidLeave).ToString();
                 lcl_obj_DeductionItem5.Text = SilkERP360.CCL.Enums.AdditionDeductionType.DeductionUnpaidLeave.ToString();
+                lcl_obj_DeductionItem5.Enabled = false;
                 this.ddl_sal_Deduction.Items.Insert(5, lcl_obj_DeductionItem5);
 
                 System.Web.UI.WebControls.ListItem lcl_obj_DeductionItem6 = new System.Web.UI.WebControls.ListItem();

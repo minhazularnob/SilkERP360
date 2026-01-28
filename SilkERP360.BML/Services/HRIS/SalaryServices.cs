@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -272,7 +273,7 @@ namespace SilkERP360.BML.Services.HRIS
                         // Get TIN No 28-Jan-2017, SSL
                         lcl_obj_Salary.Tin = lcl_obj_EmployeeService.GetTin(lcl_obj_Salary.EmployeeCode, lcl_obj_DBManager.InternalResource);
                         //Check Monthly Allowance
-                       // lcl_obj_Salary._MonthlyFixedAllowance = lcl_obj_EmployeeService.GetMonthlyAllowance(lcl_obj_Salary.EmployeeCode, lcl_obj_DBManager.InternalResource);
+                        // lcl_obj_Salary._MonthlyFixedAllowance = lcl_obj_EmployeeService.GetMonthlyAllowance(lcl_obj_Salary.EmployeeCode, lcl_obj_DBManager.InternalResource);
                         //IP_obj_SalaryMaster._TotalAdditionAllowance += lcl_obj_Salary._MonthlyFixedAllowance;
                         //Process Provident Fund
                         //if (lcl_obj_EmployeeService.IsPfEligible(lcl_obj_Salary.EmployeeCode, lcl_obj_DBManager.InternalResource) == CCL.Enums.YesNo.Yes)
@@ -280,6 +281,13 @@ namespace SilkERP360.BML.Services.HRIS
                         //    lcl_obj_Salary.DeductionProvidentFund = System.Math.Round(((lcl_obj_Salary.Basic * 10) / 100), 2);
                         //    //IP_obj_SalaryMaster._TotalDeductionProvidentFund += lcl_obj_Salary.DeductionProvidentFund;
                         //}
+
+                        /*Process Income Tax start*/
+                        
+                        ProcessIncomeTax(lcl_obj_Salary.EmployeeCode, (System.UInt16)IP_enm_SalaryMonth, IP_ui16_SalaryYear, lcl_obj_DBManager.InternalResource);
+
+                        /*Process Income tax end*/
+
                         //Process Addition Deduction
                         lcl_str_SqlQuery = System.String.Format("SELECT * FROM SALARY_ADDITION_DEDUCTION WHERE EMPLOYEE_CODE = {0} AND EFFECTIVE_MONTH = {1} AND EFFECTIVE_YEAR = {2} AND IS_PROCESSED = 0", lcl_obj_Salary.EmployeeCode, (System.UInt16)IP_enm_SalaryMonth, IP_ui16_SalaryYear);
                         System.Collections.Generic.List<CCL.BusinessEntities.HRIS.SalaryAdditionDeduction> lcl_objLst_SalaryAdditionDeduction = lcl_obj_SalaryAdditionDeductionManager.GetList(lcl_str_SqlQuery, lcl_obj_DBManager.InternalResource);
@@ -659,6 +667,7 @@ namespace SilkERP360.BML.Services.HRIS
                     System.String lcl_str_MailSubject = "Salary";
                     lcl_obj_Mailer.SendMail(lcl_str_MailSubject, lcl_str_SalaryReport);
                     /******************************************************************************************************************************************/
+                    lcl_obj_DBManager.InternalResource.CommitTransaction();
                     lcl_obj_DBManager.InternalResource.Close();
                     return IP_obj_SalaryMaster;
                 }
@@ -690,5 +699,24 @@ namespace SilkERP360.BML.Services.HRIS
             return lcl_obj_SalaryMasterRet;
         }
 
+        public bool ProcessIncomeTax(System.UInt64 employee_code, int IP_enm_SalaryMonth, System.UInt16 IP_ui16_SalaryYear, System.Object IP_obj_DBManager)
+        {
+            bool isSuccess = this.ExceptionManager.Process<bool>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    BML.HRIS.SalaryMasterManager lcl_obj_SalaryMasterManager = new BML.HRIS.SalaryMasterManager();
+                    lcl_obj_SalaryMasterManager.Initialize();
+                    bool lcl_obj_SalaryMaster = lcl_obj_SalaryMasterManager.ProcessIncomeTax(employee_code, IP_enm_SalaryMonth, IP_ui16_SalaryYear, IP_obj_DBManager);
+                    return lcl_obj_SalaryMaster;
+                }
+            }, "BMLExceptionPolicy");
+            return true;
+        }
     }
 }
