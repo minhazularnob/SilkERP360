@@ -387,7 +387,8 @@ namespace SilkERP360.BML.HRIS
             return this.ExceptionManager.Process<bool>(() =>
             {
                 var db = (SilkERP360.DAL.DBManager)dbObj;
-                if (db.ConnectionState != System.Data.ConnectionState.Open) db.Open();
+                if (db.ConnectionState != System.Data.ConnectionState.Open)
+                    db.Open();
 
                 object addDedCode = db.ExecuteScalar(
                     $"SELECT ADD_DED_CODE FROM SALARY_ADDITION_DEDUCTION " +
@@ -398,28 +399,15 @@ namespace SilkERP360.BML.HRIS
                     $"SELECT TAX_AMOUNT FROM EMPLOYEE_TAX " +
                     $"WHERE EMPLOYEE_CODE={empCode} AND IS_TAX_DEDUCTION=1 AND TAX_AMOUNT>0");
 
-                //  No tax → delete if exists
-                if (taxObj == null || taxObj == DBNull.Value)
+                // ONLY INSERT CASE
+                if (addDedCode == null && taxObj != null && taxObj != DBNull.Value)
                 {
-                    if (addDedCode != null)
-                        db.ExecuteNonQuery($"DELETE FROM SALARY_ADDITION_DEDUCTION WHERE ADD_DED_CODE={addDedCode}");
-                    return true;
-                }
+                    decimal taxAmount = Convert.ToDecimal(taxObj);
 
-                decimal taxAmount = Convert.ToDecimal(taxObj);
-
-                //  Update
-                if (addDedCode != null)
-                {
-                    db.ExecuteNonQuery(
-                        $"UPDATE SALARY_ADDITION_DEDUCTION SET AMOUNT={taxAmount}, IS_PROCESSED=0, ENTRY_DATE=SYSDATE " +
-                        $"WHERE ADD_DED_CODE={addDedCode}");
-                }
-                //  Insert
-                else
-                {
                     UInt64 newCode = Convert.ToUInt64(
-                        db.ExecuteScalar("SELECT NVL(MAX(ADD_DED_CODE),1200000000) FROM SALARY_ADDITION_DEDUCTION")) + 1;
+                        db.ExecuteScalar(
+                            "SELECT NVL(MAX(ADD_DED_CODE),1200000001) FROM SALARY_ADDITION_DEDUCTION"
+                        )) + 1;
 
                     db.ExecuteNonQuery(
                         $"INSERT INTO SALARY_ADDITION_DEDUCTION " +
@@ -431,8 +419,6 @@ namespace SilkERP360.BML.HRIS
                 return true;
             }, "BMLExceptionPolicy");
         }
-
-
 
 
         public CCL.BusinessEntities.HRIS.SalaryMaster Get(ulong IP_ui64_Code)
