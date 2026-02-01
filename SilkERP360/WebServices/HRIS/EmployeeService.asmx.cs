@@ -74,6 +74,24 @@ namespace SilkERP360.WebServices.HRIS
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetAllActiveEmployeeByCompany(System.UInt64 IP_ui64_CompanyCode)
+        {
+            try
+            {
+                SilkERP360.FL.ServiceProviders.HRIS.EmployeeSP lcl_obj_EmployeeSP = new FL.ServiceProviders.HRIS.EmployeeSP();
+                lcl_obj_EmployeeSP.Initialize();
+
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini> lcl_objLst_EmployeeProfileMini =
+                    lcl_obj_EmployeeSP.GetMiniEmplpoyeeProfileListByCompany(IP_ui64_CompanyCode);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_EmployeeProfileMini);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
         public SilkERP360.CCL.Misc.WSResponse GetEmployeeProfileListByCompany(System.UInt64 IP_ui64_CompanyCode)
         {
             try

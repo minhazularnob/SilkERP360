@@ -239,6 +239,33 @@ namespace SilkERP360.CCL.Enums
         Terminated=5,
         Retired=6
     }
+
+    public enum LoanStatus
+    {
+        Running = 1,
+        Closed = 0,
+    }
+
+    public enum LoanScheduleStatus
+    {
+        Unpaid = 0,
+        paid = 1,
+        Partial = 2,
+    }
+
+    // File: LoanType.cs
+    public enum LoanType
+    {
+        StaffLoan = 1, 
+        SalaryAdvance = 2,
+        VehicleLoan = 3,
+        HousingLoan = 4,  
+        MedicalLoan = 5,  
+        EducationLoan = 6,
+        FestivalLoan = 7, 
+        EmergencyLoan = 8 
+    }
+
     public enum YesNo
     {
         Yes = 1, 

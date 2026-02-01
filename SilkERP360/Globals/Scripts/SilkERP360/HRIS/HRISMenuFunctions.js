@@ -404,6 +404,40 @@ function LoadTax() {
         });
 }
 
+function LoadLoan() {
+    var lcl_ui32_CompanySelectedIndex = $('#ddlCompany option:selected').index();
+    if (lcl_ui32_CompanySelectedIndex <= 0) {
+        //No Company Selected
+        DisplayError("A Company Must Be Selected Before Enrolling an Employee!!!");
+        return;
+    }
+    var lcl_str_CompanyCode = $.trim($('#ddlCompany option:selected').val().toString());
+    if (lcl_str_CompanyCode == '') {
+        return;
+    }
+    $.ajax(
+        {
+            type: "POST",
+            async: true,
+            contentType: "application/json; charset=utf-8",
+            global: true,
+            url: gbl_URL_Root + "WebServices/UILoaderService.asmx/GetUI",
+            data: "{IP_ui64_CompanyCode: " + lcl_str_CompanyCode + ",IP_str_VirtualPath:" + JSON.stringify('~/UI/HRIS/Loan.ascx') + "}",
+            dataType: "json",
+            success: function (response) {
+                var WSResponse = response.d;
+                if (WSResponse.ResponseCode < 0) {
+                    DisplayError(WSResponse.Message);
+                    return;
+                }
+                var lcl_str_ControlHTML = WSResponse.Data;
+                $('#dvUIContainer').html("");
+                $('#dvUIContainer').html(lcl_str_ControlHTML);
+                $('#dvUIContainer').css({ "visibility": "visible" }).fadeIn('slow');
+                //alert(lcl_str_ControlHTML);
+            } /// <reference path= />
+        });
+}
 function LoadIncrementAndPromotionHistory() {
     var lcl_ui32_CompanySelectedIndex = $('#ddlCompany option:selected').index();
     if (lcl_ui32_CompanySelectedIndex <= 0) {

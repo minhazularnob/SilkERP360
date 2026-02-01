@@ -10124,6 +10124,7 @@
     <Content Include="UI\HRIS\HRReport.ascx" />
     <Content Include="UI\HRIS\IncrementAndPromotionList.ascx" />
     <Content Include="UI\HRIS\EmployeeTax.ascx" />
+    <Content Include="UI\HRIS\Loan.ascx" />
     <Content Include="UI\HRIS\PromotionHistory.ascx" />
     <Content Include="UI\HRIS\IncrementIOHistory.ascx" />
     <Content Include="UI\HRIS\IncrementSummery.ascx" />
@@ -10167,6 +10168,7 @@
     <Content Include="UI\HRIS\Scripts\IncrementAndPromotionList.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeIdCardInfo.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeTax.js" />
+    <Content Include="UI\HRIS\Scripts\Loan.js" />
     <Content Include="UI\HRIS\Scripts\PromotionHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementIOHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementSummery.js" />
@@ -10665,6 +10667,13 @@
     </Compile>
     <Compile Include="UI\HRIS\EmployeeTax.ascx.designer.cs">
       <DependentUpon>EmployeeTax.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HRIS\Loan.ascx.cs">
+      <DependentUpon>Loan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HRIS\Loan.ascx.designer.cs">
+      <DependentUpon>Loan.ascx</DependentUpon>
     </Compile>
     <Compile Include="UI\HRIS\PromotionHistory.ascx.cs">
       <DependentUpon>PromotionHistory.ascx</DependentUpon>

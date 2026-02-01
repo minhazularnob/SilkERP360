@@ -38,11 +38,11 @@ namespace SilkERP360.FL.HRIS.DataStructures
                                                                         ON EMP.DEPARTMENT_CODE = DEPT.DEPARTMENT_CODE
                                                                         JOIN DESIGNATION DESIG
                                                                         ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE
-                                                                        JOIN EMPLOYEE_SALARY_STRUCTURE EMP_SAL
-                                                                        EMP.EMPLOYEE_CODE = EMP_SAL.EMPLOYEE_CODE
+                                                                        JOIN EMPLOYEE_SALARY_STRUCTURE  EMP_SAL
+                                                                        on EMP.EMPLOYEE_CODE = EMP_SAL.EMPLOYEE_CODE
                                                                         JOIN EMPLOYEE_IMAGE IMG
                                                                         ON EMP.EMPLOYEE_CODE = IMG.EMPLOYEE_CODE
-                                                                        WHERE COMP.COMPANY_CODE = {0} AND (EMP.EMPLOYEE_STATUS = {1} OR EMP.EMPLOYEE_STATUS = {2}) AND EMP.IS_DELETED = 1", IP_ui64_CompanyCode, SilkERP360.CCL.Enums.EmployeeStatus.Probation, SilkERP360.CCL.Enums.EmployeeStatus.Regular);
+                                                                        WHERE COMP.COMPANY_CODE = {0} AND (EMP.EMPLOYEE_STATUS = {1} OR EMP.EMPLOYEE_STATUS = {2}) AND EMP.IS_DELETED = 1", IP_ui64_CompanyCode, (int)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (int)SilkERP360.CCL.Enums.EmployeeStatus.Regular);
                 SilkERP360.BML.HRIS.DataStructures.EmployeeProfileManager lcl_obj_EmployeeProfileManager = new SilkERP360.BML.HRIS.DataStructures.EmployeeProfileManager();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile> lcl_obj_EmployeeProfileListTmp =
                     lcl_obj_EmployeeProfileManager.GetList(lcl_str_SqlQuery);

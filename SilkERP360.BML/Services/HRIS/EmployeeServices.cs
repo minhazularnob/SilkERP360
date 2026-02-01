@@ -318,5 +318,58 @@ namespace SilkERP360.BML.Services.HRIS
             }, "BMLExceptionPolicy");
             return lcl_objLst_EmployeeProfileMiniRet;
         }
+
+        public System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini> GetAllActiveEmployeeByCompany(System.UInt64 IP_ui64_CompanyCode)
+        {
+            System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini> lcl_objLst_EmployeeProfileMiniRet = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini>>(() =>
+            {
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini> lcl_objLst_EmployeeProfileMini = new List<CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini>();
+
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+                    System.String lcl_str_SqlQuery = System.String.Format(@"SELECT EMP.EMPLOYEE_ID,EMP.EMPLOYEE_CODE,EMP.EMPLOYEE_NAME,DEPT.DEPARTMENT_CODE,
+                                                                        DEPT.DEPT_NAME,DESIG.DESIGNATION_CODE,DESIG.DEGN_NAME
+                                                                        FROM EMPLOYEE EMP 
+                                                                        JOIN EMPLOYEE_PERSONAL EMP_PER
+                                                                        ON EMP.EMPLOYEE_CODE = EMP_PER.EMPLOYEE_CODE
+                                                                        JOIN COMPANY COMP
+                                                                        ON EMP.COMPANY_CODE = COMP.COMPANY_CODE
+                                                                        JOIN DEPARTMENT DEPT
+                                                                        ON EMP.DEPARTMENT_CODE = DEPT.DEPARTMENT_CODE
+                                                                        JOIN DESIGNATION DESIG
+                                                                        ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE
+                                                                        JOIN EMPLOYEE_SALARY_STRUCTURE EMP_SAL
+                                                                        ON EMP.EMPLOYEE_CODE = EMP_SAL.EMPLOYEE_CODE
+                                                                        WHERE COMP.COMPANY_CODE = {0} AND (EMP.EMPLOYEE_STATUS = {1} OR EMP.EMPLOYEE_STATUS = {2} OR EMP.EMPLOYEE_STATUS = {3}) AND EMP.IS_DELETED = 1  Order By DESIG.Rank,DEPT.Rank ASC", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
+                    Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_EmployeeMiniProfileReader = lcl_obj_DBManager.InternalResource.ExecuteDataReader(lcl_str_SqlQuery);
+                    if (!(lcl_obj_EmployeeMiniProfileReader.HasRows))
+                    {
+                        lcl_obj_EmployeeMiniProfileReader.Close();
+                        return null;
+                    }
+
+                    while (lcl_obj_EmployeeMiniProfileReader.Read())
+                    {
+                        SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini lcl_obj_EmployeeProfileMini = new CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfileMini();
+                        lcl_obj_EmployeeProfileMini.EmployeeCode = System.UInt64.Parse(lcl_obj_EmployeeMiniProfileReader["EMPLOYEE_CODE"].ToString());
+                        lcl_obj_EmployeeProfileMini.EmployeeID = lcl_obj_EmployeeMiniProfileReader["EMPLOYEE_ID"].ToString();
+                        lcl_obj_EmployeeProfileMini.EmployeeName = lcl_obj_EmployeeMiniProfileReader["EMPLOYEE_NAME"].ToString();
+                        lcl_obj_EmployeeProfileMini.DepartmentCode = System.UInt64.Parse(lcl_obj_EmployeeMiniProfileReader["DEPARTMENT_CODE"].ToString());
+                        lcl_obj_EmployeeProfileMini.DepartmentName = lcl_obj_EmployeeMiniProfileReader["DEPT_NAME"].ToString();
+                        lcl_obj_EmployeeProfileMini.Designation = lcl_obj_EmployeeMiniProfileReader["DEGN_NAME"].ToString();
+                        lcl_obj_EmployeeProfileMini.DesignationCode = System.UInt64.Parse(lcl_obj_EmployeeMiniProfileReader["DESIGNATION_CODE"].ToString());
+                        lcl_objLst_EmployeeProfileMini.Add(lcl_obj_EmployeeProfileMini);
+                    }
+                    lcl_obj_EmployeeMiniProfileReader.Close();
+                    return lcl_objLst_EmployeeProfileMini;
+                }
+            }, "BMLExceptionPolicy");
+            return lcl_objLst_EmployeeProfileMiniRet;
+        }
+
     }
 }
