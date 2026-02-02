@@ -125,6 +125,7 @@
     <Compile Include="HRIS\BonusMasterManager.cs" />
     <Compile Include="HRIS\CommonManager.cs" />
     <Compile Include="HRIS\EmployeeCertificateManager.cs" />
+    <Compile Include="HRIS\StaffLoanManager.cs" />
     <Compile Include="HRIS\IncrementAndPromotionHistoryManager.cs" />
     <Compile Include="HRIS\EmployeeTaxManager.cs" />
     <Compile Include="HRIS\PromotionHistoryManager.cs" />

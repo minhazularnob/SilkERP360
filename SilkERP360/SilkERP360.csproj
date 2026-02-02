@@ -10294,6 +10294,7 @@
     <Content Include="WebServices\HRIS\SalaryAddDedService.asmx" />
     <Content Include="WebServices\HRIS\SalaryService.asmx" />
     <Content Include="WebServices\HRIS\ShiftService.asmx" />
+    <Content Include="WebServices\HRIS\StaffLoanService.asmx" />
     <Content Include="WebServices\HRIS\TaxService.asmx" />
     <Content Include="WebServices\HRIS\UserInterfaceLoaderService.asmx" />
     <Content Include="WebServices\HRIS\WeekendManagementService.asmx" />
@@ -11198,6 +11199,10 @@
     </Compile>
     <Compile Include="WebServices\HRIS\ShiftService.asmx.cs">
       <DependentUpon>ShiftService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\HRIS\StaffLoanService.asmx.cs">
+      <DependentUpon>StaffLoanService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebServices\HRIS\TaxService.asmx.cs">

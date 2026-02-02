@@ -19,7 +19,6 @@
                             <i class="fa fa-save me-2"></i>Save
                         </button>
 
-                        <!-- Promotion Input Section -->
                         <div id="dvReportBody" class="table-responsive">
                             <table id="tblEmployeeTaxList" class="table custom-table fontSerif w-100"></table>
                         </div>
