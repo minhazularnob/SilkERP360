@@ -3,12 +3,32 @@
 
 <div id="loanWrapper" class="container-fluid mt-3">
     <div class="row mb-3">
-        <div class="col-md-12 text-center">
-            <h1 class="mb-3" style="font-family: serif;">Loan Management</h1>
+        <div class="col-md-12">
+            <h1 class="mb-3 text-center" style="font-family: serif;">Loan Management</h1>
+
+            <!-- Top controls: Date range (left) + Create Loan (right) -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <!-- Date range -->
+                <div>
+                    <asp:TextBox ID="loanHistory_txtStartDate" runat="server"
+                        Style="text-align: center;" CssClass="WG_IP" Width="100px" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                    To
+            <asp:TextBox ID="loanHistory_txtEndDate" runat="server"
+                Style="text-align: center;" CssClass="WG_IP" Width="100px" ReadOnly="true" ClientIDMode="Static"></asp:TextBox>
+                </div>
+
+                <!-- Create Loan button -->
+                <div>
+                    <button type="button" class="btn btn-primary" onclick="OpenModal()">
+                        <i class="fas fa-plus me-1"></i>Create Loan
+                    </button>
+                </div>
+            </div>
+
+            <!-- DataTable -->
             <div id="dvReportBody" class="table-responsive">
                 <table id="tblEmployeeLoanList" class="table custom-table fontSerif w-100"></table>
             </div>
-            <button type="button" class="btn btn-primary" onclick="OpenModal()">Create Loan</button>
         </div>
     </div>
 </div>
@@ -20,11 +40,12 @@
 
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="loanModalLabel">Create Loan</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="clearLoanModal()"></button>
             </div>
 
             <div class="modal-body">
                 <form id="loanForm">
+                    <input type="hidden" id="loanCode" />
                     <div class="row g-3">
 
                         <!-- Employee -->
@@ -91,6 +112,11 @@
                             </select>
                         </div>
 
+                        <div class="col-md-3">
+                            <label for="loanDisburseDate" class="form-label">Disburse Date:</label>
+                            <asp:TextBox ID="loanDisburseDate" ClientIDMode="Static" runat="server" CssClass="form-control" Placeholder="Disbursement Date:"></asp:TextBox>
+                        </div>
+
                     </div>
 
                     <!-- Generate Schedule Button -->
@@ -109,6 +135,8 @@
                                     <th>Month</th>
                                     <th>Year</th>
                                     <th>Scheduled Amount</th>
+                                    <th class="edit-only">Paid Amount</th>
+                                    <th class="edit-only">Status</th>
                                 </tr>
                             </thead>
                             <tbody id="scheduleBody"></tbody>
@@ -118,9 +146,20 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearLoanModal()">Close</button>
                 <button type="button" class="btn btn-primary" id="loanSaveId" onclick="SaveStaffLoan()">Save</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<style>
+    .edit-only {
+        display: none;
+    }
+
+    #tblEmployeeLoanList_length > label {
+        float: left;
+    }
+</style>

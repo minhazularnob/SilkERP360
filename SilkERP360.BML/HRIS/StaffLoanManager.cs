@@ -39,7 +39,7 @@ namespace SilkERP360.BML.HRIS
                         UInt64 newLoanCode = Convert.ToUInt64(dbManager.InternalResource.ExecuteScalar("SELECT NVL(MAX(LOAN_CODE), 1300000000) FROM STAFF_LOAN")) + 1;
 
                     string insertLoanSql = $@"INSERT INTO STAFF_LOAN(LOAN_CODE, EMPLOYEE_CODE, LOAN_AMOUNT, NO_OF_INSTALLMENT, LOAN_DISBURSE_DATE,INSTALLMENT_START_MONTH, INSTALLMENT_START_YEAR, CURRENT_DUE_AMOUNT, ENTRY_DATE, STATUS, LOAN_TYPE)
-                                           VALUES({newLoanCode}, {loan.EmployeeCode}, {loan.LoanAmount}, {loan.NoOfInstallments},SYSDATE,{loan.InstallmentStartMonth}, {loan.InstallmentStartYear},{loan.LoanAmount}, SYSDATE, {(int)LoanStatus.Running}, {(int)loan.LoanType})";
+                                           VALUES({newLoanCode}, {loan.EmployeeCode}, {loan.LoanAmount}, {loan.NoOfInstallments},TO_DATE('{loan.LoanDisburseDate:dd/MM/yyyy}', 'DD/MM/YYYY'),{loan.InstallmentStartMonth}, {loan.InstallmentStartYear},{loan.LoanAmount}, SYSDATE, {(int)LoanStatus.Running}, {(int)loan.LoanType})";
 
                     dbManager.InternalResource.ExecuteScalar(insertLoanSql);
 
@@ -53,6 +53,29 @@ namespace SilkERP360.BML.HRIS
 
                         dbManager.InternalResource.CommitTransaction();
                         return newLoanCode;
+                }
+            }, "BMLExceptionPolicy");
+        }
+
+        public UInt64 UpdateLoanPaidAmounts(List<StaffLoanSchedule> IP_objLst_StaffLoanSchedule)
+        {
+            return this.ExceptionManager.Process<UInt64>(() => {
+                using (var dbManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (dbManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open) dbManager.InternalResource.Open();
+                    foreach (var schedule in IP_objLst_StaffLoanSchedule)
+                    {
+                        ulong loanScheduleCode = Convert.ToUInt64(schedule.LoanScheduleCode);
+                        decimal paidAmount = Convert.ToDecimal(schedule.PaidAmount);
+                        string sql = $"UPDATE staff_loan_schedule SET paid_amount = paid_amount + {schedule.PaidAmount}, status = CASE WHEN paid_amount + {schedule.PaidAmount} >= scheduled_amount THEN 1 ELSE 2 END WHERE loan_schedule_code = {schedule.LoanScheduleCode}";
+                        dbManager.InternalResource.ExecuteNonQuery(sql);
+
+                        string updateLoanSql = $@"UPDATE staff_loan SET current_due_amount = NVL(current_due_amount, 0) - {paidAmount} WHERE loan_code = {schedule.LoanCode}";
+
+                        dbManager.InternalResource.ExecuteNonQuery(updateLoanSql);
+                    }
+                    dbManager.InternalResource.CommitTransaction();
+                    return (UInt64)IP_objLst_StaffLoanSchedule.Count;
                 }
             }, "BMLExceptionPolicy");
         }
@@ -103,6 +126,48 @@ namespace SilkERP360.BML.HRIS
                         }
 
                         return employeeLoanList;
+                    }
+                }
+            }, "BMLExceptionPolicy");
+        }
+
+        public List<SilkERP360.CCL.BusinessEntities.HRIS.StaffLoanSchedule> GetLoanSchedule(string IP_str_SqlQuery)
+        {
+            return this.ExceptionManager.Process<List<SilkERP360.CCL.BusinessEntities.HRIS.StaffLoanSchedule>>(() =>
+            {
+                using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
+                {
+                    if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)
+                    {
+                        lcl_obj_DBManager.InternalResource.Open();
+                    }
+
+                    // Execute reader
+                    using (Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_dr = lcl_obj_DBManager.InternalResource.ExecuteDataReader(IP_str_SqlQuery))
+                    {
+                        List<SilkERP360.CCL.BusinessEntities.HRIS.StaffLoanSchedule> loanSchedules = new List<SilkERP360.CCL.BusinessEntities.HRIS.StaffLoanSchedule>();
+
+                        if (!lcl_obj_dr.HasRows)
+                        {
+                            return loanSchedules;
+                        }
+
+                        while (lcl_obj_dr.Read())
+                        {
+                            var item = new SilkERP360.CCL.BusinessEntities.HRIS.StaffLoanSchedule();
+
+                            item.LoanScheduleCode = Convert.ToUInt64(lcl_obj_dr["LOAN_SCHEDULE_CODE"]);
+                            item.LoanCode = Convert.ToUInt64(lcl_obj_dr["LOAN_CODE"]);
+                            item.Month = Convert.ToInt16(lcl_obj_dr["Month"]);
+                            item.Year = Convert.ToInt16(lcl_obj_dr["Year"]);
+                            item.ScheduledAmount = Convert.ToDecimal(lcl_obj_dr["SCHEDULED_AMOUNT"]);
+                            item.PaidAmount = Convert.ToDecimal(lcl_obj_dr["PAID_AMOUNT"]);
+                            item.Status = Convert.ToInt16(lcl_obj_dr["STATUS"]);
+
+                            loanSchedules.Add(item);
+                        }
+
+                        return loanSchedules;
                     }
                 }
             }, "BMLExceptionPolicy");

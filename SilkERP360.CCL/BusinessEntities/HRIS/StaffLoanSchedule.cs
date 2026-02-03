@@ -11,9 +11,9 @@ namespace SilkERP360.CCL.BusinessEntities.HRIS
         public StaffLoanSchedule() { }
         public UInt64? LoanScheduleCode { get; set; }
         public UInt64 LoanCode { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
-        public decimal ScheduledAmount { get; set; }
+        public int? Month { get; set; }
+        public int? Year { get; set; }
+        public decimal? ScheduledAmount { get; set; }
         public decimal? PaidAmount { get; set; }
         public int? Status { get; set; }
     }

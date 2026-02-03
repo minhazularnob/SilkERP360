@@ -40,13 +40,43 @@ namespace SilkERP360.WebServices.HRIS
         }
 
         [System.Web.Services.WebMethod(EnableSession = true)]
-        public SilkERP360.CCL.Misc.WSResponse GetEmployeeLoanList(System.UInt64 IP_ui64_companyCode)
+        public SilkERP360.CCL.Misc.WSResponse UpdateLoanPaidAmounts(List<StaffLoanSchedule> IP_objLst_StaffLoanSchedule)
         {
             try
             {
                 SilkERP360.SP.HRIS.StaffLoanService lcl_obj_staffLoanService = new SilkERP360.SP.HRIS.StaffLoanService();
-                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.StaffLoan> lcl_objLst_EmployeeTax = lcl_obj_staffLoanService.GetEmployeeLoanList(IP_ui64_companyCode);
+                UInt64 lcl_obj_staffLoan = lcl_obj_staffLoanService.UpdateLoanPaidAmounts(IP_objLst_StaffLoanSchedule);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "Saved Successfully", true, lcl_obj_staffLoan);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetEmployeeLoanList(System.UInt64 IP_ui64_companyCode, string from, string to)
+        {
+            try
+            {
+                SilkERP360.SP.HRIS.StaffLoanService lcl_obj_staffLoanService = new SilkERP360.SP.HRIS.StaffLoanService();
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.StaffLoan> lcl_objLst_EmployeeTax = lcl_obj_staffLoanService.GetEmployeeLoanList(IP_ui64_companyCode, from, to);
                 return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_EmployeeTax);
+            }
+            catch (System.Exception Ex)
+            {
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Error, -100, Ex.Message, false, null);
+            }
+        }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public SilkERP360.CCL.Misc.WSResponse GetLoanSchedule(System.UInt64 IP_ui64_LoanCode)
+        {
+            try
+            {
+                SilkERP360.SP.HRIS.StaffLoanService lcl_obj_staffLoanService = new SilkERP360.SP.HRIS.StaffLoanService();
+                System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.StaffLoanSchedule> lcl_objLst_LoanSchedule = lcl_obj_staffLoanService.GetLoanSchedule(IP_ui64_LoanCode);
+                return new CCL.Misc.WSResponse(CCL.Enums.WebServiceExecutionStatus.Success, 0, "", true, lcl_objLst_LoanSchedule);
             }
             catch (System.Exception Ex)
             {

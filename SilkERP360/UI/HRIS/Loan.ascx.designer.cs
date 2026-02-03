@@ -15,6 +15,24 @@ namespace SilkERP360.UI.HRIS
     {
 
         /// <summary>
+        /// loanHistory_txtStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox loanHistory_txtStartDate;
+
+        /// <summary>
+        /// loanHistory_txtEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox loanHistory_txtEndDate;
+
+        /// <summary>
         /// employeeIdLoan control.
         /// </summary>
         /// <remarks>
@@ -31,5 +49,14 @@ namespace SilkERP360.UI.HRIS
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList loanTypeId;
+
+        /// <summary>
+        /// loanDisburseDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox loanDisburseDate;
     }
 }
