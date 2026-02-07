@@ -1,6 +1,8 @@
 ﻿using SilkERP360.CCL.BusinessEntities.HRIS;
+using SilkERP360.CCL.Enums;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -406,7 +408,7 @@ namespace SilkERP360.BML.HRIS
 
                     UInt64 newCode = Convert.ToUInt64(
                         db.ExecuteScalar(
-                            "SELECT NVL(MAX(ADD_DED_CODE),1200000001) FROM SALARY_ADDITION_DEDUCTION"
+                            "SELECT NVL(MAX(ADD_DED_CODE),40001) FROM SALARY_ADDITION_DEDUCTION"
                         )) + 1;
 
                     db.ExecuteNonQuery(
@@ -414,6 +416,77 @@ namespace SilkERP360.BML.HRIS
                         $"(ADD_DED_CODE,EMPLOYEE_CODE,ADD_OR_DED,ADD_DED_TYPE,AMOUNT,ADD_DED_DATE," +
                         $"EFFECTIVE_MONTH,EFFECTIVE_YEAR,IS_PROCESSED,STATUS,ENTRY_EMPLOYEE_CODE,ENTRY_DATE) " +
                         $"VALUES({newCode},{empCode},2,3,{taxAmount},SYSDATE,{month},{year},0,1,{empCode},SYSDATE)");
+                }
+
+                return true;
+            }, "BMLExceptionPolicy");
+        }
+
+        public bool ProcessLoan(UInt64 empCode, int month, UInt16 year, object dbObj)
+        {
+            return this.ExceptionManager.Process<bool>(() =>
+            {
+                var db = (SilkERP360.DAL.DBManager)dbObj;
+                if (db.ConnectionState != System.Data.ConnectionState.Open)
+                    db.Open();
+
+                // 1. Get running loans
+                using (var loanReader = db.ExecuteDataReader(
+                    $"SELECT LOAN_CODE FROM STAFF_LOAN WHERE EMPLOYEE_CODE={empCode} AND STATUS={(int)LoanStatus.Running}"))
+                {
+                    while (loanReader.Read())
+                    {
+                        UInt64 loanCode = Convert.ToUInt64(loanReader["LOAN_CODE"]);
+
+                        // 2. Get HR-marked Paid / Partial schedules for this month
+                        using (var schReader = db.ExecuteDataReader(
+                            $"SELECT LOAN_SCHEDULE_CODE, PAID_AMOUNT, STATUS FROM STAFF_LOAN_SCHEDULE WHERE LOAN_CODE={loanCode} AND MONTH={month} AND YEAR={year} AND STATUS IN ({(int)LoanScheduleStatus.paid},{(int)LoanScheduleStatus.Partial})"))
+                        {
+                            while (schReader.Read())
+                            {
+                                UInt64 scheduleCode = Convert.ToUInt64(schReader["LOAN_SCHEDULE_CODE"]);
+                                decimal paidAmount = Convert.ToDecimal(schReader["PAID_AMOUNT"]);
+
+                                if (paidAmount <= 0)
+                                    continue;
+
+                                // 3. Prevent duplicate deduction
+                                object addDedCode = db.ExecuteScalar(
+                                    $"SELECT ADD_DED_CODE FROM SALARY_ADDITION_DEDUCTION WHERE EMPLOYEE_CODE={empCode} AND EFFECTIVE_MONTH={month} AND EFFECTIVE_YEAR={year} AND ADD_OR_DED={(int)AdditionOrDeduction.Deduction} AND ADD_DED_TYPE={(int)AdditionDeductionType.DeductionAdvance} AND remarks={scheduleCode}");
+
+                                if (addDedCode != null && addDedCode != DBNull.Value)
+                                    continue;
+
+                                // 4. Insert deduction
+                                UInt64 newCode = Convert.ToUInt64(
+                                    db.ExecuteScalar(
+                                        "SELECT NVL(MAX(ADD_DED_CODE),40001) FROM SALARY_ADDITION_DEDUCTION"
+                                    )) + 1;
+
+                                db.ExecuteNonQuery(
+                                    $"INSERT INTO SALARY_ADDITION_DEDUCTION " +
+                                    $"(ADD_DED_CODE,EMPLOYEE_CODE,ADD_OR_DED,ADD_DED_TYPE,AMOUNT,ADD_DED_DATE," +
+                                    $"EFFECTIVE_MONTH,EFFECTIVE_YEAR,IS_PROCESSED,STATUS,ENTRY_EMPLOYEE_CODE,ENTRY_DATE,REMARKS) " +
+                                    $"VALUES({newCode},{empCode}," +
+                                    $"{(int)AdditionOrDeduction.Deduction}," +
+                                    $"{(int)AdditionDeductionType.DeductionAdvance}," +
+                                    $"{paidAmount},SYSDATE,{month},{year},0,1,{empCode},SYSDATE,{scheduleCode})");
+                            }
+                        }
+
+                        // Close loan if CURRENT_DUE_AMOUNT = 0
+                        object dueObj = db.ExecuteScalar(
+                            $"SELECT CURRENT_DUE_AMOUNT FROM STAFF_LOAN " +
+                            $"WHERE LOAN_CODE={loanCode}");
+
+                        if (dueObj != null && dueObj != DBNull.Value && Convert.ToDecimal(dueObj) == 0)
+                        {
+                            db.ExecuteNonQuery(
+                                $"UPDATE STAFF_LOAN " +
+                                $"SET STATUS={(int)LoanStatus.Closed} " +
+                                $"WHERE LOAN_CODE={loanCode}");
+                        }
+                    }
                 }
 
                 return true;
