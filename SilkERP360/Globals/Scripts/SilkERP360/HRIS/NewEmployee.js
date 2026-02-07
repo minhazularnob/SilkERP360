@@ -1159,9 +1159,12 @@ function CheckBoxCount() {
     //alert(numWeekEnd);
 }
 
-
+$('#ddl_Pers_Sex').on('change', function () {
+    LoadLeaveList(); // 🔁 no ajax, same data
+});
 function LoadLeaveList() {
     var lcl_str_CompanyCode = $("#ddlCompany option:selected").val();
+    var gender = $('#ddl_Pers_Sex').val();
 
     if (lcl_str_CompanyCode == 0) {
 
@@ -1184,8 +1187,15 @@ function LoadLeaveList() {
                     var lcl_obj_WSResponse = response.d;
 
                     var lcl_obj_Leave_List = lcl_obj_WSResponse.Data;
+
+                    // Clear table before re-binding
+                    $('#tblLeave tr:not(:first)').remove();
+                    $('#txtLeaveCounter').val('0');
+
                     var lcl_i32_Leave_Counter = 0;
                     $.each(lcl_obj_Leave_List, function (index, lcl_obj_Leave) {
+                        if (gender === 'M' && lcl_obj_Leave.LeaveName === 'Maternity Leave')
+                            return true; // continue
                         lcl_i32_Leave_Counter++;
                         var lcl_str_Leave_HTML = "<tr>";
                         lcl_str_Leave_HTML += "<td align='center' style='width:20%;text-align:center;'><input id='chkLeave-" + lcl_i32_Leave_Counter.toString() + "' style='width:50%' type='checkbox'/></td>";
