@@ -2,6 +2,7 @@
     $('#showIncrementSectionChkBox').prop('checked', false);
 
     loadDatepicker();
+    loadStartYearDropdown('startYearIncrement');
 
     $("#promotionHistory_txtStartDate").datepicker({
         dateFormat: dateFormat,
@@ -40,6 +41,9 @@
     initializeSelect2('ddlEmployeePromotion', '------ Select Employee ------', '25%');
     initializeSelect2('ddlNewDesignation', '------ Select Designation ------', '25%');
     initializeSelect2('promotion_approvers', '------ Select Approvers ------', '25%');
+    initializeSelect2('incrementMonth', '------ Select Month ------', '25%');
+    initializeSelect2('startYearIncrement', '------ Select Year ------', '25%');
+
 
     bindAllAprovers("promotion_approvers");
 
@@ -286,8 +290,8 @@ function SavePromotion() {
         lcl_obj_Increment.IncEntertainment = ent === undefined || ent.trim() === "" || isNaN(ent) ? 0 : parseFloat(ent);
         lcl_obj_Increment.PreviousGross = $('#txtCurrGrossWithPromotion').val();
         lcl_obj_Increment.EntryEmployeeCode = $('#txtSignedInEmployeeCode').val();
-        lcl_obj_Increment.EffectiveMonth = new Date(Date.parse($('#txtEffectiveFromPromotion').val().split("/")[1] + " 1, 2000")).getMonth() + 1
-        lcl_obj_Increment.EffectiveYear = $('#txtEffectiveFromPromotion').val().split("/")[2];
+        lcl_obj_Increment.EffectiveMonth = $('#incrementMonth').val();
+        lcl_obj_Increment.EffectiveYear = $('#startYearIncrement').val();
 
         lcl_obj_PromotionHistory.IP_obj_Increment = lcl_obj_Increment;
 
@@ -449,7 +453,7 @@ function loadDatepicker() {
 
         beforeShowDay: function (date) {
             // allow only 1st day of each month
-            if (date.getDate() === 1) {
+            if (date.getDate() ) {
                 return [true, "", ""];
             } else {
                 return [false, "", ""];
@@ -461,6 +465,20 @@ function loadDatepicker() {
             console.log("Selected date:", d);
         }
     });
+}
+
+function loadStartYearDropdown(dropdownId) {
+    const currentYear = new Date().getFullYear();
+    const $year = $('#' + dropdownId);
+
+    $year.empty(); // safety: clear existing
+    $year.append('<option value="">Select Year</option>');
+
+    for (let y = currentYear - 2; y <= currentYear + 5; y++) {
+        $year.append(`<option value="${y}">${y}</option>`);
+    }
+    // default select current year
+    $year.val(currentYear);
 }
 
 
