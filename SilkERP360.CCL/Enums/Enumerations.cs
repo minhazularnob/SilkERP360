@@ -246,6 +246,23 @@ namespace SilkERP360.CCL.Enums
         Closed = 0,
     }
 
+    public enum CertificateCategory
+    {
+        ACADEMIC = 1,
+        PROFESSIONAL = 2,
+        TRAINING = 3,
+        TECHNICAL = 4,
+        SKILL_BASED = 5,
+        EXPERIENCE = 6,
+        PARTICIPATION = 7,
+        ACHIEVEMENT = 8,
+        COMPLIANCE = 9,
+        MEDICAL = 10,
+        IDENTITY = 11,
+        OTHER = 99
+    }
+
+
     public enum LoanScheduleStatus
     {
         Unpaid = 0,

@@ -830,6 +830,7 @@
                                 <th>File Name</th>
                                 <th>File Type</th>
                                 <th style="width: 15%">File Size (KB)</th>
+                                <th style="width: 20%">Category</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>

@@ -53,7 +53,9 @@ namespace SilkERP360.BML.HRIS
                  EMPLOYEE_CODE,
                  STATUS,
                  IS_DELETED,
-                 file_name)
+                 file_name,
+                 FILE_CATEGORY   
+                )
                 VALUES
                 (:pCode,
                  :pCertificate,
@@ -62,7 +64,7 @@ namespace SilkERP360.BML.HRIS
                  :pEmployeeCode,
                  :pStatus,
                  :pIsDeleted,
-                 :pFileName)";
+                 :pFileName,:pFileCategory)";
 
                 using (OracleCommand cmd = new OracleCommand(insertSql, conn))
                 {
@@ -76,6 +78,7 @@ namespace SilkERP360.BML.HRIS
                     cmd.Parameters.Add("pStatus", OracleDbType.Int32).Value = IP_obj_A.Status;
                     cmd.Parameters.Add("pIsDeleted", OracleDbType.Int32).Value = IP_obj_A.IsDeleted;
                     cmd.Parameters.Add("pFileName", OracleDbType.NVarchar2).Value = IP_obj_A.FileName;
+                    cmd.Parameters.Add("pFileCategory", OracleDbType.Int16).Value = IP_obj_A.CertificateCategoryId;
 
                     cmd.ExecuteNonQuery();
                 }

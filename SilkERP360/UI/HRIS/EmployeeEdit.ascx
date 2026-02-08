@@ -891,6 +891,7 @@
                             <th>File Name</th>
                             <th>File Type</th>
                             <th style="width: 15%">File Size (KB)</th>
+                            <th style="width: 15%">File Category</th>
                             <th style="width: 10%">Action</th>
                         </tr>
                     </thead>
@@ -904,6 +905,11 @@
                         <asp:BoundField DataField="FileName" HeaderText="File Name" />
                         <asp:BoundField DataField="FileType" HeaderText="File Type" />
                         <asp:BoundField DataField="FileSize" HeaderText="Size (KB)" />
+                        <asp:TemplateField HeaderText="File Category">
+                            <ItemTemplate>
+                                <%# ((SilkERP360.CCL.Enums.CertificateCategory)Convert.ToInt32(Eval("FileCategory"))).ToString() %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Download">
                             <ItemTemplate>

@@ -14,7 +14,7 @@ namespace SilkERP360.BML.HRIS
             
             lcl_ui64_LeaveAccountCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
-                System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL",IP_obj_A.GetSequence());
+                System.String lcl_str_SqlQuery = System.String.Format("select max(leave_account_code)+1 as ID from EMPLOYEE_LEAVE_ACCOUNT");
 
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
                 Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_IDReader = lcl_obj_DBManager.ExecuteDataReader(lcl_str_SqlQuery);
@@ -37,7 +37,7 @@ namespace SilkERP360.BML.HRIS
 
             lcl_ui64_LeaveAccountCode = this.ExceptionManager.Process<System.UInt64>(() =>
             {
-                System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL", IP_obj_A.GetSequence());
+                System.String lcl_str_SqlQuery = System.String.Format("select max(leave_account_code)+1 from EMPLOYEE_LEAVE_ACCOUNT");
                 using (var lcl_obj_DBManager = SilkERP360.DAL.DALObjectPoolManager.DBManagerPool.GetObject())
                 {
                     if (lcl_obj_DBManager.InternalResource.ConnectionState != System.Data.ConnectionState.Open)

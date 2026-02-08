@@ -1,4 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.DAL;
 using System;
 
 namespace SilkERP360.BML.HRIS
@@ -18,68 +19,68 @@ namespace SilkERP360.BML.HRIS
         /// <param name="IP_obj_DBManager"></param>
         /// <returns></returns>
 
-        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeEducation lcl_obj_EmployeeEducation, System.Object IP_obj_DBManager)
-        {
-             System.UInt64 lcl_ui64_EducationCode = 0;
-            
-            lcl_ui64_EducationCode = this.ExceptionManager.Process<System.UInt64>(() =>
-            {
-                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                OracleParameter lcl_obj_EducationCode = new OracleParameter("p_EDUCATION_CODE", OracleDbType.Int64);
-                lcl_obj_EducationCode.Direction = System.Data.ParameterDirection.Output;
+        //public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeEducation lcl_obj_EmployeeEducation, System.Object IP_obj_DBManager)
+        //{
+        //     System.UInt64 lcl_ui64_EducationCode = 0;
+
+        //    lcl_ui64_EducationCode = this.ExceptionManager.Process<System.UInt64>(() =>
+        //    {
+        //        SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
+        //        OracleParameter lcl_obj_EducationCode = new OracleParameter("p_EDUCATION_CODE", OracleDbType.Int64);
+        //        lcl_obj_EducationCode.Direction = System.Data.ParameterDirection.Output;
 
 
-                OracleParameter lcl_obj_ExamName = new OracleParameter("p_EXAM_NAME", OracleDbType.NVarchar2, 50);
-                lcl_obj_ExamName.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_ExamName.Value = lcl_obj_EmployeeEducation.ExamName;
+        //        OracleParameter lcl_obj_ExamName = new OracleParameter("p_EXAM_NAME", OracleDbType.NVarchar2, 50);
+        //        lcl_obj_ExamName.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_ExamName.Value = lcl_obj_EmployeeEducation.ExamName;
 
-                OracleParameter lcl_obj_InstName = new OracleParameter("p_INST_NAME", OracleDbType.NVarchar2, 100);
-                lcl_obj_InstName.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_InstName.Value = lcl_obj_EmployeeEducation.InstName;
+        //        OracleParameter lcl_obj_InstName = new OracleParameter("p_INST_NAME", OracleDbType.NVarchar2, 100);
+        //        lcl_obj_InstName.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_InstName.Value = lcl_obj_EmployeeEducation.InstName;
 
-                OracleParameter lcl_obj_BoardUniversity = new OracleParameter("p_BOARD_UNIVERSITY", OracleDbType.NVarchar2, 50);
-                lcl_obj_BoardUniversity.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_BoardUniversity.Value = lcl_obj_EmployeeEducation.BoardUniversity;
+        //        OracleParameter lcl_obj_BoardUniversity = new OracleParameter("p_BOARD_UNIVERSITY", OracleDbType.NVarchar2, 50);
+        //        lcl_obj_BoardUniversity.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_BoardUniversity.Value = lcl_obj_EmployeeEducation.BoardUniversity;
 
-                OracleParameter lcl_obj_MajorSubject = new OracleParameter("p_MAJOR_SUBJECT", OracleDbType.NVarchar2, 50);
-                lcl_obj_MajorSubject.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_MajorSubject.Value = lcl_obj_EmployeeEducation.MajorSubject;
+        //        OracleParameter lcl_obj_MajorSubject = new OracleParameter("p_MAJOR_SUBJECT", OracleDbType.NVarchar2, 50);
+        //        lcl_obj_MajorSubject.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_MajorSubject.Value = lcl_obj_EmployeeEducation.MajorSubject;
 
-                OracleParameter lcl_obj_DivisionClass = new OracleParameter("p_DIVISION_CLASS", OracleDbType.NVarchar2, 50);
-                lcl_obj_DivisionClass.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_DivisionClass.Value = lcl_obj_EmployeeEducation.DivisionClass;
+        //        OracleParameter lcl_obj_DivisionClass = new OracleParameter("p_DIVISION_CLASS", OracleDbType.NVarchar2, 50);
+        //        lcl_obj_DivisionClass.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_DivisionClass.Value = lcl_obj_EmployeeEducation.DivisionClass;
 
-                OracleParameter lcl_obj_Cgpa = new OracleParameter("p_CGPA", OracleDbType.NVarchar2, 8);
-                lcl_obj_Cgpa.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Cgpa.Value = lcl_obj_EmployeeEducation.Cgpa;
+        //        OracleParameter lcl_obj_Cgpa = new OracleParameter("p_CGPA", OracleDbType.NVarchar2, 8);
+        //        lcl_obj_Cgpa.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Cgpa.Value = lcl_obj_EmployeeEducation.Cgpa;
 
-                OracleParameter lcl_obj_PassYear = new OracleParameter("p_PASS_YEAR", OracleDbType.Int64);
-                lcl_obj_PassYear.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PassYear.Value = lcl_obj_EmployeeEducation.PassYear;
+        //        OracleParameter lcl_obj_PassYear = new OracleParameter("p_PASS_YEAR", OracleDbType.Int64);
+        //        lcl_obj_PassYear.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PassYear.Value = lcl_obj_EmployeeEducation.PassYear;
 
-                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("p_EMPLOYEE_CODE", OracleDbType.Int64);
-                lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeEducation.EmployeeCode;
+        //        OracleParameter lcl_obj_EmployeeCode = new OracleParameter("p_EMPLOYEE_CODE", OracleDbType.Int64);
+        //        lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeEducation.EmployeeCode;
 
-                OracleParameter lcl_obj_IsDeleted = new OracleParameter("p_IS_DELETED", OracleDbType.Int64);
-                lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_IsDeleted.Value = 1;
+        //        OracleParameter lcl_obj_IsDeleted = new OracleParameter("p_IS_DELETED", OracleDbType.Int64);
+        //        lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_IsDeleted.Value = 1;
 
-                OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
-                lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Status.Value = 1;
+        //        OracleParameter lcl_obj_Status = new OracleParameter("p_STATUS", OracleDbType.Int64);
+        //        lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Status.Value = 1;
 
 
-                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EducationCode, lcl_obj_ExamName, lcl_obj_InstName, lcl_obj_BoardUniversity, lcl_obj_MajorSubject, lcl_obj_DivisionClass, lcl_obj_Cgpa, lcl_obj_PassYear, lcl_obj_EmployeeCode, lcl_obj_IsDeleted, lcl_obj_Status };
-                lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_EDUCATION_IU", lcl_obj_SP_Parameters);
+        //        OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EducationCode, lcl_obj_ExamName, lcl_obj_InstName, lcl_obj_BoardUniversity, lcl_obj_MajorSubject, lcl_obj_DivisionClass, lcl_obj_Cgpa, lcl_obj_PassYear, lcl_obj_EmployeeCode, lcl_obj_IsDeleted, lcl_obj_Status };
+        //        lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_EDUCATION_IU", lcl_obj_SP_Parameters);
 
-                return System.UInt64.Parse(lcl_obj_EducationCode.Value.ToString());
+        //        return System.UInt64.Parse(lcl_obj_EducationCode.Value.ToString());
 
-            }, "BMLExceptionPolicy");
+        //    }, "BMLExceptionPolicy");
 
-            return lcl_ui64_EducationCode;
-        
-        }
+        //    return lcl_ui64_EducationCode;
+
+        //}
 
         //public ulong Update(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeEducation lcl_obj_EmployeeEducation, System.Object IP_obj_DBManager)
         //   {
@@ -143,6 +144,110 @@ namespace SilkERP360.BML.HRIS
         //    return lcl_ui64_EducationCode;
 
         //}
+
+
+        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeEducation lcl_obj_EmployeeEducation, object IP_obj_DBManager)
+        {
+            ulong lcl_ui64_EducationCode = 0;
+
+            lcl_ui64_EducationCode = this.ExceptionManager.Process<ulong>(() =>
+            {
+                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
+
+                if (lcl_obj_DBManager.TransactionState != TransactionState.Pending)
+                    lcl_obj_DBManager.Open();
+
+                // 1. Get next sequence value if EducationCode is 0
+                if (lcl_obj_EmployeeEducation.EducationCode == 0)
+                {
+                    using (var seqCmd = new OracleCommand("select max(EDUCATION_CODE)+1 from EMPLOYEE_EDUCATION", lcl_obj_DBManager.Connection))
+                    {
+                        seqCmd.Transaction = lcl_obj_DBManager.Transaction;
+                        lcl_ui64_EducationCode = Convert.ToUInt64(seqCmd.ExecuteScalar());
+                    }
+                }
+                else
+                {
+                    lcl_ui64_EducationCode = lcl_obj_EmployeeEducation.EducationCode;
+                }
+
+                // 2. Insert or Update
+                string sql;
+                if (lcl_obj_EmployeeEducation.EducationCode == 0)
+                {
+                    sql = @"
+                INSERT INTO EMPLOYEE_EDUCATION
+                (
+                    EDUCATION_CODE,
+                    EXAM_NAME,
+                    INST_NAME,
+                    BOARD_UNIVERSITY,
+                    MAJOR_SUBJECT,
+                    DIVISION_CLASS,
+                    CGPA,
+                    PASS_YEAR,
+                    EMPLOYEE_CODE,
+                    IS_DELETED,
+                    STATUS
+                )
+                VALUES
+                (
+                    :EDUCATION_CODE,
+                    :EXAM_NAME,
+                    :INST_NAME,
+                    :BOARD_UNIVERSITY,
+                    :MAJOR_SUBJECT,
+                    :DIVISION_CLASS,
+                    :CGPA,
+                    :PASS_YEAR,
+                    :EMPLOYEE_CODE,
+                    :IS_DELETED,
+                    :STATUS
+                )";
+                }
+                else
+                {
+                    sql = @"
+                UPDATE EMPLOYEE_EDUCATION
+                SET EXAM_NAME = :EXAM_NAME,
+                    INST_NAME = :INST_NAME,
+                    BOARD_UNIVERSITY = :BOARD_UNIVERSITY,
+                    MAJOR_SUBJECT = :MAJOR_SUBJECT,
+                    DIVISION_CLASS = :DIVISION_CLASS,
+                    CGPA = :CGPA,
+                    PASS_YEAR = :PASS_YEAR,
+                    EMPLOYEE_CODE = :EMPLOYEE_CODE,
+                    IS_DELETED = :IS_DELETED,
+                    STATUS = :STATUS
+                WHERE EDUCATION_CODE = :EDUCATION_CODE";
+                }
+
+                using (var cmd = new OracleCommand(sql, lcl_obj_DBManager.Connection))
+                {
+                    cmd.Transaction = lcl_obj_DBManager.Transaction;
+
+                    cmd.Parameters.Add(":EDUCATION_CODE", OracleDbType.Int64).Value = lcl_ui64_EducationCode;
+                    cmd.Parameters.Add(":EXAM_NAME", OracleDbType.NVarchar2).Value = lcl_obj_EmployeeEducation.ExamName;
+                    cmd.Parameters.Add(":INST_NAME", OracleDbType.NVarchar2).Value = lcl_obj_EmployeeEducation.InstName;
+                    cmd.Parameters.Add(":BOARD_UNIVERSITY", OracleDbType.NVarchar2).Value = lcl_obj_EmployeeEducation.BoardUniversity;
+                    cmd.Parameters.Add(":MAJOR_SUBJECT", OracleDbType.NVarchar2).Value = lcl_obj_EmployeeEducation.MajorSubject;
+                    cmd.Parameters.Add(":DIVISION_CLASS", OracleDbType.NVarchar2).Value = lcl_obj_EmployeeEducation.DivisionClass;
+                    cmd.Parameters.Add(":CGPA", OracleDbType.NVarchar2).Value = lcl_obj_EmployeeEducation.Cgpa;
+                    cmd.Parameters.Add(":PASS_YEAR", OracleDbType.Int64).Value = lcl_obj_EmployeeEducation.PassYear;
+                    cmd.Parameters.Add(":EMPLOYEE_CODE", OracleDbType.Int64).Value = lcl_obj_EmployeeEducation.EmployeeCode;
+                    cmd.Parameters.Add(":IS_DELETED", OracleDbType.Int64).Value = 1;
+                    cmd.Parameters.Add(":STATUS", OracleDbType.Int64).Value = 1;
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                return lcl_ui64_EducationCode;
+
+            }, "BMLExceptionPolicy");
+
+            return lcl_ui64_EducationCode;
+        }
+
 
 
         public ulong Update(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeEducation lcl_obj_EmployeeEducation, System.Object IP_obj_DBManager)

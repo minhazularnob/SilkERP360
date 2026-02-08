@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.DAL;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
-using System.ComponentModel;
-using System.Collections;
-using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -15,75 +16,161 @@ namespace SilkERP360.BML.HRIS
         {
             this.Initialize();
         }
-        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeSalaryStructure lcl_obj_EmployeeSalaryStructure, System.Object IP_obj_DBManager)
+        //public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeSalaryStructure lcl_obj_EmployeeSalaryStructure, System.Object IP_obj_DBManager)
+        //{
+        //    System.UInt64 lcl_ui64_EmployeeSalaryStructureCode = 0;
+        //    lcl_ui64_EmployeeSalaryStructureCode = this.ExceptionManager.Process<System.UInt64>(() =>
+        //    {
+        //        SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
+        //        OracleParameter lcl_obj_SalaryStructureCode = new OracleParameter("v_SALARY_STRUCTURE_CODE", OracleDbType.Int64);
+        //        lcl_obj_SalaryStructureCode.Direction = System.Data.ParameterDirection.Output;
+
+
+        //        OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
+        //        lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeSalaryStructure.EmployeeCode;
+
+        //        OracleParameter lcl_obj_Basic = new OracleParameter("v_BASIC", OracleDbType.Int64);
+        //        lcl_obj_Basic.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Basic.Value = lcl_obj_EmployeeSalaryStructure.Basic;
+
+        //        OracleParameter lcl_obj_HouseRent = new OracleParameter("v_HOUSE_RENT", OracleDbType.Int64);
+        //        lcl_obj_HouseRent.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_HouseRent.Value = lcl_obj_EmployeeSalaryStructure.HouseRent;
+
+        //        OracleParameter lcl_obj_Medical = new OracleParameter("v_MEDICAL", OracleDbType.Int64);
+        //        lcl_obj_Medical.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Medical.Value = lcl_obj_EmployeeSalaryStructure.Medical;
+
+        //        OracleParameter lcl_obj_Entertainment = new OracleParameter("v_ENTERTAINMENT", OracleDbType.Int64);
+        //        lcl_obj_Entertainment.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Entertainment.Value = lcl_obj_EmployeeSalaryStructure.Entertainment;
+
+        //        OracleParameter lcl_obj_Conveyence = new OracleParameter("v_CONVEYENCE", OracleDbType.Int64);
+        //        lcl_obj_Conveyence.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Conveyence.Value = lcl_obj_EmployeeSalaryStructure.Conveyence;
+
+        //        OracleParameter lcl_obj_PhoneBill = new OracleParameter("v_PHONE_BILL", OracleDbType.Int64);
+        //        lcl_obj_PhoneBill.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PhoneBill.Value = lcl_obj_EmployeeSalaryStructure.PhoneBill;
+
+        //        OracleParameter lcl_obj_Others = new OracleParameter("v_OTHERS", OracleDbType.Int64);
+        //        lcl_obj_Others.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Others.Value = lcl_obj_EmployeeSalaryStructure.Others;
+
+        //        OracleParameter lcl_obj_Gross = new OracleParameter("v_GROSS", OracleDbType.Int64);
+        //        lcl_obj_Gross.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Gross.Value = lcl_obj_EmployeeSalaryStructure.Gross;
+
+        //        OracleParameter lcl_obj_EffectiveFrom = new OracleParameter("v_EFFECTIVE_FROM", OracleDbType.Date);
+        //        lcl_obj_EffectiveFrom.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_EffectiveFrom.Value = lcl_obj_EmployeeSalaryStructure.EffectiveFrom;
+
+        //        OracleParameter lcl_obj_EffectiveUpto = new OracleParameter("v_EFFECTIVE_UPTO", OracleDbType.Date);
+        //        lcl_obj_EffectiveUpto.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_EffectiveUpto.Value = lcl_obj_EmployeeSalaryStructure.EffectiveUpto;
+
+        //        OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
+        //        lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_IsDeleted.Value = 1;
+
+        //        OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
+        //        lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Status.Value = 1;
+
+        //        OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryStructureCode,lcl_obj_EmployeeCode, lcl_obj_Basic, lcl_obj_HouseRent, lcl_obj_Medical, lcl_obj_Entertainment, lcl_obj_Conveyence, lcl_obj_PhoneBill, lcl_obj_Others, lcl_obj_Gross, lcl_obj_EffectiveFrom, lcl_obj_EffectiveUpto, lcl_obj_IsDeleted, lcl_obj_Status, };
+        //        lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_SALARY_STRUCTURE_IU", lcl_obj_SP_Parameters);
+
+        //        return System.UInt64.Parse(lcl_obj_SalaryStructureCode.Value.ToString());
+        //    }, "BMLExceptionPolicy");
+        //    return lcl_ui64_EmployeeSalaryStructureCode;
+        //}
+
+
+        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeSalaryStructure lcl_obj_EmployeeSalaryStructure, object IP_obj_DBManager)
         {
-            System.UInt64 lcl_ui64_EmployeeSalaryStructureCode = 0;
-            lcl_ui64_EmployeeSalaryStructureCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            ulong lcl_ui64_EmployeeSalaryStructureCode = 0;
+
+            lcl_ui64_EmployeeSalaryStructureCode = this.ExceptionManager.Process<ulong>(() =>
             {
                 SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
-                OracleParameter lcl_obj_SalaryStructureCode = new OracleParameter("v_SALARY_STRUCTURE_CODE", OracleDbType.Int64);
-                lcl_obj_SalaryStructureCode.Direction = System.Data.ParameterDirection.Output;
-               
 
-                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
-                lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_EmployeeCode.Value = lcl_obj_EmployeeSalaryStructure.EmployeeCode;
+                if (lcl_obj_DBManager.TransactionState != TransactionState.Pending)
+                    lcl_obj_DBManager.Open();
 
-                OracleParameter lcl_obj_Basic = new OracleParameter("v_BASIC", OracleDbType.Int64);
-                lcl_obj_Basic.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Basic.Value = lcl_obj_EmployeeSalaryStructure.Basic;
+                // 1. Get next sequence value
+                using (var seqCmd = new OracleCommand("select max(SALARY_STRUCTURE_CODE)+1 from EMPLOYEE_SALARY_STRUCTURE", lcl_obj_DBManager.Connection))
+                {
+                    seqCmd.Transaction = lcl_obj_DBManager.Transaction;
+                    lcl_ui64_EmployeeSalaryStructureCode = Convert.ToUInt64(seqCmd.ExecuteScalar());
+                }
 
-                OracleParameter lcl_obj_HouseRent = new OracleParameter("v_HOUSE_RENT", OracleDbType.Int64);
-                lcl_obj_HouseRent.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_HouseRent.Value = lcl_obj_EmployeeSalaryStructure.HouseRent;
+                // 2. Insert into table
+                string sql = @"
+            INSERT INTO EMPLOYEE_SALARY_STRUCTURE
+            (
+                SALARY_STRUCTURE_CODE,
+                EMPLOYEE_CODE,
+                BASIC,
+                HOUSE_RENT,
+                MEDICAL,
+                ENTERTAINMENT,
+                CONVEYENCE,
+                PHONE_BILL,
+                OTHERS,
+                GROSS,
+                EFFECTIVE_FROM,
+                EFFECTIVE_UPTO,
+                IS_DELETED,
+                STATUS
+            )
+            VALUES
+            (
+                :SALARY_STRUCTURE_CODE,
+                :EMPLOYEE_CODE,
+                :BASIC,
+                :HOUSE_RENT,
+                :MEDICAL,
+                :ENTERTAINMENT,
+                :CONVEYENCE,
+                :PHONE_BILL,
+                :OTHERS,
+                :GROSS,
+                :EFFECTIVE_FROM,
+                :EFFECTIVE_UPTO,
+                :IS_DELETED,
+                :STATUS
+            )";
 
-                OracleParameter lcl_obj_Medical = new OracleParameter("v_MEDICAL", OracleDbType.Int64);
-                lcl_obj_Medical.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Medical.Value = lcl_obj_EmployeeSalaryStructure.Medical;
+                using (var cmd = new OracleCommand(sql, lcl_obj_DBManager.Connection))
+                {
+                    cmd.Transaction = lcl_obj_DBManager.Transaction;
 
-                OracleParameter lcl_obj_Entertainment = new OracleParameter("v_ENTERTAINMENT", OracleDbType.Int64);
-                lcl_obj_Entertainment.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Entertainment.Value = lcl_obj_EmployeeSalaryStructure.Entertainment;
+                    cmd.Parameters.Add(":SALARY_STRUCTURE_CODE", OracleDbType.Int64).Value = lcl_ui64_EmployeeSalaryStructureCode;
+                    cmd.Parameters.Add(":EMPLOYEE_CODE", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.EmployeeCode;
+                    cmd.Parameters.Add(":BASIC", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.Basic;
+                    cmd.Parameters.Add(":HOUSE_RENT", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.HouseRent;
+                    cmd.Parameters.Add(":MEDICAL", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.Medical;
+                    cmd.Parameters.Add(":ENTERTAINMENT", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.Entertainment;
+                    cmd.Parameters.Add(":CONVEYENCE", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.Conveyence;
+                    cmd.Parameters.Add(":PHONE_BILL", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.PhoneBill;
+                    cmd.Parameters.Add(":OTHERS", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.Others;
+                    cmd.Parameters.Add(":GROSS", OracleDbType.Int64).Value = lcl_obj_EmployeeSalaryStructure.Gross;
+                    cmd.Parameters.Add(":EFFECTIVE_FROM", OracleDbType.Date).Value = lcl_obj_EmployeeSalaryStructure.EffectiveFrom;
+                    cmd.Parameters.Add(":EFFECTIVE_UPTO", OracleDbType.Date).Value = lcl_obj_EmployeeSalaryStructure.EffectiveUpto;
+                    cmd.Parameters.Add(":IS_DELETED", OracleDbType.Int64).Value = 1;
+                    cmd.Parameters.Add(":STATUS", OracleDbType.Int64).Value = 1;
 
-                OracleParameter lcl_obj_Conveyence = new OracleParameter("v_CONVEYENCE", OracleDbType.Int64);
-                lcl_obj_Conveyence.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Conveyence.Value = lcl_obj_EmployeeSalaryStructure.Conveyence;
+                    cmd.ExecuteNonQuery();
+                }
 
-                OracleParameter lcl_obj_PhoneBill = new OracleParameter("v_PHONE_BILL", OracleDbType.Int64);
-                lcl_obj_PhoneBill.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PhoneBill.Value = lcl_obj_EmployeeSalaryStructure.PhoneBill;
+                return lcl_ui64_EmployeeSalaryStructureCode;
 
-                OracleParameter lcl_obj_Others = new OracleParameter("v_OTHERS", OracleDbType.Int64);
-                lcl_obj_Others.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Others.Value = lcl_obj_EmployeeSalaryStructure.Others;
-
-                OracleParameter lcl_obj_Gross = new OracleParameter("v_GROSS", OracleDbType.Int64);
-                lcl_obj_Gross.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Gross.Value = lcl_obj_EmployeeSalaryStructure.Gross;
-
-                OracleParameter lcl_obj_EffectiveFrom = new OracleParameter("v_EFFECTIVE_FROM", OracleDbType.Date);
-                lcl_obj_EffectiveFrom.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_EffectiveFrom.Value = lcl_obj_EmployeeSalaryStructure.EffectiveFrom;
-
-                OracleParameter lcl_obj_EffectiveUpto = new OracleParameter("v_EFFECTIVE_UPTO", OracleDbType.Date);
-                lcl_obj_EffectiveUpto.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_EffectiveUpto.Value = lcl_obj_EmployeeSalaryStructure.EffectiveUpto;
-
-                OracleParameter lcl_obj_IsDeleted = new OracleParameter("v_IS_DELETED", OracleDbType.Int64);
-                lcl_obj_IsDeleted.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_IsDeleted.Value = 1;
-
-                OracleParameter lcl_obj_Status = new OracleParameter("v_STATUS", OracleDbType.Int64);
-                lcl_obj_Status.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Status.Value = 1;
-
-                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_SalaryStructureCode,lcl_obj_EmployeeCode, lcl_obj_Basic, lcl_obj_HouseRent, lcl_obj_Medical, lcl_obj_Entertainment, lcl_obj_Conveyence, lcl_obj_PhoneBill, lcl_obj_Others, lcl_obj_Gross, lcl_obj_EffectiveFrom, lcl_obj_EffectiveUpto, lcl_obj_IsDeleted, lcl_obj_Status, };
-                lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_SALARY_STRUCTURE_IU", lcl_obj_SP_Parameters);
-
-                return System.UInt64.Parse(lcl_obj_SalaryStructureCode.Value.ToString());
             }, "BMLExceptionPolicy");
+
             return lcl_ui64_EmployeeSalaryStructureCode;
         }
+
 
 
         public ulong Update(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeSalaryStructure lcl_obj_EmployeeSalaryStructure, System.Object IP_obj_DBManager)

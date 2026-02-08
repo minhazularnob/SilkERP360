@@ -760,11 +760,12 @@ namespace SilkERP360.UI.HRIS
                 dtCertificates.Columns.Add("EmployeeCertificateCode", typeof(long));
                 dtCertificates.Columns.Add("FileSize", typeof(long));
                 dtCertificates.Columns.Add("FileType", typeof(string));
+                dtCertificates.Columns.Add("FileCategory", typeof(int));
 
                 // SQL Query
-                string lcl_str_certificateQuery = @"SELECT employee_certificate_code, certificate, employee_code, file_size, file_type, is_deleted, status, File_Name 
+                string lcl_str_certificateQuery = @"SELECT employee_certificate_code, certificate, employee_code, file_size, file_type, is_deleted, status, File_Name, File_category 
                                                                   FROM employee_certificate
-                                                                  WHERE employee_code = " + lcl_ui64_EmployeeCode;
+                                                                  WHERE employee_code = " + lcl_ui64_EmployeeCode+ " order by File_category asc";
 
                 // Execute reader
                 Oracle.ManagedDataAccess.Client.OracleDataReader lcl_obj_certificateReader = lcl_obj_SqlFacade.ExecuteDataReader(lcl_str_certificateQuery);
@@ -778,6 +779,7 @@ namespace SilkERP360.UI.HRIS
                         dr["EmployeeCertificateCode"] = Convert.ToInt64(lcl_obj_certificateReader["employee_certificate_code"]);
                         dr["FileSize"] = Convert.ToInt64(lcl_obj_certificateReader["file_size"]);
                         dr["FileType"] = lcl_obj_certificateReader["file_type"].ToString();
+                        dr["FileCategory"] = lcl_obj_certificateReader["File_category"].ToString();
 
                         dtCertificates.Rows.Add(dr);
                     }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.DAL;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
-using System.ComponentModel;
-using System.Collections;
-using Oracle.ManagedDataAccess.Client;
 
 namespace SilkERP360.BML.HRIS
 {
@@ -15,128 +16,207 @@ namespace SilkERP360.BML.HRIS
         {
             this.Initialize();
         }
-        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeePersonal lcl_obj_EmployeePersonal, System.Object IP_obj_DBManager)
+
+        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeePersonal employeePersonal, object dbManagerObj)
         {
-            System.UInt64 lcl_ui64_EmployeePersonalCode = 0;
-            lcl_ui64_EmployeePersonalCode = this.ExceptionManager.Process<System.UInt64>(() =>
+            ulong employeeCode = 0;
+
+            // Wrap everything in ExceptionManager
+            employeeCode = this.ExceptionManager.Process<ulong>(() =>
             {
-                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
+                SilkERP360.DAL.DBManager dbManager = (SilkERP360.DAL.DBManager)dbManagerObj;
 
-                OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
-                lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_EmployeeCode.Value = lcl_obj_EmployeePersonal.EmployeeCode;
+                // Ensure DB connection & transaction are open
+                if (dbManager.TransactionState != TransactionState.Pending)
+                {
+                    dbManager.Open();
+                }
 
-                OracleParameter lcl_obj_FatherName = new OracleParameter("v_FATHER_NAME", OracleDbType.NVarchar2, 100);
-                lcl_obj_FatherName.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_FatherName.Value = lcl_obj_EmployeePersonal.FatherName;
+                OracleConnection conn = dbManager.Connection;
 
-                OracleParameter lcl_obj_MotherName = new OracleParameter("v_MOTHER_NAME", OracleDbType.NVarchar2, 100);
-                lcl_obj_MotherName.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_MotherName.Value = lcl_obj_EmployeePersonal.MotherName;
+                string insertSql = @"
+        INSERT INTO EMPLOYEE_PERSONAL
+        (
+            EMPLOYEE_CODE, FATHER_NAME, MOTHER_NAME, SPOUSE_NAME, DATE_OF_BIRTH, MARITAL_STATUS, SEX,
+            RELIGION, NATIONALITY, BLOOD_GROUP, HEIGHT, WEIGHT, IDENTIFICATION, MOBILE_NO, HOME_PHONE_NO,
+            FAX_NO, EMAIL, PRESENT_ADDRESS, PRESENT_PO, PRESENT_PC, PRESENT_DISTRICT_CODE,
+            PERMANENT_ADDRESS, PERMANENT_PO, PERMANENT_PC, PERMANENT_DISTRICT_CODE,
+            CITIZEN_CARD_ID, PASSPORT_NO
+        )
+        VALUES
+        (
+            :EMPLOYEE_CODE, :FATHER_NAME, :MOTHER_NAME, :SPOUSE_NAME, :DATE_OF_BIRTH, :MARITAL_STATUS, :SEX,
+            :RELIGION, :NATIONALITY, :BLOOD_GROUP, :HEIGHT, :WEIGHT, :IDENTIFICATION, :MOBILE_NO, :HOME_PHONE_NO,
+            :FAX_NO, :EMAIL, :PRESENT_ADDRESS, :PRESENT_PO, :PRESENT_PC, :PRESENT_DISTRICT_CODE,
+            :PERMANENT_ADDRESS, :PERMANENT_PO, :PERMANENT_PC, :PERMANENT_DISTRICT_CODE,
+            :CITIZEN_CARD_ID, :PASSPORT_NO
+        )";
 
-                OracleParameter lcl_obj_SpouseName = new OracleParameter("v_SPOUSE_NAME", OracleDbType.NVarchar2, 100);
-                lcl_obj_SpouseName.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_SpouseName.Value = lcl_obj_EmployeePersonal.SpouseName;
+                using (OracleCommand cmd = new OracleCommand(insertSql, conn))
+                {
+                    cmd.Transaction = dbManager.Transaction;
 
-                OracleParameter lcl_obj_DateOfBirth = new OracleParameter("v_DATE_OF_BIRTH", OracleDbType.Date);
-                lcl_obj_DateOfBirth.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_DateOfBirth.Value = lcl_obj_EmployeePersonal.DateOfBirth;
+                    cmd.Parameters.Add("EMPLOYEE_CODE", OracleDbType.Int64).Value = employeePersonal.EmployeeCode;
+                    cmd.Parameters.Add("FATHER_NAME", OracleDbType.NVarchar2).Value = employeePersonal.FatherName;
+                    cmd.Parameters.Add("MOTHER_NAME", OracleDbType.NVarchar2).Value = employeePersonal.MotherName;
+                    cmd.Parameters.Add("SPOUSE_NAME", OracleDbType.NVarchar2).Value = employeePersonal.SpouseName;
+                    cmd.Parameters.Add("DATE_OF_BIRTH", OracleDbType.Date).Value = employeePersonal.DateOfBirth;
+                    cmd.Parameters.Add("MARITAL_STATUS", OracleDbType.NVarchar2).Value = employeePersonal.MaritalStatus;
+                    cmd.Parameters.Add("SEX", OracleDbType.Char).Value = employeePersonal.Sex;
+                    cmd.Parameters.Add("RELIGION", OracleDbType.NVarchar2).Value = employeePersonal.Religion;
+                    cmd.Parameters.Add("NATIONALITY", OracleDbType.NVarchar2).Value = employeePersonal.Nationality;
+                    cmd.Parameters.Add("BLOOD_GROUP", OracleDbType.NVarchar2).Value = employeePersonal.BloodGroup;
+                    cmd.Parameters.Add("HEIGHT", OracleDbType.NVarchar2).Value = employeePersonal.Height;
+                    cmd.Parameters.Add("WEIGHT", OracleDbType.NVarchar2).Value = employeePersonal.Weight;
+                    cmd.Parameters.Add("IDENTIFICATION", OracleDbType.NVarchar2).Value = employeePersonal.Identification;
+                    cmd.Parameters.Add("MOBILE_NO", OracleDbType.NVarchar2).Value = employeePersonal.MobileNo;
+                    cmd.Parameters.Add("HOME_PHONE_NO", OracleDbType.NVarchar2).Value = employeePersonal.HomePhoneNo;
+                    cmd.Parameters.Add("FAX_NO", OracleDbType.NVarchar2).Value = employeePersonal.FaxNo;
+                    cmd.Parameters.Add("EMAIL", OracleDbType.NVarchar2).Value = employeePersonal.Email;
+                    cmd.Parameters.Add("PRESENT_ADDRESS", OracleDbType.NVarchar2).Value = employeePersonal.PresentAddress;
+                    cmd.Parameters.Add("PRESENT_PO", OracleDbType.NVarchar2).Value = employeePersonal.PresentPo;
+                    cmd.Parameters.Add("PRESENT_PC", OracleDbType.NVarchar2).Value = employeePersonal.PresentPc;
+                    cmd.Parameters.Add("PRESENT_DISTRICT_CODE", OracleDbType.Int64).Value = employeePersonal.PresentDistrictCode;
+                    cmd.Parameters.Add("PERMANENT_ADDRESS", OracleDbType.NVarchar2).Value = employeePersonal.PermanentAddress;
+                    cmd.Parameters.Add("PERMANENT_PO", OracleDbType.NVarchar2).Value = employeePersonal.PermanentPo;
+                    cmd.Parameters.Add("PERMANENT_PC", OracleDbType.NVarchar2).Value = employeePersonal.PermanentPc;
+                    cmd.Parameters.Add("PERMANENT_DISTRICT_CODE", OracleDbType.Int64).Value = employeePersonal.PermanentDistrictCode;
+                    cmd.Parameters.Add("CITIZEN_CARD_ID", OracleDbType.NVarchar2).Value = employeePersonal.CitizenCardId;
+                    cmd.Parameters.Add("PASSPORT_NO", OracleDbType.NVarchar2).Value = employeePersonal.PassportNo;
 
-                OracleParameter lcl_obj_MaritalStatus = new OracleParameter("v_MARITAL_STATUS", OracleDbType.NVarchar2, 64);
-                lcl_obj_MaritalStatus.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_MaritalStatus.Value = lcl_obj_EmployeePersonal.MaritalStatus;
+                    cmd.ExecuteNonQuery();
+                }
 
-                OracleParameter lcl_obj_Sex = new OracleParameter("v_SEX", OracleDbType.Char, 1);
-                lcl_obj_Sex.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Sex.Value = lcl_obj_EmployeePersonal.Sex;
+                return (ulong)employeePersonal.EmployeeCode;
 
-                OracleParameter lcl_obj_Religion = new OracleParameter("v_RELIGION", OracleDbType.NVarchar2, 64);
-                lcl_obj_Religion.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Religion.Value = lcl_obj_EmployeePersonal.Religion;
-
-                OracleParameter lcl_obj_Nationality = new OracleParameter("v_NATIONALITY", OracleDbType.NVarchar2, 64);
-                lcl_obj_Nationality.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Nationality.Value = lcl_obj_EmployeePersonal.Nationality;
-
-                OracleParameter lcl_obj_BloodGroup = new OracleParameter("v_BLOOD_GROUP", OracleDbType.NVarchar2, 32);
-                lcl_obj_BloodGroup.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_BloodGroup.Value = lcl_obj_EmployeePersonal.BloodGroup;
-
-                OracleParameter lcl_obj_Height = new OracleParameter("v_HEIGHT", OracleDbType.NVarchar2, 10);
-                lcl_obj_Height.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Height.Value = lcl_obj_EmployeePersonal.Height;
-
-                OracleParameter lcl_obj_Weight = new OracleParameter("v_WEIGHT", OracleDbType.NVarchar2, 10);
-                lcl_obj_Weight.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Weight.Value = lcl_obj_EmployeePersonal.Weight;
-
-                OracleParameter lcl_obj_Identification = new OracleParameter("v_IDENTIFICATION", OracleDbType.NVarchar2, 128);
-                lcl_obj_Identification.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Identification.Value = lcl_obj_EmployeePersonal.Identification;
-
-                OracleParameter lcl_obj_MobileNo = new OracleParameter("v_MOBILE_NO", OracleDbType.NVarchar2, 64);
-                lcl_obj_MobileNo.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_MobileNo.Value = lcl_obj_EmployeePersonal.MobileNo;
-
-                OracleParameter lcl_obj_HomePhoneNo = new OracleParameter("v_HOME_PHONE_NO", OracleDbType.NVarchar2, 100);
-                lcl_obj_HomePhoneNo.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_HomePhoneNo.Value = lcl_obj_EmployeePersonal.HomePhoneNo;
-
-                OracleParameter lcl_obj_FaxNo = new OracleParameter("v_FAX_NO", OracleDbType.NVarchar2, 20);
-                lcl_obj_FaxNo.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_FaxNo.Value = lcl_obj_EmployeePersonal.FaxNo;
-
-                OracleParameter lcl_obj_Email = new OracleParameter("v_EMAIL", OracleDbType.NVarchar2, 128);
-                lcl_obj_Email.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_Email.Value = lcl_obj_EmployeePersonal.Email;
-
-                OracleParameter lcl_obj_PresentAddress = new OracleParameter("v_PRESENT_ADDRESS", OracleDbType.NVarchar2, 256);
-                lcl_obj_PresentAddress.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PresentAddress.Value = lcl_obj_EmployeePersonal.PresentAddress;
-
-                OracleParameter lcl_obj_PresentPo = new OracleParameter("v_PRESENT_PO", OracleDbType.NVarchar2, 128);
-                lcl_obj_PresentPo.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PresentPo.Value = lcl_obj_EmployeePersonal.PresentPo;
-
-                OracleParameter lcl_obj_PresentPc = new OracleParameter("v_PRESENT_PC", OracleDbType.NVarchar2, 64);
-                lcl_obj_PresentPc.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PresentPc.Value = lcl_obj_EmployeePersonal.PresentPc;
-
-                OracleParameter lcl_obj_PresentDistrictCode = new OracleParameter("v_PRESENT_DISTRICT_CODE", OracleDbType.Int64);
-                lcl_obj_PresentDistrictCode.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PresentDistrictCode.Value = lcl_obj_EmployeePersonal.PresentDistrictCode;
-
-                OracleParameter lcl_obj_PermanentAddress = new OracleParameter("v_PERMANENT_ADDRESS", OracleDbType.NVarchar2, 256);
-                lcl_obj_PermanentAddress.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PermanentAddress.Value = lcl_obj_EmployeePersonal.PermanentAddress;
-
-                OracleParameter lcl_obj_PermanentPo = new OracleParameter("v_PERMANENT_PO", OracleDbType.NVarchar2, 128);
-                lcl_obj_PermanentPo.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PermanentPo.Value = lcl_obj_EmployeePersonal.PermanentPo;
-
-                OracleParameter lcl_obj_PermanentPc = new OracleParameter("v_PERMANENT_PC", OracleDbType.NVarchar2, 64);
-                lcl_obj_PermanentPc.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PermanentPc.Value = lcl_obj_EmployeePersonal.PermanentPc;
-
-                OracleParameter lcl_obj_PermanentDistrictCode = new OracleParameter("v_PERMANENT_DISTRICT_CODE", OracleDbType.Int64);
-                lcl_obj_PermanentDistrictCode.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PermanentDistrictCode.Value = lcl_obj_EmployeePersonal.PermanentDistrictCode;
-
-                OracleParameter lcl_obj_CitizenCardId = new OracleParameter("v_CITIZEN_CARD_ID", OracleDbType.NVarchar2, 32);
-                lcl_obj_CitizenCardId.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_CitizenCardId.Value = lcl_obj_EmployeePersonal.CitizenCardId;
-
-                OracleParameter lcl_obj_PassportNo = new OracleParameter("v_PASSPORT_NO", OracleDbType.NVarchar2, 32);
-                lcl_obj_PassportNo.Direction = System.Data.ParameterDirection.Input;
-                lcl_obj_PassportNo.Value = lcl_obj_EmployeePersonal.PassportNo;
-
-                OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo };
-                lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_EMPLOYEE_PERSONAL", lcl_obj_SP_Parameters);
-                return System.UInt64.Parse(lcl_obj_EmployeeCode.Value.ToString());
             }, "BMLExceptionPolicy");
-            return lcl_ui64_EmployeePersonalCode;
 
+            return employeeCode;
         }
+
+
+        //public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeePersonal lcl_obj_EmployeePersonal, System.Object IP_obj_DBManager)
+        //{
+        //    System.UInt64 lcl_ui64_EmployeePersonalCode = 0;
+        //    lcl_ui64_EmployeePersonalCode = this.ExceptionManager.Process<System.UInt64>(() =>
+        //    {
+        //        SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
+
+        //        OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EMPLOYEE_CODE", OracleDbType.Int64);
+        //        lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_EmployeeCode.Value = lcl_obj_EmployeePersonal.EmployeeCode;
+
+        //        OracleParameter lcl_obj_FatherName = new OracleParameter("v_FATHER_NAME", OracleDbType.NVarchar2, 100);
+        //        lcl_obj_FatherName.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_FatherName.Value = lcl_obj_EmployeePersonal.FatherName;
+
+        //        OracleParameter lcl_obj_MotherName = new OracleParameter("v_MOTHER_NAME", OracleDbType.NVarchar2, 100);
+        //        lcl_obj_MotherName.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_MotherName.Value = lcl_obj_EmployeePersonal.MotherName;
+
+        //        OracleParameter lcl_obj_SpouseName = new OracleParameter("v_SPOUSE_NAME", OracleDbType.NVarchar2, 100);
+        //        lcl_obj_SpouseName.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_SpouseName.Value = lcl_obj_EmployeePersonal.SpouseName;
+
+        //        OracleParameter lcl_obj_DateOfBirth = new OracleParameter("v_DATE_OF_BIRTH", OracleDbType.Date);
+        //        lcl_obj_DateOfBirth.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_DateOfBirth.Value = lcl_obj_EmployeePersonal.DateOfBirth;
+
+        //        OracleParameter lcl_obj_MaritalStatus = new OracleParameter("v_MARITAL_STATUS", OracleDbType.NVarchar2, 64);
+        //        lcl_obj_MaritalStatus.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_MaritalStatus.Value = lcl_obj_EmployeePersonal.MaritalStatus;
+
+        //        OracleParameter lcl_obj_Sex = new OracleParameter("v_SEX", OracleDbType.Char, 1);
+        //        lcl_obj_Sex.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Sex.Value = lcl_obj_EmployeePersonal.Sex;
+
+        //        OracleParameter lcl_obj_Religion = new OracleParameter("v_RELIGION", OracleDbType.NVarchar2, 64);
+        //        lcl_obj_Religion.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Religion.Value = lcl_obj_EmployeePersonal.Religion;
+
+        //        OracleParameter lcl_obj_Nationality = new OracleParameter("v_NATIONALITY", OracleDbType.NVarchar2, 64);
+        //        lcl_obj_Nationality.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Nationality.Value = lcl_obj_EmployeePersonal.Nationality;
+
+        //        OracleParameter lcl_obj_BloodGroup = new OracleParameter("v_BLOOD_GROUP", OracleDbType.NVarchar2, 32);
+        //        lcl_obj_BloodGroup.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_BloodGroup.Value = lcl_obj_EmployeePersonal.BloodGroup;
+
+        //        OracleParameter lcl_obj_Height = new OracleParameter("v_HEIGHT", OracleDbType.NVarchar2, 10);
+        //        lcl_obj_Height.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Height.Value = lcl_obj_EmployeePersonal.Height;
+
+        //        OracleParameter lcl_obj_Weight = new OracleParameter("v_WEIGHT", OracleDbType.NVarchar2, 10);
+        //        lcl_obj_Weight.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Weight.Value = lcl_obj_EmployeePersonal.Weight;
+
+        //        OracleParameter lcl_obj_Identification = new OracleParameter("v_IDENTIFICATION", OracleDbType.NVarchar2, 128);
+        //        lcl_obj_Identification.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Identification.Value = lcl_obj_EmployeePersonal.Identification;
+
+        //        OracleParameter lcl_obj_MobileNo = new OracleParameter("v_MOBILE_NO", OracleDbType.NVarchar2, 64);
+        //        lcl_obj_MobileNo.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_MobileNo.Value = lcl_obj_EmployeePersonal.MobileNo;
+
+        //        OracleParameter lcl_obj_HomePhoneNo = new OracleParameter("v_HOME_PHONE_NO", OracleDbType.NVarchar2, 100);
+        //        lcl_obj_HomePhoneNo.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_HomePhoneNo.Value = lcl_obj_EmployeePersonal.HomePhoneNo;
+
+        //        OracleParameter lcl_obj_FaxNo = new OracleParameter("v_FAX_NO", OracleDbType.NVarchar2, 20);
+        //        lcl_obj_FaxNo.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_FaxNo.Value = lcl_obj_EmployeePersonal.FaxNo;
+
+        //        OracleParameter lcl_obj_Email = new OracleParameter("v_EMAIL", OracleDbType.NVarchar2, 128);
+        //        lcl_obj_Email.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Email.Value = lcl_obj_EmployeePersonal.Email;
+
+        //        OracleParameter lcl_obj_PresentAddress = new OracleParameter("v_PRESENT_ADDRESS", OracleDbType.NVarchar2, 256);
+        //        lcl_obj_PresentAddress.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PresentAddress.Value = lcl_obj_EmployeePersonal.PresentAddress;
+
+        //        OracleParameter lcl_obj_PresentPo = new OracleParameter("v_PRESENT_PO", OracleDbType.NVarchar2, 128);
+        //        lcl_obj_PresentPo.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PresentPo.Value = lcl_obj_EmployeePersonal.PresentPo;
+
+        //        OracleParameter lcl_obj_PresentPc = new OracleParameter("v_PRESENT_PC", OracleDbType.NVarchar2, 64);
+        //        lcl_obj_PresentPc.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PresentPc.Value = lcl_obj_EmployeePersonal.PresentPc;
+
+        //        OracleParameter lcl_obj_PresentDistrictCode = new OracleParameter("v_PRESENT_DISTRICT_CODE", OracleDbType.Int64);
+        //        lcl_obj_PresentDistrictCode.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PresentDistrictCode.Value = lcl_obj_EmployeePersonal.PresentDistrictCode;
+
+        //        OracleParameter lcl_obj_PermanentAddress = new OracleParameter("v_PERMANENT_ADDRESS", OracleDbType.NVarchar2, 256);
+        //        lcl_obj_PermanentAddress.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PermanentAddress.Value = lcl_obj_EmployeePersonal.PermanentAddress;
+
+        //        OracleParameter lcl_obj_PermanentPo = new OracleParameter("v_PERMANENT_PO", OracleDbType.NVarchar2, 128);
+        //        lcl_obj_PermanentPo.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PermanentPo.Value = lcl_obj_EmployeePersonal.PermanentPo;
+
+        //        OracleParameter lcl_obj_PermanentPc = new OracleParameter("v_PERMANENT_PC", OracleDbType.NVarchar2, 64);
+        //        lcl_obj_PermanentPc.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PermanentPc.Value = lcl_obj_EmployeePersonal.PermanentPc;
+
+        //        OracleParameter lcl_obj_PermanentDistrictCode = new OracleParameter("v_PERMANENT_DISTRICT_CODE", OracleDbType.Int64);
+        //        lcl_obj_PermanentDistrictCode.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PermanentDistrictCode.Value = lcl_obj_EmployeePersonal.PermanentDistrictCode;
+
+        //        OracleParameter lcl_obj_CitizenCardId = new OracleParameter("v_CITIZEN_CARD_ID", OracleDbType.NVarchar2, 32);
+        //        lcl_obj_CitizenCardId.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_CitizenCardId.Value = lcl_obj_EmployeePersonal.CitizenCardId;
+
+        //        OracleParameter lcl_obj_PassportNo = new OracleParameter("v_PASSPORT_NO", OracleDbType.NVarchar2, 32);
+        //        lcl_obj_PassportNo.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_PassportNo.Value = lcl_obj_EmployeePersonal.PassportNo;
+
+        //        OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_EmployeeCode, lcl_obj_FatherName, lcl_obj_MotherName, lcl_obj_SpouseName, lcl_obj_DateOfBirth, lcl_obj_MaritalStatus, lcl_obj_Sex, lcl_obj_Religion, lcl_obj_Nationality, lcl_obj_BloodGroup, lcl_obj_Height, lcl_obj_Weight, lcl_obj_Identification, lcl_obj_MobileNo, lcl_obj_HomePhoneNo, lcl_obj_FaxNo, lcl_obj_Email, lcl_obj_PresentAddress, lcl_obj_PresentPo, lcl_obj_PresentPc, lcl_obj_PresentDistrictCode, lcl_obj_PermanentAddress, lcl_obj_PermanentPo, lcl_obj_PermanentPc, lcl_obj_PermanentDistrictCode, lcl_obj_CitizenCardId, lcl_obj_PassportNo };
+        //        lcl_obj_DBManager.ExecuteStoredProcedure("HRIS_INS_EMPLOYEE_PERSONAL", lcl_obj_SP_Parameters);
+        //        return System.UInt64.Parse(lcl_obj_EmployeeCode.Value.ToString());
+        //    }, "BMLExceptionPolicy");
+        //    return lcl_ui64_EmployeePersonalCode;
+
+        //}
 
         public ulong Update(SilkERP360.CCL.BusinessEntities.HRIS.EmployeePersonal lcl_obj_EmployeePersonal, System.Object IP_obj_DBManager)
         {

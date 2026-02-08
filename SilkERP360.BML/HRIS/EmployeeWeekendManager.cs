@@ -1,4 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using SilkERP360.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,41 +14,112 @@ namespace SilkERP360.BML.HRIS
        {
            this.Initialize();
        }
-       /// <summary>
-       /// Save
-       /// </summary>
-       /// <param name="IP_obj_A"></param>
-       /// <param name="IP_obj_DBManager"></param>
-       /// <returns></returns>
-       public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeWeekend lcl_obj_EmpWeekend, System.Object IP_obj_DBManager)
-       {
-           System.UInt64 lcl_ui64_WeekendCode = 0;
+        /// <summary>
+        /// Save
+        /// </summary>
+        /// <param name="IP_obj_A"></param>
+        /// <param name="IP_obj_DBManager"></param>
+        /// <returns></returns>
+        //public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeWeekend lcl_obj_EmpWeekend, System.Object IP_obj_DBManager)
+        //{
+        //    System.UInt64 lcl_ui64_WeekendCode = 0;
 
-           lcl_ui64_WeekendCode = this.ExceptionManager.Process<System.UInt64>(() =>
-           {
-               SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
+        //    lcl_ui64_WeekendCode = this.ExceptionManager.Process<System.UInt64>(() =>
+        //    {
+        //        SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
 
 
-               OracleParameter lcl_obj_WeekendCode = new OracleParameter("v_WeekendCode", OracleDbType.Int64);
-               lcl_obj_WeekendCode.Direction = System.Data.ParameterDirection.Output;
-               lcl_obj_WeekendCode.Value = lcl_obj_EmpWeekend.WeekendCode;
+        //        OracleParameter lcl_obj_WeekendCode = new OracleParameter("v_WeekendCode", OracleDbType.Int64);
+        //        lcl_obj_WeekendCode.Direction = System.Data.ParameterDirection.Output;
+        //        lcl_obj_WeekendCode.Value = lcl_obj_EmpWeekend.WeekendCode;
 
-               OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
-               lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
-               lcl_obj_EmployeeCode.Value = lcl_obj_EmpWeekend.EmployeeCode;
+        //        OracleParameter lcl_obj_EmployeeCode = new OracleParameter("v_EmployeeCode", OracleDbType.Int64);
+        //        lcl_obj_EmployeeCode.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_EmployeeCode.Value = lcl_obj_EmpWeekend.EmployeeCode;
 
-               OracleParameter lcl_obj_Day = new OracleParameter("v_Day", OracleDbType.Int64);
-               lcl_obj_Day.Direction = System.Data.ParameterDirection.Input;
-               lcl_obj_Day.Value = lcl_obj_EmpWeekend.Day;
+        //        OracleParameter lcl_obj_Day = new OracleParameter("v_Day", OracleDbType.Int64);
+        //        lcl_obj_Day.Direction = System.Data.ParameterDirection.Input;
+        //        lcl_obj_Day.Value = lcl_obj_EmpWeekend.Day;
 
-               OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
-               lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_WEEKEND_IU", lcl_obj_SP_Parameters);
+        //        OracleParameter[] lcl_obj_SP_Parameters = { lcl_obj_WeekendCode, lcl_obj_EmployeeCode, lcl_obj_Day };
+        //        lcl_obj_DBManager.ExecuteStoredProcedure("EMPLOYEE_WEEKEND_IU", lcl_obj_SP_Parameters);
 
-               return System.UInt64.Parse(lcl_obj_WeekendCode.Value.ToString());
-           }, "BMLExceptionPolicy");
-           return lcl_ui64_WeekendCode;
-       }
-       public ulong Update(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeWeekend lcl_obj_EmpWeekend, System.Object IP_obj_DBManager)
+        //        return System.UInt64.Parse(lcl_obj_WeekendCode.Value.ToString());
+        //    }, "BMLExceptionPolicy");
+        //    return lcl_ui64_WeekendCode;
+        //}
+
+        public ulong Save(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeWeekend lcl_obj_EmpWeekend, object IP_obj_DBManager)
+        {
+            ulong lcl_ui64_WeekendCode = 0;
+
+            lcl_ui64_WeekendCode = this.ExceptionManager.Process<ulong>(() =>
+            {
+                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;
+
+                if (lcl_obj_DBManager.TransactionState != TransactionState.Pending)
+                    lcl_obj_DBManager.Open();
+
+                // 1. Get next sequence value if WeekendCode is 0
+                if (lcl_obj_EmpWeekend.WeekendCode == 0)
+                {
+                    using (var seqCmd = new OracleCommand("select max(WEEKEND_CODE)+1 from EMPLOYEE_WEEKEND", lcl_obj_DBManager.Connection))
+                    {
+                        seqCmd.Transaction = lcl_obj_DBManager.Transaction;
+                        lcl_ui64_WeekendCode = Convert.ToUInt64(seqCmd.ExecuteScalar());
+                    }
+                }
+                else
+                {
+                    lcl_ui64_WeekendCode = lcl_obj_EmpWeekend.WeekendCode;
+                }
+
+                // 2. Insert or Update
+                string sql;
+                if (lcl_obj_EmpWeekend.WeekendCode == 0)
+                {
+                    sql = @"
+                INSERT INTO EMPLOYEE_WEEKEND
+                (
+                    WEEKEND_CODE,
+                    EMPLOYEE_CODE,
+                    DAY
+                )
+                VALUES
+                (
+                    :WEEKEND_CODE,
+                    :EMPLOYEE_CODE,
+                    :DAY
+                )";
+                }
+                else
+                {
+                    sql = @"
+                UPDATE EMPLOYEE_WEEKEND
+                SET EMPLOYEE_CODE = :EMPLOYEE_CODE,
+                    DAY = :DAY
+                WHERE WEEKEND_CODE = :WEEKEND_CODE";
+                }
+
+                using (var cmd = new OracleCommand(sql, lcl_obj_DBManager.Connection))
+                {
+                    cmd.Transaction = lcl_obj_DBManager.Transaction;
+
+                    cmd.Parameters.Add(":WEEKEND_CODE", OracleDbType.Int64).Value = lcl_ui64_WeekendCode;
+                    cmd.Parameters.Add(":EMPLOYEE_CODE", OracleDbType.Int64).Value = lcl_obj_EmpWeekend.EmployeeCode;
+                    cmd.Parameters.Add(":DAY", OracleDbType.Int64).Value = lcl_obj_EmpWeekend.Day;
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                return lcl_ui64_WeekendCode;
+
+            }, "BMLExceptionPolicy");
+
+            return lcl_ui64_WeekendCode;
+        }
+
+        public ulong Update(SilkERP360.CCL.BusinessEntities.HRIS.EmployeeWeekend lcl_obj_EmpWeekend, System.Object IP_obj_DBManager)
        {
            System.UInt64 lcl_ui64_WeekendCode = 0;
 

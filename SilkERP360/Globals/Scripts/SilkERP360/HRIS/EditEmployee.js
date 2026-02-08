@@ -921,38 +921,47 @@ async function Save() {
             }
         }
 
-        //certificates
+        // Employee Certificates
         if (typeof selectedFiles !== 'undefined' && selectedFiles.length > 0) {
 
             lcl_obj_EmpApp.EmployeeCertificateList = [];
 
             for (let index = 0; index < selectedFiles.length; index++) {
 
-                const file = selectedFiles[index];
+                const item = selectedFiles[index];
+                const file = item.file;
+                const category = item.category; // certificate category (enum value)
+
+                // validation (optional but recommended)
+                if (!category || category === 0) {
+                    alert("Please select category for file: " + file.name);
+                    return;
+                }
 
                 const base64Content = await new Promise((resolve, reject) => {
                     const reader = new FileReader();
 
                     reader.onload = function (e) {
-                        resolve(e.target.result.split(",")[1]); // Base64 content
+                        resolve(e.target.result.split(",")[1]);
                     };
 
                     reader.onerror = function () {
                         reject(new Error("File read failed: " + file.name));
                     };
 
-                    reader.readAsDataURL(file); // 🔑 FileReader trigger
+                    reader.readAsDataURL(file);
                 });
 
                 // Object create
-                lcl_obj_EmpApp.EmployeeCertificateList[index] = {
+                lcl_obj_EmpApp.EmployeeCertificateList.push({
+                    FileName: file.name,
                     FileType: file.type,
                     FileSize: file.size,
                     Certificate: base64Content,
+                    CertificateCategoryId: category, // NEW FIELD
                     Status: 1,
                     IsDeleted: 1,
-                    FileName: file.name
-                };
+                });
             }
         }
 
@@ -1087,14 +1096,18 @@ let selectedFiles = [];
 
 // 1️⃣ Handle file selection
 function handleFileSelect(input) {
+    debugger;
     if (!input.files || input.files.length === 0) return;
 
     for (let i = 0; i < input.files.length; i++) {
-        selectedFiles.push(input.files[i]);
+        selectedFiles.push({
+            file: input.files[i],
+            category: 0 // default: not selected
+        });
     }
 
     renderFileTable();
-    input.value = ""; // allow reselect same file
+    input.value = "";
 }
 
 // 2️⃣ Render file list table
@@ -1111,7 +1124,9 @@ function renderFileTable() {
 
     table.style.display = "table";
 
-    selectedFiles.forEach(function (file, index) {
+    selectedFiles.forEach(function (item, index) {
+        const file = item.file;
+
         const row = document.createElement("tr");
 
         row.innerHTML =
@@ -1119,10 +1134,12 @@ function renderFileTable() {
             "<td>" + file.name + "</td>" +
             "<td>" + (file.type || "N/A") + "</td>" +
             "<td>" + Math.round(file.size / 1024) + "</td>" +
+            "<td>" + buildCategoryDropdown(index, item.category) + "</td>" +
             "<td>" +
             "<span onclick='removeFile(" + index + ")' " +
             "style='color:red; cursor:pointer; font-weight:bold; text-decoration:underline;'>Remove</span>" +
             "</td>";
+
         tbody.appendChild(row);
     });
 }
@@ -1138,62 +1155,39 @@ function getSelectedFiles() {
     return selectedFiles;
 }
 
-//function downloadCertificate(certificateCode) {
-//    $.ajax({
-//        type: "POST",
-//        url: "/WebServices/HRIS/EmployeeService.asmx/DownloadCertificate",
-//        contentType: "application/json; charset=utf-8",
-//        dataType: "json",
-//        data: JSON.stringify({ certificateCode: certificateCode }),
-//        success: function (response) {
-//            debugger;
+const certificateCategories = [
+    { value: 1, text: "Academic" },
+    { value: 2, text: "Professional" },
+    { value: 3, text: "Training" },
+    { value: 4, text: "Technical" },
+    { value: 5, text: "Skill Based" },
+    { value: 6, text: "Experience" },
+    { value: 7, text: "Participation" },
+    { value: 8, text: "Achievement" },
+    { value: 9, text: "Compliance" },
+    { value: 10, text: "Medical" },
+    { value: 11, text: "Identity" },
+    { value: 99, text: "Other" }
+];
 
-//            if (!response.d || !response.d.Data.Certificate) {
-//                alert("Certificate not found");
-//                return;
-//            }
+function buildCategoryDropdown(index, selectedValue) {
+    let html = `<select class="form-select"
+                        onchange="setFileCategory(${index}, this.value)">`;
 
-//            var cert = response.d.Data;
+    html += `<option value="0">-- Select Category --</option>`;
 
-//            // 🔹 Clean Base64 (VERY IMPORTANT)
-//            var base64 = cert.Certificate.replace(/\s/g, "");
+    certificateCategories.forEach(c => {
+        const selected = (c.value == selectedValue) ? "selected" : "";
+        html += `<option value="${c.value}" ${selected}>${c.text}</option>`;
+    });
 
-//            // 🔹 Base64 → Blob
-//            function base64ToBlob(base64, mimeType) {
-//                var byteChars = atob(base64);
-//                var byteNumbers = new Array(byteChars.length);
+    html += `</select>`;
+    return html;
+}
 
-//                for (var i = 0; i < byteChars.length; i++) {
-//                    byteNumbers[i] = byteChars.charCodeAt(i);
-//                }
-
-//                var byteArray = new Uint8Array(byteNumbers);
-//                return new Blob([byteArray], { type: mimeType });
-//            }
-
-//            var blob = base64ToBlob(base64, cert.FileType || "application/pdf");
-
-//            var fileName = cert.FileName;
-
-
-//            // 🔹 Download
-//            var url = window.URL.createObjectURL(blob);
-//            var a = document.createElement("a");
-//            a.href = url;
-//            a.download = fileName;
-
-//            document.body.appendChild(a);
-//            a.click();
-
-//            document.body.removeChild(a);
-//            window.URL.revokeObjectURL(url);
-//        },
-//        error: function () {
-//            alert("Server error!");
-//        }
-//    });
-//}
-
+function setFileCategory(index, value) {
+    selectedFiles[index].category = parseInt(value);
+}
 function downloadCertificate(certificateCode) {
     $.ajax({
         type: "POST",
@@ -1251,45 +1245,5 @@ function downloadCertificate(certificateCode) {
         error: function () {
             alert("Server error!");
         }
-    });
-}
-
-function handleFileSelect(input) {
-    if (!input.files || input.files.length === 0) return;
-
-    for (let i = 0; i < input.files.length; i++) {
-        selectedFiles.push(input.files[i]);
-    }
-
-    renderFileTable();
-    input.value = ""; // allow reselect same file
-}
-
-function renderFileTable() {
-    const table = document.getElementById("fileTable");
-    const tbody = document.getElementById("fileTableBody");
-
-    tbody.innerHTML = "";
-
-    if (selectedFiles.length === 0) {
-        table.style.display = "none";
-        return;
-    }
-
-    table.style.display = "table";
-
-    selectedFiles.forEach(function (file, index) {
-        const row = document.createElement("tr");
-
-        row.innerHTML =
-            "<td>" + (index + 1) + "</td>" +
-            "<td>" + file.name + "</td>" +
-            "<td>" + (file.type || "N/A") + "</td>" +
-            "<td>" + Math.round(file.size / 1024) + "</td>" +
-            "<td>" +
-            "<span onclick='removeFile(" + index + ")' " +
-            "style='color:red; cursor:pointer; font-weight:bold; text-decoration:underline;'>Remove</span>" +
-            "</td>";
-        tbody.appendChild(row);
     });
 }
