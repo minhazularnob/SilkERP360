@@ -45,7 +45,7 @@
                                 <div class="col-md-2">
                                     <a id="lnkGetLeaveProfile" href="#"
                                         class="btn btn-primary" style="font-size: inherit"
-                                        onclick="GetEmployeeLeaveProfile(event); return false;">
+                                        onclick="GetEmployeeLeaveProfile(event);Clear(event); return false;">
                                         <i class="fa fa-search me-1"></i>Search
                                     </a>
                                 </div>
@@ -62,10 +62,18 @@
                                         ReadOnly="true" ClientIDMode="Static" />
                                 </div>
 
-                                <!-- Designation -->
+                                <%--<!-- Designation -->
                                 <div class="col-md-4 d-flex align-items-center">
                                     <label class="form-label mb-0 me-2">Designation:</label>
                                     <asp:TextBox ID="txtDesignation" runat="server"
+                                        CssClass="form-control text-center"
+                                        ReadOnly="true" ClientIDMode="Static" />
+                                </div>--%>
+
+                                <!-- Department -->
+                                <div class="col-md-4 d-flex align-items-center">
+                                    <label class="form-label mb-0 me-2">Designation:</label>
+                                    <asp:TextBox ID="leaveDesignation" runat="server"
                                         CssClass="form-control text-center"
                                         ReadOnly="true" ClientIDMode="Static" />
                                 </div>
@@ -209,8 +217,13 @@
                                 </div>
                             </div>
 
-                            <!-- Save Button -->
-                            <div class="d-flex justify-content-end mt-3">
+                            <div class="d-flex justify-content-end mt-3 gap-2">
+                                <!-- Clear Button -->
+                                <button class="btn btn-info" onclick="Clear(event); return false;">
+                                    <i class="fa fa-eraser me-1"></i>Clear
+                                </button>
+
+                                <!-- Save Button -->
                                 <button class="btn btn-success" onclick="SaveLeaveApplication(event); return false;">
                                     <i class="fa fa-save me-1"></i>Save
                                 </button>

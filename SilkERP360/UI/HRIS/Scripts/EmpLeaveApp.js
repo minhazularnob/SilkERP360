@@ -163,12 +163,15 @@ function GetEmployeeLeaveProfile(event) {
     options.error = function (err) { ShowErrorMessageBoard(err.statusText); };
 
     $.ajax(options);
+
+    
 }
 
 
 function DisplayLeaveProfile() {
+    debugger;
     $("#txtEmpName").val(GBLEmployeeLeaveProfile.EmployeeName);
-    $("#txtDesignation").val(GBLEmployeeLeaveProfile.Designation.Name);
+    $("#leaveDesignation").val(GBLEmployeeLeaveProfile.Designation.Name);
     $("#txtDepartment").val(GBLEmployeeLeaveProfile.Department.Name);
     $("#txtCL").val(GBLEmployeeLeaveProfile.LeaveAccount.CL);
     $("#txtSL").val(GBLEmployeeLeaveProfile.LeaveAccount.SL);
@@ -318,4 +321,24 @@ function SaveLeaveApplication(event) {
     options.error = function (err) { ShowErrorMessageBoard(err.statusText); };
 
     $.ajax(options);
+
+}
+
+function Clear(event) {
+    event.preventDefault(); // Prevent default button behavior
+
+    // Clear dropdowns
+    $('#ddlLeaveType').val(null).trigger('change');
+    $('#ddlLeaveCategory').val(null).trigger('change');
+
+    // Clear textboxes
+    document.getElementById("txtStartDate").value = "";
+    document.getElementById("txtEndDate").value = "";
+    document.getElementById("txtNumOfDays").value = "";
+    document.getElementById("txtRejoinDate").value = "";
+    document.getElementById("txtReason").value = "";
+    document.getElementById("txtRemarks").value = "";
+
+    // Optionally, focus on the first field
+    document.getElementById("ddlLeaveType").focus();
 }
