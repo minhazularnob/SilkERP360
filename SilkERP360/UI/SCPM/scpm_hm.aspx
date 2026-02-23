@@ -306,7 +306,7 @@
                 </div>
             </div>
             <div class="text-center mt-3 small" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
-                © 2025 Silkways. All rights reserved.
+                © 2026 Silkways. All rights reserved.
             </div>
         </div>
     </footer>
