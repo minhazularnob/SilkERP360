@@ -18,6 +18,7 @@ namespace SilkERP360.Handler
         public void ProcessRequest(HttpContext context)
         {
             string reportName = context.Request.QueryString["report"];
+            string company = context.Request.QueryString["company"];
             if (string.IsNullOrEmpty(reportName))
             {
                 context.Response.ContentType = "text/plain";
@@ -44,7 +45,7 @@ namespace SilkERP360.Handler
 
             try
             {
-                var reportConfig = GetReportConfig(reportName);
+                var reportConfig = GetReportConfig(reportName, company);
 
                 // Prepare parameters for Attendance report
                 Dictionary<string, object> parameters = null;
@@ -87,7 +88,7 @@ namespace SilkERP360.Handler
         }
 
         // Fetch report configuration
-        private ReportConfig GetReportConfig(string reportName)
+        private ReportConfig GetReportConfig(string reportName, string company)
         {
             var reports = new Dictionary<string, ReportConfig>(StringComparer.OrdinalIgnoreCase)
             {
@@ -101,7 +102,7 @@ namespace SilkERP360.Handler
                                   INNER JOIN designation de ON e.designation_code = de.designation_code
                                   INNER JOIN department dep ON e.department_code = dep.department_code
                                   LEFT JOIN employee_personal ep ON e.employee_code = ep.employee_code
-                                  WHERE e.is_deleted = 1 AND e.employee_status IN(0,1,3)",
+                                  WHERE e.is_deleted = 1 AND e.employee_status IN(0,1,2) and e.company_code = "+company+"",
                         Columns = new Dictionary<string, Type>
                         {
                             { "EMPLOYEE_ID", typeof(string) },
@@ -118,7 +119,8 @@ namespace SilkERP360.Handler
                     "Attendance",
                     new ReportConfig
                     {
-                        Query = @"SELECT * FROM ATTENDANCE WHERE attendance_date BETWEEN :startDate AND :endDate ORDER BY ATTENDANCE_DATE, EMPLOYEE_CODE",
+                        //Query = @"SELECT * FROM ATTENDANCE WHERE attendance_date BETWEEN :startDate AND :endDate ORDER BY ATTENDANCE_DATE, EMPLOYEE_CODE",
+                        Query = @"select * from attendance a inner join attendance_master m on a.attendance_master_code=m.attendance_master_code where m.company_code= "+company+" and a.attendance_date BETWEEN :startDate AND :endDate ORDER BY a.ATTENDANCE_DATE, a.EMPLOYEE_CODE",
                         Columns = new Dictionary<string, Type>
                         {
                             { "ATTENDANCE_CODE", typeof(decimal) },

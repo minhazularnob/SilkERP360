@@ -54,22 +54,22 @@
     <div id="dvBody" class="p-3 mb-3" style="border:1px solid #ccc;">
         <!-- Header -->
         <div class="row fw-bold text-center">
-            <div class="col-1">Date</div>
-            <div class="col-1">Add/Ded</div>
+            <div class="col-2">Date</div>
+            <div class="col-2">Add/Ded</div>
             <div class="col-2">Add/Ded Type</div>
-            <div class="col-1">Eff. Month</div>
-            <div class="col-1">Eff. Year</div>
+            <div class="col-2">Eff. Month</div>
+            <div class="col-2">Eff. Year</div>
             <div class="col-1">Amount</div>
-            <div class="col-5">Remarks</div>
+            <div class="col-1">Remarks</div>
         </div>
 
         <!-- Input Row -->
         <div class="row text-center mt-2">
-            <div class="col-1">
+            <div class="col-2">
                 <asp:TextBox ID="txt_AddDed_Date" runat="server" ClientIDMode="Static" class="form-control text-center" />
             </div>
 
-            <div class="col-1">
+            <div class="col-2">
                 <asp:DropDownList ID="ddl_sal_AddOrDed" runat="server" ClientIDMode="Static" class="form-select">
                     <asp:ListItem Value="0">Select</asp:ListItem>
                     <asp:ListItem Value="1">Addition</asp:ListItem>
@@ -87,7 +87,7 @@
                 </asp:DropDownList>
             </div>
 
-            <div class="col-1">
+            <div class="col-2">
                 <asp:DropDownList ID="ddl_sal_EffectMonth" runat="server" ClientIDMode="Static" class="form-select">
                     <asp:ListItem Value="1">January</asp:ListItem>
                     <asp:ListItem Value="2">February</asp:ListItem>
@@ -104,7 +104,7 @@
                 </asp:DropDownList>
             </div>
 
-            <div class="col-1">
+            <div class="col-2">
                 <asp:DropDownList ID="ddl_sal_EffectYear" runat="server" ClientIDMode="Static" class="form-select">
                     <asp:ListItem Value="2014">2014</asp:ListItem>
                     <asp:ListItem Value="2015">2015</asp:ListItem>
@@ -128,7 +128,7 @@
                 <asp:TextBox ID="txt_Sal_AddDed_Amount" runat="server" ClientIDMode="Static" class="form-control text-end" />
             </div>
 
-            <div class="col-5">
+            <div class="col-1">
                 <asp:TextBox ID="txt_Sal_AddDedRemarks" runat="server" ClientIDMode="Static" class="form-control" />
             </div>
         </div>

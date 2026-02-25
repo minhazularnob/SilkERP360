@@ -14,7 +14,9 @@
 });
 
 $('#downLoadReport').click(function () {
+
     var reportName = $('#reportName option:selected').text();
+    var companyCode = $('#ddlCompany option:selected').val();
 
     if (reportName === "------ Select Report ------") {
         alert("Please select a report");
@@ -22,16 +24,28 @@ $('#downLoadReport').click(function () {
         return;
     }
 
-    var url = '/Handler/ReportDownloadHandler.ashx?report=' + encodeURIComponent(reportName);
+    if (!companyCode) {
+        alert("Please select a company");
+        return;
+    }
+
+    var url = '/Handler/ReportDownloadHandler.ashx?report='
+        + encodeURIComponent(reportName)
+        + '&company='
+        + encodeURIComponent(companyCode);
 
     if (reportName === "Attendance") {
+
         var startDate = $('#rptTxtStartDateTime').val();
         var endDate = $('#rptTxtEndDateTime').val();
+
         if (!startDate || !endDate) {
             alert("Please select start and end date");
             return;
         }
-        url += '&startDate=' + encodeURIComponent(startDate) + '&endDate=' + encodeURIComponent(endDate);
+
+        url += '&startDate=' + encodeURIComponent(startDate)
+            + '&endDate=' + encodeURIComponent(endDate);
     }
 
     window.open(url, '_blank');

@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmpWorkGroupSchedule.ascx.cs" Inherits="SilkERP360.UI.HRIS.EmpWorkGroupSchedule" %>
 
 <link href="../../Globals/Styles/scpm.css" rel="stylesheet" type="text/css" />
-<link href="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.css" rel="stylesheet" type="text/css" />
-<script src="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.js" type="text/javascript"></script>
+<%--<link href="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.css" rel="stylesheet" type="text/css" />
+<script src="../../Globals/Scripts/plug-ins/jquery.appendGrid-master/jquery.appendGrid-1.4.1.min.js" type="text/javascript"></script>--%>
 <script src="../../Globals/Scripts/plug-ins/jquery.formatDateTime-1.1.1/dist/jquery.formatDateTime.min.js" type="text/javascript"></script>
 <script src="../../Globals/Scripts/plug-ins/jquery.number.min.js" type="text/javascript"></script>
 <script src="../../Globals/jQuery/jquery-ui-1.10.3/ui/jquery.ui.slider.js" type="text/javascript"></script>
@@ -43,12 +43,31 @@
 
             <!-- WorkGroup Schedule Table -->
             <div id="dvWorkGroupSchedule" class="table-responsive">
-                <table id="tblWorkGroupSchedule" class="table table-bordered table-striped w-100">
-                    <!-- Schedule content will be dynamically loaded here -->
+                <table id="tblWorkGroupSchedule" class="table custom-table fontSerif w-100 dataTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px; text-align: center;">Sl.</th>
+                            <th>Emp. Id</th>
+                            <th>Emp. Name</th>
+                            <th>Designation</th>
+                            <th>Department</th>
+                            <th>Work Group</th>
+                            <th>Duty From</th>
+                            <th>Duty Upto</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
                 </table>
             </div>
 
         </div>
     </div>
 </div>
+
+<style>
+    #tblWorkGroupSchedule th:first-child,
+#tblWorkGroupSchedule td:first-child {
+    width: 40px !important;
+}
+</style>
 
