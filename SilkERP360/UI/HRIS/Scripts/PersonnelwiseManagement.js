@@ -9,7 +9,7 @@ $(document).ready(function () {
     GBL_EMPLOYEE_LIST_TABLE = $('#tblEmployeeList').dataTable({
         "bJQueryUI": false,
         "bFilter": true,
-        "bPaginate": true,
+        "bPaginate": false,
         "bLengthChange": false,
         "bSearch": true,
         "oLanguage": {
