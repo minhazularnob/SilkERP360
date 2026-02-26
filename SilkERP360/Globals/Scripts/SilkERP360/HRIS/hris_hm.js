@@ -120,10 +120,8 @@ function collapseSidebar() {
 }
 
 function changeCompanyLogo() {
-    var companyCode = $(this).val();
+    var companyCode = $('#ddlCompany').val();
     const $logoDiv = $('#companyLogoDiv');
-
-    
 
     $('#comapanyLogo').attr('src', generateCompanyimagePath(companyCode));
     // Apply dimensions and object-fit
@@ -287,7 +285,7 @@ function setCompanyName(code) {
     };
 
     const companyName = companyMap[code] || "Unknown Company";
-    document.getElementById("footerCompanyName").textContent = companyName;
+    //document.getElementById("footerCompanyName").textContent = companyName;
 }
 
     function initializeSelect2(dropdownId, placeholderText, width, dropdownParentSelector) {

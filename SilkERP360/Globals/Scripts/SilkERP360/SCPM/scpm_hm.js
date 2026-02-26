@@ -81,7 +81,7 @@ function setCompanyName(code) {
     };
 
     const companyName = companyMap[code] || "Unknown Company";
-    document.getElementById("footerCompanyName").textContent = companyName;
+    //document.getElementById("footerCompanyName").textContent = companyName;
 }
 
 function generateCompanyimagePath(companyCode) {

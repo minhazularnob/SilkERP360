@@ -216,6 +216,7 @@
                                     ID="ddlCompany"
                                     runat="server"
                                     CssClass="form-select form-select-sm"
+                                    onchange="changeCompanyLogo();"
                                     ClientIDMode="Static">
                                     <asp:ListItem />
                                 </asp:DropDownList>
@@ -341,10 +342,6 @@
              subMenu.classList.add("fontSerif");
          });
      });
-   
-    $(document).ready(function () {
-        $('#ddlCompany').on('change', changeCompanyLogo);
-    });
 
     initializeSelect2('ddlCompany', "Select Company" , 'resolve');
 
