@@ -249,7 +249,7 @@ namespace SilkERPSync
 
             System.Text.StringBuilder lcl_obj_SqlInsertBuilder = new StringBuilder();
             System.DateTime lcl_dt_Now = System.DateTime.Now;
-            
+
             //for (int i = 0; i < this.m_obj_BiometricDataTable.Rows.Count; i++)
             //{
             //    /**********************************************************************************************************/
@@ -275,22 +275,24 @@ namespace SilkERPSync
 
 
             System.UInt64 lcl_ui64_BMS_REPO_CODE = 1;
+
             for (int i = 0; i < lcl_strArr_BiometricDataLines.Length; i++)
             {
                 lcl_ui64_BMS_REPO_CODE++;
-                System.String[] lcl_strArr_BiometricDataLineSegments = lcl_strArr_BiometricDataLines[i].Split(new char[] { ',' });
-                lcl_obj_SqlInsertBuilder.Append("INSERT INTO BMS_REPOSITORY(BMS_TRAN_CODE,EMPLOYEE_ID,READER_CODE,TRAN_DATE_TIME,READER_NAME) Values(" + lcl_ui64_BMS_REPO_CODE + ", '" + lcl_strArr_BiometricDataLineSegments[0].ToString().Trim() + "', '" + lcl_strArr_BiometricDataLineSegments[3].ToString() + "',  to_date('" + lcl_strArr_BiometricDataLineSegments[1].ToString() + "', 'dd-mon-yyyy hh24:mi:ss'),'" + lcl_strArr_BiometricDataLineSegments[4].ToString() + "')");
-                lcl_objLst_SilkERPInsert.Add(lcl_obj_SqlInsertBuilder.ToString());
-                lcl_obj_SqlInsertBuilder.Length = 0;
-            }
-            
+                string[] lcl_strArr_BiometricDataLineSegments = lcl_strArr_BiometricDataLines[i].Split(',');
+                //string[] lcl_strArr_BiometricDataLineSegments = lcl_strArr_BiometricDataLines[i].Split('\t');
 
-             foreach (System.String lcl_str_BMSInsert in lcl_objLst_SilkERPInsert)
-            {
-                //Console.WriteLine(lcl_str_BMSInsert);
-                this.m_obj_DBManager.ExecuteNonQuery(lcl_str_BMSInsert);
+                string sqlInsert = "INSERT INTO BMS_REPOSITORY(BMS_TRAN_CODE, EMPLOYEE_ID, READER_CODE, TRAN_DATE_TIME, READER_NAME) " +
+                                   "VALUES(" + lcl_ui64_BMS_REPO_CODE + ", '" +
+                                   lcl_strArr_BiometricDataLineSegments[0].Trim() + "', '" +
+                                   lcl_strArr_BiometricDataLineSegments[3] + "', " +
+                                   "to_date('" + lcl_strArr_BiometricDataLineSegments[1] + "', 'dd/mm/yyyy hh24:mi:ss'), '" +
+                                   lcl_strArr_BiometricDataLineSegments[4] + "')";
+
+                this.m_obj_DBManager.ExecuteNonQuery(sqlInsert); // Execute immediately
             }
-             this.m_obj_DBManager.CommitTransaction();
+
+            this.m_obj_DBManager.CommitTransaction(); // Commit after all inserts
         }
 
         public void SynchronizeBiometricRepository()

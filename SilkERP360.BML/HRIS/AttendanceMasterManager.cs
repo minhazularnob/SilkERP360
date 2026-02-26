@@ -17,7 +17,7 @@ namespace SilkERP360.BML.HRIS
        public ulong Save(CCL.BusinessEntities.HRIS.AttendanceMaster IP_obj_AttendanceMaster, object IP_obj_DBManager)
        {
            System.UInt64 lcl_ui64_AttendanceMasterCode = 0;
-           System.String lcl_str_SqlQuery = System.String.Format("SELECT {0}.NEXTVAL AS ID FROM DUAL",IP_obj_AttendanceMaster.GetSequence());
+           System.String lcl_str_SqlQuery = "select max(attendance_master_code)+1 as ID from attendance_master";
            lcl_ui64_AttendanceMasterCode = this.ExceptionManager.Process<System.UInt64>(() =>
            {
                SilkERP360.DAL.DBManager lcl_obj_DBManager = (SilkERP360.DAL.DBManager)IP_obj_DBManager;

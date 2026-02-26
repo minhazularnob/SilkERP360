@@ -188,7 +188,7 @@ namespace SilkERP360.BML.HRIS.DataStructures
                         System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.DataStructures.EmployeeProfile>();
                 try
                 {
-                    System.String lcl_str_Query = System.String.Format("SELECT * FROM EMPLOYEE EMP JOIN DESIGNATION DESIG ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE JOIN DEPARTMENT DEPT ON EMP.DEPARTMENT_CODE = DEPT.DEPARTMENT_CODE WHERE EMP.COMPANY_CODE = {0} AND (EMPLOYEE_STATUS = {1} OR EMPLOYEE_STATUS = {2} OR EMPLOYEE_STATUS = {3}) AND IS_DELETED = 1 ORDER BY DEPT.RANK,DESIG.RANK ASC", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
+                    System.String lcl_str_Query = System.String.Format("SELECT * FROM EMPLOYEE EMP JOIN DESIGNATION DESIG ON EMP.DESIGNATION_CODE = DESIG.DESIGNATION_CODE JOIN DEPARTMENT DEPT ON EMP.DEPARTMENT_CODE = DEPT.DEPARTMENT_CODE WHERE EMP.COMPANY_CODE = {0} AND (EMPLOYEE_STATUS = {1} OR EMPLOYEE_STATUS = {2} OR EMPLOYEE_STATUS = {3}) AND EMP.IS_DELETED = 1 ORDER BY DEPT.RANK,DESIG.RANK ASC", IP_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
                     OracleCommand lcl_obj_EmployeeCommand = new OracleCommand(lcl_str_Query, lcl_obj_DBManager.Connection);
                     lcl_obj_EmployeeCommand.Transaction = lcl_obj_DBManager.Transaction;
 

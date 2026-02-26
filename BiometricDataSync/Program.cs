@@ -11,9 +11,9 @@ namespace BiometricDataSync
         {
             //SilkERPSync.ServiceLog.Init();
             SilkERP360.SP.HRIS.ServiceLog.Init();
-            System.String SILKERP_DATABASE_CONNECTION_STRING_ORCL = @"Data Source=db; User Id=silkerp; Password=silkerp;";
+            //System.String SILKERP_DATABASE_CONNECTION_STRING_ORCL = @"Data Source=db; User Id=silkerp; Password=silkerp;";
             //System.String SILKERP_DATABASE_CONNECTION_STRING_ORCL = @"Data Source=ORCL; User Id=silkerp_dev; Password=silkerp_dev;";
-            //System.String SILKERP_DATABASE_CONNECTION_STRING_ORCL = @"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.200.4)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=DB)));User Id=silkerp;Password=silkerp;";
+            System.String SILKERP_DATABASE_CONNECTION_STRING_ORCL = @"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.200.55)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl3)));User Id=silkerp;Password=silkerp;";
             //System.String BIOMETRIC_DATABASE_CONNECTION_STRING_SQL = @"Data Source=192.168.48.5;Initial Catalog=CCFTCentral;Uid=system1;Password=Asdf@12345678";
             SilkERP360.DAL.DBManager lcl_obj_DBManager = null;
             try
@@ -95,8 +95,8 @@ namespace BiometricDataSync
                 */
 
                 int a = 0;
-               /************************************************************************************************************************/
-               /************************************************************************************************************************/
+                /************************************************************************************************************************/
+                /************************************************************************************************************************/
 
                 /************************************************************************************************************************/
                 /************************************************************************************************************************/
@@ -188,58 +188,58 @@ namespace BiometricDataSync
 
 
 
-                
+
 
                 //int a = 0;
 
-                 /************************************************************************************************************************/
+                /************************************************************************************************************************/
                 /************************************************************************************************************************/
                 //PRODUCTION REPORT MAILER
-                 /*lcl_obj_DBManager = new SilkERP360.DAL.DBManager(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
-                 lcl_obj_DBManager.Initialize();
-                 lcl_obj_DBManager.Open();
-                 SilkERP360.SP.HRIS.ServiceLog.LogData(System.DateTime.Now.ToString("dd/MM/yy hh:mm:ss tt") + " => Processing Silkcard Production Report...");
-                 System.UInt64 lcl_ui64_CompanyCodeTmp = 110000000001;//SilkCard
+                /*lcl_obj_DBManager = new SilkERP360.DAL.DBManager(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
+                lcl_obj_DBManager.Initialize();
+                lcl_obj_DBManager.Open();
+                SilkERP360.SP.HRIS.ServiceLog.LogData(System.DateTime.Now.ToString("dd/MM/yy hh:mm:ss tt") + " => Processing Silkcard Production Report...");
+                System.UInt64 lcl_ui64_CompanyCodeTmp = 110000000001;//SilkCard
 
-                 System.DateTime lcl_dt_ProductionDate = System.DateTime.Today.AddDays(-1); //System.DateTime.ParseExact("06/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
-                 SilkERPSync.SilkcardProductionReporter lcl_obj_SilkcardProductionReporter = new SilkERPSync.SilkcardProductionReporter(lcl_dt_ProductionDate, lcl_ui64_CompanyCodeTmp);
-                 lcl_obj_SilkcardProductionReporter.Init(lcl_obj_DBManager);
-                 lcl_obj_SilkcardProductionReporter.MailSilkcardProductionReport();
-                 //SilkcardProductionReporter.LastExecutionDateTime = System.DateTime.Now;
-                 lcl_obj_DBManager.CommitTransaction();
-                 lcl_obj_DBManager.Close();
-                 SilkERP360.SP.HRIS.ServiceLog.LogData(System.DateTime.Now.ToString("dd/MM/yy hh:mm:ss tt") + " => Silkcard Production Report Processed & Mailed!!");*/
+                System.DateTime lcl_dt_ProductionDate = System.DateTime.Today.AddDays(-1); //System.DateTime.ParseExact("06/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
+                SilkERPSync.SilkcardProductionReporter lcl_obj_SilkcardProductionReporter = new SilkERPSync.SilkcardProductionReporter(lcl_dt_ProductionDate, lcl_ui64_CompanyCodeTmp);
+                lcl_obj_SilkcardProductionReporter.Init(lcl_obj_DBManager);
+                lcl_obj_SilkcardProductionReporter.MailSilkcardProductionReport();
+                //SilkcardProductionReporter.LastExecutionDateTime = System.DateTime.Now;
+                lcl_obj_DBManager.CommitTransaction();
+                lcl_obj_DBManager.Close();
+                SilkERP360.SP.HRIS.ServiceLog.LogData(System.DateTime.Now.ToString("dd/MM/yy hh:mm:ss tt") + " => Silkcard Production Report Processed & Mailed!!");*/
                 /************************************************************************************************************************/
-                 /************************************************************************************************************************/
-
-                 /**********************************************************************************************************************************/
-                 /**********************************************************************************************************************************/
-                //DUPLICATE ROW ELIMINATOR
-                 //DuplicateRowEliminator lcl_obj_DuplicateRowEliminator = new DuplicateRowEliminator();
-                 //lcl_obj_DuplicateRowEliminator.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
-                 //lcl_obj_DuplicateRowEliminator.EliminateDuplicateLeaveApplication();
-                 /**********************************************************************************************************************************/
-                 /**********************************************************************************************************************************/
-
-                 /*System.DateTime lcl_dt_ProductionDate = System.DateTime.ParseExact("06/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
-                 SilkERPSync.SilkcardProductionReporter lcl_obj_SilkcardProductionReporter = new SilkERPSync.SilkcardProductionReporter(lcl_dt_ProductionDate, lcl_ui64_CompanyCode);
-                 lcl_obj_SilkcardProductionReporter.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
-                 lcl_obj_SilkcardProductionReporter.MailSilkcardProductionReport();
-                //int a = 0;
-                //lcl_obj_DBManager = new SilkERP360.DAL.DBManager(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
-                //lcl_obj_DBManager.Initialize();
-                //lcl_obj_DBManager.Open();
-                //SilkERPSync.BiometricDataUploader lcl_obj_Biometric = new SilkERPSync.BiometricDataUploader();
-                //lcl_obj_Biometric.Init(lcl_obj_DBManager);
-                //lcl_obj_Biometric.ReadAndUpload();
-                //lcl_obj_Biometric.SynchronizeBiometricRepository();
-                //SilkERP360.SP.HRIS.AttendanceProcessor lcl_obj_AttendanceProcessor = new SilkERP360.SP.HRIS.AttendanceProcessor();
-                //lcl_obj_AttendanceProcessor.Init(lcl_obj_DBManager);
-                //System.DateTime lcl_dt_ProcessStartDate = System.DateTime.ParseExact("28/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
-                //System.DateTime lcl_dt_ProcessEndDate = System.DateTime.ParseExact("28/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
-                //lcl_obj_Biometric.SynchronizeBiometricRepository();
+                /************************************************************************************************************************/
 
                 /**********************************************************************************************************************************/
+                /**********************************************************************************************************************************/
+                //DUPLICATE ROW ELIMINATOR
+                //DuplicateRowEliminator lcl_obj_DuplicateRowEliminator = new DuplicateRowEliminator();
+                //lcl_obj_DuplicateRowEliminator.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
+                //lcl_obj_DuplicateRowEliminator.EliminateDuplicateLeaveApplication();
+                /**********************************************************************************************************************************/
+                /**********************************************************************************************************************************/
+
+                /*System.DateTime lcl_dt_ProductionDate = System.DateTime.ParseExact("06/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
+                SilkERPSync.SilkcardProductionReporter lcl_obj_SilkcardProductionReporter = new SilkERPSync.SilkcardProductionReporter(lcl_dt_ProductionDate, lcl_ui64_CompanyCode);
+                lcl_obj_SilkcardProductionReporter.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
+                lcl_obj_SilkcardProductionReporter.MailSilkcardProductionReport();
+               //int a = 0;
+               //lcl_obj_DBManager = new SilkERP360.DAL.DBManager(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
+               //lcl_obj_DBManager.Initialize();
+               //lcl_obj_DBManager.Open();
+               //SilkERPSync.BiometricDataUploader lcl_obj_Biometric = new SilkERPSync.BiometricDataUploader();
+               //lcl_obj_Biometric.Init(lcl_obj_DBManager);
+               //lcl_obj_Biometric.ReadAndUpload();
+               //lcl_obj_Biometric.SynchronizeBiometricRepository();
+               //SilkERP360.SP.HRIS.AttendanceProcessor lcl_obj_AttendanceProcessor = new SilkERP360.SP.HRIS.AttendanceProcessor();
+               //lcl_obj_AttendanceProcessor.Init(lcl_obj_DBManager);
+               //System.DateTime lcl_dt_ProcessStartDate = System.DateTime.ParseExact("28/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
+               //System.DateTime lcl_dt_ProcessEndDate = System.DateTime.ParseExact("28/04/2015", "dd/M/yyyy", CultureInfo.InvariantCulture);
+               //lcl_obj_Biometric.SynchronizeBiometricRepository();
+
+               /**********************************************************************************************************************************/
                 /**********************************************************************************************************************************/
                 //Annual Leave Syschronization
                 //LeaveAccountSync lcl_obj_LeaveAccountSync = new LeaveAccountSync();
@@ -286,7 +286,7 @@ namespace BiometricDataSync
 
                 /********************************************************************************************************************************/
                 //FOR MONTHLY ALLOWANCE PROCESSING
-               // MonthlyAllowanceProcessor lcl_obj_MonthlyAllowanceProcessor = new MonthlyAllowanceProcessor(SilkERP360.CCL.Enums.Month.August, 2016);
+                // MonthlyAllowanceProcessor lcl_obj_MonthlyAllowanceProcessor = new MonthlyAllowanceProcessor(SilkERP360.CCL.Enums.Month.August, 2016);
                 //lcl_obj_MonthlyAllowanceProcessor.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
                 //lcl_obj_MonthlyAllowanceProcessor.Process(lcl_ui64_CompanyCode);
                 /********************************************************************************************************************************/
@@ -297,7 +297,7 @@ namespace BiometricDataSync
                 //lcl_obj_AdditionDeductionProcessor.ProcessUnicormDeduction(lcl_ui64_CompanyCode);
                 /********************************************************************************************************************************/
                 /********************************************************************************************************************************/
-               
+
                 //FOR PROCESSING PROVIDENT FUND   // ************************* SSL 20161128 3, To change Month and year *********************** 
                 //ProvidentFundProcessor lcl_obj_ProvidentFundProcessor = new ProvidentFundProcessor(SilkERP360.CCL.Enums.Month.April, 2018);
                 //lcl_obj_ProvidentFundProcessor.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
@@ -321,13 +321,13 @@ namespace BiometricDataSync
                 //lcl_obj_DBManager.Open();
                 //SilkERPSync.BiometricDataUploader lcl_obj_Biometric = new SilkERPSync.BiometricDataUploader();
                 //lcl_obj_Biometric.Init(lcl_obj_DBManager);
-                //lcl_obj_Biometric.SynchronizeBiometricRepository(@"D:\July-August-2025\Attendance-August-25.CSV");
+                //lcl_obj_Biometric.SynchronizeBiometricRepository(@"G:\Attendance\attendance.csv");
                 //int p = 0;
                 /**************************************************************************************************************/
 
 
                 // Attendance Process (***)
-                /*lcl_obj_DBManager = new SilkERP360.DAL.DBManager(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
+                lcl_obj_DBManager = new SilkERP360.DAL.DBManager(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
                 lcl_obj_DBManager.Initialize();
                 lcl_obj_DBManager.Open();
                 SilkERP360.BML.HRIS.CompanyManager lcl_obj_CompanyManager = new SilkERP360.BML.HRIS.CompanyManager();
@@ -337,10 +337,10 @@ namespace BiometricDataSync
                 lcl_obj_Biometric.Init(lcl_obj_DBManager);
                 SilkERP360.SP.HRIS.AttendanceProcessor lcl_obj_AttendanceProcessor = new SilkERP360.SP.HRIS.AttendanceProcessor();
                 lcl_obj_AttendanceProcessor.Init(lcl_obj_DBManager);
-                System.DateTime lcl_dt_ProcessStartDate = System.DateTime.ParseExact("16/08/2025","dd/M/yyyy", CultureInfo.InvariantCulture);
-                  System.DateTime lcl_dt_ProcessEndDate = System.DateTime.ParseExact("25/08/2025","dd/M/yyyy", CultureInfo.InvariantCulture);
-               
-               
+                System.DateTime lcl_dt_ProcessStartDate = System.DateTime.ParseExact("27/01/2026", "dd/M/yyyy", CultureInfo.InvariantCulture);
+                System.DateTime lcl_dt_ProcessEndDate = System.DateTime.ParseExact("25/02/2026", "dd/M/yyyy", CultureInfo.InvariantCulture);
+
+
                 System.DateTime lcl_dt_Today = System.DateTime.Now;
                 System.String lcl_str_SqlQuery = System.String.Empty;
                 for (System.DateTime lcl_dt_Date = lcl_dt_ProcessStartDate; lcl_dt_Date <= lcl_dt_ProcessEndDate; lcl_dt_Date = lcl_dt_Date.AddDays(1))
@@ -350,7 +350,7 @@ namespace BiometricDataSync
                         if (lcl_obj_Company.CompanyCode == lcl_ui64_CompanyCode)
                         {
                             lcl_str_SqlQuery = System.String.Format("SELECT COUNT(EMPLOYEE_CODE) FROM EMPLOYEE WHERE COMPANY_CODE = {0} AND (EMPLOYEE_STATUS = {1} OR EMPLOYEE_STATUS = {2} OR EMPLOYEE_STATUS = {3})", lcl_ui64_CompanyCode, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Regular, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Probation, (System.Int32)SilkERP360.CCL.Enums.EmployeeStatus.Temporary);
-                            
+
                             //ServiceLog.LogData(System.DateTime.Now.ToString("dd/MM/yy hh:mm:ss tt") + " => Executing Query : " + lcl_str_SqlQuery);
                             System.Object lcl_obj_NumberOfEmployee = lcl_obj_DBManager.ExecuteScalar(lcl_str_SqlQuery);
                             System.String lcl_str_NumberOfEmployee = lcl_obj_NumberOfEmployee.ToString();
@@ -370,19 +370,19 @@ namespace BiometricDataSync
                             List<string> lcl_objLst_MailListCC = new List<string>();
                             //Common                                                        
                             //lcl_objLst_MailListTo.Add("lota.sc@silkways.net");
-                            
+
                             //lcl_objLst_MailListCC.Add("zinia.sc@silkways.net");
 
                             //lcl_objLst_MailListCC.Add("konica.sc@silkways.net");
-                            
+
                             lcl_objLst_MailListCC.Add("amitav.sc@silkways.net");
-                 
+
                             lcl_objLst_MailListCC.Add("maria.sc@silkways.net");
-                           
+
                             lcl_objLst_MailListCC.Add("shareat.sc@silkways.net");
-                         
+
                             //SilkERPSync.SilkMailer lcl_obj_SilkMailer = new SilkERPSync.SilkMailer(lcl_objLst_MailListTo, lcl_objLst_MailListCC);
-                           // lcl_obj_SilkMailer.SendMail(lcl_str_AttendanceMailSubject, lcl_str_AttendanceMail);
+                            // lcl_obj_SilkMailer.SendMail(lcl_str_AttendanceMailSubject, lcl_str_AttendanceMail);
 
                             System.GC.Collect();
                             //lcl_obj_DBManager.CommitTransaction();
@@ -411,7 +411,7 @@ namespace BiometricDataSync
                 //ManualDataInput mip = new ManualDataInput();
                 //mip.Input();
                 //mip.AdjustMonthlyAllowance();
-               // mip.DeductAutoOvertimeAndAdjustFromSalary();
+                // mip.DeductAutoOvertimeAndAdjustFromSalary();
 
                 //BiometricDataUploader bdu = new BiometricDataUploader();
                 //bdu.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL, BIOMETRIC_DATABASE_CONNECTION_STRING_SQL);
@@ -438,12 +438,12 @@ namespace BiometricDataSync
                 //for (System.DateTime lcl_dt_Date = lcl_dt_StartDate; lcl_dt_Date <= lcl_dt_EndDate; lcl_dt_Date = lcl_dt_Date.AddDays(1))
                 //{
                 //    ap.Process(lcl_dt_Date);
-                    
+
                 //}
                 //ap.Dispose();
-                
-                
-               // Console.Read();
+
+
+                // Console.Read();
                 //LeaveAccountSync LA = new LeaveAccountSync();
                 //LA.Init(SILKERP_DATABASE_CONNECTION_STRING_ORCL);
                 //LA.CheckLeaveAccountExistance();
