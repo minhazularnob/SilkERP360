@@ -59,7 +59,7 @@ function Logout() {
 function expandSidebar() {
     const sidebar = document.getElementById("sidebar");
     const img = document.getElementById("sideBarIcon");
-    sidebar.style.width = "300px";
+    sidebar.style.width = "226px";
     img.style.display = "none"; // Hide the image
 }
 

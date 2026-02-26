@@ -109,15 +109,40 @@
         <div class="container-fluid" style="font-family: serif; height: 800px; padding: 0;">
             <div class="row">
                 <div class="col-auto p-0 silkways_solid_Blue" id="sidebar">
-                    <img src="/Globals/Images/sidebar.png" id="sideBarIcon" style="margin-top:5%" class="sidebar-image" onclick="expandSidebar()" />
+                    <img src="/Globals/Images/sidebar.png" id="sideBarIcon" style="margin-top:5%; cursor:pointer;" class="sidebar-image" onclick="expandSidebar()" />
     
-                    <div style="text-align: right;">
-                        <i onmouseover="this.style.background='rgba(255,0,0,0.8)'; this.style.transform='scale(1.15) rotate(90deg)';"
-                            onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1) rotate(0deg)';"
-                            title="Close" class="fa-solid fa-xmark" style="background: rgba(0,0,0,0.5); margin-right:5px;margin-bottom:-10px; border-radius: 50%; color: #fff; cursor: pointer; z-index: 9999; width: 40px; height: 40px; align-items: center; padding: 2%; font-size: 28px; transition: all 0.2s ease;"
-                            onclick="collapseSidebar()"></i>
+                    <style>
+                        .sidebar-header {
+                            display: flex;
+                            justify-content: flex-end;
+                            padding: 8px;
+                        }
+
+                        .close-btn {
+                            width: 22px;
+                            height: 22px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 13px;
+                            color: #666;
+                            background: #f2f2f2;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        }
+
+                            .close-btn:hover {
+                                background: #ff4d4d;
+                                color: #fff;
+                                transform: rotate(90deg);
+                            }
+                    </style>
+
+                    <div class="sidebar-header">
+                        <i class="fa-solid fa-xmark close-btn" onclick="collapseSidebar()"></i>
                     </div>
-                    <div id="dvHMenu" class="pt-3">
+                    <div id="dvHMenu" class="">
                     </div>
                 </div>
 
@@ -236,36 +261,34 @@
                 </div>
             </div>
 
-            <footer class="footer_master_color_liener_gradient text-white py-3 border-top fontSerif" style="font-size: 0.95rem; opacity: 0.95;">
-                <div class="container">
-                    <div class="row">
-                        <!-- Company Info -->
-                        <div class="col-md-6 mb-2">
-                            <h5 id="footerCompanyName" class="mb-1">Silkways</h5>
-                            <p id="footerCompanyAddress" class="mb-0">
-                                Corporate Office: Plot No. SW(I) 4, 25 Gulshan Avenue 1212, Bangladesh
-                            </p>
-                        </div>
-      
-                        <!-- Contact Info -->
-                        <div class="col-md-6 mb-2">
-                            <h5 class="mb-1">Contact</h5>
-                            <p class="mb-1">
-                                <strong>Mobile:</strong> <span id="footerCompanyMobile">+88 02 9888211</span>
-                            </p>
-                            <p class="mb-0">
-                                <strong>Email:</strong> <span id="footerCompanyEmail">info@silkways.net</span>
-                            </p>
-                        </div>
-                    </div>
+<footer class="footer_master_color_liener_gradient text-white fontSerif"
+        style="padding:6px 10px; font-size:11px; line-height:1.3; border-top:1px solid rgba(255,255,255,0.2);">
 
-                    <!-- Copyright -->
-                    <div class="text-center mt-3 small" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
-                        © 2026 Silkways. All rights reserved.
-                    </div>
-                </div>
-            </footer>
+    <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; max-width:1200px; margin:0 auto;">
+
+        <!-- Factory Info (Left) -->
+        <div style="flex:1 1 45%; min-width:200px; padding:2px 5px;">
+            <strong style="font-size:12px;">Factory</strong><br>
+            158/C, Tejgaon Industrial Area, Dhaka – 1208, Bangladesh<br>
+            Tel: <a href="tel:+8802222288211" style="color:#fff; text-decoration:underline;">+8802 222288211-17</a> | 
+            <a href="mailto:info.silkcard@silkways.net" style="color:#fff; text-decoration:underline;">info.silkcard@silkways.net</a>
         </div>
+
+        <!-- Corporate Office (Center) -->
+        <div style="flex:1 1 45%; min-width:200px; padding:2px 5px; text-align:center;">
+            <strong style="font-size:12px;">Corporate Office</strong><br>
+            Plot No. SW (I) 4, 25 Gulshan Avenue, Gulshan-1, Dhaka-1212<br>
+            Tel: <a href="tel:+8802222288211" style="color:#fff; text-decoration:underline;">+8802 222288211-17</a> | 
+            <a href="mailto:info.silkcard@silkways.net" style="color:#fff; text-decoration:underline;">info.silkcard@silkways.net</a>
+        </div>
+
+    </div>
+
+    <div style="text-align:center; font-size:10px; margin-top:4px;">
+        © 2026 Silkways. All rights reserved.
+    </div>
+
+</footer>     </div>
 
     </form>
 
