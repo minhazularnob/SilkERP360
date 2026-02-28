@@ -71,7 +71,7 @@
                 <label>
                     <input type="checkbox" id="chkUncheckAllRows">
                     Select/Deselect All</label>
-                <table id="tblWorkGroupSchedule" class="table table-bordered table-striped w-100">
+                <table id="tblWorkGroupSchedule" class="">
                     <!-- Schedule content will load here dynamically -->
                 </table>
             </div>

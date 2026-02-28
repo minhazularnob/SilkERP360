@@ -155,7 +155,7 @@
                             </button>
                         </div>
                     </div>
-                    <table id="tblAttendance" class="table table-bordered table-striped mx-auto">
+                    <table id="tblAttendance" class="">
                         <!-- Dynamic Attendance Rows -->
                     </table>
                 </div>
