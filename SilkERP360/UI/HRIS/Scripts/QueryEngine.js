@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 
     GBL_TBL_EMPLOYEE_WISE_ATTENDANCE = $('#tblEmployeewiseAttendance').dataTable({
-        "bJQueryUI": true,
+        "bJQueryUI": false,
         "sScrollY": "auto",
         "bFilter": true,
         "bPaginate": false,
