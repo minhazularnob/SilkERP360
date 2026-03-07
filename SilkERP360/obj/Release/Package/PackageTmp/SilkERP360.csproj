@@ -10123,6 +10123,8 @@
     <Content Include="UI\HRIS\hris_hm.aspx" />
     <Content Include="UI\HRIS\HRReport.ascx" />
     <Content Include="UI\HRIS\IncrementAndPromotionList.ascx" />
+    <Content Include="UI\HRIS\EmployeeTax.ascx" />
+    <Content Include="UI\HRIS\Loan.ascx" />
     <Content Include="UI\HRIS\PromotionHistory.ascx" />
     <Content Include="UI\HRIS\IncrementIOHistory.ascx" />
     <Content Include="UI\HRIS\IncrementSummery.ascx" />
@@ -10165,6 +10167,8 @@
     <Content Include="UI\HRIS\Scripts\EmployeeWorkGroupSchedule.js" />
     <Content Include="UI\HRIS\Scripts\IncrementAndPromotionList.js" />
     <Content Include="UI\HRIS\Scripts\EmployeeIdCardInfo.js" />
+    <Content Include="UI\HRIS\Scripts\EmployeeTax.js" />
+    <Content Include="UI\HRIS\Scripts\Loan.js" />
     <Content Include="UI\HRIS\Scripts\PromotionHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementIOHistory.js" />
     <Content Include="UI\HRIS\Scripts\IncrementSummery.js" />
@@ -10290,6 +10294,8 @@
     <Content Include="WebServices\HRIS\SalaryAddDedService.asmx" />
     <Content Include="WebServices\HRIS\SalaryService.asmx" />
     <Content Include="WebServices\HRIS\ShiftService.asmx" />
+    <Content Include="WebServices\HRIS\StaffLoanService.asmx" />
+    <Content Include="WebServices\HRIS\TaxService.asmx" />
     <Content Include="WebServices\HRIS\UserInterfaceLoaderService.asmx" />
     <Content Include="WebServices\HRIS\WeekendManagementService.asmx" />
     <Content Include="WebServices\HRIS\WorkGroupServices.asmx" />
@@ -10315,10 +10321,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseException.cs" />
+    <Compile Include="DataEmployeList1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataEmployeList1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet123.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet123.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet22.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet22.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet333.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet333.xsd</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -10326,6 +10357,11 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeAttendanceDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeAttendanceDataset.xsd</DependentUpon>
     </Compile>
     <Compile Include="EmployeeListDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -10650,6 +10686,20 @@
     </Compile>
     <Compile Include="UI\HRIS\IncrementAndPromotionList.ascx.designer.cs">
       <DependentUpon>IncrementAndPromotionList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HRIS\EmployeeTax.ascx.cs">
+      <DependentUpon>EmployeeTax.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HRIS\EmployeeTax.ascx.designer.cs">
+      <DependentUpon>EmployeeTax.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HRIS\Loan.ascx.cs">
+      <DependentUpon>Loan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HRIS\Loan.ascx.designer.cs">
+      <DependentUpon>Loan.ascx</DependentUpon>
     </Compile>
     <Compile Include="UI\HRIS\PromotionHistory.ascx.cs">
       <DependentUpon>PromotionHistory.ascx</DependentUpon>
@@ -11176,6 +11226,14 @@
       <DependentUpon>ShiftService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WebServices\HRIS\StaffLoanService.asmx.cs">
+      <DependentUpon>StaffLoanService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebServices\HRIS\TaxService.asmx.cs">
+      <DependentUpon>TaxService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WebServices\HRIS\UserInterfaceLoaderService.asmx.cs">
       <DependentUpon>UserInterfaceLoaderService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -11329,6 +11387,17 @@
     <Content Include="DataSet.xsc">
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="DataEmployeList1.xsc">
+      <DependentUpon>DataEmployeList1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataEmployeList1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataEmployeList1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataEmployeList1.xss">
+      <DependentUpon>DataEmployeList1.xsd</DependentUpon>
+    </Content>
     <None Include="DataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSet.Designer.cs</LastGenOutput>
@@ -11339,6 +11408,61 @@
     </Content>
     <Content Include="EmployeeListDataSet.xsc">
       <DependentUpon>EmployeeListDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="EmployeeAttendanceDataset.xsc">
+      <DependentUpon>EmployeeAttendanceDataset.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSet22.xsc">
+      <DependentUpon>DataSet22.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSet123.xsc">
+      <DependentUpon>DataSet123.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet123.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet123.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataSet123.xss">
+      <DependentUpon>DataSet123.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet22.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet22.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataSet22.xss">
+      <DependentUpon>DataSet22.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSet333.xsc">
+      <DependentUpon>DataSet333.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet333.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet333.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataSet333.xss">
+      <DependentUpon>DataSet333.xsd</DependentUpon>
+    </Content>
+    <None Include="EmployeeAttendanceDataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeAttendanceDataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="EmployeeAttendanceDataset.xss">
+      <DependentUpon>EmployeeAttendanceDataset.xsd</DependentUpon>
     </Content>
     <None Include="EmployeeListDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -11726,6 +11850,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Attendance.rdlc" />
     <EmbeddedResource Include="Reports\EmployeeList.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

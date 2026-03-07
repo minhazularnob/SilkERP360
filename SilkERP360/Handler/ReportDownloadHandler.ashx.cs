@@ -96,22 +96,26 @@ namespace SilkERP360.Handler
                     "EmployeeList",
                     new ReportConfig
                     {
-                        Query = @"SELECT e.employee_code, e.employee_id, e.employee_name, de.degn_name, 
-                                         e.joining_date, e.confirmation_date, e.job_location, ep.blood_group
-                                  FROM employee e
+                        Query = @"SELECT e.employee_code, e.employee_id, e.employee_name, de.degn_name,dep.dept_name, 
+                                  e.joining_date, e.confirmation_date, e.job_location, ep.blood_group,e.bank_account_no, s.basic, s.gross FROM employee e
                                   INNER JOIN designation de ON e.designation_code = de.designation_code
                                   INNER JOIN department dep ON e.department_code = dep.department_code
                                   LEFT JOIN employee_personal ep ON e.employee_code = ep.employee_code
-                                  WHERE e.is_deleted = 1 AND e.employee_status IN(0,1,2) and e.company_code = "+company+"",
+                                  left join employee_salary_structure s on e.employee_code=s.employee_code
+                                  WHERE e.is_deleted = 1 AND e.employee_status IN(0,1,2) and e.company_code = "+company+" order by dep.rank asc",
                         Columns = new Dictionary<string, Type>
                         {
                             { "EMPLOYEE_ID", typeof(string) },
                             { "EMPLOYEE_NAME", typeof(string) },
                             { "degn_name", typeof(string) },
+                            { "dept_name", typeof(string) },
+                            { "bank_account_no", typeof(string) },
                             { "joining_date", typeof(DateTime) },
                             { "confirmation_date", typeof(DateTime) },
                             { "job_location", typeof(string) },
-                            { "blood_group", typeof(string) }
+                            { "blood_group", typeof(string) },
+                            { "basic", typeof(decimal) },
+                            { "gross", typeof(decimal) }
                         }
                     }
                 },
