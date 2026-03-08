@@ -28,6 +28,7 @@ namespace SilkERP360.Handler
 
             string startDateStr = context.Request.QueryString["startDate"];
             string endDateStr = context.Request.QueryString["endDate"];
+            string type = context.Request.QueryString["type"];
 
             DateTime startDate = DateTime.MinValue;
             DateTime endDate = DateTime.MinValue;
@@ -71,11 +72,43 @@ namespace SilkERP360.Handler
                 lr.DataSources.Add(new ReportDataSource("DataSet1", dt));
 
                 string mimeType, encoding, extension;
-                byte[] bytes = lr.Render("PDF", null, out mimeType, out encoding, out extension, out streams, out warnings);
+                byte[] bytes;
 
                 context.Response.Clear();
-                context.Response.ContentType = "application/pdf";
-                context.Response.AddHeader("Content-Disposition", "inline; filename=" + reportName + ".pdf");
+
+                if (type == "1")
+                {
+                    // PDF
+                    bytes = lr.Render(
+                        "PDF",
+                        null,
+                        out mimeType,
+                        out encoding,
+                        out extension,
+                        out streams,
+                        out warnings
+                    );
+
+                    context.Response.ContentType = "application/pdf";
+                    context.Response.AddHeader("Content-Disposition", "attachment; filename=" + reportName + ".pdf");
+                }
+                else
+                {
+                    // Excel
+                    bytes = lr.Render(
+                        "EXCELOPENXML",
+                        null,
+                        out mimeType,
+                        out encoding,
+                        out extension,
+                        out streams,
+                        out warnings
+                    );
+
+                    context.Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    context.Response.AddHeader("Content-Disposition", "attachment; filename=" + reportName + ".xlsx");
+                }
+
                 context.Response.BinaryWrite(bytes);
                 context.Response.Flush();
                 context.ApplicationInstance.CompleteRequest();

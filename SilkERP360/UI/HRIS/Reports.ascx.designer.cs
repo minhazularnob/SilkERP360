@@ -24,6 +24,15 @@ namespace SilkERP360.UI.HRIS
         protected global::System.Web.UI.WebControls.DropDownList reportName;
 
         /// <summary>
+        /// typeDdl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList typeDdl;
+
+        /// <summary>
         /// rptTxtStartDateTime control.
         /// </summary>
         /// <remarks>

@@ -17,6 +17,7 @@ $('#downLoadReport').click(function () {
 
     var reportName = $('#reportName option:selected').text();
     var companyCode = $('#ddlCompany option:selected').val();
+    var type = $('#typeDdl').val();
 
     if (reportName === "------ Select Report ------") {
         alert("Please select a report");
@@ -32,7 +33,9 @@ $('#downLoadReport').click(function () {
     var url = '/Handler/ReportDownloadHandler.ashx?report='
         + encodeURIComponent(reportName)
         + '&company='
-        + encodeURIComponent(companyCode);
+        + encodeURIComponent(companyCode)
+        + '&type='
+        + encodeURIComponent(type);
 
     if (reportName === "Attendance") {
 

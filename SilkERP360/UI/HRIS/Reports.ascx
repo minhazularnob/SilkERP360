@@ -48,6 +48,11 @@
                             </div>
                             <div class="col-md-3">
                                 <button id="downLoadReport" type="button" class="btn btn-primary">Download</button>
+                                <asp:DropDownList ID="typeDdl" style="width: 15%" runat="server"
+                                    CssClass="js-example-basic-multiple" ClientIDMode="Static">
+                                    <asp:ListItem Value="1">PDF</asp:ListItem>
+                                    <asp:ListItem Value="2">Excel</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div id="datepickerDiv" style="display: none">
