@@ -37,6 +37,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data.SqlCe, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.23.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.23.26.0\lib\net472\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
@@ -81,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttendanceProcessor.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="IncrementUpdater.cs" />
     <Compile Include="LeaveUpdater.cs" />
@@ -99,6 +103,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BiometricDataSync\BiometricDataSync.csproj">
+      <Project>{d12e0e80-7d6a-4a2d-a220-35e2a96eea18}</Project>
+      <Name>BiometricDataSync</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilkERP360.BML\SilkERP360.BML.csproj">
+      <Project>{9b235328-d16e-41ec-a189-1bbb872a0044}</Project>
+      <Name>SilkERP360.BML</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SilkERP360.CCL\SilkERP360.CCL.csproj">
       <Project>{b5471837-c586-4007-9e73-8a5b08508b8e}</Project>
       <Name>SilkERP360.CCL</Name>
@@ -106,6 +118,14 @@
     <ProjectReference Include="..\SilkERP360.DAL\SilkERP360.DAL.csproj">
       <Project>{010b2dbd-8f8d-45ae-9baf-0a57aff87144}</Project>
       <Name>SilkERP360.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilkERP360.SP\SilkERP360.SP.csproj">
+      <Project>{adb708db-9be1-4190-a6f0-21f6c26c531d}</Project>
+      <Name>SilkERP360.SP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilkERPSync\SilkERPSync.csproj">
+      <Project>{16fa3bac-fcdf-4797-881e-2c10f77f2c20}</Project>
+      <Name>SilkERPSync</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
