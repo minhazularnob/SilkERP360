@@ -46,7 +46,7 @@
     <div class="container-fluid h-100 p-0" >
       <div class="row g-0 h-100">
         <div class="col-md-6 d-none d-md-block p-0">
-          <img src="Globals/Images/3d-render-secure-login-password-illustration.jpg" alt="Login Image" class="img-fluid h-100 w-100 object-fit-cover" />
+          <img src="Globals/Images/3d-render-secure-login-password-illustration.png" alt="Login Image" class="img-fluid h-100 w-100 object-fit-fill" />
         </div>
 
         <!-- Right Side: Forms -->
