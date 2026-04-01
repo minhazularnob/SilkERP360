@@ -99,7 +99,7 @@ $(document).ready(function () {
     GBL_SALARY_LIST_TABLE = $('#tblSalary').dataTable({
         "bJQueryUI": true,
         "bAutoWidth":true,
-        "sScrollY": "600px",
+        "sScrollY": "480px",
         "sScrollX": "150%",
         "sScrollXInner": "150%",
         "bFilter": true,
