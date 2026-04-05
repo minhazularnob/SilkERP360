@@ -270,7 +270,3 @@
         </tr>
     </table>
 </div>
-
-<style>
-
-</style>

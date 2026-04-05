@@ -11,7 +11,7 @@
     <div id="cmd" style="width: 99%; z-index: 1001;">
         <div class="row">
             <div class="col-10">
-                <h3 class="fontSerif" style="margin-left:20%">New Appoinment</h3>
+                <h3 class="fontSerif" style="margin-left:20%; font-size: 18px" >New Appoinment</h3>
             </div>
             <div class="col-2">
                 <p class="login button">
@@ -32,9 +32,9 @@
 
         <div id="ImageTab" class="position-relative p-3" style="z-index: 1003;">
             <div class="container">
-                <h3 class="fontSerif mb-4">Image Information</h3>
+                <h3 class="fontSerif mb-4" style="font-size: 16px">Image Information</h3>
 
-                <div class="row mb-3 justify-content-center">
+                <div class="row mb-0 justify-content-center">
                     <div class="col-md-4 text-center">
                         <img id="imgEmployeeImage" src="../../Globals/Images/images.jpg"
                             alt="Employee Image" class="img-fluid rounded"
@@ -42,19 +42,19 @@
                     </div>
                 </div>
 
-                <div class="row mb-3 justify-content-center">
+                <div class="row mb-0 justify-content-center">
                     <div class="col-md-4">
                         <input id="fileBrowser" type="file" class="form-control" onchange="return LoadImage();">
                     </div>
                 </div>
 
-                <div class="row mb-3 justify-content-center">
+                <div class="row mb-0 justify-content-center">
                     <div class="col-md-4 mb-2">
                         <input id="txt_EI_ImageType" class="form-control" placeholder="File Type" readonly>
                     </div>
                 </div>
 
-                <div class="row mb-3 justify-content-center">
+                <div class="row mb-0 justify-content-center">
                     <div class="col-md-4 mb-2">
                         <input id="txt_EI_ImageSize" class="form-control" placeholder="File Size" readonly>
                     </div>
@@ -69,10 +69,10 @@
                 </div>
             </div>
         </div>
-        <div id="OfficialTab" class="position-relative p-3" style='z-index: 1004; max-height: 900px; overflow-y: auto'>
+        <div id="OfficialTab" class="position-relative p-3" style='z-index: 1004; max-height: 900px; overflow-y: auto;font-size:xx-small'>
             <div class="container-fluid">
-                <h3 class="fontSerif">Official Information</h3>
-                <div class="row mb-3">
+                <h3 class="fontSerif" style="font-size:16px">Official Information</h3>
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Department</label>
                     <div class="col-sm-11">
                         <asp:DropDownList ID="ddl_Off_Department" runat="server" ClientIDMode="Static"
@@ -82,7 +82,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Employee Name</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_Off_Name" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -99,7 +99,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">ACS Code</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_Off_ACSCode" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -116,7 +116,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Ref. Employee</label>
                     <div class="col-sm-5">
                         <asp:DropDownList ID="ddl_Off_RefEmployee" runat="server" ClientIDMode="Static"
@@ -134,7 +134,7 @@
                 </div>
 
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Supervisor</label>
                     <div class="col-sm-5">
                         <asp:DropDownList ID="ddl_Off_Supervisor" runat="server" ClientIDMode="Static"
@@ -152,7 +152,7 @@
                 </div>
 
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Join Date</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_Off_JoiningDate" Style="width: 100%" runat="server" ReadOnly="true" ClientIDMode="Static"
@@ -169,7 +169,7 @@
                 </div>
 
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Retirement Date</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_Off_RetirementDate" Style="width: 100%" runat="server" ReadOnly="true" ClientIDMode="Static"
@@ -185,7 +185,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Official File No</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_Off_OfficialFileNo" Style="width: 100%" runat="server" ReadOnly="false" ClientIDMode="Static"
@@ -202,7 +202,7 @@
                 </div>
 
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Bond Issue Date</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_BondIssueDate" Style="width: 100%" runat="server" ReadOnly="true" ClientIDMode="Static"
@@ -228,7 +228,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Bond Expiry Date</label>
                     <div class="col-sm-5">
                         <asp:TextBox ID="txt_BondValidityDate" Style="width: 100%" runat="server" ReadOnly="true" ClientIDMode="Static"
@@ -244,7 +244,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">e-TIN Eligible</label>
                     <div class="col-sm-5 d-flex align-items-center">
                         <asp:CheckBox ID="chk_eTIN_Eligible" runat="server" Text="e-TIN Eligible" ClientIDMode="Static" />
@@ -260,7 +260,7 @@
 
 
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Bank</label>
                     <div class="col-sm-5 d-flex align-items-center">
                         <asp:CheckBox ID="chkBankSalary" runat="server" Text="Bank Salary" ClientIDMode="Static" />
@@ -274,7 +274,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <label class="col-sm-1 col-form-label">Eligible</label>
                     <div class="col-sm-5 d-flex flex-wrap gap-2 align-items-center">
                         <asp:CheckBox ID="chkOTEligable" runat="server" Text="OT Eligible" ClientIDMode="Static" />
@@ -300,7 +300,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-0">
                     <!-- Weekend Checkboxes -->
                     <label class="col-sm-1 col-form-label">Weekend</label>
                     <div class="col-sm-5 d-flex flex-wrap gap-2" id="chkbox" style="z-index: 1005;">
@@ -325,17 +325,17 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-0">
                 </div>
             </div>
         </div>
-        <div id="PersonalTab" class="position-relative p-3" style='z-index: 1006; max-height: 900px; overflow-y: auto'>
+        <div id="PersonalTab" class="position-relative p-3" style='z-index: 1006; max-height: 900px; overflow-y: auto;font-size:xx-small'>
             <div class="container-fluid">
-                <h3 class="fontSerif">Personal Information</h3>
+                <h3 class="fontSerif" style="font-size:16px">Personal Information</h3>
 
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Father Name</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_FatherName" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -351,7 +351,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Spouse Name</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_SpouseName" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -367,7 +367,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Marital Status</label>
                 <div class="col-sm-5">
                     <asp:DropDownList ID="ddl_Pers_MaritalStatus" runat="server" ClientIDMode="Static"
@@ -391,7 +391,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Religion</label>
                 <div class="col-sm-5">
                     <asp:DropDownList ID="ddl_Pers_Religion" runat="server" ClientIDMode="Static"
@@ -412,7 +412,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Blood Group</label>
                 <div class="col-sm-5">
                     <asp:DropDownList ID="ddl_Pers_BloodGroup" runat="server" ClientIDMode="Static"
@@ -437,7 +437,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Weight</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_Weight" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -454,7 +454,7 @@
             </div>
 
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Mobile No</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_MobileNo" onkeypress="return /[0-9+\-]/.test(event.key)" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -470,7 +470,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Fax No</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_FaxNo" onkeypress="return /[0-9+\-]/.test(event.key)" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -487,7 +487,7 @@
             </div>
 
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Present Address</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_PresentAddress" Style="width: 97%" runat="server" ClientIDMode="Static"
@@ -503,7 +503,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Present District</label>
                 <div class="col-sm-5">
                     <asp:DropDownList ID="ddl_Pers_PresentDistrict" runat="server" ClientIDMode="Static"
@@ -521,7 +521,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Present PO</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_PresentPO" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -536,7 +536,7 @@
                     </asp:TextBox>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">Present PC</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_PresentPC" onkeypress="return /[0-9]/.test(event.key)" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -551,7 +551,7 @@
                     </asp:TextBox>
                 </div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-0">
                 <label class="col-sm-1 col-form-label">National ID No</label>
                 <div class="col-sm-5">
                     <asp:TextBox ID="txt_Pers_VoterCardNo" Style="width: 100%" runat="server" ClientIDMode="Static"
@@ -571,7 +571,7 @@
             <div class="container-fluid">
 
                 <!-- Salary Information -->
-                <h3 class="fontSerif mb-3">Salary Information</h3>
+                <h3 class="fontSerif mb-3" style="font-size:16px">Salary Information</h3>
 
                 <div class="table-responsive">
                     <table id="tblSalaryMain" class="table table-bordered text-center w-100">
@@ -634,7 +634,7 @@
                 </div>
 
                 <!-- Leave Information -->
-                <h3 class="fontSerif mt-4 mb-3">Leave Information</h3>
+                <h3 class="fontSerif mt-4 mb-3" style="font-size:16px">Leave Information</h3>
 
                 <div class="table-responsive">
                     <table id="tblLeave" class="table table-bordered w-100" style="background-color: #CCCCCC;">
@@ -655,7 +655,7 @@
                 </div>
 
                  <!-- Reference Information -->
-                <h3 class="fontSerif mt-4 mb-3">Reference Information</h3>
+                <h3 class="fontSerif mt-4 mb-3" style="font-size:16px">Reference Information</h3>
 
                 <div class="table-responsive">
                     <table id="tblReference" class="table table-bordered w-100">
@@ -713,7 +713,7 @@
             <div id="mm" style="height: auto; z-index: 1008;">
                 <!-- Education Section -->
                 <div class="table-responsive">
-                    <h3 class="fontSerif">Education Details</h3>
+                    <h3 class="fontSerif" style="font-size:16px">Education Details</h3>
                     <table id="tblEducation" class="table table-bordered w-100">
 
                         <thead class="table-light text-center">
@@ -765,7 +765,7 @@
             <div id="Experience" style="height: 225px; z-index: 1009; margin-top: 20px;">
                 <!-- Experience Section -->
                 <div class="table-responsive">
-                    <h3 class="fontSerif">Experience Details</h3>
+                    <h3 class="fontSerif" style="font-size:16px">Experience Details</h3>
                     <table id="tblExperience" class="table table-bordered w-100">
                         <thead class="table-light text-center">
                             <tr>
@@ -816,7 +816,7 @@
         <div id="CertificateTab" style="z-index: 1007;">
             <div id="mm" style="height: auto; z-index: 1008;">
                 <div class="table-responsive">
-                    <h3 class="fontSerif">Add Certificates</h3>
+                    <h3 class="fontSerif" style="font-size:16px">Add Certificates</h3>
                     <input type="file" id="fileInput" multiple
                         accept=".pdf,.jpg,.jpeg,.png"
                         onchange="handleFileSelect(this)">
