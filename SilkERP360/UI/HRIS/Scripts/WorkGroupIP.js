@@ -288,6 +288,7 @@ function SyncWorkGroupInclusion(event) {
 
 function GetWorkGroupByDate(event) {
     event.preventDefault();
+    $("#ddlOperationalStatus").val(null).trigger('change');
     //$("#btnManage").prop("disabled", true);
     var lcl_ui64_WorkGroupCode = $("#ddlWorkGroup option:selected").val();
     var lcl_dt_Date = $("#txtWorkDate").val();
@@ -424,7 +425,8 @@ function GetWorkGroupByDate(event) {
 
 
                         if (GBL_WorkGroupOperationMaster.IsAttendanceProcessed == 1) {
-                            $("#ddlOperationalStatus").val(GBL_WorkGroupOperationMaster.OperationalStatus);
+                            debugger;
+                            $("#ddlOperationalStatus").val(GBL_WorkGroupOperationMaster.OperationalStatus).trigger('change');
                             $("#ddlDayAttribute").val(GBL_WorkGroupOperationMaster.DayAttribute);
                             $("#txtDutyStartsAt").val(GBL_WorkGroupOperationMaster.DutyStartFrom);
                             $("#txtDutyHour").val(GBL_WorkGroupOperationMaster.DutyHour);
@@ -515,7 +517,7 @@ function GetWorkGroupByDate(event) {
                             /********************************************************************************************************************************/
                             //Config AppendGrid with RemoveButton
                             //CONFIGURE APPENDROW
-                            $("#ddlOperationalStatus").val(GBL_WorkGroupOperationMaster.OperationalStatus);
+                            $("#ddlOperationalStatus").val(GBL_WorkGroupOperationMaster.OperationalStatus).trigger('change');
                             $("#ddlDayAttribute").val(GBL_WorkGroupOperationMaster.DayAttribute);
                             $("#txtDutyStartsAt").val(GBL_WorkGroupOperationMaster.DutyStartFrom);
                             $("#txtDutyHour").val(GBL_WorkGroupOperationMaster.DutyHour);

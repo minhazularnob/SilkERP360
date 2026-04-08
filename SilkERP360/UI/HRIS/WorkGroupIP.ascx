@@ -97,6 +97,7 @@
                             </td>
                             <td style="width: 34%; text-align: center;">
                                 <asp:DropDownList ID="ddlOperationalStatus" CssClass="wg_read_only wg_operational_status" runat="server" Width="100%" ClientIDMode="Static">
+                                      <asp:ListItem Value="">----Select Operational Status----</asp:ListItem>
                                     <asp:ListItem Value="1">On</asp:ListItem>
                                     <asp:ListItem Value="2">Off</asp:ListItem>
                                     <asp:ListItem Value="3">Holiday Off</asp:ListItem>
