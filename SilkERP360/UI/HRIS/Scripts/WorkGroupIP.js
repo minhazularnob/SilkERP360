@@ -287,8 +287,9 @@ function SyncWorkGroupInclusion(event) {
 }
 
 function GetWorkGroupByDate(event) {
+    debugger;
     event.preventDefault();
-    $("#ddlOperationalStatus").val(null).trigger('change');
+    /*$("#ddlOperationalStatus").val(null).trigger('change');*/
     //$("#btnManage").prop("disabled", true);
     var lcl_ui64_WorkGroupCode = $("#ddlWorkGroup option:selected").val();
     var lcl_dt_Date = $("#txtWorkDate").val();
@@ -423,7 +424,7 @@ function GetWorkGroupByDate(event) {
                         GBL_InsertableWorkGroupOperationHistory = new Object();
 
 
-
+                        $("#ddlOperationalStatus").val(null).trigger('change');
                         if (GBL_WorkGroupOperationMaster.IsAttendanceProcessed == 1) {
                             debugger;
                             $("#ddlOperationalStatus").val(GBL_WorkGroupOperationMaster.OperationalStatus).trigger('change');
