@@ -165,6 +165,14 @@ function CountNotification() {
             }
 
             $('#notificationCount').text(WSReturn.Data.length);
+
+            if (WSReturn.Data.length > 0) {
+                $('#notificationCount').css('color', 'red');
+                document.querySelector(".fa-bell").style.color = "red";
+            } else {
+                $('#notificationCount').css('color', '');
+                document.querySelector(".fa-bell").style.color = "";
+            }
         },
         error: function (err) {
             console.error("Error Counting Notifications:", err);
