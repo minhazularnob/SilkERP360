@@ -25,7 +25,8 @@ namespace SilkERP360.PromotionUpdater
         public void processed()
         {
             SilkERP360.SP.HRIS.ServiceLog.Init();
-            string SILKERP_DATABASE_CONNECTION_STRING_ORCL = @"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.200.55)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl3)));User Id=silkerp;Password=silkerp;";
+            string SILKERP_DATABASE_CONNECTION_STRING_ORCL = DALObjectPoolManager.CONNECTION_STRING;
+            //string SILKERP_DATABASE_CONNECTION_STRING_ORCL = @"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.200.55)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl3)));User Id=silkerp;Password=silkerp;";
             SilkERP360.DAL.DBManager lcl_obj_DBManager = null;
             try
             {
