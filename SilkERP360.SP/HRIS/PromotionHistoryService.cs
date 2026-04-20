@@ -63,7 +63,7 @@ namespace SilkERP360.SP.HRIS
             lcl_obj_Notification = this.ExceptionManager.Process<System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Notification>>(() =>
             {
                 System.String lcl_str_SqlQuery = System.String.Format(@"select Employee_Code,Employee_Id,Employee_Name,is_deleted,confirmation_date,joining_date from employee where is_deleted=1 and employee_status=2 and company_code={0} AND confirmation_date >= TRUNC(SYSDATE)
-                                                                        AND confirmation_date < TRUNC(SYSDATE)+2", IP_ui64_companyCode);
+                                                                        AND confirmation_date < TRUNC(SYSDATE)+4", IP_ui64_companyCode);
                 SilkERP360.BML.HRIS.PromotionHistoryManager lcl_obj_PromotionHistoryManager = new SilkERP360.BML.HRIS.PromotionHistoryManager();
                 System.Collections.Generic.List<SilkERP360.CCL.BusinessEntities.HRIS.Notification> lcl_obj_DesignationTmp = lcl_obj_PromotionHistoryManager.GetAllNotifications(lcl_str_SqlQuery);
                 return lcl_obj_DesignationTmp;
